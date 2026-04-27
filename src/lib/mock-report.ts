@@ -46,9 +46,30 @@ export function buildMockReport(input: {
 
     likely_business_model: `Service-led ${industry} with project or retainer pricing (assumed; not verified).`,
 
+    classification: {
+      industry: industry,
+      business_model: "Service-based; project + retainer (assumed)",
+      customer_type: "B2B / B2C SMB (not verified in mock mode)",
+      bottlenecks: [
+        "Manual lead qualification through a static contact form",
+        "Founder-led proposal writing",
+        "No repeatable content cadence",
+        "Inbox is the operating system"
+      ]
+    },
+
     AI_readiness_score: 42,
     AI_readiness_explanation:
       "Foundation in place but no AI surface area. Quick wins available in lead handling, content, and back-office workflows.",
+    ai_readiness_breakdown: {
+      website_clarity:          { score: 7, max: 15, rationale: "Hero exists, but value-prop and ICP are not legible in 5 seconds." },
+      lead_capture:             { score: 5, max: 15, rationale: "Static contact form only; no scheduler, no lead magnet, no newsletter." },
+      sales_automation:         { score: 9, max: 20, rationale: "Discovery → proposal → follow-up pipeline is fully manual today." },
+      support_admin_automation: { score: 6, max: 15, rationale: "Repetitive onboarding/FAQ traffic likely going through founder inbox." },
+      content_seo:              { score: 5, max: 15, rationale: "Blog/insights surface is thin or missing; founder voice not yet repurposed." },
+      tech_stack_readiness:     { score: 6, max: 10, rationale: "Modern marketing-site stack assumed; API-friendly enough to wire AI in." },
+      urgency_signals:          { score: 4, max: 10, rationale: "No public hiring or AI-related signal detected in mock mode." }
+    },
 
     top_automation_opportunities: [
       {
@@ -172,10 +193,10 @@ export function buildMockReport(input: {
       "30-day AI Implementation Sprint: we ship the 3 highest-ROI items end-to-end, fixed price, with a measurable success metric per item.",
 
     outbound_email_copy:
-      `Subject: A quick AI audit we ran on ${input.businessName}\n\n` +
+      `Subject: I found 5 places AI could save or make you money at ${input.businessName}\n\n` +
       `Hi ${input.founders?.[0] || "there"},\n\n` +
-      `We took a public-only look at ${domain} and put together a short audit on where AI could realistically save you time or pull in more revenue in the next 30 days. ` +
-      `A few of the bigger ones: an AI lead-qualifier on your site, inbox triage with auto-drafts, and a proposal generator that turns discovery calls into a branded SOW in under 2 minutes.\n\n` +
+      `I found 5 places AI could save or make you money at ${input.businessName}. I took a public-only look at ${domain} and put together a short audit on where AI realistically pays for itself in the next 30 days.\n\n` +
+      `The biggest three: an AI lead-qualifier on your site, inbox triage with auto-drafts, and a proposal generator that turns discovery calls into a branded SOW in under 2 minutes.\n\n` +
       `If it's useful, I'm happy to walk you through the report and the 3 we'd ship first — no pitch, just the audit.\n\n` +
       `— DubaiAI`,
 

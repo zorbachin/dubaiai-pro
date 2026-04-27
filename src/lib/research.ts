@@ -57,6 +57,8 @@ export async function gatherResearch(input: ResearchInput): Promise<ResearchHit[
     `"${input.businessName}" funding OR "raised" OR investors`,
     `"${input.businessName}" reviews`,
     `"${input.businessName}" press OR launch OR announces`,
+    `"${input.businessName}" hiring OR jobs OR careers`,
+    `"${input.businessName}" "tech stack" OR engineering OR built with`,
     `site:linkedin.com/company "${input.businessName}"`,
     `site:${getDomain(input.websiteUrl)} about`
   ];

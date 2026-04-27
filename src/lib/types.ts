@@ -60,6 +60,43 @@ export interface RoadmapItem {
   steps: string[];
 }
 
+export interface CompanyClassification {
+  industry: string;          // e.g. "Real estate brokerage"
+  business_model: string;    // e.g. "Service-based, retainer + commission"
+  customer_type: string;     // e.g. "B2C: high-net-worth investors in MENA"
+  bottlenecks: string[];     // suspected operational bottlenecks
+}
+
+export const AI_READINESS_WEIGHTS = {
+  website_clarity: 15,
+  lead_capture: 15,
+  sales_automation: 20,
+  support_admin_automation: 15,
+  content_seo: 15,
+  tech_stack_readiness: 10,
+  urgency_signals: 10
+} as const;
+
+export type AIReadinessKey = keyof typeof AI_READINESS_WEIGHTS;
+
+export interface AIReadinessCategory {
+  score: number;             // 0..max
+  max: number;               // weight
+  rationale: string;
+}
+
+export type AIReadinessBreakdown = Record<AIReadinessKey, AIReadinessCategory>;
+
+export const AI_READINESS_LABELS: Record<AIReadinessKey, string> = {
+  website_clarity: "Website clarity",
+  lead_capture: "Lead capture",
+  sales_automation: "Sales automation potential",
+  support_admin_automation: "Support / admin automation potential",
+  content_seo: "Content / SEO opportunity",
+  tech_stack_readiness: "Tech stack readiness",
+  urgency_signals: "Founder / business urgency signals"
+};
+
 export interface AuditReport {
   generated_at: string;
   business_name: string;
@@ -72,8 +109,11 @@ export interface AuditReport {
   current_tech_stack: string[];
   likely_business_model: string;
 
-  AI_readiness_score: number;       // 0-100
+  classification: CompanyClassification;
+
+  AI_readiness_score: number;       // sum of breakdown sub-scores; 0-100
   AI_readiness_explanation: string;
+  ai_readiness_breakdown: AIReadinessBreakdown;
 
   top_automation_opportunities: AuditOpportunity[];
   quick_wins: AuditOpportunity[];

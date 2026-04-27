@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { requireServiceClient } from "@/lib/supabase/server";
 import type { AuditReport, AuditRow } from "@/lib/types";
-import { ScoreBlock } from "@/components/report/score";
+import { ScoreBlock, ScoreBreakdown } from "@/components/report/score";
 import { OpportunityCard } from "@/components/report/opportunity-card";
 import { ReportCTA } from "@/components/report/cta";
 import { formatUSD, getDomain } from "@/lib/utils";
@@ -62,12 +62,32 @@ export default async function ReportPage({ params }: { params: Promise<{ id: str
 
       {/* What the business does */}
       <Section title="What the business appears to do">
-        <p className="text-ink">{r.likely_business_model}</p>
-        <p className="mt-3 text-muted">{r.mission_positioning}</p>
-        <div className="mt-4 card bg-bg/50">
-          <div className="h-section">Founder research</div>
-          <p className="mt-2 text-muted">{r.founder_research}</p>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="card">
+            <div className="h-section">Classification</div>
+            <dl className="mt-3 grid gap-2 text-sm">
+              <Row k="Industry" v={r.classification?.industry} />
+              <Row k="Business model" v={r.classification?.business_model} />
+              <Row k="Customer type" v={r.classification?.customer_type} />
+            </dl>
+            <div className="h-section mt-5">Likely bottlenecks</div>
+            <ul className="mt-2 space-y-1.5 text-ink text-sm">
+              {(r.classification?.bottlenecks ?? []).map((b, i) => <li key={i}>• {b}</li>)}
+            </ul>
+          </div>
+          <div className="card">
+            <div className="h-section">Mission &amp; positioning</div>
+            <p className="mt-3 text-ink">{r.likely_business_model}</p>
+            <p className="mt-3 text-muted">{r.mission_positioning}</p>
+            <div className="mt-5 h-section">Founder research</div>
+            <p className="mt-2 text-muted">{r.founder_research}</p>
+          </div>
         </div>
+      </Section>
+
+      {/* Score breakdown */}
+      <Section title="Where the score comes from">
+        <ScoreBreakdown breakdown={r.ai_readiness_breakdown} />
       </Section>
 
       {/* Tech maturity */}
@@ -89,7 +109,7 @@ export default async function ReportPage({ params }: { params: Promise<{ id: str
       </Section>
 
       {/* Top opportunities */}
-      <Section title="Top AI implementation opportunities">
+      <Section title="5 places AI could save or make you money">
         <div className="grid gap-4">
           {r.top_automation_opportunities.map((o, i) => (
             <OpportunityCard key={i} o={o} index={i} />
@@ -184,5 +204,15 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       <h2 className="font-display text-2xl font-bold">{title}</h2>
       <div className="mt-4">{children}</div>
     </section>
+  );
+}
+
+function Row({ k, v }: { k: string; v?: string }) {
+  if (!v) return null;
+  return (
+    <div className="flex gap-3">
+      <dt className="text-muted shrink-0 w-32">{k}</dt>
+      <dd className="text-ink">{v}</dd>
+    </div>
   );
 }

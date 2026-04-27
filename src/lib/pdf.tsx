@@ -1,6 +1,6 @@
 import { Document, Page, Text, View, StyleSheet, renderToBuffer } from "@react-pdf/renderer";
 import React from "react";
-import type { AuditReport } from "./types";
+import { AI_READINESS_LABELS, type AIReadinessKey, type AuditReport } from "./types";
 import { getDomain } from "./utils";
 
 const s = StyleSheet.create({
@@ -20,7 +20,14 @@ const s = StyleSheet.create({
   pill: { fontSize: 8, color: "#5b21b6", backgroundColor: "#ede9fe", paddingHorizontal: 4, paddingVertical: 1, borderRadius: 3, marginRight: 4 },
   row: { flexDirection: "row", flexWrap: "wrap", marginTop: 2 },
   cite: { color: "#6b7280", fontSize: 8 },
-  rule: { borderBottomWidth: 1, borderBottomColor: "#e5e7eb", marginVertical: 10 }
+  rule: { borderBottomWidth: 1, borderBottomColor: "#e5e7eb", marginVertical: 10 },
+  kvRow: { flexDirection: "row", marginBottom: 2 },
+  kvKey: { width: 90, color: "#6b7280" },
+  kvVal: { flex: 1 },
+  bar: { height: 4, backgroundColor: "#e5e7eb", borderRadius: 2, marginTop: 2 },
+  barFill: { height: 4, backgroundColor: "#7c5cff", borderRadius: 2 },
+  catRow: { marginBottom: 8 },
+  catHead: { flexDirection: "row", justifyContent: "space-between", marginBottom: 1 }
 });
 
 function Bullets({ items }: { items: string[] }) {
@@ -84,8 +91,38 @@ function ReportDocument({ r }: { r: AuditReport }) {
         </View>
 
         <Text style={s.h2}>What the business appears to do</Text>
+        {r.classification && (
+          <View style={s.card}>
+            <View style={s.kvRow}><Text style={s.kvKey}>Industry</Text><Text style={s.kvVal}>{r.classification.industry || "—"}</Text></View>
+            <View style={s.kvRow}><Text style={s.kvKey}>Business model</Text><Text style={s.kvVal}>{r.classification.business_model || "—"}</Text></View>
+            <View style={s.kvRow}><Text style={s.kvKey}>Customer type</Text><Text style={s.kvVal}>{r.classification.customer_type || "—"}</Text></View>
+            {r.classification.bottlenecks?.length ? (
+              <>
+                <Text style={[s.h3, { marginTop: 6 }]}>Likely bottlenecks</Text>
+                <Bullets items={r.classification.bottlenecks} />
+              </>
+            ) : null}
+          </View>
+        )}
         <Text>{r.likely_business_model}</Text>
         <Text style={{ marginTop: 4 }}>{r.mission_positioning}</Text>
+
+        <Text style={s.h2}>Score breakdown</Text>
+        {(Object.keys(AI_READINESS_LABELS) as AIReadinessKey[]).map((k) => {
+          const c = r.ai_readiness_breakdown?.[k];
+          if (!c) return null;
+          const pct = Math.min(100, Math.round((c.score / Math.max(1, c.max)) * 100));
+          return (
+            <View key={k} style={s.catRow}>
+              <View style={s.catHead}>
+                <Text>{AI_READINESS_LABELS[k]}</Text>
+                <Text style={{ color: "#6b7280" }}>{c.score} / {c.max}</Text>
+              </View>
+              <View style={s.bar}><View style={[s.barFill, { width: pct + "%" }]} /></View>
+              {c.rationale && <Text style={{ color: "#6b7280", fontSize: 9, marginTop: 2 }}>{c.rationale}</Text>}
+            </View>
+          );
+        })}
 
         <Text style={s.h2}>Founder research</Text>
         <Text>{r.founder_research}</Text>
@@ -96,7 +133,7 @@ function ReportDocument({ r }: { r: AuditReport }) {
         <Text style={s.h3}>Website observations</Text>
         <Bullets items={r.website_observations} />
 
-        <Text style={s.h2}>Top AI implementation opportunities</Text>
+        <Text style={s.h2}>5 places AI could save or make you money</Text>
         {r.top_automation_opportunities.map((o, i) => (
           <Opportunity key={i} {...o} />
         ))}

@@ -1,6 +1,13 @@
 import OpenAI from "openai";
 import { env, flags } from "./env";
-import type { AuditReport, CrawledPage, ResearchHit } from "./types";
+import {
+  AI_READINESS_WEIGHTS,
+  type AIReadinessBreakdown,
+  type AIReadinessKey,
+  type AuditReport,
+  type CrawledPage,
+  type ResearchHit
+} from "./types";
 import { buildMockReport } from "./mock-report";
 import { getDomain, truncate } from "./utils";
 
@@ -22,8 +29,31 @@ NON-NEGOTIABLE RULES:
 - Where the data is thin, say so plainly in the relevant field — do not pad with generalities.
 - Tone: direct, founder-to-founder, useful first. No marketing fluff. No emoji.
 - Recommendations must be specific enough that the founder can imagine shipping them this month.
-- The 'outbound_email_copy' should read like a human peer wrote it — short, no superlatives, no "I hope this finds you well".
-- 'AI_readiness_score' is an integer 0-100. 0 = no digital presence, 100 = AI is core to product.
+- The 'outbound_email_copy' opens with the line: "I found 5 places AI could save or make you money at <business>." and reads like a human peer wrote it — short, no superlatives, no "I hope this finds you well".
+
+CLASSIFICATION (be specific, not generic):
+- 'classification.industry': the niche, not the meta-category. Prefer "Boutique Dubai property brokerage" over "Real estate".
+- 'classification.business_model': how they make money (retainers, commissions, SaaS MRR, transactional, marketplace cut, …).
+- 'classification.customer_type': B2B / B2C / B2B2C, plus segment + geography.
+- 'classification.bottlenecks': 2-4 likely operational chokepoints inferred from the crawl (e.g. "manual lead qualification", "founder-led proposals", "no content cadence").
+
+AI READINESS SCORE — STRICT FORMAT:
+Score the company across exactly these 7 categories. Each category has a hard maximum:
+  • website_clarity (max 15) — Is the offer/value-prop legible in 5 seconds? Clear ICP? Hero CTA?
+  • lead_capture (max 15) — Forms, scheduler, lead magnets, newsletter, intent-to-call coverage.
+  • sales_automation (max 20) — Surface area for AI in pipeline: qualifying, proposals, follow-up, CRM hygiene.
+  • support_admin_automation (max 15) — Repetitive ops: support tickets, onboarding, FAQ, invoicing, scheduling.
+  • content_seo (max 15) — Blog cadence, programmatic SEO surface, repurposable founder voice.
+  • tech_stack_readiness (max 10) — Modernity & API-friendliness of detected stack (Webflow/Next.js > custom PHP).
+  • urgency_signals (max 10) — Hiring AI roles, recent press, funding, growth signals → readiness/urgency to act.
+Each sub-score is an INTEGER between 0 and the listed max. Provide a 'rationale' (1 sentence) for each — anchored in something concrete from the crawl/research.
+
+The top-level 'AI_readiness_score' MUST equal the sum of the 7 sub-scores (so it is in [0,100]).
+
+OPPORTUNITIES:
+- 'top_automation_opportunities' MUST contain exactly 5 items — these are the "5 places AI could save or make you money".
+- 'quick_wins' MUST contain exactly 3 items — things shippable this week with low effort.
+- 'implementation_roadmap' is a 4-week plan (Week 1..Week 4).
 
 Return STRICT JSON conforming to the provided schema. No prose outside the JSON.`;
 
@@ -34,8 +64,23 @@ const SCHEMA_HINT = `{
   "website_observations": ["string"],
   "current_tech_stack": ["string"],
   "likely_business_model": "string",
+  "classification": {
+    "industry": "string",
+    "business_model": "string",
+    "customer_type": "string",
+    "bottlenecks": ["string"]
+  },
   "AI_readiness_score": 0,
   "AI_readiness_explanation": "string",
+  "ai_readiness_breakdown": {
+    "website_clarity":          { "score": 0, "max": 15, "rationale": "string" },
+    "lead_capture":             { "score": 0, "max": 15, "rationale": "string" },
+    "sales_automation":         { "score": 0, "max": 20, "rationale": "string" },
+    "support_admin_automation": { "score": 0, "max": 15, "rationale": "string" },
+    "content_seo":              { "score": 0, "max": 15, "rationale": "string" },
+    "tech_stack_readiness":     { "score": 0, "max": 10, "rationale": "string" },
+    "urgency_signals":          { "score": 0, "max": 10, "rationale": "string" }
+  },
   "top_automation_opportunities": [
     { "title": "string", "description": "string", "effort": "low|medium|high", "impact": "low|medium|high", "estimated_value": "string", "tools": ["string"] }
   ],
@@ -140,6 +185,9 @@ export async function generateAudit(input: GenerateInput): Promise<AuditReport> 
     const raw = completion.choices[0]?.message?.content || "{}";
     const parsed = JSON.parse(raw);
 
+    const breakdown = normaliseBreakdown(parsed.ai_readiness_breakdown);
+    const breakdownSum = Object.values(breakdown).reduce((a, c) => a + c.score, 0);
+
     const report: AuditReport = {
       generated_at: new Date().toISOString(),
       business_name: input.businessName,
@@ -150,10 +198,17 @@ export async function generateAudit(input: GenerateInput): Promise<AuditReport> 
       website_observations: arr(parsed.website_observations),
       current_tech_stack: arr(parsed.current_tech_stack),
       likely_business_model: str(parsed.likely_business_model),
-      AI_readiness_score: clamp(int(parsed.AI_readiness_score), 0, 100),
+      classification: {
+        industry: str(parsed.classification?.industry) || (input.industry ?? ""),
+        business_model: str(parsed.classification?.business_model),
+        customer_type: str(parsed.classification?.customer_type),
+        bottlenecks: arr(parsed.classification?.bottlenecks).slice(0, 6)
+      },
+      AI_readiness_score: clamp(breakdownSum, 0, 100),
       AI_readiness_explanation: str(parsed.AI_readiness_explanation),
-      top_automation_opportunities: (parsed.top_automation_opportunities || []).slice(0, 7),
-      quick_wins: (parsed.quick_wins || []).slice(0, 5),
+      ai_readiness_breakdown: breakdown,
+      top_automation_opportunities: (parsed.top_automation_opportunities || []).slice(0, 5),
+      quick_wins: (parsed.quick_wins || []).slice(0, 3),
       implementation_roadmap: (parsed.implementation_roadmap || []).slice(0, 6),
       estimated_value: {
         range_low_usd: int(parsed.estimated_value?.range_low_usd),
@@ -202,6 +257,22 @@ function int(v: unknown): number {
   return Number.isFinite(n) ? Math.round(n) : 0;
 }
 function clamp(n: number, lo: number, hi: number) { return Math.min(hi, Math.max(lo, n)); }
+function normaliseBreakdown(input: unknown): AIReadinessBreakdown {
+  const out = {} as AIReadinessBreakdown;
+  for (const k of Object.keys(AI_READINESS_WEIGHTS) as AIReadinessKey[]) {
+    const max = AI_READINESS_WEIGHTS[k];
+    const cell = (input && typeof input === "object" ? (input as Record<string, unknown>)[k] : undefined) as
+      | { score?: unknown; rationale?: unknown }
+      | undefined;
+    out[k] = {
+      score: clamp(int(cell?.score), 0, max),
+      max,
+      rationale: str(cell?.rationale)
+    };
+  }
+  return out;
+}
+
 function dedupeCitations(list: { label?: string; url?: string }[]): { label: string; url: string }[] {
   const seen = new Set<string>();
   const out: { label: string; url: string }[] = [];
