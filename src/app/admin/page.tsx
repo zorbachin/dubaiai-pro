@@ -22,7 +22,7 @@ export default async function AdminPage() {
   const sb = requireServiceClient();
   const { data, error } = await sb
     .from("audits")
-    .select("id, business_name, website_url, contact_email, status, ai_readiness_score, created_at")
+    .select("id, business_name, website_url, contact_email, status, ai_readiness_score, is_featured, created_at")
     .order("created_at", { ascending: false })
     .limit(100);
 
@@ -48,18 +48,31 @@ export default async function AdminPage() {
               <Th>Email</Th>
               <Th>Status</Th>
               <Th>Score</Th>
+              <Th>Featured</Th>
               <Th>Created</Th>
               <Th />
             </tr>
           </thead>
           <tbody>
-            {(data as Pick<AuditRow, "id" | "business_name" | "website_url" | "contact_email" | "status" | "ai_readiness_score" | "created_at">[] | null)?.map((a) => (
+            {(data as Pick<AuditRow, "id" | "business_name" | "website_url" | "contact_email" | "status" | "ai_readiness_score" | "is_featured" | "created_at">[] | null)?.map((a) => (
               <tr key={a.id} className="border-t border-line">
                 <Td>{a.business_name}</Td>
                 <Td><a className="hover:text-accent" href={a.website_url} target="_blank" rel="noreferrer">{a.website_url}</a></Td>
                 <Td>{a.contact_email}</Td>
                 <Td><span className={"pill " + statusTone(a.status)}>{a.status}</span></Td>
                 <Td>{a.ai_readiness_score ?? "—"}</Td>
+                <Td>
+                  <form action={`/api/admin/audits/${a.id}/feature`} method="post">
+                    <input type="hidden" name="featured" value={a.is_featured ? "false" : "true"} />
+                    <button
+                      type="submit"
+                      className={"pill cursor-pointer " + (a.is_featured ? "!text-gold !border-gold/30 !bg-gold/10" : "")}
+                      title={a.is_featured ? "Unfeature" : "Feature on /case-studies"}
+                    >
+                      {a.is_featured ? "★ featured" : "feature"}
+                    </button>
+                  </form>
+                </Td>
                 <Td>{new Date(a.created_at).toLocaleString()}</Td>
                 <Td>
                   <Link className="hover:text-accent" href={`/audit/${a.id}`}>Open →</Link>

@@ -47,6 +47,11 @@ create index if not exists audits_status_idx     on public.audits(status);
 create index if not exists audits_created_at_idx on public.audits(created_at desc);
 create index if not exists audits_email_idx      on public.audits(contact_email);
 
+-- Case-study flag: marks audits that should appear on the public /case-studies page.
+alter table public.audits add column if not exists is_featured boolean not null default false;
+alter table public.audits add column if not exists featured_at timestamptz;
+create index if not exists audits_featured_idx on public.audits(is_featured) where is_featured = true;
+
 -- ---------------------------------------------------------------
 -- sources (citations gathered during research)
 -- ---------------------------------------------------------------
@@ -133,10 +138,12 @@ alter table public.report_sections enable row level security;
 alter table public.leads           enable row level security;
 alter table public.admin_notes     enable row level security;
 
--- Public can read a completed audit if they have its id (we look it up by id only).
+-- Public can read featured (case-study) audits directly. Non-featured audits
+-- can only be read via the API routes (which use the service-role key).
 drop policy if exists "audits read by id" on public.audits;
-create policy "audits read by id" on public.audits
-  for select using (status = 'complete');
+drop policy if exists "featured audits public" on public.audits;
+create policy "featured audits public" on public.audits
+  for select using (is_featured = true and status = 'complete');
 
 drop policy if exists "sources read with audit" on public.sources;
 create policy "sources read with audit" on public.sources

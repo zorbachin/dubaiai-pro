@@ -19,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               DubaiAI<span className="text-muted">.pro</span>
             </a>
             <nav className="flex items-center gap-1 text-sm">
+              <a className="px-3 py-1.5 text-muted hover:text-ink" href="/case-studies">Case studies</a>
               <a className="px-3 py-1.5 text-muted hover:text-ink" href="/audit">New audit</a>
               <a className="px-3 py-1.5 text-muted hover:text-ink" href="/admin">Admin</a>
               <a href="/audit" className="btn-primary text-sm">Get my audit</a>

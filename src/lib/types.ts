@@ -145,6 +145,8 @@ export interface AuditRow {
   ai_readiness_score: number | null;
   report: AuditReport | null;
   error: string | null;
+  is_featured: boolean;
+  featured_at: string | null;
   created_at: string;
   updated_at: string;
   completed_at: string | null;

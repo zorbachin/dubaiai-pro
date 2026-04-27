@@ -17,6 +17,7 @@ export interface RunAuditInput {
   industry?: string;
   contactEmail: string;
   mainGoal: MainGoal;
+  skipEmail?: boolean;     // case-study seeds shouldn't trigger sends
 }
 
 export async function runAudit(input: RunAuditInput): Promise<AuditReport> {
@@ -94,7 +95,7 @@ export async function runAudit(input: RunAuditInput): Promise<AuditReport> {
     await persistReportSections(input.auditId, report);
 
     // 5. Email
-    if (input.contactEmail) {
+    if (!input.skipEmail && input.contactEmail) {
       await sendAuditEmail({
         toUser: input.contactEmail,
         auditId: input.auditId,

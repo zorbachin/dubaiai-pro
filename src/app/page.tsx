@@ -28,6 +28,7 @@ export default function LandingPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href="/audit" className="btn-primary">Run an audit →</Link>
+              <Link href="/case-studies" className="btn-ghost">See case studies</Link>
               <a href="#how" className="btn-ghost">How it works</a>
             </div>
             <div className="mt-6 text-xs text-muted">

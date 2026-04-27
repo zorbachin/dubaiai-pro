@@ -186,3 +186,21 @@ Failures are caught and stored on `audits.error` with `status='failed'`.
 ## Sample mocked report
 
 When `OPENAI_API_KEY` is unset, every audit returns the curated template in `src/lib/mock-report.ts` — same shape as a real run, with the score, opportunities, roadmap and outbound email all populated, so the rest of the pipeline (DB write, PDF render, email) works end-to-end out of the box.
+
+---
+
+## Case studies
+
+The public `/case-studies` page renders any audit with `is_featured = true`. Two ways to populate it:
+
+**Bulk seed (recommended).** Edit [`case-studies.config.ts`](case-studies.config.ts) and run:
+
+```bash
+npm run seed:case-studies
+```
+
+The script creates a fresh audit row per URL, runs the full pipeline (crawl → research → OpenAI), marks the result as featured, and **does not send emails**. Re-run with `--force` to refresh.
+
+**Manual.** Go to `/admin`, find any completed audit, and click the **feature** pill to toggle it on/off. The change is reflected on `/case-studies` immediately.
+
+The included seed list ships with: `guardz.com`, `polarbeargifts.net`, `vybewear.com`, `alwadhi.com` — replace with whatever you want to showcase.
