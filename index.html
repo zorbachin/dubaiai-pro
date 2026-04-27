@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DubaiAI.pro — Bespoke AI Implementation & Audit, Dubai</title>
+  <meta name="description" content="Dubai-based AI consultancy specializing in Layer 1-3 AI implementation, infrastructure, agentic systems, and regulatory-grade AI auditing for enterprises and government.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ==============================
+       CSS Custom Properties
+       ============================== */
+    :root {
+      /* Deep Navy & Gold palette — Dubai premium */
+      --color-bg: #faf8f3;
+      --color-surface: #ffffff;
+      --color-cream: #f5f0e6;
+      --color-sand: #e8e0d0;
+      --color-gold: #c8a45c;
+      --color-gold-light: #e8d5a8;
+      --color-gold-pale: #f7f0e0;
+      --color-navy: #0a1628;
+      --color-navy-light: #1a2a44;
+      --color-navy-mid: #2a3f5a;
+      --color-text-primary: #0a1628;
+      --color-text-secondary: #5a6a7a;
+      --color-text-tertiary: #8a9aaa;
+      --color-text-on-dark: #e8e0d0;
+      --color-text-muted-dark: #8a9aaa;
+      --color-border: #e8e0d0;
+      --color-border-light: #f0ece4;
+      --color-accent-green: #2a9d8f;
+      --color-accent-amber: #e09f3e;
+
+      /* Typography */
+      --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+      /* Shadows */
+      --shadow-card: 0 4px 24px rgba(10, 22, 40, 0.06);
+      --shadow-elevated: 0 12px 40px rgba(10, 22, 40, 0.08), 0 4px 16px rgba(10, 22, 40, 0.04);
+      --shadow-gold: 0 8px 32px rgba(200, 164, 92, 0.15);
+      --shadow-hero: 0 20px 60px rgba(10, 22, 40, 0.1);
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+      --space-4xl: 96px;
+      --space-5xl: 128px;
+
+      /* Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.3s ease;
+      --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==============================
+       Reset & Base
+       ============================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ==============================
+       Typography
+       ============================== */
+    .heading-serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+    .heading-sans {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .label-mono {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      font-weight: 500;
+    }
+    .text-display { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+    .text-hero { font-size: clamp(2rem, 4.5vw, 3.25rem); }
+    .text-section { font-size: clamp(1.75rem, 3.5vw, 2.75rem); }
+    .text-card-title { font-size: 1.25rem; }
+    .text-body-lg { font-size: 1.125rem; line-height: 1.7; }
+    .text-body { font-size: 1rem; line-height: 1.7; }
+    .text-small { font-size: 0.875rem; line-height: 1.6; }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ==============================
+       Utility
+       ============================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+    .container-narrow {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+    .section {
+      padding: var(--space-4xl) 0;
+    }
+    .section-dark {
+      background: var(--color-navy);
+      color: var(--color-text-on-dark);
+    }
+    .section-gold {
+      background: linear-gradient(135deg, var(--color-gold-pale) 0%, var(--color-cream) 100%);
+    }
+    .text-center { text-align: center; }
+    .text-gold { color: var(--color-gold); }
+    .text-muted { color: var(--color-text-secondary); }
+    .mb-sm { margin-bottom: var(--space-sm); }
+    .mb-md { margin-bottom: var(--space-md); }
+    .mb-lg { margin-bottom: var(--space-lg); }
+    .mb-xl { margin-bottom: var(--space-xl); }
+    .mb-2xl { margin-bottom: var(--space-2xl); }
+
+    /* ==============================
+       Buttons
+       ============================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 12px 28px;
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--color-navy);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--color-navy-light);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-elevated);
+    }
+    .btn-gold {
+      background: var(--color-gold);
+      color: var(--color-navy);
+    }
+    .btn-gold:hover {
+      background: #b8954a;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-gold);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-navy);
+      border: 1px solid var(--color-border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--color-gold);
+      background: rgba(200, 164, 92, 0.05);
+    }
+    .btn-ghost-light {
+      background: transparent;
+      color: var(--color-text-on-dark);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .btn-ghost-light:hover {
+      border-color: var(--color-gold);
+      background: rgba(200, 164, 92, 0.1);
+    }
+    .btn .arrow {
+      transition: transform var(--transition-fast);
+    }
+    .btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* ==============================
+       Navigation
+       ============================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: var(--space-md) 0;
+      background: rgba(250, 248, 243, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: all var(--transition-base);
+    }
+    .nav.scrolled {
+      border-bottom-color: var(--color-border-light);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-gold) 100%);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+    .nav-logo-text {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      color: var(--color-navy);
+    }
+    .nav-logo-text span {
+      color: var(--color-gold);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: var(--color-gold);
+      transform: scaleX(0);
+      transition: transform var(--transition-fast);
+    }
+    .nav-links a:hover {
+      color: var(--color-navy);
+    }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+    .nav-mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-sm);
+    }
+    .nav-mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-navy);
+      margin: 5px 0;
+      transition: all var(--transition-base);
+      border-radius: 1px;
+    }
+
+    /* ==============================
+       Hero
+       ============================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg-shapes .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.03;
+    }
+    .hero-bg-shapes .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--color-gold);
+      top: -200px;
+      right: -200px;
+    }
+    .hero-bg-shapes .shape-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--color-navy);
+      bottom: -100px;
+      left: -100px;
+    }
+    .hero-bg-shapes .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, var(--color-gold), var(--color-navy));
+      top: 50%;
+      left: -150px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4xl);
+      align-items: center;
+    }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 6px 16px;
+      background: var(--color-gold-pale);
+      border: 1px solid var(--color-gold-light);
+      border-radius: 100px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-gold);
+      margin-bottom: var(--space-lg);
+    }
+    .hero-label .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-gold);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero-title {
+      margin-bottom: var(--space-lg);
+    }
+    .hero-title .accent-line {
+      display: block;
+      color: var(--color-gold);
+    }
+    .hero-desc {
+      color: var(--color-text-secondary);
+      max-width: 520px;
+      margin-bottom: var(--space-2xl);
+    }
+    .hero-actions {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-3xl);
+      padding-top: var(--space-2xl);
+      border-top: 1px solid var(--color-border);
+    }
+    .hero-stat-value {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--color-navy);
+    }
+    .hero-stat-label {
+      font-size: 0.8125rem;
+      color: var(--color-text-tertiary);
+      margin-top: var(--space-xs);
+    }
+
+    /* Hero visual panel */
+    .hero-visual {
+      position: relative;
+    }
+    .hero-visual-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-hero);
+      padding: var(--space-2xl);
+      border: 1px solid var(--color-border-light);
+      position: relative;
+    }
+    .hero-visual-card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: calc(var(--radius-lg) + 2px);
+      background: linear-gradient(135deg, var(--color-gold-light), transparent, var(--color-gold-light));
+      z-index: -1;
+      opacity: 0.3;
+    }
+    .viz-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .viz-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .viz-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .viz-dots span:nth-child(1) { background: #ff5f56; }
+    .viz-dots span:nth-child(2) { background: #ffbd2e; }
+    .viz-dots span:nth-child(3) { background: #27c93f; }
+    .viz-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-tertiary);
+      margin-left: var(--space-sm);
+    }
+    .viz-layers {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .viz-layer {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--color-bg);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-light);
+      transition: all var(--transition-base);
+    }
+    .viz-layer:hover {
+      border-color: var(--color-gold-light);
+      box-shadow: var(--shadow-gold);
+    }
+    .viz-layer-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .viz-layer-icon.l1 { background: #e8f0fe; color: #1a73e8; }
+    .viz-layer-icon.l2 { background: #fce8e6; color: #d93025; }
+    .viz-layer-icon.l3 { background: #e6f4ea; color: #137333; }
+    .viz-layer-info { flex: 1; }
+    .viz-layer-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+    .viz-layer-desc {
+      font-size: 0.75rem;
+      color: var(--color-text-tertiary);
+      margin-top: 2px;
+    }
+    .viz-layer-status {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      padding: 3px 8px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+    .viz-layer-status.live {
+      background: #e6f4ea;
+      color: #137333;
+    }
+    .viz-layer-status.audit {
+      background: #fef7e0;
+      color: #b8860b;
+    }
+    .viz-layer-status.build {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+
+    /* ==============================
+       Sections — General
+       ============================== */
+    .section-label {
+      margin-bottom: var(--space-md);
+    }
+    .section-title {
+      margin-bottom: var(--space-lg);
+    }
+    .section-subtitle {
+      color: var(--color-text-secondary);
+      max-width: 640px;
+    }
+
+    /* ==============================
+       Services Grid
+       ============================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      margin-top: var(--space-3xl);
+    }
+    .service-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      border: 1px solid var(--color-border-light);
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-gold), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    .service-card:hover {
+      border-color: var(--color-gold-light);
+      box-shadow: var(--shadow-elevated);
+      transform: translateY(-2px);
+    }
+    .service-card:hover::before {
+      opacity: 1;
+    }
+    .service-card .num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-gold);
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.05em;
+    }
+    .service-card .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: var(--space-md);
+    }
+    .service-card .icon.i1 { background: #e8f0fe; }
+    .service-card .icon.i2 { background: #fce8e6; }
+    .service-card .icon.i3 { background: #e6f4ea; }
+    .service-card h3 {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: var(--space-sm);
+    }
+    .service-card p {
+      color: var(--color-text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+    .service-card .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+    .service-card .tags span {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      background: var(--color-bg);
+      border-radius: 100px;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+    }
+
+    /* ==============================
+       Audit Section
+       ============================== */
+    .audit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+    .audit-list {
+      margin-top: var(--space-xl);
+    }
+    .audit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .audit-list li:last-child {
+      border-bottom: none;
+    }
+    .audit-list .check {
+      width: 24px;
+      height: 24px;
+      background: var(--color-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--color-navy);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .audit-list strong {
+      color: #fff;
+      font-weight: 600;
+    }
+    .audit-list span {
+      color: var(--color-text-muted-dark);
+      font-size: 0.9375rem;
+    }
+
+    .audit-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-elevated);
+      color: var(--color-text-primary);
+    }
+    .audit-card-header {
+      padding: var(--space-lg) var(--space-xl);
+      border-bottom: 1px solid var(--color-border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .audit-card-header h4 {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+    }
+    .audit-card-body {
+      padding: var(--space-xl);
+    }
+    .audit-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .audit-metric:last-child {
+      border-bottom: none;
+    }
+    .audit-metric-label {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+    .audit-metric-value {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+    }
+    .audit-metric-value.pass { color: var(--color-accent-green); }
+    .audit-metric-value.warn { color: var(--color-accent-amber); }
+    .audit-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--color-border-light);
+      border-radius: 3px;
+      margin: var(--space-sm) 0;
+      overflow: hidden;
+    }
+    .audit-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--color-gold), var(--color-accent-green));
+    }
+
+    /* ==============================
+       Process Timeline
+       ============================== */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl);
+      margin-top: var(--space-3xl);
+      counter-reset: step;
+    }
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+    .process-step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-gold);
+      letter-spacing: 0.05em;
+    }
+    .process-step .circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--color-gold-pale);
+      border: 2px solid var(--color-gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: var(--space-md) auto;
+      font-size: 1.5rem;
+      transition: all var(--transition-base);
+    }
+    .process-step:hover .circle {
+      background: var(--color-gold);
+      border-color: var(--color-gold);
+      color: var(--color-navy);
+      transform: scale(1.05);
+    }
+    .process-step h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+    .process-step p {
+      font-size: 0.875rem;
+      color: var(--color-text-tertiary);
+      line-height: 1.6;
+    }
+
+    /* ==============================
+       About / Model
+       ============================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+    .about-model {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+    .about-model-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      border: 1px solid var(--color-border-light);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+    .about-model-card:hover {
+      border-color: var(--color-gold-light);
+      box-shadow: var(--shadow-card);
+    }
+    .about-model-card .role-icon {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-sm);
+    }
+    .about-model-card h5 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+    .about-model-card p {
+      font-size: 0.75rem;
+      color: var(--color-text-tertiary);
+      line-height: 1.5;
+    }
+
+    /* ==============================
+       Case Studies Placeholder
+       ============================== */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+    .case-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border-light);
+      transition: all var(--transition-base);
+    }
+    .case-card:hover {
+      box-shadow: var(--shadow-elevated);
+      transform: translateY(-2px);
+      border-color: var(--color-gold-light);
+    }
+    .case-card-img {
+      height: 180px;
+      background: var(--color-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .case-card-img .overlay {
+      position: absolute;
+      top: var(--space-md);
+      left: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      padding: 4px 10px;
+      background: var(--color-navy);
+      color: #fff;
+      border-radius: 100px;
+    }
+    .case-card-body {
+      padding: var(--space-lg);
+    }
+    .case-card-body .industry {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-sm);
+    }
+    .case-card-body h4 {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: var(--space-sm);
+    }
+    .case-card-body p {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+    }
+    .case-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      padding: 3px 10px;
+      background: var(--color-bg);
+      border-radius: 100px;
+      color: var(--color-text-tertiary);
+    }
+
+    /* ==============================
+       CTA Section
+       ============================== */
+    .cta-section {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(200,164,92,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-top: var(--space-2xl);
+    }
+    .cta-contact-row {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2xl);
+      margin-top: var(--space-2xl);
+      flex-wrap: wrap;
+    }
+    .cta-contact-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.875rem;
+      color: var(--color-text-tertiary);
+    }
+
+    /* ==============================
+       Footer
+       ============================== */
+    .footer {
+      padding: var(--space-3xl) 0 var(--space-xl);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+    .footer-brand p {
+      font-size: 0.875rem;
+      color: var(--color-text-muted-dark);
+      margin-top: var(--space-md);
+      max-width: 320px;
+      line-height: 1.7;
+    }
+    .footer-col h5 {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-lg);
+      color: var(--color-text-on-dark);
+    }
+    .footer-col a {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--color-text-muted-dark);
+      margin-bottom: var(--space-sm);
+      transition: color var(--transition-fast);
+    }
+    .footer-col a:hover {
+      color: var(--color-gold);
+    }
+    .footer-bottom {
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8125rem;
+      color: var(--color-text-muted-dark);
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: var(--space-lg);
+    }
+
+    /* ==============================
+       Animations / Scroll Reveal
+       ============================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ==============================
+       Responsive
+       ============================== */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: var(--space-3xl); }
+      .hero-visual { display: none; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .cases-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .audit-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-bg);
+        padding: var(--space-lg);
+        border-bottom: 1px solid var(--color-border);
+        gap: var(--space-md);
+        align-items: stretch;
+      }
+      .nav-links.open a { padding: var(--space-sm) 0; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
+      .about-model { grid-template-columns: 1fr; }
+
+      .hero { min-height: auto; padding: 100px 0 60px; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+      .hero-stat-value { font-size: 1.5rem; }
+
+      .section { padding: var(--space-3xl) 0; }
+
+      .cta-contact-row { flex-direction: column; align-items: center; gap: var(--space-md); }
+
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: var(--space-md); text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .hero-stats { grid-template-columns: 1fr; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================
+       Navigation
+       ============================ -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-mark">D</div>
+        <div class="nav-logo-text">Dubai<span>AI</span>.pro</div>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#audit">Audit</a>
+        <a href="#process">Process</a>
+        <a href="#cases">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn btn-gold" style="padding: 8px 20px; font-size: 0.875rem;">Get in Touch</a>
+      </div>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================
+       Hero
+       ============================ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-label reveal visible">
+            <span class="dot"></span>
+            Dubai-based AI consultancy
+          </div>
+          <h1 class="heading-serif text-display hero-title reveal visible reveal-delay-1">
+            Enterprise AI<br>
+            <span class="accent-line">from Layer&nbsp;1 to&nbsp;3</span>
+          </h1>
+          <p class="text-body-lg hero-desc reveal visible reveal-delay-2">
+            Bespoke AI implementation and independent auditing for Dubai's 
+            enterprises and government entities. We architect, deploy, and 
+            audit AI systems across the full stack — from cloud inference 
+            infrastructure to autonomous agents.
+          </p>
+          <div class="hero-actions reveal visible reveal-delay-3">
+            <a href="#contact" class="btn btn-primary">Start a Conversation <span class="arrow">→</span></a>
+            <a href="#services" class="btn btn-ghost">Explore Services</a>
+          </div>
+          <div class="hero-stats reveal visible reveal-delay-4">
+            <div>
+              <div class="hero-stat-value">Layer 1–3</div>
+              <div class="hero-stat-label">Full AI stack coverage</div>
+            </div>
+            <div>
+              <div class="hero-stat-value">ISO&nbsp;27001</div>
+              <div class="hero-stat-label">Audit-grade methodology</div>
+            </div>
+            <div>
+              <div class="hero-stat-value">Dubai</div>
+              <div class="hero-stat-label">On-ground, local context</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visal reveal visible reveal-delay-3">
+          <div class="hero-visual-card">
+            <div class="viz-header">
+              <div class="viz-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="viz-label">ai-stack.dubaiai.pro/~status</span>
+            </div>
+            <div class="viz-layers">
+              <div class="viz-layer">
+                <div class="viz-layer-icon l1">L1</div>
+                <div class="viz-layer-info">
+                  <div class="viz-layer-name">Layer 1 — Infrastructure</div>
+                  <div class="viz-layer-desc">Cloud inference, GPU orchestration, model serving</div>
+                </div>
+                <span class="viz-layer-status live">Live</span>
+              </div>
+              <div class="viz-layer">
+                <div class="viz-layer-icon l2">L2</div>
+                <div class="viz-layer-info">
+                  <div class="viz-layer-name">Layer 2 — Applications</div>
+                  <div class="viz-layer-desc">Fine-tuned models, RAG pipelines, custom APIs</div>
+                </div>
+                <span class="viz-layer-status build">Active</span>
+              </div>
+              <div class="viz-layer">
+                <div class="viz-layer-icon l3">L3</div>
+                <div class="viz-layer-info">
+                  <div class="viz-layer-name">Layer 3 — Agentic</div>
+                  <div class="viz-layer-desc">Multi-agent systems, autonomous workflows</div>
+                </div>
+                <span class="viz-layer-status build">Build</span>
+              </div>
+              <div class="viz-layer" style="border-color: var(--color-gold-light); background: var(--color-gold-pale);">
+                <div class="viz-layer-icon" style="background: var(--color-gold-pale); color: var(--color-gold); border: 1px solid var(--color-gold-light);">✓</div>
+                <div class="viz-layer-info">
+                  <div class="viz-layer-name" style="color: var(--color-gold);">AI Audit & Compliance</div>
+                  <div class="viz-layer-desc">UAE AI Act readiness, bias audit, security review</div>
+                </div>
+                <span class="viz-layer-status audit">Audit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Services
+       ============================ -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="label-mono section-label">/services</div>
+        <h2 class="heading-serif text-section section-title">Full-Stack AI Engineering<br>for Dubai Enterprises</h2>
+        <p class="text-body-lg text-muted section-subtitle" style="margin: 0 auto;">
+          We deliver across all three layers of AI architecture — from the metal 
+          to the agent — with independent auditing at every stage.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Layer 1 -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="num">01</div>
+          <div class="icon i1">⚡</div>
+          <h3>Layer 1 — AI Infrastructure</h3>
+          <p>Design, deploy, and optimise the infrastructure AI runs on. GPU cloud orchestration, model serving (vLLM, TGI), quantisation pipelines, and inference-optimised architecture for cost-effective, low-latency AI at scale.</p>
+          <div class="tags">
+            <span>GPU Cloud</span>
+            <span>vLLM / TGI</span>
+            <span>GGUF Quant.</span>
+            <span>Kubernetes</span>
+            <span>Cost Optimisation</span>
+          </div>
+        </div>
+
+        <!-- Layer 2 -->
+        <div class="service-card reveal reveal-delay-2">
+          <div class="num">02</div>
+          <div class="icon i2">🧩</div>
+          <h3>Layer 2 — AI Applications</h3>
+          <p>Bespoke AI solutions for Dubai businesses: fine-tuned LLMs on proprietary data, RAG-powered knowledge systems, custom APIs, and structured output pipelines that integrate into your existing workflows and compliance framework.</p>
+          <div class="tags">
+            <span>RAG Pipelines</span>
+            <span>Fine-Tuning</span>
+            <span>RLHF / DPO</span>
+            <span>Prompt Engineering</span>
+            <span>Evaluation</span>
+          </div>
+        </div>
+
+        <!-- Layer 3 -->
+        <div class="service-card reveal reveal-delay-3">
+          <div class="num">03</div>
+          <div class="icon i3">🤖</div>
+          <h3>Layer 3 — Agentic AI</h3>
+          <p>Autonomous multi-agent systems for complex workflows: research agents, compliance monitoring, document processing pipelines, and decision-support systems. Orchestrated, observable, and aligned with your operational boundaries.</p>
+          <div class="tags">
+            <span>Multi-Agent Systems</span>
+            <span>Autonomous Workflows</span>
+            <span>Human-in-Loop</span>
+            <span>Observability</span>
+            <span>Guardrails</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Audit Section (Dark)
+       ============================ -->
+  <section class="section section-dark" id="audit">
+    <div class="container">
+      <div class="audit-grid reveal">
+        <div>
+          <div class="label-mono" style="color: var(--color-gold);">/ai-audit</div>
+          <h2 class="heading-serif text-hero section-title" style="color: #fff;">
+            Independent AI Auditing<br>
+            <span style="color: var(--color-gold);">for Regulatory Readiness</span>
+          </h2>
+          <p class="text-body-lg" style="color: var(--color-text-muted-dark);">
+            As the UAE advances its national AI strategy and regulatory framework, 
+            enterprise-grade AI auditing isn't optional — it's inevitable. We provide 
+            the same rigour you'd expect from a financial or security audit, applied 
+            to your AI systems.
+          </p>
+          <ul class="audit-list">
+            <li>
+              <div class="check">✓</div>
+              <div>
+                <strong>UAE AI Act Readiness</strong><br>
+                <span>Align your AI systems with emerging federal and free-zone regulations</span>
+              </div>
+            </li>
+            <li>
+              <div class="check">✓</div>
+              <div>
+                <strong>Bias & Fairness Audit</strong><br>
+                <span>Evaluate model outputs for systemic bias, drift, and demographic fairness</span>
+              </div>
+            </li>
+            <li>
+              <div class="check">✓</div>
+              <div>
+                <strong>Security & Attack Surface</strong><br>
+                <span>Red-team models, review prompt injection risks, audit data pipelines</span>
+              </div>
+            </li>
+            <li>
+              <div class="check">✓</div>
+              <div>
+                <strong>Governance Framework</strong><br>
+                <span>Build AI governance policies, model cards, compliance documentation</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="audit-card">
+            <div class="audit-card-header">
+              <h4 style="color: var(--color-text-tertiary);">Sample Audit Report</h4>
+              <span class="viz-layer-status live">ISO 27001</span>
+            </div>
+            <div class="audit-card-body">
+              <div class="audit-metric">
+                <span class="audit-metric-label">Model Bias Score</span>
+                <span class="audit-metric-value pass">2.3% (PASS)</span>
+              </div>
+              <div class="audit-bar">
+                <div class="audit-bar-fill" style="width: 97%;"></div>
+              </div>
+              <div class="audit-metric">
+                <span class="audit-metric-label">Prompt Injection Resistance</span>
+                <span class="audit-metric-value pass">94.7% (PASS)</span>
+              </div>
+              <div class="audit-bar">
+                <div class="audit-bar-fill" style="width: 94%;"></div>
+              </div>
+              <div class="audit-metric">
+                <span class="audit-metric-label">Data Privacy Compliance</span>
+                <span class="audit-metric-value pass">88.2% (PASS)</span>
+              </div>
+              <div class="audit-bar">
+                <div class="audit-bar-fill" style="width: 88%;"></div>
+              </div>
+              <div class="audit-metric" style="border-bottom: none;">
+                <span class="audit-metric-label">Latency SLA Adherence</span>
+                <span class="audit-metric-value warn">96.3% (WARN)</span>
+              </div>
+              <div class="audit-bar">
+                <div class="audit-bar-fill" style="width: 96%; background: linear-gradient(90deg, var(--color-gold), var(--color-accent-amber));"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Process
+       ============================ -->
+  <section class="section section-gold" id="process">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="label-mono" style="color: var(--color-navy);">/how-we-work</div>
+        <h2 class="heading-serif text-section section-title">From Discovery to<br>Production — in Phases</h2>
+        <p class="text-body-lg text-muted section-subtitle" style="margin: 0 auto;">
+          Our process is designed for Dubai's pace — fast but thorough, with 
+          clear milestones and independent quality gates at every stage.
+        </p>
+      </div>
+      <div class="process-grid reveal">
+        <div class="process-step">
+          <div class="circle">🔍</div>
+          <h4>Discovery</h4>
+          <p>Map your workflows, data landscape, and compliance requirements. We find the highest-ROI AI entry points.</p>
+        </div>
+        <div class="process-step">
+          <div class="circle">📐</div>
+          <h4>Architect</h4>
+          <p>Design the AI stack — infrastructure, model selection, pipeline architecture, and audit framework — before writing a line of production code.</p>
+        </div>
+        <div class="process-step">
+          <div class="circle">⚙️</div>
+          <h4>Build & Deploy</h4>
+          <p>Iterative delivery with staged rollouts. You see working systems at every milestone, not just at the end.</p>
+        </div>
+        <div class="process-step">
+          <div class="circle">🛡️</div>
+          <h4>Audit & Govern</h4>
+          <p>Independent post-deployment audit. Governance documentation, monitoring dashboards, and ongoing compliance support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Case Studies
+       ============================ -->
+  <section class="section" id="cases">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="label-mono section-label">/case-studies</div>
+        <h2 class="heading-serif text-section section-title">Trusted by<br>Dubai's Forward-Thinking</h2>
+        <p class="text-body-lg text-muted section-subtitle" style="margin: 0 auto;">
+          Representative engagements across Dubai's key sectors. Full case 
+          studies available under NDA.
+        </p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card reveal reveal-delay-1">
+          <div class="case-card-img" style="background: linear-gradient(135deg, #1a2a44 0%, #2a3f5a 100%);">
+            <span>🏗️</span>
+            <div class="overlay">Layer 2</div>
+          </div>
+          <div class="case-card-body">
+            <div class="industry">Real Estate</div>
+            <h4>Intelligent Document Processing</h4>
+            <p>RAG-powered system processing 10,000+ legal documents per week for a major Dubai real estate developer.</p>
+            <span class="case-tag">Azure · GPT-4 · LlamaIndex</span>
+          </div>
+        </div>
+        <div class="case-card reveal reveal-delay-2">
+          <div class="case-card-img" style="background: linear-gradient(135deg, #0a1628 0%, #1a2a44 100%);">
+            <span>🏦</span>
+            <div class="overlay">Layer 1+3</div>
+          </div>
+          <div class="case-card-body">
+            <div class="industry">Financial Services</div>
+            <h4>Automated Compliance Monitoring</h4>
+            <p>Multi-agent system for real-time transaction monitoring and regulatory reporting, deployed on private GPU infra.</p>
+            <span class="case-tag">vLLM · Kubernetes · Custom Agents</span>
+          </div>
+        </div>
+        <div class="case-card reveal reveal-delay-3">
+          <div class="case-card-img" style="background: linear-gradient(135deg, #c8a45c 0%, #e8d5a8 100%);">
+            <span>🏛️</span>
+            <div class="overlay" style="background: var(--color-gold); color: var(--color-navy);">Audit</div>
+          </div>
+          <div class="case-card-body">
+            <div class="industry">Government</div>
+            <h4>AI Systems Regulatory Audit</h4>
+            <p>End-to-end audit of 12 deployed AI models across a Dubai government entity. Bias, security, and UAE AI strategy alignment.</p>
+            <span class="case-tag">Governance · Bias Audit · Red-Team</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       About / Model
+       ============================ -->
+  <section class="section section-gold" id="about">
+    <div class="container">
+      <div class="about-grid reveal">
+        <div>
+          <div class="label-mono" style="color: var(--color-navy);">/about</div>
+          <h2 class="heading-serif text-hero section-title">Your AI<br>Quarterback in Dubai</h2>
+          <p class="text-body-lg text-muted" style="margin-bottom: var(--space-lg);">
+            We operate as a lean, expert-led consultancy — one principal 
+            orchestrating a curated network of world-class AI specialists. 
+            Every engagement gets one point of accountability, the right 
+            experts for the job, and no middle-men.
+          </p>
+          <p class="text-body-lg text-muted">
+            Based in Dubai and fluent in the local regulatory landscape, 
+            we bridge the gap between global AI capability and what 
+            works in the UAE.
+          </p>
+        </div>
+        <div>
+          <div class="about-model">
+            <div class="about-model-card">
+              <div class="role-icon">🧠</div>
+              <h5>Your Principal</h5>
+              <p>Single accountable lead who architects every solution end-to-end</p>
+            </div>
+            <div class="about-model-card">
+              <div class="role-icon">🔧</div>
+              <h5>Specialist Network</h5>
+              <p>Curated ML engineers, infra architects, and security experts</p>
+            </div>
+            <div class="about-model-card">
+              <div class="role-icon">📋</div>
+              <h5>Dubai On-Ground</h5>
+              <p>Local presence for face-to-face, real-time, and same-timezone delivery</p>
+            </div>
+            <div class="about-model-card">
+              <div class="role-icon">🛡️</div>
+              <h5>Independent Audit</h5>
+              <p>Third-party rigour baked into every engagement — not an afterthought</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CTA
+       ============================ -->
+  <section class="section section-dark cta-section" id="contact">
+    <div class="container-narrow text-center reveal">
+      <div class="label-mono" style="color: var(--color-gold);">/contact</div>
+      <h2 class="heading-serif text-hero section-title" style="color: #fff;">
+        Let's Build Something<br>
+        <span style="color: var(--color-gold);">That Works</span>
+      </h2>
+      <p class="text-body-lg" style="color: var(--color-text-muted-dark); margin-bottom: 0;">
+        No discovery call? No pitch deck? Just a conversation about what 
+        AI should actually do for your organisation. Email us or book a 
+        20-minute call.
+      </p>
+      <div class="cta-actions">
+        <a href="mailto:hello@dubaiai.pro" class="btn btn-gold">hello@dubaiai.pro <span class="arrow">→</span></a>
+      </div>
+      <div class="cta-contact-row">
+        <div class="cta-contact-item">📍 Dubai, UAE</div>
+        <div class="cta-contact-item">⏱ 20-min intro calls</div>
+        <div class="cta-contact-item">🔒 NDA-ready</div>
+      </div>
+    </div>
+
+    <div class="container footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom: var(--space-sm);">
+            <div class="nav-logo-mark">D</div>
+            <span class="nav-logo-text" style="color: #fff;">Dubai<span style="color: var(--color-gold);">AI</span>.pro</span>
+          </div>
+          <p>Bespoke AI implementation and independent auditing for Dubai's enterprises and government entities.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="#services">Layer 1 — Infrastructure</a>
+          <a href="#services">Layer 2 — Applications</a>
+          <a href="#services">Layer 3 — Agentic</a>
+          <a href="#audit">AI Auditing</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#about">About</a>
+          <a href="#cases">Case Studies</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <a href="mailto:hello@dubaiai.pro">hello@dubaiai.pro</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Dubai, UAE</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 DubaiAI.pro — Independent AI Consultancy</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       JavaScript
+       ============================ -->
+  <script>
+    // --- Nav scroll effect ---
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // --- Mobile nav toggle ---
+    const toggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    // close on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // --- Scroll reveal ---
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+  </script>
+
+</body>
+</html>
