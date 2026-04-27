@@ -2,6 +2,8 @@
 
 A production-ready MVP that takes a **business name + website URL** and returns a polished, consultative **AI implementation audit**: AI-readiness score, top 5 opportunities, 3 quick wins, a 30-day roadmap, ROI range, recommended offer, and an outbound email draft. Includes a lead-capture CTA, an admin dashboard, and PDF export.
 
+> The original DubaiAI.pro static landing page lives on the `main` branch (`index.html`) for reference.
+
 ## Stack
 
 - **Next.js 15** (App Router) + **TypeScript** + **Tailwind CSS**
@@ -20,8 +22,7 @@ Designed to deploy on **Vercel** in one click.
 
 ```
 .
-├── public/
-│   └── legacy-landing.html         # original DubaiAI.pro static page (preserved)
+├── public/                          # static assets (favicons, etc.)
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx              # global shell (header/footer)
