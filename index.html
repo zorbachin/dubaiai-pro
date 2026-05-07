@@ -1054,6 +1054,7 @@
     @media (max-width: 480px) {
       .hero-actions { flex-direction: column; }
       .hero-stats { grid-template-columns: 1fr; text-align: center; }
+      .intake-items { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -1337,13 +1338,85 @@
     <div class="container">
       <div class="text-center reveal">
         <div class="label-mono" style="color: var(--color-navy);">/how-we-work</div>
-        <h2 class="heading-serif text-section section-title">From Discovery to<br>Production — in Phases</h2>
+        <h2 class="heading-serif text-section section-title">From First Call to<br>Production — in Phases</h2>
         <p class="text-body-lg text-muted section-subtitle" style="margin: 0 auto;">
-          Our process is designed for Dubai's pace — fast but thorough, with 
-          clear milestones and independent quality gates at every stage.
+          Every engagement starts the same way — not with a pitch, but with 
+          a structured discovery conversation designed to understand your 
+          world before we propose anything.
         </p>
       </div>
-      <div class="process-grid reveal">
+
+      <!-- Intake Call Highlight -->
+      <div class="intake-highlight reveal" style="
+        background: var(--color-surface);
+        border: 1px solid var(--color-gold-light);
+        border-radius: var(--radius-lg);
+        padding: var(--space-2xl) var(--space-3xl);
+        margin-top: var(--space-2xl);
+        box-shadow: var(--shadow-gold);
+        position: relative;
+        overflow: hidden;
+      ">
+        <div style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: 4px;
+          background: linear-gradient(180deg, var(--color-gold), var(--color-accent-amber));
+        "></div>
+        <div style="display: flex; align-items: flex-start; gap: var(--space-lg); flex-wrap: wrap;">
+          <div style="flex-shrink: 0;">
+            <div class="label-mono" style="color: var(--color-navy);">included in every engagement</div>
+            <h3 style="
+              font-family: var(--font-serif);
+              font-size: 1.5rem;
+              color: var(--color-navy);
+              margin-top: var(--space-sm);
+            ">The AI Intake Call</h3>
+          </div>
+          <div style="flex: 1; min-width: 280px;">
+            <p class="text-body text-muted" style="margin-bottom: var(--space-md);">
+              Before any proposal, before any code — a structured 45-minute conversation 
+              that maps your organisation's AI landscape.
+            </p>
+            <div style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: var(--space-sm) var(--space-xl);
+            " class="intake-items">
+              <div style="display: flex; align-items: center; gap: var(--space-sm); font-size: 0.875rem; color: var(--color-text-secondary);">
+                <span style="color: var(--color-gold);">✓</span> Business successes &amp; pain points
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-sm); font-size: 0.875rem; color: var(--color-text-secondary);">
+                <span style="color: var(--color-gold);">✓</span> Current AI usage &amp; maturity
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-sm); font-size: 0.875rem; color: var(--color-text-secondary);">
+                <span style="color: var(--color-gold);">✓</span> AI goals &amp; aspirations
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--space-sm); font-size: 0.875rem; color: var(--color-text-secondary);">
+                <span style="color: var(--color-gold);">✓</span> Budget appetite &amp; timeline
+              </div>
+            </div>
+            <div style="
+              margin-top: var(--space-md);
+              padding: var(--space-md);
+              background: var(--color-gold-pale);
+              border-radius: var(--radius-md);
+              font-size: 0.875rem;
+              color: var(--color-navy);
+              display: flex;
+              align-items: center;
+              gap: var(--space-sm);
+            ">
+              <span style="font-size: 1.25rem;">🤖</span>
+              <span><strong>AI-powered summary</strong> — A structured report is sent to you and the client automatically within minutes of the call, so nothing is lost.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-grid reveal" style="margin-top: var(--space-3xl);">
         <div class="process-step">
           <div class="circle">🔍</div>
           <h4>Discovery</h4>
