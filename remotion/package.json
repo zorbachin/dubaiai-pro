@@ -1,0 +1,27 @@
+{
+  "name": "five-ai-things-video",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render Video out/five-ai-things.mp4 --concurrency=1",
+    "render-vertical": "remotion render Video out/five-ai-things-vertical.mp4 --props='{\"aspect\":\"9:16\"}'",
+    "still": "remotion still Video out/thumb.png --frame=15"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.196",
+    "@remotion/cli": "4.0.196",
+    "@remotion/google-fonts": "4.0.196",
+    "@remotion/media-utils": "4.0.196",
+    "@remotion/shapes": "4.0.196",
+    "@remotion/transitions": "4.0.196",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.196"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.3",
+    "@types/node": "20.11.30",
+    "typescript": "5.4.5"
+  }
+}
