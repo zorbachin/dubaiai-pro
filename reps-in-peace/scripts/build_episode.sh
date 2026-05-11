@@ -2,7 +2,7 @@
 # Reps in Peace — Episode builder
 # One command, full episode: stitches clips + audio + captions into a finished MP4.
 #
-# Usage: ./scripts/build_episode.sh <episode_id> [--skip-clips] [--skip-audio]
+# Usage: ./scripts/build_episode.sh <episode_id> [--skip-images] [--skip-clips] [--skip-audio]
 # Example: ./scripts/build_episode.sh 01
 
 set -euo pipefail
@@ -11,10 +11,12 @@ EP="${1:-01}"
 shift || true
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
+SKIP_IMAGES=0
 SKIP_CLIPS=0
 SKIP_AUDIO=0
 for arg in "$@"; do
   case "$arg" in
+    --skip-images) SKIP_IMAGES=1 ;;
     --skip-clips) SKIP_CLIPS=1 ;;
     --skip-audio) SKIP_AUDIO=1 ;;
   esac
@@ -30,6 +32,15 @@ CLIPS_DIR="$ROOT/assets/clips/ep${EP}"
 AUDIO_DIR="$ROOT/assets/audio/ep${EP}"
 OUT_DIR="$ROOT/assets/output/ep${EP}"
 mkdir -p "$OUT_DIR"
+
+# --- 0. Images --------------------------------------------------------------
+if [ "$SKIP_IMAGES" -eq 0 ]; then
+  echo "==> [0/5] Generating beat images (OpenAI)"
+  python3 "$ROOT/scripts/generate_images.py" --ep "$EP" --model "${RIP_IMG_MODEL:-gpt-image-1}" || {
+    echo "Image generation failed. Use --skip-images if images already exist." >&2
+    exit 1
+  }
+fi
 
 # --- 1. Clips ---------------------------------------------------------------
 if [ "$SKIP_CLIPS" -eq 0 ]; then

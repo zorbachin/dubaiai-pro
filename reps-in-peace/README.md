@@ -53,14 +53,14 @@ reps-in-peace/
 
 | Step | Tool | Cost | Notes |
 |---|---|---|---|
-| Image gen | **Draw Things** (Flux.1-schnell or SDXL-Lightning) | Free | Runs native on M4 Pro |
+| Image gen | **OpenAI gpt-image-1** via `scripts/generate_images.py` | ~$0.05–0.19/image | Drop-in: set `OPENAI_API_KEY` and run |
 | Video gen | **LTX-Video** local (MLX) OR **Replicate** (CogVideoX-5b) | Free local / ~$0.04–0.20 per clip cloud | Replicate ~$1–3 per full episode |
 | Voices | Self-recorded in GarageBand | Free | Processed via `scripts/process_audio.sh` |
 | Captions | **Whisper** (`brew install whisper-cpp` or pip install) | Free | Runs fast on M4 Pro MPS |
 | Editing | **DaVinci Resolve** for polish, terminal `ffmpeg` for batch | Free | Pipeline outputs auto-edited MP4 |
-| Vertical reframe | `ffmpeg crop=ih*9/16:ih,scale=1080:1920` | Free | Or your existing Reframe tool |
+| Vertical reframe | Reframer (your tool) or `ffmpeg crop=ih*9/16:ih,scale=1080:1920` | Free | Both produce 1080×1920 |
 
-Total per-episode cost: **$0–$3**.
+Total per-episode cost: **~$1–$5** (20 stills at gpt-image-1 high quality + cloud clips).
 
 ---
 
@@ -71,16 +71,17 @@ Total per-episode cost: **$0–$3**.
 brew install ffmpeg whisper-cpp python3
 pip install replicate fal-client    # whichever video backend you use
 
-# 1. Generate images (manual, in Draw Things)
-#    Open episodes/01_squat/image_prompts.txt
-#    Generate each beat → save as assets/images/ep01/beat_001.png ... beat_020.png
+# 1. Generate the 20 beat images
+export OPENAI_API_KEY=sk-...
+python3 scripts/generate_images.py --ep 01
+#    Writes assets/images/ep01/beat_001.png ... beat_020.png
 
 # 2. Record voices (manual, in GarageBand)
 #    Open episodes/01_squat/voice_recording_sheet.md
 #    Record each numbered line → export to assets/audio/ep01/raw/
 #    Naming: ep01_001_coach.wav, ep01_002_bonesy.wav, etc.
 
-# 3. Run the pipeline
+# 3. Run the full pipeline (re-runs image gen, generates clips, mixes audio, captions)
 export REPLICATE_API_TOKEN=...    # or FAL_KEY, or use LTX local
 ./scripts/build_episode.sh 01
 
@@ -92,6 +93,7 @@ export REPLICATE_API_TOKEN=...    # or FAL_KEY, or use LTX local
 If you've already generated some assets:
 
 ```bash
+./scripts/build_episode.sh 01 --skip-images   # use existing PNGs
 ./scripts/build_episode.sh 01 --skip-clips    # use existing clips
 ./scripts/build_episode.sh 01 --skip-audio    # use existing audio
 ```
