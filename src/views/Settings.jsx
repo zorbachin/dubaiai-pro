@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const s = {
   wrap: { padding: 20, maxWidth: 640 },
@@ -38,9 +38,44 @@ export default function Settings({ data, setData }) {
   const [ollamaStatus, setOllamaStatus] = useState(null)
   const [ollamaLoading, setOllamaLoading] = useState(false)
   const [briefingStatus, setBriefingStatus] = useState(null)
+  const [googleStatus, setGoogleStatus] = useState(null)  // null | { connected, email, error }
+  const [googleLoading, setGoogleLoading] = useState(false)
+  const [revokeLoading, setRevokeLoading] = useState(false)
+
+  useEffect(() => {
+    fetch('/api/google/status').then(r => r.json()).then(setGoogleStatus).catch(() => {})
+  }, [])
 
   const set = (key, value) => {
     setData(prev => ({ ...prev, settings: { ...prev.settings, [key]: value } }))
+  }
+
+  const connectGoogle = () => {
+    window.open('/auth/google', '_blank', 'width=500,height=600')
+    // Poll for status after user connects
+    const interval = setInterval(async () => {
+      try {
+        const r = await fetch('/api/google/status')
+        const json = await r.json()
+        if (json.connected) {
+          setGoogleStatus(json)
+          clearInterval(interval)
+        }
+      } catch (e) {}
+    }, 2000)
+    setTimeout(() => clearInterval(interval), 120000)
+  }
+
+  const revokeGoogle = async () => {
+    if (!window.confirm('Disconnect Google account?')) return
+    setRevokeLoading(true)
+    try {
+      await fetch('/api/google/revoke', { method: 'POST' })
+      setGoogleStatus({ connected: false })
+    } catch (e) {
+      setGoogleStatus(prev => ({ ...prev, error: e.message }))
+    }
+    setRevokeLoading(false)
   }
 
   const testOllama = async () => {
@@ -180,6 +215,41 @@ export default function Settings({ data, setData }) {
           <button style={s.btn} onClick={sendBriefing}>Send Test Now</button>
           {briefingStatus && <span style={{ fontSize: 11, color: '#888' }}>{briefingStatus}</span>}
         </div>
+      </div>
+
+      {/* Google */}
+      <div style={s.section}>
+        <div style={s.sectionTitle}>Google (Calendar, Gmail, Drive)</div>
+        <div style={s.desc}>
+          Connect your Google account to enable calendar display in Tasks, sending email drafts from Action Runner, and pushing notes to Drive. Requires GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in .env.
+        </div>
+        <div style={s.row}>
+          <span style={s.label}>Status</span>
+          {googleStatus === null ? (
+            <span style={{ fontSize: 11, color: '#555' }}>Checking...</span>
+          ) : googleStatus.connected ? (
+            <span style={s.status(true)}>Connected — {googleStatus.email}</span>
+          ) : (
+            <span style={s.status(false)}>Not connected</span>
+          )}
+        </div>
+        <div style={s.row}>
+          <span style={s.label}></span>
+          {googleStatus?.connected ? (
+            <button style={s.btnDanger} onClick={revokeGoogle} disabled={revokeLoading}>
+              {revokeLoading ? 'Disconnecting...' : 'Disconnect Google'}
+            </button>
+          ) : (
+            <button style={s.btnOrange} onClick={connectGoogle}>
+              Connect Google Account
+            </button>
+          )}
+        </div>
+        {googleStatus?.error && (
+          <div style={{ fontSize: 11, color: '#ef4444', marginTop: 4 }}>
+            Error: {googleStatus.error}
+          </div>
+        )}
       </div>
 
       {/* Danger Zone */}

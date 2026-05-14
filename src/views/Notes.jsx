@@ -55,10 +55,16 @@ const s = {
     border: '1px solid #1a1a1a', fontSize: 10, color: '#555'
   },
   deleteBtn: {
-    marginLeft: 'auto', padding: '2px 8px', background: 'transparent',
+    padding: '2px 8px', background: 'transparent',
     border: '1px solid #1a1a1a', color: '#555', borderRadius: 4,
     fontSize: 10, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer'
   },
+  driveBtn: {
+    padding: '2px 8px', background: 'transparent',
+    border: '1px solid #1a1a1a', color: '#555', borderRadius: 4,
+    fontSize: 10, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer'
+  },
+  noteActions: { marginLeft: 'auto', display: 'flex', gap: 6 },
   noteText: { fontSize: 13, color: '#aaa', lineHeight: 1.6, whiteSpace: 'pre-wrap', wordBreak: 'break-word' },
   emptyState: { padding: 40, textAlign: 'center', color: '#555', fontSize: 13 }
 }
@@ -67,6 +73,7 @@ export default function Notes({ data, setData }) {
   const [text, setText] = useState('')
   const [venture, setVenture] = useState('')
   const [ventureFilter, setVentureFilter] = useState(null)
+  const [driveStatus, setDriveStatus] = useState({})  // { [noteId]: 'uploading' | 'done' | { error } }
   const textareaRef = useRef(null)
 
   const saveNote = () => {
@@ -91,6 +98,27 @@ export default function Notes({ data, setData }) {
       delete notes[id]
       return { ...prev, notes }
     })
+  }
+
+  const exportToDrive = async (note) => {
+    setDriveStatus(prev => ({ ...prev, [note.id]: 'uploading' }))
+    try {
+      const title = note.text.split('\n')[0].slice(0, 60) || 'Note'
+      const content = `# ${title}\n\n${note.text}\n\n---\nVenture: ${note.venture || 'none'}\nCreated: ${note.createdAt}`
+      const res = await fetch('/api/drive/upload-note', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, content })
+      })
+      const json = await res.json()
+      if (json.error) {
+        setDriveStatus(prev => ({ ...prev, [note.id]: { error: json.error } }))
+      } else {
+        setDriveStatus(prev => ({ ...prev, [note.id]: { link: json.webViewLink } }))
+      }
+    } catch (e) {
+      setDriveStatus(prev => ({ ...prev, [note.id]: { error: e.message } }))
+    }
   }
 
   const notes = Object.values(data.notes || {})
@@ -142,16 +170,33 @@ export default function Notes({ data, setData }) {
         <div style={s.emptyState}>No notes yet. Capture a thought above.</div>
       )}
 
-      {notes.map(note => (
-        <div key={note.id} style={s.note}>
-          <div style={s.noteHeader}>
-            <span style={s.timestamp}>{formatDate(note.createdAt)}</span>
-            {note.venture && <span style={s.ventureBadge}>{note.venture}</span>}
-            <button style={s.deleteBtn} onClick={() => deleteNote(note.id)}>Delete</button>
+      {notes.map(note => {
+        const ds = driveStatus[note.id]
+        return (
+          <div key={note.id} style={s.note}>
+            <div style={s.noteHeader}>
+              <span style={s.timestamp}>{formatDate(note.createdAt)}</span>
+              {note.venture && <span style={s.ventureBadge}>{note.venture}</span>}
+              <div style={s.noteActions}>
+                {ds === 'uploading' ? (
+                  <span style={{ fontSize: 10, color: '#555' }}>Uploading...</span>
+                ) : ds?.link ? (
+                  <a href={ds.link} target="_blank" rel="noopener noreferrer"
+                    style={{ fontSize: 10, color: '#22c55e', textDecoration: 'none' }}>
+                    Saved to Drive
+                  </a>
+                ) : ds?.error ? (
+                  <span style={{ fontSize: 10, color: '#ef4444' }} title={ds.error}>Drive error</span>
+                ) : (
+                  <button style={s.driveBtn} onClick={() => exportToDrive(note)}>Export to Drive</button>
+                )}
+                <button style={s.deleteBtn} onClick={() => deleteNote(note.id)}>Delete</button>
+              </div>
+            </div>
+            <div style={s.noteText}>{note.text}</div>
           </div>
-          <div style={s.noteText}>{note.text}</div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }

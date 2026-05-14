@@ -12,12 +12,75 @@ const s = {
   status: { fontSize: 11, color: '#555', marginBottom: 8 },
 }
 
+function parseEmailFromOutput(text) {
+  const toMatch = text.match(/To:\s*(.+)/i)
+  const subjectMatch = text.match(/Subject:\s*(.+)/i)
+  const bodyMatch = text.match(/(?:Body:|---\n)([\s\S]+)/i)
+  return {
+    to: toMatch ? toMatch[1].trim() : '',
+    subject: subjectMatch ? subjectMatch[1].trim() : '',
+    body: bodyMatch ? bodyMatch[1].trim() : text,
+  }
+}
+
+function EmailModal({ output, onClose }) {
+  const parsed = parseEmailFromOutput(output)
+  const [to, setTo] = useState(parsed.to)
+  const [subject, setSubject] = useState(parsed.subject)
+  const [body, setBody] = useState(parsed.body)
+  const [status, setStatus] = useState(null)
+  const [sending, setSending] = useState(false)
+
+  const send = async () => {
+    if (!to || !subject) return
+    setSending(true)
+    setStatus(null)
+    try {
+      const res = await fetch('/api/gmail/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ to, subject, body })
+      })
+      const json = await res.json()
+      if (json.error) setStatus({ ok: false, msg: json.error })
+      else setStatus({ ok: true, msg: 'Sent via Gmail' })
+    } catch (e) {
+      setStatus({ ok: false, msg: e.message })
+    }
+    setSending(false)
+  }
+
+  const mInput = { width: '100%', background: '#0d0d0d', border: '1px solid #1a1a1a', borderRadius: 3, color: '#e5e5e5', fontFamily: 'inherit', fontSize: 12, padding: '7px 10px', outline: 'none', marginBottom: 10 }
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.9)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4, padding: 24, width: 500, maxWidth: '90vw' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
+          <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, color: '#e5e5e5' }}>Send as Email</span>
+          <button style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: 18 }} onClick={onClose}>x</button>
+        </div>
+        <input style={mInput} placeholder="To" value={to} onChange={e => setTo(e.target.value)} />
+        <input style={mInput} placeholder="Subject" value={subject} onChange={e => setSubject(e.target.value)} />
+        <textarea style={{ ...mInput, minHeight: 160, resize: 'vertical' }} value={body} onChange={e => setBody(e.target.value)} />
+        <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', alignItems: 'center' }}>
+          {status && <span style={{ fontSize: 11, color: status.ok ? '#22c55e' : '#ef4444' }}>{status.msg}</span>}
+          <button style={s.btnSecondary} onClick={onClose}>Cancel</button>
+          <button style={s.btn} onClick={send} disabled={sending || !to || !subject}>
+            {sending ? 'Sending...' : 'Send via Gmail'}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function ActionRunner({ data, setData, prompt: initialPrompt, onClose }) {
   const [prompt, setPrompt] = useState(initialPrompt || '')
   const [model, setModel] = useState((data?.settings?.actionModel) || 'claude-sonnet-4-6')
   const [output, setOutput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [showEmailModal, setShowEmailModal] = useState(false)
 
   const settings = data?.settings || {}
 
@@ -52,10 +115,14 @@ export default function ActionRunner({ data, setData, prompt: initialPrompt, onC
     setLoading(false)
   }
 
-  const looksLikeEmail = output && (output.includes('Subject:') || output.includes('Dear ') || output.includes('Hi ') || output.includes('Hello '))
+  const looksLikeEmail = output && (
+    output.includes('Subject:') || output.includes('Dear ') ||
+    /^Hi\s/im.test(output) || /^Hello\s/im.test(output)
+  )
 
   const inner = (
     <div style={s.wrap}>
+      {showEmailModal && <EmailModal output={output} onClose={() => setShowEmailModal(false)} />}
       {onClose && (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, color: '#e5e5e5' }}>Action Runner</span>
@@ -80,7 +147,7 @@ export default function ActionRunner({ data, setData, prompt: initialPrompt, onC
         </button>
         {output && <button style={s.btnSecondary} onClick={() => navigator.clipboard.writeText(output)}>Copy Output</button>}
         {output && looksLikeEmail && (
-          <button style={s.btnSecondary} onClick={() => alert('Configure SendGrid in Settings to send emails.')}>
+          <button style={s.btnSecondary} onClick={() => setShowEmailModal(true)}>
             Send as Email
           </button>
         )}

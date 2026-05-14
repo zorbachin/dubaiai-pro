@@ -3,7 +3,7 @@ import express from 'express'
 import { createServer } from 'http'
 import { WebSocketServer } from 'ws'
 import { watch } from 'chokidar'
-import { readFile, writeFile, rename, copyFile, mkdir, access } from 'fs/promises'
+import { readFile, writeFile, rename, copyFile, mkdir } from 'fs/promises'
 import { existsSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -11,12 +11,55 @@ import http from 'http'
 import https from 'https'
 import { URL } from 'url'
 import cron from 'node-cron'
+import { google } from 'googleapis'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DATA_DIR = join(__dirname, 'data')
 const DATA_FILE = join(DATA_DIR, 'data.json')
 const TMP_FILE = join(DATA_DIR, 'data.tmp.json')
+const TOKENS_FILE = join(DATA_DIR, 'tokens.json')
 const PREFIX = '[zorba-os]'
+
+// ── Google OAuth ──────────────────────────────────────────────────────────────
+
+function createOAuth2Client() {
+  return new google.auth.OAuth2(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
+    process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3001/auth/google/callback'
+  )
+}
+
+async function loadTokens() {
+  try {
+    if (existsSync(TOKENS_FILE)) {
+      const raw = await readFile(TOKENS_FILE, 'utf8')
+      return JSON.parse(raw)
+    }
+  } catch (e) {
+    console.error(`${PREFIX} tokens.json read error:`, e.message)
+  }
+  return null
+}
+
+async function saveTokens(tokens) {
+  await ensureDataDir()
+  await writeFile(TOKENS_FILE, JSON.stringify(tokens, null, 2), 'utf8')
+}
+
+async function getAuthClient() {
+  const tokens = await loadTokens()
+  if (!tokens) return null
+  const client = createOAuth2Client()
+  client.setCredentials(tokens)
+  // Auto-refresh if expired
+  client.on('tokens', async (newTokens) => {
+    const merged = { ...tokens, ...newTokens }
+    await saveTokens(merged)
+    console.log(`${PREFIX} Google tokens auto-refreshed`)
+  })
+  return client
+}
 
 // Log env key presence/absence (never values)
 const ENV_KEYS = [
@@ -330,10 +373,244 @@ app.post('/api/anthropic/chat', async (req, res) => {
 // POST /api/briefing/send-now (stub — real sendgrid integration optional)
 app.post('/api/briefing/send-now', async (req, res) => {
   try {
-    // Stub: log intent
     console.log(`${PREFIX} Briefing send-now requested`)
     res.json({ ok: true, message: 'Briefing send triggered (configure SendGrid to enable)' })
   } catch (e) {
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// ── Google OAuth routes ───────────────────────────────────────────────────────
+
+// GET /auth/google — redirect to Google consent screen
+app.get('/auth/google', (req, res) => {
+  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+    return res.status(400).send('Google credentials not configured. Add GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to .env')
+  }
+  const client = createOAuth2Client()
+  const url = client.generateAuthUrl({
+    access_type: 'offline',
+    prompt: 'consent',
+    scope: [
+      'https://www.googleapis.com/auth/calendar',
+      'https://www.googleapis.com/auth/gmail.send',
+      'https://www.googleapis.com/auth/drive.file',
+      'https://www.googleapis.com/auth/drive.readonly',
+      'https://www.googleapis.com/auth/userinfo.email',
+    ]
+  })
+  res.redirect(url)
+})
+
+// GET /auth/google/callback
+app.get('/auth/google/callback', async (req, res) => {
+  try {
+    const { code, error } = req.query
+    if (error) return res.status(400).send(`Google auth error: ${error}`)
+    if (!code) return res.status(400).send('Missing auth code')
+
+    const client = createOAuth2Client()
+    const { tokens } = await client.getToken(code)
+    await saveTokens(tokens)
+    console.log(`${PREFIX} Google OAuth tokens saved`)
+    res.send('<script>window.close()</script><p>Connected! You can close this tab.</p>')
+  } catch (e) {
+    console.error(`${PREFIX} /auth/google/callback error:`, e.message)
+    res.status(500).send(`Auth failed: ${e.message}`)
+  }
+})
+
+// GET /api/google/status
+app.get('/api/google/status', async (req, res) => {
+  try {
+    const tokens = await loadTokens()
+    if (!tokens) return res.json({ connected: false })
+    // Try to get user info to verify tokens work
+    const client = createOAuth2Client()
+    client.setCredentials(tokens)
+    const oauth2 = google.oauth2({ version: 'v2', auth: client })
+    const { data } = await oauth2.userinfo.get()
+    res.json({ connected: true, email: data.email })
+  } catch (e) {
+    res.json({ connected: false, error: e.message })
+  }
+})
+
+// POST /api/google/revoke
+app.post('/api/google/revoke', async (req, res) => {
+  try {
+    const tokens = await loadTokens()
+    if (tokens) {
+      const client = createOAuth2Client()
+      client.setCredentials(tokens)
+      await client.revokeCredentials()
+    }
+    // Remove tokens file
+    const { unlink } = await import('fs/promises')
+    if (existsSync(TOKENS_FILE)) await unlink(TOKENS_FILE)
+    res.json({ ok: true })
+  } catch (e) {
+    console.error(`${PREFIX} /api/google/revoke error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// ── Google Calendar ───────────────────────────────────────────────────────────
+
+// GET /api/calendar/today
+app.get('/api/calendar/today', async (req, res) => {
+  try {
+    const auth = await getAuthClient()
+    if (!auth) return res.status(401).json({ error: 'Google not connected' })
+
+    const calendar = google.calendar({ version: 'v3', auth })
+    const now = new Date()
+    const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
+
+    const { data } = await calendar.events.list({
+      calendarId: 'primary',
+      timeMin: startOfDay.toISOString(),
+      timeMax: endOfDay.toISOString(),
+      singleEvents: true,
+      orderBy: 'startTime',
+      maxResults: 20,
+    })
+
+    const events = (data.items || []).map(e => ({
+      id: e.id,
+      title: e.summary || '(No title)',
+      start: e.start?.dateTime || e.start?.date,
+      end: e.end?.dateTime || e.end?.date,
+      location: e.location || null,
+      allDay: !e.start?.dateTime,
+      htmlLink: e.htmlLink,
+    }))
+
+    res.json({ events })
+  } catch (e) {
+    console.error(`${PREFIX} /api/calendar/today error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// POST /api/calendar/create
+app.post('/api/calendar/create', async (req, res) => {
+  try {
+    const auth = await getAuthClient()
+    if (!auth) return res.status(401).json({ error: 'Google not connected' })
+
+    const { title, start, end, description, location } = req.body
+    if (!title || !start) return res.status(400).json({ error: 'title and start are required' })
+
+    const calendar = google.calendar({ version: 'v3', auth })
+    const { data } = await calendar.events.insert({
+      calendarId: 'primary',
+      requestBody: {
+        summary: title,
+        description: description || '',
+        location: location || '',
+        start: { dateTime: start, timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone },
+        end: { dateTime: end || start, timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone },
+      }
+    })
+
+    res.json({ ok: true, event: { id: data.id, htmlLink: data.htmlLink } })
+  } catch (e) {
+    console.error(`${PREFIX} /api/calendar/create error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// ── Gmail ─────────────────────────────────────────────────────────────────────
+
+// POST /api/gmail/send
+app.post('/api/gmail/send', async (req, res) => {
+  try {
+    const auth = await getAuthClient()
+    if (!auth) return res.status(401).json({ error: 'Google not connected' })
+
+    const { to, subject, body: emailBody } = req.body
+    if (!to || !subject || !emailBody) {
+      return res.status(400).json({ error: 'to, subject, and body are required' })
+    }
+
+    const gmail = google.gmail({ version: 'v1', auth })
+
+    // Build RFC 2822 message
+    const messageParts = [
+      `To: ${to}`,
+      `Subject: ${subject}`,
+      'MIME-Version: 1.0',
+      'Content-Type: text/plain; charset=utf-8',
+      '',
+      emailBody,
+    ]
+    const message = messageParts.join('\n')
+    const encoded = Buffer.from(message).toString('base64url')
+
+    await gmail.users.messages.send({
+      userId: 'me',
+      requestBody: { raw: encoded }
+    })
+
+    res.json({ ok: true })
+  } catch (e) {
+    console.error(`${PREFIX} /api/gmail/send error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// ── Google Drive ──────────────────────────────────────────────────────────────
+
+// GET /api/drive/list?q=searchTerm
+app.get('/api/drive/list', async (req, res) => {
+  try {
+    const auth = await getAuthClient()
+    if (!auth) return res.status(401).json({ error: 'Google not connected' })
+
+    const { q } = req.query
+    const drive = google.drive({ version: 'v3', auth })
+
+    const query = q
+      ? `name contains '${q.replace(/'/g, "\\'")}' and trashed = false`
+      : 'trashed = false'
+
+    const { data } = await drive.files.list({
+      q: query,
+      pageSize: 20,
+      fields: 'files(id, name, mimeType, modifiedTime, webViewLink, webContentLink)',
+      orderBy: 'modifiedTime desc',
+    })
+
+    res.json({ files: data.files || [] })
+  } catch (e) {
+    console.error(`${PREFIX} /api/drive/list error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// POST /api/drive/upload-note — push a note as .md file to Drive
+app.post('/api/drive/upload-note', async (req, res) => {
+  try {
+    const auth = await getAuthClient()
+    if (!auth) return res.status(401).json({ error: 'Google not connected' })
+
+    const { title, content } = req.body
+    if (!content) return res.status(400).json({ error: 'content is required' })
+
+    const drive = google.drive({ version: 'v3', auth })
+    const fileName = `${title || 'Zorba Note'} — ${new Date().toISOString().split('T')[0]}.md`
+
+    const { data } = await drive.files.create({
+      requestBody: { name: fileName, mimeType: 'text/markdown' },
+      media: { mimeType: 'text/markdown', body: content },
+      fields: 'id, webViewLink',
+    })
+
+    res.json({ ok: true, fileId: data.id, webViewLink: data.webViewLink })
+  } catch (e) {
+    console.error(`${PREFIX} /api/drive/upload-note error:`, e.message)
     res.status(500).json({ error: e.message })
   }
 })

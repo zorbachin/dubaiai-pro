@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import TaskTimer from '../components/TaskTimer.jsx'
 import ActionRunner from '../components/ActionRunner.jsx'
 
@@ -154,11 +154,70 @@ const s = {
     background: 'transparent', color: '#555', border: '1px solid #1a1a1a', borderRadius: 4,
     padding: '8px 16px', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, cursor: 'pointer'
   },
-  emptyState: { padding: 40, textAlign: 'center', color: '#555', fontSize: 13 }
+  emptyState: { padding: 40, textAlign: 'center', color: '#555', fontSize: 13 },
+  layout: { display: 'flex', gap: 20, alignItems: 'flex-start' },
+  taskList: { flex: 1, minWidth: 0 },
+  calSidebar: {
+    width: 240, flexShrink: 0, background: '#111111',
+    border: '1px solid #1a1a1a', borderRadius: 4, padding: 14
+  },
+  calTitle: { fontSize: 11, color: '#555', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 },
+  calEvent: { marginBottom: 10, paddingBottom: 10, borderBottom: '1px solid #1a1a1a' },
+  calEventTitle: { fontSize: 12, color: '#e5e5e5', marginBottom: 2, lineHeight: 1.4 },
+  calEventTime: { fontSize: 11, color: '#555' },
+  calEmpty: { fontSize: 12, color: '#333' },
+  calLoading: { fontSize: 12, color: '#333' },
 }
 
 const ENERGY_COLORS = { low: '#22c55e', medium: '#eab308', high: '#ef4444' }
 const REVENUE_COLORS = { low: '#555', medium: '#f97316', high: '#22c55e' }
+
+function formatEventTime(isoStr) {
+  if (!isoStr) return ''
+  const d = new Date(isoStr)
+  return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+}
+
+function CalendarWidget() {
+  const [events, setEvents] = useState(null)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    fetch('/api/calendar/today')
+      .then(r => r.json())
+      .then(data => {
+        if (data.error) setError(data.error)
+        else setEvents(data.events || [])
+      })
+      .catch(e => setError(e.message))
+  }, [])
+
+  return (
+    <div style={s.calSidebar}>
+      <div style={s.calTitle}>Today</div>
+      {events === null && !error && <div style={s.calLoading}>Loading...</div>}
+      {error && (
+        <div style={s.calEmpty}>
+          {error.includes('not connected') ? 'Connect Google in Settings' : error}
+        </div>
+      )}
+      {events && events.length === 0 && <div style={s.calEmpty}>No events today</div>}
+      {events && events.map(ev => (
+        <div key={ev.id} style={s.calEvent}>
+          <div style={s.calEventTitle}>
+            {ev.htmlLink
+              ? <a href={ev.htmlLink} target="_blank" rel="noopener noreferrer" style={{ color: '#e5e5e5', textDecoration: 'none' }}>{ev.title}</a>
+              : ev.title
+            }
+          </div>
+          <div style={s.calEventTime}>
+            {ev.allDay ? 'All day' : `${formatEventTime(ev.start)} – ${formatEventTime(ev.end)}`}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 function TaskModal({ onClose, onSave, initial }) {
   const [form, setForm] = useState(initial || {
@@ -490,20 +549,26 @@ export default function Tasks({ data, setData, ventureFilter, setVentureFilter, 
         <button style={s.addBtn} onClick={() => setShowAddModal(true)}>+ Add Task</button>
       </div>
 
-      {filtered.length === 0 && (
-        <div style={s.emptyState}>No tasks match the current filters.</div>
-      )}
+      <div style={s.layout}>
+        <div style={s.taskList}>
+          {filtered.length === 0 && (
+            <div style={s.emptyState}>No tasks match the current filters.</div>
+          )}
 
-      {filtered.map(task => (
-        <TaskCard
-          key={task.id}
-          task={task}
-          data={data}
-          setData={setData}
-          expanded={expandedId === task.id}
-          onExpand={() => setExpandedId(expandedId === task.id ? null : task.id)}
-        />
-      ))}
+          {filtered.map(task => (
+            <TaskCard
+              key={task.id}
+              task={task}
+              data={data}
+              setData={setData}
+              expanded={expandedId === task.id}
+              onExpand={() => setExpandedId(expandedId === task.id ? null : task.id)}
+            />
+          ))}
+        </div>
+
+        <CalendarWidget />
+      </div>
 
       {showAddModal && (
         <TaskModal
