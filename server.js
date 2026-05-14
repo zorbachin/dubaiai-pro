@@ -370,16 +370,6 @@ app.post('/api/anthropic/chat', async (req, res) => {
   }
 })
 
-// POST /api/briefing/send-now (stub — real sendgrid integration optional)
-app.post('/api/briefing/send-now', async (req, res) => {
-  try {
-    console.log(`${PREFIX} Briefing send-now requested`)
-    res.json({ ok: true, message: 'Briefing send triggered (configure SendGrid to enable)' })
-  } catch (e) {
-    res.status(500).json({ error: e.message })
-  }
-})
-
 // ── Google OAuth routes ───────────────────────────────────────────────────────
 
 // GET /auth/google — redirect to Google consent screen
@@ -615,6 +605,213 @@ app.post('/api/drive/upload-note', async (req, res) => {
   }
 })
 
+// ── Zapier ────────────────────────────────────────────────────────────────────
+
+// POST /api/zapier/task-done — called when a task is marked complete
+app.post('/api/zapier/task-done', async (req, res) => {
+  try {
+    const webhookUrl = process.env.ZAPIER_WEBHOOK_URL
+    if (!webhookUrl) return res.status(400).json({ error: 'ZAPIER_WEBHOOK_URL not configured' })
+
+    const { taskId, taskTitle, venture, completedAt } = req.body
+    if (!taskId) return res.status(400).json({ error: 'taskId required' })
+
+    const result = await proxyRequest(webhookUrl, 'POST', {}, {
+      taskId, taskTitle, venture, completedAt: completedAt || new Date().toISOString()
+    })
+
+    console.log(`${PREFIX} Zapier webhook fired for task: ${taskTitle} (status ${result.status})`)
+    res.json({ ok: true, status: result.status })
+  } catch (e) {
+    console.error(`${PREFIX} /api/zapier/task-done error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// POST /api/zapier/test — fire a test payload to the webhook
+app.post('/api/zapier/test', async (req, res) => {
+  try {
+    const webhookUrl = process.env.ZAPIER_WEBHOOK_URL
+    if (!webhookUrl) return res.status(400).json({ error: 'ZAPIER_WEBHOOK_URL not configured' })
+
+    const result = await proxyRequest(webhookUrl, 'POST', {}, {
+      taskId: 'test-123',
+      taskTitle: 'Test Task from Zorba OS',
+      venture: 'zorbot',
+      completedAt: new Date().toISOString(),
+      _test: true
+    })
+
+    res.json({ ok: result.status < 400, status: result.status })
+  } catch (e) {
+    console.error(`${PREFIX} /api/zapier/test error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// ── SendGrid Briefing ─────────────────────────────────────────────────────────
+
+function generateBriefingHtml(data) {
+  const now = new Date()
+  const today = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
+
+  const tasks = Object.values(data.tasks || {})
+  const doneTasks = new Set(data.doneTasks || [])
+  const activeTasks = tasks.filter(t => !doneTasks.has(t.id))
+
+  // Top tasks by revenue impact
+  const revenueOrder = { high: 0, medium: 1, low: 2 }
+  const topTasks = [...activeTasks]
+    .sort((a, b) => revenueOrder[a.revenueImpact] - revenueOrder[b.revenueImpact])
+    .slice(0, 5)
+
+  // Venture health
+  const VENTURE_KEYS = ['hermes','buildyourbot','selfsellingai','zorbot','minimovies','theriver','moraledge','thegetboaz','dubaiai','suman','podsupps','series']
+  const ventureHealth = VENTURE_KEYS.map(key => {
+    const sevenDays = 7 * 24 * 60 * 60 * 1000
+    const ventureDone = tasks.filter(t => t.venture === key && doneTasks.has(t.id))
+      .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+    let score = 100
+    if (ventureDone.length === 0) {
+      score -= 20
+    } else {
+      const daysSince = (Date.now() - new Date(ventureDone[0].updatedAt)) / sevenDays
+      if (daysSince > 1) score -= 10 * Math.floor(daysSince)
+      if (Date.now() - new Date(ventureDone[0].updatedAt) < 86400000) score += 10
+    }
+    score = Math.max(0, Math.min(100, score))
+    const activeCount = tasks.filter(t => t.venture === key && !doneTasks.has(t.id)).length
+    return { key, score, activeCount }
+  }).filter(v => v.activeCount > 0).sort((a, b) => a.score - b.score)
+
+  const color = s => s >= 70 ? '#22c55e' : s >= 40 ? '#eab308' : '#ef4444'
+
+  return `<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><style>
+  body { background: #080808; color: #e5e5e5; font-family: 'IBM Plex Mono', monospace; padding: 32px; max-width: 600px; margin: 0 auto; }
+  h1 { font-family: Georgia, serif; font-size: 28px; color: #f97316; margin-bottom: 4px; }
+  h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #555; margin: 28px 0 12px; }
+  .task { background: #111; border: 1px solid #1a1a1a; border-radius: 4px; padding: 12px 16px; margin-bottom: 8px; }
+  .task-title { font-size: 14px; color: #e5e5e5; }
+  .task-meta { font-size: 11px; color: #555; margin-top: 4px; }
+  .venture { display: inline-flex; align-items: center; gap: 8px; background: #111; border: 1px solid #1a1a1a; border-radius: 4px; padding: 8px 12px; margin-bottom: 8px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .footer { margin-top: 40px; font-size: 11px; color: #333; border-top: 1px solid #1a1a1a; padding-top: 16px; }
+</style></head>
+<body>
+  <h1>Zorba OS</h1>
+  <p style="color:#555;font-size:13px;margin-top:0">${today}</p>
+
+  <h2>Top Priority Tasks</h2>
+  ${topTasks.length === 0 ? '<p style="color:#555;font-size:13px">No active tasks.</p>' :
+    topTasks.map(t => `
+    <div class="task">
+      <div class="task-title">${t.title}</div>
+      <div class="task-meta">${t.venture} &nbsp;·&nbsp; ${t.time}m &nbsp;·&nbsp; revenue: ${t.revenueImpact} &nbsp;·&nbsp; energy: ${t.energy}</div>
+    </div>`).join('')}
+
+  <h2>Venture Health</h2>
+  ${ventureHealth.length === 0 ? '<p style="color:#555;font-size:13px">No active ventures.</p>' :
+    ventureHealth.map(v => `
+    <div class="venture">
+      <span class="dot" style="background:${color(v.score)}"></span>
+      <span style="font-size:12px;color:#e5e5e5">${v.key}</span>
+      <span style="font-size:11px;color:#555">${v.score}/100 &nbsp;·&nbsp; ${v.activeCount} tasks</span>
+    </div>`).join('')}
+
+  <div class="footer">Zorba OS Daily Briefing &nbsp;·&nbsp; ${now.toISOString()}</div>
+</body>
+</html>`
+}
+
+async function sendBriefingEmail(settings, data) {
+  const apiKey = process.env.SENDGRID_API_KEY
+  const fromEmail = process.env.SENDGRID_FROM_EMAIL
+  const toEmail = settings.briefingEmail
+
+  if (!apiKey) throw new Error('SENDGRID_API_KEY not configured')
+  if (!fromEmail) throw new Error('SENDGRID_FROM_EMAIL not configured')
+  if (!toEmail) throw new Error('No briefing email set in Settings')
+
+  const html = generateBriefingHtml(data)
+  const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
+
+  const payload = {
+    personalizations: [{ to: [{ email: toEmail }] }],
+    from: { email: fromEmail },
+    subject: `Zorba OS Briefing — ${today}`,
+    content: [{ type: 'text/html', value: html }]
+  }
+
+  const result = await proxyRequest('https://api.sendgrid.com/v3/mail/send', 'POST', {
+    Authorization: `Bearer ${apiKey}`
+  }, payload)
+
+  if (result.status >= 400) {
+    throw new Error(`SendGrid error ${result.status}: ${result.body}`)
+  }
+  return { ok: true }
+}
+
+// POST /api/briefing/send-now
+app.post('/api/briefing/send-now', async (req, res) => {
+  try {
+    const data = await loadData()
+    const settings = data.settings || {}
+    await sendBriefingEmail(settings, data)
+    console.log(`${PREFIX} Briefing sent to ${settings.briefingEmail}`)
+    res.json({ ok: true, message: `Briefing sent to ${settings.briefingEmail}` })
+  } catch (e) {
+    console.error(`${PREFIX} /api/briefing/send-now error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// GET /api/briefing/preview
+app.get('/api/briefing/preview', async (req, res) => {
+  try {
+    const data = await loadData()
+    const html = generateBriefingHtml(data)
+    res.setHeader('Content-Type', 'text/html')
+    res.send(html)
+  } catch (e) {
+    console.error(`${PREFIX} /api/briefing/preview error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// ── Substack ──────────────────────────────────────────────────────────────────
+
+// POST /api/substack/format — formats content as Substack-ready markdown
+// Substack has no public write API; we generate clean markdown for manual paste
+app.post('/api/substack/format', async (req, res) => {
+  try {
+    const { title, content, venture } = req.body
+    if (!content) return res.status(400).json({ error: 'content is required' })
+
+    const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    const md = [
+      `# ${title || 'Untitled'}`,
+      '',
+      venture ? `*${venture} &nbsp;·&nbsp; ${date}*` : `*${date}*`,
+      '',
+      '---',
+      '',
+      content.trim(),
+      '',
+      '---',
+      '',
+      '*Published via Zorba OS*',
+    ].join('\n')
+
+    res.json({ ok: true, markdown: md })
+  } catch (e) {
+    console.error(`${PREFIX} /api/substack/format error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
 // Create HTTP server
 const httpServer = createServer(app)
 
@@ -660,9 +857,33 @@ async function startWatcher() {
   watcher.on('error', (e) => console.error(`${PREFIX} Watcher error:`, e.message))
 }
 
+// ── Daily briefing cron ───────────────────────────────────────────────────────
+
+function scheduleBriefing() {
+  // Run every minute, check if current time matches settings.briefingTime
+  cron.schedule('* * * * *', async () => {
+    try {
+      const data = await loadData()
+      const settings = data.settings || {}
+      if (!settings.sendgridEnabled || !settings.briefingEmail || !settings.briefingTime) return
+
+      const now = new Date()
+      const [hh, mm] = settings.briefingTime.split(':').map(Number)
+      if (now.getHours() === hh && now.getMinutes() === mm) {
+        console.log(`${PREFIX} Sending scheduled briefing to ${settings.briefingEmail}`)
+        await sendBriefingEmail(settings, data)
+      }
+    } catch (e) {
+      console.error(`${PREFIX} Briefing cron error:`, e.message)
+    }
+  })
+  console.log(`${PREFIX} Briefing cron scheduled`)
+}
+
 const PORT = parseInt(process.env.PORT || '3001', 10)
 
 httpServer.listen(PORT, async () => {
   await startWatcher()
+  scheduleBriefing()
   console.log(`${PREFIX} Server running on port ${PORT}`)
 })

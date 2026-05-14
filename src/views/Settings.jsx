@@ -38,9 +38,10 @@ export default function Settings({ data, setData }) {
   const [ollamaStatus, setOllamaStatus] = useState(null)
   const [ollamaLoading, setOllamaLoading] = useState(false)
   const [briefingStatus, setBriefingStatus] = useState(null)
-  const [googleStatus, setGoogleStatus] = useState(null)  // null | { connected, email, error }
-  const [googleLoading, setGoogleLoading] = useState(false)
+  const [googleStatus, setGoogleStatus] = useState(null)
   const [revokeLoading, setRevokeLoading] = useState(false)
+  const [zapierStatus, setZapierStatus] = useState(null)
+  const [zapierLoading, setZapierLoading] = useState(false)
 
   useEffect(() => {
     fetch('/api/google/status').then(r => r.json()).then(setGoogleStatus).catch(() => {})
@@ -94,12 +95,29 @@ export default function Settings({ data, setData }) {
   const sendBriefing = async () => {
     setBriefingStatus(null)
     try {
-      const res = await fetch('/api/briefing/send-now', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ settings }) })
+      const res = await fetch('/api/briefing/send-now', { method: 'POST' })
       const json = await res.json()
-      setBriefingStatus(json.message || 'Sent')
+      if (json.error) setBriefingStatus(`Error: ${json.error}`)
+      else setBriefingStatus(json.message || 'Sent')
     } catch (e) {
       setBriefingStatus(`Error: ${e.message}`)
     }
+  }
+
+  const previewBriefing = () => window.open('/api/briefing/preview', '_blank')
+
+  const testZapier = async () => {
+    setZapierLoading(true)
+    setZapierStatus(null)
+    try {
+      const res = await fetch('/api/zapier/test', { method: 'POST' })
+      const json = await res.json()
+      if (json.error) setZapierStatus(`Error: ${json.error}`)
+      else setZapierStatus(json.ok ? 'Webhook fired — check Zapier' : `Status ${json.status}`)
+    } catch (e) {
+      setZapierStatus(`Error: ${e.message}`)
+    }
+    setZapierLoading(false)
   }
 
   const exportData = () => {
@@ -213,7 +231,38 @@ export default function Settings({ data, setData }) {
         <div style={s.row}>
           <span style={s.label}></span>
           <button style={s.btn} onClick={sendBriefing}>Send Test Now</button>
-          {briefingStatus && <span style={{ fontSize: 11, color: '#888' }}>{briefingStatus}</span>}
+          <button style={s.btn} onClick={previewBriefing}>Preview</button>
+          {briefingStatus && (
+            <span style={{ fontSize: 11, color: briefingStatus.startsWith('Error') ? '#ef4444' : '#22c55e' }}>
+              {briefingStatus}
+            </span>
+          )}
+        </div>
+        <div style={{ ...s.desc, marginTop: 8 }}>
+          Requires SENDGRID_API_KEY and SENDGRID_FROM_EMAIL in .env. Sends daily at the time above.
+        </div>
+      </div>
+
+      {/* Zapier */}
+      <div style={s.section}>
+        <div style={s.sectionTitle}>Zapier</div>
+        <div style={s.desc}>
+          When enabled, fires a webhook to ZAPIER_WEBHOOK_URL whenever you mark a task done. Set ZAPIER_WEBHOOK_URL in .env.
+        </div>
+        <div style={s.row}>
+          <span style={s.label}>Enabled</span>
+          <Toggle value={!!settings.zapierEnabled} onChange={v => set('zapierEnabled', v)} />
+        </div>
+        <div style={s.row}>
+          <span style={s.label}></span>
+          <button style={s.btn} onClick={testZapier} disabled={zapierLoading}>
+            {zapierLoading ? 'Firing...' : 'Test Webhook'}
+          </button>
+          {zapierStatus && (
+            <span style={{ fontSize: 11, color: zapierStatus.startsWith('Error') ? '#ef4444' : '#22c55e' }}>
+              {zapierStatus}
+            </span>
+          )}
         </div>
       </div>
 

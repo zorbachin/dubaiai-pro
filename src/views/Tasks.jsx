@@ -373,6 +373,19 @@ function TaskCard({ task, data, setData, expanded, onExpand }) {
         doneTasks: [...(prev.doneTasks || []), task.id],
         tasks: { ...prev.tasks, [task.id]: { ...prev.tasks[task.id], updatedAt: new Date().toISOString() } }
       }))
+      // Fire Zapier webhook if enabled
+      if (data.settings?.zapierEnabled) {
+        fetch('/api/zapier/task-done', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            taskId: task.id,
+            taskTitle: task.title,
+            venture: task.venture,
+            completedAt: new Date().toISOString()
+          })
+        }).catch(err => console.warn('[zorba-ui] Zapier webhook failed:', err.message))
+      }
     }
   }
 

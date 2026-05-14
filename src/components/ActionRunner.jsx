@@ -74,13 +74,14 @@ function EmailModal({ output, onClose }) {
   )
 }
 
-export default function ActionRunner({ data, setData, prompt: initialPrompt, onClose }) {
+export default function ActionRunner({ data, setData, prompt: initialPrompt, onClose, venture: initialVenture }) {
   const [prompt, setPrompt] = useState(initialPrompt || '')
   const [model, setModel] = useState((data?.settings?.actionModel) || 'claude-sonnet-4-6')
   const [output, setOutput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showEmailModal, setShowEmailModal] = useState(false)
+  const [substackStatus, setSubstackStatus] = useState(null)
 
   const settings = data?.settings || {}
 
@@ -120,6 +121,26 @@ export default function ActionRunner({ data, setData, prompt: initialPrompt, onC
     /^Hi\s/im.test(output) || /^Hello\s/im.test(output)
   )
 
+  const formatForSubstack = async () => {
+    setSubstackStatus('formatting')
+    try {
+      const titleMatch = output.match(/^#\s+(.+)|^(.+)\n[=—-]{3,}/m)
+      const title = titleMatch ? (titleMatch[1] || titleMatch[2]) : 'Untitled'
+      const res = await fetch('/api/substack/format', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, content: output, venture: initialVenture || '' })
+      })
+      const json = await res.json()
+      if (json.error) { setSubstackStatus('error'); return }
+      await navigator.clipboard.writeText(json.markdown)
+      setSubstackStatus('copied')
+      setTimeout(() => setSubstackStatus(null), 3000)
+    } catch (e) {
+      setSubstackStatus('error')
+    }
+  }
+
   const inner = (
     <div style={s.wrap}>
       {showEmailModal && <EmailModal output={output} onClose={() => setShowEmailModal(false)} />}
@@ -149,6 +170,11 @@ export default function ActionRunner({ data, setData, prompt: initialPrompt, onC
         {output && looksLikeEmail && (
           <button style={s.btnSecondary} onClick={() => setShowEmailModal(true)}>
             Send as Email
+          </button>
+        )}
+        {output && (
+          <button style={s.btnSecondary} onClick={formatForSubstack} disabled={substackStatus === 'formatting'}>
+            {substackStatus === 'copied' ? 'Copied for Substack' : substackStatus === 'formatting' ? 'Formatting...' : 'Format for Substack'}
           </button>
         )}
       </div>
