@@ -86,10 +86,11 @@ async function ensureDataDir() {
 }
 
 const DEFAULT_DATA = {
-  version: 2,
+  version: 3,
   tasks: {},
   library: {},
   notes: {},
+  content: {},
   completedSteps: [],
   doneTasks: [],
   activeTimers: {},
@@ -608,10 +609,94 @@ app.post('/api/drive/upload-note', async (req, res) => {
 // GET /api/env-status — reports which .env keys are present (never their values)
 app.get('/api/env-status', (req, res) => {
   const keys = ['ANTHROPIC_API_KEY', 'SENDGRID_API_KEY', 'SENDGRID_FROM_EMAIL',
-    'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'ZAPIER_WEBHOOK_URL', 'OLLAMA_ENDPOINT']
+    'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'ZAPIER_WEBHOOK_URL', 'OLLAMA_ENDPOINT', 'HIGGSFIELD_API_KEY']
   const result = {}
   for (const k of keys) result[k] = !!process.env[k]
   res.json(result)
+})
+
+// ── Higgsfield ────────────────────────────────────────────────────────────────
+
+// POST /api/higgsfield/generate
+app.post('/api/higgsfield/generate', async (req, res) => {
+  try {
+    const apiKey = process.env.HIGGSFIELD_API_KEY
+    if (!apiKey) return res.status(400).json({ error: 'HIGGSFIELD_API_KEY not configured in .env' })
+    const { prompt, negativePrompt, style, ratio, duration, seed, venture } = req.body
+    const result = await proxyRequest('https://api.higgsfield.ai/v1/generate', 'POST', {
+      'Authorization': `Bearer ${apiKey}`,
+    }, { prompt, negative_prompt: negativePrompt || '', style, aspect_ratio: ratio, duration, seed: seed || null })
+    const body = JSON.parse(result.body)
+    if (result.status >= 400) return res.status(result.status).json({ error: body.error || body.message || 'Higgsfield error' })
+    res.json({ jobId: body.id || body.job_id, status: body.status || 'processing', videoUrl: body.video_url || null })
+  } catch (e) {
+    console.error(`${PREFIX} /api/higgsfield/generate error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// GET /api/higgsfield/status/:jobId
+app.get('/api/higgsfield/status/:jobId', async (req, res) => {
+  try {
+    const apiKey = process.env.HIGGSFIELD_API_KEY
+    if (!apiKey) return res.status(400).json({ error: 'HIGGSFIELD_API_KEY not configured' })
+    const result = await proxyRequest(`https://api.higgsfield.ai/v1/jobs/${req.params.jobId}`, 'GET', {
+      'Authorization': `Bearer ${apiKey}`,
+    }, null)
+    const body = JSON.parse(result.body)
+    res.json({ status: body.status, videoUrl: body.video_url || null, thumbnailUrl: body.thumbnail_url || null })
+  } catch (e) {
+    console.error(`${PREFIX} /api/higgsfield/status error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
+})
+
+// ── Local Model (ComfyUI / A1111 / InvokeAI) ──────────────────────────────────
+
+// POST /api/local-model/test
+app.post('/api/local-model/test', async (req, res) => {
+  try {
+    const { endpoint, type } = req.body
+    let testUrl = endpoint
+    if (type === 'ComfyUI') testUrl = `${endpoint}/system_stats`
+    else if (type === 'Automatic1111') testUrl = `${endpoint}/sdapi/v1/options`
+    else if (type === 'InvokeAI') testUrl = `${endpoint}/api/v1/app/version`
+    const result = await proxyRequest(testUrl, 'GET', {}, null)
+    if (result.status === 200) res.json({ ok: true })
+    else res.json({ ok: false, error: `HTTP ${result.status}` })
+  } catch (e) {
+    res.json({ ok: false, error: e.message })
+  }
+})
+
+// POST /api/local-model/generate
+app.post('/api/local-model/generate', async (req, res) => {
+  try {
+    const { endpoint, type, prompt, negPrompt, steps, cfgScale, width, height, seed } = req.body
+    if (type === 'Automatic1111') {
+      // A1111 txt2img API
+      const result = await proxyRequest(`${endpoint}/sdapi/v1/txt2img`, 'POST', {}, {
+        prompt, negative_prompt: negPrompt || '',
+        steps, cfg_scale: cfgScale, width, height,
+        seed: seed === -1 ? -1 : (parseInt(seed) || -1),
+        sampler_name: 'DPM++ 2M Karras'
+      })
+      const body = JSON.parse(result.body)
+      if (result.status >= 400) return res.status(result.status).json({ error: body.detail || 'A1111 error' })
+      // A1111 returns base64 images
+      res.json({ imageData: body.images?.[0] || null })
+    } else if (type === 'ComfyUI') {
+      // ComfyUI uses a workflow queue — return a placeholder directing user to ComfyUI UI
+      res.json({ error: 'ComfyUI requires a workflow JSON. Use the ComfyUI web UI at ' + endpoint + ' directly, or switch to Automatic1111 for API generation.' })
+    } else if (type === 'InvokeAI') {
+      res.json({ error: 'InvokeAI API generation coming soon. Use InvokeAI web UI directly.' })
+    } else {
+      res.json({ error: `Unknown local model type: ${type}` })
+    }
+  } catch (e) {
+    console.error(`${PREFIX} /api/local-model/generate error:`, e.message)
+    res.status(500).json({ error: e.message })
+  }
 })
 
 // ── Zapier ────────────────────────────────────────────────────────────────────

@@ -6,11 +6,12 @@ import Ventures from './views/Ventures.jsx'
 import Library from './views/Library.jsx'
 import Notes from './views/Notes.jsx'
 import Settings from './views/Settings.jsx'
+import Content from './views/Content.jsx'
 import CommandPalette from './components/CommandPalette.jsx'
 import MorningScroll from './components/MorningScroll.jsx'
 
-const VIEWS = ['Tasks', 'Ventures', 'Library', 'Notes', 'Settings']
-const VIEW_SHORTCUTS = ['⌘1', '⌘2', '⌘3', '⌘4', '⌘5']
+const VIEWS = ['Tasks', 'Ventures', 'Library', 'Notes', 'Content', 'Settings']
+const VIEW_SHORTCUTS = ['⌘1', '⌘2', '⌘3', '⌘4', '⌘5', '⌘6']
 
 const VENTURES = [
   { key: 'hermes', label: 'Hermes' },
@@ -282,11 +283,13 @@ export default function App() {
     'Cmd+3': (e) => { e.preventDefault(); setView(2) },
     'Cmd+4': (e) => { e.preventDefault(); setView(3) },
     'Cmd+5': (e) => { e.preventDefault(); setView(4) },
+    'Cmd+6': (e) => { e.preventDefault(); setView(5) },
     'Ctrl+1': (e) => { e.preventDefault(); setView(0) },
     'Ctrl+2': (e) => { e.preventDefault(); setView(1) },
     'Ctrl+3': (e) => { e.preventDefault(); setView(2) },
     'Ctrl+4': (e) => { e.preventDefault(); setView(3) },
     'Ctrl+5': (e) => { e.preventDefault(); setView(4) },
+    'Ctrl+6': (e) => { e.preventDefault(); setView(5) },
     'Cmd+k': (e) => { e.preventDefault(); setShowCommandPalette(p => !p) },
     'Ctrl+k': (e) => { e.preventDefault(); setShowCommandPalette(p => !p) },
     'Cmd+K': (e) => { e.preventDefault(); setShowCommandPalette(p => !p) },
@@ -339,7 +342,8 @@ export default function App() {
       case 1: return <Ventures data={data} setData={setData} setView={setView} setVentureFilter={setVentureFilter} />
       case 2: return <Library data={data} setData={setData} />
       case 3: return <Notes data={data} setData={setData} />
-      case 4: return <Settings data={data} setData={setData} />
+      case 4: return <Content data={data} setData={setData} />
+      case 5: return <Settings data={data} setData={setData} />
       default: return null
     }
   }
