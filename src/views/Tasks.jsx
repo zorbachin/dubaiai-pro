@@ -186,8 +186,13 @@ function formatEventTime(isoStr) {
 function CalendarWidget() {
   const [events, setEvents] = useState(null)
   const [error, setError] = useState(null)
+  const [showAdd, setShowAdd] = useState(false)
+  const [newTitle, setNewTitle] = useState('')
+  const [newTime, setNewTime] = useState('')
+  const [creating, setCreating] = useState(false)
+  const [createStatus, setCreateStatus] = useState(null)
 
-  useEffect(() => {
+  const loadEvents = () => {
     fetch('/api/calendar/today')
       .then(r => r.json())
       .then(data => {
@@ -195,11 +200,83 @@ function CalendarWidget() {
         else setEvents(data.events || [])
       })
       .catch(e => setError(e.message))
-  }, [])
+  }
+
+  useEffect(() => { loadEvents() }, [])
+
+  const createEvent = async () => {
+    if (!newTitle.trim()) return
+    setCreating(true)
+    setCreateStatus(null)
+    try {
+      const now = new Date()
+      const [h, m] = newTime ? newTime.split(':').map(Number) : [now.getHours() + 1, 0]
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, m)
+      const end = new Date(start.getTime() + 60 * 60 * 1000)
+      const res = await fetch('/api/calendar/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          summary: newTitle.trim(),
+          start: start.toISOString(),
+          end: end.toISOString()
+        })
+      })
+      const json = await res.json()
+      if (json.error) { setCreateStatus('error'); return }
+      setCreateStatus('created')
+      setNewTitle('')
+      setNewTime('')
+      setShowAdd(false)
+      loadEvents()
+    } catch (e) {
+      setCreateStatus('error')
+    }
+    setCreating(false)
+  }
 
   return (
     <div style={s.calSidebar}>
-      <div style={s.calTitle}>Today</div>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
+        <div style={{ ...s.calTitle, marginBottom: 0, flex: 1 }}>Today</div>
+        {!error && (
+          <button
+            style={{ background: 'none', border: 'none', color: showAdd ? '#f97316' : '#333', cursor: 'pointer', fontSize: 16, lineHeight: 1, padding: 0 }}
+            onClick={() => setShowAdd(v => !v)}
+            title="Add event"
+          >+</button>
+        )}
+      </div>
+
+      {showAdd && (
+        <div style={{ marginBottom: 12, paddingBottom: 12, borderBottom: '1px solid #1a1a1a' }}>
+          <input
+            style={{ width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 3, color: '#e5e5e5', fontFamily: 'inherit', fontSize: 11, padding: '5px 8px', outline: 'none', marginBottom: 6 }}
+            placeholder="Event title..."
+            value={newTitle}
+            onChange={e => setNewTitle(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && createEvent()}
+            autoFocus
+          />
+          <div style={{ display: 'flex', gap: 6 }}>
+            <input
+              type="time"
+              style={{ flex: 1, background: '#080808', border: '1px solid #1a1a1a', borderRadius: 3, color: '#888', fontFamily: 'inherit', fontSize: 11, padding: '4px 6px', outline: 'none' }}
+              value={newTime}
+              onChange={e => setNewTime(e.target.value)}
+            />
+            <button
+              style={{ padding: '4px 10px', background: '#f97316', color: '#080808', border: 'none', borderRadius: 3, fontSize: 10, fontFamily: 'inherit', fontWeight: 600, cursor: 'pointer' }}
+              onClick={createEvent}
+              disabled={creating || !newTitle.trim()}
+            >
+              {creating ? '...' : 'Add'}
+            </button>
+          </div>
+          {createStatus === 'error' && <div style={{ fontSize: 10, color: '#ef4444', marginTop: 4 }}>Failed — is Google connected?</div>}
+        </div>
+      )}
+
       {events === null && !error && <div style={s.calLoading}>Loading...</div>}
       {error && (
         <div style={s.calEmpty}>
@@ -529,6 +606,7 @@ export default function Tasks({ data, setData, ventureFilter, setVentureFilter, 
   const [energyFilter, setEnergyFilter] = useState(null)
   const [revenueFilter, setRevenueFilter] = useState(null)
   const [hideDone, setHideDone] = useState(true)
+  const [search, setSearch] = useState('')
   const [showAddModal, setShowAddModal] = useState(false)
 
   const tasks = Object.values(data.tasks || {})
@@ -539,6 +617,7 @@ export default function Tasks({ data, setData, ventureFilter, setVentureFilter, 
     if (ventureFilter && t.venture !== ventureFilter) return false
     if (energyFilter && t.energy !== energyFilter) return false
     if (revenueFilter && t.revenueImpact !== revenueFilter) return false
+    if (search.trim() && !t.title.toLowerCase().includes(search.toLowerCase())) return false
     return true
   })
 
@@ -556,6 +635,13 @@ export default function Tasks({ data, setData, ventureFilter, setVentureFilter, 
   return (
     <div style={s.container}>
       <div style={s.filterBar}>
+        <input
+          style={{ background: '#0d0d0d', border: '1px solid #1a1a1a', borderRadius: 3, color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, padding: '4px 8px', outline: 'none', width: 160 }}
+          placeholder="Search tasks..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+        <span style={s.filterSep} />
         <span style={s.filterLabel}>Energy</span>
         {['low', 'medium', 'high'].map(e => (
           <button key={e} style={s.pill(energyFilter === e)} onClick={() => setEnergyFilter(energyFilter === e ? null : e)}>

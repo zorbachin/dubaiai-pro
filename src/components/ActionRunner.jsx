@@ -104,11 +104,42 @@ export default function ActionRunner({ data, setData, prompt: initialPrompt, onC
         const res = await fetch('/api/anthropic/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model, max_tokens: 2048, messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }] })
+          body: JSON.stringify({
+            model, max_tokens: 2048, stream: true,
+            messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }]
+          })
         })
-        const json = await res.json()
-        if (json.error) setError(typeof json.error === 'string' ? json.error : json.error.message || 'Error')
-        else setOutput(json.content?.[0]?.text || 'No output')
+        if (!res.ok) {
+          const json = await res.json().catch(() => ({}))
+          setError(json.error?.message || `HTTP ${res.status}`)
+          setLoading(false)
+          return
+        }
+        const reader = res.body.getReader()
+        const decoder = new TextDecoder()
+        let buf = ''
+        let accumulated = ''
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          buf += decoder.decode(value, { stream: true })
+          const lines = buf.split('\n')
+          buf = lines.pop()
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue
+            const data = line.slice(6).trim()
+            if (data === '[DONE]') continue
+            try {
+              const evt = JSON.parse(data)
+              if (evt.type === 'content_block_delta' && evt.delta?.type === 'text_delta') {
+                accumulated += evt.delta.text
+                setOutput(accumulated)
+              } else if (evt.type === 'error') {
+                setError(evt.error?.message || 'Stream error')
+              }
+            } catch {}
+          }
+        }
       }
     } catch (e) {
       setError(e.message)

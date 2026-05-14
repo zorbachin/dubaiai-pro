@@ -73,6 +73,7 @@ export default function Notes({ data, setData }) {
   const [text, setText] = useState('')
   const [venture, setVenture] = useState('')
   const [ventureFilter, setVentureFilter] = useState(null)
+  const [search, setSearch] = useState('')
   const [driveStatus, setDriveStatus] = useState({})  // { [noteId]: 'uploading' | 'done' | { error } }
   const textareaRef = useRef(null)
 
@@ -124,6 +125,7 @@ export default function Notes({ data, setData }) {
   const notes = Object.values(data.notes || {})
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .filter(n => ventureFilter === null || n.venture === ventureFilter)
+    .filter(n => !search.trim() || n.text.toLowerCase().includes(search.toLowerCase()))
 
   const handleKeyDown = (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
@@ -155,7 +157,15 @@ export default function Notes({ data, setData }) {
         </div>
       </div>
 
-      {/* Venture filter */}
+      {/* Search + venture filter */}
+      <div style={{ marginBottom: 10 }}>
+        <input
+          style={{ ...s.textarea, minHeight: 'unset', padding: '7px 10px', fontSize: 12, marginBottom: 0 }}
+          placeholder="Search notes..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+      </div>
       <div style={s.filterRow}>
         <button style={s.pill(ventureFilter === null)} onClick={() => setVentureFilter(null)}>All</button>
         {VENTURES.map(v => (

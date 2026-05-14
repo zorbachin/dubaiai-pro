@@ -83,6 +83,28 @@ const s = {
   lastActivity: { fontSize: 10, color: '#2a2a2a', marginTop: 6 }
 }
 
+function calcVentureTime(ventureKey, tasks) {
+  const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
+  let totalMs = 0
+  Object.values(tasks || {})
+    .filter(t => t.venture === ventureKey)
+    .forEach(t => {
+      (t.timeLogs || []).forEach(log => {
+        if (log.endedAt && new Date(log.endedAt).getTime() > sevenDaysAgo) {
+          totalMs += log.durationMs || 0
+        }
+      })
+    })
+  return totalMs
+}
+
+function formatHours(ms) {
+  const h = ms / (1000 * 60 * 60)
+  if (h < 0.1) return null
+  if (h < 1) return `${Math.round(h * 60)}m`
+  return `${h.toFixed(1)}h`
+}
+
 function VentureCard({ venture, data, onSelect }) {
   const [hovered, setHovered] = React.useState(false)
   const tasks = Object.values(data.tasks || {}).filter(t => t.venture === venture.key)
@@ -90,6 +112,7 @@ function VentureCard({ venture, data, onSelect }) {
   const doneCount = tasks.filter(t => doneTasks.includes(t.id)).length
   const score = calcHealthScore(venture.key, data.tasks, doneTasks, data.completedSteps)
   const lastActivity = lastActivityDate(venture.key, data.tasks, doneTasks)
+  const weekTime = formatHours(calcVentureTime(venture.key, data.tasks))
 
   return (
     <div
@@ -112,6 +135,7 @@ function VentureCard({ venture, data, onSelect }) {
       <div style={s.statsRow}>
         <span style={s.stat}><span style={s.statVal}>{doneCount}</span>/{tasks.length} done</span>
         <span style={s.stat}>{formatDate(lastActivity)}</span>
+        {weekTime && <span style={{ ...s.stat, color: '#f97316', fontSize: 10 }} title="Time logged this week">{weekTime} this wk</span>}
       </div>
     </div>
   )
