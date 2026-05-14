@@ -42,9 +42,11 @@ export default function Settings({ data, setData }) {
   const [revokeLoading, setRevokeLoading] = useState(false)
   const [zapierStatus, setZapierStatus] = useState(null)
   const [zapierLoading, setZapierLoading] = useState(false)
+  const [envStatus, setEnvStatus] = useState({})
 
   useEffect(() => {
     fetch('/api/google/status').then(r => r.json()).then(setGoogleStatus).catch(() => {})
+    fetch('/api/env-status').then(r => r.json()).then(setEnvStatus).catch(() => {})
   }, [])
 
   const set = (key, value) => {
@@ -154,9 +156,11 @@ export default function Settings({ data, setData }) {
   const API_KEYS = [
     { key: 'ANTHROPIC_API_KEY', label: 'Anthropic API Key' },
     { key: 'SENDGRID_API_KEY', label: 'SendGrid API Key' },
+    { key: 'SENDGRID_FROM_EMAIL', label: 'SendGrid From Email' },
     { key: 'GOOGLE_CLIENT_ID', label: 'Google Client ID' },
-    { key: 'WORDPRESS_URL', label: 'WordPress URL' },
+    { key: 'GOOGLE_CLIENT_SECRET', label: 'Google Client Secret' },
     { key: 'ZAPIER_WEBHOOK_URL', label: 'Zapier Webhook URL' },
+    { key: 'OLLAMA_ENDPOINT', label: 'Ollama Endpoint' },
   ]
 
   return (
@@ -202,13 +206,16 @@ export default function Settings({ data, setData }) {
         <div style={s.desc}>
           API Keys (set in .env file on server):
         </div>
-        {API_KEYS.map(({ key, label }) => (
-          <div key={key} style={s.keyRow}>
-            <div style={s.keyDot(false)} title="Status unknown — check server logs" />
-            <span>{label}</span>
-            <span style={{ color: '#333', fontSize: 10 }}>Set in .env</span>
-          </div>
-        ))}
+        {API_KEYS.map(({ key, label }) => {
+          const present = envStatus[key]
+          return (
+            <div key={key} style={s.keyRow}>
+              <div style={s.keyDot(present)} title={present ? 'Set in .env' : 'Missing from .env'} />
+              <span style={{ color: present ? '#888' : '#555' }}>{label}</span>
+              {!present && <span style={{ fontSize: 10, color: '#333' }}>not set</span>}
+            </div>
+          )
+        })}
       </div>
 
       {/* Daily Briefing */}

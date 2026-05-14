@@ -605,6 +605,15 @@ app.post('/api/drive/upload-note', async (req, res) => {
   }
 })
 
+// GET /api/env-status — reports which .env keys are present (never their values)
+app.get('/api/env-status', (req, res) => {
+  const keys = ['ANTHROPIC_API_KEY', 'SENDGRID_API_KEY', 'SENDGRID_FROM_EMAIL',
+    'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'ZAPIER_WEBHOOK_URL', 'OLLAMA_ENDPOINT']
+  const result = {}
+  for (const k of keys) result[k] = !!process.env[k]
+  res.json(result)
+})
+
 // ── Zapier ────────────────────────────────────────────────────────────────────
 
 // POST /api/zapier/task-done — called when a task is marked complete
