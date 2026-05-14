@@ -9,19 +9,44 @@ function formatElapsed(ms) {
   return `${m}:${String(s).padStart(2,'0')}`
 }
 
+const pulseKeyframes = `
+@keyframes zorba-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.4); }
+  50% { box-shadow: 0 0 0 4px rgba(249,115,22,0); }
+}
+`
+
 const s = {
   wrap: { display: 'flex', alignItems: 'center', gap: 8 },
   btn: (active) => ({
     padding: '4px 10px', fontSize: 10, fontFamily: 'inherit', cursor: 'pointer', borderRadius: 3,
     background: active ? '#1a0a00' : 'transparent',
     color: active ? '#f97316' : '#555',
-    border: `1px solid ${active ? '#f97316' : '#333'}`
+    border: `1px solid ${active ? '#f97316' : '#333'}`,
+    animation: active ? 'zorba-pulse 2s ease-in-out infinite' : 'none',
+    transition: 'color 0.2s, border-color 0.2s, background 0.2s',
   }),
-  display: { fontSize: 11, color: '#f97316', fontVariantNumeric: 'tabular-nums', minWidth: 48 },
+  display: (active) => ({
+    fontSize: 11, fontVariantNumeric: 'tabular-nums', minWidth: 48,
+    color: active ? '#f97316' : '#444',
+    letterSpacing: '0.02em',
+  }),
 }
 
 export default function TaskTimer({ taskId, data, setData }) {
   const [now, setNow] = useState(Date.now())
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return
+    const id = 'zorba-timer-styles'
+    if (!document.getElementById(id)) {
+      const el = document.createElement('style')
+      el.id = id
+      el.textContent = pulseKeyframes
+      document.head.appendChild(el)
+    }
+  }, [])
+
   const timer = data.activeTimers?.[taskId]
 
   useEffect(() => {
@@ -99,7 +124,7 @@ export default function TaskTimer({ taskId, data, setData }) {
       ) : (
         <button style={s.btn(false)} onClick={start}>Start</button>
       )}
-      {elapsed > 0 && <span style={s.display}>{formatElapsed(elapsed)}</span>}
+      {elapsed > 0 && <span style={s.display(!!timer)}>{formatElapsed(elapsed)}</span>}
     </div>
   )
 }
