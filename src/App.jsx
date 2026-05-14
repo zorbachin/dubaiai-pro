@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { useData } from './hooks/useData.js'
 import { useKeyboard } from './hooks/useKeyboard.js'
 import Tasks, { calcHealthScore } from './views/Tasks.jsx'

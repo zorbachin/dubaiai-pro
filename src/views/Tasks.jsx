@@ -421,7 +421,9 @@ function TaskCard({ task, data, setData, expanded, onExpand }) {
           <span style={s.timeBadge}>{task.time}m</span>
           <span style={s.dot(ENERGY_COLORS[task.energy])} title={`Energy: ${task.energy}`} />
           <span style={s.dot(REVENUE_COLORS[task.revenueImpact])} title={`Revenue: ${task.revenueImpact}`} />
-          <TaskTimer taskId={task.id} data={data} setData={setData} onClick={e => e.stopPropagation()} />
+          <div onClick={e => e.stopPropagation()}>
+            <TaskTimer taskId={task.id} data={data} setData={setData} />
+          </div>
         </div>
 
         {expanded && (
@@ -526,11 +528,14 @@ export default function Tasks({ data, setData, ventureFilter, setVentureFilter, 
   const [expandedId, setExpandedId] = useState(null)
   const [energyFilter, setEnergyFilter] = useState(null)
   const [revenueFilter, setRevenueFilter] = useState(null)
+  const [hideDone, setHideDone] = useState(true)
   const [showAddModal, setShowAddModal] = useState(false)
 
   const tasks = Object.values(data.tasks || {})
+  const doneTasks = data.doneTasks || []
 
   const filtered = tasks.filter(t => {
+    if (hideDone && doneTasks.includes(t.id)) return false
     if (ventureFilter && t.venture !== ventureFilter) return false
     if (energyFilter && t.energy !== energyFilter) return false
     if (revenueFilter && t.revenueImpact !== revenueFilter) return false
@@ -570,6 +575,10 @@ export default function Tasks({ data, setData, ventureFilter, setVentureFilter, 
             Clear
           </button>
         )}
+        <span style={s.filterSep} />
+        <button style={{ ...s.pill(!hideDone), fontSize: 9 }} onClick={() => setHideDone(h => !h)}>
+          {hideDone ? `${doneTasks.length} done hidden` : 'showing done'}
+        </button>
         <button style={s.addBtn} onClick={() => setShowAddModal(true)}>+ Add Task</button>
       </div>
 
