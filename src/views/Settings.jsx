@@ -1,0 +1,322 @@
+import React, { useState, useEffect } from 'react'
+
+const s = {
+  wrap: { padding: 20, maxWidth: 640 },
+  section: { marginBottom: 32 },
+  sectionTitle: { fontFamily: "'Playfair Display', serif", fontSize: 16, color: '#e5e5e5', marginBottom: 16, paddingBottom: 8, borderBottom: '1px solid #1a1a1a' },
+  row: { display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 },
+  label: { fontSize: 12, color: '#888', width: 160, flexShrink: 0 },
+  input: { flex: 1, background: '#0d0d0d', border: '1px solid #1a1a1a', borderRadius: 3, color: '#e5e5e5', fontFamily: 'inherit', fontSize: 12, padding: '7px 10px', outline: 'none' },
+  select: { flex: 1, background: '#0d0d0d', border: '1px solid #1a1a1a', borderRadius: 3, color: '#e5e5e5', fontFamily: 'inherit', fontSize: 12, padding: '7px 10px' },
+  toggle: (on) => ({
+    width: 36, height: 20, borderRadius: 10, background: on ? '#f97316' : '#1a1a1a',
+    position: 'relative', cursor: 'pointer', border: 'none', padding: 0, transition: 'background 0.2s', flexShrink: 0
+  }),
+  toggleKnob: (on) => ({
+    position: 'absolute', top: 3, left: on ? 19 : 3, width: 14, height: 14,
+    borderRadius: '50%', background: '#e5e5e5', transition: 'left 0.2s'
+  }),
+  btn: { padding: '7px 14px', background: 'transparent', color: '#888', border: '1px solid #333', borderRadius: 3, cursor: 'pointer', fontSize: 11, fontFamily: 'inherit' },
+  btnOrange: { padding: '7px 14px', background: '#f97316', color: '#080808', border: 'none', borderRadius: 3, cursor: 'pointer', fontSize: 11, fontFamily: 'inherit', fontWeight: 600 },
+  btnDanger: { padding: '7px 14px', background: 'transparent', color: '#ef4444', border: '1px solid #ef4444', borderRadius: 3, cursor: 'pointer', fontSize: 11, fontFamily: 'inherit' },
+  status: (ok) => ({ fontSize: 11, color: ok ? '#22c55e' : '#ef4444', padding: '4px 8px', background: '#0d0d0d', borderRadius: 3, border: '1px solid #1a1a1a' }),
+  desc: { fontSize: 11, color: '#444', marginBottom: 16, lineHeight: 1.5 },
+  keyRow: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, fontSize: 12, color: '#888' },
+  keyDot: (present) => ({ width: 6, height: 6, borderRadius: '50%', background: present ? '#22c55e' : '#ef4444', flexShrink: 0 }),
+}
+
+function Toggle({ value, onChange }) {
+  return (
+    <button style={s.toggle(value)} onClick={() => onChange(!value)}>
+      <div style={s.toggleKnob(value)} />
+    </button>
+  )
+}
+
+export default function Settings({ data, setData }) {
+  const settings = data.settings || {}
+  const [ollamaStatus, setOllamaStatus] = useState(null)
+  const [ollamaLoading, setOllamaLoading] = useState(false)
+  const [briefingStatus, setBriefingStatus] = useState(null)
+  const [googleStatus, setGoogleStatus] = useState(null)
+  const [revokeLoading, setRevokeLoading] = useState(false)
+  const [zapierStatus, setZapierStatus] = useState(null)
+  const [zapierLoading, setZapierLoading] = useState(false)
+  const [envStatus, setEnvStatus] = useState({})
+
+  useEffect(() => {
+    fetch('/api/google/status').then(r => r.json()).then(setGoogleStatus).catch(() => {})
+    fetch('/api/env-status').then(r => r.json()).then(setEnvStatus).catch(() => {})
+  }, [])
+
+  const set = (key, value) => {
+    setData(prev => ({ ...prev, settings: { ...prev.settings, [key]: value } }))
+  }
+
+  const connectGoogle = () => {
+    window.open('/auth/google', '_blank', 'width=500,height=600')
+    // Poll for status after user connects
+    const interval = setInterval(async () => {
+      try {
+        const r = await fetch('/api/google/status')
+        const json = await r.json()
+        if (json.connected) {
+          setGoogleStatus(json)
+          clearInterval(interval)
+        }
+      } catch (e) {}
+    }, 2000)
+    setTimeout(() => clearInterval(interval), 120000)
+  }
+
+  const revokeGoogle = async () => {
+    if (!window.confirm('Disconnect Google account?')) return
+    setRevokeLoading(true)
+    try {
+      await fetch('/api/google/revoke', { method: 'POST' })
+      setGoogleStatus({ connected: false })
+    } catch (e) {
+      setGoogleStatus(prev => ({ ...prev, error: e.message }))
+    }
+    setRevokeLoading(false)
+  }
+
+  const testOllama = async () => {
+    setOllamaLoading(true)
+    setOllamaStatus(null)
+    try {
+      const res = await fetch('/api/ollama/test')
+      const json = await res.json()
+      setOllamaStatus(json.ok ? 'Connected' : `Failed: ${json.error}`)
+    } catch (e) {
+      setOllamaStatus(`Error: ${e.message}`)
+    }
+    setOllamaLoading(false)
+  }
+
+  const sendBriefing = async () => {
+    setBriefingStatus(null)
+    try {
+      const res = await fetch('/api/briefing/send-now', { method: 'POST' })
+      const json = await res.json()
+      if (json.error) setBriefingStatus(`Error: ${json.error}`)
+      else setBriefingStatus(json.message || 'Sent')
+    } catch (e) {
+      setBriefingStatus(`Error: ${e.message}`)
+    }
+  }
+
+  const previewBriefing = () => window.open('/api/briefing/preview', '_blank')
+
+  const testZapier = async () => {
+    setZapierLoading(true)
+    setZapierStatus(null)
+    try {
+      const res = await fetch('/api/zapier/test', { method: 'POST' })
+      const json = await res.json()
+      if (json.error) setZapierStatus(`Error: ${json.error}`)
+      else setZapierStatus(json.ok ? 'Webhook fired — check Zapier' : `Status ${json.status}`)
+    } catch (e) {
+      setZapierStatus(`Error: ${e.message}`)
+    }
+    setZapierLoading(false)
+  }
+
+  const exportData = () => {
+    window.open('/api/export/all', '_blank')
+  }
+
+  const importData = () => {
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = '.json'
+    input.onchange = async (e) => {
+      const file = e.target.files[0]
+      if (!file) return
+      try {
+        const text = await file.text()
+        const parsed = JSON.parse(text)
+        setData(parsed)
+      } catch (err) {
+        alert('Invalid JSON file: ' + err.message)
+      }
+    }
+    input.click()
+  }
+
+  const resetAll = () => {
+    if (!window.confirm('Reset ALL data? This cannot be undone.')) return
+    setData({
+      version: 2, tasks: {}, library: {}, notes: {},
+      completedSteps: [], doneTasks: [], activeTimers: {},
+      settings: data.settings
+    })
+  }
+
+  const API_KEYS = [
+    { key: 'ANTHROPIC_API_KEY', label: 'Anthropic API Key' },
+    { key: 'SENDGRID_API_KEY', label: 'SendGrid API Key' },
+    { key: 'SENDGRID_FROM_EMAIL', label: 'SendGrid From Email' },
+    { key: 'GOOGLE_CLIENT_ID', label: 'Google Client ID' },
+    { key: 'GOOGLE_CLIENT_SECRET', label: 'Google Client Secret' },
+    { key: 'ZAPIER_WEBHOOK_URL', label: 'Zapier Webhook URL' },
+    { key: 'OLLAMA_ENDPOINT', label: 'Ollama Endpoint' },
+  ]
+
+  return (
+    <div style={s.wrap}>
+      {/* Ollama */}
+      <div style={s.section}>
+        <div style={s.sectionTitle}>Ollama (Local AI)</div>
+        <div style={s.row}>
+          <span style={s.label}>Enabled</span>
+          <Toggle value={!!settings.ollamaEnabled} onChange={v => set('ollamaEnabled', v)} />
+        </div>
+        <div style={s.row}>
+          <span style={s.label}>Endpoint</span>
+          <input style={s.input} value={settings.ollamaEndpoint || 'http://localhost:11434'}
+            onChange={e => set('ollamaEndpoint', e.target.value)} />
+        </div>
+        <div style={s.row}>
+          <span style={s.label}>Model</span>
+          <input style={s.input} value={settings.ollamaModel || 'llama3'}
+            onChange={e => set('ollamaModel', e.target.value)} />
+        </div>
+        <div style={s.row}>
+          <span style={s.label}></span>
+          <button style={s.btn} onClick={testOllama} disabled={ollamaLoading}>
+            {ollamaLoading ? 'Testing...' : 'Test Connection'}
+          </button>
+          {ollamaStatus && <span style={s.status(ollamaStatus === 'Connected')}>{ollamaStatus}</span>}
+        </div>
+      </div>
+
+      {/* Action Runner */}
+      <div style={s.section}>
+        <div style={s.sectionTitle}>Action Runner</div>
+        <div style={s.row}>
+          <span style={s.label}>Default Model</span>
+          <select style={s.select} value={settings.actionModel || 'claude-sonnet-4-6'}
+            onChange={e => set('actionModel', e.target.value)}>
+            <option value="claude-opus-4-6">Claude Opus 4.6</option>
+            <option value="claude-sonnet-4-6">Claude Sonnet 4.6</option>
+            <option value="ollama">Ollama (local)</option>
+          </select>
+        </div>
+        <div style={s.desc}>
+          API Keys (set in .env file on server):
+        </div>
+        {API_KEYS.map(({ key, label }) => {
+          const present = envStatus[key]
+          return (
+            <div key={key} style={s.keyRow}>
+              <div style={s.keyDot(present)} title={present ? 'Set in .env' : 'Missing from .env'} />
+              <span style={{ color: present ? '#888' : '#555' }}>{label}</span>
+              {!present && <span style={{ fontSize: 10, color: '#333' }}>not set</span>}
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Daily Briefing */}
+      <div style={s.section}>
+        <div style={s.sectionTitle}>Daily Briefing</div>
+        <div style={s.row}>
+          <span style={s.label}>Enabled</span>
+          <Toggle value={!!settings.sendgridEnabled} onChange={v => set('sendgridEnabled', v)} />
+        </div>
+        <div style={s.row}>
+          <span style={s.label}>Email</span>
+          <input style={s.input} type="email" value={settings.briefingEmail || ''}
+            onChange={e => set('briefingEmail', e.target.value)} placeholder="you@example.com" />
+        </div>
+        <div style={s.row}>
+          <span style={s.label}>Send Time</span>
+          <input style={s.input} type="time" value={settings.briefingTime || '07:00'}
+            onChange={e => set('briefingTime', e.target.value)} />
+        </div>
+        <div style={s.row}>
+          <span style={s.label}></span>
+          <button style={s.btn} onClick={sendBriefing}>Send Test Now</button>
+          <button style={s.btn} onClick={previewBriefing}>Preview</button>
+          {briefingStatus && (
+            <span style={{ fontSize: 11, color: briefingStatus.startsWith('Error') ? '#ef4444' : '#22c55e' }}>
+              {briefingStatus}
+            </span>
+          )}
+        </div>
+        <div style={{ ...s.desc, marginTop: 8 }}>
+          Requires SENDGRID_API_KEY and SENDGRID_FROM_EMAIL in .env. Sends daily at the time above.
+        </div>
+      </div>
+
+      {/* Zapier */}
+      <div style={s.section}>
+        <div style={s.sectionTitle}>Zapier</div>
+        <div style={s.desc}>
+          When enabled, fires a webhook to ZAPIER_WEBHOOK_URL whenever you mark a task done. Set ZAPIER_WEBHOOK_URL in .env.
+        </div>
+        <div style={s.row}>
+          <span style={s.label}>Enabled</span>
+          <Toggle value={!!settings.zapierEnabled} onChange={v => set('zapierEnabled', v)} />
+        </div>
+        <div style={s.row}>
+          <span style={s.label}></span>
+          <button style={s.btn} onClick={testZapier} disabled={zapierLoading}>
+            {zapierLoading ? 'Firing...' : 'Test Webhook'}
+          </button>
+          {zapierStatus && (
+            <span style={{ fontSize: 11, color: zapierStatus.startsWith('Error') ? '#ef4444' : '#22c55e' }}>
+              {zapierStatus}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Google */}
+      <div style={s.section}>
+        <div style={s.sectionTitle}>Google (Calendar, Gmail, Drive)</div>
+        <div style={s.desc}>
+          Connect your Google account to enable calendar display in Tasks, sending email drafts from Action Runner, and pushing notes to Drive. Requires GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in .env.
+        </div>
+        <div style={s.row}>
+          <span style={s.label}>Status</span>
+          {googleStatus === null ? (
+            <span style={{ fontSize: 11, color: '#555' }}>Checking...</span>
+          ) : googleStatus.connected ? (
+            <span style={s.status(true)}>Connected — {googleStatus.email}</span>
+          ) : (
+            <span style={s.status(false)}>Not connected</span>
+          )}
+        </div>
+        <div style={s.row}>
+          <span style={s.label}></span>
+          {googleStatus?.connected ? (
+            <button style={s.btnDanger} onClick={revokeGoogle} disabled={revokeLoading}>
+              {revokeLoading ? 'Disconnecting...' : 'Disconnect Google'}
+            </button>
+          ) : (
+            <button style={s.btnOrange} onClick={connectGoogle}>
+              Connect Google Account
+            </button>
+          )}
+        </div>
+        {googleStatus?.error && (
+          <div style={{ fontSize: 11, color: '#ef4444', marginTop: 4 }}>
+            Error: {googleStatus.error}
+          </div>
+        )}
+      </div>
+
+      {/* Danger Zone */}
+      <div style={s.section}>
+        <div style={s.sectionTitle}>Danger Zone</div>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <button style={s.btnOrange} onClick={exportData}>Export All Data</button>
+          <button style={s.btn} onClick={importData}>Import Data</button>
+          <button style={s.btnDanger} onClick={resetAll}>Reset All Data</button>
+        </div>
+      </div>
+    </div>
+  )
+}

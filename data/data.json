@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "tasks": {},
+  "library": {},
+  "notes": {},
+  "completedSteps": [],
+  "doneTasks": [],
+  "activeTimers": {},
+  "settings": {
+    "ollamaEndpoint": "http://localhost:11434",
+    "ollamaModel": "llama3",
+    "ollamaEnabled": false,
+    "sendgridEnabled": false,
+    "briefingEmail": "",
+    "briefingTime": "07:00",
+    "theme": "dark"
+  }
+}
