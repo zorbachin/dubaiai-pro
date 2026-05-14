@@ -31,7 +31,15 @@ export default function MorningScroll({ data, onClose }) {
   const [beat, setBeat] = useState(0)
   const [opacity, setOpacity] = useState(0)
   const [showSkip, setShowSkip] = useState(false)
+  const [calCount, setCalCount] = useState(null)
   const TOTAL_BEATS = 5
+
+  useEffect(() => {
+    fetch('/api/calendar/today')
+      .then(r => r.json())
+      .then(d => setCalCount(d.events?.length ?? null))
+      .catch(() => {})
+  }, [])
 
   useEffect(() => {
     // Fade in
@@ -87,6 +95,11 @@ export default function MorningScroll({ data, onClose }) {
       <div style={s.heading}>Your Day</div>
       <div style={s.stat}>{activeVentures} active venture{activeVentures !== 1 ? 's' : ''}</div>
       <div style={{ ...s.stat, color: '#888', marginTop: 8 }}>{activeTasks.length} task{activeTasks.length !== 1 ? 's' : ''} remaining</div>
+      {calCount !== null && (
+        <div style={{ ...s.stat, color: '#555', marginTop: 8, fontSize: 12 }}>
+          {calCount === 0 ? 'No calendar events today' : `${calCount} calendar event${calCount !== 1 ? 's' : ''} today`}
+        </div>
+      )}
     </div>,
 
     // Beat 2: Top tasks

@@ -377,15 +377,21 @@ export default function App() {
             </button>
             {VENTURES.map(({ key, label }) => {
               const score = calcHealthScore(key, data.tasks, data.doneTasks, data.completedSteps)
+              const taskCount = Object.values(data.tasks || {}).filter(t => t.venture === key && !(data.doneTasks || []).includes(t.id)).length
               return (
                 <button
                   key={key}
                   style={styles.venturePill(ventureFilter === key)}
                   onClick={() => setVentureFilter(ventureFilter === key ? null : key)}
-                  title={`Health: ${score}/100`}
+                  title={`Health: ${score}/100 · ${taskCount} active tasks`}
                 >
                   <span style={styles.healthDot(score)} />
-                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</span>
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', flex: 1 }}>{label}</span>
+                  {taskCount > 0 && (
+                    <span style={{ fontSize: 9, color: ventureFilter === key ? '#080808' : '#333', flexShrink: 0 }}>
+                      {taskCount}
+                    </span>
+                  )}
                 </button>
               )
             })}
