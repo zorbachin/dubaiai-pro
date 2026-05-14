@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 
 const VENTURES = [
   { key: 'hermes', label: 'Hermes' },
@@ -31,11 +31,7 @@ const PLATFORM_ICONS = {
   Instagram: '◈', X: '✕', LinkedIn: '◉', YouTube: '▶', TikTok: '◆', Threads: '◎'
 }
 
-const HIGGSFIELD_STYLES = [
-  'cinematic', 'anime', 'photorealistic', '3d-render', 'watercolor', 'sketch'
-]
 const HIGGSFIELD_RATIOS = ['16:9', '9:16', '1:1', '4:3', '21:9']
-const HIGGSFIELD_DURATION = [2, 4, 6, 8]
 
 const s = {
   wrap: { display: 'flex', flexDirection: 'column', height: '100%' },
@@ -346,21 +342,33 @@ function SocialTab({ data, setData }) {
 
 function HiggsfieldTab({ data, setData }) {
   const [form, setForm] = useState({
-    prompt: '', negativePrompt: '', style: 'cinematic', ratio: '16:9',
-    duration: 4, venture: 'hermes', seed: ''
+    prompt: '', negativePrompt: '', model: 'kling_v2_master',
+    ratio: '16:9', duration: 5, venture: 'hermes', seed: ''
   })
+  const [authStatus, setAuthStatus] = useState(null) // null | {authenticated, notInstalled, error}
+  const [models, setModels] = useState([])
   const [generating, setGenerating] = useState(false)
+  const [log, setLog] = useState([])
   const [result, setResult] = useState(null)
-  const [error, setError] = useState(null)
+  const [enhancing, setEnhancing] = useState(false)
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
 
-  const hasKey = true // will check via env-status
+  useEffect(() => {
+    fetch('/api/higgsfield/auth-status')
+      .then(r => r.json())
+      .then(setAuthStatus)
+      .catch(() => setAuthStatus({ authenticated: false, error: 'Server unreachable' }))
+    fetch('/api/higgsfield/models')
+      .then(r => r.json())
+      .then(d => setModels(d.models || []))
+      .catch(() => {})
+  }, [])
 
   const generate = async () => {
     if (!form.prompt.trim()) return
     setGenerating(true)
-    setError(null)
+    setLog([])
     setResult(null)
     try {
       const res = await fetch('/api/higgsfield/generate', {
@@ -368,60 +376,103 @@ function HiggsfieldTab({ data, setData }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       })
-      const json = await res.json()
-      if (json.error) { setError(json.error); setGenerating(false); return }
-      setResult(json)
-      // Save to content library
-      const id = crypto.randomUUID()
-      const now = new Date().toISOString()
-      setData(prev => ({
-        ...prev,
-        content: {
-          ...prev.content,
-          [id]: {
-            id, kind: 'video', source: 'higgsfield',
-            prompt: form.prompt, style: form.style, ratio: form.ratio,
-            duration: form.duration, venture: form.venture,
-            jobId: json.jobId, status: json.status || 'processing',
-            videoUrl: json.videoUrl || null, thumbnailUrl: json.thumbnailUrl || null,
-            createdAt: now, updatedAt: now
-          }
+      const reader = res.body.getReader()
+      const decoder = new TextDecoder()
+      let buf = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        buf += decoder.decode(value, { stream: true })
+        const lines = buf.split('\n'); buf = lines.pop()
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue
+          try {
+            const evt = JSON.parse(line.slice(6))
+            setLog(prev => [...prev, evt])
+            if (evt.status === 'completed') {
+              setResult(evt)
+              // Save to content library
+              const id = crypto.randomUUID()
+              const now = new Date().toISOString()
+              setData(prev => ({
+                ...prev,
+                content: {
+                  ...prev.content,
+                  [id]: {
+                    id, kind: 'video', source: 'higgsfield',
+                    prompt: form.prompt, model: form.model,
+                    ratio: form.ratio, duration: form.duration,
+                    venture: form.venture,
+                    jobId: evt.jobId || null,
+                    status: 'completed',
+                    videoUrl: evt.videoUrl || null,
+                    thumbnailUrl: evt.thumbnailUrl || null,
+                    createdAt: now, updatedAt: now
+                  }
+                }
+              }))
+            }
+          } catch {}
         }
-      }))
-    } catch (e) { setError(e.message) }
+      }
+    } catch (e) {
+      setLog(prev => [...prev, { status: 'error', error: e.message }])
+    }
     setGenerating(false)
   }
 
-  const videos = Object.values(data.content || {}).filter(i => i.kind === 'video' && i.source === 'higgsfield')
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-
   const enhancePrompt = async () => {
     if (!form.prompt.trim()) return
-    setGenerating(true)
+    setEnhancing(true)
     try {
       const res = await fetch('/api/anthropic/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: data.settings?.actionModel || 'claude-sonnet-4-6',
-          max_tokens: 512, stream: false,
-          messages: [{ role: 'user', content: [{ type: 'text', text: `Enhance this video generation prompt to be more cinematic and detailed. Return only the improved prompt, nothing else:\n\n${form.prompt}` }] }]
+          max_tokens: 400, stream: false,
+          messages: [{ role: 'user', content: [{ type: 'text', text: `Rewrite this video generation prompt to be more cinematic, vivid, and detailed. Return only the improved prompt:\n\n${form.prompt}` }] }]
         })
       })
       const json = await res.json()
       if (json.content?.[0]?.text) set('prompt', json.content[0].text.trim())
-    } catch (e) {}
-    setGenerating(false)
+    } catch {}
+    setEnhancing(false)
   }
+
+  const videos = Object.values(data.content || {})
+    .filter(i => i.kind === 'video' && i.source === 'higgsfield')
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+  const lastLog = log[log.length - 1]
+  const videoModels = models.filter(m => m.type !== 'image')
+  const selectedModelLabel = models.find(m => m.id === form.model)?.label || form.model
 
   return (
     <div style={s.row2}>
-      <div style={{ ...s.col, maxWidth: 440 }}>
+      <div style={{ ...s.col, maxWidth: 460 }}>
         <div style={s.section}>
           <div style={s.sectionTitle}>Higgsfield Video</div>
-          <div style={{ fontSize: 11, color: '#444', marginBottom: 16, lineHeight: 1.6 }}>
-            AI video generation. Set <code style={{ color: '#f97316' }}>HIGGSFIELD_API_KEY</code> in .env to enable generation. Use "Enhance Prompt" to improve your prompt with Claude first.
-          </div>
+
+          {/* Auth status banner */}
+          {authStatus !== null && (
+            <div style={{ marginBottom: 16, padding: '10px 12px', borderRadius: 3, fontSize: 11, lineHeight: 1.6,
+              background: authStatus.authenticated ? '#0a1a0a' : '#1a0a0a',
+              border: `1px solid ${authStatus.authenticated ? '#1a4020' : '#3a1010'}`,
+              color: authStatus.authenticated ? '#22c55e' : '#ef4444'
+            }}>
+              {authStatus.authenticated ? (
+                '✓ Higgsfield CLI connected'
+              ) : authStatus.notInstalled ? (
+                <>CLI not installed. In your terminal:<br />
+                  <code style={{ color: '#f97316', fontSize: 10 }}>npm install -g @higgsfield/cli</code><br />
+                  <code style={{ color: '#f97316', fontSize: 10 }}>higgsfield auth login</code>
+                </>
+              ) : (
+                <>Not authenticated. Run: <code style={{ color: '#f97316', fontSize: 10 }}>higgsfield auth login</code></>
+              )}
+            </div>
+          )}
 
           <div style={s.formGroup}>
             <label style={s.label}>Venture</label>
@@ -431,13 +482,26 @@ function HiggsfieldTab({ data, setData }) {
           </div>
 
           <div style={s.formGroup}>
+            <label style={s.label}>Model</label>
+            <select style={s.select} value={form.model} onChange={e => set('model', e.target.value)}>
+              {(videoModels.length > 0 ? videoModels : [
+                { id: 'kling_v2_master', label: 'Kling v2 Master' },
+                { id: 'seedance_1_0_lite_i2v_720p', label: 'Seedance 1.0 Lite' },
+                { id: 'veo2_t2v', label: 'Veo 2' },
+                { id: 'nano_banana_2', label: 'Nano Banana 2 (fast)' },
+                { id: 'soul_v2', label: 'Soul V2 (character)' },
+              ]).map(m => <option key={m.id} value={m.id}>{m.label || m.id}</option>)}
+            </select>
+          </div>
+
+          <div style={s.formGroup}>
             <label style={s.label}>Prompt</label>
             <textarea style={{ ...s.textarea, minHeight: 100 }} value={form.prompt}
               onChange={e => set('prompt', e.target.value)}
-              placeholder="Describe your video scene in detail..." />
+              placeholder="Describe your video scene..." />
             <button style={{ ...s.btnSecondary, marginTop: 6, fontSize: 10 }}
-              onClick={enhancePrompt} disabled={generating || !form.prompt.trim()}>
-              ✦ Enhance with Claude
+              onClick={enhancePrompt} disabled={enhancing || !form.prompt.trim()}>
+              {enhancing ? 'Enhancing...' : '✦ Enhance with Claude'}
             </button>
           </div>
 
@@ -445,30 +509,21 @@ function HiggsfieldTab({ data, setData }) {
             <label style={s.label}>Negative Prompt</label>
             <input style={s.input} value={form.negativePrompt}
               onChange={e => set('negativePrompt', e.target.value)}
-              placeholder="blurry, low quality, text..." />
+              placeholder="blurry, low quality, watermark..." />
           </div>
 
-          <div style={{ ...s.row2, gap: 10 }}>
-            <div style={{ flex: 1 }}>
-              <label style={s.label}>Style</label>
-              <select style={s.select} value={form.style} onChange={e => set('style', e.target.value)}>
-                {HIGGSFIELD_STYLES.map(st => <option key={st} value={st}>{st}</option>)}
-              </select>
-            </div>
+          <div style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
             <div style={{ flex: 1 }}>
               <label style={s.label}>Aspect Ratio</label>
               <select style={s.select} value={form.ratio} onChange={e => set('ratio', e.target.value)}>
                 {HIGGSFIELD_RATIOS.map(r => <option key={r} value={r}>{r}</option>)}
               </select>
             </div>
-          </div>
-
-          <div style={{ ...s.formGroup, marginTop: 10 }}>
-            <label style={s.label}>Duration (seconds)</label>
-            <div style={s.pillRow}>
-              {HIGGSFIELD_DURATION.map(d => (
-                <button key={d} style={s.pill(form.duration === d)} onClick={() => set('duration', d)}>{d}s</button>
-              ))}
+            <div style={{ flex: 1 }}>
+              <label style={s.label}>Duration (s)</label>
+              <select style={s.select} value={form.duration} onChange={e => set('duration', Number(e.target.value))}>
+                {[3, 4, 5, 6, 8, 10].map(d => <option key={d} value={d}>{d}s</option>)}
+              </select>
             </div>
           </div>
 
@@ -477,19 +532,23 @@ function HiggsfieldTab({ data, setData }) {
             <input style={s.input} value={form.seed} onChange={e => set('seed', e.target.value)} placeholder="leave blank for random" />
           </div>
 
-          <button style={s.btn} onClick={generate} disabled={generating || !form.prompt.trim()}>
-            {generating ? 'Submitting...' : 'Generate Video'}
+          <button style={s.btn} onClick={generate}
+            disabled={generating || !form.prompt.trim() || !authStatus?.authenticated}>
+            {generating ? 'Generating...' : 'Generate Video'}
           </button>
 
-          {error && <div style={{ fontSize: 11, color: '#ef4444', marginTop: 8 }}>{error}</div>}
-          {result && (
-            <div style={{ marginTop: 12, padding: 12, background: '#080808', borderRadius: 3, border: '1px solid #1a1a1a', fontSize: 11 }}>
-              {result.jobId && <div style={{ color: '#888', marginBottom: 4 }}>Job ID: <span style={{ color: '#f97316' }}>{result.jobId}</span></div>}
-              {result.status && <div style={{ color: result.status === 'completed' ? '#22c55e' : '#eab308' }}>Status: {result.status}</div>}
-              {result.videoUrl && (
+          {/* Live log */}
+          {log.length > 0 && (
+            <div style={{ marginTop: 12, padding: '10px 12px', background: '#080808', borderRadius: 3, border: '1px solid #1a1a1a', fontSize: 11 }}>
+              {log.map((evt, i) => (
+                <div key={i} style={{ color: evt.status === 'error' ? '#ef4444' : evt.status === 'completed' ? '#22c55e' : '#888', marginBottom: 2 }}>
+                  {evt.message || evt.error || evt.status}
+                </div>
+              ))}
+              {result?.videoUrl && (
                 <a href={result.videoUrl} target="_blank" rel="noopener noreferrer"
-                  style={{ color: '#22c55e', fontSize: 11, display: 'block', marginTop: 6 }}>
-                  View / Download Video →
+                  style={{ color: '#f97316', display: 'block', marginTop: 8, fontWeight: 600 }}>
+                  ▶ Open Video →
                 </a>
               )}
             </div>
@@ -515,10 +574,9 @@ function HiggsfieldTab({ data, setData }) {
                   {v.prompt.slice(0, 80)}{v.prompt.length > 80 ? '...' : ''}
                 </div>
                 <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: 9, color: '#555', padding: '1px 5px', border: '1px solid #1a1a1a', borderRadius: 2 }}>{v.style}</span>
+                  {v.model && <span style={{ fontSize: 9, color: '#555', padding: '1px 5px', border: '1px solid #1a1a1a', borderRadius: 2 }}>{v.model}</span>}
                   <span style={{ fontSize: 9, color: '#555', padding: '1px 5px', border: '1px solid #1a1a1a', borderRadius: 2 }}>{v.ratio}</span>
                   <span style={{ fontSize: 9, color: '#555', padding: '1px 5px', border: '1px solid #1a1a1a', borderRadius: 2 }}>{v.duration}s</span>
-                  <span style={{ fontSize: 9, color: v.status === 'completed' ? '#22c55e' : '#eab308', padding: '1px 5px', border: '1px solid #1a1a1a', borderRadius: 2 }}>{v.status}</span>
                 </div>
                 {v.videoUrl && (
                   <a href={v.videoUrl} target="_blank" rel="noopener noreferrer"

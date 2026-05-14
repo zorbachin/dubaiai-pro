@@ -12,6 +12,7 @@ import https from 'https'
 import { URL } from 'url'
 import cron from 'node-cron'
 import { google } from 'googleapis'
+import { spawn } from 'child_process'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DATA_DIR = join(__dirname, 'data')
@@ -609,45 +610,131 @@ app.post('/api/drive/upload-note', async (req, res) => {
 // GET /api/env-status — reports which .env keys are present (never their values)
 app.get('/api/env-status', (req, res) => {
   const keys = ['ANTHROPIC_API_KEY', 'SENDGRID_API_KEY', 'SENDGRID_FROM_EMAIL',
-    'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'ZAPIER_WEBHOOK_URL', 'OLLAMA_ENDPOINT', 'HIGGSFIELD_API_KEY']
+    'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'ZAPIER_WEBHOOK_URL', 'OLLAMA_ENDPOINT']
   const result = {}
   for (const k of keys) result[k] = !!process.env[k]
   res.json(result)
 })
 
-// ── Higgsfield ────────────────────────────────────────────────────────────────
+// ── Higgsfield CLI ────────────────────────────────────────────────────────────
+// Uses the official @higgsfield/cli (npm install -g @higgsfield/cli)
+// Auth: run `higgsfield auth login` once in terminal — no API key needed
 
-// POST /api/higgsfield/generate
-app.post('/api/higgsfield/generate', async (req, res) => {
+function runHiggsfieldCLI(args, timeoutMs = 300000) {
+  return new Promise((resolve, reject) => {
+    const proc = spawn('higgsfield', args, { env: process.env })
+    let stdout = '', stderr = ''
+    proc.stdout.on('data', d => { stdout += d.toString() })
+    proc.stderr.on('data', d => { stderr += d.toString() })
+    const timer = setTimeout(() => { proc.kill(); reject(new Error('CLI timeout')) }, timeoutMs)
+    proc.on('close', code => {
+      clearTimeout(timer)
+      if (code !== 0) reject(new Error(stderr.trim() || `CLI exited ${code}`))
+      else resolve(stdout.trim())
+    })
+    proc.on('error', e => { clearTimeout(timer); reject(e) })
+  })
+}
+
+// GET /api/higgsfield/auth-status
+app.get('/api/higgsfield/auth-status', async (req, res) => {
   try {
-    const apiKey = process.env.HIGGSFIELD_API_KEY
-    if (!apiKey) return res.status(400).json({ error: 'HIGGSFIELD_API_KEY not configured in .env' })
-    const { prompt, negativePrompt, style, ratio, duration, seed, venture } = req.body
-    const result = await proxyRequest('https://api.higgsfield.ai/v1/generate', 'POST', {
-      'Authorization': `Bearer ${apiKey}`,
-    }, { prompt, negative_prompt: negativePrompt || '', style, aspect_ratio: ratio, duration, seed: seed || null })
-    const body = JSON.parse(result.body)
-    if (result.status >= 400) return res.status(result.status).json({ error: body.error || body.message || 'Higgsfield error' })
-    res.json({ jobId: body.id || body.job_id, status: body.status || 'processing', videoUrl: body.video_url || null })
+    await runHiggsfieldCLI(['account', 'balance', '--json'], 8000)
+    res.json({ authenticated: true })
   } catch (e) {
-    console.error(`${PREFIX} /api/higgsfield/generate error:`, e.message)
-    res.status(500).json({ error: e.message })
+    const notInstalled = e.message.includes('ENOENT') || e.message.includes('not found')
+    res.json({ authenticated: false, notInstalled, error: e.message })
   }
 })
 
-// GET /api/higgsfield/status/:jobId
-app.get('/api/higgsfield/status/:jobId', async (req, res) => {
+// GET /api/higgsfield/models
+app.get('/api/higgsfield/models', async (req, res) => {
   try {
-    const apiKey = process.env.HIGGSFIELD_API_KEY
-    if (!apiKey) return res.status(400).json({ error: 'HIGGSFIELD_API_KEY not configured' })
-    const result = await proxyRequest(`https://api.higgsfield.ai/v1/jobs/${req.params.jobId}`, 'GET', {
-      'Authorization': `Bearer ${apiKey}`,
-    }, null)
-    const body = JSON.parse(result.body)
-    res.json({ status: body.status, videoUrl: body.video_url || null, thumbnailUrl: body.thumbnail_url || null })
+    const out = await runHiggsfieldCLI(['model', 'list', '--json'], 12000)
+    res.json({ models: JSON.parse(out) })
   } catch (e) {
-    console.error(`${PREFIX} /api/higgsfield/status error:`, e.message)
-    res.status(500).json({ error: e.message })
+    // Return curated fallback list if CLI not available
+    res.json({ models: [
+      { id: 'kling_v2_master', label: 'Kling v2 Master', type: 'video' },
+      { id: 'seedance_1_0_lite_i2v_720p', label: 'Seedance 1.0 Lite', type: 'video' },
+      { id: 'veo2_t2v', label: 'Veo 2', type: 'video' },
+      { id: 'nano_banana_2', label: 'Nano Banana 2 (fast)', type: 'video' },
+      { id: 'soul_v2', label: 'Soul V2 (character)', type: 'video' },
+      { id: 'flux_dev', label: 'FLUX Dev (image)', type: 'image' },
+      { id: 'flux_schnell', label: 'FLUX Schnell (fast image)', type: 'image' },
+    ], fallback: true })
+  }
+})
+
+// POST /api/higgsfield/generate — streams CLI progress back via SSE
+app.post('/api/higgsfield/generate', async (req, res) => {
+  const { model, prompt, negativePrompt, ratio, duration, seed } = req.body
+  if (!model || !prompt) return res.status(400).json({ error: 'model and prompt required' })
+
+  res.setHeader('Content-Type', 'text/event-stream')
+  res.setHeader('Cache-Control', 'no-cache')
+  res.flushHeaders()
+
+  const send = (data) => res.write(`data: ${JSON.stringify(data)}\n\n`)
+
+  try {
+    const args = ['generate', 'create', model,
+      '--prompt', prompt,
+      '--wait', '--json',
+    ]
+    if (negativePrompt) args.push('--negative_prompt', negativePrompt)
+    if (ratio) args.push('--aspect_ratio', ratio)
+    if (duration) args.push('--duration', String(duration))
+    if (seed) args.push('--seed', String(seed))
+
+    send({ status: 'queued', message: `Submitting to ${model}...` })
+
+    const proc = spawn('higgsfield', args, { env: process.env })
+    let stdout = '', stderr = ''
+    proc.stdout.on('data', d => {
+      stdout += d.toString()
+      // Forward any interim status lines
+      const line = d.toString().trim()
+      if (line && !line.startsWith('{')) send({ status: 'processing', message: line })
+    })
+    proc.stderr.on('data', d => { stderr += d.toString() })
+
+    proc.on('close', code => {
+      if (code !== 0) {
+        send({ status: 'error', error: stderr.trim() || `CLI exited ${code}` })
+        res.end()
+        return
+      }
+      try {
+        // Find JSON in output
+        const jsonMatch = stdout.match(/\{[\s\S]*\}/)
+        const result = jsonMatch ? JSON.parse(jsonMatch[0]) : {}
+        send({
+          status: 'completed',
+          jobId: result.id || result.job_id,
+          videoUrl: result.video_url || result.url || result.output_url || null,
+          thumbnailUrl: result.thumbnail_url || null,
+          raw: result
+        })
+      } catch {
+        send({ status: 'completed', raw: stdout })
+      }
+      res.end()
+    })
+
+    proc.on('error', e => {
+      if (e.code === 'ENOENT') {
+        send({ status: 'error', error: 'Higgsfield CLI not installed. Run: npm install -g @higgsfield/cli && higgsfield auth login' })
+      } else {
+        send({ status: 'error', error: e.message })
+      }
+      res.end()
+    })
+
+    req.on('close', () => proc.kill())
+  } catch (e) {
+    send({ status: 'error', error: e.message })
+    res.end()
   }
 })
 
