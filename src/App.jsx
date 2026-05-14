@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useData } from './hooks/useData.js'
 import { useKeyboard } from './hooks/useKeyboard.js'
-import Tasks from './views/Tasks.jsx'
+import Tasks, { calcHealthScore } from './views/Tasks.jsx'
 import Ventures from './views/Ventures.jsx'
 import Library from './views/Library.jsx'
 import Notes from './views/Notes.jsx'
@@ -10,11 +10,29 @@ import CommandPalette from './components/CommandPalette.jsx'
 import MorningScroll from './components/MorningScroll.jsx'
 
 const VIEWS = ['Tasks', 'Ventures', 'Library', 'Notes', 'Settings']
+const VIEW_SHORTCUTS = ['⌘1', '⌘2', '⌘3', '⌘4', '⌘5']
 
 const VENTURES = [
-  'hermes', 'buildyourbot', 'selfsellingai', 'zorbot', 'minimovies',
-  'theriver', 'moraledge', 'thegetboaz', 'dubaiai', 'suman', 'podsupps', 'series'
+  { key: 'hermes', label: 'Hermes' },
+  { key: 'buildyourbot', label: 'Build Your Bot' },
+  { key: 'selfsellingai', label: 'Self Selling AI' },
+  { key: 'zorbot', label: 'Zorbot' },
+  { key: 'minimovies', label: 'Mini Movies' },
+  { key: 'theriver', label: 'The River' },
+  { key: 'moraledge', label: 'Moraledge' },
+  { key: 'thegetboaz', label: 'The Get Boaz' },
+  { key: 'dubaiai', label: 'Dubai AI' },
+  { key: 'suman', label: 'Suman' },
+  { key: 'podsupps', label: 'Pod Supps' },
+  { key: 'series', label: 'Series' },
 ]
+const VENTURE_KEYS = VENTURES.map(v => v.key)
+
+function healthColor(score) {
+  if (score >= 70) return '#22c55e'
+  if (score >= 40) return '#eab308'
+  return '#ef4444'
+}
 
 const styles = {
   mobileGuard: {
@@ -26,118 +44,134 @@ const styles = {
     display: 'flex', height: '100vh', overflow: 'hidden', background: '#080808'
   },
   sidebar: {
-    width: 200, minWidth: 200, background: '#111111', borderRight: '1px solid #1a1a1a',
-    display: 'flex', flexDirection: 'column', padding: '0', overflowY: 'auto'
+    width: 210, minWidth: 210, background: '#0c0c0c', borderRight: '1px solid #1a1a1a',
+    display: 'flex', flexDirection: 'column', overflowY: 'auto'
   },
   sidebarHeader: {
-    padding: '20px 16px 16px', borderBottom: '1px solid #1a1a1a'
+    padding: '18px 16px 14px', borderBottom: '1px solid #1a1a1a'
   },
   appName: {
-    fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700,
-    color: '#f97316', letterSpacing: '0.05em'
+    fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 700,
+    color: '#f97316', letterSpacing: '0.04em'
   },
   statusRow: {
-    display: 'flex', alignItems: 'center', gap: 6, marginTop: 6
+    display: 'flex', alignItems: 'center', gap: 5, marginTop: 5
   },
   statusDot: (status) => ({
-    width: 6, height: 6, borderRadius: '50%',
+    width: 5, height: 5, borderRadius: '50%',
     background: status === 'ready' ? '#22c55e' : status === 'saving' ? '#f97316' : '#ef4444',
     flexShrink: 0
   }),
   statusText: {
-    fontSize: 10, color: '#555', textTransform: 'uppercase', letterSpacing: '0.05em'
+    fontSize: 9, color: '#444', textTransform: 'uppercase', letterSpacing: '0.08em'
   },
   nav: {
-    padding: '12px 0', flex: 1
+    padding: '10px 0 4px', borderBottom: '1px solid #1a1a1a'
   },
   navItem: (active) => ({
-    display: 'block', width: '100%', padding: '8px 16px', textAlign: 'left',
-    background: active ? '#1a1a1a' : 'transparent',
-    color: active ? '#f97316' : '#e5e5e5',
+    display: 'flex', alignItems: 'center', width: '100%', padding: '7px 16px',
+    background: active ? 'rgba(249,115,22,0.08)' : 'transparent',
+    color: active ? '#f97316' : '#888',
     border: 'none', borderLeft: active ? '2px solid #f97316' : '2px solid transparent',
-    fontFamily: "'IBM Plex Mono', monospace", fontSize: 13, cursor: 'pointer',
-    letterSpacing: '0.02em', transition: 'all 0.1s'
+    fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, cursor: 'pointer',
+    letterSpacing: '0.02em'
   }),
-  shortcutHint: {
-    fontSize: 10, color: '#333', marginLeft: 'auto', float: 'right'
+  navShortcut: {
+    fontSize: 9, color: '#2a2a2a', marginLeft: 'auto'
   },
   ventureSection: {
-    padding: '8px 0', borderTop: '1px solid #1a1a1a'
+    padding: '10px 0 8px', flex: 1
   },
   ventureLabel: {
-    padding: '4px 16px', fontSize: 10, color: '#333', textTransform: 'uppercase', letterSpacing: '0.1em'
+    padding: '0 16px 6px', fontSize: 9, color: '#2d2d2d',
+    textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block'
   },
   venturePill: (active) => ({
-    display: 'block', width: '100%', padding: '4px 16px', textAlign: 'left',
-    background: active ? '#1a1a1a' : 'transparent',
-    color: active ? '#f97316' : '#555',
-    border: 'none', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
-    cursor: 'pointer', transition: 'all 0.1s', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
+    display: 'flex', alignItems: 'center', gap: 7, width: '100%',
+    padding: '5px 16px', textAlign: 'left',
+    background: active ? 'rgba(249,115,22,0.08)' : 'transparent',
+    color: active ? '#f97316' : '#666',
+    border: 'none', borderLeft: active ? '2px solid #f97316' : '2px solid transparent',
+    fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
+    cursor: 'pointer', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
+  }),
+  healthDot: (score) => ({
+    width: 5, height: 5, borderRadius: '50%',
+    background: healthColor(score), flexShrink: 0
   }),
   main: {
     flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden'
   },
   topBar: {
-    height: 48, borderBottom: '1px solid #1a1a1a', display: 'flex',
-    alignItems: 'center', padding: '0 20px', gap: 12, flexShrink: 0
+    height: 44, borderBottom: '1px solid #1a1a1a', display: 'flex',
+    alignItems: 'center', padding: '0 20px', gap: 12, flexShrink: 0, background: '#0a0a0a'
   },
   viewTitle: {
-    fontSize: 12, color: '#555', textTransform: 'uppercase', letterSpacing: '0.1em'
+    fontSize: 11, color: '#444', textTransform: 'uppercase', letterSpacing: '0.12em'
+  },
+  topBarActions: {
+    marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 16
   },
   cmdHint: {
-    marginLeft: 'auto', fontSize: 11, color: '#333'
+    fontSize: 10, color: '#2a2a2a', cursor: 'pointer'
+  },
+  exportBtn: {
+    fontSize: 10, color: '#444', background: 'transparent', border: '1px solid #1a1a1a',
+    borderRadius: 3, padding: '3px 8px', fontFamily: "'IBM Plex Mono', monospace",
+    cursor: 'pointer'
   },
   content: {
     flex: 1, overflow: 'auto'
   },
   banner: {
-    background: '#1a0a00', borderBottom: '1px solid #f97316', padding: '8px 20px',
-    fontSize: 12, color: '#f97316', display: 'flex', alignItems: 'center', gap: 8
+    background: '#150800', borderBottom: '1px solid #3d1800', padding: '6px 20px',
+    fontSize: 11, color: '#f97316', display: 'flex', alignItems: 'center', gap: 8
   },
   overlay: {
-    position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', zIndex: 100,
+    position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.88)', zIndex: 100,
     display: 'flex', alignItems: 'center', justifyContent: 'center'
   },
   modal: {
-    background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4,
-    padding: 24, width: 480, maxWidth: '90vw'
+    background: '#111111', border: '1px solid #222', borderRadius: 4,
+    padding: 28, width: 480, maxWidth: '90vw',
+    boxShadow: '0 24px 64px rgba(0,0,0,0.6)'
   },
   modalTitle: {
-    fontFamily: "'Playfair Display', serif", fontSize: 18, color: '#e5e5e5', marginBottom: 16
+    fontFamily: "'Playfair Display', serif", fontSize: 18, color: '#e5e5e5', marginBottom: 20
   },
   input: {
-    width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
+    width: '100%', background: '#0d0d0d', border: '1px solid #222', borderRadius: 3,
     color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
-    padding: '8px 12px', outline: 'none', marginBottom: 12
+    padding: '9px 12px', outline: 'none', marginBottom: 10
   },
   select: {
-    width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
+    width: '100%', background: '#0d0d0d', border: '1px solid #222', borderRadius: 3,
     color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
-    padding: '8px 12px', outline: 'none', marginBottom: 12, cursor: 'pointer'
+    padding: '9px 12px', outline: 'none', marginBottom: 10, cursor: 'pointer'
   },
   textarea: {
-    width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
+    width: '100%', background: '#0d0d0d', border: '1px solid #222', borderRadius: 3,
     color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
-    padding: '8px 12px', outline: 'none', marginBottom: 12, minHeight: 80, resize: 'vertical'
+    padding: '9px 12px', outline: 'none', marginBottom: 10, minHeight: 80, resize: 'vertical'
   },
   btnRow: {
-    display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 4
+    display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 8
   },
   btnPrimary: {
-    background: '#f97316', color: '#080808', border: 'none', borderRadius: 4,
-    padding: '8px 16px', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12,
+    background: '#f97316', color: '#080808', border: 'none', borderRadius: 3,
+    padding: '8px 18px', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12,
     fontWeight: 600, cursor: 'pointer'
   },
   btnSecondary: {
-    background: 'transparent', color: '#555', border: '1px solid #1a1a1a', borderRadius: 4,
-    padding: '8px 16px', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, cursor: 'pointer'
+    background: 'transparent', color: '#555', border: '1px solid #222', borderRadius: 3,
+    padding: '8px 18px', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, cursor: 'pointer'
   },
   typeRow: {
-    display: 'flex', gap: 8, marginBottom: 16
+    display: 'flex', gap: 8, marginBottom: 18
   },
   typeBtn: (active) => ({
-    flex: 1, padding: '8px', background: active ? '#f97316' : '#080808',
-    color: active ? '#080808' : '#555', border: '1px solid #1a1a1a', borderRadius: 4,
+    flex: 1, padding: '8px', background: active ? '#f97316' : '#0d0d0d',
+    color: active ? '#080808' : '#555', border: '1px solid #222', borderRadius: 3,
     fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, cursor: 'pointer'
   })
 }
@@ -194,9 +228,8 @@ function QuickAddModal({ onClose, data, setData, defaultType }) {
             <input style={styles.input} placeholder="Task title..." value={title}
               onChange={e => setTitle(e.target.value)} autoFocus
               onKeyDown={e => e.key === 'Enter' && handleSubmit()} />
-            <select style={styles.select} value={venture} onChange={e => setVenture(e.target.value)}>
-              <option value="">Select venture...</option>
-              {VENTURES.map(v => <option key={v} value={v}>{v}</option>)}
+            <select style={styles.select} value={venture || 'hermes'} onChange={e => setVenture(e.target.value)}>
+              {VENTURES.map(({ key, label }) => <option key={key} value={key}>{label}</option>)}
             </select>
           </>
         ) : (
@@ -206,7 +239,7 @@ function QuickAddModal({ onClose, data, setData, defaultType }) {
               onKeyDown={e => e.key === 'Enter' && e.metaKey && handleSubmit()} />
             <select style={styles.select} value={venture} onChange={e => setVenture(e.target.value)}>
               <option value="">No venture</option>
-              {VENTURES.map(v => <option key={v} value={v}>{v}</option>)}
+              {VENTURES.map(({ key, label }) => <option key={key} value={key}>{label}</option>)}
             </select>
           </>
         )}
@@ -327,7 +360,7 @@ export default function App() {
           {VIEWS.map((v, i) => (
             <button key={v} style={styles.navItem(view === i)} onClick={() => setView(i)}>
               {v}
-              <span style={styles.shortcutHint}>Cmd+{i + 1}</span>
+              <span style={styles.navShortcut}>{VIEW_SHORTCUTS[i]}</span>
             </button>
           ))}
         </nav>
@@ -335,22 +368,27 @@ export default function App() {
         {/* Venture filter pills — only in Tasks view */}
         {view === 0 && (
           <div style={styles.ventureSection}>
-            <div style={styles.ventureLabel}>Ventures</div>
+            <span style={styles.ventureLabel}>Ventures</span>
             <button
               style={styles.venturePill(ventureFilter === null)}
               onClick={() => setVentureFilter(null)}
             >
-              All
+              All ventures
             </button>
-            {VENTURES.map(v => (
-              <button
-                key={v}
-                style={styles.venturePill(ventureFilter === v)}
-                onClick={() => setVentureFilter(ventureFilter === v ? null : v)}
-              >
-                {v}
-              </button>
-            ))}
+            {VENTURES.map(({ key, label }) => {
+              const score = calcHealthScore(key, data.tasks, data.doneTasks, data.completedSteps)
+              return (
+                <button
+                  key={key}
+                  style={styles.venturePill(ventureFilter === key)}
+                  onClick={() => setVentureFilter(ventureFilter === key ? null : key)}
+                  title={`Health: ${score}/100`}
+                >
+                  <span style={styles.healthDot(score)} />
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</span>
+                </button>
+              )
+            })}
           </div>
         )}
       </div>
@@ -364,7 +402,17 @@ export default function App() {
         )}
         <div style={styles.topBar}>
           <span style={styles.viewTitle}>{currentView}</span>
-          <span style={styles.cmdHint}>Cmd+K — command palette</span>
+          <div style={styles.topBarActions}>
+            {['tasks', 'library', 'notes'].includes(currentView.toLowerCase()) && (
+              <button style={styles.exportBtn}
+                onClick={() => window.open(`/api/export/${currentView.toLowerCase()}`, '_blank')}>
+                Export MD
+              </button>
+            )}
+            <span style={styles.cmdHint} onClick={() => setShowCommandPalette(true)}>
+              ⌘K — palette
+            </span>
+          </div>
         </div>
         <div style={styles.content}>
           {renderView()}

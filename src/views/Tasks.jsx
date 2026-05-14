@@ -42,124 +42,129 @@ function healthColor(score) {
 }
 
 const s = {
-  container: { padding: 20 },
+  container: { padding: '16px 20px' },
   filterBar: {
-    display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20, alignItems: 'center'
+    display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 16, alignItems: 'center',
+    paddingBottom: 14, borderBottom: '1px solid #141414'
   },
-  filterLabel: { fontSize: 11, color: '#555', marginRight: 4 },
+  filterLabel: { fontSize: 10, color: '#333', marginRight: 2, textTransform: 'uppercase', letterSpacing: '0.08em' },
+  filterSep: { width: 1, height: 16, background: '#1a1a1a', margin: '0 4px' },
   pill: (active) => ({
-    padding: '4px 12px', borderRadius: 4, border: '1px solid #1a1a1a',
-    background: active ? '#f97316' : '#111111', color: active ? '#080808' : '#555',
-    fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, cursor: 'pointer'
+    padding: '3px 10px', borderRadius: 3, border: `1px solid ${active ? '#f97316' : '#1a1a1a'}`,
+    background: active ? '#f97316' : 'transparent', color: active ? '#080808' : '#555',
+    fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, cursor: 'pointer'
   }),
   addBtn: {
-    marginLeft: 'auto', padding: '6px 14px', background: '#f97316', color: '#080808',
-    border: 'none', borderRadius: 4, fontFamily: "'IBM Plex Mono', monospace",
-    fontSize: 12, fontWeight: 600, cursor: 'pointer'
+    marginLeft: 'auto', padding: '5px 12px', background: '#f97316', color: '#080808',
+    border: 'none', borderRadius: 3, fontFamily: "'IBM Plex Mono', monospace",
+    fontSize: 11, fontWeight: 600, cursor: 'pointer'
   },
-  taskCard: (expanded, blocked) => ({
-    background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4,
-    marginBottom: 8, opacity: blocked ? 0.6 : 1, cursor: 'pointer',
-    borderLeft: blocked ? '2px solid #ef4444' : '2px solid transparent'
+  taskCard: (expanded, blocked, done) => ({
+    background: done ? 'transparent' : '#0f0f0f',
+    border: `1px solid ${done ? '#141414' : blocked ? '#2a1010' : '#1a1a1a'}`,
+    borderRadius: 3, marginBottom: 6,
+    opacity: done ? 0.45 : blocked ? 0.7 : 1, cursor: 'pointer',
+    borderLeft: blocked ? '2px solid #4a1010' : done ? '2px solid #1a2a1a' : '2px solid transparent'
   }),
   cardHeader: {
-    padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 10
+    padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 8
   },
   taskTitle: {
-    fontSize: 14, color: '#e5e5e5', flex: 1, fontWeight: 500
+    fontSize: 13, color: '#d5d5d5', flex: 1, fontWeight: 400, letterSpacing: '0.01em'
   },
-  badge: (color) => ({
-    padding: '2px 8px', borderRadius: 4, background: color || '#1a1a1a',
-    fontSize: 10, color: '#e5e5e5', textTransform: 'uppercase', letterSpacing: '0.05em'
+  badge: () => ({
+    padding: '1px 6px', borderRadius: 2, background: '#161616',
+    border: '1px solid #1a1a1a', fontSize: 9, color: '#444',
+    textTransform: 'uppercase', letterSpacing: '0.06em', flexShrink: 0
   }),
   timeBadge: {
-    fontSize: 11, color: '#555', whiteSpace: 'nowrap'
+    fontSize: 10, color: '#333', whiteSpace: 'nowrap', flexShrink: 0
   },
   dot: (color) => ({
-    width: 8, height: 8, borderRadius: '50%', background: color, flexShrink: 0
+    width: 6, height: 6, borderRadius: '50%', background: color, flexShrink: 0
   }),
-  lockIcon: { fontSize: 14, marginLeft: 4 },
+  lockIcon: { fontSize: 12, color: '#4a1010' },
   cardBody: {
-    padding: '0 16px 16px', borderTop: '1px solid #1a1a1a'
+    padding: '0 14px 14px', borderTop: '1px solid #141414'
   },
-  section: { marginTop: 12 },
-  sectionLabel: { fontSize: 10, color: '#555', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 6 },
-  sectionText: { fontSize: 13, color: '#aaa', lineHeight: 1.6 },
+  section: { marginTop: 14 },
+  sectionLabel: { fontSize: 9, color: '#333', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 },
+  sectionText: { fontSize: 12, color: '#888', lineHeight: 1.7 },
   promptBox: {
-    background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
-    padding: '10px 12px', fontSize: 12, color: '#aaa', lineHeight: 1.6,
+    background: '#080808', border: '1px solid #1a1a1a', borderRadius: 3,
+    padding: '10px 12px', fontSize: 11, color: '#888', lineHeight: 1.7,
     fontFamily: "'IBM Plex Mono', monospace", whiteSpace: 'pre-wrap', wordBreak: 'break-word'
   },
   copyBtn: {
-    marginTop: 6, padding: '4px 12px', background: 'transparent', border: '1px solid #1a1a1a',
-    color: '#555', borderRadius: 4, fontSize: 11, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer'
+    marginTop: 6, padding: '3px 10px', background: 'transparent', border: '1px solid #1a1a1a',
+    color: '#444', borderRadius: 3, fontSize: 10, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer'
   },
   runBtn: {
-    marginTop: 6, marginLeft: 8, padding: '4px 12px', background: '#f97316', border: 'none',
-    color: '#080808', borderRadius: 4, fontSize: 11, fontFamily: "'IBM Plex Mono', monospace",
+    marginTop: 6, marginLeft: 8, padding: '3px 10px', background: '#f97316', border: 'none',
+    color: '#080808', borderRadius: 3, fontSize: 10, fontFamily: "'IBM Plex Mono', monospace",
     cursor: 'pointer', fontWeight: 600
   },
-  stepRow: { display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 4 },
-  stepCheck: { width: 14, height: 14, marginTop: 2, cursor: 'pointer', accentColor: '#f97316', flexShrink: 0 },
-  stepText: (done) => ({ fontSize: 12, color: done ? '#555' : '#aaa', textDecoration: done ? 'line-through' : 'none' }),
-  stepLink: { color: '#f97316', fontSize: 11, marginLeft: 6 },
-  resourceLink: { color: '#f97316', fontSize: 12, display: 'inline-block', marginRight: 12 },
-  asset: { fontSize: 12, color: '#555', display: 'inline-block', marginRight: 8 },
-  depList: { fontSize: 12, color: '#ef4444' },
-  actionRow: { display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' },
+  stepRow: { display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 5 },
+  stepCheck: { width: 13, height: 13, marginTop: 2, cursor: 'pointer', accentColor: '#f97316', flexShrink: 0 },
+  stepText: (done) => ({ fontSize: 12, color: done ? '#444' : '#888', textDecoration: done ? 'line-through' : 'none', lineHeight: 1.5 }),
+  stepLink: { color: '#f97316', fontSize: 10, marginLeft: 6 },
+  resourceLink: { color: '#f97316', fontSize: 11, display: 'inline-block', marginRight: 12 },
+  asset: { fontSize: 11, color: '#444', display: 'inline-block', marginRight: 8 },
+  depList: { fontSize: 11, color: '#ef4444' },
+  actionRow: { display: 'flex', gap: 6, marginTop: 14, flexWrap: 'wrap', paddingTop: 12, borderTop: '1px solid #141414' },
   dangerBtn: {
-    padding: '4px 12px', background: 'transparent', border: '1px solid #ef4444',
-    color: '#ef4444', borderRadius: 4, fontSize: 11, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer'
+    padding: '4px 10px', background: 'transparent', border: '1px solid #2a1010',
+    color: '#884444', borderRadius: 3, fontSize: 10, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer'
   },
   doneBtn: {
-    padding: '4px 12px', background: '#22c55e', border: 'none',
-    color: '#080808', borderRadius: 4, fontSize: 11, fontFamily: "'IBM Plex Mono', monospace",
+    padding: '4px 10px', background: '#0d2010', border: '1px solid #1a4020',
+    color: '#22c55e', borderRadius: 3, fontSize: 10, fontFamily: "'IBM Plex Mono', monospace",
     cursor: 'pointer', fontWeight: 600
   },
   overlay: {
-    position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', zIndex: 100,
+    position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.9)', zIndex: 100,
     display: 'flex', alignItems: 'flex-start', justifyContent: 'center', overflowY: 'auto', padding: 40
   },
   modal: {
-    background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4,
-    padding: 24, width: 600, maxWidth: '90vw'
+    background: '#111111', border: '1px solid #222', borderRadius: 4,
+    padding: 28, width: 600, maxWidth: '90vw', boxShadow: '0 24px 64px rgba(0,0,0,0.6)'
   },
   modalTitle: {
-    fontFamily: "'Playfair Display', serif", fontSize: 20, color: '#e5e5e5', marginBottom: 20
+    fontFamily: "'Playfair Display', serif", fontSize: 18, color: '#e5e5e5', marginBottom: 20
   },
-  formGroup: { marginBottom: 12 },
-  label: { display: 'block', fontSize: 11, color: '#555', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.05em' },
+  formGroup: { marginBottom: 14 },
+  label: { display: 'block', fontSize: 10, color: '#444', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.08em' },
   input: {
-    width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
+    width: '100%', background: '#0d0d0d', border: '1px solid #222', borderRadius: 3,
     color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
     padding: '8px 12px', outline: 'none'
   },
   select: {
-    width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
+    width: '100%', background: '#0d0d0d', border: '1px solid #222', borderRadius: 3,
     color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
     padding: '8px 12px', outline: 'none', cursor: 'pointer'
   },
   textarea: {
-    width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
+    width: '100%', background: '#0d0d0d', border: '1px solid #222', borderRadius: 3,
     color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
     padding: '8px 12px', outline: 'none', minHeight: 80, resize: 'vertical'
   },
   row2: { display: 'flex', gap: 12 },
   btnRow: { display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 16 },
   btnPrimary: {
-    background: '#f97316', color: '#080808', border: 'none', borderRadius: 4,
+    background: '#f97316', color: '#080808', border: 'none', borderRadius: 3,
     padding: '8px 16px', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, fontWeight: 600, cursor: 'pointer'
   },
   btnSecondary: {
-    background: 'transparent', color: '#555', border: '1px solid #1a1a1a', borderRadius: 4,
+    background: 'transparent', color: '#555', border: '1px solid #222', borderRadius: 3,
     padding: '8px 16px', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, cursor: 'pointer'
   },
-  emptyState: { padding: 40, textAlign: 'center', color: '#555', fontSize: 13 },
-  layout: { display: 'flex', gap: 20, alignItems: 'flex-start' },
+  emptyState: { padding: 60, textAlign: 'center', color: '#333', fontSize: 12 },
+  layout: { display: 'flex', gap: 16, alignItems: 'flex-start' },
   taskList: { flex: 1, minWidth: 0 },
   calSidebar: {
-    width: 240, flexShrink: 0, background: '#111111',
-    border: '1px solid #1a1a1a', borderRadius: 4, padding: 14
+    width: 220, flexShrink: 0, background: '#0d0d0d',
+    border: '1px solid #1a1a1a', borderRadius: 3, padding: 14
   },
   calTitle: { fontSize: 11, color: '#555', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 },
   calEvent: { marginBottom: 10, paddingBottom: 10, borderBottom: '1px solid #1a1a1a' },
@@ -408,11 +413,10 @@ function TaskCard({ task, data, setData, expanded, onExpand }) {
 
   return (
     <>
-      <div style={s.taskCard(expanded, isBlocked)} onClick={onExpand}>
+      <div style={s.taskCard(expanded, isBlocked, isDone)} onClick={onExpand}>
         <div style={s.cardHeader}>
-          {isBlocked && <span style={s.lockIcon} title={`Blocked by: ${blockingTitles.join(', ')}`}>&#128274;</span>}
-          {isDone && <span style={{ fontSize: 12, color: '#22c55e' }}>DONE</span>}
-          <span style={s.taskTitle}>{task.title}</span>
+          {isBlocked && <span style={s.lockIcon} title={`Blocked by: ${blockingTitles.join(', ')}`}>&#9746;</span>}
+          <span style={s.taskTitle}>{isDone ? <s style={{ opacity: 0.5 }}>{task.title}</s> : task.title}</span>
           <span style={s.badge()}>{task.venture}</span>
           <span style={s.timeBadge}>{task.time}m</span>
           <span style={s.dot(ENERGY_COLORS[task.energy])} title={`Energy: ${task.energy}`} />
@@ -547,18 +551,25 @@ export default function Tasks({ data, setData, ventureFilter, setVentureFilter, 
   return (
     <div style={s.container}>
       <div style={s.filterBar}>
-        <span style={s.filterLabel}>Energy:</span>
-        {[null, 'low', 'medium', 'high'].map(e => (
-          <button key={String(e)} style={s.pill(energyFilter === e)} onClick={() => setEnergyFilter(e)}>
-            {e === null ? 'All' : e}
+        <span style={s.filterLabel}>Energy</span>
+        {['low', 'medium', 'high'].map(e => (
+          <button key={e} style={s.pill(energyFilter === e)} onClick={() => setEnergyFilter(energyFilter === e ? null : e)}>
+            {e}
           </button>
         ))}
-        <span style={{ ...s.filterLabel, marginLeft: 8 }}>Revenue:</span>
-        {[null, 'low', 'medium', 'high'].map(r => (
-          <button key={String(r)} style={s.pill(revenueFilter === r)} onClick={() => setRevenueFilter(r)}>
-            {r === null ? 'All' : r}
+        <span style={s.filterSep} />
+        <span style={s.filterLabel}>Revenue</span>
+        {['low', 'medium', 'high'].map(r => (
+          <button key={r} style={s.pill(revenueFilter === r)} onClick={() => setRevenueFilter(revenueFilter === r ? null : r)}>
+            {r}
           </button>
         ))}
+        {(energyFilter || revenueFilter) && (
+          <button style={{ ...s.pill(false), color: '#444' }}
+            onClick={() => { setEnergyFilter(null); setRevenueFilter(null) }}>
+            Clear
+          </button>
+        )}
         <button style={s.addBtn} onClick={() => setShowAddModal(true)}>+ Add Task</button>
       </div>
 

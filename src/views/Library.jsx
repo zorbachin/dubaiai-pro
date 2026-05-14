@@ -14,76 +14,76 @@ const TYPE_COLORS = {
 }
 
 const s = {
-  container: { padding: 20 },
-  toolbar: { display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20, alignItems: 'center' },
+  container: { padding: '16px 20px' },
+  toolbar: { display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 14, alignItems: 'center', paddingBottom: 14, borderBottom: '1px solid #141414' },
   searchInput: {
-    flex: 1, minWidth: 200, background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4,
-    color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
-    padding: '8px 12px', outline: 'none'
+    flex: 1, minWidth: 180, background: '#0d0d0d', border: '1px solid #1a1a1a', borderRadius: 3,
+    color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12,
+    padding: '7px 10px', outline: 'none'
   },
   pill: (active) => ({
-    padding: '4px 12px', borderRadius: 4, border: '1px solid #1a1a1a',
-    background: active ? '#f97316' : '#111111', color: active ? '#080808' : '#555',
-    fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, cursor: 'pointer'
+    padding: '3px 10px', borderRadius: 3, border: `1px solid ${active ? '#f97316' : '#1a1a1a'}`,
+    background: active ? '#f97316' : 'transparent', color: active ? '#080808' : '#555',
+    fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, cursor: 'pointer'
   }),
   addBtn: {
-    marginLeft: 'auto', padding: '6px 14px', background: '#f97316', color: '#080808',
-    border: 'none', borderRadius: 4, fontFamily: "'IBM Plex Mono', monospace",
-    fontSize: 12, fontWeight: 600, cursor: 'pointer'
+    marginLeft: 'auto', padding: '5px 12px', background: '#f97316', color: '#080808',
+    border: 'none', borderRadius: 3, fontFamily: "'IBM Plex Mono', monospace",
+    fontSize: 11, fontWeight: 600, cursor: 'pointer'
   },
-  filterRow: { display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 },
-  item: { background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4, marginBottom: 8 },
-  itemHeader: { padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 10 },
-  itemTitle: { fontSize: 14, color: '#e5e5e5', flex: 1, fontWeight: 500 },
+  filterRow: { display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 },
+  item: { background: '#0d0d0d', border: '1px solid #161616', borderRadius: 3, marginBottom: 6 },
+  itemHeader: { padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' },
+  itemTitle: { fontSize: 12, color: '#d5d5d5', flex: 1 },
   typeBadge: (type) => ({
-    padding: '2px 8px', borderRadius: 4, border: `1px solid ${TYPE_COLORS[type] || '#1a1a1a'}`,
-    color: TYPE_COLORS[type] || '#aaa', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.05em'
+    padding: '1px 6px', borderRadius: 2, border: `1px solid ${TYPE_COLORS[type] || '#1a1a1a'}`,
+    color: TYPE_COLORS[type] || '#555', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.08em', flexShrink: 0
   }),
   tag: {
-    padding: '1px 6px', borderRadius: 4, background: '#080808',
-    border: '1px solid #1a1a1a', fontSize: 10, color: '#555'
+    padding: '1px 5px', borderRadius: 2, background: 'transparent',
+    border: '1px solid #1a1a1a', fontSize: 9, color: '#444'
   },
-  itemBody: { padding: '0 16px 16px', borderTop: '1px solid #1a1a1a' },
+  itemBody: { padding: '0 14px 14px', borderTop: '1px solid #141414' },
   contentBox: {
-    background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
-    padding: '10px 12px', fontSize: 12, color: '#aaa', lineHeight: 1.6,
+    background: '#080808', border: '1px solid #141414', borderRadius: 3,
+    padding: '10px 12px', fontSize: 11, color: '#777', lineHeight: 1.7,
     fontFamily: "'IBM Plex Mono', monospace", whiteSpace: 'pre-wrap', wordBreak: 'break-word',
-    marginTop: 12, maxHeight: 200, overflow: 'hidden'
+    marginTop: 12, maxHeight: 160, overflow: 'hidden'
   },
   contentBoxExpanded: {
-    background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
-    padding: '10px 12px', fontSize: 12, color: '#aaa', lineHeight: 1.6,
+    background: '#080808', border: '1px solid #141414', borderRadius: 3,
+    padding: '10px 12px', fontSize: 11, color: '#777', lineHeight: 1.7,
     fontFamily: "'IBM Plex Mono', monospace", whiteSpace: 'pre-wrap', wordBreak: 'break-word',
     marginTop: 12
   },
   showMoreBtn: {
-    fontSize: 11, color: '#f97316', background: 'none', border: 'none', cursor: 'pointer', marginTop: 4
+    fontSize: 10, color: '#444', background: 'none', border: 'none', cursor: 'pointer', marginTop: 4
   },
-  actionRow: { display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap', alignItems: 'center' },
+  actionRow: { display: 'flex', gap: 6, marginTop: 10, flexWrap: 'wrap', alignItems: 'center' },
   editInput: {
-    width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
-    color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
-    padding: '8px 12px', outline: 'none', marginBottom: 8
+    width: '100%', background: '#080808', border: '1px solid #222', borderRadius: 3,
+    color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12,
+    padding: '7px 10px', outline: 'none', marginBottom: 6
   },
   editTextarea: {
-    width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
-    color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12,
-    padding: '8px 12px', outline: 'none', minHeight: 120, resize: 'vertical', marginBottom: 8
+    width: '100%', background: '#080808', border: '1px solid #222', borderRadius: 3,
+    color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
+    padding: '8px 10px', outline: 'none', minHeight: 100, resize: 'vertical', marginBottom: 6
   },
   versionBtn: {
     padding: '2px 8px', background: 'transparent', border: '1px solid #1a1a1a',
-    color: '#555', borderRadius: 4, fontSize: 10, cursor: 'pointer',
+    color: '#444', borderRadius: 3, fontSize: 9, cursor: 'pointer',
     fontFamily: "'IBM Plex Mono', monospace"
   },
   btnSmall: (accent) => ({
-    padding: '4px 12px', background: accent ? '#f97316' : 'transparent',
+    padding: '3px 10px', background: accent ? '#f97316' : 'transparent',
     color: accent ? '#080808' : '#555', border: accent ? 'none' : '1px solid #1a1a1a',
     borderRadius: 4, fontSize: 11, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer',
     fontWeight: accent ? 600 : 400
   }),
   dangerBtn: {
-    padding: '4px 12px', background: 'transparent', border: '1px solid #ef4444',
-    color: '#ef4444', borderRadius: 4, fontSize: 11, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer'
+    padding: '3px 10px', background: 'transparent', border: '1px solid #2a1010',
+    color: '#884444', borderRadius: 3, fontSize: 10, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer'
   },
   versionsSection: { marginTop: 12, borderTop: '1px solid #1a1a1a', paddingTop: 10 },
   versionRow: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, fontSize: 11, color: '#555' },

@@ -51,39 +51,36 @@ function formatDate(iso) {
 }
 
 const s = {
-  container: { padding: 20 },
+  container: { padding: '16px 20px' },
   grid: {
-    display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 12
+    display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 10
   },
-  card: {
-    background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4,
-    padding: '16px', cursor: 'pointer', transition: 'border-color 0.15s'
-  },
-  cardHover: {
-    background: '#111111', border: '1px solid #f97316', borderRadius: 4,
-    padding: '16px', cursor: 'pointer', transition: 'border-color 0.15s'
-  },
-  cardHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 },
-  vName: { fontSize: 15, color: '#e5e5e5', fontWeight: 600 },
-  statusBadge: (status) => ({
-    padding: '2px 8px', borderRadius: 4, background: '#080808',
-    border: `1px solid ${STATUS_COLORS[status] || '#555'}`,
-    color: STATUS_COLORS[status] || '#555', fontSize: 10,
-    textTransform: 'uppercase', letterSpacing: '0.05em'
+  card: (hovered) => ({
+    background: hovered ? '#111111' : '#0d0d0d',
+    border: `1px solid ${hovered ? '#2a2a2a' : '#161616'}`,
+    borderRadius: 3, padding: '14px 16px', cursor: 'pointer',
+    transition: 'border-color 0.1s, background 0.1s'
   }),
-  desc: { fontSize: 12, color: '#555', marginBottom: 12 },
-  healthRow: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 },
-  healthLabel: { fontSize: 10, color: '#555', width: 50 },
-  healthBar: { flex: 1, height: 3, background: '#1a1a1a', borderRadius: 2, overflow: 'hidden' },
+  cardHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 },
+  vName: { fontSize: 13, color: '#d5d5d5', fontWeight: 500, letterSpacing: '0.01em' },
+  statusBadge: (status) => ({
+    padding: '1px 6px', borderRadius: 2,
+    border: `1px solid ${STATUS_COLORS[status] || '#222'}`,
+    color: STATUS_COLORS[status] || '#444', fontSize: 9,
+    textTransform: 'uppercase', letterSpacing: '0.08em', flexShrink: 0
+  }),
+  desc: { fontSize: 11, color: '#444', marginBottom: 12, lineHeight: 1.5 },
+  healthRow: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 },
+  healthBar: { flex: 1, height: 2, background: '#1a1a1a', borderRadius: 1, overflow: 'hidden' },
   healthFill: (score) => ({
     height: '100%', width: `${score}%`,
-    background: healthColor(score), borderRadius: 2, transition: 'width 0.3s'
+    background: healthColor(score), borderRadius: 1
   }),
-  healthScore: (score) => ({ fontSize: 11, color: healthColor(score), width: 28, textAlign: 'right' }),
-  statsRow: { display: 'flex', gap: 16, marginTop: 8 },
-  stat: { fontSize: 11, color: '#555' },
-  statVal: { color: '#aaa' },
-  lastActivity: { fontSize: 10, color: '#333', marginTop: 6 }
+  healthScore: (score) => ({ fontSize: 10, color: healthColor(score), width: 24, textAlign: 'right', flexShrink: 0 }),
+  statsRow: { display: 'flex', gap: 14, borderTop: '1px solid #141414', paddingTop: 10 },
+  stat: { fontSize: 10, color: '#333' },
+  statVal: { color: '#666' },
+  lastActivity: { fontSize: 10, color: '#2a2a2a', marginTop: 6 }
 }
 
 function VentureCard({ venture, data, onSelect }) {
@@ -96,7 +93,7 @@ function VentureCard({ venture, data, onSelect }) {
 
   return (
     <div
-      style={hovered ? s.cardHover : s.card}
+      style={s.card(hovered)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => onSelect(venture.key)}
@@ -107,16 +104,15 @@ function VentureCard({ venture, data, onSelect }) {
       </div>
       <div style={s.desc}>{venture.description}</div>
       <div style={s.healthRow}>
-        <span style={s.healthLabel}>Health</span>
         <div style={s.healthBar}>
           <div style={s.healthFill(score)} />
         </div>
         <span style={s.healthScore(score)}>{score}</span>
       </div>
       <div style={s.statsRow}>
-        <span style={s.stat}>Tasks: <span style={s.statVal}>{doneCount}/{tasks.length}</span></span>
+        <span style={s.stat}><span style={s.statVal}>{doneCount}</span>/{tasks.length} done</span>
+        <span style={s.stat}>{formatDate(lastActivity)}</span>
       </div>
-      <div style={s.lastActivity}>Last activity: {formatDate(lastActivity)}</div>
     </div>
   )
 }

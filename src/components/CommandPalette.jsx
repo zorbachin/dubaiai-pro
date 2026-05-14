@@ -3,22 +3,41 @@ import React, { useState, useRef, useEffect, useMemo } from 'react'
 const VIEWS = ['Tasks', 'Ventures', 'Library', 'Notes', 'Settings']
 
 const s = {
-  overlay: { position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.9)', zIndex: 500, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '15vh' },
-  modal: { width: 560, maxWidth: '95vw', background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4, overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.8)' },
-  searchRow: { display: 'flex', alignItems: 'center', padding: '12px 16px', borderBottom: '1px solid #1a1a1a' },
-  searchIcon: { color: '#555', marginRight: 10, fontSize: 14 },
-  input: { flex: 1, background: 'transparent', border: 'none', outline: 'none', color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 14 },
-  results: { maxHeight: 360, overflowY: 'auto' },
-  group: { padding: '6px 0' },
-  groupLabel: { fontSize: 9, color: '#333', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '4px 16px' },
+  overlay: {
+    position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.92)', zIndex: 500,
+    display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '12vh'
+  },
+  modal: {
+    width: 580, maxWidth: '95vw', background: '#0d0d0d',
+    border: '1px solid #222', borderRadius: 4, overflow: 'hidden',
+    boxShadow: '0 32px 80px rgba(0,0,0,0.9)'
+  },
+  searchRow: {
+    display: 'flex', alignItems: 'center', padding: '14px 18px',
+    borderBottom: '1px solid #1a1a1a'
+  },
+  searchIcon: { color: '#333', marginRight: 10, fontSize: 13 },
+  input: {
+    flex: 1, background: 'transparent', border: 'none', outline: 'none',
+    color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 14,
+    letterSpacing: '0.01em'
+  },
+  escHint: { fontSize: 10, color: '#2a2a2a' },
+  results: { maxHeight: 380, overflowY: 'auto' },
+  group: { padding: '4px 0' },
+  groupLabel: {
+    fontSize: 9, color: '#2d2d2d', letterSpacing: '0.14em',
+    textTransform: 'uppercase', padding: '8px 18px 4px'
+  },
   item: (active) => ({
-    padding: '8px 16px', display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer',
-    background: active ? '#1a1a1a' : 'transparent', transition: 'background 0.1s'
+    padding: '9px 18px', display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer',
+    background: active ? '#161616' : 'transparent',
+    borderLeft: active ? '2px solid #f97316' : '2px solid transparent'
   }),
-  itemIcon: { fontSize: 12, color: '#555', width: 16, flexShrink: 0 },
-  itemTitle: (active) => ({ fontSize: 13, color: active ? '#e5e5e5' : '#888', flex: 1 }),
-  itemHint: { fontSize: 10, color: '#333' },
-  empty: { padding: '20px 16px', fontSize: 12, color: '#333', textAlign: 'center' },
+  itemIcon: { fontSize: 11, color: '#333', width: 14, flexShrink: 0 },
+  itemTitle: (active) => ({ fontSize: 13, color: active ? '#e5e5e5' : '#666', flex: 1 }),
+  itemHint: { fontSize: 9, color: '#2d2d2d', background: '#161616', padding: '1px 5px', borderRadius: 2 },
+  empty: { padding: '24px 18px', fontSize: 12, color: '#2d2d2d', textAlign: 'center' },
 }
 
 export default function CommandPalette({ data, setData, onClose, setView, onMorningScroll }) {
@@ -111,7 +130,7 @@ export default function CommandPalette({ data, setData, onClose, setView, onMorn
             onChange={e => setQuery(e.target.value)}
             onKeyDown={handleKey}
           />
-          <span style={{ fontSize: 10, color: '#333' }}>Esc to close</span>
+          <span style={s.escHint}>esc</span>
         </div>
         <div style={s.results} ref={listRef}>
           {items.length === 0 && <div style={s.empty}>No results</div>}

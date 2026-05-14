@@ -14,45 +14,45 @@ function formatDate(iso) {
 }
 
 const s = {
-  container: { padding: 20 },
+  container: { padding: '16px 20px' },
   captureBox: {
-    background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4,
-    padding: 16, marginBottom: 20
+    background: '#0d0d0d', border: '1px solid #1a1a1a', borderRadius: 3,
+    padding: '14px 16px', marginBottom: 16
   },
-  captureLabel: { fontSize: 10, color: '#555', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 8 },
+  captureLabel: { fontSize: 9, color: '#333', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 8, display: 'block' },
   textarea: {
-    width: '100%', background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
-    color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
-    padding: '10px 12px', outline: 'none', minHeight: 80, resize: 'vertical',
+    width: '100%', background: '#080808', border: '1px solid #161616', borderRadius: 3,
+    color: '#d5d5d5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 13,
+    padding: '10px 12px', outline: 'none', minHeight: 70, resize: 'vertical',
     display: 'block', marginBottom: 8
   },
   captureRow: { display: 'flex', gap: 8, alignItems: 'center' },
   select: {
-    background: '#080808', border: '1px solid #1a1a1a', borderRadius: 4,
-    color: '#e5e5e5', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12,
-    padding: '6px 10px', outline: 'none', cursor: 'pointer', flex: 1
+    background: '#080808', border: '1px solid #161616', borderRadius: 3,
+    color: '#888', fontFamily: "'IBM Plex Mono', monospace", fontSize: 11,
+    padding: '5px 8px', outline: 'none', cursor: 'pointer', flex: 1
   },
   saveBtn: {
-    padding: '6px 16px', background: '#f97316', color: '#080808',
-    border: 'none', borderRadius: 4, fontFamily: "'IBM Plex Mono', monospace",
-    fontSize: 12, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap'
+    padding: '5px 14px', background: '#f97316', color: '#080808',
+    border: 'none', borderRadius: 3, fontFamily: "'IBM Plex Mono', monospace",
+    fontSize: 11, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap'
   },
-  hint: { fontSize: 10, color: '#333', marginLeft: 'auto' },
-  filterRow: { display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 16 },
+  hint: { fontSize: 9, color: '#2a2a2a', marginLeft: 4 },
+  filterRow: { display: 'flex', gap: 5, flexWrap: 'wrap', marginBottom: 14, paddingBottom: 14, borderBottom: '1px solid #141414' },
   pill: (active) => ({
-    padding: '4px 12px', borderRadius: 4, border: '1px solid #1a1a1a',
-    background: active ? '#f97316' : '#111111', color: active ? '#080808' : '#555',
-    fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, cursor: 'pointer'
+    padding: '3px 10px', borderRadius: 3, border: `1px solid ${active ? '#f97316' : '#1a1a1a'}`,
+    background: active ? '#f97316' : 'transparent', color: active ? '#080808' : '#555',
+    fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, cursor: 'pointer'
   }),
   note: {
-    background: '#111111', border: '1px solid #1a1a1a', borderRadius: 4,
-    padding: '12px 16px', marginBottom: 8
+    background: '#0d0d0d', border: '1px solid #161616', borderRadius: 3,
+    padding: '10px 14px', marginBottom: 5
   },
-  noteHeader: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 },
-  timestamp: { fontSize: 11, color: '#333' },
+  noteHeader: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 },
+  timestamp: { fontSize: 10, color: '#2d2d2d' },
   ventureBadge: {
-    padding: '2px 8px', borderRadius: 4, background: '#080808',
-    border: '1px solid #1a1a1a', fontSize: 10, color: '#555'
+    padding: '1px 6px', borderRadius: 2, background: 'transparent',
+    border: '1px solid #1a1a1a', fontSize: 9, color: '#444'
   },
   deleteBtn: {
     padding: '2px 8px', background: 'transparent',
@@ -65,8 +65,8 @@ const s = {
     fontSize: 10, fontFamily: "'IBM Plex Mono', monospace", cursor: 'pointer'
   },
   noteActions: { marginLeft: 'auto', display: 'flex', gap: 6 },
-  noteText: { fontSize: 13, color: '#aaa', lineHeight: 1.6, whiteSpace: 'pre-wrap', wordBreak: 'break-word' },
-  emptyState: { padding: 40, textAlign: 'center', color: '#555', fontSize: 13 }
+  noteText: { fontSize: 12, color: '#888', lineHeight: 1.7, whiteSpace: 'pre-wrap', wordBreak: 'break-word' },
+  emptyState: { padding: 60, textAlign: 'center', color: '#2d2d2d', fontSize: 12 }
 }
 
 export default function Notes({ data, setData }) {
