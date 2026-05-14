@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useData } from './hooks/useData.js'
 import { useKeyboard } from './hooks/useKeyboard.js'
 import Tasks, { calcHealthScore } from './views/Tasks.jsx'
@@ -276,7 +276,7 @@ export default function App() {
     }
   }, [data !== null])
 
-  const keyHandlers = useCallback({
+  const keyHandlers = useMemo(() => ({
     'Cmd+1': (e) => { e.preventDefault(); setView(0) },
     'Cmd+2': (e) => { e.preventDefault(); setView(1) },
     'Cmd+3': (e) => { e.preventDefault(); setView(2) },
@@ -287,10 +287,10 @@ export default function App() {
     'Ctrl+3': (e) => { e.preventDefault(); setView(2) },
     'Ctrl+4': (e) => { e.preventDefault(); setView(3) },
     'Ctrl+5': (e) => { e.preventDefault(); setView(4) },
-    'Cmd+k': (e) => { e.preventDefault(); setShowCommandPalette(true) },
-    'Ctrl+k': (e) => { e.preventDefault(); setShowCommandPalette(true) },
-    'Cmd+K': (e) => { e.preventDefault(); setShowCommandPalette(true) },
-    'Ctrl+K': (e) => { e.preventDefault(); setShowCommandPalette(true) },
+    'Cmd+k': (e) => { e.preventDefault(); setShowCommandPalette(p => !p) },
+    'Ctrl+k': (e) => { e.preventDefault(); setShowCommandPalette(p => !p) },
+    'Cmd+K': (e) => { e.preventDefault(); setShowCommandPalette(p => !p) },
+    'Ctrl+K': (e) => { e.preventDefault(); setShowCommandPalette(p => !p) },
     'Cmd+n': (e) => { e.preventDefault(); setShowQuickAdd(true) },
     'Ctrl+n': (e) => { e.preventDefault(); setShowQuickAdd(true) },
     'Cmd+N': (e) => { e.preventDefault(); setShowQuickAdd(true) },
@@ -299,12 +299,14 @@ export default function App() {
     'Ctrl+s': (e) => { e.preventDefault(); forceSave() },
     'Cmd+S': (e) => { e.preventDefault(); forceSave() },
     'Ctrl+S': (e) => { e.preventDefault(); forceSave() },
+    'Cmd+m': (e) => { e.preventDefault(); setShowMorningScroll(true) },
+    'Ctrl+m': (e) => { e.preventDefault(); setShowMorningScroll(true) },
     'Escape': () => {
       setShowCommandPalette(false)
       setShowQuickAdd(false)
       setShowMorningScroll(false)
     }
-  }, [forceSave])
+  }), [forceSave])
 
   useKeyboard(keyHandlers)
 
