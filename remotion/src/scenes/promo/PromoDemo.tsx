@@ -53,7 +53,8 @@ const DEMOS = [
 
 const Card: React.FC<{ idx: number }> = ({ idx }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width, height } = useVideoConfig();
+  const isVertical = height > width;
   const d = DEMOS[idx];
   const enter = spring({ frame: frame - 4, fps, config: { damping: 14, stiffness: 180 } });
 
@@ -64,15 +65,23 @@ const Card: React.FC<{ idx: number }> = ({ idx }) => {
           position: "absolute",
           inset: 0,
           display: "flex",
+          flexDirection: isVertical ? "column" : "row",
           alignItems: "center",
           justifyContent: "center",
-          gap: 80,
-          padding: "0 8%",
+          gap: isVertical ? 48 : 80,
+          padding: isVertical ? "14% 6% 8%" : "0 8%",
           opacity: enter,
           transform: `translateY(${(1 - enter) * 30}px)`,
         }}
       >
-        <div style={{ flex: 1, maxWidth: 760 }}>
+        <div
+          style={{
+            flex: isVertical ? "0 0 auto" : 1,
+            maxWidth: isVertical ? "100%" : 760,
+            textAlign: isVertical ? "center" : "left",
+            width: isVertical ? "100%" : undefined,
+          }}
+        >
           <div
             style={{
               display: "inline-block",
@@ -85,7 +94,7 @@ const Card: React.FC<{ idx: number }> = ({ idx }) => {
               fontWeight: 700,
               fontSize: 24,
               letterSpacing: 2,
-              marginBottom: 28,
+              marginBottom: isVertical ? 18 : 28,
             }}
           >
             USE CASE · 0{idx + 1}
@@ -94,11 +103,11 @@ const Card: React.FC<{ idx: number }> = ({ idx }) => {
             style={{
               fontFamily: theme.fontDisplay,
               fontWeight: 900,
-              fontSize: 88,
+              fontSize: isVertical ? 76 : 88,
               color: theme.ink,
               lineHeight: 1.02,
               letterSpacing: -3,
-              marginBottom: 24,
+              marginBottom: isVertical ? 14 : 24,
             }}
           >
             {d.badge}
@@ -107,7 +116,7 @@ const Card: React.FC<{ idx: number }> = ({ idx }) => {
             style={{
               fontFamily: theme.fontDisplay,
               fontWeight: 700,
-              fontSize: 48,
+              fontSize: isVertical ? 42 : 48,
               color: d.color,
               letterSpacing: -1,
             }}
@@ -116,7 +125,7 @@ const Card: React.FC<{ idx: number }> = ({ idx }) => {
           </div>
         </div>
         <div>
-          <BotChat turns={d.turns} width={780} />
+          <BotChat turns={d.turns} width={isVertical ? 920 : 780} />
         </div>
       </div>
     </AbsoluteFill>

@@ -1,4 +1,10 @@
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  interpolate,
+  spring,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import { CinematicBg } from "../../components/CinematicBg";
 import { theme } from "../../theme";
 
@@ -51,6 +57,8 @@ const Stat: React.FC<{ n: string; label: string; delay: number; color: string }>
 
 export const PromoProof: React.FC = () => {
   const frame = useCurrentFrame();
+  const { width, height } = useVideoConfig();
+  const isVertical = height > width;
 
   return (
     <AbsoluteFill style={{ background: "#070710" }}>
@@ -59,13 +67,13 @@ export const PromoProof: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: "12%",
+          top: isVertical ? "8%" : "12%",
           left: 0,
           right: 0,
           textAlign: "center",
           fontFamily: theme.fontDisplay,
           fontWeight: 800,
-          fontSize: 64,
+          fontSize: isVertical ? 80 : 64,
           color: theme.ink,
           letterSpacing: -2,
           opacity: interpolate(frame, [0, 14], [0, 1], { extrapolateRight: "clamp" }),
@@ -79,9 +87,11 @@ export const PromoProof: React.FC = () => {
           position: "absolute",
           inset: 0,
           display: "flex",
+          flexDirection: isVertical ? "column" : "row",
           alignItems: "center",
-          justifyContent: "space-evenly",
-          padding: "0 6%",
+          justifyContent: isVertical ? "center" : "space-evenly",
+          gap: isVertical ? 40 : 0,
+          padding: isVertical ? "20% 6% 18%" : "0 6%",
         }}
       >
         <Stat n="10 min" label="Avg. time to deploy" delay={20} color="#7c5cff" />
@@ -92,16 +102,17 @@ export const PromoProof: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          bottom: "10%",
+          bottom: isVertical ? "6%" : "10%",
           left: 0,
           right: 0,
           textAlign: "center",
           fontFamily: theme.fontDisplay,
           fontWeight: 700,
-          fontSize: 40,
+          fontSize: isVertical ? 48 : 40,
           color: theme.inkDim,
           letterSpacing: -1,
           opacity: interpolate(frame, [180, 220], [0, 1], { extrapolateRight: "clamp" }),
+          padding: "0 8%",
         }}
       >
         Or, you know — keep doing it by hand.

@@ -5,11 +5,15 @@ import { theme } from "../../theme";
 // 0:00–0:05 — Hook. "You don't need to learn to code."
 export const PromoHook: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width, height } = useVideoConfig();
+  const isVertical = height > width;
 
   const lineA = spring({ frame: frame - 4, fps, config: { damping: 12, stiffness: 180 } });
   const lineB = spring({ frame: frame - 50, fps, config: { damping: 12, stiffness: 180 } });
   const strike = interpolate(frame, [70, 95], [0, 1], { extrapolateRight: "clamp" });
+
+  const sizeA = isVertical ? 96 : 140;
+  const sizeB = isVertical ? 130 : 160;
 
   return (
     <AbsoluteFill style={{ background: "#000" }}>
@@ -32,7 +36,7 @@ export const PromoHook: React.FC = () => {
             position: "relative",
             fontFamily: theme.fontDisplay,
             fontWeight: 900,
-            fontSize: 140,
+            fontSize: sizeA,
             color: theme.ink,
             letterSpacing: -4,
             lineHeight: 1,
@@ -64,7 +68,7 @@ export const PromoHook: React.FC = () => {
           style={{
             fontFamily: theme.fontDisplay,
             fontWeight: 900,
-            fontSize: 160,
+            fontSize: sizeB,
             background: "linear-gradient(120deg, #7c5cff 0%, #00d4ff 60%, #30d158 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
