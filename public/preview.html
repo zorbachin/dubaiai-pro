@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI Audit Engine — Preview · DubaiAI.pro</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: {
+      bg:"#0b0d12", panel:"#11141b", ink:"#e7eaf0", muted:"#8a93a6",
+      accent:"#7c5cff", accent2:"#22d3ee", gold:"#e3b341", line:"#1f2330"
+    }
+  }}
+}
+</script>
+<style>
+  html,body{background:#0b0d12;color:#e7eaf0;-webkit-font-smoothing:antialiased;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border-radius:.5rem;padding:.625rem 1rem;font-weight:600;transition:all .15s}
+  .btn-primary{background:#7c5cff;color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.04),0 12px 40px -16px rgba(0,0,0,.45)}
+  .btn-primary:hover{background:#6e4ff5}
+  .btn-ghost{border:1px solid #1f2330;background:#11141b;color:#e7eaf0}
+  .btn-ghost:hover{background:#171a23}
+  .card{border:1px solid #1f2330;background:#11141b;border-radius:.75rem;padding:1.25rem;box-shadow:0 1px 0 rgba(255,255,255,.04),0 12px 40px -16px rgba(0,0,0,.45)}
+  .input{width:100%;border:1px solid #1f2330;background:#0b0d12;border-radius:.5rem;padding:.625rem .75rem;color:#e7eaf0;outline:none}
+  .input:focus{border-color:#7c5cff}
+  .label{display:block;font-size:.875rem;color:#8a93a6;margin-bottom:.375rem}
+  .pill{display:inline-block;border-radius:9999px;border:1px solid #1f2330;background:#0b0d12;padding:.125rem .5rem;font-size:.75rem;color:#8a93a6}
+  .pill-accent{color:#7c5cff;border-color:rgba(124,92,255,.3);background:rgba(124,92,255,.1)}
+  .pill-gold{color:#e3b341;border-color:rgba(227,179,65,.3);background:rgba(227,179,65,.1)}
+  .h-section{font-size:.75rem;text-transform:uppercase;letter-spacing:.18em;color:#8a93a6}
+  .screen{border-top:1px dashed #1f2330;padding-top:3rem;margin-top:5rem;position:relative}
+  .screen-tag{position:absolute;top:-14px;left:0;background:#0b0d12;padding:0 .75rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#7c5cff;border:1px solid #1f2330;border-radius:9999px;line-height:28px}
+  .anchor{position:absolute;top:-80px}
+  pre{font-family:ui-monospace,SF Mono,Menlo,Consolas,monospace}
+  .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- Sticky header -->
+<header class="border-b border-line bg-bg/80 backdrop-blur sticky top-0 z-30">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
+    <a href="#landing" class="flex items-center gap-2 font-bold text-lg">
+      <span class="inline-block h-2.5 w-2.5 rounded-full bg-gold"></span>
+      DubaiAI<span class="text-muted">.pro</span>
+    </a>
+    <nav class="flex items-center gap-1 text-sm">
+      <a class="px-3 py-1.5 text-muted hover:text-ink" href="#landing">Landing</a>
+      <a class="px-3 py-1.5 text-muted hover:text-ink" href="#form">Audit form</a>
+      <a class="px-3 py-1.5 text-muted hover:text-ink" href="#status">Status</a>
+      <a class="px-3 py-1.5 text-muted hover:text-ink" href="#report">Report</a>
+      <a class="px-3 py-1.5 text-muted hover:text-ink" href="#case-studies">Case studies</a>
+      <a class="px-3 py-1.5 text-muted hover:text-ink" href="#admin">Admin</a>
+      <a href="#form" class="btn btn-primary text-sm">Get my audit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ========== 1) LANDING ========== -->
+<section id="landing" class="anchor"></section>
+<section class="mx-auto max-w-6xl px-5 pt-20 pb-16">
+  <div class="max-w-3xl">
+    <span class="pill pill-gold">AI Audit Engine</span>
+    <h1 class="mt-4 text-5xl md:text-6xl font-bold leading-tight">
+      Get a custom <span class="text-accent">AI implementation audit</span> for any business in minutes.
+    </h1>
+    <p class="mt-5 text-lg text-muted">
+      Drop in a business name and a URL. We research the company, scan the site, score AI readiness, and hand back a consultative report — quick wins, a 30-day plan, and an estimated ROI range.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href="#form" class="btn btn-primary">Run an audit →</a>
+      <a href="#case-studies" class="btn btn-ghost">See case studies</a>
+      <a href="#how" class="btn btn-ghost">How it works</a>
+    </div>
+    <div class="mt-6 text-xs text-muted">
+      No private data. Every research claim cites a public source. Clearly marks what it can't verify.
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-5 py-12">
+  <div class="grid gap-4 md:grid-cols-3">
+    <div class="card"><div class="h-section">Why founders use it</div><h3 class="mt-2 text-lg font-bold">Real research</h3><p class="mt-2 text-muted">We crawl your homepage, about, pricing, blog and contact — then enrich with public web data. Every claim links to a source.</p></div>
+    <div class="card"><div class="h-section">Why founders use it</div><h3 class="mt-2 text-lg font-bold">Founder-grade output</h3><p class="mt-2 text-muted">An AI-readiness score, top 5 opportunities, 3 quick wins, and a 30-day roadmap. Specific, not generic.</p></div>
+    <div class="card"><div class="h-section">Why founders use it</div><h3 class="mt-2 text-lg font-bold">Sales-ready</h3><p class="mt-2 text-muted">Ships with a recommended offer, an estimated ROI range, and a draft outbound email you can send today.</p></div>
+  </div>
+</section>
+
+<section id="how" class="mx-auto max-w-6xl px-5 py-16">
+  <h2 class="text-3xl font-bold">How it works</h2>
+  <div class="mt-8 grid gap-4 md:grid-cols-3">
+    <div class="card"><div class="text-3xl font-bold text-gold">01</div><div class="mt-2 text-lg font-bold">Tell us about the business</div><p class="mt-2 text-muted">Name, URL, optional founders & industry, one main goal.</p></div>
+    <div class="card"><div class="text-3xl font-bold text-gold">02</div><div class="mt-2 text-lg font-bold">We crawl + research</div><p class="mt-2 text-muted">Site pages + public mentions in under a minute.</p></div>
+    <div class="card"><div class="text-3xl font-bold text-gold">03</div><div class="mt-2 text-lg font-bold">Get a polished audit</div><p class="mt-2 text-muted">Web report + PDF + a draft email to send.</p></div>
+  </div>
+</section>
+
+
+<!-- ========== 2) AUDIT FORM ========== -->
+<section id="form" class="anchor"></section>
+<section class="mx-auto max-w-3xl px-5 screen">
+  <div class="screen-tag">/audit · new audit form</div>
+  <span class="pill pill-accent">New audit</span>
+  <h1 class="mt-3 text-4xl font-bold">Tell us about the business.</h1>
+  <p class="mt-2 text-muted">We'll crawl the public site and gather public mentions to build a tailored AI audit. Takes about a minute.</p>
+
+  <form class="card grid gap-5 mt-8" onsubmit="event.preventDefault(); document.getElementById('status').scrollIntoView({behavior:'smooth'})">
+    <div class="grid gap-5 md:grid-cols-2">
+      <div><label class="label">Business name *</label><input class="input" placeholder="Guardz" /></div>
+      <div><label class="label">Website URL *</label><input class="input" placeholder="guardz.com" /></div>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2">
+      <div><label class="label">Founder names <span class="text-muted">(optional, comma-separated)</span></label><input class="input" placeholder="Dor Eisner, Alon Lavi" /></div>
+      <div><label class="label">Industry <span class="text-muted">(optional)</span></label><input class="input" placeholder="Cybersecurity for MSPs" /></div>
+    </div>
+    <div><label class="label">Your email *</label><input class="input" type="email" placeholder="you@company.com" /></div>
+    <div>
+      <label class="label">Main goal *</label>
+      <div class="grid gap-2 md:grid-cols-3">
+        <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-line bg-bg px-3 py-2.5 text-sm hover:border-accent/50"><input type="radio" name="g" checked class="accent-accent" /> Save time</label>
+        <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-line bg-bg px-3 py-2.5 text-sm hover:border-accent/50"><input type="radio" name="g" class="accent-accent" /> Get leads</label>
+        <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-line bg-bg px-3 py-2.5 text-sm hover:border-accent/50"><input type="radio" name="g" class="accent-accent" /> Increase sales</label>
+        <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-line bg-bg px-3 py-2.5 text-sm hover:border-accent/50"><input type="radio" name="g" class="accent-accent" /> Reduce admin</label>
+        <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-line bg-bg px-3 py-2.5 text-sm hover:border-accent/50"><input type="radio" name="g" class="accent-accent" /> Improve content</label>
+        <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-line bg-bg px-3 py-2.5 text-sm hover:border-accent/50"><input type="radio" name="g" class="accent-accent" /> Not sure yet</label>
+      </div>
+    </div>
+    <div class="flex items-center justify-between">
+      <p class="text-xs text-muted">By submitting, you agree we'll crawl public pages of the URL and store the result for review.</p>
+      <button type="submit" class="btn btn-primary">Run audit →</button>
+    </div>
+  </form>
+</section>
+
+
+<!-- ========== 3) LOADING / STATUS ========== -->
+<section id="status" class="anchor"></section>
+<section class="mx-auto max-w-2xl px-5 screen">
+  <div class="screen-tag">/audit/[id]/status · live progress</div>
+  <span class="pill pill-accent">In progress</span>
+  <h1 class="mt-3 text-3xl font-bold">Building your AI audit…</h1>
+  <p class="mt-2 text-muted">Searching the public web for company, founders, press…</p>
+  <div class="mt-8 card">
+    <div class="h-2 w-full overflow-hidden rounded-full bg-bg"><div class="h-full bg-accent" style="width:66%"></div></div>
+    <ol class="mt-5 grid gap-2 text-sm">
+      <li class="flex items-center gap-3"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-accent bg-accent text-white">✓</span><span>Queueing your audit…</span></li>
+      <li class="flex items-center gap-3"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-accent bg-accent text-white">✓</span><span>Reading homepage, about, pricing, blog and contact pages…</span></li>
+      <li class="flex items-center gap-3"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-accent text-accent animate-pulse">3</span><span>Searching the public web for company, founders, press…</span></li>
+      <li class="flex items-center gap-3"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-line text-muted">4</span><span class="text-muted">Synthesising the report…</span></li>
+    </ol>
+  </div>
+  <p class="mt-6 text-xs text-muted">You can leave this page open. The report URL will also be emailed to you when it's ready.</p>
+</section>
+
+
+<!-- ========== 4) FULL REPORT ========== -->
+<section id="report" class="anchor"></section>
+<section class="mx-auto max-w-5xl px-5 screen">
+  <div class="screen-tag">/audit/[id] · full report (mock data for Guardz)</div>
+
+  <!-- Header -->
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <span class="pill pill-gold">AI audit</span>
+      <h1 class="mt-3 text-4xl font-bold">Guardz</h1>
+      <a href="https://guardz.com/" class="text-muted hover:text-ink">guardz.com ↗</a>
+    </div>
+    <div class="flex gap-2"><a class="btn btn-ghost" href="#">Download PDF</a></div>
+  </div>
+
+  <!-- Summary + score -->
+  <div class="mt-8 grid gap-4 md:grid-cols-[1fr_360px]">
+    <div class="card">
+      <div class="h-section">Executive summary</div>
+      <p class="mt-3 text-lg leading-relaxed">Guardz appears to operate in the cybersecurity-for-MSPs space, packaging email security, awareness training, endpoint, and cyber-insurance into a single subscription for IT providers serving SMBs. The public site is clean and conversion-focused; what's missing is any AI surface area for the MSP side of the workflow itself.</p>
+    </div>
+    <div class="card">
+      <div class="h-section">AI readiness score</div>
+      <div class="mt-3 flex items-baseline gap-3"><div class="text-6xl font-bold leading-none text-gold">63</div><div class="text-muted">/100</div></div>
+      <div class="mt-4 h-2 w-full overflow-hidden rounded-full bg-bg"><div class="h-full bg-accent" style="width:63%"></div></div>
+      <p class="mt-4 text-sm text-muted">Solid foundation: modern stack, clear positioning, active hiring. Largest gap is on the inbound side — no AI-driven lead qualifier, no content engine.</p>
+    </div>
+  </div>
+
+  <!-- What the business does -->
+  <h2 class="text-2xl font-bold mt-12">What the business appears to do</h2>
+  <div class="mt-4 grid gap-4 md:grid-cols-2">
+    <div class="card">
+      <div class="h-section">Classification</div>
+      <dl class="mt-3 grid gap-2 text-sm">
+        <div class="flex gap-3"><dt class="text-muted shrink-0 w-32">Industry</dt><dd class="text-ink">Cybersecurity SaaS for MSPs</dd></div>
+        <div class="flex gap-3"><dt class="text-muted shrink-0 w-32">Business model</dt><dd class="text-ink">B2B SaaS, per-seat MRR via channel/MSP partners</dd></div>
+        <div class="flex gap-3"><dt class="text-muted shrink-0 w-32">Customer type</dt><dd class="text-ink">B2B2C — MSPs reselling to SMBs (US/EU/IL)</dd></div>
+      </dl>
+      <div class="h-section mt-5">Likely bottlenecks</div>
+      <ul class="mt-2 space-y-1.5 text-ink text-sm">
+        <li>• MSP onboarding is partner-led; no self-serve assistant for first-time setup</li>
+        <li>• Sales pipeline relies on outbound + partner channel — no on-site qualifier</li>
+        <li>• Repetitive support questions likely flow through a human team</li>
+        <li>• Limited evergreen content / SEO surface for MSP-specific intent</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="h-section">Mission & positioning</div>
+      <p class="mt-3 text-ink">Unified cybersecurity + insurance platform purpose-built for MSPs and the SMBs they serve.</p>
+      <p class="mt-3 text-muted">Tone is technical-but-friendly, with strong emphasis on MSP economics. Pricing is partner-mediated rather than public.</p>
+      <div class="mt-5 h-section">Founder research</div>
+      <p class="mt-2 text-muted">Founders listed publicly on the company's About/LinkedIn pages. Funding history confirmed via press citations (Series A coverage). Not verified beyond public sources.</p>
+    </div>
+  </div>
+
+  <!-- Score breakdown -->
+  <h2 class="text-2xl font-bold mt-12">Where the score comes from</h2>
+  <div class="card mt-4">
+    <div class="h-section">Score breakdown</div>
+    <ul class="mt-4 grid gap-4">
+      <li>
+        <div class="flex items-baseline justify-between"><span class="text-sm">Website clarity</span><span class="text-xs text-muted"><b class="text-ink">11</b> / 15</span></div>
+        <div class="mt-1.5 h-1.5 w-full rounded-full overflow-hidden bg-bg"><div class="h-full bg-emerald-400" style="width:73%"></div></div>
+        <p class="mt-1.5 text-xs text-muted">Hero, ICP, and use-cases are clear within 5 seconds; pricing visibility is the main gap.</p>
+      </li>
+      <li>
+        <div class="flex items-baseline justify-between"><span class="text-sm">Lead capture</span><span class="text-xs text-muted"><b class="text-ink">8</b> / 15</span></div>
+        <div class="mt-1.5 h-1.5 w-full rounded-full overflow-hidden bg-bg"><div class="h-full bg-gold" style="width:53%"></div></div>
+        <p class="mt-1.5 text-xs text-muted">Demo CTA exists, but no scheduler embed, no MSP-specific lead magnet.</p>
+      </li>
+      <li>
+        <div class="flex items-baseline justify-between"><span class="text-sm">Sales automation potential</span><span class="text-xs text-muted"><b class="text-ink">14</b> / 20</span></div>
+        <div class="mt-1.5 h-1.5 w-full rounded-full overflow-hidden bg-bg"><div class="h-full bg-emerald-400" style="width:70%"></div></div>
+        <p class="mt-1.5 text-xs text-muted">High surface area — partner onboarding, deal-room briefs, expansion plays all automatable.</p>
+      </li>
+      <li>
+        <div class="flex items-baseline justify-between"><span class="text-sm">Support / admin automation potential</span><span class="text-xs text-muted"><b class="text-ink">10</b> / 15</span></div>
+        <div class="mt-1.5 h-1.5 w-full rounded-full overflow-hidden bg-bg"><div class="h-full bg-emerald-400" style="width:67%"></div></div>
+        <p class="mt-1.5 text-xs text-muted">Public help center suggests a deflectable long tail of MSP-side questions.</p>
+      </li>
+      <li>
+        <div class="flex items-baseline justify-between"><span class="text-sm">Content / SEO opportunity</span><span class="text-xs text-muted"><b class="text-ink">7</b> / 15</span></div>
+        <div class="mt-1.5 h-1.5 w-full rounded-full overflow-hidden bg-bg"><div class="h-full bg-gold" style="width:47%"></div></div>
+        <p class="mt-1.5 text-xs text-muted">Blog cadence inconsistent; MSP-keyword opportunity largely untapped.</p>
+      </li>
+      <li>
+        <div class="flex items-baseline justify-between"><span class="text-sm">Tech stack readiness</span><span class="text-xs text-muted"><b class="text-ink">8</b> / 10</span></div>
+        <div class="mt-1.5 h-1.5 w-full rounded-full overflow-hidden bg-bg"><div class="h-full bg-emerald-400" style="width:80%"></div></div>
+        <p class="mt-1.5 text-xs text-muted">Modern marketing stack detected (Next.js / Webflow signals + HubSpot); API-friendly throughout.</p>
+      </li>
+      <li>
+        <div class="flex items-baseline justify-between"><span class="text-sm">Founder / business urgency signals</span><span class="text-xs text-muted"><b class="text-ink">5</b> / 10</span></div>
+        <div class="mt-1.5 h-1.5 w-full rounded-full overflow-hidden bg-bg"><div class="h-full bg-gold" style="width:50%"></div></div>
+        <p class="mt-1.5 text-xs text-muted">Recent funding + active hiring across product/GTM = momentum, but no AI-specific roles posted yet.</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Top opportunities -->
+  <h2 class="text-2xl font-bold mt-12">5 places AI could save or make you money</h2>
+  <div class="mt-4 grid gap-4">
+    <div class="card">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-bold"><span class="text-muted mr-2">01</span>MSP-aware lead qualifier on the demo CTA</h3>
+        <div class="flex gap-1.5"><span class="pill" style="color:#86efac;border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.1)">Effort: low</span><span class="pill" style="color:#fdba74;border-color:rgba(251,146,60,.3);background:rgba(251,146,60,.1)">Impact: high</span></div>
+      </div>
+      <p class="mt-2 text-muted">Replace the static "Book a demo" with an AI assistant that asks 5 MSP-specific questions (size, current stack, pain), routes to the right rep, and books the call automatically. Cuts first-touch latency from days to minutes.</p>
+      <div class="mt-3 text-sm"><span class="h-section">Est. value</span> <span class="ml-2 text-ink">$3k–$12k MRR in recovered pipeline</span></div>
+      <div class="mt-3 flex gap-1.5"><span class="pill">OpenAI</span><span class="pill">HubSpot</span><span class="pill">Cal.com</span></div>
+    </div>
+    <div class="card">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-bold"><span class="text-muted mr-2">02</span>Partner onboarding co-pilot</h3>
+        <div class="flex gap-1.5"><span class="pill" style="color:#fde68a;border-color:rgba(227,179,65,.3);background:rgba(227,179,65,.1)">Effort: medium</span><span class="pill" style="color:#fdba74;border-color:rgba(251,146,60,.3);background:rgba(251,146,60,.1)">Impact: high</span></div>
+      </div>
+      <p class="mt-2 text-muted">An in-product assistant that walks new MSP partners through setup, runs config checks, and answers the long tail of "is X supported?" questions. Reduces time-to-first-protected-tenant.</p>
+      <div class="mt-3 text-sm"><span class="h-section">Est. value</span> <span class="ml-2 text-ink">35–50% cut in onboarding support load</span></div>
+      <div class="mt-3 flex gap-1.5"><span class="pill">Vector DB</span><span class="pill">OpenAI</span><span class="pill">Intercom</span></div>
+    </div>
+    <div class="card">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-bold"><span class="text-muted mr-2">03</span>Programmatic SEO for MSP-intent keywords</h3>
+        <div class="flex gap-1.5"><span class="pill" style="color:#fde68a;border-color:rgba(227,179,65,.3);background:rgba(227,179,65,.1)">Effort: medium</span><span class="pill" style="color:#fdba74;border-color:rgba(251,146,60,.3);background:rgba(251,146,60,.1)">Impact: high</span></div>
+      </div>
+      <p class="mt-2 text-muted">Auto-generate 200+ MSP-specific landing pages (by stack, vertical, geography) from a single template + a knowledge base. Index-worthy, not slop — each page links to a relevant case study.</p>
+      <div class="mt-3 text-sm"><span class="h-section">Est. value</span> <span class="ml-2 text-ink">5–10x organic top-of-funnel within 90 days</span></div>
+      <div class="mt-3 flex gap-1.5"><span class="pill">Claude / GPT-4o</span><span class="pill">Next.js ISR</span><span class="pill">Ahrefs API</span></div>
+    </div>
+    <div class="card">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-bold"><span class="text-muted mr-2">04</span>Cyber-incident brief generator for MSPs</h3>
+        <div class="flex gap-1.5"><span class="pill" style="color:#fde68a;border-color:rgba(227,179,65,.3);background:rgba(227,179,65,.1)">Effort: medium</span><span class="pill" style="color:#fde68a;border-color:rgba(227,179,65,.3);background:rgba(227,179,65,.1)">Impact: medium</span></div>
+      </div>
+      <p class="mt-2 text-muted">Turn raw alerts into MSP-ready incident briefs their SMB clients can actually read. Sticky, hard to rip out, and an upsell hook into Guardz's insurance attach.</p>
+      <div class="mt-3 text-sm"><span class="h-section">Est. value</span> <span class="ml-2 text-ink">Net-new retention + insurance attach rate</span></div>
+    </div>
+    <div class="card">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-lg font-bold"><span class="text-muted mr-2">05</span>Inbox triage + draft replies for GTM</h3>
+        <div class="flex gap-1.5"><span class="pill" style="color:#86efac;border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.1)">Effort: low</span><span class="pill" style="color:#fde68a;border-color:rgba(227,179,65,.3);background:rgba(227,179,65,.1)">Impact: medium</span></div>
+      </div>
+      <p class="mt-2 text-muted">Daily AI digest for AE/CSM inboxes that summarises high-intent threads and drafts on-brand replies for one-click send.</p>
+      <div class="mt-3 text-sm"><span class="h-section">Est. value</span> <span class="ml-2 text-ink">5–8 hrs/week saved per rep</span></div>
+    </div>
+  </div>
+
+  <!-- Quick wins -->
+  <h2 class="text-2xl font-bold mt-12">Quick wins (this week)</h2>
+  <div class="mt-4 grid gap-4 md:grid-cols-3">
+    <div class="card"><h3 class="text-lg font-bold">Sharpen homepage hero in 1 hour</h3><p class="mt-2 text-muted">Rewrite hero to "for MSPs / [problem] / [outcome in numbers]". Higher conversion, no engineering.</p></div>
+    <div class="card"><h3 class="text-lg font-bold">Add a scheduler to every CTA</h3><p class="mt-2 text-muted">Replace "Book a demo" form with an embedded Cal.com slot picker. Compresses lead-to-call from days to minutes.</p></div>
+    <div class="card"><h3 class="text-lg font-bold">Auto-summary on every sales call</h3><p class="mt-2 text-muted">Plug Fathom/Fireflies into your meeting tool — zero effort, immediate CRM hygiene.</p></div>
+  </div>
+
+  <!-- Roadmap -->
+  <h2 class="text-2xl font-bold mt-12">30-day roadmap</h2>
+  <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div class="card"><div class="text-2xl font-bold text-gold">Week 1</div><div class="mt-1 text-lg font-bold">Quick-wins live</div><ul class="mt-3 space-y-1 text-sm text-muted"><li>• Rewrite hero + primary CTA</li><li>• Embed scheduler on demo page</li><li>• Turn on AI meeting summaries</li></ul></div>
+    <div class="card"><div class="text-2xl font-bold text-gold">Week 2</div><div class="mt-1 text-lg font-bold">Lead qualifier</div><ul class="mt-3 space-y-1 text-sm text-muted"><li>• Define MSP qualifying questions</li><li>• Ship widget on demo CTA</li><li>• Pipe to HubSpot with score</li></ul></div>
+    <div class="card"><div class="text-2xl font-bold text-gold">Week 3</div><div class="mt-1 text-lg font-bold">Onboarding co-pilot v1</div><ul class="mt-3 space-y-1 text-sm text-muted"><li>• Index public docs</li><li>• In-product assistant beta</li><li>• Track deflection rate</li></ul></div>
+    <div class="card"><div class="text-2xl font-bold text-gold">Week 4</div><div class="mt-1 text-lg font-bold">pSEO engine</div><ul class="mt-3 space-y-1 text-sm text-muted"><li>• Template MSP landing page</li><li>• Generate first 50 pages</li><li>• Submit, measure indexing</li></ul></div>
+  </div>
+
+  <!-- ROI -->
+  <h2 class="text-2xl font-bold mt-12">Estimated ROI range</h2>
+  <div class="card mt-4">
+    <div class="flex flex-wrap items-baseline gap-3">
+      <div class="text-3xl font-bold text-gold">$45,000</div><div class="text-muted">to</div><div class="text-3xl font-bold text-gold">$180,000</div>
+      <span class="pill ml-2">annualised</span>
+    </div>
+    <p class="mt-3 text-muted">Lower bound assumes only items #1 and #5 ship; upper bound assumes the full 30-day plan + the pSEO engine compounding over 6 months. Numbers anchor on typical MSP ACV × incremental conversion.</p>
+  </div>
+
+  <!-- Email / offer -->
+  <h2 class="text-2xl font-bold mt-12">A draft email you could send today</h2>
+  <div class="card mt-4">
+    <div class="h-section">Recommended offer</div>
+    <p class="mt-2">30-day AI Implementation Sprint: we ship the 3 highest-ROI items end-to-end, fixed price, with a measurable success metric per item.</p>
+    <div class="mt-5 h-section">Outbound email copy</div>
+<pre class="mt-2 whitespace-pre-wrap rounded-lg border border-line bg-bg p-4 text-sm leading-relaxed text-ink">Subject: I found 5 places AI could save or make you money at Guardz
+
+Hi Dor,
+
+I found 5 places AI could save or make you money at Guardz. Public-only look at guardz.com — short audit on where AI realistically pays for itself in the next 30 days.
+
+Biggest three:
+  1. An MSP-aware lead qualifier on your demo CTA (cuts first-touch from days to minutes)
+  2. Partner onboarding co-pilot (35–50% cut in setup support load)
+  3. Programmatic SEO across MSP-intent keywords (5–10x organic top-of-funnel)
+
+Happy to walk you through the report and the 3 we'd ship first — no pitch, just the audit.
+
+— DubaiAI</pre>
+  </div>
+
+  <!-- CTA -->
+  <h2 class="text-2xl font-bold mt-12">Suggested next step</h2>
+  <div class="card mt-4" style="border-color:rgba(124,92,255,.3);background:linear-gradient(135deg,rgba(124,92,255,.05),transparent)">
+    <span class="pill pill-gold">Suggested next step</span>
+    <h3 class="mt-3 text-2xl font-bold">Request the implementation plan.</h3>
+    <p class="mt-1 text-muted">We'll turn this audit into a fixed-price 30-day sprint for Guardz — scoped, priced, and shippable.</p>
+    <form class="mt-5 grid gap-3 md:grid-cols-2" onsubmit="event.preventDefault();this.parentElement.innerHTML='<h3 class=\'text-xl font-bold\'>Got it — we\'ll reach out within 24 hours.</h3>'">
+      <input class="input" placeholder="Your name" />
+      <input class="input" type="email" placeholder="Email" />
+      <textarea class="input md:col-span-2" rows="3" placeholder="Anything you'd like us to focus on? (optional)"></textarea>
+      <div class="flex items-center justify-between md:col-span-2">
+        <p class="text-xs text-muted">No spam — we reply by hand.</p>
+        <button class="btn btn-primary">Request Implementation Plan →</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Unknowns + citations -->
+  <h2 class="text-2xl font-bold mt-12">What we couldn't verify</h2>
+  <div class="card mt-4"><ul class="space-y-1.5 text-muted">
+    <li>• Internal headcount and team composition were not confirmed beyond public LinkedIn pages</li>
+    <li>• ARR / revenue figures (no public disclosure)</li>
+    <li>• Existing internal AI initiatives (no public signal detected)</li>
+  </ul></div>
+
+  <h2 class="text-2xl font-bold mt-12">Sources</h2>
+  <div class="card mt-4"><ol class="grid gap-1.5 text-sm">
+    <li class="text-muted">[1] <a class="text-ink hover:text-accent" href="https://guardz.com/">guardz.com/ (homepage)</a></li>
+    <li class="text-muted">[2] <a class="text-ink hover:text-accent" href="https://guardz.com/about/">guardz.com/about (team & mission)</a></li>
+    <li class="text-muted">[3] <a class="text-ink hover:text-accent" href="#">Series A press coverage (TechCrunch)</a></li>
+    <li class="text-muted">[4] <a class="text-ink hover:text-accent" href="#">LinkedIn — Guardz company page</a></li>
+    <li class="text-muted">[5] <a class="text-ink hover:text-accent" href="#">Open MSP-side job postings (careers page)</a></li>
+  </ol></div>
+</section>
+
+
+<!-- ========== 5) CASE STUDIES ========== -->
+<section id="case-studies" class="anchor"></section>
+<section class="mx-auto max-w-6xl px-5 screen">
+  <div class="screen-tag">/case-studies · public gallery</div>
+  <span class="pill pill-gold">Case studies</span>
+  <h1 class="mt-3 text-4xl font-bold">Real audits we've run.</h1>
+  <p class="mt-2 max-w-2xl text-muted">Each of these is a full AI-readiness audit — generated through the same engine you can run on your own business below. Every claim is sourced from a public URL; what we couldn't verify is marked.</p>
+  <div class="mt-10 grid gap-4 md:grid-cols-2">
+
+    <a href="#report" class="card group block transition hover:border-accent/50">
+      <div class="flex items-start justify-between gap-4">
+        <div class="min-w-0">
+          <div class="h-section">guardz.com</div>
+          <h3 class="mt-2 text-xl font-bold">Guardz</h3>
+          <div class="mt-1 text-xs text-muted">Cybersecurity SaaS for MSPs</div>
+        </div>
+        <div class="text-right"><div class="text-3xl font-bold leading-none text-gold">63</div><div class="text-xs text-muted">/100</div></div>
+      </div>
+      <div class="mt-5"><div class="h-section">Top opportunity</div><p class="mt-1 line-clamp-2 text-ink"><b>MSP-aware lead qualifier on the demo CTA.</b> <span class="text-muted">Replace the static "Book a demo" with an AI assistant that asks 5 MSP-specific questions, routes to the right rep, and books the call automatically.</span></p></div>
+      <div class="mt-5 flex items-center justify-between text-sm"><span class="text-muted">Read the full audit</span><span class="text-accent">→</span></div>
+    </a>
+
+    <a href="#report" class="card group block transition hover:border-accent/50">
+      <div class="flex items-start justify-between gap-4">
+        <div class="min-w-0">
+          <div class="h-section">polarbeargifts.net</div>
+          <h3 class="mt-2 text-xl font-bold">Polar Bear Gifts</h3>
+          <div class="mt-1 text-xs text-muted">DTC gift retail (Shopify-class)</div>
+        </div>
+        <div class="text-right"><div class="text-3xl font-bold leading-none text-orange-400">38</div><div class="text-xs text-muted">/100</div></div>
+      </div>
+      <div class="mt-5"><div class="h-section">Top opportunity</div><p class="mt-1 line-clamp-2 text-ink"><b>AI gift-finder quiz on the homepage.</b> <span class="text-muted">A 4-question conversational quiz that narrows the catalog to 3 perfect picks. Lifts add-to-cart by routing browsers past the choice paralysis.</span></p></div>
+      <div class="mt-5 flex items-center justify-between text-sm"><span class="text-muted">Read the full audit</span><span class="text-accent">→</span></div>
+    </a>
+
+    <a href="#report" class="card group block transition hover:border-accent/50">
+      <div class="flex items-start justify-between gap-4">
+        <div class="min-w-0">
+          <div class="h-section">vybewear.com</div>
+          <h3 class="mt-2 text-xl font-bold">Vybe Wear</h3>
+          <div class="mt-1 text-xs text-muted">DTC apparel / streetwear</div>
+        </div>
+        <div class="text-right"><div class="text-3xl font-bold leading-none text-gold">44</div><div class="text-xs text-muted">/100</div></div>
+      </div>
+      <div class="mt-5"><div class="h-section">Top opportunity</div><p class="mt-1 line-clamp-2 text-ink"><b>UGC + AI styling for product pages.</b> <span class="text-muted">Auto-generate "style it with…" carousels and on-model variations from existing creator content; lifts PDP time and conversion on cold traffic.</span></p></div>
+      <div class="mt-5 flex items-center justify-between text-sm"><span class="text-muted">Read the full audit</span><span class="text-accent">→</span></div>
+    </a>
+
+    <a href="#report" class="card group block transition hover:border-accent/50">
+      <div class="flex items-start justify-between gap-4">
+        <div class="min-w-0">
+          <div class="h-section">alwadhi.com</div>
+          <h3 class="mt-2 text-xl font-bold">Al Wadhi</h3>
+          <div class="mt-1 text-xs text-muted">Regional services (unverified)</div>
+        </div>
+        <div class="text-right"><div class="text-3xl font-bold leading-none text-orange-400">31</div><div class="text-xs text-muted">/100</div></div>
+      </div>
+      <div class="mt-5"><div class="h-section">Top opportunity</div><p class="mt-1 line-clamp-2 text-ink"><b>WhatsApp-native lead capture.</b> <span class="text-muted">Region-appropriate AI agent on WhatsApp that qualifies and books — replaces the slow contact-form loop common in MENA SME sites.</span></p></div>
+      <div class="mt-5 flex items-center justify-between text-sm"><span class="text-muted">Read the full audit</span><span class="text-accent">→</span></div>
+    </a>
+
+  </div>
+
+  <div class="mt-16 card flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+    <div><h3 class="text-xl font-bold">Want one for your business?</h3><p class="mt-1 text-muted">~60 seconds. PDF + report URL emailed to you. Free in beta.</p></div>
+    <a href="#form" class="btn btn-primary">Run my audit →</a>
+  </div>
+
+  <p class="mt-6 text-xs text-muted">Note: the scores and language shown above are illustrative placeholders. Running <code>npm run seed:case-studies</code> generates the real audits from live data and OpenAI.</p>
+</section>
+
+
+<!-- ========== 6) ADMIN ========== -->
+<section id="admin" class="anchor"></section>
+<section class="mx-auto max-w-6xl px-5 screen">
+  <div class="screen-tag">/admin · password-gated dashboard</div>
+  <div class="flex items-center justify-between">
+    <div>
+      <span class="pill pill-accent">Admin</span>
+      <h1 class="mt-3 text-3xl font-bold">Submitted audits</h1>
+      <p class="mt-1 text-muted">8 most recent submissions.</p>
+    </div>
+    <button class="btn btn-ghost">Sign out</button>
+  </div>
+  <div class="mt-8 overflow-x-auto rounded-xl border border-line">
+    <table class="min-w-full text-sm">
+      <thead class="bg-panel text-muted">
+        <tr>
+          <th class="px-3 py-2 text-left font-medium">Business</th>
+          <th class="px-3 py-2 text-left font-medium">URL</th>
+          <th class="px-3 py-2 text-left font-medium">Email</th>
+          <th class="px-3 py-2 text-left font-medium">Status</th>
+          <th class="px-3 py-2 text-left font-medium">Score</th>
+          <th class="px-3 py-2 text-left font-medium">Featured</th>
+          <th class="px-3 py-2 text-left font-medium">Created</th>
+          <th class="px-3 py-2 text-left font-medium"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-t border-line"><td class="px-3 py-2">Guardz</td><td class="px-3 py-2">guardz.com</td><td class="px-3 py-2">case-studies@dubaiai.pro</td><td class="px-3 py-2"><span class="pill" style="color:#86efac;border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.1)">complete</span></td><td class="px-3 py-2">63</td><td class="px-3 py-2"><span class="pill pill-gold cursor-pointer">★ featured</span></td><td class="px-3 py-2">2026-04-27 13:12</td><td class="px-3 py-2"><a class="hover:text-accent" href="#report">Open →</a></td></tr>
+        <tr class="border-t border-line"><td class="px-3 py-2">Polar Bear Gifts</td><td class="px-3 py-2">polarbeargifts.net</td><td class="px-3 py-2">case-studies@dubaiai.pro</td><td class="px-3 py-2"><span class="pill" style="color:#86efac;border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.1)">complete</span></td><td class="px-3 py-2">38</td><td class="px-3 py-2"><span class="pill pill-gold cursor-pointer">★ featured</span></td><td class="px-3 py-2">2026-04-27 13:11</td><td class="px-3 py-2"><a class="hover:text-accent" href="#report">Open →</a></td></tr>
+        <tr class="border-t border-line"><td class="px-3 py-2">Vybe Wear</td><td class="px-3 py-2">vybewear.com</td><td class="px-3 py-2">case-studies@dubaiai.pro</td><td class="px-3 py-2"><span class="pill" style="color:#86efac;border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.1)">complete</span></td><td class="px-3 py-2">44</td><td class="px-3 py-2"><span class="pill pill-gold cursor-pointer">★ featured</span></td><td class="px-3 py-2">2026-04-27 13:10</td><td class="px-3 py-2"><a class="hover:text-accent" href="#report">Open →</a></td></tr>
+        <tr class="border-t border-line"><td class="px-3 py-2">Al Wadhi</td><td class="px-3 py-2">alwadhi.com</td><td class="px-3 py-2">case-studies@dubaiai.pro</td><td class="px-3 py-2"><span class="pill" style="color:#86efac;border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.1)">complete</span></td><td class="px-3 py-2">31</td><td class="px-3 py-2"><span class="pill pill-gold cursor-pointer">★ featured</span></td><td class="px-3 py-2">2026-04-27 13:09</td><td class="px-3 py-2"><a class="hover:text-accent" href="#report">Open →</a></td></tr>
+        <tr class="border-t border-line"><td class="px-3 py-2">Acme Studio</td><td class="px-3 py-2">acme.com</td><td class="px-3 py-2">jane@acme.com</td><td class="px-3 py-2"><span class="pill" style="color:#86efac;border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.1)">complete</span></td><td class="px-3 py-2">52</td><td class="px-3 py-2"><span class="pill cursor-pointer">feature</span></td><td class="px-3 py-2">2026-04-26 17:42</td><td class="px-3 py-2"><a class="hover:text-accent" href="#report">Open →</a></td></tr>
+        <tr class="border-t border-line"><td class="px-3 py-2">Northwind</td><td class="px-3 py-2">northwind.io</td><td class="px-3 py-2">ops@northwind.io</td><td class="px-3 py-2"><span class="pill" style="color:#fde68a;border-color:rgba(227,179,65,.3);background:rgba(227,179,65,.1)">generating</span></td><td class="px-3 py-2">—</td><td class="px-3 py-2"><span class="pill cursor-pointer">feature</span></td><td class="px-3 py-2">2026-04-26 17:38</td><td class="px-3 py-2"><a class="hover:text-accent" href="#report">Open →</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer class="mt-24 border-t border-line">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-6 text-sm text-muted">
+    <div>© 2026 DubaiAI.pro</div>
+    <div>Built with Next.js · Supabase · OpenAI · Resend · Inngest</div>
+  </div>
+</footer>
+
+</body>
+</html>
