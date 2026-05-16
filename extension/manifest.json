@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Card Offer Tracker",
+  "version": "1.0.0",
+  antml:parameter"description": "Track activated credit card offers and find the best card for every purchase.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Card Offer Tracker"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.americanexpress.com/*",
+        "*://*.capitalone.com/*",
+        "*://*.chase.com/*",
+        "*://*.citi.com/*",
+        "*://*.citibank.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "*://*.americanexpress.com/*",
+    "*://*.capitalone.com/*",
+    "*://*.chase.com/*",
+    "*://*.citi.com/*",
+    "*://*.citibank.com/*"
+  ]
+}

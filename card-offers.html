@@ -773,7 +773,7 @@
           <input class="form-input" id="optMerchant" type="text" placeholder="e.g. Noon, Carrefour…">
         </div>
         <div class="form-group">
-          <label class="form-label">Amount (AED)</label>
+          <label class="form-label">Amount ($)</label>
           <input class="form-input" id="optAmount" type="number" min="0" step="0.01" placeholder="0.00">
         </div>
         <div class="form-group span2">
@@ -853,9 +853,9 @@
           <input class="form-input" id="cardBaseRate" type="number" min="0" step="0.1" placeholder="1.5">
         </div>
         <div class="form-group span2" id="pointValueGroup" style="display:none">
-          <label class="form-label">Point / Mile Value (AED)</label>
+          <label class="form-label">$ value per point/mile</label>
           <input class="form-input" id="cardPointValue" type="number" min="0" step="0.001" placeholder="0.025">
-          <span class="help-text">How much each point/mile is worth in AED when redeemed</span>
+          <span class="help-text">How much each point/mile is worth in $ when redeemed</span>
         </div>
       </div>
 
@@ -898,11 +898,11 @@
           <input class="form-input" id="offerValue" type="number" min="0" step="0.01" placeholder="10">
         </div>
         <div class="form-group">
-          <label class="form-label">Min. Spend (AED)</label>
+          <label class="form-label">Min. Spend ($)</label>
           <input class="form-input" id="offerMinSpend" type="number" min="0" step="1" placeholder="0">
         </div>
         <div class="form-group">
-          <label class="form-label">Max Discount (AED, optional)</label>
+          <label class="form-label">Max Discount ($, optional)</label>
           <input class="form-input" id="offerMaxDiscount" type="number" min="0" step="1" placeholder="No cap">
         </div>
         <div class="form-group span2">
@@ -971,7 +971,7 @@ const CARD_COLORS = [
 
 const OFFER_TYPE_LABELS = {
   percent_off:     '% Off',
-  fixed_off:       'AED Off',
+  fixed_off:       '$ Off',
   cashback_boost:  'Cashback Boost',
 };
 
@@ -1288,7 +1288,7 @@ function renderOfferRow(cardId, offer) {
   if (offer.type === 'percent_off') {
     valueHtml = `<span class="offer-value">${offer.value}% OFF</span>`;
   } else if (offer.type === 'fixed_off') {
-    valueHtml = `<span class="offer-value">AED ${offer.value} OFF</span>`;
+    valueHtml = `<span class="offer-value">$${offer.value} OFF</span>`;
   } else {
     valueHtml = `<span class="offer-value boost">+${offer.value}% CB</span>`;
   }
@@ -1298,7 +1298,7 @@ function renderOfferRow(cardId, offer) {
     return cat ? cat.label : c;
   }).join(', ') || 'All categories';
 
-  const minSpendTxt = offer.minSpend > 0 ? ` · Min AED ${offer.minSpend}` : '';
+  const minSpendTxt = offer.minSpend > 0 ? ` · Min $${offer.minSpend}` : '';
   const notesTxt = offer.notes ? ` · ${offer.notes}` : '';
 
   return `
@@ -1326,7 +1326,7 @@ function renderResults(results, amount, merchant, category) {
 
   panel.style.display = '';
   const catLabel = CATEGORIES.find(c => c.id === category)?.label || category;
-  meta.textContent = `${merchant || 'Any'} · ${catLabel} · AED ${amount.toFixed(2)}`;
+  meta.textContent = `${merchant || 'Any'} · ${catLabel} · $${amount.toFixed(2)}`;
 
   if (results.length === 0) {
     list.innerHTML = `<div class="no-results"><div class="no-results-icon">💳</div><p>No cards to compare.</p></div>`;
@@ -1341,11 +1341,11 @@ function renderResults(results, amount, merchant, category) {
     let breakdownParts = [];
     if (r.offerSaving > 0 && r.offer) {
       const label = r.offerType === 'cashback_boost' ? 'Cashback boost' : 'Offer';
-      breakdownParts.push(`<span class="breakdown-item saving">✓ ${label}: −AED ${r.offerSaving.toFixed(2)}</span>`);
+      breakdownParts.push(`<span class="breakdown-item saving">✓ ${label}: −$${r.offerSaving.toFixed(2)}</span>`);
     }
     if (r.rewardValue > 0) {
       const rateLabel = r.card.rewardType === 'cashback' ? 'cashback' : r.card.rewardType;
-      breakdownParts.push(`<span class="breakdown-item reward">★ ${rateLabel} (${r.effectiveRate.toFixed(2)}%): AED ${r.rewardValue.toFixed(2)}</span>`);
+      breakdownParts.push(`<span class="breakdown-item reward">★ ${rateLabel} (${r.effectiveRate.toFixed(2)}%): $${r.rewardValue.toFixed(2)}</span>`);
     }
     if (r.offerSaving === 0 && r.rewardValue === 0) {
       breakdownParts.push(`<span class="breakdown-item warning">No offers match · Base only</span>`);
@@ -1363,9 +1363,9 @@ function renderResults(results, amount, merchant, category) {
           <div class="result-breakdown">${breakdownParts.join('')}</div>
         </div>
         <div class="result-price">
-          <div class="result-final-price">AED ${r.effectivePrice.toFixed(2)}</div>
+          <div class="result-final-price">$${r.effectivePrice.toFixed(2)}</div>
           ${r.totalBenefit > 0
-            ? `<div class="result-savings">Save AED ${r.totalBenefit.toFixed(2)}</div>`
+            ? `<div class="result-savings">Save $${r.totalBenefit.toFixed(2)}</div>`
             : `<div class="result-no-benefit">No savings</div>`}
         </div>
       </div>`;
@@ -1744,9 +1744,84 @@ document.addEventListener('keydown', e => {
 });
 
 /* ──────────────────────────────────────────────
+   Default cards (seeded once on first load)
+────────────────────────────────────────────── */
+const DEFAULT_CARDS = [
+  {
+    id: 'amex-delta-platinum',
+    name: 'Delta SkyMiles Platinum',
+    issuer: 'American Express',
+    lastFour: '',
+    color: '#1a2456',
+    rewardType: 'miles',
+    baseRate: 1,
+    pointValue: 0.012,
+    categoryMultipliers: {
+      dining: 2, grocery: 2, online: 1, travel: 1, flights: 3,
+      hotels: 3, fuel: 1, entertainment: 1, electronics: 1,
+      health: 1, fashion: 1, utilities: 1, other: 1,
+    },
+    offers: [],
+  },
+  {
+    id: 'venture-x',
+    name: 'Venture X',
+    issuer: 'Capital One',
+    lastFour: '',
+    color: '#0f3460',
+    rewardType: 'miles',
+    baseRate: 2,
+    pointValue: 0.01,
+    categoryMultipliers: {
+      dining: 1, grocery: 1, online: 1, travel: 5, flights: 5,
+      hotels: 10, fuel: 1, entertainment: 1, electronics: 1,
+      health: 1, fashion: 1, utilities: 1, other: 1,
+    },
+    offers: [],
+  },
+  {
+    id: 'citi-aadvantage',
+    name: 'AAdvantage Platinum Select',
+    issuer: 'Citi / American Airlines',
+    lastFour: '',
+    color: '#1a3a4a',
+    rewardType: 'miles',
+    baseRate: 1,
+    pointValue: 0.015,
+    categoryMultipliers: {
+      dining: 2, grocery: 1, online: 1, travel: 1, flights: 2,
+      hotels: 1, fuel: 2, entertainment: 1, electronics: 1,
+      health: 1, fashion: 1, utilities: 1, other: 1,
+    },
+    offers: [],
+  },
+  {
+    id: 'chase-sapphire-reserve',
+    name: 'Sapphire Reserve',
+    issuer: 'Chase',
+    lastFour: '',
+    color: '#2a2a2a',
+    rewardType: 'points',
+    baseRate: 1,
+    pointValue: 0.015,
+    categoryMultipliers: {
+      dining: 3, grocery: 1, online: 1, travel: 3, flights: 3,
+      hotels: 3, fuel: 1, entertainment: 1, electronics: 1,
+      health: 1, fashion: 1, utilities: 1, other: 1,
+    },
+    offers: [],
+  },
+];
+
+/* ──────────────────────────────────────────────
    Init
 ────────────────────────────────────────────── */
 loadState();
+// Seed default cards if storage is empty
+if (state.cards.length === 0) {
+  state.cards = DEFAULT_CARDS;
+  saveState();
+}
 populateCategoryDropdown();
 renderAll();
 </script>
