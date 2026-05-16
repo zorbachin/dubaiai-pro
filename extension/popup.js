@@ -4,14 +4,14 @@
 const CATEGORIES = [
   { id: 'dining',        label: 'Dining' },
   { id: 'grocery',       label: 'Grocery' },
-  { id: 'online',        label: 'Online' },
+  { id: 'online',        label: 'Online Shopping' },
   { id: 'travel',        label: 'Travel' },
   { id: 'flights',       label: 'Flights' },
   { id: 'hotels',        label: 'Hotels' },
-  { id: 'fuel',          label: 'Fuel' },
+  { id: 'fuel',          label: 'Fuel & Transport' },
   { id: 'entertainment', label: 'Entertainment' },
   { id: 'electronics',   label: 'Electronics' },
-  { id: 'health',        label: 'Health' },
+  { id: 'health',        label: 'Health & Pharmacy' },
   { id: 'fashion',       label: 'Fashion' },
   { id: 'utilities',     label: 'Utilities' },
   { id: 'other',         label: 'Other' },
@@ -23,11 +23,75 @@ const CARD_COLORS = [
 ];
 
 const BANK_LABELS = {
-  amex: 'Amex Offers',
-  capitalone: 'Capital One',
-  chase: 'Chase Offers',
-  citi: 'Citi Offers',
+  amex:        'Amex Offers',
+  capitalone:  'Capital One',
+  chase:       'Chase Offers',
+  citi:        'Citi Offers',
 };
+
+// Known shopping/travel sites → auto-fill optimizer
+const SHOPPING_SITES = [
+  // Online retail
+  { host: 'amazon.com',          merchant: 'Amazon',           category: 'online' },
+  { host: 'bestbuy.com',         merchant: 'Best Buy',         category: 'electronics' },
+  { host: 'target.com',          merchant: 'Target',           category: 'grocery' },
+  { host: 'walmart.com',         merchant: 'Walmart',          category: 'grocery' },
+  { host: 'costco.com',          merchant: 'Costco',           category: 'grocery' },
+  { host: 'samsclub.com',        merchant: "Sam's Club",       category: 'grocery' },
+  { host: 'ebay.com',            merchant: 'eBay',             category: 'online' },
+  { host: 'etsy.com',            merchant: 'Etsy',             category: 'online' },
+  { host: 'apple.com',           merchant: 'Apple',            category: 'electronics' },
+  { host: 'samsung.com',         merchant: 'Samsung',          category: 'electronics' },
+  // Airlines
+  { host: 'delta.com',           merchant: 'Delta',            category: 'flights' },
+  { host: 'aa.com',              merchant: 'American Airlines',category: 'flights' },
+  { host: 'united.com',          merchant: 'United',           category: 'flights' },
+  { host: 'southwest.com',       merchant: 'Southwest',        category: 'flights' },
+  { host: 'jetblue.com',         merchant: 'JetBlue',          category: 'flights' },
+  { host: 'spirit.com',          merchant: 'Spirit',           category: 'flights' },
+  // Hotels
+  { host: 'marriott.com',        merchant: 'Marriott',         category: 'hotels' },
+  { host: 'hilton.com',          merchant: 'Hilton',           category: 'hotels' },
+  { host: 'hyatt.com',           merchant: 'Hyatt',            category: 'hotels' },
+  { host: 'ihg.com',             merchant: 'IHG',              category: 'hotels' },
+  { host: 'wyndham.com',         merchant: 'Wyndham',          category: 'hotels' },
+  { host: 'choicehotels.com',    merchant: 'Choice Hotels',    category: 'hotels' },
+  // Travel
+  { host: 'expedia.com',         merchant: 'Expedia',          category: 'travel' },
+  { host: 'booking.com',         merchant: 'Booking.com',      category: 'hotels' },
+  { host: 'airbnb.com',          merchant: 'Airbnb',           category: 'hotels' },
+  { host: 'kayak.com',           merchant: 'Kayak',            category: 'travel' },
+  { host: 'priceline.com',       merchant: 'Priceline',        category: 'travel' },
+  // Dining
+  { host: 'doordash.com',        merchant: 'DoorDash',         category: 'dining' },
+  { host: 'ubereats.com',        merchant: 'Uber Eats',        category: 'dining' },
+  { host: 'grubhub.com',         merchant: 'Grubhub',          category: 'dining' },
+  { host: 'seamless.com',        merchant: 'Seamless',         category: 'dining' },
+  { host: 'opentable.com',       merchant: 'OpenTable',        category: 'dining' },
+  // Transport
+  { host: 'uber.com',            merchant: 'Uber',             category: 'fuel' },
+  { host: 'lyft.com',            merchant: 'Lyft',             category: 'fuel' },
+  // Grocery / Health
+  { host: 'instacart.com',       merchant: 'Instacart',        category: 'grocery' },
+  { host: 'wholefoodsmarket.com',merchant: 'Whole Foods',      category: 'grocery' },
+  { host: 'freshdirect.com',     merchant: 'FreshDirect',      category: 'grocery' },
+  { host: 'cvs.com',             merchant: 'CVS',              category: 'health' },
+  { host: 'walgreens.com',       merchant: 'Walgreens',        category: 'health' },
+  { host: 'riteaid.com',         merchant: 'Rite Aid',         category: 'health' },
+  // Fashion
+  { host: 'nordstrom.com',       merchant: 'Nordstrom',        category: 'fashion' },
+  { host: 'sephora.com',         merchant: 'Sephora',          category: 'fashion' },
+  { host: 'macys.com',           merchant: "Macy's",           category: 'fashion' },
+  { host: 'gap.com',             merchant: 'Gap',              category: 'fashion' },
+  { host: 'nike.com',            merchant: 'Nike',             category: 'fashion' },
+];
+
+function detectShoppingSite(url) {
+  try {
+    const host = new URL(url).hostname.replace(/^www\./, '');
+    return SHOPPING_SITES.find(s => host === s.host || host.endsWith('.' + s.host)) || null;
+  } catch { return null; }
+}
 
 /* ──────────────────────────────────────────────
    State
@@ -35,16 +99,19 @@ const BANK_LABELS = {
 let state = { cards: [] };
 let detectedOffers = [];
 let selectedOfferIndices = new Set();
-let currentBank = null;
 let offerActivated = true;
 let selectedColor = CARD_COLORS[0];
 
 /* ──────────────────────────────────────────────
-   Storage (chrome.storage.local)
+   Storage
 ────────────────────────────────────────────── */
 function loadState(cb) {
   chrome.storage.local.get('cardOfferTracker', (result) => {
     if (result.cardOfferTracker) state = result.cardOfferTracker;
+    // Ensure cards exist (resilient to service worker not having seeded)
+    if (!state.cards || state.cards.length === 0) {
+      chrome.storage.local.set({ cardOfferTracker: state });
+    }
     cb();
   });
 }
@@ -62,29 +129,33 @@ function switchTab(name) {
 }
 
 /* ──────────────────────────────────────────────
-   CRUD helpers
+   Utilities
 ────────────────────────────────────────────── */
 function uid() { return Math.random().toString(36).slice(2) + Date.now().toString(36); }
-
 function today() { return new Date().toISOString().split('T')[0]; }
-
 function daysUntil(d) {
   if (!d) return Infinity;
   return Math.ceil((new Date(d) - new Date(today())) / 86400000);
 }
-
 function formatDate(d) {
   if (!d) return '';
   return new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
+function esc(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
 
+/* ──────────────────────────────────────────────
+   Card / Offer CRUD
+────────────────────────────────────────────── */
 function addCard(card) { card.id = uid(); card.offers = []; state.cards.push(card); }
 function updateCard(id, u) {
   const i = state.cards.findIndex(c => c.id === id);
   if (i !== -1) state.cards[i] = { ...state.cards[i], ...u };
 }
 function deleteCard(id) { state.cards = state.cards.filter(c => c.id !== id); }
-
 function addOffer(cardId, offer) {
   const card = state.cards.find(c => c.id === cardId);
   if (card) { offer.id = uid(); card.offers.push(offer); }
@@ -101,17 +172,18 @@ function deleteOffer(cardId, offerId) {
 }
 
 /* ──────────────────────────────────────────────
-   Card CRUD UI
+   Cards rendering
 ────────────────────────────────────────────── */
 function renderCards() {
   const c = document.getElementById('cardsContainer');
   if (!state.cards.length) {
-    c.innerHTML = `<div class="empty"><div class="empty-icon">💳</div><p>No cards yet. Add one above.</p></div>`;
+    c.innerHTML = `<div class="empty"><div class="empty-icon">💳</div><p>No cards yet.</p></div>`;
+    updateImportCardSelect();
     return;
   }
   c.innerHTML = state.cards.map(card => {
-    const active = (card.offers || []).filter(o => o.activated && daysUntil(o.expiryDate) >= 0).length;
-    const offers = (card.offers || []).map(o => renderOfferRow(card.id, o)).join('');
+    const active = (card.offers||[]).filter(o => o.activated && daysUntil(o.expiryDate) >= 0).length;
+    const offers = (card.offers||[]).map(o => renderOfferRow(card.id, o)).join('');
     const rl = card.rewardType === 'cashback' ? `${card.baseRate}% CB` : `${card.baseRate}× ${card.rewardType}`;
     return `
       <div class="card-widget">
@@ -134,12 +206,7 @@ function renderCards() {
         </div>
       </div>`;
   }).join('');
-
-  // Update import card selector
-  const sel = document.getElementById('importTargetCard');
-  const cur = sel.value;
-  sel.innerHTML = state.cards.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
-  if (cur && state.cards.find(c => c.id === cur)) sel.value = cur;
+  updateImportCardSelect();
 }
 
 function renderOfferRow(cardId, offer) {
@@ -154,7 +221,6 @@ function renderOfferRow(cardId, offer) {
   const valHtml = offer.type === 'percent_off' ? `<span class="offer-val">${offer.value}% OFF</span>`
     : offer.type === 'fixed_off' ? `<span class="offer-val">$${offer.value} OFF</span>`
     : `<span class="offer-val boost">+${offer.value}% CB</span>`;
-
   return `
     <div class="offer-row" style="${!offer.activated || expired ? 'opacity:0.5' : ''}">
       <button class="offer-toggle${offer.activated && !expired ? ' on' : ''}"
@@ -167,6 +233,13 @@ function renderOfferRow(cardId, offer) {
       <button class="btn-icon" onclick="openOfferModal('${cardId}','${offer.id}')">✏</button>
       <button class="btn-icon danger" onclick="doDeleteOffer('${cardId}','${offer.id}')">🗑</button>
     </div>`;
+}
+
+function updateImportCardSelect() {
+  const sel = document.getElementById('importTargetCard');
+  const cur = sel.value;
+  sel.innerHTML = state.cards.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  if (cur && state.cards.find(c => c.id === cur)) sel.value = cur;
 }
 
 function toggleCard(id) {
@@ -205,7 +278,6 @@ function buildColorPicker() {
     <div class="color-swatch${c === selectedColor ? ' selected' : ''}"
       style="background:${c}" onclick="pickColor('${c}')"></div>`).join('');
 }
-
 function pickColor(c) { selectedColor = c; buildColorPicker(); }
 
 function buildMultGrid() {
@@ -225,7 +297,6 @@ function openCardModal(cardId) {
   selectedColor = CARD_COLORS[0];
   buildColorPicker();
   buildMultGrid();
-
   document.getElementById('cardId').value = cardId || '';
   document.getElementById('cardModalTitle').textContent = cardId ? 'Edit Card' : 'Add Card';
 
@@ -239,8 +310,7 @@ function openCardModal(cardId) {
       document.getElementById('cardBaseRate').value = card.baseRate || '';
       document.getElementById('cardPointValue').value = card.pointValue || '';
       selectedColor = card.color || CARD_COLORS[0];
-      buildColorPicker();
-      togglePointVal();
+      buildColorPicker(); togglePointVal();
       const m = card.categoryMultipliers || {};
       CATEGORIES.forEach(cat => {
         const el = document.getElementById(`m-${cat.id}`);
@@ -268,8 +338,7 @@ function saveCard() {
     mults[cat.id] = isNaN(v) ? 1 : v;
   });
   const data = {
-    name,
-    issuer: document.getElementById('cardIssuer').value.trim(),
+    name, issuer: document.getElementById('cardIssuer').value.trim(),
     lastFour: document.getElementById('cardLastFour').value.replace(/\D/g,'').slice(0,4),
     color: selectedColor,
     rewardType: document.getElementById('cardRewardType').value,
@@ -293,11 +362,9 @@ function buildCatPills(selected) {
       ${cat.label}
     </label>`).join('');
 }
-
 function flipPill(id, checked) {
   document.getElementById(`pill-${id}`)?.classList.toggle('checked', checked);
 }
-
 function flipActivated() {
   offerActivated = !offerActivated;
   document.getElementById('offerActivatedToggle').classList.toggle('on', offerActivated);
@@ -342,12 +409,10 @@ function openOfferModal(cardId, offerId, prefill) {
     document.getElementById('offerExpiry').value = '';
     buildCatPills([]);
   }
-
   document.getElementById('offerActivatedToggle').classList.toggle('on', offerActivated);
   document.getElementById('offerActivatedLabel').textContent = offerActivated ? 'Activated' : 'Not activated';
   document.getElementById('offerModal').classList.add('open');
 }
-
 function closeOfferModal() { document.getElementById('offerModal').classList.remove('open'); }
 
 function saveOffer() {
@@ -380,16 +445,16 @@ function scanPage() {
   btn.disabled = true;
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    if (!tabs[0]) { btn.textContent = '🔍 Scan Current Page'; btn.disabled = false; return; }
+    if (!tabs[0]) { btn.textContent = '🔍 Scan Page'; btn.disabled = false; return; }
 
     chrome.tabs.sendMessage(tabs[0].id, { type: 'SCRAPE_OFFERS' }, (resp) => {
-      btn.textContent = '🔍 Scan Current Page';
+      btn.textContent = '🔍 Scan Page';
       btn.disabled = false;
 
       if (chrome.runtime.lastError || !resp) {
         showImportStatus('error',
           'Cannot scan this page',
-          'Go to your bank\'s offers page (Amex, Capital One, Chase, or Citi) first, then try again.');
+          'Navigate to your bank\'s offers section (Amex, Capital One, Chase, or Citi), then try again.');
         return;
       }
 
@@ -398,8 +463,8 @@ function scanPage() {
 
       if (detectedOffers.length === 0) {
         showImportStatus('empty',
-          'No offers detected on this page',
-          'Try navigating to the offers/rewards section of your bank\'s website.');
+          'No offers detected',
+          'Try scrolling down so all offers are visible on the page, then scan again.');
       } else {
         renderDetectedOffers();
       }
@@ -409,6 +474,7 @@ function scanPage() {
 
 function showImportStatus(type, title, sub) {
   const icons = { error: '⚠️', empty: '🔍', ok: '✓' };
+  document.getElementById('importStatus').style.display = '';
   document.getElementById('importStatus').innerHTML = `
     <div class="import-status-icon">${icons[type] || '💳'}</div>
     <div class="import-status-title">${esc(title)}</div>
@@ -420,7 +486,8 @@ function renderDetectedOffers() {
   document.getElementById('importStatus').style.display = 'none';
   const section = document.getElementById('detectedOffersSection');
   section.style.display = '';
-  document.getElementById('detectedCount').textContent = `${detectedOffers.length} offer${detectedOffers.length !== 1 ? 's' : ''} found`;
+  document.getElementById('detectedCount').textContent =
+    `${detectedOffers.length} offer${detectedOffers.length !== 1 ? 's' : ''} found`;
 
   const badge = document.getElementById('importBadge');
   badge.style.display = detectedOffers.length ? '' : 'none';
@@ -439,7 +506,7 @@ function renderDetectedOffers() {
         <div class="detected-offer-info">
           <div class="detected-offer-merchant">${esc(o.merchant || 'Offer')}</div>
           <div class="detected-offer-value">${valLabel}${minLabel}${expLabel}</div>
-          ${o.activated ? `<span class="detected-offer-activated">✓ Activated</span>` : ''}
+          ${o.activated ? `<span class="detected-offer-activated">✓ Activated on card</span>` : ''}
           <div class="detected-offer-raw">${esc(o.rawText || '')}</div>
         </div>
       </div>`;
@@ -451,7 +518,7 @@ function toggleOfferSelect(i) {
   else selectedOfferIndices.add(i);
   const el = document.getElementById(`do-${i}`);
   el?.classList.toggle('selected', selectedOfferIndices.has(i));
-  el.querySelector('.detected-offer-check').textContent = selectedOfferIndices.has(i) ? '✓' : '';
+  if (el) el.querySelector('.detected-offer-check').textContent = selectedOfferIndices.has(i) ? '✓' : '';
 }
 
 function selectAllOffers() {
@@ -462,53 +529,59 @@ function selectAllOffers() {
 function importSelected() {
   const cardId = document.getElementById('importTargetCard').value;
   if (!cardId) { toast('Select a card first', 'error'); return; }
-
   const toImport = [...selectedOfferIndices].map(i => detectedOffers[i]).filter(Boolean);
-  if (toImport.length === 0) { toast('Nothing selected', 'error'); return; }
-
+  if (!toImport.length) { toast('Nothing selected', 'error'); return; }
   toImport.forEach(o => addOffer(cardId, { ...o, id: undefined }));
-
   saveState(() => {
     renderCards();
     toast(`✓ Imported ${toImport.length} offer${toImport.length !== 1 ? 's' : ''}`, 'success');
-    document.getElementById('detectedOffersSection').style.display = 'none';
-    document.getElementById('importStatus').style.display = '';
-    showImportStatus('ok', `${toImport.length} offers imported`, 'Check "My Cards" tab to review.');
-    detectedOffers = [];
-    selectedOfferIndices.clear();
+    detectedOffers = []; selectedOfferIndices.clear();
     document.getElementById('importBadge').style.display = 'none';
+    showImportStatus('ok', `${toImport.length} offers imported`, 'Go to "My Cards" to review.');
     switchTab('cards');
   });
 }
 
 /* ──────────────────────────────────────────────
-   Bank detection (from content script)
+   Shopping site auto-detection
 ────────────────────────────────────────────── */
-chrome.runtime.onMessage.addListener((msg) => {
-  if (msg.type === 'BANK_DETECTED' && msg.bank) {
-    currentBank = msg.bank;
-    const badge = document.getElementById('bankBadge');
-    badge.style.display = '';
-    badge.textContent = BANK_LABELS[msg.bank] || msg.bank;
-  }
-});
+function checkShoppingSite(url) {
+  const site = detectShoppingSite(url);
+  const banner = document.getElementById('shoppingBanner');
+  if (!site || !state.cards.length) { banner.style.display = 'none'; return; }
 
-// Check active tab immediately when popup opens
-chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-  if (!tabs[0]) return;
-  const url = tabs[0].url || '';
-  const bank = url.includes('americanexpress') ? 'amex'
-    : url.includes('capitalone') ? 'capitalone'
-    : url.includes('chase') ? 'chase'
-    : url.includes('citi') ? 'citi'
-    : null;
-  if (bank) {
-    currentBank = bank;
-    const badge = document.getElementById('bankBadge');
-    badge.style.display = '';
-    badge.textContent = BANK_LABELS[bank];
-  }
-});
+  const results = state.cards
+    .map(card => ({ card, ...calcCard(card, site.merchant, site.category, 0) }))
+    .sort((a, b) => b.rate - a.rate); // sort by earn rate since we don't have an amount
+
+  const best = results[0];
+  const catLabel = CATEGORIES.find(c => c.id === site.category)?.label || site.category;
+
+  banner.style.display = '';
+  banner.innerHTML = `
+    <div class="shopping-banner-inner">
+      <div class="shopping-banner-left">
+        <div class="shopping-banner-site">${esc(site.merchant)}</div>
+        <div class="shopping-banner-cat">${esc(catLabel)}</div>
+      </div>
+      <div class="shopping-banner-card">
+        <div class="shopping-chip" style="background:${best.card.color||'#1a2456'}">💳</div>
+        <div>
+          <div class="shopping-card-name">${esc(best.card.name)}</div>
+          <div class="shopping-card-rate">${best.rate.toFixed(1)}× ${best.card.rewardType}</div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="preloadOptimizer('${esc(site.merchant)}','${site.category}')">
+        Optimize →
+      </button>
+    </div>`;
+}
+
+function preloadOptimizer(merchant, category) {
+  document.getElementById('optMerchant').value = merchant;
+  document.getElementById('optCategory').value = category;
+  switchTab('optimizer');
+}
 
 /* ──────────────────────────────────────────────
    Optimizer
@@ -521,47 +594,32 @@ function populateCatDropdown() {
 
 function calcCard(card, merchant, category, amount) {
   const expired = o => o.expiryDate && daysUntil(o.expiryDate) < 0;
-
   let bestSaving = 0, bestOffer = null;
   for (const o of (card.offers || [])) {
     if (!o.activated || expired(o)) continue;
-    const mMatch = !o.merchant
-      || o.merchant.toLowerCase().includes(merchant.toLowerCase())
-      || merchant.toLowerCase().includes(o.merchant.toLowerCase());
+    const mMatch = !o.merchant || merchant.toLowerCase().includes(o.merchant.toLowerCase())
+      || o.merchant.toLowerCase().includes(merchant.toLowerCase());
     const cMatch = !o.categories?.length || o.categories.includes(category);
-    if (!mMatch || !cMatch) continue;
-    if (amount < (o.minSpend || 0)) continue;
+    if (!mMatch || !cMatch || amount < (o.minSpend || 0)) continue;
     let s = 0;
-    if (o.type === 'percent_off') {
-      s = amount * o.value / 100;
-      if (o.maxDiscount) s = Math.min(s, o.maxDiscount);
-    } else if (o.type === 'fixed_off') {
-      s = o.value;
-    } else {
-      s = amount * o.value / 100;
-    }
+    if (o.type === 'percent_off') { s = amount * o.value / 100; if (o.maxDiscount) s = Math.min(s, o.maxDiscount); }
+    else if (o.type === 'fixed_off') { s = o.value; }
+    else { s = amount * o.value / 100; }
     if (s > bestSaving) { bestSaving = s; bestOffer = o; }
   }
-
   const mult = card.categoryMultipliers?.[category] ?? 1;
   const rate = (card.baseRate || 0) * mult;
   const rewardVal = card.rewardType === 'cashback'
     ? amount * rate / 100
     : amount * rate * (card.pointValue || 0.015);
-
-  return {
-    offerSaving: bestSaving, offer: bestOffer,
-    rewardVal, rate, mult,
-    total: bestSaving + rewardVal,
-    effective: amount - bestSaving - rewardVal,
-  };
+  return { offerSaving: bestSaving, offer: bestOffer, rewardVal, rate, mult,
+    total: bestSaving + rewardVal, effective: amount - bestSaving - rewardVal };
 }
 
 function runOptimizer() {
   const merchant = document.getElementById('optMerchant').value.trim();
   const amount = parseFloat(document.getElementById('optAmount').value);
   const category = document.getElementById('optCategory').value;
-
   if (!amount || isNaN(amount)) { toast('Enter amount', 'error'); return; }
   if (!category) { toast('Select category', 'error'); return; }
   if (!state.cards.length) { toast('Add a card first', 'error'); return; }
@@ -570,33 +628,70 @@ function runOptimizer() {
     .map(card => ({ card, ...calcCard(card, merchant, category, amount) }))
     .sort((a, b) => b.total - a.total);
 
-  const container = document.getElementById('optimizerResults');
-  container.innerHTML = `<div class="results">${results.map((r, i) => {
-    const rank = i + 1;
-    const rankClass = rank === 1 ? 'rank-1' : rank === 2 ? 'rank-2' : 'rank-other';
-    const parts = [];
-    if (r.offerSaving > 0) parts.push(`<span class="s">Offer −$${r.offerSaving.toFixed(2)}</span>`);
-    if (r.rewardVal > 0) parts.push(`<span class="r">${r.card.rewardType} $${r.rewardVal.toFixed(2)}</span>`);
-    return `
-      <div class="result-item${rank === 1 ? ' best' : ''}">
-        <div class="result-rank ${rankClass}">${rank}</div>
-        <div class="result-chip" style="background:${r.card.color||'#1a2456'}">💳</div>
-        <div class="result-info">
-          <div class="result-name">${esc(r.card.name)}</div>
-          <div class="result-breakdown">${parts.join(' · ') || '<span style="color:var(--gray-400)">Base only</span>'}</div>
-        </div>
-        <div class="result-price">
-          <div class="result-final">$${r.effective.toFixed(2)}</div>
-          ${r.total > 0
-            ? `<div class="result-save">Save $${r.total.toFixed(2)}</div>`
-            : `<div class="result-nosave">No savings</div>`}
-        </div>
-      </div>`;
-  }).join('')}</div>`;
+  document.getElementById('optimizerResults').innerHTML = `
+    <div class="results">${results.map((r, i) => {
+      const rank = i + 1;
+      const rc = rank === 1 ? 'rank-1' : rank === 2 ? 'rank-2' : 'rank-other';
+      const parts = [];
+      if (r.offerSaving > 0) parts.push(`<span class="s">Offer −$${r.offerSaving.toFixed(2)}</span>`);
+      if (r.rewardVal > 0) parts.push(`<span class="r">${r.card.rewardType} $${r.rewardVal.toFixed(2)}</span>`);
+      return `
+        <div class="result-item${rank===1?' best':''}">
+          <div class="result-rank ${rc}">${rank}</div>
+          <div class="result-chip" style="background:${r.card.color||'#1a2456'}">💳</div>
+          <div class="result-info">
+            <div class="result-name">${esc(r.card.name)}</div>
+            <div class="result-breakdown">${parts.join(' · ')||'<span style="color:var(--gray-400)">Base rate only</span>'}</div>
+          </div>
+          <div class="result-price">
+            <div class="result-final">$${r.effective.toFixed(2)}</div>
+            ${r.total>0?`<div class="result-save">Save $${r.total.toFixed(2)}</div>`:`<div class="result-nosave">No savings</div>`}
+          </div>
+        </div>`;
+    }).join('')}</div>`;
 }
 
 /* ──────────────────────────────────────────────
-   Toast & escape
+   Export / Import JSON
+────────────────────────────────────────────── */
+function exportData() {
+  const json = JSON.stringify(state, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'card-offers-backup.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('Data exported', 'success');
+}
+
+function importData() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = evt => {
+      try {
+        const data = JSON.parse(evt.target.result);
+        if (!data.cards || !Array.isArray(data.cards)) throw new Error('Invalid format');
+        if (!confirm(`Import ${data.cards.length} card(s)? This will replace your current data.`)) return;
+        state = data;
+        saveState(() => { renderCards(); toast(`✓ Imported ${data.cards.length} cards`, 'success'); });
+      } catch (err) {
+        toast('Invalid file', 'error');
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+/* ──────────────────────────────────────────────
+   Toast
 ────────────────────────────────────────────── */
 function toast(msg, type = 'success') {
   const el = document.createElement('div');
@@ -606,23 +701,14 @@ function toast(msg, type = 'success') {
   setTimeout(() => el.remove(), 2800);
 }
 
-function esc(s) {
-  return String(s || '')
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
-
 /* ──────────────────────────────────────────────
-   Modal close on backdrop
+   Modal close
 ────────────────────────────────────────────── */
 ['cardModal','offerModal'].forEach(id => {
   document.getElementById(id).addEventListener('click', e => {
-    if (e.target.id === id) {
-      id === 'cardModal' ? closeCardModal() : closeOfferModal();
-    }
+    if (e.target.id === id) id === 'cardModal' ? closeCardModal() : closeOfferModal();
   });
 });
-
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeCardModal(); closeOfferModal(); }
 });
@@ -633,4 +719,35 @@ document.addEventListener('keydown', e => {
 loadState(() => {
   populateCatDropdown();
   renderCards();
+
+  // Detect active tab — check for bank OR shopping site
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (!tabs[0]) return;
+    const url = tabs[0].url || '';
+
+    // Bank detection (read from session storage written by background.js)
+    chrome.storage.session.get('detectedBank', (result) => {
+      const db = result.detectedBank;
+      if (db && db.tabId === tabs[0].id && db.bank) {
+        const badge = document.getElementById('bankBadge');
+        badge.style.display = '';
+        badge.textContent = BANK_LABELS[db.bank] || db.bank;
+      }
+    });
+
+    // Fallback: detect bank from URL directly (for when popup opens before content script fires)
+    const bankFromUrl = url.includes('americanexpress') ? 'amex'
+      : url.includes('capitalone') ? 'capitalone'
+      : url.includes('chase') ? 'chase'
+      : url.includes('citi') ? 'citi'
+      : null;
+    if (bankFromUrl) {
+      const badge = document.getElementById('bankBadge');
+      badge.style.display = '';
+      badge.textContent = BANK_LABELS[bankFromUrl];
+    }
+
+    // Shopping site detection
+    checkShoppingSite(url);
+  });
 });

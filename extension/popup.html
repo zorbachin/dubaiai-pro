@@ -308,6 +308,32 @@
     .result-save { font-size: 11px; color: var(--green); font-weight: 600; }
     .result-nosave { font-size: 11px; color: var(--gray-400); }
 
+    /* ── Shopping site banner ── */
+    .shopping-banner {
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      display: none;
+      flex-shrink: 0;
+    }
+    .shopping-banner-inner {
+      padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .shopping-banner-left { flex: 1; min-width: 0; }
+    .shopping-banner-site { font-size: 13px; font-weight: 700; color: var(--white); }
+    .shopping-banner-cat { font-size: 11px; color: var(--gray-400); }
+    .shopping-banner-card {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.08);
+      padding: 5px 8px; border-radius: 8px;
+    }
+    .shopping-chip {
+      width: 24px; height: 16px; border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; flex-shrink: 0;
+    }
+    .shopping-card-name { font-size: 11px; font-weight: 600; color: var(--white); white-space: nowrap; }
+    .shopping-card-rate { font-size: 10px; color: var(--gold); }
+
     /* ── Section helpers ── */
     .section-row {
       display: flex; align-items: center; justify-content: space-between;
@@ -437,6 +463,8 @@
   <span class="header-bank-badge" id="bankBadge" style="display:none"></span>
 </div>
 
+<div class="shopping-banner" id="shoppingBanner"></div>
+
 <div class="tabs">
   <div class="tab active" data-tab="import" onclick="switchTab('import')">
     Import Offers <span class="tab-badge" id="importBadge" style="display:none">0</span>
@@ -483,7 +511,11 @@
     <div class="cards-panel">
       <div class="section-row">
         <span class="section-title">My Cards</span>
-        <button class="btn btn-primary btn-sm" onclick="openCardModal()">+ Card</button>
+        <div style="display:flex;gap:5px">
+          <button class="btn btn-ghost btn-sm" onclick="importData()" title="Import JSON">↑</button>
+          <button class="btn btn-ghost btn-sm" onclick="exportData()" title="Export JSON">↓</button>
+          <button class="btn btn-primary btn-sm" onclick="openCardModal()">+ Card</button>
+        </div>
       </div>
       <div id="cardsContainer"></div>
     </div>

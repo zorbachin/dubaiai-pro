@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Card Offer Tracker",
   "version": "1.0.0",
-  antml:parameter"description": "Track activated credit card offers and find the best card for every purchase.",
+  "description": "Track activated credit card offers and find the best card for every purchase.",
   "action": {
     "default_popup": "popup.html",
     "default_title": "Card Offer Tracker"
@@ -23,7 +23,7 @@
       "run_at": "document_idle"
     }
   ],
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "host_permissions": [
     "*://*.americanexpress.com/*",
     "*://*.capitalone.com/*",
