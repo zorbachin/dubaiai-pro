@@ -6,7 +6,10 @@
     "dev": "remotion studio",
     "render": "remotion render Video out/five-ai-things.mp4 --concurrency=1",
     "render-vertical": "remotion render Video out/five-ai-things-vertical.mp4 --props='{\"aspect\":\"9:16\"}'",
-    "still": "remotion still Video out/thumb.png --frame=15"
+    "render-promo": "remotion render Promo out/buildyourbot-promo.mp4 --concurrency=1",
+    "render-promo-short": "remotion render PromoShort out/buildyourbot-promo-short.mp4 --concurrency=1",
+    "still": "remotion still Video out/thumb.png --frame=15",
+    "still-promo": "remotion still Promo out/promo-thumb.png --frame=20"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.196",

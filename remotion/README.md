@@ -1,7 +1,9 @@
-# Five AI Things — Remotion video project
+# Remotion video projects
 
-A 2-minute, 9:16 (and 16:9) cinematic short, programmatic from React.
-Title: **"5 AI Things You're Too Scared To Try (For No Reason)"**.
+Two end-to-end programmatic videos in a single project:
+
+1. **"5 AI Things You're Too Scared To Try"** — 2:00 cinematic short (9:16 + 16:9)
+2. **buildyourbot.io promo** — 0:60 YouTube ad (16:9 + 9:16). See `PROMO_SCRIPT.md`.
 
 ## What's in the box
 
@@ -34,6 +36,13 @@ npx remotion render VideoLandscape out/video-landscape.mp4 --props='{"audio":tru
 
 # poster frame
 npx remotion still Video out/thumb.png --frame=15
+
+# buildyourbot.io 60s YouTube promo (16:9)
+npx remotion render Promo out/buildyourbot-promo.mp4
+npx remotion render Promo out/buildyourbot-promo.mp4 --props='{"audio":true}'
+
+# 9:16 short version for Shorts / Reels / TikTok
+npx remotion render PromoShort out/buildyourbot-promo-short.mp4
 ```
 
 ## Files
