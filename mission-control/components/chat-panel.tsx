@@ -12,11 +12,14 @@ import {
   RefreshCw,
   Paperclip,
   Square,
+  Mic,
+  MicOff,
 } from "lucide-react";
 import { AGENTS, getAgent } from "@/lib/mock";
 import type { Agent, Message } from "@/lib/types";
 import { AgentAvatar } from "./agent-avatar";
 import { PulseDot } from "./pulse-dot";
+import { useSpeechRecognition } from "@/lib/use-speech";
 
 type Props = {
   agentId: string;
@@ -454,16 +457,46 @@ function Composer({
   agent,
 }: {
   input: string;
-  setInput: (v: string) => void;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
   textareaRef: React.RefObject<HTMLTextAreaElement | null>;
   streaming: boolean;
   onSend: () => void;
   onStop: () => void;
   agent: Agent;
 }) {
+  const speech = useSpeechRecognition({
+    onFinal: (text) => {
+      setInput((prev) => {
+        const trimmed = text.trim();
+        if (!trimmed) return prev;
+        const sep = prev && !prev.endsWith(" ") && !prev.endsWith("\n") ? " " : "";
+        return prev + sep + trimmed;
+      });
+      requestAnimationFrame(() => textareaRef.current?.focus());
+    },
+  });
+
+  const listening = speech.status === "listening";
+  const denied = speech.status === "denied";
+  const unsupported = speech.status === "unsupported";
+
+  const micTitle = unsupported
+    ? "Voice input not supported in this browser"
+    : denied
+    ? "Microphone permission denied — enable it in your browser settings"
+    : listening
+    ? "Stop listening"
+    : "Voice input · click and speak";
+
   return (
     <div className="border-t border-white/5 px-3 pb-3 pt-2">
-      <div className="flex items-end gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-2 transition focus-within:border-cyan-400/40 focus-within:bg-white/[0.05]">
+      <div
+        className={`flex items-end gap-2 rounded-2xl border bg-white/[0.03] p-2 transition focus-within:bg-white/[0.05] ${
+          listening
+            ? "border-rose-400/40 focus-within:border-rose-400/50"
+            : "border-white/10 focus-within:border-cyan-400/40"
+        }`}
+      >
         <button
           className="grid h-9 w-9 place-items-center rounded-lg text-[color:var(--color-ink-mute)] transition hover:text-white"
           title="Attach"
@@ -476,20 +509,62 @@ function Composer({
         >
           <Sparkles className="h-4 w-4" />
         </button>
-        <textarea
-          ref={textareaRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              onSend();
-            }
-          }}
-          placeholder={`Message ${agent.name}…`}
-          rows={1}
-          className="max-h-48 flex-1 resize-none bg-transparent px-1 py-2 text-[14px] outline-none placeholder:text-[color:var(--color-ink-mute)]"
-        />
+
+        <button
+          onClick={speech.toggle}
+          disabled={unsupported || denied}
+          title={micTitle}
+          aria-label={micTitle}
+          aria-pressed={listening}
+          className={`relative grid h-9 w-9 place-items-center rounded-lg border transition disabled:cursor-not-allowed disabled:opacity-30 ${
+            listening
+              ? "border-rose-400/50 bg-rose-500/15 text-rose-200 shadow-[0_0_22px_rgba(251,113,133,0.45)]"
+              : denied
+              ? "border-rose-400/20 bg-rose-500/5 text-rose-300/60"
+              : "border-transparent text-[color:var(--color-ink-mute)] hover:border-white/10 hover:bg-white/[0.04] hover:text-white"
+          }`}
+        >
+          {listening && (
+            <>
+              <span className="pointer-events-none absolute inset-0 rounded-lg bg-rose-400/30 animate-ping" />
+              <span className="pointer-events-none absolute -inset-1 rounded-xl bg-rose-400/10 blur-md" />
+            </>
+          )}
+          {denied || unsupported ? (
+            <MicOff className="relative h-4 w-4" />
+          ) : (
+            <Mic className="relative h-4 w-4" />
+          )}
+        </button>
+
+        <div className="relative flex-1">
+          <textarea
+            ref={textareaRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Escape" && listening) {
+                e.preventDefault();
+                speech.stop();
+                return;
+              }
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                onSend();
+              }
+            }}
+            placeholder={listening ? "Listening…" : `Message ${agent.name}…`}
+            rows={1}
+            className="max-h-48 w-full resize-none bg-transparent px-1 py-2 text-[14px] outline-none placeholder:text-[color:var(--color-ink-mute)]"
+          />
+          {listening && speech.interim && (
+            <div className="pointer-events-none px-1 pb-1 text-[13px] italic text-rose-200/80">
+              <span className="opacity-60">…</span>
+              {speech.interim}
+            </div>
+          )}
+        </div>
+
         {streaming ? (
           <button
             onClick={onStop}
@@ -509,13 +584,43 @@ function Composer({
           </button>
         )}
       </div>
-      <div className="mt-1.5 flex items-center justify-between px-2 font-mono text-[10px] text-[color:var(--color-ink-mute)]">
-        <span>↵ send · ⇧↵ newline · esc stop</span>
+      <div className="mt-1.5 flex items-center justify-between gap-3 px-2 font-mono text-[10px] text-[color:var(--color-ink-mute)]">
+        {listening ? (
+          <span className="flex items-center gap-2 text-rose-300/90">
+            <VoiceWave />
+            <span className="uppercase tracking-[0.18em]">listening · esc to stop</span>
+          </span>
+        ) : denied ? (
+          <span className="text-rose-300/70">
+            mic blocked · allow access in your browser site settings
+          </span>
+        ) : unsupported ? (
+          <span className="text-[color:var(--color-ink-mute)]">
+            voice unsupported in this browser · try Chrome, Edge, or Safari
+          </span>
+        ) : (
+          <span>↵ send · ⇧↵ newline · mic to dictate</span>
+        )}
         <span className="hidden sm:inline">
           connected · <span className="text-cyan-300/80">{agent.model}</span>
         </span>
       </div>
     </div>
+  );
+}
+
+function VoiceWave() {
+  return (
+    <span className="inline-flex items-end gap-[2px]">
+      {[0.1, 0.35, 0.05, 0.25, 0.15].map((d, i) => (
+        <motion.span
+          key={i}
+          className="block w-[2px] rounded-full bg-rose-400"
+          animate={{ height: [4, 12, 4] }}
+          transition={{ duration: 0.7, repeat: Infinity, delay: d, ease: "easeInOut" }}
+        />
+      ))}
+    </span>
   );
 }
 
