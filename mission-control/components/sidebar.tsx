@@ -10,6 +10,8 @@ import {
   Activity,
   ScrollText,
   Sparkles,
+  Target,
+  BookText,
 } from "lucide-react";
 import { AGENTS } from "@/lib/mock";
 import { AgentAvatar } from "./agent-avatar";
@@ -19,6 +21,8 @@ const nav = [
   { href: "/", label: "Mission Control", icon: LayoutDashboard, hint: "Overview" },
   { href: "/agents", label: "Agents", icon: Bot, hint: "Fleet" },
   { href: "/chat", label: "Chat", icon: MessageSquare, hint: "Direct" },
+  { href: "/goals", label: "Goals", icon: Target, hint: "Track" },
+  { href: "/journal", label: "Journal", icon: BookText, hint: "Daily" },
   { href: "/systems", label: "Systems", icon: Activity, hint: "Monitor" },
   { href: "/logs", label: "Activity", icon: ScrollText, hint: "Stream" },
 ];

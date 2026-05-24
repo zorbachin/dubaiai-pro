@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Command, Search, Bell, Cpu } from "lucide-react";
 import { motion } from "framer-motion";
+import { VaultBadge } from "./vault-badge";
 
 export function Topbar() {
   const [now, setNow] = useState<Date | null>(null);
@@ -39,6 +40,8 @@ export function Topbar() {
         <Telemetry label="LAT" value="48ms" tone="emerald" />
         <Telemetry label="TOK/S" value="12.4k" tone="cyan" />
         <Telemetry label="CTX" value="63%" tone="violet" />
+
+        <VaultBadge />
 
         <div className="hidden h-8 w-px bg-white/10 sm:block" />
 

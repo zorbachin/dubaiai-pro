@@ -72,6 +72,14 @@ export function ChatPanel({ agentId, fillHeight = true }: Props) {
     setStreaming(true);
     setError(null);
 
+    persistToVault({
+      agentId: agent.id,
+      agentName: agent.name,
+      model: agent.model,
+      role: "user",
+      content: text,
+    });
+
     const assistantId = crypto.randomUUID();
     setMessages((m) => [
       ...m,
@@ -125,6 +133,16 @@ export function ChatPanel({ agentId, fillHeight = true }: Props) {
             /* ignore */
           }
         }
+      }
+
+      if (full.trim().length > 0) {
+        persistToVault({
+          agentId: agent.id,
+          agentName: agent.name,
+          model: agent.model,
+          role: "assistant",
+          content: full,
+        });
       }
     } catch (e: unknown) {
       if ((e as Error)?.name === "AbortError") return;
@@ -650,6 +668,23 @@ function groupMessages(messages: Message[]): Group[] {
 
 function timeLabel(ts: number) {
   return new Date(ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
+
+function persistToVault(payload: {
+  agentId: string;
+  agentName: string;
+  model: string;
+  role: "user" | "assistant";
+  content: string;
+}) {
+  fetch("/api/vault/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+    keepalive: true,
+  }).catch(() => {
+    /* best-effort — vault sync is optional */
+  });
 }
 
 function dayLabel(ts: number) {
