@@ -18,6 +18,32 @@ const rise = {
   transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
 };
 
+const lineVar = {
+  hidden: { opacity: 0, y: 44, filter: "blur(12px)" },
+  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { type: "spring" as const, damping: 13, stiffness: 170 } },
+};
+
+function CountUp({ to }: { to: number }) {
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const start = performance.now();
+    const dur = 1000;
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setN(Math.round(eased * to));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    const delay = setTimeout(() => (raf = requestAnimationFrame(tick)), 500);
+    return () => {
+      clearTimeout(delay);
+      cancelAnimationFrame(raf);
+    };
+  }, [to]);
+  return <span className="data-num">{n}</span>;
+}
+
 function Beat({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <section className={`flex min-h-full snap-start snap-always flex-col items-center justify-center px-6 py-16 text-center ${className}`}>
@@ -67,25 +93,54 @@ export default function Scroll() {
       />
 
       <div className="relative h-[calc(100dvh-58px)] snap-y snap-mandatory overflow-y-auto overflow-x-hidden scroll-smooth">
-        {/* 1 — Greeting */}
+        {/* 1 — Greeting (cinematic ignition) */}
         <Beat>
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="font-mono text-[11px] uppercase tracking-[0.4em] text-cyan-300/80">{m.date || "Today"}</div>
+          {/* one-time light bloom behind the name */}
+          <motion.div
+            aria-hidden
+            initial={{ opacity: 0, scale: 0.3 }}
+            animate={{ opacity: [0, 0.6, 0.28], scale: [0.3, 1.5, 1.15] }}
+            transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+            className="pointer-events-none absolute h-[540px] w-[540px] rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.4),rgba(124,58,237,0.2)_45%,transparent_70%)] blur-2xl"
+          />
+          {/* light sweep across the name */}
+          <motion.div
+            aria-hidden
+            initial={{ x: "-130%", opacity: 0 }}
+            animate={{ x: "130%", opacity: [0, 0.7, 0] }}
+            transition={{ duration: 1.3, delay: 0.7, ease: "easeInOut" }}
+            className="pointer-events-none absolute top-1/2 h-40 w-1/3 -translate-y-1/2 rotate-12 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-xl"
+          />
+          <motion.div
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.16, delayChildren: 0.12 } } }}
+            initial="hidden"
+            animate="show"
+            className="relative"
+          >
+            <motion.div variants={lineVar} className="font-mono text-[11px] uppercase tracking-[0.4em] text-cyan-300/80">
+              {m.date || "Today"}
+            </motion.div>
             <h1 className="mt-6 font-display text-[44px] font-semibold leading-[1.04] tracking-tight sm:text-[72px]">
-              <span className="text-grad-cyan">{greeting},</span>
-              <br />
-              <span className="text-white">Zorba.</span>
+              <motion.span variants={lineVar} className="block text-grad-cyan">{greeting},</motion.span>
+              <motion.span variants={lineVar} className="block text-white">Zorba.</motion.span>
             </h1>
-            <div className="mt-8 font-mono text-[12px] uppercase tracking-[0.25em] text-[color:var(--color-ink-mute)]">
-              {awaitingYou.length} awaiting · {drafts.length} drafts ready
-            </div>
+            <motion.div variants={lineVar} className="mt-8 font-mono text-[12px] uppercase tracking-[0.25em] text-[color:var(--color-ink-mute)]">
+              <CountUp to={awaitingYou.length} /> awaiting · <CountUp to={drafts.length} /> drafts ready
+            </motion.div>
           </motion.div>
           <motion.div
-            animate={{ y: [0, 10, 0], opacity: [0.4, 1, 0.4] }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-8 text-[color:var(--color-ink-mute)]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="absolute bottom-8"
           >
-            <ChevronDown className="h-6 w-6" />
+            <motion.div
+              animate={{ y: [0, 10, 0], opacity: [0.4, 1, 0.4] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+              className="text-[color:var(--color-ink-mute)]"
+            >
+              <ChevronDown className="h-6 w-6" />
+            </motion.div>
           </motion.div>
         </Beat>
 
