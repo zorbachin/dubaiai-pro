@@ -125,16 +125,9 @@ export default function AgentDetailPage({
                 value={editablePrompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 rows={6}
-                className="w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 font-mono text-[12.5px] leading-relaxed text-[color:var(--color-ink)] outline-none transition focus:border-cyan-400/40"
+                readOnly
+                className="w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 font-mono text-[12.5px] leading-relaxed text-[color:var(--color-ink-dim)] outline-none"
               />
-              <div className="mt-3 flex items-center justify-between">
-                <span className="font-mono text-[10px] text-[color:var(--color-ink-mute)]">
-                  changes are local · wire to your runtime in <code>app/api/chat/route.ts</code>
-                </span>
-                <button className="rounded-lg border border-cyan-400/40 bg-gradient-to-br from-cyan-400/20 to-violet-500/20 px-4 py-1.5 text-xs font-medium text-white">
-                  Save
-                </button>
-              </div>
             </div>
           </div>
 
