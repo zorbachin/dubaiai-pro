@@ -14,12 +14,14 @@ import {
   Target,
   BookText,
   Radar,
+  Sunrise,
   Menu,
   X,
   Sparkles,
 } from "lucide-react";
 
 const nav = [
+  { href: "/morning", label: "Morning", icon: Sunrise },
   { href: "/", label: "Mission Control", icon: LayoutDashboard },
   { href: "/tasks", label: "Tasks", icon: ListChecks },
   { href: "/agents", label: "Agents", icon: Bot },

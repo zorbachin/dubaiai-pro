@@ -11,6 +11,7 @@ import {
   ScrollText,
   ListChecks,
   Radar,
+  Sunrise,
   Sparkles,
   Target,
   BookText,
@@ -20,6 +21,7 @@ import { AgentAvatar } from "./agent-avatar";
 import { PulseDot } from "./pulse-dot";
 
 const nav = [
+  { href: "/morning", label: "Morning", icon: Sunrise, hint: "Start here" },
   { href: "/", label: "Mission Control", icon: LayoutDashboard, hint: "Overview" },
   { href: "/tasks", label: "Tasks", icon: ListChecks, hint: "Do" },
   { href: "/agents", label: "Agents", icon: Bot, hint: "Fleet" },
