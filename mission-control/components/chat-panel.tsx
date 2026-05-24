@@ -193,7 +193,7 @@ export function ChatPanel({ agentId, fillHeight = true }: Props) {
   return (
     <div
       className={`panel relative flex flex-col overflow-hidden ${
-        fillHeight ? "h-[calc(100vh-148px)]" : "h-[560px]"
+        fillHeight ? "h-[calc(100dvh-200px)] min-h-[440px]" : "h-[560px]"
       }`}
     >
       <Header agent={agent} streaming={streaming} />
@@ -516,19 +516,6 @@ function Composer({
             : "border-white/10 focus-within:border-cyan-400/40"
         }`}
       >
-        <button
-          className="grid h-9 w-9 place-items-center rounded-lg text-[color:var(--color-ink-mute)] transition hover:text-white"
-          title="Attach"
-        >
-          <Paperclip className="h-4 w-4" />
-        </button>
-        <button
-          className="grid h-9 w-9 place-items-center rounded-lg text-[color:var(--color-ink-mute)] transition hover:text-white"
-          title="Prompt assist"
-        >
-          <Sparkles className="h-4 w-4" />
-        </button>
-
         <button
           onClick={speech.toggle}
           disabled={unsupported || denied}

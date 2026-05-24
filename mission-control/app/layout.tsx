@@ -3,6 +3,7 @@ import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
 import { Topbar } from "@/components/topbar";
 import { Background } from "@/components/background";
+import { BrainDump } from "@/components/brain-dump";
 
 export const metadata: Metadata = {
   title: "Mission Control — Claude Command Center",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="flex-1 px-6 pb-10 pt-4 lg:px-10">{children}</main>
           </div>
         </div>
+        <BrainDump />
       </body>
     </html>
   );
