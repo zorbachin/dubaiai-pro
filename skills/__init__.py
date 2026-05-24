@@ -1,0 +1,1 @@
+# DubaiAI Pro — Skills package
