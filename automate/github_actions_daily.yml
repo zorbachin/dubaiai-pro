@@ -1,0 +1,60 @@
+# GitHub Actions workflow — runs both agent skills daily.
+# Saves outputs as artifacts you can download, or push to the repo.
+#
+# Required repository secrets:
+#   ANTHROPIC_API_KEY
+#   PERPLEXITY_API_KEY  (optional but recommended)
+
+name: Daily AI Content & Newsletter
+
+on:
+  schedule:
+    - cron: "0 5 * * *"   # 05:00 UTC daily (adjust to your timezone)
+  workflow_dispatch:       # also allows manual trigger from Actions UI
+
+jobs:
+  daily-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run daily skills
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+        run: python skills/run_daily.py
+
+      - name: Upload outputs as artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-output-${{ github.run_id }}
+          path: |
+            output/scripts/
+            output/newsletters/
+            logs/
+          retention-days: 30
+
+      - name: Commit outputs to repo (optional)
+        # Uncomment this step if you want outputs auto-committed to main.
+        # Be aware: this creates a commit per run.
+        # if: success()
+        # run: |
+        #   git config user.name "dubaiai-bot"
+        #   git config user.email "bot@dubaiai.pro"
+        #   git add output/ logs/
+        #   git diff --staged --quiet || git commit -m "chore: daily output $(date -u +%Y-%m-%d)"
+        #   git push
+        run: echo "Auto-commit disabled. Download from Artifacts."
