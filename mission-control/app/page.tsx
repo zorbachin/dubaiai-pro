@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { StatCard } from "@/components/stat-card";
 import { AgentCard } from "@/components/agent-card";
 import { ActivityFeed } from "@/components/activity-feed";
@@ -14,7 +15,24 @@ const tasksData = [12, 16, 18, 22, 28, 30, 35, 41, 48, 52, 57, 64, 72, 81, 88];
 const latencyData = [62, 58, 60, 54, 50, 48, 52, 46, 44, 48, 42, 40, 44, 41, 38];
 const successData = [88, 90, 91, 93, 92, 94, 96, 95, 97, 96, 98, 97, 99, 98, 99];
 
+type OsTask = { kind?: string; awaiting?: string; title?: string; venture?: string };
+type OsState = { ok: boolean; ventures?: unknown[]; tasks?: OsTask[]; daily_brief?: string };
+
 export default function MissionControl() {
+  const [os, setOs] = useState<OsState | null>(null);
+  useEffect(() => {
+    fetch("/api/os").then((r) => r.json()).then(setOs).catch(() => {});
+  }, []);
+  const ventures = os?.ventures ?? [];
+  const tasks = os?.tasks ?? [];
+  const drafts = tasks.filter((t) => t.kind === "draft");
+  const awaitingYou = tasks.filter((t) => /you|me/i.test(t.awaiting || ""));
+  const topFocus =
+    (os?.daily_brief || "")
+      .split("\n")
+      .find((l) => l.trim().startsWith("- "))
+      ?.replace(/^[-\s]+/, "")
+      .slice(0, 90) || "";
   return (
     <div className="mx-auto max-w-[1500px] space-y-6 pt-2">
       {/* Hero */}
@@ -39,8 +57,9 @@ export default function MissionControl() {
               <span className="text-grad-cyan">Welcome back, Commander.</span>
             </h1>
             <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-[color:var(--color-ink-dim)]">
-              Your fleet of six agents is online and operational. Four tasks are in flight,
-              two are queued. The constellation is humming.
+              {os
+                ? `${ventures.length} ventures live · ${tasks.length} open tasks · ${awaitingYou.length} awaiting you.${topFocus ? ` Top focus: ${topFocus}` : ""}`
+                : "Syncing live state from the always-on VPS…"}
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -57,41 +76,34 @@ export default function MissionControl() {
       {/* KPIs */}
       <section className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
         <StatCard
-          label="Active Agents"
-          value={6}
+          label="Ventures Live"
+          value={ventures.length}
           data={[3, 4, 4, 5, 5, 6, 6, 6, 6]}
           color="#22d3ee"
-          delta="+2 wk"
           icon={<Bot className="h-4 w-4" />}
           index={0}
         />
         <StatCard
-          label="Tasks · 24h"
-          value={384}
+          label="Open Tasks"
+          value={tasks.length}
           data={tasksData}
           color="#a78bfa"
-          delta="+24%"
           icon={<Zap className="h-4 w-4" />}
           index={1}
         />
         <StatCard
-          label="Tokens · 24h"
-          value={1.84}
-          decimals={2}
-          suffix="M"
+          label="Drafts Ready"
+          value={drafts.length}
           data={tokensData}
           color="#f472b6"
-          delta="+12%"
           icon={<Coins className="h-4 w-4" />}
           index={2}
         />
         <StatCard
-          label="Avg Latency"
-          value={48}
-          suffix="ms"
+          label="Awaiting You"
+          value={awaitingYou.length}
           data={latencyData}
           color="#34d399"
-          delta="-18%"
           icon={<Activity className="h-4 w-4" />}
           index={3}
         />
@@ -131,62 +143,67 @@ export default function MissionControl() {
         <div className="space-y-6">
           <Orbital />
           <ActivityFeed />
-          <SuccessCard />
+          <CostCard />
         </div>
       </section>
     </div>
   );
 }
 
-function SuccessCard() {
-  const value = 97.4;
+type Costs = {
+  todayUsd?: number;
+  totalUsd?: number;
+  calls?: number;
+  byProvider?: Record<string, { calls: number; costUsd: number }>;
+};
+
+function CostCard() {
+  const [c, setC] = useState<Costs | null>(null);
+  useEffect(() => {
+    const load = () => fetch("/api/costs").then((r) => r.json()).then(setC).catch(() => {});
+    load();
+    const t = setInterval(load, 15000);
+    return () => clearInterval(t);
+  }, []);
+  const today = c?.todayUsd ?? 0;
+  const total = c?.totalUsd ?? 0;
+  const providers = Object.entries(c?.byProvider ?? {});
   return (
     <div className="panel relative overflow-hidden p-5">
       <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-400/30 to-cyan-400/20 blur-3xl" />
       <div className="relative flex items-start justify-between">
         <div>
           <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-ink-mute)]">
-            Fleet Reliability
+            API Spend
           </div>
-          <h3 className="mt-1 font-display text-lg font-semibold tracking-tight">
-            Success Rate
-          </h3>
+          <h3 className="mt-1 font-display text-lg font-semibold tracking-tight">Cost Today</h3>
         </div>
-        <span className="chip chip-emerald">+2.1% wk</span>
+        <span className="chip chip-emerald">{c?.calls ?? 0} calls</span>
       </div>
 
       <div className="relative mt-4 flex items-baseline gap-2">
         <span className="font-display text-5xl font-semibold tracking-tight text-grad-cyan data-num">
-          {value}%
+          ${today.toFixed(2)}
         </span>
+        <span className="text-[13px] text-[color:var(--color-ink-dim)]">today · ${total.toFixed(2)} total</span>
       </div>
 
-      <div className="relative mt-4">
-        <div className="h-2 overflow-hidden rounded-full bg-white/[0.05]">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${value}%` }}
-            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="h-full rounded-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-500"
-            style={{ boxShadow: "0 0 16px rgba(52, 211, 153, 0.5)" }}
-          />
-        </div>
-      </div>
-
-      <div className="relative mt-4 grid grid-cols-3 gap-2">
-        {[
-          { label: "Approved", v: "1,184" },
-          { label: "Reviewed", v: "32" },
-          { label: "Rejected", v: "8" },
-        ].map((s) => (
-          <div key={s.label} className="rounded-lg border border-white/5 bg-white/[0.02] px-2.5 py-2">
-            <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)]">
-              {s.label}
-            </div>
-            <div className="data-num mt-0.5 text-[13px] font-semibold">{s.v}</div>
+      <div className="relative mt-4 space-y-2">
+        {providers.length === 0 && (
+          <div className="text-[12px] text-[color:var(--color-ink-mute)]">No API calls logged yet.</div>
+        )}
+        {providers.map(([name, v]) => (
+          <div key={name} className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2">
+            <span className="text-[13px] capitalize text-white">{name}</span>
+            <span className="font-mono text-[12px] text-[color:var(--color-ink-dim)]">
+              {v.calls} · ${v.costUsd.toFixed(3)}
+            </span>
           </div>
         ))}
       </div>
+      <p className="relative mt-3 text-[11px] text-[color:var(--color-ink-mute)]">
+        Estimated from token counts × model rates. Live every 15s.
+      </p>
     </div>
   );
 }

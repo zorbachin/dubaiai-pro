@@ -9,6 +9,8 @@ import {
   MessageSquare,
   Activity,
   ScrollText,
+  ListChecks,
+  Radar,
   Sparkles,
   Target,
   BookText,
@@ -19,8 +21,10 @@ import { PulseDot } from "./pulse-dot";
 
 const nav = [
   { href: "/", label: "Mission Control", icon: LayoutDashboard, hint: "Overview" },
+  { href: "/tasks", label: "Tasks", icon: ListChecks, hint: "Do" },
   { href: "/agents", label: "Agents", icon: Bot, hint: "Fleet" },
   { href: "/chat", label: "Chat", icon: MessageSquare, hint: "Direct" },
+  { href: "/scout", label: "Scout", icon: Radar, hint: "New builds" },
   { href: "/goals", label: "Goals", icon: Target, hint: "Track" },
   { href: "/journal", label: "Journal", icon: BookText, hint: "Daily" },
   { href: "/systems", label: "Systems", icon: Activity, hint: "Monitor" },

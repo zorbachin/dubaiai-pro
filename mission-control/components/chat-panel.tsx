@@ -95,6 +95,7 @@ export function ChatPanel({ agentId, fillHeight = true }: Props) {
         headers: { "Content-Type": "application/json" },
         signal: ac.signal,
         body: JSON.stringify({
+          provider: agent.provider,
           systemPrompt: agent.systemPrompt,
           model: agent.model,
           messages: next.map((m) => ({ role: m.role, content: m.content })),

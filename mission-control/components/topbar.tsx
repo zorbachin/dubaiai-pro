@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Command, Search, Bell, Cpu } from "lucide-react";
 import { motion } from "framer-motion";
 import { VaultBadge } from "./vault-badge";
+import { MobileNav } from "./mobile-nav";
 
 export function Topbar() {
   const [now, setNow] = useState<Date | null>(null);
@@ -16,7 +17,8 @@ export function Topbar() {
 
   return (
     <div className="sticky top-0 z-30 flex items-center gap-4 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/40 px-6 py-3 backdrop-blur-xl lg:px-10">
-      <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)]">
+      <MobileNav />
+      <div className="hidden items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)] md:flex">
         <span className="hidden md:inline">SECTOR</span>
         <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-1 text-[color:var(--color-ink-dim)]">
           /ops/prime
@@ -37,10 +39,6 @@ export function Topbar() {
       </div>
 
       <div className="ml-auto flex items-center gap-3">
-        <Telemetry label="LAT" value="48ms" tone="emerald" />
-        <Telemetry label="TOK/S" value="12.4k" tone="cyan" />
-        <Telemetry label="CTX" value="63%" tone="violet" />
-
         <VaultBadge />
 
         <div className="hidden h-8 w-px bg-white/10 sm:block" />

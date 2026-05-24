@@ -62,9 +62,9 @@ export default function SystemsPage() {
                       <Sparkline data={data} color={a.hueA} height={36} />
                     </div>
                     <div className="text-right">
-                      <div className="data-num text-sm font-semibold">{formatNumber(a.tokensUsed)}</div>
+                      <div className="data-num text-sm font-semibold">{a.providerLabel}</div>
                       <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)]">
-                        tokens · 24h
+                        provider
                       </div>
                     </div>
                   </div>

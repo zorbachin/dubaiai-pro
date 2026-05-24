@@ -98,12 +98,21 @@ export default function AgentDetailPage({
         </div>
       </motion.section>
 
-      {/* KPIs */}
+      {/* Real info */}
       <section className="grid grid-cols-2 gap-4 md:grid-cols-4">
-        <Kpi label="Tasks" value={agent.tasksCompleted} icon={<Zap className="h-4 w-4" />} color="#a78bfa" />
-        <Kpi label="Success" value={agent.successRate} suffix="%" decimals={1} icon={<ShieldCheck className="h-4 w-4" />} color="#34d399" />
-        <Kpi label="Tokens" value={agent.tokensUsed / 1000} suffix="k" decimals={0} icon={<Coins className="h-4 w-4" />} color="#f472b6" />
-        <Kpi label="Uptime" value={agent.uptimeHours} suffix="h" icon={<ActivityIcon className="h-4 w-4" />} color="#22d3ee" />
+        {[
+          { label: "Provider", value: agent.providerLabel },
+          { label: "Model", value: agent.model },
+          { label: "State", value: agent.status },
+          { label: "Skills", value: agent.capabilities.join(" · ") },
+        ].map((t) => (
+          <div key={t.label} className="panel p-4">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)]">
+              {t.label}
+            </div>
+            <div className="mt-1 truncate text-sm font-semibold text-white">{t.value}</div>
+          </div>
+        ))}
       </section>
 
       <section className="grid grid-cols-1 gap-6 xl:grid-cols-[1fr_460px]">
@@ -207,7 +216,7 @@ export default function AgentDetailPage({
                     <PulseDot status={a.status} />
                   </div>
                   <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--color-ink-mute)]">
-                    {formatNumber(a.tasksCompleted)} tasks
+                    {a.providerLabel}
                   </span>
                 </Link>
               ))}

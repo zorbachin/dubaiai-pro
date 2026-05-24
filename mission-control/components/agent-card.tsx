@@ -55,9 +55,9 @@ export function AgentCard({ agent, index = 0 }: { agent: Agent; index?: number }
       </div>
 
       <div className="pointer-events-none relative mt-4 grid grid-cols-3 gap-2">
-        <Stat label="Tasks" value={formatNumber(agent.tasksCompleted)} />
-        <Stat label="Success" value={`${agent.successRate}%`} />
-        <Stat label="Tokens" value={formatNumber(agent.tokensUsed)} />
+        <Stat label="Provider" value={agent.providerLabel} />
+        <Stat label="Model" value={agent.model} />
+        <Stat label="State" value={agent.status} />
       </div>
 
       <div className="relative mt-4 flex items-center justify-between">

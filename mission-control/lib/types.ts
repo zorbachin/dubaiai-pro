@@ -2,6 +2,8 @@ export type AgentStatus = "active" | "idle" | "thinking" | "paused" | "error";
 
 export type AgentGlyph = "orbit" | "prism" | "hex" | "wave" | "shield" | "eye";
 
+export type Provider = "anthropic" | "gemini" | "openai" | "hermes";
+
 export type Agent = {
   id: string;
   name: string;
@@ -10,11 +12,9 @@ export type Agent = {
   glyph: AgentGlyph;
   status: AgentStatus;
   model: string;
+  provider: Provider;
+  providerLabel: string;
   systemPrompt: string;
-  tasksCompleted: number;
-  successRate: number;
-  uptimeHours: number;
-  tokensUsed: number;
   lastActivity: string;
   hueA: string;
   hueB: string;
