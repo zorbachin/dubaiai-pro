@@ -45,10 +45,6 @@ export default function AgentsPage() {
             into missions.
           </p>
         </div>
-        <button className="group flex items-center gap-2 rounded-xl border border-cyan-400/40 bg-gradient-to-br from-cyan-400/20 to-violet-500/20 px-4 py-2.5 text-sm font-medium text-white shadow-[0_0_24px_rgba(0,229,255,0.25)] transition hover:from-cyan-400/30 hover:to-violet-500/30">
-          <Plus className="h-4 w-4 transition group-hover:rotate-90" />
-          New Agent
-        </button>
       </motion.div>
 
       <div className="panel flex flex-wrap items-center gap-3 p-4">

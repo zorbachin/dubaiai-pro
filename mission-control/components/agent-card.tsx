@@ -69,12 +69,6 @@ export function AgentCard({ agent, index = 0 }: { agent: Agent; index?: number }
           ))}
         </div>
         <div className="flex gap-1.5">
-          <button
-            className="relative z-10 grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-[color:var(--color-ink-dim)] transition hover:bg-white/[0.08] hover:text-white"
-            title={agent.status === "paused" ? "Resume" : "Pause"}
-          >
-            {agent.status === "paused" ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
-          </button>
           <span
             className="pointer-events-none rounded-lg border px-3 py-1.5 text-xs font-medium transition group-hover:brightness-110"
             style={{

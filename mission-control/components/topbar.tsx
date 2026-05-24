@@ -25,28 +25,10 @@ export function Topbar() {
         </span>
       </div>
 
-      <div className="relative ml-2 hidden flex-1 max-w-xl md:flex">
-        <div className="flex w-full items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 transition focus-within:border-cyan-400/40 focus-within:bg-white/[0.05]">
-          <Search className="h-4 w-4 text-[color:var(--color-ink-mute)]" />
-          <input
-            className="flex-1 bg-transparent text-sm outline-none placeholder:text-[color:var(--color-ink-mute)]"
-            placeholder="Search agents, threads, tasks…"
-          />
-          <kbd className="flex items-center gap-1 rounded-md border border-white/10 bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-[color:var(--color-ink-mute)]">
-            <Command className="h-2.5 w-2.5" />K
-          </kbd>
-        </div>
-      </div>
-
       <div className="ml-auto flex items-center gap-3">
         <VaultBadge />
 
         <div className="hidden h-8 w-px bg-white/10 sm:block" />
-
-        <button className="relative grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[color:var(--color-ink-dim)] transition hover:text-white">
-          <Bell className="h-4 w-4" />
-          <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-rose-400 shadow-[0_0_8px_rgba(251,113,133,0.8)]" />
-        </button>
 
         <div className="hidden items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 font-mono text-xs text-[color:var(--color-ink-dim)] sm:flex">
           <Cpu className="h-3.5 w-3.5 text-cyan-300" />
