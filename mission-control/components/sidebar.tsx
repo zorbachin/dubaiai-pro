@@ -21,8 +21,7 @@ import { AgentAvatar } from "./agent-avatar";
 import { PulseDot } from "./pulse-dot";
 
 const nav = [
-  { href: "/morning", label: "Morning", icon: Sunrise, hint: "Start here" },
-  { href: "/", label: "Mission Control", icon: LayoutDashboard, hint: "Overview" },
+  { href: "/", label: "The Scroll", icon: Sunrise, hint: "Start here" },
   { href: "/tasks", label: "Tasks", icon: ListChecks, hint: "Do" },
   { href: "/agents", label: "Agents", icon: Bot, hint: "Fleet" },
   { href: "/chat", label: "Chat", icon: MessageSquare, hint: "Direct" },
