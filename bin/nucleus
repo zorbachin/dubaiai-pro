@@ -16,6 +16,8 @@ Manual / cross-surface use (copy/paste friendly):
   nucleus sync                 refresh the live git state block
   nucleus status               short one-screen summary
   nucleus brief                the "catch me up" digest for a fresh session
+  nucleus serve [--port 4040]  HTTP bridge so web apps (e.g. localhost:3001)
+                               can read/push the nucleus; serves /widget.js
   nucleus init                 create the nucleus if it does not exist
   nucleus edit                 print the nucleus file path
 
@@ -52,7 +54,22 @@ def repo_root():
 
 
 ROOT = repo_root()
-NUCLEUS_DIR = os.path.join(ROOT, ".claude", "nucleus")
+
+
+def nucleus_home():
+    """Where the single nucleus lives.
+
+    Set NUCLEUS_HOME to a shared path (e.g. ~/.claude/nucleus) and every repo
+    AND every app (like the one on localhost:3001) points at the *same* file —
+    making the nucleus truly singular across projects, not per-repo.
+    """
+    env = os.environ.get("NUCLEUS_HOME")
+    if env:
+        return os.path.expanduser(env)
+    return os.path.join(ROOT, ".claude", "nucleus")
+
+
+NUCLEUS_DIR = nucleus_home()
 NUCLEUS = os.path.join(NUCLEUS_DIR, "NUCLEUS.md")
 
 
@@ -252,19 +269,163 @@ def cmd_status():
     print(f"   latest:   {latest}")
 
 
-def cmd_brief():
+def build_brief():
     """A compact 'catch me up' digest — newest handoff + live state."""
     text = read()
     handoffs = get_block(text, HANDOFFS_START, HANDOFFS_END)
     state = get_block(text, AUTOSTATE_START, AUTOSTATE_END)
-    print("# Catch-up brief\n")
+    out = ["# Catch-up brief\n"]
     if handoffs.strip():
         latest = handoffs.split("\n\n### ")[0]
-        print("## Latest handoff")
-        print(latest if latest.startswith("###") else "### " + latest)
-        print()
-    print("## Live state")
-    print(state or "(none)")
+        out.append("## Latest handoff")
+        out.append(latest if latest.startswith("###") else "### " + latest)
+        out.append("")
+    out.append("## Live state")
+    out.append(state or "(none)")
+    return "\n".join(out)
+
+
+def cmd_brief():
+    print(build_brief())
+
+
+def build_payload():
+    """Everything a web app (e.g. localhost:3001) needs, as a dict."""
+    text = read()
+    return {
+        "markdown": text,
+        "brief": build_brief(),
+        "handoffs": get_block(text, HANDOFFS_START, HANDOFFS_END),
+        "state": get_block(text, AUTOSTATE_START, AUTOSTATE_END),
+        "branch": git("rev-parse", "--abbrev-ref", "HEAD") or "(unknown)",
+        "updated": now_iso(),
+    }
+
+
+# Single-line embeddable widget. Any web app adds:
+#   <script src="http://localhost:4040/widget.js"></script>
+# ...and gets a floating 🧠 panel showing live context + a push box.
+WIDGET_JS = r"""
+(function () {
+  var BASE = (document.currentScript && document.currentScript.src || "")
+    .replace(/\/widget\.js.*$/, "") || "http://localhost:4040";
+  var SRC = location.host || "web";
+  function el(t, s, h) { var e = document.createElement(t); if (s) e.style.cssText = s; if (h != null) e.innerHTML = h; return e; }
+  var btn = el("button", "position:fixed;right:18px;bottom:18px;z-index:99999;width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;font-size:24px;background:#111;color:#C8A45C;box-shadow:0 4px 16px rgba(0,0,0,.3)", "🧠");
+  var panel = el("div", "position:fixed;right:18px;bottom:80px;z-index:99999;width:360px;max-height:70vh;overflow:auto;display:none;background:#0d0d0f;color:#eee;border:1px solid #C8A45C;border-radius:12px;padding:14px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 8px 32px rgba(0,0,0,.5)");
+  var body = el("pre", "white-space:pre-wrap;word-break:break-word;margin:0 0 10px;color:#cfcfcf", "loading…");
+  var ta = el("textarea", "width:100%;box-sizing:border-box;background:#1a1a1d;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;resize:vertical;min-height:54px");
+  ta.placeholder = "Push a handoff to the nucleus…";
+  var send = el("button", "margin-top:8px;width:100%;padding:8px;border:none;border-radius:8px;background:#C8A45C;color:#111;font-weight:600;cursor:pointer", "→ Push to nucleus");
+  var title = el("div", "font-weight:700;color:#C8A45C;margin-bottom:8px", "🧠 Context Nucleus");
+  panel.appendChild(title); panel.appendChild(body); panel.appendChild(ta); panel.appendChild(send);
+  function load() {
+    fetch(BASE + "/nucleus.json").then(function (r) { return r.json(); })
+      .then(function (d) { body.textContent = d.brief; })
+      .catch(function () { body.textContent = "⚠ nucleus server not reachable at " + BASE + "\nRun: nucleus serve"; });
+  }
+  send.onclick = function () {
+    var note = ta.value.trim(); if (!note) return;
+    send.textContent = "…";
+    fetch(BASE + "/push", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ note: note, from: SRC }) })
+      .then(function () { ta.value = ""; send.textContent = "✓ pushed"; load(); setTimeout(function () { send.textContent = "→ Push to nucleus"; }, 1200); })
+      .catch(function () { send.textContent = "✗ failed"; });
+  };
+  btn.onclick = function () { var open = panel.style.display === "none"; panel.style.display = open ? "block" : "none"; if (open) load(); };
+  document.body.appendChild(btn); document.body.appendChild(panel);
+})();
+"""
+
+
+def cmd_serve(port=4040):
+    import http.server
+    import urllib.parse  # noqa: F401 (kept for clarity / future use)
+
+    ensure()
+
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def _cors(self):
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", "Content-Type")
+
+        def _send(self, code, body, ctype="text/plain; charset=utf-8"):
+            data = body.encode("utf-8") if isinstance(body, str) else body
+            self.send_response(code)
+            self.send_header("Content-Type", ctype)
+            self.send_header("Content-Length", str(len(data)))
+            self._cors()
+            self.end_headers()
+            self.wfile.write(data)
+
+        def log_message(self, *a):
+            pass  # quiet
+
+        def do_OPTIONS(self):
+            self.send_response(204)
+            self._cors()
+            self.end_headers()
+
+        def do_GET(self):
+            path = self.path.split("?", 1)[0]
+            if path in ("/", "/index.html"):
+                p = build_payload()
+                html = (
+                    "<!doctype html><meta charset=utf-8>"
+                    "<title>Context Nucleus</title>"
+                    "<body style='background:#0d0d0f;color:#eee;font:14px/1.6 "
+                    "system-ui;max-width:780px;margin:40px auto;padding:0 20px'>"
+                    "<h1 style='color:#C8A45C'>\U0001F9E0 Context Nucleus</h1>"
+                    "<p>Branch <code>" + p["branch"] + "</code> · updated "
+                    + p["updated"] + "</p><pre style='white-space:pre-wrap;"
+                    "background:#15151a;padding:16px;border-radius:10px;"
+                    "border:1px solid #C8A45C'>"
+                    + p["markdown"].replace("&", "&amp;").replace("<", "&lt;")
+                    + "</pre>"
+                )
+                self._send(200, html, "text/html; charset=utf-8")
+            elif path == "/widget.js":
+                self._send(200, WIDGET_JS, "application/javascript; charset=utf-8")
+            elif path == "/nucleus.json":
+                self._send(200, json.dumps(build_payload()),
+                           "application/json; charset=utf-8")
+            elif path == "/nucleus.md":
+                self._send(200, read(), "text/markdown; charset=utf-8")
+            elif path == "/brief":
+                self._send(200, build_brief())
+            else:
+                self._send(404, "not found")
+
+        def do_POST(self):
+            if self.path.split("?", 1)[0] != "/push":
+                self._send(404, "not found")
+                return
+            length = int(self.headers.get("Content-Length", 0) or 0)
+            raw = self.rfile.read(length).decode("utf-8") if length else "{}"
+            try:
+                data = json.loads(raw)
+            except Exception:
+                data = {}
+            note = (data.get("note") or "").strip()
+            source = (data.get("from") or "web").strip()
+            if not note:
+                self._send(400, json.dumps({"ok": False, "error": "empty note"}),
+                           "application/json")
+                return
+            cmd_push(note, source)
+            self._send(200, json.dumps({"ok": True, **build_payload()}),
+                       "application/json")
+
+    httpd = http.server.HTTPServer(("0.0.0.0", port), Handler)
+    print(f"\U0001F9E0 nucleus serving on http://localhost:{port}")
+    print(f"   browser view : http://localhost:{port}/")
+    print(f"   JSON feed    : http://localhost:{port}/nucleus.json")
+    print(f"   embed widget : <script src=\"http://localhost:{port}/widget.js\"></script>")
+    print("   (Ctrl+C to stop)")
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\n\U0001F9E0 nucleus server stopped")
 
 
 USAGE = __doc__
@@ -300,6 +461,13 @@ def main(argv):
         cmd_status()
     elif cmd == "brief":
         cmd_brief()
+    elif cmd == "serve":
+        port = 4040
+        if "--port" in rest:
+            i = rest.index("--port")
+            if i + 1 < len(rest):
+                port = int(rest[i + 1])
+        cmd_serve(port)
     elif cmd == "edit":
         print(NUCLEUS)
     else:

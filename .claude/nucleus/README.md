@@ -40,6 +40,21 @@ nucleus brief           # just the catch-me-up digest (latest handoff + state)
 > new session instantly has your context. When that chat decides something,
 > `nucleus push` it back so code sessions inherit it too.
 
+## Plug it into a web app (e.g. localhost:3001)
+
+Run the bridge and embed one line:
+
+```bash
+nucleus serve                                   # http://localhost:4040
+```
+```html
+<script src="http://localhost:4040/widget.js"></script>
+```
+
+That gives the app a floating 🧠 panel with live context + a push box. Full
+guide (Next.js/React/API examples, shared nucleus across apps) →
+[`INTEGRATION.md`](./INTEGRATION.md).
+
 ## All commands
 
 ```

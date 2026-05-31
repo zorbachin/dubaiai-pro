@@ -34,18 +34,26 @@ surface. This is the message-in-a-bottle between sessions._
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-05-31 18:16 UTC
+- **When:** 2026-05-31 18:45 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 3d85a6a Add foxy-reveal.gif to assets for email hosting — 2 weeks ago
+- **Last commit:** 35b1067 feat: self-running Context Nucleus — auto-handoff context between Claude surfaces — 28 minutes ago
 
 **Working tree:**
 ```
-?? .claude/
-?? bin/
+M .claude/nucleus/NUCLEUS.md
+ M bin/nucleus
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md |  16 +---
+ bin/nucleus                | 184 +++++++++++++++++++++++++++++++++++++++++++--
+ 2 files changed, 177 insertions(+), 23 deletions(-)
 ```
 
 **Recent commits:**
 ```
+35b1067 feat: self-running Context Nucleus — auto-handoff context between Claude surfaces (28 minutes ago)
 3d85a6a Add foxy-reveal.gif to assets for email hosting (2 weeks ago)
 de8dd38 feat: initial launch — DubaiAI.pro premium landing page (5 weeks ago)
 ```
