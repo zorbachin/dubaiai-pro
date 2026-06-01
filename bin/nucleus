@@ -13,6 +13,7 @@ Self-running pieces (wired in .claude/settings.json):
 Manual / cross-surface use (copy/paste friendly):
   nucleus pull                 print the whole nucleus (paste into any chat)
   nucleus push "<note>"        add a handoff from anywhere  (--from chat|design|...)
+  nucleus reflect "<insight>"  record a self-improvement note (gets smarter)
   nucleus sync                 refresh the live git state block
   nucleus status               short one-screen summary
   nucleus brief                the "catch me up" digest for a fresh session
@@ -34,9 +35,12 @@ HANDOFFS_START = "<!-- HANDOFFS:START -->"
 HANDOFFS_END = "<!-- HANDOFFS:END -->"
 AUTOSTATE_START = "<!-- AUTOSTATE:START -->"
 AUTOSTATE_END = "<!-- AUTOSTATE:END -->"
+REFLECT_START = "<!-- REFLECTIONS:START -->"
+REFLECT_END = "<!-- REFLECTIONS:END -->"
 
 # Keep the auto-handoff log from growing forever.
 MAX_HANDOFFS = 40
+MAX_REFLECTIONS = 30
 
 
 def repo_root():
@@ -125,6 +129,13 @@ _Refreshed automatically after each turn — do not edit by hand._
 {AUTOSTATE_START}
 _(no state captured yet — run `nucleus sync`)_
 {AUTOSTATE_END}
+
+## 🌀 Reflections
+_The nucleus checking in on itself. Each entry is something it learned and a way
+it got sharper. Newest first; written via `nucleus reflect "..."`._
+
+{REFLECT_START}
+{REFLECT_END}
 """
 
 
@@ -225,6 +236,32 @@ def cmd_push(note, source="manual"):
     text = replace_block(text, AUTOSTATE_START, AUTOSTATE_END, build_autostate())
     write(text)
     print(f"📥 nucleus: handoff captured from '{source}'")
+    return 0
+
+
+def cmd_reflect(note):
+    """Append a self-improvement reflection — what the nucleus learned."""
+    if not note.strip():
+        print("nucleus: nothing to reflect (empty note)", file=sys.stderr)
+        return 1
+    text = read()
+    # Backfill the section for nuclei created before reflections existed.
+    if REFLECT_START not in text:
+        text = text.rstrip() + (
+            "\n\n## 🌀 Reflections\n_The nucleus checking in on itself._\n\n"
+            f"{REFLECT_START}\n{REFLECT_END}\n"
+        )
+    inner = get_block(text, REFLECT_START, REFLECT_END)
+    entry = f"### {now_iso()}\n{note.strip()}"
+    existing = inner.strip()
+    combined = entry + ("\n\n" + existing if existing else "")
+    entries = combined.split("\n\n### ")
+    if len(entries) > MAX_REFLECTIONS:
+        entries = entries[:MAX_REFLECTIONS]
+    combined = "\n\n### ".join(entries)
+    text = replace_block(text, REFLECT_START, REFLECT_END, combined)
+    write(text)
+    print("🌀 nucleus: reflection recorded — a little sharper now")
     return 0
 
 
@@ -455,6 +492,8 @@ def main(argv):
             rest = rest[:i] + rest[i + 2:]
         note = " ".join(rest)
         return cmd_push(note, source)
+    elif cmd == "reflect":
+        return cmd_reflect(" ".join(rest))
     elif cmd == "sync":
         cmd_sync(quiet="--quiet" in rest)
     elif cmd == "status":

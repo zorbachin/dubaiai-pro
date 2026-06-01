@@ -39,6 +39,17 @@ prompted* (then mention in one short line that you saved it):
 - **Milestones** — a feature finished, a PR merged, a bug fixed, something
   shipped or deployed.
 - **Open loops** — a "TODO later", something deferred, a known issue to revisit.
+- **Validations ("this works")** — when the user confirms an approach is right
+  ("yes, that's it", "this works", "perfect"), capture *what* worked so it's not
+  re-litigated or undone later.
+- **Directional steering** — when the user pushes thinking a certain way
+  ("lean simpler", "more premium", "stop asking, just do it", "favor X over Y"),
+  treat it as a durable preference, not a one-off. Record it in Decisions /
+  Preferences.
+- **Cross-workstream patterns** — when the same need, preference, or mistake
+  recurs across different projects or sessions, note the *pattern itself* (e.g.
+  "user consistently wants zero-friction, talk-not-command UX"), not just the
+  instance. These are the most valuable things to remember.
 
 Rules of thumb:
 - Capture the **signal**, not the chatter. One crisp line per item; summarize,
@@ -54,6 +65,31 @@ Rules of thumb:
 
 This is the default behavior — the user should rarely need to say "remember
 this," because you already did.
+
+### 🌀 Self-improvement — check in and get smarter
+
+The nucleus should improve itself over time, not stay static. Periodically (at
+the start of a session after running `bin/nucleus brief`, when the user says
+"reflect"/"review your memory", or after a big milestone) do a **self-check**:
+
+1. **Read what's accumulated** — `bin/nucleus pull` and skim the handoffs and
+   top sections with fresh eyes.
+2. **Promote patterns** — if several handoffs point at the same recurring
+   preference or pattern, lift it up into **Decisions** or **Preferences** as a
+   durable rule, so it shapes behavior instead of sitting buried in the log.
+3. **Prune & merge** — collapse duplicates, drop stale open loops that are done,
+   tighten anything vague. Keep the nucleus dense and high-signal.
+4. **Refine your own rules** — if you notice you've been over- or under-capturing
+   (e.g. the user corrected you with "you should've saved that" or "don't bother
+   with that"), record that meta-preference here in the capture rules above, so
+   the next session calibrates better. The capture criteria are themselves
+   editable memory.
+5. **Surface the insight** — briefly tell the user what you learned or changed
+   ("I noticed you consistently prefer X, so I made it a standing rule").
+
+The aim: each session leaves the nucleus a little sharper than it found it. A
+running log of these self-checks lives in the **🌀 Reflections** section of
+`NUCLEUS.md` — append to it with `bin/nucleus reflect "<what you learned>"`.
 
 - The top sections of `NUCLEUS.md` (North Star, Active Threads, Decisions) can
   be edited directly for durable facts. **Never** edit inside the
