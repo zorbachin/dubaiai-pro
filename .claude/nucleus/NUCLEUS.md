@@ -43,6 +43,27 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 18:23 UTC · code
+Built master content-board.md (color-coded by type, idea→POSTED pipeline), scripts-tomorrow.md (2 ready-to-read scripts for 7:30 SSA-C + Origin-Drafts), voice-guide v0. Tomorrow's shoot is on the bus.
+
+### 2026-06-01 18:19 UTC · chat
+VOICE-LEARNING METHOD: Claude researches user online + builds a voice guide from chat notes, user corrects it (lowest friction). REUSE INSIGHT: user has a great buildyourbot.io video he wants to repurpose for letaidoit + others.
+
+### 2026-06-01 18:19 UTC · chat
+BIG INITIATIVE: full content map sprint — audit ALL content across ventures, then schedule + queue everything. Nothing floating. Treat as a structured sprint.
+
+### 2026-06-01 18:14 UTC · chat
+STORY ASSETS to learn & use in content: the house, the war, and the previous drafts we wrote but never published. These are raw material for authentic launches.
+
+### 2026-06-01 18:14 UTC · chat
+VOICE: user's own voice + Hormozi-style direct marketer, but human/good. Self-aware, meta, slightly subversive. Reframes in human terms: 'get your time back' (benefit) vs 'AI is the solution' (feature). This is a SKILL to implement for all content agents.
+
+### 2026-06-01 18:14 UTC · chat
+LAUNCH RESET: nothing is truly launched yet except kinda Minimovies. Treat EVERY venture as Day 1 / square one. Marketing + research sub-agents start from scratch, no assumed traction.
+
+### 2026-06-01 18:14 UTC · chat
+PEAK CONTENT TIME: user records content best EARLY AM, ~7:30am. Schedule content creation/recording into that window; protect it.
+
 ### 2026-06-01 18:11 UTC · chat
 DECISION: Home = Claude (100% reliable today). Command-center widget = PARKED as future upgrade, only if it earns it — not built now (anti-splinter). Comms style = caveman-warm (1.5): one line, action-first, light encouragement. No fragile channels.
 
@@ -90,22 +111,33 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:12 UTC
-- **Branch:** `main`
-- **Last commit:** 686819c Comms style + anti-splinter home rule (stay in Claude) (#21) — 25 seconds ago
+- **When:** 2026-06-01 18:23 UTC
+- **Branch:** `claude/voice-launches`
+- **Last commit:** 7466505 chore: refresh nucleus live state [skip ci] — 12 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M .claude/nucleus/tasks.json
+?? .claude/os/content-board.md
+?? .claude/os/references/
+?? .claude/os/scripts-tomorrow.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 42 ++++++++++++++++++++++++++--------
+ .claude/nucleus/tasks.json | 56 +++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 88 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-686819c Comms style + anti-splinter home rule (stay in Claude) (#21) (25 seconds ago)
-6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) (4 minutes ago)
-ee64550 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) (8 minutes ago)
-46e95f1 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+7466505 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+686819c Comms style + anti-splinter home rule (stay in Claude) (#21) (12 minutes ago)
+6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) (16 minutes ago)
+ee64550 chore: refresh nucleus live state [skip ci] (20 minutes ago)
+35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
