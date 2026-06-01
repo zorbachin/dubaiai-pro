@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 17:47 UTC · code
+Building multi-agent OS: agentbus task ledger (bin/agentbus) gives explicit open→claimed→done→blocked states so delegated work CLOSES THE LOOP. Demo proved full delegate→work→report-back cycle. Core pain being solved: command center never registers 'done'.
+
 ### 2026-06-01 10:07 UTC · chat
 User needs to SEE the system work with concrete proof, not be told it works. Show, don't tell — demo live output, point at the actual file.
 
@@ -57,22 +60,29 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 17:34 UTC
-- **Branch:** `main`
-- **Last commit:** 6c310d3 chore: refresh nucleus live state [skip ci] — 26 seconds ago
+- **When:** 2026-06-01 17:47 UTC
+- **Branch:** `claude/agent-taskbus`
+- **Last commit:** 214ddd8 chore: refresh nucleus live state [skip ci] — 13 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+?? bin/agentbus
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 ```
 
 **Recent commits:**
 ```
-6c310d3 chore: refresh nucleus live state [skip ci] (26 seconds ago)
-4eb49f9 chore: refresh nucleus live state [skip ci] (7 hours ago)
-cbdbdaa Make proactive capture visible with chat receipts (#16) (7 hours ago)
+214ddd8 chore: refresh nucleus live state [skip ci] (13 minutes ago)
+6c310d3 chore: refresh nucleus live state [skip ci] (13 minutes ago)
+4eb49f9 chore: refresh nucleus live state [skip ci] (8 hours ago)
+cbdbdaa Make proactive capture visible with chat receipts (#16) (8 hours ago)
 1ec6d92 chore: refresh nucleus live state [skip ci] (10 hours ago)
-ff9c06d New capture signals + nucleus self-improvement loop (#15) (10 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
