@@ -117,32 +117,22 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:26 UTC
-- **Branch:** `claude/dump-parser`
-- **Last commit:** 4dd9d19 chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **When:** 2026-06-01 18:27 UTC
+- **Branch:** `main`
+- **Last commit:** 41340ad Brain-dump parser — raw dumps to flywheel content (#23) — 24 seconds ago
 
 **Working tree:**
 ```
-M  .claude/nucleus/NUCLEUS.md
-A  .claude/skills/dump/SKILL.md
-A  bin/dump
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md   | 17 ++++++----
- .claude/skills/dump/SKILL.md | 54 ++++++++++++++++++++++++++++++
- bin/dump                     | 78 ++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 142 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-4dd9d19 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-eedadf2 Content sprint kickoff: master board + tomorrow's scripts + voice guide (#22) (2 minutes ago)
-7466505 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-686819c Comms style + anti-splinter home rule (stay in Claude) (#21) (14 minutes ago)
-6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) (18 minutes ago)
+41340ad Brain-dump parser — raw dumps to flywheel content (#23) (24 seconds ago)
+4dd9d19 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+eedadf2 Content sprint kickoff: master board + tomorrow's scripts + voice guide (#22) (3 minutes ago)
+7466505 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+686819c Comms style + anti-splinter home rule (stay in Claude) (#21) (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
