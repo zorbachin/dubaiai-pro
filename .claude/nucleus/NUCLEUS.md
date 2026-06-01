@@ -66,31 +66,22 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:03 UTC
-- **Branch:** `claude/agent-watcher`
-- **Last commit:** 46e95f1 chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **When:** 2026-06-01 18:04 UTC
+- **Branch:** `main`
+- **Last commit:** 35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/os/README.md
- M .claude/os/connections.md
-?? bin/agentwatch
-```
-
-**Uncommitted changes:**
-```
-.claude/os/README.md      | 12 +++++++++++-
- .claude/os/connections.md | 47 +++++++++++++++++++++++++++--------------------
- 2 files changed, 38 insertions(+), 21 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-46e95f1 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (2 minutes ago)
-214ddd8 chore: refresh nucleus live state [skip ci] (29 minutes ago)
-6c310d3 chore: refresh nucleus live state [skip ci] (30 minutes ago)
-4eb49f9 chore: refresh nucleus live state [skip ci] (8 hours ago)
+35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) (21 seconds ago)
+46e95f1 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (3 minutes ago)
+214ddd8 chore: refresh nucleus live state [skip ci] (30 minutes ago)
+6c310d3 chore: refresh nucleus live state [skip ci] (31 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
