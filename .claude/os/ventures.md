@@ -1,0 +1,53 @@
+# 🏢 Ventures — your portfolio & their org charts
+
+_Each venture is run by a **CEO agent** that delegates to sub-agents
+(marketing, research, product). The orchestrator (Claude) sets each CEO's task
+list daily — or twice daily — all laddering up to: more leads, more bookings,
+more inbound, more organization._
+
+> Agent naming on the bus: `<venture>-ceo`, `<venture>-mktg`, `<venture>-research`,
+> `<venture>-product`. e.g. `agentbus add "draft launch email" --to ssa-mktg`.
+
+## Priority order (where focus goes first)
+1. **sellsellingai (SSA)** — 💰 the money maker. Top priority.
+2. **buildyourbot.io (BYB)** — strong branding + great site already; leverage it.
+3. **letaidoit (LAI)**
+4. **Minimovies (MM)**
+5. **buddy botz (BB)** — coming soon.
+
+---
+
+## sellsellingai — `ssa` 💰
+- **Status:** money maker — primary focus.
+- **Goal right now:** _(define: more demos? bookings? a challenge launch?)_
+- **CEO:** `ssa-ceo` → `ssa-mktg`, `ssa-research`, `ssa-product`
+- **Open:** sites launch, the challenge, email drafts, content posting.
+
+## buildyourbot.io — `byb`
+- **Status:** strong branding + great site live.
+- **Goal right now:** _(define: drive traffic? capture leads off the existing site?)_
+- **CEO:** `byb-ceo` → `byb-mktg`, `byb-research`, `byb-product`
+
+## letaidoit — `lai`
+- **Status:** _(define)_
+- **CEO:** `lai-ceo` → sub-agents
+
+## Minimovies — `mm`
+- **Status:** _(define)_
+- **CEO:** `mm-ceo` → sub-agents
+
+## buddy botz — `bb`
+- **Status:** coming soon.
+- **CEO:** `bb-ceo` → sub-agents
+
+---
+
+## Daily cadence (how the task lists get set)
+- **AM:** orchestrator reviews goals + carryover, sets each active CEO's top
+  1–3 tasks on the bus.
+- **PM (optional):** quick re-check — what shipped, what to push.
+- Sub-agents that are free/local (ollama, hermes) can auto-run via `agentwatch`;
+  paid + human-in-loop work stays manual relay.
+
+_Fill in the per-venture "Goal right now" lines as we define them — that's the
+next onboarding step._

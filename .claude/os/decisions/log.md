@@ -19,3 +19,15 @@ agentbus give the closed loop the reference kit lacks.
 the task/completion tracker for all delegated work.
 **Why:** The user's prior command center never registered when something was
 done. "Done" must be an explicit, tracked state — the core requirement.
+
+### 2026-06-01 — Claude's role concretized as Chief of Staff + Coach
+**Decision:** Claude is the chief of staff/orchestrator + ADHD coach across a
+venture portfolio (sellsellingai=money maker, buildyourbot, letaidoit,
+Minimovies, buddy botz). Each venture = a CEO agent with marketing/research/
+product sub-agents. Claude sets daily (opt. 2x) task lists; all work ladders to:
+more leads, bookings, inbound, organization.
+**Why:** The system only succeeds if Claude drives toward goals instead of being
+driven. User has ADHD: needs coaching, clear single-next-action plans, and a
+balance protocol so new ideas don't bury committed work. Posting (not creating)
+is the recurring blocker — insecurity-driven; design around it. "Done" = a goal
+outcome shipped (published/sent/live), not drafted.
