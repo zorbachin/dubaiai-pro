@@ -49,21 +49,27 @@ surface. This is the message-in-a-bottle between sessions._
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 06:41 UTC
+- **When:** 2026-06-01 07:27 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** a668d5a chore: refresh nucleus live state [skip ci] — 20 seconds ago
+- **Last commit:** ca3bd4f chore: refresh nucleus live state [skip ci] — 47 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-a668d5a chore: refresh nucleus live state [skip ci] (20 seconds ago)
-d0186d7 feat: auto-commit nucleus live-state churn in Stop hook (21 seconds ago)
-210d533 chore: refresh nucleus live state (2 minutes ago)
-ff561bf chore: refresh nucleus live state (4 minutes ago)
-d56b54e feat: pre-fill nucleus with real DubaiAI.pro context (4 hours ago)
+ca3bd4f chore: refresh nucleus live state [skip ci] (47 minutes ago)
+a668d5a chore: refresh nucleus live state [skip ci] (47 minutes ago)
+d0186d7 feat: auto-commit nucleus live-state churn in Stop hook (47 minutes ago)
+210d533 chore: refresh nucleus live state (48 minutes ago)
+ff561bf chore: refresh nucleus live state (50 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
