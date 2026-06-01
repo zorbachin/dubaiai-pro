@@ -43,6 +43,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 18:00 UTC · code
+Built the AI OS scaffold adapted from AIS-OS: .claude/os/ (connections.md roster, decisions/log.md, README), bin/os (board+audit+onboard tying nucleus+agentbus+roster), and 3 talk-driven skills (os-board, os-onboard, os-audit). 4Cs audit all green. agentbus = the closed-loop layer the reference kit lacks.
+
+### 2026-06-01 17:47 UTC · code
+Building multi-agent OS: agentbus task ledger (bin/agentbus) gives explicit open→claimed→done→blocked states so delegated work CLOSES THE LOOP. Demo proved full delegate→work→report-back cycle. Core pain being solved: command center never registers 'done'.
+
 ### 2026-06-01 10:07 UTC · chat
 User needs to SEE the system work with concrete proof, not be told it works. Show, don't tell — demo live output, point at the actual file.
 
@@ -57,22 +63,31 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 17:34 UTC
-- **Branch:** `main`
-- **Last commit:** 6c310d3 chore: refresh nucleus live state [skip ci] — 26 seconds ago
+- **When:** 2026-06-01 18:00 UTC
+- **Branch:** `claude/agent-taskbus`
+- **Last commit:** 72a6603 chore: capture multi-agent OS direction in nucleus — 14 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+?? .claude/os/
+?? .claude/skills/
+?? bin/os
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 21 +++++++--------------
+ 1 file changed, 7 insertions(+), 14 deletions(-)
 ```
 
 **Recent commits:**
 ```
-6c310d3 chore: refresh nucleus live state [skip ci] (26 seconds ago)
-4eb49f9 chore: refresh nucleus live state [skip ci] (7 hours ago)
-cbdbdaa Make proactive capture visible with chat receipts (#16) (7 hours ago)
-1ec6d92 chore: refresh nucleus live state [skip ci] (10 hours ago)
-ff9c06d New capture signals + nucleus self-improvement loop (#15) (10 hours ago)
+72a6603 chore: capture multi-agent OS direction in nucleus (14 minutes ago)
+e8ad420 feat: agentbus — shared task ledger that closes the delegation loop (14 minutes ago)
+214ddd8 chore: refresh nucleus live state [skip ci] (27 minutes ago)
+6c310d3 chore: refresh nucleus live state [skip ci] (27 minutes ago)
+4eb49f9 chore: refresh nucleus live state [skip ci] (8 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
