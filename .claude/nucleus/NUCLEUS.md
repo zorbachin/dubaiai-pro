@@ -56,26 +56,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-01 09:10 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** 1ec6d92 chore: refresh nucleus live state [skip ci] — 72 minutes ago
+- **Last commit:** a2214a0 chore: refresh nucleus live state [skip ci] — 10 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+a2214a0 chore: refresh nucleus live state [skip ci] (10 seconds ago)
 1ec6d92 chore: refresh nucleus live state [skip ci] (72 minutes ago)
 ff9c06d New capture signals + nucleus self-improvement loop (#15) (72 minutes ago)
-ceff804 chore: refresh nucleus live state [skip ci] (76 minutes ago)
+ceff804 chore: refresh nucleus live state [skip ci] (77 minutes ago)
 edaa8c2 Make the nucleus capture context proactively (#14) (77 minutes ago)
-3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (81 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
