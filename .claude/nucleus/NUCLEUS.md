@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 07:57 UTC · chat
+Steering signals to always note: (1) when user says something 'works'/validates an approach, (2) when user steers thinking in a direction, (3) patterns recurring across workstreams. Plus: the nucleus should self-check and get smarter over time.
+
 ### 2026-06-01 07:52 UTC · chat
 User preference: capture useful things (decisions, preferences, milestones, open loops) PROACTIVELY without being asked — they should rarely need to say 'remember this'.
 <!-- HANDOFFS:END -->
@@ -51,21 +54,39 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 07:53 UTC
-- **Branch:** `main`
-- **Last commit:** edaa8c2 Make the nucleus capture context proactively (#14) — 23 seconds ago
+- **When:** 2026-06-01 07:57 UTC
+- **Branch:** `claude/nucleus-signals`
+- **Last commit:** ceff804 chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M CLAUDE.md
+ M bin/nucleus
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md |  8 ++++++++
+ CLAUDE.md                  | 36 ++++++++++++++++++++++++++++++++++++
+ bin/nucleus                | 39 +++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 83 insertions(+)
 ```
 
 **Recent commits:**
 ```
-edaa8c2 Make the nucleus capture context proactively (#14) (23 seconds ago)
-3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (4 minutes ago)
-4e0cd67 CLAUDE.md — manage the nucleus by talking, not commands (#13) (9 minutes ago)
-99104b0 Stop hook auto-pushes nucleus state commits (#12) (10 minutes ago)
-c527b8f feat: auto-commit nucleus live-state churn in Stop hook (#11) (26 minutes ago)
+ceff804 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+edaa8c2 Make the nucleus capture context proactively (#14) (4 minutes ago)
+3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (8 minutes ago)
+4e0cd67 CLAUDE.md — manage the nucleus by talking, not commands (#13) (13 minutes ago)
+99104b0 Stop hook auto-pushes nucleus state commits (#12) (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
+
+## 🌀 Reflections
+_The nucleus checking in on itself._
+
+<!-- REFLECTIONS:START -->
+### 2026-06-01 07:57 UTC
+Added three new capture signals (validations/'this works', directional steering, cross-workstream patterns) and a self-improvement loop. Learned the user wants memory that promotes patterns and tunes its own rules, not just a static log.
+<!-- REFLECTIONS:END -->
