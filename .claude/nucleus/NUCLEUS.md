@@ -49,21 +49,27 @@ surface. This is the message-in-a-bottle between sessions._
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 07:31 UTC
+- **When:** 2026-06-01 07:42 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 691f758 feat: nucleus Stop hook auto-pushes its state commits — 8 seconds ago
+- **Last commit:** 68d44f1 chore: refresh nucleus live state [skip ci] — 11 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-691f758 feat: nucleus Stop hook auto-pushes its state commits (8 seconds ago)
-8e5ed6f chore: refresh nucleus live state [skip ci] (2 minutes ago)
-a0652c1 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-ca3bd4f chore: refresh nucleus live state [skip ci] (50 minutes ago)
-a668d5a chore: refresh nucleus live state [skip ci] (50 minutes ago)
+68d44f1 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+691f758 feat: nucleus Stop hook auto-pushes its state commits (11 minutes ago)
+8e5ed6f chore: refresh nucleus live state [skip ci] (13 minutes ago)
+a0652c1 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+ca3bd4f chore: refresh nucleus live state [skip ci] (61 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
