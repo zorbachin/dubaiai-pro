@@ -43,6 +43,15 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 18:11 UTC · chat
+DECISION: Home = Claude (100% reliable today). Command-center widget = PARKED as future upgrade, only if it earns it — not built now (anti-splinter). Comms style = caveman-warm (1.5): one line, action-first, light encouragement. No fragile channels.
+
+### 2026-06-01 18:08 UTC · chat
+COMMS preference: wants concise 'caveman style' text pings when action needed (link / approval / yes-no). Telegram annoying. WhatsApp or iMessage preferred. But this is secondary to: don't splinter him — only add a channel if it works 100%.
+
+### 2026-06-01 18:08 UTC · chat
+CRITICAL STEERING: user does NOT want a 70%-working system — half-working tools annoy him and splinter his focus (the opposite of the goal). He LIKES working in Claude. Preference: stay inside Claude, or a command-center widget that ACTUALLY functions — not a fragile notification mesh. Build fewer things that fully work.
+
 ### 2026-06-01 18:05 UTC · chat
 TODAY'S MISSES (open loops): did not launch the sites, the challenge, the email drafts, or user's content. These are carried-over priorities.
 
@@ -81,28 +90,29 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:05 UTC
-- **Branch:** `claude/os-ventures`
-- **Last commit:** ee64550 chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **When:** 2026-06-01 18:11 UTC
+- **Branch:** `claude/os-comms`
+- **Last commit:** 6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) — 3 minutes ago
 
 **Working tree:**
 ```
 M .claude/nucleus/NUCLEUS.md
+?? .claude/nucleus/tasks.json
 ```
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 36 +++++++++++++++++++++++++++---------
- 1 file changed, 27 insertions(+), 9 deletions(-)
+.claude/nucleus/NUCLEUS.md | 27 +++++++++++++++++----------
+ 1 file changed, 17 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-ee64550 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) (2 minutes ago)
-46e95f1 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (5 minutes ago)
-214ddd8 chore: refresh nucleus live state [skip ci] (32 minutes ago)
+6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) (3 minutes ago)
+ee64550 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) (7 minutes ago)
+46e95f1 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (10 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 

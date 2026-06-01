@@ -1,0 +1,77 @@
+{
+  "seq": 4,
+  "tasks": [
+    {
+      "id": "T001",
+      "title": "Launch the site(s)",
+      "owner": "ssa-ceo",
+      "created_by": "claude",
+      "status": "open",
+      "need": "carryover from today; ship live, not draft",
+      "result": "",
+      "created": "2026-06-01 18:08 UTC",
+      "updated": "2026-06-01 18:08 UTC",
+      "history": [
+        {
+          "at": "2026-06-01 18:08 UTC",
+          "by": "claude",
+          "event": "created → ssa-ceo"
+        }
+      ]
+    },
+    {
+      "id": "T002",
+      "title": "Launch the challenge",
+      "owner": "ssa-mktg",
+      "created_by": "claude",
+      "status": "open",
+      "need": "carryover; define start + signup mechanism",
+      "result": "",
+      "created": "2026-06-01 18:08 UTC",
+      "updated": "2026-06-01 18:08 UTC",
+      "history": [
+        {
+          "at": "2026-06-01 18:08 UTC",
+          "by": "claude",
+          "event": "created → ssa-mktg"
+        }
+      ]
+    },
+    {
+      "id": "T003",
+      "title": "Send the email drafts",
+      "owner": "ssa-mktg",
+      "created_by": "claude",
+      "status": "open",
+      "need": "carryover; drafted≠done, must SEND",
+      "result": "",
+      "created": "2026-06-01 18:08 UTC",
+      "updated": "2026-06-01 18:08 UTC",
+      "history": [
+        {
+          "at": "2026-06-01 18:08 UTC",
+          "by": "claude",
+          "event": "created → ssa-mktg"
+        }
+      ]
+    },
+    {
+      "id": "T004",
+      "title": "Post your content (the stuck point)",
+      "owner": "ssa-ceo",
+      "created_by": "claude",
+      "status": "open",
+      "need": "posting blocker is insecurity; pre-decide what+where, smallest action, published=done",
+      "result": "",
+      "created": "2026-06-01 18:08 UTC",
+      "updated": "2026-06-01 18:08 UTC",
+      "history": [
+        {
+          "at": "2026-06-01 18:08 UTC",
+          "by": "claude",
+          "event": "created → ssa-ceo"
+        }
+      ]
+    }
+  ]
+}
