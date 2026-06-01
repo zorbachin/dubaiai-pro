@@ -1,0 +1,150 @@
+#!/usr/bin/env python3
+"""
+os — the front door to your AI Operating System.
+
+Ties together the three layers you already have:
+  • Context    → the nucleus  (.claude/nucleus/NUCLEUS.md)
+  • Cadence    → agentbus      (the closed-loop task ledger)
+  • Connections→ connections.md (your agent roster)
+
+Commands:
+  os board       one screen: in-flight work + what's done + agent roster + context
+  os audit       a 4Cs gap report — where the OS is strong vs. thin
+  os onboard     print the intake prompts to capture who you are / your agents
+  os             (no args) → board
+
+This is glue, not new state. It shells out to bin/nucleus and bin/agentbus so
+there's still exactly one source of truth for each thing.
+"""
+
+import os
+import subprocess
+import sys
+
+ROOT = os.environ.get("CLAUDE_PROJECT_DIR") or subprocess.run(
+    ["git", "rev-parse", "--show-toplevel"],
+    capture_output=True, text=True).stdout.strip() or os.getcwd()
+BIN = os.path.join(ROOT, "bin")
+OSDIR = os.path.join(ROOT, ".claude", "os")
+CONNECTIONS = os.path.join(OSDIR, "connections.md")
+
+
+def run(cmd):
+    try:
+        return subprocess.run(cmd, capture_output=True, text=True).stdout.rstrip()
+    except Exception as e:
+        return f"(could not run {' '.join(cmd)}: {e})"
+
+
+def section(title):
+    print(f"\n\033[1m{title}\033[0m" if sys.stdout.isatty() else f"\n{title}")
+    print("─" * len(title))
+
+
+def cmd_board():
+    print("╔══════════════════════════════════════════╗")
+    print("║           🧠⚙️  AI OPERATING SYSTEM         ║")
+    print("╚══════════════════════════════════════════╝")
+
+    section("🎯 Context (catch-up)")
+    print(run([os.path.join(BIN, "nucleus"), "brief"]))
+
+    section("📋 Work in flight & done")
+    print(run([os.path.join(BIN, "agentbus"), "board"]))
+
+    section("🛰️  Agent roster")
+    if os.path.exists(CONNECTIONS):
+        with open(CONNECTIONS, encoding="utf-8") as f:
+            rows = [l.rstrip() for l in f if l.startswith("| **")]
+        if rows:
+            for r in rows:
+                print("  " + r)
+        else:
+            print("  (no agents defined yet — edit .claude/os/connections.md)")
+    else:
+        print("  (no connections.md yet)")
+
+
+def cmd_audit():
+    """A 4Cs gap report — quick, honest read on each pillar."""
+    print("🔍 4Cs Gap Report\n" + "=" * 32)
+
+    # Context
+    brief = run([os.path.join(BIN, "nucleus"), "status"])
+    handoffs = "captured" in brief
+    print("\n[1] CONTEXT — single source of truth")
+    print("    ✅ nucleus present" if os.path.exists(
+        os.path.join(ROOT, ".claude/nucleus/NUCLEUS.md"))
+        else "    ⬜ no nucleus")
+    print(f"    {brief.splitlines()[3] if len(brief.splitlines())>3 else ''}")
+
+    # Connections
+    n_agents = 0
+    if os.path.exists(CONNECTIONS):
+        with open(CONNECTIONS, encoding="utf-8") as f:
+            n_agents = sum(1 for l in f if l.startswith("| **"))
+    print("\n[2] CONNECTIONS — your agent roster")
+    if n_agents >= 2:
+        print(f"    ✅ {n_agents} agents defined")
+    else:
+        print(f"    ⬜ only {n_agents} agent(s) — define more in connections.md")
+
+    # Capabilities
+    caps = [f for f in ("agentbus", "nucleus", "os")
+            if os.path.exists(os.path.join(BIN, f))]
+    print("\n[3] CAPABILITIES — what the OS can do")
+    print(f"    ✅ tools: {', '.join(caps)}")
+    skills_dir = os.path.join(ROOT, ".claude", "skills")
+    n_skills = len([d for d in os.listdir(skills_dir)
+                    if d.startswith("os-")]) if os.path.isdir(skills_dir) else 0
+    print(f"    {'✅' if n_skills else '⬜'} {n_skills} OS skill(s)")
+
+    # Cadence
+    open_tasks = run([os.path.join(BIN, "agentbus"), "list", "--status", "open"])
+    done_tasks = run([os.path.join(BIN, "agentbus"), "list", "--status", "done"])
+    print("\n[4] CADENCE — closing the loop")
+    print("    ✅ agentbus tracks done-state explicitly")
+    od = 0 if open_tasks.startswith("(no") else len(open_tasks.splitlines())
+    dn = 0 if done_tasks.startswith("(no") else len(done_tasks.splitlines())
+    print(f"    {od} open · {dn} done")
+
+    print("\n" + "=" * 32)
+    print("Thinnest pillar is your next move. Cadence/automation comes LAST —")
+    print("don't automate a workflow that doesn't already work manually.")
+
+
+ONBOARD = """\
+🚀 Onboarding — let's capture what the OS is built around. Tell me (talk, don't
+type commands — I'll save each answer to the nucleus as we go):
+
+  1. Who are you & what are you working on right now? (the workstreams)
+  2. Your agents: which AIs/tools do you use, and what is each best at?
+     (chatgpt, gemini, hermes, …)
+  3. For each agent — how do you want to hand it work and get results back?
+     (manual paste to start; we graduate to auto later — the bike method)
+  4. Your priorities this week — what does "done" look like?
+  5. Anything you want the OS to ALWAYS or NEVER do?
+
+As you answer, I'll record durable facts in the nucleus and your agent roster in
+.claude/os/connections.md. Then `os board` shows it all in one place.
+"""
+
+
+def main(argv):
+    cmd = argv[0] if argv else "board"
+    if cmd in ("-h", "--help", "help"):
+        print(__doc__)
+    elif cmd == "board":
+        cmd_board()
+    elif cmd == "audit":
+        cmd_audit()
+    elif cmd == "onboard":
+        print(ONBOARD)
+    else:
+        print(f"os: unknown command '{cmd}'\n{__doc__}", file=sys.stderr)
+        return 2
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
