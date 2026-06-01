@@ -57,9 +57,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 10:10 UTC
+- **When:** 2026-06-01 10:20 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** c4ac27b chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **Last commit:** 09db9fd Add the Comb Engine: autonomous podcast ingestion pipeline for PodSupps — 52 seconds ago
 
 **Working tree:**
 ```
@@ -68,11 +68,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-c4ac27b chore: refresh nucleus live state [skip ci] (4 minutes ago)
-a97019d chore: refresh nucleus live state [skip ci] (4 minutes ago)
-e0b2ead chore: refresh nucleus live state [skip ci] (4 minutes ago)
-f5a45ce chore: refresh nucleus live state [skip ci] (60 minutes ago)
-a2214a0 chore: refresh nucleus live state [skip ci] (60 minutes ago)
+09db9fd Add the Comb Engine: autonomous podcast ingestion pipeline for PodSupps (52 seconds ago)
+c4ac27b chore: refresh nucleus live state [skip ci] (15 minutes ago)
+a97019d chore: refresh nucleus live state [skip ci] (15 minutes ago)
+e0b2ead chore: refresh nucleus live state [skip ci] (15 minutes ago)
+f5a45ce chore: refresh nucleus live state [skip ci] (71 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
