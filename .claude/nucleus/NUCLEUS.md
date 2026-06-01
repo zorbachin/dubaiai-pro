@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 10:07 UTC · chat
+User needs to SEE the system work with concrete proof, not be told it works. Show, don't tell — demo live output, point at the actual file.
+
 ### 2026-06-01 07:57 UTC · chat
 Steering signals to always note: (1) when user says something 'works'/validates an approach, (2) when user steers thinking in a direction, (3) patterns recurring across workstreams. Plus: the nucleus should self-check and get smarter over time.
 
@@ -54,9 +57,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 07:58 UTC
-- **Branch:** `main`
-- **Last commit:** ff9c06d New capture signals + nucleus self-improvement loop (#15) — 22 seconds ago
+- **When:** 2026-06-01 10:07 UTC
+- **Branch:** `claude/nucleus-visibility`
+- **Last commit:** 1ec6d92 chore: refresh nucleus live state [skip ci] — 2 hours ago
 
 **Working tree:**
 ```
@@ -65,11 +68,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-ff9c06d New capture signals + nucleus self-improvement loop (#15) (22 seconds ago)
-ceff804 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-edaa8c2 Make the nucleus capture context proactively (#14) (5 minutes ago)
-3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (9 minutes ago)
-4e0cd67 CLAUDE.md — manage the nucleus by talking, not commands (#13) (13 minutes ago)
+1ec6d92 chore: refresh nucleus live state [skip ci] (2 hours ago)
+ff9c06d New capture signals + nucleus self-improvement loop (#15) (2 hours ago)
+ceff804 chore: refresh nucleus live state [skip ci] (2 hours ago)
+edaa8c2 Make the nucleus capture context proactively (#14) (2 hours ago)
+3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
@@ -77,6 +80,9 @@ edaa8c2 Make the nucleus capture context proactively (#14) (5 minutes ago)
 _The nucleus checking in on itself._
 
 <!-- REFLECTIONS:START -->
+### 2026-06-01 10:07 UTC
+GAP: proactive capture is invisible to the user — they couldn't tell it was working. Fix: whenever you capture, show a one-line '🧠 saved: ...' receipt in chat so it's verifiable in real time. Visibility is as important as the capture itself.
+
 ### 2026-06-01 07:57 UTC
 Added three new capture signals (validations/'this works', directional steering, cross-workstream patterns) and a self-improvement loop. Learned the user wants memory that promotes patterns and tunes its own rules, not just a static log.
 <!-- REFLECTIONS:END -->

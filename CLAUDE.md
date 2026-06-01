@@ -28,7 +28,9 @@ every session.
 
 The user wants you to remember useful things **automatically**. Throughout any
 session, watch for these and capture them with `bin/nucleus push` *without being
-prompted* (then mention in one short line that you saved it):
+prompted*. **Always show a one-line receipt in chat when you do**, so capture is
+visible and verifiable in real time — e.g. `🧠 saved: <the thing>`. Invisible
+memory feels broken; the receipt is how the user knows it's working.
 
 - **Decisions** — "let's go with X", "use the gold not the navy", "drop that
   section", a chosen approach or tradeoff.
