@@ -43,27 +43,35 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 07:52 UTC · chat
+User preference: capture useful things (decisions, preferences, milestones, open loops) PROACTIVELY without being asked — they should rarely need to say 'remember this'.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 07:43 UTC
-- **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 36fe593 Merge main into branch (resolve nucleus auto-state) — 0 seconds ago
+- **When:** 2026-06-01 07:52 UTC
+- **Branch:** `claude/nucleus-proactive`
+- **Last commit:** 3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix — 3 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M CLAUDE.md
+```
+
+**Uncommitted changes:**
+```
+CLAUDE.md | 32 ++++++++++++++++++++++++++++++--
+ 1 file changed, 30 insertions(+), 2 deletions(-)
 ```
 
 **Recent commits:**
 ```
-36fe593 Merge main into branch (resolve nucleus auto-state) (0 seconds ago)
-abc7a2b chore: refresh nucleus live state [skip ci] (79 seconds ago)
-68d44f1 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-691f758 feat: nucleus Stop hook auto-pushes its state commits (12 minutes ago)
-8e5ed6f chore: refresh nucleus live state [skip ci] (14 minutes ago)
+3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (3 minutes ago)
+4e0cd67 CLAUDE.md — manage the nucleus by talking, not commands (#13) (8 minutes ago)
+99104b0 Stop hook auto-pushes nucleus state commits (#12) (9 minutes ago)
+c527b8f feat: auto-commit nucleus live-state churn in Stop hook (#11) (25 minutes ago)
+920ee11 Merge pull request #10 from zorbachin/claude/epic-einstein-jPNIL (74 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
