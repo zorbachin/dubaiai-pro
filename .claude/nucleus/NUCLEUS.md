@@ -123,9 +123,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:38 UTC
-- **Branch:** `claude/batch-system`
-- **Last commit:** 63c2b2b chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **When:** 2026-06-01 18:40 UTC
+- **Branch:** `main`
+- **Last commit:** bc7d6a5 Batch & repurpose content system (create once, ship all week) (#26) — 20 seconds ago
 
 **Working tree:**
 ```
@@ -134,11 +134,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-63c2b2b chore: refresh nucleus live state [skip ci] (2 minutes ago)
-8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (3 minutes ago)
-8d9a946 Dopaminergic focus dashboard (focus.html) (#24) (8 minutes ago)
-3e8cfb1 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-41340ad Brain-dump parser — raw dumps to flywheel content (#23) (11 minutes ago)
+bc7d6a5 Batch & repurpose content system (create once, ship all week) (#26) (20 seconds ago)
+63c2b2b chore: refresh nucleus live state [skip ci] (5 minutes ago)
+8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (5 minutes ago)
+8d9a946 Dopaminergic focus dashboard (focus.html) (#24) (10 minutes ago)
+3e8cfb1 chore: refresh nucleus live state [skip ci] (13 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
