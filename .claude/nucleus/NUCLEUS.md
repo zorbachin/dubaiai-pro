@@ -63,31 +63,22 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:00 UTC
-- **Branch:** `claude/agent-taskbus`
-- **Last commit:** 72a6603 chore: capture multi-agent OS direction in nucleus — 14 minutes ago
+- **When:** 2026-06-01 18:01 UTC
+- **Branch:** `main`
+- **Last commit:** 6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) — 24 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-?? .claude/os/
-?? .claude/skills/
-?? bin/os
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 21 +++++++--------------
- 1 file changed, 7 insertions(+), 14 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-72a6603 chore: capture multi-agent OS direction in nucleus (14 minutes ago)
-e8ad420 feat: agentbus — shared task ledger that closes the delegation loop (14 minutes ago)
+6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (24 seconds ago)
 214ddd8 chore: refresh nucleus live state [skip ci] (27 minutes ago)
-6c310d3 chore: refresh nucleus live state [skip ci] (27 minutes ago)
+6c310d3 chore: refresh nucleus live state [skip ci] (28 minutes ago)
 4eb49f9 chore: refresh nucleus live state [skip ci] (8 hours ago)
+cbdbdaa Make proactive capture visible with chat receipts (#16) (8 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
