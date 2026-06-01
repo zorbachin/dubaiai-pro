@@ -90,29 +90,22 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:11 UTC
-- **Branch:** `claude/os-comms`
-- **Last commit:** 6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) — 3 minutes ago
+- **When:** 2026-06-01 18:12 UTC
+- **Branch:** `main`
+- **Last commit:** 686819c Comms style + anti-splinter home rule (stay in Claude) (#21) — 25 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-?? .claude/nucleus/tasks.json
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 27 +++++++++++++++++----------
- 1 file changed, 17 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) (3 minutes ago)
-ee64550 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) (7 minutes ago)
-46e95f1 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (10 minutes ago)
+686819c Comms style + anti-splinter home rule (stay in Claude) (#21) (25 seconds ago)
+6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) (4 minutes ago)
+ee64550 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) (8 minutes ago)
+46e95f1 chore: refresh nucleus live state [skip ci] (11 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
