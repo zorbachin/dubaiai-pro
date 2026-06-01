@@ -51,7 +51,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-01 07:46 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 1aef76f chore: refresh nucleus live state [skip ci] — 56 seconds ago
+- **Last commit:** 84d6a09 chore: refresh nucleus live state [skip ci] — 26 seconds ago
 
 **Working tree:**
 ```
@@ -60,10 +60,10 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-1aef76f chore: refresh nucleus live state [skip ci] (56 seconds ago)
-e76fb9e chore: refresh nucleus live state [skip ci] (65 seconds ago)
+84d6a09 chore: refresh nucleus live state [skip ci] (26 seconds ago)
+1aef76f chore: refresh nucleus live state [skip ci] (82 seconds ago)
+e76fb9e chore: refresh nucleus live state [skip ci] (2 minutes ago)
 6120308 docs: CLAUDE.md — conversational nucleus convention (2 minutes ago)
 02e4a57 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-36fe593 Merge main into branch (resolve nucleus auto-state) (3 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
