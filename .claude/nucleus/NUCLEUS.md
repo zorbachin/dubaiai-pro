@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 11:45 UTC · code
+GitHub-native deployment added: JSON file adapter (pipeline/data/ committed to repo), ingest.yml (daily cron -> extracts mentions -> commits JSON -> Vercel rebuilds), qa.yml (post-deploy checks every page/image/link, opens GitHub Issue on failure). 10 anchor shows seeded with RSS+YouTube URLs. Setup: add FORGE_API_KEY + FORGE_API_URL as GitHub secrets, SITE_URL as a repo variable. Then connect the podsupps2 repo to Vercel and the whole loop is live.
+
 ### 2026-06-01 10:10 UTC · code
 PIVOT on podsupps2: Manus already built a ~90% complete storefront (107 podcasts, 873 products, 1568 mentions, full React19+tRPC+Drizzle+MySQL, audio/video player, SEO, PWA). The MISSING core — and the actual moat from their own blueprint — is the automated ingestion pipeline ('Comb Engine'): RSS/YouTube poll -> transcribe -> LLM extract -> dedup/resolve -> DB write -> mark processed. Schema (episodes.isProcessed/transcriptUrl, mentions) + infra (invokeLLM, transcribeAudio) are present but never wired. Decision: build the autonomous engine, not rebuild the frontend. Building it in dubaiai-pro repo (session is scoped to it) as a liftable, tested package matching podsupps2 contracts + INTEGRATION.md.
 
@@ -57,22 +60,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 11:35 UTC
+- **When:** 2026-06-01 11:45 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** 6a53eec chore: refresh nucleus live state [skip ci] — 74 minutes ago
+- **Last commit:** 01c3674 Add GitHub-native deployment: JSON adapter, GitHub Actions workflows, QA agent — 17 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-6a53eec chore: refresh nucleus live state [skip ci] (74 minutes ago)
-09db9fd Add the Comb Engine: autonomous podcast ingestion pipeline for PodSupps (75 minutes ago)
-c4ac27b chore: refresh nucleus live state [skip ci] (89 minutes ago)
-a97019d chore: refresh nucleus live state [skip ci] (89 minutes ago)
-e0b2ead chore: refresh nucleus live state [skip ci] (89 minutes ago)
+01c3674 Add GitHub-native deployment: JSON adapter, GitHub Actions workflows, QA agent (17 seconds ago)
+6a53eec chore: refresh nucleus live state [skip ci] (85 minutes ago)
+09db9fd Add the Comb Engine: autonomous podcast ingestion pipeline for PodSupps (86 minutes ago)
+c4ac27b chore: refresh nucleus live state [skip ci] (2 hours ago)
+a97019d chore: refresh nucleus live state [skip ci] (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
