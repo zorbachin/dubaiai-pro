@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 10:10 UTC · code
+PIVOT on podsupps2: Manus already built a ~90% complete storefront (107 podcasts, 873 products, 1568 mentions, full React19+tRPC+Drizzle+MySQL, audio/video player, SEO, PWA). The MISSING core — and the actual moat from their own blueprint — is the automated ingestion pipeline ('Comb Engine'): RSS/YouTube poll -> transcribe -> LLM extract -> dedup/resolve -> DB write -> mark processed. Schema (episodes.isProcessed/transcriptUrl, mentions) + infra (invokeLLM, transcribeAudio) are present but never wired. Decision: build the autonomous engine, not rebuild the frontend. Building it in dubaiai-pro repo (session is scoped to it) as a liftable, tested package matching podsupps2 contracts + INTEGRATION.md.
+
 ### 2026-06-01 07:57 UTC · chat
 Steering signals to always note: (1) when user says something 'works'/validates an approach, (2) when user steers thinking in a direction, (3) patterns recurring across workstreams. Plus: the nucleus should self-check and get smarter over time.
 
@@ -54,9 +57,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 10:06 UTC
+- **When:** 2026-06-01 10:10 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** a97019d chore: refresh nucleus live state [skip ci] — 12 seconds ago
+- **Last commit:** c4ac27b chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
@@ -65,11 +68,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-a97019d chore: refresh nucleus live state [skip ci] (12 seconds ago)
-e0b2ead chore: refresh nucleus live state [skip ci] (22 seconds ago)
-f5a45ce chore: refresh nucleus live state [skip ci] (56 minutes ago)
-a2214a0 chore: refresh nucleus live state [skip ci] (56 minutes ago)
-1ec6d92 chore: refresh nucleus live state [skip ci] (2 hours ago)
+c4ac27b chore: refresh nucleus live state [skip ci] (4 minutes ago)
+a97019d chore: refresh nucleus live state [skip ci] (4 minutes ago)
+e0b2ead chore: refresh nucleus live state [skip ci] (4 minutes ago)
+f5a45ce chore: refresh nucleus live state [skip ci] (60 minutes ago)
+a2214a0 chore: refresh nucleus live state [skip ci] (60 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 

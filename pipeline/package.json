@@ -1,0 +1,25 @@
+{
+  "name": "podsupps-comb-engine",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Autonomous ingestion pipeline for PodSupps — polls podcast feeds, transcribes new episodes, extracts product/restaurant/book mentions with an LLM, resolves them against the catalog, and writes mentions back to the database. Keeps the catalog up to date and expands it to new shows with zero human seeding.",
+  "license": "MIT",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "ingest": "tsx src/cli.ts ingest",
+    "poll": "tsx src/cli.ts poll-all",
+    "discover": "tsx src/cli.ts discover"
+  },
+  "dependencies": {
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.0",
+    "tsx": "^4.19.1",
+    "typescript": "5.9.3",
+    "vitest": "^2.1.4"
+  }
+}
