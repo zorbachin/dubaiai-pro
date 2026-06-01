@@ -43,6 +43,21 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 18:05 UTC · chat
+TODAY'S MISSES (open loops): did not launch the sites, the challenge, the email drafts, or user's content. These are carried-over priorities.
+
+### 2026-06-01 18:05 UTC · chat
+USER WORKING STYLE: ADHD — needs coaching, guidance, clear workstreams, not a wall of options. LIKES creating content when he knows what he's doing. GETS STUCK on POSTING — insecurity is the blocker, not the creation. Posting friction is a recurring pattern to design around.
+
+### 2026-06-01 18:05 UTC · chat
+MY ROLE (Claude): chief of staff / orchestrator + ADHD coach. Set daily (or 2x/day) task lists per venture & agent. When user brings new ideas mid-stream, find balance: 'yes we can do that AND here's what still must ship today' — don't let new shiny derail committed goals.
+
+### 2026-06-01 18:05 UTC · chat
+GOALS (the north star for all ventures): more leads, more bookings, more inbound business, more organization so the user doesn't have to guess.
+
+### 2026-06-01 18:05 UTC · chat
+VENTURES: Minimovies, letaidoit, sellsellingai (= the money maker), buildyourbot.io (strong branding+site), buddy botz (coming). Each needs its own CEO agent delegating to marketing/research/product sub-agents.
+
 ### 2026-06-01 18:03 UTC · code
 Built bin/agentwatch: free local auto-dispatch — polls agentbus for ollama/hermes tasks, runs them on local Ollama, closes the loop at ZERO cost. Paid agents (chatgpt/gemini) stay manual relay to avoid spend. Roster updated: ollama+hermes=auto(free), chatgpt+gemini=manual, claude+cowork. Hermes assumed = Ollama model (confirm).
 
@@ -66,22 +81,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:04 UTC
-- **Branch:** `main`
-- **Last commit:** 35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) — 21 seconds ago
+- **When:** 2026-06-01 18:05 UTC
+- **Branch:** `claude/os-ventures`
+- **Last commit:** ee64550 chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 36 +++++++++++++++++++++++++++---------
+ 1 file changed, 27 insertions(+), 9 deletions(-)
 ```
 
 **Recent commits:**
 ```
-35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) (21 seconds ago)
-46e95f1 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (3 minutes ago)
-214ddd8 chore: refresh nucleus live state [skip ci] (30 minutes ago)
-6c310d3 chore: refresh nucleus live state [skip ci] (31 minutes ago)
+ee64550 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+35ecff0 agentwatch — free local auto-dispatch via Ollama (#19) (2 minutes ago)
+46e95f1 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (5 minutes ago)
+214ddd8 chore: refresh nucleus live state [skip ci] (32 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
