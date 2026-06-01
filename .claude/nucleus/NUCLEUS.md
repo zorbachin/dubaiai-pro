@@ -49,9 +49,9 @@ surface. This is the message-in-a-bottle between sessions._
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 02:52 UTC
+- **When:** 2026-06-01 06:37 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 2e21213 docs: add nucleus INTEGRATION.md (web app wiring guide) — 8 hours ago
+- **Last commit:** d56b54e feat: pre-fill nucleus with real DubaiAI.pro context — 4 hours ago
 
 **Working tree:**
 ```
@@ -60,16 +60,16 @@ M .claude/nucleus/NUCLEUS.md
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 37 ++++++++++++++++++++++++++-----------
- 1 file changed, 26 insertions(+), 11 deletions(-)
+.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-2e21213 docs: add nucleus INTEGRATION.md (web app wiring guide) (8 hours ago)
-e4811f7 feat: nucleus bridge for web apps — serve, widget, shared NUCLEUS_HOME (8 hours ago)
-35b1067 feat: self-running Context Nucleus — auto-handoff context between Claude surfaces (9 hours ago)
+d56b54e feat: pre-fill nucleus with real DubaiAI.pro context (4 hours ago)
+2e21213 docs: add nucleus INTEGRATION.md (web app wiring guide) (12 hours ago)
+e4811f7 feat: nucleus bridge for web apps — serve, widget, shared NUCLEUS_HOME (12 hours ago)
+35b1067 feat: self-running Context Nucleus — auto-handoff context between Claude surfaces (12 hours ago)
 3d85a6a Add foxy-reveal.gif to assets for email hosting (2 weeks ago)
-de8dd38 feat: initial launch — DubaiAI.pro premium landing page (5 weeks ago)
 ```
 <!-- AUTOSTATE:END -->
