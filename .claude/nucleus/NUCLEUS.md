@@ -49,9 +49,9 @@ surface. This is the message-in-a-bottle between sessions._
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 07:43 UTC
+- **When:** 2026-06-01 07:45 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 36fe593 Merge main into branch (resolve nucleus auto-state) — 0 seconds ago
+- **Last commit:** 6120308 docs: CLAUDE.md — conversational nucleus convention — 31 seconds ago
 
 **Working tree:**
 ```
@@ -60,10 +60,10 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-36fe593 Merge main into branch (resolve nucleus auto-state) (0 seconds ago)
-abc7a2b chore: refresh nucleus live state [skip ci] (79 seconds ago)
-68d44f1 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-691f758 feat: nucleus Stop hook auto-pushes its state commits (12 minutes ago)
-8e5ed6f chore: refresh nucleus live state [skip ci] (14 minutes ago)
+6120308 docs: CLAUDE.md — conversational nucleus convention (31 seconds ago)
+02e4a57 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+36fe593 Merge main into branch (resolve nucleus auto-state) (2 minutes ago)
+abc7a2b chore: refresh nucleus live state [skip ci] (3 minutes ago)
+68d44f1 chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
