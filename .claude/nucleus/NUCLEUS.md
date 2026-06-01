@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 18:38 UTC · chat
+CONTENT SYSTEM (key workflow): user batches 2-4 hrs Sun/Mon on RAW content creation only (his strength, peak 7:30am). Then Claude atomizes each raw asset into many formats across the week (video→clips/carousel/quotes/memes/written/email). Create once, ship all week. Removes midweek blank-page + posting friction.
+
 ### 2026-06-01 18:27 UTC · chat
 FEATURE: dopaminergic focus dashboard. User has ADHD, misses scroll/gamification/focus-meter — text-only is hard to visualize his day. Build self-contained focus.html (no server, double-click, brand colors): focus meter, progress ring, XP/streaks, scrollable task cards. Generated from the live board.
 
@@ -120,9 +123,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:36 UTC
-- **Branch:** `main`
-- **Last commit:** 8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) — 31 seconds ago
+- **When:** 2026-06-01 18:38 UTC
+- **Branch:** `claude/batch-system`
+- **Last commit:** 63c2b2b chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
@@ -131,11 +134,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (31 seconds ago)
-8d9a946 Dopaminergic focus dashboard (focus.html) (#24) (6 minutes ago)
-3e8cfb1 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-41340ad Brain-dump parser — raw dumps to flywheel content (#23) (9 minutes ago)
-4dd9d19 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+63c2b2b chore: refresh nucleus live state [skip ci] (2 minutes ago)
+8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (3 minutes ago)
+8d9a946 Dopaminergic focus dashboard (focus.html) (#24) (8 minutes ago)
+3e8cfb1 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+41340ad Brain-dump parser — raw dumps to flywheel content (#23) (11 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
