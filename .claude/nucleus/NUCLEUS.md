@@ -57,22 +57,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 10:08 UTC
+- **When:** 2026-06-01 17:33 UTC
 - **Branch:** `main`
-- **Last commit:** cbdbdaa Make proactive capture visible with chat receipts (#16) — 24 seconds ago
+- **Last commit:** 4eb49f9 chore: refresh nucleus live state [skip ci] — 7 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-cbdbdaa Make proactive capture visible with chat receipts (#16) (24 seconds ago)
-1ec6d92 chore: refresh nucleus live state [skip ci] (2 hours ago)
-ff9c06d New capture signals + nucleus self-improvement loop (#15) (2 hours ago)
-ceff804 chore: refresh nucleus live state [skip ci] (2 hours ago)
-edaa8c2 Make the nucleus capture context proactively (#14) (2 hours ago)
+4eb49f9 chore: refresh nucleus live state [skip ci] (7 hours ago)
+cbdbdaa Make proactive capture visible with chat receipts (#16) (7 hours ago)
+1ec6d92 chore: refresh nucleus live state [skip ci] (10 hours ago)
+ff9c06d New capture signals + nucleus self-improvement loop (#15) (10 hours ago)
+ceff804 chore: refresh nucleus live state [skip ci] (10 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
