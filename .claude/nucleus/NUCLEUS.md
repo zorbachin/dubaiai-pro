@@ -43,6 +43,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 18:26 UTC · code
+Built dump parser: bin/dump (reliable capture to .claude/os/dumps/) + dump skill (Opus parses raw dump → flywheel content across video/carousel/meme/writing, in user's voice, queued to content board, with 3 hook options). Idea input valve is live.
+
+### 2026-06-01 18:25 UTC · chat
+FEATURE: brain-dump parser. User dumps a raw idea/theme (one post or a week), Claude (Opus 4.8) parses it into outstanding FLYWHEEL content — structured, in his voice, queued to the content board. Input valve for his ADHD idea flow.
+
 ### 2026-06-01 18:23 UTC · code
 Built master content-board.md (color-coded by type, idea→POSTED pipeline), scripts-tomorrow.md (2 ready-to-read scripts for 7:30 SSA-C + Origin-Drafts), voice-guide v0. Tomorrow's shoot is on the bus.
 
@@ -111,22 +117,32 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:24 UTC
-- **Branch:** `main`
-- **Last commit:** eedadf2 Content sprint kickoff: master board + tomorrow's scripts + voice guide (#22) — 24 seconds ago
+- **When:** 2026-06-01 18:26 UTC
+- **Branch:** `claude/dump-parser`
+- **Last commit:** 4dd9d19 chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M  .claude/nucleus/NUCLEUS.md
+A  .claude/skills/dump/SKILL.md
+A  bin/dump
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md   | 17 ++++++----
+ .claude/skills/dump/SKILL.md | 54 ++++++++++++++++++++++++++++++
+ bin/dump                     | 78 ++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 142 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-eedadf2 Content sprint kickoff: master board + tomorrow's scripts + voice guide (#22) (24 seconds ago)
-7466505 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-686819c Comms style + anti-splinter home rule (stay in Claude) (#21) (13 minutes ago)
-6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) (16 minutes ago)
-ee64550 chore: refresh nucleus live state [skip ci] (20 minutes ago)
+4dd9d19 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+eedadf2 Content sprint kickoff: master board + tomorrow's scripts + voice guide (#22) (2 minutes ago)
+7466505 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+686819c Comms style + anti-splinter home rule (stay in Claude) (#21) (14 minutes ago)
+6ddafef Concretize Claude's role: Chief of Staff + venture org model (#20) (18 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
