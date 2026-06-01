@@ -1,0 +1,71 @@
+[
+  {
+    "id": "huberman-lab",
+    "name": "Huberman Lab",
+    "rssUrl": "https://feeds.megaphone.fm/hubermanlab",
+    "youtubeUrl": "https://www.youtube.com/channel/UC2D2CMWXMOVWx7giW1n3LIg",
+    "isActive": true
+  },
+  {
+    "id": "jre",
+    "name": "The Joe Rogan Experience",
+    "youtubeUrl": "https://www.youtube.com/channel/UCzWQYUVCpZqtN93H8RR44Qw",
+    "isActive": true
+  },
+  {
+    "id": "lex-fridman",
+    "name": "Lex Fridman Podcast",
+    "rssUrl": "https://lexfridman.com/feed/podcast/",
+    "youtubeUrl": "https://www.youtube.com/channel/UCSHZKyawb77ixDdsGog4iWA",
+    "isActive": true
+  },
+  {
+    "id": "tim-ferriss",
+    "name": "The Tim Ferriss Show",
+    "rssUrl": "https://rss.art19.com/tim-ferriss-show",
+    "youtubeUrl": "https://www.youtube.com/channel/UCznv7Vf93nFx89Yu2XCsjIg",
+    "isActive": true
+  },
+  {
+    "id": "diary-of-a-ceo",
+    "name": "The Diary Of A CEO",
+    "rssUrl": "https://feeds.acast.com/public/shows/the-diary-of-a-ceo-with-steven-bartlett",
+    "youtubeUrl": "https://www.youtube.com/channel/UCGq-a57w-aPwyi3pW7XLiHw",
+    "isActive": true
+  },
+  {
+    "id": "my-first-million",
+    "name": "My First Million",
+    "rssUrl": "https://feeds.megaphone.fm/my-first-million",
+    "youtubeUrl": "https://www.youtube.com/channel/UCeQG5PBOyqJmxSFY8wL0awQ",
+    "isActive": true
+  },
+  {
+    "id": "peter-attia",
+    "name": "The Peter Attia Drive",
+    "rssUrl": "https://peterattiamd.com/podcast/feed/",
+    "youtubeUrl": "https://www.youtube.com/channel/UCm22FAXZMw1BaWeFszZxUKw",
+    "isActive": true
+  },
+  {
+    "id": "modern-wisdom",
+    "name": "Modern Wisdom",
+    "rssUrl": "https://feeds.acast.com/public/shows/modern-wisdom",
+    "youtubeUrl": "https://www.youtube.com/channel/UCHHHbMbFGi-ySlHHSJDMr2A",
+    "isActive": true
+  },
+  {
+    "id": "all-in",
+    "name": "All-In Podcast",
+    "rssUrl": "https://feeds.megaphone.fm/allin",
+    "youtubeUrl": "https://www.youtube.com/channel/UCESLZhusAkFfsNsApnjF_Cg",
+    "isActive": true
+  },
+  {
+    "id": "theo-von",
+    "name": "This Past Weekend w/ Theo Von",
+    "rssUrl": "https://feeds.megaphone.fm/thispastweekend",
+    "youtubeUrl": "https://www.youtube.com/channel/UCm_o3UrQDMFGOHYdGpFtYbQ",
+    "isActive": true
+  }
+]

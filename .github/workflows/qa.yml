@@ -1,0 +1,92 @@
+##############################################################################
+# PodSupps QA Agent
+#
+# Checks every page, product image, and affiliate link in the live site for
+# failures (404s, broken images, timeouts). Runs:
+#   - After every deployment (Vercel sends a repository_dispatch event)
+#   - On a weekly schedule (Sunday 10:00 UTC) as a baseline health check
+#   - Manually on demand
+#
+# Posts a step summary to the Actions run. If failures are found, the job
+# fails and opens a GitHub Issue with the full report so someone is notified.
+#
+# Required repository variables (Settings → Variables → Actions):
+#   SITE_URL   — the live site URL, e.g. https://www.podsupps.com
+##############################################################################
+
+name: QA
+
+on:
+  repository_dispatch:
+    types: [vercel-deploy]
+  schedule:
+    - cron: "0 10 * * 0"    # Weekly Sunday health check
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: "Site URL to check (overrides SITE_URL variable)"
+        required: false
+
+permissions:
+  contents: read
+  issues: write             # needed to open failure issues
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install pipeline deps
+        working-directory: pipeline
+        run: npm install
+
+      - name: Run QA checks
+        id: qa
+        working-directory: pipeline
+        env:
+          SITE_URL: ${{ inputs.site_url || vars.SITE_URL || 'https://www.podsupps.com' }}
+          DATA_DIR: ${{ github.workspace }}/pipeline/data
+        run: |
+          npx tsx src/qa/agent.ts 2>&1 | tee /tmp/qa-report.txt
+          echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Post summary
+        if: always()
+        run: |
+          echo "## QA Report" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          cat /tmp/qa-report.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('/tmp/qa-report.txt', 'utf8');
+            const date = new Date().toISOString().split('T')[0];
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `QA failures detected — ${date}`,
+              body: [
+                '## QA Agent found failures',
+                '',
+                'Run: ' + context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId,
+                '',
+                '```',
+                report.slice(0, 60000),
+                '```',
+              ].join('\n'),
+              labels: ['qa-failure'],
+            });

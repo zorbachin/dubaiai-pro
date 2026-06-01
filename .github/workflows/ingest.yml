@@ -1,0 +1,92 @@
+##############################################################################
+# PodSupps Comb Engine — daily ingestion
+#
+# Runs every day at 09:00 UTC (when new podcast episodes are most likely to
+# have dropped overnight). Polls all active shows, extracts product mentions,
+# updates the JSON data files, commits, and pushes — which triggers a Vercel
+# rebuild automatically.
+#
+# Also runnable manually: Actions → "Ingest" → Run workflow.
+#
+# Required repository secrets (Settings → Secrets → Actions):
+#   FORGE_API_KEY   — API key for the LLM + Whisper endpoints
+#   FORGE_API_URL   — Base URL  (e.g. https://forge.manus.im/v1)
+#
+# Optional:
+#   LLM_MODEL       — override the model (default: gemini-2.5-flash)
+##############################################################################
+
+name: Ingest
+
+on:
+  schedule:
+    - cron: "0 9 * * *"     # 09:00 UTC daily
+  workflow_dispatch:
+    inputs:
+      podcast_id:
+        description: "Ingest a single podcast (leave blank for all)"
+        required: false
+      max_episodes:
+        description: "Max episodes per podcast (default: 5)"
+        required: false
+        default: "5"
+
+permissions:
+  contents: write           # needed to commit updated data files
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install pipeline deps
+        working-directory: pipeline
+        run: npm install
+
+      - name: Run ingestion
+        working-directory: pipeline
+        env:
+          FORGE_API_KEY: ${{ secrets.FORGE_API_KEY }}
+          FORGE_API_URL: ${{ secrets.FORGE_API_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL || 'gemini-2.5-flash' }}
+          DATA_DIR: ${{ github.workspace }}/pipeline/data
+          PIPELINE_DEPS_MODULE: ./src/adapters/json-deps.js
+          MAX_EPISODES: ${{ inputs.max_episodes || '5' }}
+          PODCAST_ID: ${{ inputs.podcast_id || '' }}
+        run: |
+          if [ -n "$PODCAST_ID" ]; then
+            npx tsx src/cli.ts ingest "$PODCAST_ID"
+          else
+            npx tsx src/cli.ts poll-all
+          fi
+
+      - name: Summarise changes
+        working-directory: pipeline
+        env:
+          DATA_DIR: ${{ github.workspace }}/pipeline/data
+        run: npx tsx src/cli.ts summary
+
+      - name: Commit updated data
+        run: |
+          git config user.name  "podsupps-bot"
+          git config user.email "bot@podsupps.com"
+          git add pipeline/data
+          if git diff --cached --quiet; then
+            echo "No data changes — nothing to commit."
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+            git commit -m "data: pipeline sync ${TIMESTAMP} [skip ci]"
+            git push
+            echo "Data committed and pushed — Vercel will rebuild automatically."
+          fi

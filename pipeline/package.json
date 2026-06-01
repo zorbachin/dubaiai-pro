@@ -9,9 +9,12 @@
     "check": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "ingest": "tsx src/cli.ts ingest",
+    "demo": "tsx src/cli.ts demo",
     "poll": "tsx src/cli.ts poll-all",
-    "discover": "tsx src/cli.ts discover"
+    "ingest": "tsx src/cli.ts ingest",
+    "discover": "tsx src/cli.ts discover",
+    "summary": "tsx src/cli.ts summary",
+    "qa": "tsx src/qa/agent.ts"
   },
   "dependencies": {
     "zod": "^4.1.12"
