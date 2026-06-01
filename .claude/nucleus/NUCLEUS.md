@@ -62,26 +62,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-01 17:08 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** a2fe7a9 chore: refresh nucleus live state [skip ci] — 5 hours ago
+- **Last commit:** f4f68b3 chore: refresh nucleus live state [skip ci] — 7 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+f4f68b3 chore: refresh nucleus live state [skip ci] (7 seconds ago)
 a2fe7a9 chore: refresh nucleus live state [skip ci] (5 hours ago)
 19ec50c chore: refresh nucleus live state [skip ci] (5 hours ago)
 01c3674 Add GitHub-native deployment: JSON adapter, GitHub Actions workflows, QA agent (5 hours ago)
 6a53eec chore: refresh nucleus live state [skip ci] (7 hours ago)
-09db9fd Add the Comb Engine: autonomous podcast ingestion pipeline for PodSupps (7 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
