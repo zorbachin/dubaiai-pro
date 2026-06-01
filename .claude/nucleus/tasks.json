@@ -1,5 +1,5 @@
 {
-  "seq": 4,
+  "seq": 7,
   "tasks": [
     {
       "id": "T001",
@@ -68,6 +68,60 @@
       "history": [
         {
           "at": "2026-06-01 18:08 UTC",
+          "by": "claude",
+          "event": "created → ssa-ceo"
+        }
+      ]
+    },
+    {
+      "id": "T005",
+      "title": "Full content map sprint: audit all content across ventures, then schedule + queue everything",
+      "owner": "ssa-ceo",
+      "created_by": "claude",
+      "status": "open",
+      "need": "nothing floating; structured sprint; everything checked/scheduled/queued",
+      "result": "",
+      "created": "2026-06-01 18:19 UTC",
+      "updated": "2026-06-01 18:19 UTC",
+      "history": [
+        {
+          "at": "2026-06-01 18:19 UTC",
+          "by": "claude",
+          "event": "created → ssa-ceo"
+        }
+      ]
+    },
+    {
+      "id": "T006",
+      "title": "Record SSA-C Human Confession video",
+      "owner": "ssa-ceo",
+      "created_by": "claude",
+      "status": "open",
+      "need": "7:30am; script in scripts-tomorrow.md; one take; POST same day=done",
+      "result": "",
+      "created": "2026-06-01 18:23 UTC",
+      "updated": "2026-06-01 18:23 UTC",
+      "history": [
+        {
+          "at": "2026-06-01 18:23 UTC",
+          "by": "claude",
+          "event": "created → ssa-ceo"
+        }
+      ]
+    },
+    {
+      "id": "T007",
+      "title": "Record Origin 'Drafts I Never Posted' video",
+      "owner": "ssa-ceo",
+      "created_by": "claude",
+      "status": "open",
+      "need": "7:30am; script ready; reading a real old draft; POST same day=done",
+      "result": "",
+      "created": "2026-06-01 18:23 UTC",
+      "updated": "2026-06-01 18:23 UTC",
+      "history": [
+        {
+          "at": "2026-06-01 18:23 UTC",
           "by": "claude",
           "event": "created → ssa-ceo"
         }
