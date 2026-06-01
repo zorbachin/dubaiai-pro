@@ -62,26 +62,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-01 18:38 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** f8e1aee chore: refresh nucleus live state [skip ci] — 42 minutes ago
+- **Last commit:** 7df3a84 chore: refresh nucleus live state [skip ci] — 14 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
- 1 file changed, 14 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+7df3a84 chore: refresh nucleus live state [skip ci] (14 seconds ago)
 f8e1aee chore: refresh nucleus live state [skip ci] (42 minutes ago)
-6a20450 chore: refresh nucleus live state [skip ci] (44 minutes ago)
-6daaa03 chore: refresh nucleus live state [skip ci] (44 minutes ago)
+6a20450 chore: refresh nucleus live state [skip ci] (45 minutes ago)
+6daaa03 chore: refresh nucleus live state [skip ci] (45 minutes ago)
 a926c84 chore: refresh nucleus live state [skip ci] (68 minutes ago)
-010236d chore: refresh nucleus live state [skip ci] (73 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
