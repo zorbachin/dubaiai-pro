@@ -60,22 +60,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 17:30 UTC
+- **When:** 2026-06-01 17:54 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** 010236d chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **Last commit:** a926c84 chore: refresh nucleus live state [skip ci] — 24 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-010236d chore: refresh nucleus live state [skip ci] (4 minutes ago)
-7409334 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-f1dda38 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-215271d fix: switch default LLM to gpt-4o-mini via OpenAI API (Forge key not user-owned) (8 minutes ago)
-bed2175 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+a926c84 chore: refresh nucleus live state [skip ci] (24 minutes ago)
+010236d chore: refresh nucleus live state [skip ci] (28 minutes ago)
+7409334 chore: refresh nucleus live state [skip ci] (31 minutes ago)
+f1dda38 chore: refresh nucleus live state [skip ci] (32 minutes ago)
+215271d fix: switch default LLM to gpt-4o-mini via OpenAI API (Forge key not user-owned) (32 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
