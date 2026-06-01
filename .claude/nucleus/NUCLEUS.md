@@ -10,18 +10,33 @@
 ## 📌 North Star
 _What we're ultimately building and why. Edit this by hand — it changes rarely._
 
-- Project: **DubaiAI.pro** — premium landing page.
-- Goal: (fill in the outcome you actually care about)
+- **Project:** DubaiAI.pro — marketing site for a Dubai-based AI consultancy
+  ("Bespoke AI Implementation & Audit").
+- **What they sell:** Full-stack AI engineering across three layers —
+  Layer 1 (AI Infrastructure), Layer 2 (AI Applications), Layer 3 (Agentic AI) —
+  plus regulatory-grade AI auditing, for enterprises and government.
+- **Goal:** A premium, high-trust landing page that converts enterprise/gov
+  leads into a contact (`hello@dubaiai.pro`). Live at https://dubaiai.pro.
 
 ## 🎯 Active Threads
 _What's in flight right now. The 1–5 things a new session should care about._
 
-- [ ] (add the thing you're working on)
+- [ ] Context Nucleus system is built (hooks + CLI + web bridge) — PR #10 open
+      on `claude/epic-einstein-jPNIL`, not yet merged to `main`.
+- [ ] Wire the nucleus widget into the local app at http://localhost:3001/.
+- [ ] (add the next real landing-page task here)
 
 ## 🧩 Decisions & Conventions
 _Choices already made, so no surface re-litigates them._
 
-- (e.g. "Brand color is #C8A45C", "Single-file index.html, no build step")
+- **Single-file site:** everything lives in `index.html` (inline CSS/JS), no
+  build step. Hosted on GitHub Pages via `CNAME` → dubaiai.pro.
+- **Brand palette:** gold `#c8a45c` (accent), navy `#0a1628` (text/dark),
+  cream/sand backgrounds (`#faf8f3`, `#f5f0e6`, `#e8e0d0`).
+- **Type:** DM Serif Display (headings), Inter (body), JetBrains Mono (mono).
+- **Sections / nav anchors:** hero, about, services, audit, process, cases,
+  contact.
+- **Contact:** `hello@dubaiai.pro`.
 
 ## 📥 Handoffs
 _Newest first. Written automatically by hooks and by `nucleus push` from any
@@ -34,26 +49,26 @@ surface. This is the message-in-a-bottle between sessions._
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-05-31 18:45 UTC
+- **When:** 2026-06-01 02:52 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 35b1067 feat: self-running Context Nucleus — auto-handoff context between Claude surfaces — 28 minutes ago
+- **Last commit:** 2e21213 docs: add nucleus INTEGRATION.md (web app wiring guide) — 8 hours ago
 
 **Working tree:**
 ```
 M .claude/nucleus/NUCLEUS.md
- M bin/nucleus
 ```
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md |  16 +---
- bin/nucleus                | 184 +++++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 177 insertions(+), 23 deletions(-)
+.claude/nucleus/NUCLEUS.md | 37 ++++++++++++++++++++++++++-----------
+ 1 file changed, 26 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-35b1067 feat: self-running Context Nucleus — auto-handoff context between Claude surfaces (28 minutes ago)
+2e21213 docs: add nucleus INTEGRATION.md (web app wiring guide) (8 hours ago)
+e4811f7 feat: nucleus bridge for web apps — serve, widget, shared NUCLEUS_HOME (8 hours ago)
+35b1067 feat: self-running Context Nucleus — auto-handoff context between Claude surfaces (9 hours ago)
 3d85a6a Add foxy-reveal.gif to assets for email hosting (2 weeks ago)
 de8dd38 feat: initial launch — DubaiAI.pro premium landing page (5 weeks ago)
 ```
