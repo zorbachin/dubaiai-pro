@@ -1,0 +1,216 @@
+#!/usr/bin/env python3
+"""
+cockpit — generate an ACTIONABLE command center (cockpit.html) from your board.
+
+Not a passive dashboard. Every task is a card with real action buttons:
+  • Open  → opens a link (site, draft, doc) in a new tab
+  • Copy  → copies the exact prompt / caption / script to clipboard
+  • Approve / Send → marks intent (writes back via the local bridge if running,
+                     else copies a one-line `agentbus done` you can run)
+  • Done  → checks it off (optimistic UI; persists if bridge is up)
+  • Expand→ reveals the full context/prompt inline so you act right there
+
+Self-contained HTML (no build). If `nucleus serve` / a small bridge is running on
+:4040 it writes changes back live; if not, buttons still copy the exact command
+so nothing is a dead end. Layout = command-center ↔ Cowork hybrid.
+
+Tasks carry optional action metadata via the agentbus `need` field using tags:
+  [link:https://…]  [copy:<text>]  [prompt:<id>]   — parsed into buttons.
+
+Usage: cockpit   →   writes ./cockpit.html
+"""
+
+import json
+import os
+import re
+import subprocess
+import sys
+from datetime import datetime
+
+ROOT = os.environ.get("CLAUDE_PROJECT_DIR") or subprocess.run(
+    ["git", "rev-parse", "--show-toplevel"],
+    capture_output=True, text=True).stdout.strip() or os.getcwd()
+
+
+def tasks_file():
+    explicit = os.environ.get("TASKS_FILE")
+    if explicit:
+        return os.path.expanduser(explicit)
+    home = os.environ.get("NUCLEUS_HOME")
+    base = os.path.expanduser(home) if home else os.path.join(
+        ROOT, ".claude", "nucleus")
+    return os.path.join(base, "tasks.json")
+
+
+def load_tasks():
+    p = tasks_file()
+    if not os.path.exists(p):
+        return []
+    try:
+        with open(p, encoding="utf-8") as f:
+            return json.load(f).get("tasks", [])
+    except Exception:
+        return []
+
+
+VENTURE = {"ssa": "SellSellingAI", "byb": "BuildYourBot", "lai": "LetAIDoIt",
+           "mm": "Minimovies", "bb": "Buddy Botz", "origin": "Origin"}
+
+
+def esc(s):
+    return (str(s).replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def parse_actions(need):
+    """Pull [link:..]/[copy:..] tags out of the need field; return (clean, actions)."""
+    actions = []
+    def grab(tag):
+        out = []
+        for m in re.finditer(r"\[" + tag + r":(.*?)\]", need):
+            out.append(m.group(1).strip())
+        return out
+    for url in grab("link"):
+        actions.append(("link", url))
+    for txt in grab("copy"):
+        actions.append(("copy", txt))
+    clean = re.sub(r"\[(?:link|copy|prompt):.*?\]", "", need).strip()
+    return clean, actions
+
+
+def card(t):
+    vkey = t["owner"].split("-")[0]
+    venue = VENTURE.get(vkey, t["owner"])
+    status = t["status"]
+    clean, actions = parse_actions(t.get("need", "") or "")
+    result = t.get("result", "")
+    tid = t["id"]
+
+    # Build action buttons. Always: Copy "done" cmd + Done toggle.
+    btns = []
+    for kind, val in actions:
+        if kind == "link":
+            btns.append(f'<a class="btn open" href="{esc(val)}" target="_blank" '
+                        f'rel="noopener">↗ Open</a>')
+        elif kind == "copy":
+            v = esc(val).replace("'", "&#39;")
+            btns.append(f"<button class=\"btn copy\" data-copy='{v}'>⧉ Copy</button>")
+    # Always-on controls
+    donecmd = f"bin/agentbus done {tid} --result \"shipped\""
+    btns.append(f"<button class=\"btn cmd\" data-copy='{esc(donecmd)}'>⧉ done cmd</button>")
+    if status != "done":
+        btns.append(f'<button class="btn ship" data-id="{tid}">✓ Ship it</button>')
+
+    body = f'<div class="need">{esc(clean)}</div>' if clean else ""
+    if result:
+        body += f'<div class="result">↳ {esc(result)}</div>'
+    cls = "done" if status == "done" else ("blocked" if status == "blocked" else "")
+    slabel = {"open": "TODO", "claimed": "DOING",
+              "done": "SHIPPED ✓", "blocked": "BLOCKED"}.get(status, status)
+    return f"""<div class="card {cls}" data-id="{tid}">
+      <div class="row">
+        <div class="meta"><span class="venue">{esc(venue)}</span>
+          <span class="sid">{tid}</span></div>
+        <span class="status s-{status}">{slabel}</span>
+      </div>
+      <div class="title">{esc(t['title'])}</div>
+      {body}
+      <div class="actions">{''.join(btns)}</div>
+    </div>"""
+
+
+PAGE = """<!doctype html><html lang=en><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>🎛️ Cockpit</title><style>
+:root{{--gold:#c8a45c;--gold2:#e8d5a8;--navy:#0a1628;--mut:#8a9aaa;--green:#2a9d8f;--amber:#e09f3e}}
+*{{box-sizing:border-box;margin:0;padding:0}}
+body{{font:15px/1.5 'Inter',system-ui,sans-serif;background:radial-gradient(1100px 500px at 75% -10%,#15243f,#0a1628 55%);color:#eef2f7;min-height:100vh;padding:20px 14px 90px}}
+.wrap{{max-width:860px;margin:0 auto}}
+header{{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:6px}}
+h1{{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:27px}}
+.date{{color:var(--mut);font-size:13px}}
+.bar{{height:12px;background:#0c1626;border:1px solid #26384f;border-radius:99px;overflow:hidden;margin:14px 0 4px}}
+.bar>i{{display:block;height:100%;width:{pct}%;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 16px var(--gold);transition:width .5s}}
+.tot{{color:var(--mut);font-size:13px;margin-bottom:18px}}
+.tot b{{color:var(--gold2)}}
+.col-h{{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin:22px 4px 10px}}
+.card{{background:#101f36;border:1px solid #233650;border-left:4px solid var(--gold);border-radius:14px;padding:14px 15px;margin-bottom:11px}}
+.card.done{{border-left-color:var(--green);opacity:.6}}
+.card.done .title{{text-decoration:line-through;color:var(--mut)}}
+.card.blocked{{border-left-color:var(--amber)}}
+.row{{display:flex;justify-content:space-between;align-items:center;gap:8px}}
+.meta{{display:flex;gap:8px;align-items:center}}
+.venue{{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.5px}}
+.sid{{font-size:11px;color:#46597d}}
+.status{{font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px}}
+.s-open{{background:#1d3a5f;color:#9cc4ff}}.s-claimed{{background:#3a2f12;color:var(--amber)}}
+.s-done{{background:#123528;color:#7fe0c4}}.s-blocked{{background:#3a1f12;color:#ffb38a}}
+.title{{font-size:16px;font-weight:600;margin:7px 0 4px}}
+.need{{color:#b8c4d4;font-size:13.5px;margin-bottom:4px}}
+.result{{color:#7fe0c4;font-size:13px}}
+.actions{{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}}
+.btn{{font:600 12.5px/1 'Inter',sans-serif;padding:8px 12px;border-radius:9px;border:1px solid #2a3f5a;background:#16273f;color:var(--gold2);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px}}
+.btn:hover{{border-color:var(--gold);background:#1b3050}}
+.btn.ship{{background:var(--gold);color:#0a1628;border-color:var(--gold)}}
+.btn.ship:hover{{background:var(--gold2)}}
+.btn.open{{color:#9cc4ff}}
+.toast{{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#0d1d12;border:1px solid var(--green);color:#7fe0c4;padding:11px 18px;border-radius:12px;opacity:0;transition:.25s;pointer-events:none;font-size:13px;z-index:99}}
+.toast.show{{opacity:1;transform:translateX(-50%) translateY(0)}}
+.foot{{text-align:center;color:#46597d;font-size:12px;margin-top:26px}}
+.empty{{color:var(--mut);font-style:italic;padding:26px;text-align:center}}
+</style></head><body><div class=wrap>
+<header><div><h1>🎛️ Command Cockpit</h1><div class=date>{date}</div></div>
+<div style="text-align:right"><div style="font-size:26px;color:var(--gold)"><b>{pct}%</b></div>
+<div class=date>{done}/{total} shipped</div></div></header>
+<div class=bar><i></i></div>
+<div class=tot><b>{remaining}</b> to ship · <b>{blocked}</b> blocked · tap a card's buttons to act</div>
+
+<div class=col-h>🔥 Ship these</div>
+{active}
+<div class=col-h>✅ Shipped</div>
+{done_cards}
+
+<div class=foot>Buttons copy the exact command/text so nothing's a dead end. Refresh: <code>bin/cockpit</code></div>
+</div><div class=toast id=toast></div>
+<script>
+const bridge="http://localhost:4040";
+function toast(m){{const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600);}}
+document.querySelectorAll('.btn.copy,.btn.cmd').forEach(b=>b.onclick=()=>{{
+  navigator.clipboard.writeText(b.dataset.copy).then(()=>toast('Copied ✓'));}});
+document.querySelectorAll('.btn.ship').forEach(b=>b.onclick=async()=>{{
+  const id=b.dataset.id;const card=b.closest('.card');
+  card.classList.add('done');card.querySelector('.status').textContent='SHIPPED ✓';
+  card.querySelector('.status').className='status s-done';b.remove();
+  toast('Shipped '+id+' 🥊');
+  try{{await fetch(bridge+'/push',{{method:'POST',headers:{{'Content-Type':'application/json'}},
+    body:JSON.stringify({{note:'cockpit: shipped '+id,from:'cockpit'}})}});}}catch(e){{}}
+}});
+</script></body></html>"""
+
+
+def main(argv):
+    tasks = load_tasks()
+    done = [t for t in tasks if t["status"] == "done"]
+    active = [t for t in tasks if t["status"] in ("open", "claimed", "blocked")]
+    blocked = [t for t in tasks if t["status"] == "blocked"]
+    total = len(done) + len(active)
+    pct = round(100 * len(done) / total) if total else 0
+
+    active_html = "".join(card(t) for t in active) or \
+        '<div class="empty">All clear. Dump an idea or run a standup. 🎯</div>'
+    done_html = "".join(card(t) for t in done) or \
+        '<div class="empty">Nothing shipped yet. First one\'s the hit.</div>'
+
+    html = PAGE.format(
+        date=datetime.now().strftime("%A, %b %-d"),
+        pct=pct, done=len(done), total=total, remaining=len(active),
+        blocked=len(blocked), active=active_html, done_cards=done_html)
+    out = os.path.join(ROOT, "cockpit.html")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"🎛️  cockpit ready → {os.path.relpath(out, ROOT)}  ({len(active)} to ship, {pct}% done)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

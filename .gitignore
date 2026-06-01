@@ -5,3 +5,4 @@ __pycache__/
 # generated focus dashboard (regenerate with bin/focus)
 focus.html
 .claude/nucleus/focus-stats.json
+cockpit.html
