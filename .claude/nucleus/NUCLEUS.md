@@ -54,9 +54,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 10:05 UTC
+- **When:** 2026-06-01 10:06 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** e0b2ead chore: refresh nucleus live state [skip ci] — 10 seconds ago
+- **Last commit:** a97019d chore: refresh nucleus live state [skip ci] — 12 seconds ago
 
 **Working tree:**
 ```
@@ -65,11 +65,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-e0b2ead chore: refresh nucleus live state [skip ci] (10 seconds ago)
+a97019d chore: refresh nucleus live state [skip ci] (12 seconds ago)
+e0b2ead chore: refresh nucleus live state [skip ci] (22 seconds ago)
 f5a45ce chore: refresh nucleus live state [skip ci] (56 minutes ago)
 a2214a0 chore: refresh nucleus live state [skip ci] (56 minutes ago)
 1ec6d92 chore: refresh nucleus live state [skip ci] (2 hours ago)
-ff9c06d New capture signals + nucleus self-improvement loop (#15) (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
