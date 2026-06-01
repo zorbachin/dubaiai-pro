@@ -24,8 +24,36 @@ every session.
   we?"**, or **"what do I have going on?"** → run `bin/nucleus brief` (quick) or
   `bin/nucleus pull` (full) and summarize it back to them.
 
-- When the user makes a lasting decision or finishes a meaningful chunk of work,
-  proactively offer to capture it to the nucleus (or just capture it and say so).
+### 🤖 Capture proactively — don't wait to be asked
+
+The user wants you to remember useful things **automatically**. Throughout any
+session, watch for these and capture them with `bin/nucleus push` *without being
+prompted* (then mention in one short line that you saved it):
+
+- **Decisions** — "let's go with X", "use the gold not the navy", "drop that
+  section", a chosen approach or tradeoff.
+- **Preferences & conventions** — how the user likes things done, tone, naming,
+  tools, "always/never do X".
+- **Facts about the project or user** — goals, deadlines, names, URLs,
+  credentials-of-record (not secrets), audience, constraints.
+- **Milestones** — a feature finished, a PR merged, a bug fixed, something
+  shipped or deployed.
+- **Open loops** — a "TODO later", something deferred, a known issue to revisit.
+
+Rules of thumb:
+- Capture the **signal**, not the chatter. One crisp line per item; summarize,
+  don't transcribe.
+- **Dedupe** — if it's already in the nucleus, update the relevant top section
+  instead of pushing a duplicate handoff.
+- Put durable, slowly-changing facts in the top sections (North Star, Active
+  Threads, Decisions); put time-stamped events in handoffs via `push`.
+- When in doubt about something borderline-private, ask before saving. Otherwise
+  just save it and note it.
+- Don't capture trivia, one-off calculations, or things the user is clearly just
+  thinking out loud about.
+
+This is the default behavior — the user should rarely need to say "remember
+this," because you already did.
 
 - The top sections of `NUCLEUS.md` (North Star, Active Threads, Decisions) can
   be edited directly for durable facts. **Never** edit inside the
