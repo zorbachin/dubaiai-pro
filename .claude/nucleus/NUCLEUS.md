@@ -60,9 +60,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 17:14 UTC
+- **When:** 2026-06-01 17:17 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** 14c555c chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **Last commit:** cb49c49 chore: refresh nucleus live state [skip ci] — 3 minutes ago
 
 **Working tree:**
 ```
@@ -71,11 +71,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-14c555c chore: refresh nucleus live state [skip ci] (2 minutes ago)
-472e30a chore: refresh nucleus live state [skip ci] (6 minutes ago)
-f4f68b3 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-a2fe7a9 chore: refresh nucleus live state [skip ci] (5 hours ago)
-19ec50c chore: refresh nucleus live state [skip ci] (5 hours ago)
+cb49c49 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+14c555c chore: refresh nucleus live state [skip ci] (4 minutes ago)
+472e30a chore: refresh nucleus live state [skip ci] (8 minutes ago)
+f4f68b3 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+a2fe7a9 chore: refresh nucleus live state [skip ci] (6 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
