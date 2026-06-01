@@ -45,7 +45,7 @@ const llm: LlmClient = {
       method: "POST",
       headers: { "content-type": "application/json", authorization: `Bearer ${apiKey}` },
       body: JSON.stringify({
-        model: process.env["LLM_MODEL"] ?? "gemini-2.5-flash",
+        model: process.env["LLM_MODEL"] ?? "gpt-4o-mini",
         messages: [
           { role: "system", content: system },
           { role: "user", content: user },
