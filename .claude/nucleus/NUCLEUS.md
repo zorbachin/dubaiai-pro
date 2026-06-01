@@ -57,9 +57,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 10:07 UTC
-- **Branch:** `claude/nucleus-visibility`
-- **Last commit:** 1ec6d92 chore: refresh nucleus live state [skip ci] — 2 hours ago
+- **When:** 2026-06-01 10:08 UTC
+- **Branch:** `main`
+- **Last commit:** cbdbdaa Make proactive capture visible with chat receipts (#16) — 24 seconds ago
 
 **Working tree:**
 ```
@@ -68,11 +68,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
+cbdbdaa Make proactive capture visible with chat receipts (#16) (24 seconds ago)
 1ec6d92 chore: refresh nucleus live state [skip ci] (2 hours ago)
 ff9c06d New capture signals + nucleus self-improvement loop (#15) (2 hours ago)
 ceff804 chore: refresh nucleus live state [skip ci] (2 hours ago)
 edaa8c2 Make the nucleus capture context proactively (#14) (2 hours ago)
-3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
