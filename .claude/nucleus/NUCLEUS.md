@@ -1,0 +1,75 @@
+# 🧠 Context Nucleus
+
+> The single source of truth for everything you're doing with Claude — across
+> chats, Cowork, code, and design. Any surface hands off context **to** this
+> file; every new session reads context **from** it. If a fresh Claude doesn't
+> have your context, it's because it hasn't read this yet — so it always does.
+
+---
+
+## 📌 North Star
+_What we're ultimately building and why. Edit this by hand — it changes rarely._
+
+- **Project:** DubaiAI.pro — marketing site for a Dubai-based AI consultancy
+  ("Bespoke AI Implementation & Audit").
+- **What they sell:** Full-stack AI engineering across three layers —
+  Layer 1 (AI Infrastructure), Layer 2 (AI Applications), Layer 3 (Agentic AI) —
+  plus regulatory-grade AI auditing, for enterprises and government.
+- **Goal:** A premium, high-trust landing page that converts enterprise/gov
+  leads into a contact (`hello@dubaiai.pro`). Live at https://dubaiai.pro.
+
+## 🎯 Active Threads
+_What's in flight right now. The 1–5 things a new session should care about._
+
+- [ ] Context Nucleus system is built (hooks + CLI + web bridge) — PR #10 open
+      on `claude/epic-einstein-jPNIL`, not yet merged to `main`.
+- [ ] Wire the nucleus widget into the local app at http://localhost:3001/.
+- [ ] (add the next real landing-page task here)
+
+## 🧩 Decisions & Conventions
+_Choices already made, so no surface re-litigates them._
+
+- **Single-file site:** everything lives in `index.html` (inline CSS/JS), no
+  build step. Hosted on GitHub Pages via `CNAME` → dubaiai.pro.
+- **Brand palette:** gold `#c8a45c` (accent), navy `#0a1628` (text/dark),
+  cream/sand backgrounds (`#faf8f3`, `#f5f0e6`, `#e8e0d0`).
+- **Type:** DM Serif Display (headings), Inter (body), JetBrains Mono (mono).
+- **Sections / nav anchors:** hero, about, services, audit, process, cases,
+  contact.
+- **Contact:** `hello@dubaiai.pro`.
+
+## 📥 Handoffs
+_Newest first. Written automatically by hooks and by `nucleus push` from any
+surface. This is the message-in-a-bottle between sessions._
+
+<!-- HANDOFFS:START -->
+<!-- HANDOFFS:END -->
+
+## 🔄 Live State (auto)
+_Refreshed automatically after each turn — do not edit by hand._
+
+<!-- AUTOSTATE:START -->
+- **When:** 2026-06-01 06:37 UTC
+- **Branch:** `claude/epic-einstein-jPNIL`
+- **Last commit:** d56b54e feat: pre-fill nucleus with real DubaiAI.pro context — 4 hours ago
+
+**Working tree:**
+```
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+```
+
+**Recent commits:**
+```
+d56b54e feat: pre-fill nucleus with real DubaiAI.pro context (4 hours ago)
+2e21213 docs: add nucleus INTEGRATION.md (web app wiring guide) (12 hours ago)
+e4811f7 feat: nucleus bridge for web apps — serve, widget, shared NUCLEUS_HOME (12 hours ago)
+35b1067 feat: self-running Context Nucleus — auto-handoff context between Claude surfaces (12 hours ago)
+3d85a6a Add foxy-reveal.gif to assets for email hosting (2 weeks ago)
+```
+<!-- AUTOSTATE:END -->
