@@ -39,7 +39,7 @@ const llm: LlmClient = {
   async completeJson<T>({ system, user, schemaName, schema }: { system: string; user: string; schemaName: string; schema: Record<string, unknown> }): Promise<T> {
     const apiKey = requireEnv("FORGE_API_KEY");
     const apiUrl = makeApiUrl(
-      process.env["FORGE_API_URL"] ?? "https://forge.manus.im/v1",
+      process.env["FORGE_API_URL"] ?? "https://forge.manus.ai/v1",
     );
     const res = await fetch(apiUrl, {
       method: "POST",
@@ -66,7 +66,7 @@ const llm: LlmClient = {
 const transcriber: Transcriber = {
   async transcribe(audioUrl: string, opts): Promise<Transcript> {
     const apiKey = requireEnv("FORGE_API_KEY");
-    const apiBase = process.env["FORGE_API_URL"] ?? "https://forge.manus.im/v1";
+    const apiBase = process.env["FORGE_API_URL"] ?? "https://forge.manus.ai/v1";
     const whisperUrl = apiBase.replace(/\/+$/, "") + "/audio/transcriptions";
 
     // Download audio
