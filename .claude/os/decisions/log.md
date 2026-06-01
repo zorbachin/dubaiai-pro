@@ -31,3 +31,12 @@ driven. User has ADHD: needs coaching, clear single-next-action plans, and a
 balance protocol so new ideas don't bury committed work. Posting (not creating)
 is the recurring blocker — insecurity-driven; design around it. "Done" = a goal
 outcome shipped (published/sent/live), not drafted.
+
+### 2026-06-01 — Home is Claude; no fragile comms channels
+**Decision:** The command center lives IN Claude (works 100% today). A functional
+localhost widget is PARKED as a future upgrade, built only once it clearly earns
+its keep. No WhatsApp/iMessage/Telegram bridge — fragile channels splinter focus.
+Comms style = "caveman-warm": one line, action-first, light encouragement.
+**Why:** User's #1 anti-goal is a 70%-working system that annoys and splinters
+him. He likes working in Claude. Fewer things that fully work > more things that
+sort of work.
