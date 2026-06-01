@@ -54,22 +54,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 07:58 UTC
-- **Branch:** `main`
-- **Last commit:** ff9c06d New capture signals + nucleus self-improvement loop (#15) — 22 seconds ago
+- **When:** 2026-06-01 09:10 UTC
+- **Branch:** `claude/podcast-product-database-4ixZu`
+- **Last commit:** 1ec6d92 chore: refresh nucleus live state [skip ci] — 72 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-ff9c06d New capture signals + nucleus self-improvement loop (#15) (22 seconds ago)
-ceff804 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-edaa8c2 Make the nucleus capture context proactively (#14) (5 minutes ago)
-3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (9 minutes ago)
-4e0cd67 CLAUDE.md — manage the nucleus by talking, not commands (#13) (13 minutes ago)
+1ec6d92 chore: refresh nucleus live state [skip ci] (72 minutes ago)
+ff9c06d New capture signals + nucleus self-improvement loop (#15) (72 minutes ago)
+ceff804 chore: refresh nucleus live state [skip ci] (76 minutes ago)
+edaa8c2 Make the nucleus capture context proactively (#14) (77 minutes ago)
+3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (81 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
