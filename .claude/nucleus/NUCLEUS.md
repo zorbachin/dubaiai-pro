@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 18:03 UTC · code
+Built bin/agentwatch: free local auto-dispatch — polls agentbus for ollama/hermes tasks, runs them on local Ollama, closes the loop at ZERO cost. Paid agents (chatgpt/gemini) stay manual relay to avoid spend. Roster updated: ollama+hermes=auto(free), chatgpt+gemini=manual, claude+cowork. Hermes assumed = Ollama model (confirm).
+
 ### 2026-06-01 18:00 UTC · code
 Built the AI OS scaffold adapted from AIS-OS: .claude/os/ (connections.md roster, decisions/log.md, README), bin/os (board+audit+onboard tying nucleus+agentbus+roster), and 3 talk-driven skills (os-board, os-onboard, os-audit). 4Cs audit all green. agentbus = the closed-loop layer the reference kit lacks.
 
@@ -63,22 +66,31 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:01 UTC
-- **Branch:** `main`
-- **Last commit:** 6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) — 24 seconds ago
+- **When:** 2026-06-01 18:03 UTC
+- **Branch:** `claude/agent-watcher`
+- **Last commit:** 46e95f1 chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/os/README.md
+ M .claude/os/connections.md
+?? bin/agentwatch
+```
+
+**Uncommitted changes:**
+```
+.claude/os/README.md      | 12 +++++++++++-
+ .claude/os/connections.md | 47 +++++++++++++++++++++++++++--------------------
+ 2 files changed, 38 insertions(+), 21 deletions(-)
 ```
 
 **Recent commits:**
 ```
-6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (24 seconds ago)
-214ddd8 chore: refresh nucleus live state [skip ci] (27 minutes ago)
-6c310d3 chore: refresh nucleus live state [skip ci] (28 minutes ago)
+46e95f1 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+6b36a1e AI Operating System scaffold (4Cs) — agent bus + command center (#18) (2 minutes ago)
+214ddd8 chore: refresh nucleus live state [skip ci] (29 minutes ago)
+6c310d3 chore: refresh nucleus live state [skip ci] (30 minutes ago)
 4eb49f9 chore: refresh nucleus live state [skip ci] (8 hours ago)
-cbdbdaa Make proactive capture visible with chat receipts (#16) (8 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 

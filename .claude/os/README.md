@@ -37,4 +37,14 @@ workflow that doesn't already work manually.
 - **`bin/os onboard`** — capture/refresh who you are, your priorities, your agents.
 - **`bin/os audit`** — a 4Cs gap report: where is the OS strong vs. thin?
 
-See `.claude/os/skills/` for the talk-driven versions of these.
+## Free auto-dispatch (the cheap, efficient tier)
+- **`bin/agentwatch`** — a local watcher that polls the bus for tasks assigned to
+  **free local agents** (`ollama`, `hermes`) and runs them on your local Ollama,
+  writing results back automatically. **Zero API cost.** Paid agents
+  (chatgpt/gemini) are deliberately left on manual relay.
+  - One pass:  `bin/agentwatch`
+  - Daemon:    `bin/agentwatch --loop --every 15`
+  - Needs Ollama running locally (`ollama serve`); if it's down, tasks are
+    *blocked with a reason*, never lost.
+
+See `.claude/skills/os-*` for the talk-driven versions of the OS commands.
