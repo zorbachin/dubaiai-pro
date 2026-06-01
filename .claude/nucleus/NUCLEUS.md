@@ -120,9 +120,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:27 UTC
-- **Branch:** `claude/focus-dash`
-- **Last commit:** 3e8cfb1 chore: refresh nucleus live state [skip ci] — 29 seconds ago
+- **When:** 2026-06-01 18:36 UTC
+- **Branch:** `main`
+- **Last commit:** 8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) — 31 seconds ago
 
 **Working tree:**
 ```
@@ -131,11 +131,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-3e8cfb1 chore: refresh nucleus live state [skip ci] (29 seconds ago)
-41340ad Brain-dump parser — raw dumps to flywheel content (#23) (53 seconds ago)
-4dd9d19 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-eedadf2 Content sprint kickoff: master board + tomorrow's scripts + voice guide (#22) (4 minutes ago)
-7466505 chore: refresh nucleus live state [skip ci] (16 minutes ago)
+8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (31 seconds ago)
+8d9a946 Dopaminergic focus dashboard (focus.html) (#24) (6 minutes ago)
+3e8cfb1 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+41340ad Brain-dump parser — raw dumps to flywheel content (#23) (9 minutes ago)
+4dd9d19 chore: refresh nucleus live state [skip ci] (12 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
