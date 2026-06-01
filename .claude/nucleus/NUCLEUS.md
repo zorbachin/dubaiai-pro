@@ -49,9 +49,9 @@ surface. This is the message-in-a-bottle between sessions._
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 06:40 UTC
+- **When:** 2026-06-01 07:43 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** d0186d7 feat: auto-commit nucleus live-state churn in Stop hook — 1 second ago
+- **Last commit:** 36fe593 Merge main into branch (resolve nucleus auto-state) — 0 seconds ago
 
 **Working tree:**
 ```
@@ -60,10 +60,10 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-d0186d7 feat: auto-commit nucleus live-state churn in Stop hook (1 second ago)
-210d533 chore: refresh nucleus live state (71 seconds ago)
-ff561bf chore: refresh nucleus live state (3 minutes ago)
-d56b54e feat: pre-fill nucleus with real DubaiAI.pro context (4 hours ago)
-2e21213 docs: add nucleus INTEGRATION.md (web app wiring guide) (12 hours ago)
+36fe593 Merge main into branch (resolve nucleus auto-state) (0 seconds ago)
+abc7a2b chore: refresh nucleus live state [skip ci] (79 seconds ago)
+68d44f1 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+691f758 feat: nucleus Stop hook auto-pushes its state commits (12 minutes ago)
+8e5ed6f chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->

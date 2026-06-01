@@ -26,6 +26,15 @@ others="$(printf '%s\n' "$changed" | grep -v "$NUCLEUS_REL" | grep -v '^[[:space
 if [ -n "$changed" ] && [ -z "$others" ]; then
   git add "$NUCLEUS_REL" >/dev/null 2>&1 || true
   git commit -q -m "chore: refresh nucleus live state [skip ci]" >/dev/null 2>&1 || true
+  # Push best-effort so "commit AND push" guards stay satisfied. Background +
+  # quiet so it never blocks or noises up the session; failures are ignored.
+  # Disable with NUCLEUS_NO_PUSH=1.
+  if [ "${NUCLEUS_NO_PUSH:-}" != "1" ]; then
+    branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
+    if [ -n "$branch" ] && [ "$branch" != "HEAD" ]; then
+      (git push origin "$branch" >/dev/null 2>&1 &) || true
+    fi
+  fi
 fi
 exit 0
 
