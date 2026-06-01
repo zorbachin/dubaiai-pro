@@ -49,27 +49,21 @@ surface. This is the message-in-a-bottle between sessions._
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 06:37 UTC
+- **When:** 2026-06-01 06:40 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** d56b54e feat: pre-fill nucleus with real DubaiAI.pro context — 4 hours ago
+- **Last commit:** d0186d7 feat: auto-commit nucleus live-state churn in Stop hook — 1 second ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+d0186d7 feat: auto-commit nucleus live-state churn in Stop hook (1 second ago)
+210d533 chore: refresh nucleus live state (71 seconds ago)
+ff561bf chore: refresh nucleus live state (3 minutes ago)
 d56b54e feat: pre-fill nucleus with real DubaiAI.pro context (4 hours ago)
 2e21213 docs: add nucleus INTEGRATION.md (web app wiring guide) (12 hours ago)
-e4811f7 feat: nucleus bridge for web apps — serve, widget, shared NUCLEUS_HOME (12 hours ago)
-35b1067 feat: self-running Context Nucleus — auto-handoff context between Claude surfaces (12 hours ago)
-3d85a6a Add foxy-reveal.gif to assets for email hosting (2 weeks ago)
 ```
 <!-- AUTOSTATE:END -->
