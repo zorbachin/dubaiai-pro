@@ -60,9 +60,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 17:22 UTC
+- **When:** 2026-06-01 17:23 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** 215271d fix: switch default LLM to gpt-4o-mini via OpenAI API (Forge key not user-owned) — 8 seconds ago
+- **Last commit:** f1dda38 chore: refresh nucleus live state [skip ci] — 77 seconds ago
 
 **Working tree:**
 ```
@@ -71,11 +71,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-215271d fix: switch default LLM to gpt-4o-mini via OpenAI API (Forge key not user-owned) (8 seconds ago)
-bed2175 chore: refresh nucleus live state [skip ci] (50 seconds ago)
-07196c1 chore: refresh nucleus live state [skip ci] (72 seconds ago)
-55de71c chore: refresh nucleus live state [skip ci] (80 seconds ago)
-9381fbd fix: update Forge API default URL from .im to .ai (85 seconds ago)
+f1dda38 chore: refresh nucleus live state [skip ci] (77 seconds ago)
+215271d fix: switch default LLM to gpt-4o-mini via OpenAI API (Forge key not user-owned) (85 seconds ago)
+bed2175 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+07196c1 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+55de71c chore: refresh nucleus live state [skip ci] (3 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
