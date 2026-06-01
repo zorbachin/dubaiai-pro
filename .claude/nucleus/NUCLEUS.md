@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-01 18:27 UTC · chat
+FEATURE: dopaminergic focus dashboard. User has ADHD, misses scroll/gamification/focus-meter — text-only is hard to visualize his day. Build self-contained focus.html (no server, double-click, brand colors): focus meter, progress ring, XP/streaks, scrollable task cards. Generated from the live board.
+
 ### 2026-06-01 18:26 UTC · code
 Built dump parser: bin/dump (reliable capture to .claude/os/dumps/) + dump skill (Opus parses raw dump → flywheel content across video/carousel/meme/writing, in user's voice, queued to content board, with 3 hook options). Idea input valve is live.
 
@@ -118,8 +121,8 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-01 18:27 UTC
-- **Branch:** `main`
-- **Last commit:** 41340ad Brain-dump parser — raw dumps to flywheel content (#23) — 24 seconds ago
+- **Branch:** `claude/focus-dash`
+- **Last commit:** 3e8cfb1 chore: refresh nucleus live state [skip ci] — 29 seconds ago
 
 **Working tree:**
 ```
@@ -128,11 +131,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-41340ad Brain-dump parser — raw dumps to flywheel content (#23) (24 seconds ago)
+3e8cfb1 chore: refresh nucleus live state [skip ci] (29 seconds ago)
+41340ad Brain-dump parser — raw dumps to flywheel content (#23) (53 seconds ago)
 4dd9d19 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-eedadf2 Content sprint kickoff: master board + tomorrow's scripts + voice guide (#22) (3 minutes ago)
-7466505 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-686819c Comms style + anti-splinter home rule (stay in Claude) (#21) (16 minutes ago)
+eedadf2 Content sprint kickoff: master board + tomorrow's scripts + voice guide (#22) (4 minutes ago)
+7466505 chore: refresh nucleus live state [skip ci] (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
