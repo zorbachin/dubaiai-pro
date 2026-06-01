@@ -1,0 +1,266 @@
+#!/usr/bin/env python3
+"""
+focus — generate a dopaminergic, focus-ready dashboard from your live board.
+
+Builds ONE self-contained file: focus.html  (no server, no build, no deps).
+Double-click it. It can't break — all data is baked in at generate time. Re-run
+`bin/focus` anytime to refresh it from the current agentbus board.
+
+Why: ADHD brains need a visual hit — a scroll, a meter, XP, a streak — not a wall
+of text. This gives the day a shape you can SEE and feel progress on.
+
+Usage:
+  focus            generate ./focus.html from the live board
+  focus --open     also print the file:// path to open it
+"""
+
+import json
+import os
+import subprocess
+import sys
+from datetime import datetime, timezone
+
+ROOT = os.environ.get("CLAUDE_PROJECT_DIR") or subprocess.run(
+    ["git", "rev-parse", "--show-toplevel"],
+    capture_output=True, text=True).stdout.strip() or os.getcwd()
+
+
+def tasks_file():
+    explicit = os.environ.get("TASKS_FILE")
+    if explicit:
+        return os.path.expanduser(explicit)
+    home = os.environ.get("NUCLEUS_HOME")
+    base = os.path.expanduser(home) if home else os.path.join(
+        ROOT, ".claude", "nucleus")
+    return os.path.join(base, "tasks.json")
+
+
+def load_tasks():
+    p = tasks_file()
+    if not os.path.exists(p):
+        return []
+    try:
+        with open(p, encoding="utf-8") as f:
+            return json.load(f).get("tasks", [])
+    except Exception:
+        return []
+
+
+# Streak/XP persisted in a tiny sidecar so progress feels continuous.
+def streak_file():
+    return os.path.join(os.path.dirname(tasks_file()), "focus-stats.json")
+
+
+def load_stats():
+    p = streak_file()
+    if os.path.exists(p):
+        try:
+            with open(p, encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {"xp": 0, "streak": 0, "last_day": ""}
+
+
+def save_stats(s):
+    try:
+        os.makedirs(os.path.dirname(streak_file()), exist_ok=True)
+        with open(streak_file(), "w", encoding="utf-8") as f:
+            json.dump(s, f, indent=2)
+    except Exception:
+        pass
+
+
+VENTURE_NAMES = {
+    "ssa": "SellSellingAI", "byb": "BuildYourBot", "lai": "LetAIDoIt",
+    "mm": "Minimovies", "bb": "Buddy Botz", "origin": "Origin Story",
+}
+
+
+def venture_of(owner):
+    key = owner.split("-")[0]
+    return VENTURE_NAMES.get(key, owner)
+
+
+HTML = """<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🎯 Focus — {date}</title>
+<style>
+  :root {{
+    --gold:#c8a45c; --gold-lite:#e8d5a8; --navy:#0a1628; --navy2:#1a2a44;
+    --cream:#faf8f3; --sand:#e8e0d0; --green:#2a9d8f; --amber:#e09f3e;
+    --ink:#0a1628; --mut:#8a9aaa;
+  }}
+  * {{ box-sizing:border-box; margin:0; padding:0; }}
+  body {{ font-family:'Inter',system-ui,sans-serif; background:
+    radial-gradient(1200px 600px at 70% -10%, #14233f 0%, var(--navy) 55%);
+    color:#eef2f7; min-height:100vh; padding:24px 16px 80px; }}
+  .wrap {{ max-width:680px; margin:0 auto; }}
+  h1 {{ font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+    font-size:30px; letter-spacing:.3px; }}
+  .sub {{ color:var(--mut); margin-top:4px; font-size:14px; }}
+  .hero {{ display:flex; gap:20px; align-items:center; margin:22px 0 8px;
+    background:linear-gradient(135deg,#15243f,#0d1830); border:1px solid #243653;
+    border-radius:20px; padding:22px; box-shadow:0 12px 40px rgba(0,0,0,.35); }}
+  .ring {{ position:relative; width:128px; height:128px; flex:0 0 auto; }}
+  .ring svg {{ transform:rotate(-90deg); }}
+  .ring .pct {{ position:absolute; inset:0; display:grid; place-items:center;
+    text-align:center; }}
+  .ring .pct b {{ font-size:30px; color:var(--gold); }}
+  .ring .pct span {{ display:block; font-size:11px; color:var(--mut);
+    letter-spacing:1px; text-transform:uppercase; }}
+  .stats {{ flex:1; }}
+  .stat {{ display:flex; justify-content:space-between; padding:7px 0;
+    border-bottom:1px dashed #24344f; font-size:14px; }}
+  .stat b {{ color:var(--gold-lite); }}
+  .chips {{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }}
+  .chip {{ background:#16273f; border:1px solid #2a3f5a; color:var(--gold-lite);
+    border-radius:999px; padding:6px 12px; font-size:12px; font-weight:600; }}
+  .meter {{ height:14px; background:#0c1626; border:1px solid #26384f;
+    border-radius:999px; overflow:hidden; margin-top:14px; }}
+  .meter > i {{ display:block; height:100%; width:{pct}%;
+    background:linear-gradient(90deg,var(--gold),var(--gold-lite));
+    box-shadow:0 0 18px var(--gold); transition:width .6s ease; }}
+  h2 {{ font-size:13px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--mut); margin:26px 4px 12px; }}
+  .card {{ background:#101f36; border:1px solid #233650; border-left:4px solid var(--gold);
+    border-radius:14px; padding:16px 16px 14px; margin-bottom:12px;
+    transition:transform .12s ease, box-shadow .12s ease; cursor:pointer; }}
+  .card:hover {{ transform:translateY(-2px);
+    box-shadow:0 10px 28px rgba(0,0,0,.4); border-left-color:var(--gold-lite); }}
+  .card.done {{ border-left-color:var(--green); opacity:.62; }}
+  .card.done .title {{ text-decoration:line-through; color:var(--mut); }}
+  .card.blocked {{ border-left-color:var(--amber); }}
+  .top {{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }}
+  .title {{ font-size:16px; font-weight:600; line-height:1.3; }}
+  .venue {{ font-size:11px; color:var(--gold); font-weight:700;
+    text-transform:uppercase; letter-spacing:.5px; }}
+  .need {{ color:var(--mut); font-size:13px; margin-top:6px; }}
+  .badge {{ font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px;
+    white-space:nowrap; }}
+  .b-open {{ background:#1d3a5f; color:#9cc4ff; }}
+  .b-claimed {{ background:#3a2f12; color:var(--amber); }}
+  .b-done {{ background:#123528; color:#7fe0c4; }}
+  .b-blocked {{ background:#3a1f12; color:#ffb38a; }}
+  .empty {{ color:var(--mut); text-align:center; padding:40px; font-style:italic; }}
+  .foot {{ text-align:center; color:#48597a; font-size:12px; margin-top:30px; }}
+  .pulse {{ animation:pulse 2.4s ease-in-out infinite; }}
+  @keyframes pulse {{ 0%,100%{{opacity:1}} 50%{{opacity:.55}} }}
+</style></head>
+<body><div class="wrap">
+  <h1>🎯 Today's Focus</h1>
+  <div class="sub">{date} · generated from your live board</div>
+
+  <div class="hero">
+    <div class="ring">
+      <svg width="128" height="128">
+        <circle cx="64" cy="64" r="56" stroke="#1c2c46" stroke-width="12" fill="none"/>
+        <circle cx="64" cy="64" r="56" stroke="url(#g)" stroke-width="12" fill="none"
+          stroke-linecap="round" stroke-dasharray="{circ}"
+          stroke-dashoffset="{offset}"/>
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#c8a45c"/><stop offset="1" stop-color="#e8d5a8"/>
+        </linearGradient></defs>
+      </svg>
+      <div class="pct"><div><b>{pct}%</b><span>done</span></div></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><span>✅ Shipped today</span><b>{done} / {total}</b></div>
+      <div class="stat"><span>🔥 Streak</span><b>{streak} day{splural}</b></div>
+      <div class="stat"><span>⚡ XP</span><b>{xp}</b></div>
+      <div class="stat"><span>🎯 Focus left</span><b>{remaining} task{rplural}</b></div>
+      <div class="chips">{chips}</div>
+      <div class="meter"><i></i></div>
+    </div>
+  </div>
+
+  <h2>🔥 Do these (focus zone)</h2>
+  {focus_cards}
+
+  <h2>✅ Shipped</h2>
+  {done_cards}
+
+  <div class="foot">Refresh anytime: run <code>bin/focus</code> · Posted = done. One at a time. 🥊</div>
+</div></body></html>
+"""
+
+
+def card(t, kind):
+    cls = {"open": "", "claimed": "", "done": "done", "blocked": "blocked"}[kind]
+    badge = {"open": "b-open", "claimed": "b-claimed",
+             "done": "b-done", "blocked": "b-blocked"}[kind]
+    label = {"open": "OPEN", "claimed": "DOING",
+             "done": "DONE ✓", "blocked": "BLOCKED"}[kind]
+    pulse = " pulse" if kind == "claimed" else ""
+    need = f'<div class="need">{esc(t.get("need") or t.get("result",""))}</div>' \
+        if (t.get("need") or t.get("result")) else ""
+    return f"""<div class="card {cls}{pulse}">
+      <div class="top">
+        <div><div class="venue">{esc(venture_of(t["owner"]))}</div>
+        <div class="title">{esc(t["title"])}</div></div>
+        <div class="badge {badge}">{label}</div>
+      </div>{need}
+    </div>"""
+
+
+def esc(s):
+    return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def main(argv):
+    tasks = load_tasks()
+    done = [t for t in tasks if t["status"] == "done"]
+    active = [t for t in tasks if t["status"] in ("open", "claimed", "blocked")]
+    total = len(done) + len(active)
+    pct = round(100 * len(done) / total) if total else 0
+
+    # XP + streak (gamification). XP = 25 per done task; streak bumps on a new day with a completion.
+    stats = load_stats()
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    stats["xp"] = len(done) * 25
+    if done and stats.get("last_day") != today:
+        stats["streak"] = stats.get("streak", 0) + 1
+        stats["last_day"] = today
+    save_stats(stats)
+
+    # progress ring math
+    circ = round(2 * 3.14159 * 56, 1)
+    offset = round(circ * (1 - pct / 100), 1)
+
+    # venture chips (where focus sits)
+    venues = []
+    for t in active:
+        v = venture_of(t["owner"])
+        if v not in venues:
+            venues.append(v)
+    chips = "".join(f'<span class="chip">{esc(v)}</span>' for v in venues[:6]) \
+        or '<span class="chip">all clear</span>'
+
+    focus_cards = "".join(
+        card(t, t["status"]) for t in active) or '<div class="empty">Nothing queued — run a standup or dump an idea.</div>'
+    done_cards = "".join(card(t, "done") for t in done) \
+        or '<div class="empty">Nothing shipped yet today. First one\'s the hit. 🎯</div>'
+
+    html = HTML.format(
+        date=datetime.now().strftime("%A, %b %-d"),
+        pct=pct, circ=circ, offset=offset,
+        done=len(done), total=total, streak=stats["streak"],
+        splural="" if stats["streak"] == 1 else "s",
+        xp=stats["xp"], remaining=len(active),
+        rplural="" if len(active) == 1 else "s",
+        chips=chips, focus_cards=focus_cards, done_cards=done_cards,
+    )
+
+    out = os.path.join(ROOT, "focus.html")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"🎯 focus dashboard ready → {os.path.relpath(out, ROOT)}")
+    print(f"   {len(done)}/{total} done · {pct}% · 🔥 {stats['streak']}d · ⚡ {stats['xp']}xp")
+    if "--open" in argv:
+        print(f"   open: file://{out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
