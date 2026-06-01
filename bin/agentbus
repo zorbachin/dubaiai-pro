@@ -1,0 +1,339 @@
+#!/usr/bin/env python3
+"""
+agentbus — a shared task ledger that closes the loop across agents.
+
+The problem this solves: a command center that delegates work but never
+registers when something is DONE. Here, "done" is an explicit, tracked state,
+not a vibe. Every agent (you, Claude, Hermes, ChatGPT, Gemini, …) has an inbox,
+does work, and writes the result back. You can always see what's open, who owns
+it, and what just completed.
+
+It is dependency-free (stdlib only) and stores everything in ONE file:
+  .claude/nucleus/tasks.json   (override with TASKS_FILE / NUCLEUS_HOME)
+
+Lifecycle of a task:
+  open -> claimed -> done            (happy path)
+              \-> blocked            (needs input/decision)
+  any -> cancelled
+
+Core verbs (what an orchestrator and the agents call):
+  agentbus add "<task>" --to <agent> [--from <agent>] [--need "<detail>"]
+  agentbus inbox <agent>             tasks waiting on this agent (open/claimed)
+  agentbus claim <id> --by <agent>   mark you're working on it
+  agentbus done  <id> [--by <agent>] [--result "<summary>"]   CLOSE THE LOOP
+  agentbus block <id> [--by <agent>] [--note "<why>"]
+  agentbus note  <id> "<update>"     append progress without changing state
+  agentbus list [--status open|claimed|done|blocked|all] [--agent X]
+  agentbus board                     human-readable kanban-style overview
+  agentbus get <id>                  full detail + history of one task
+  agentbus watch <agent>             one-line: does this agent have new work?
+
+Every state change is timestamped and appended to the task's history, so the
+trail of who-did-what-when is always there.
+"""
+
+import json
+import os
+import subprocess
+import sys
+from datetime import datetime, timezone
+
+VALID_STATUS = {"open", "claimed", "done", "blocked", "cancelled"}
+
+
+def repo_root():
+    env = os.environ.get("CLAUDE_PROJECT_DIR")
+    if env and os.path.isdir(env):
+        return env
+    try:
+        out = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            capture_output=True, text=True, check=True,
+        )
+        return out.stdout.strip()
+    except Exception:
+        return os.getcwd()
+
+
+def tasks_path():
+    explicit = os.environ.get("TASKS_FILE")
+    if explicit:
+        return os.path.expanduser(explicit)
+    home = os.environ.get("NUCLEUS_HOME")
+    base = os.path.expanduser(home) if home else os.path.join(
+        repo_root(), ".claude", "nucleus")
+    return os.path.join(base, "tasks.json")
+
+
+TASKS = tasks_path()
+
+
+def now():
+    return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+
+def load():
+    if not os.path.exists(TASKS):
+        return {"seq": 0, "tasks": []}
+    try:
+        with open(TASKS, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {"seq": 0, "tasks": []}
+
+
+def save(db):
+    os.makedirs(os.path.dirname(TASKS), exist_ok=True)
+    tmp = TASKS + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(db, f, indent=2, ensure_ascii=False)
+    os.replace(tmp, TASKS)
+
+
+def find(db, tid):
+    for t in db["tasks"]:
+        if t["id"] == tid:
+            return t
+    return None
+
+
+def pick(args, flag, default=None):
+    """Extract --flag value from a list, returning (value, remaining_args)."""
+    if flag in args:
+        i = args.index(flag)
+        val = args[i + 1] if i + 1 < len(args) else default
+        return val, args[:i] + args[i + 2:]
+    return default, args
+
+
+STATUS_ICON = {
+    "open": "○", "claimed": "◐", "done": "●",
+    "blocked": "▲", "cancelled": "✗",
+}
+
+
+# --------------------------------------------------------------- commands
+
+def cmd_add(args):
+    to, args = pick(args, "--to", "unassigned")
+    frm, args = pick(args, "--from", "you")
+    need, args = pick(args, "--need", "")
+    title = " ".join(args).strip()
+    if not title:
+        print("agentbus: need a task description", file=sys.stderr)
+        return 1
+    db = load()
+    db["seq"] += 1
+    tid = f"T{db['seq']:03d}"
+    task = {
+        "id": tid,
+        "title": title,
+        "owner": to,
+        "created_by": frm,
+        "status": "open",
+        "need": need,
+        "result": "",
+        "created": now(),
+        "updated": now(),
+        "history": [{"at": now(), "by": frm, "event": f"created → {to}"}],
+    }
+    db["tasks"].append(task)
+    save(db)
+    extra = f" (needs: {need})" if need else ""
+    print(f"📋 {tid} → {to}: {title}{extra}")
+    return 0
+
+
+def _transition(args, new_status, verb, need_actor_default="agent"):
+    if not args:
+        print(f"agentbus: {verb} needs a task id", file=sys.stderr)
+        return 1
+    tid = args[0]
+    args = args[1:]
+    by, args = pick(args, "--by", need_actor_default)
+    result, args = pick(args, "--result", "")
+    note, args = pick(args, "--note", "")
+    msg = result or note or " ".join(args)
+    db = load()
+    t = find(db, tid)
+    if not t:
+        print(f"agentbus: no such task {tid}", file=sys.stderr)
+        return 1
+    t["status"] = new_status
+    t["updated"] = now()
+    if new_status == "done" and msg:
+        t["result"] = msg
+    event = f"{verb} by {by}" + (f": {msg}" if msg else "")
+    t["history"].append({"at": now(), "by": by, "event": event})
+    save(db)
+    icon = STATUS_ICON.get(new_status, "•")
+    line = f"{icon} {tid} {new_status} — {t['title']}"
+    if msg:
+        line += f"\n    ↳ {msg}"
+    print(line)
+    return 0
+
+
+def cmd_inbox(args):
+    if not args:
+        print("agentbus: inbox needs an agent name", file=sys.stderr)
+        return 1
+    agent = args[0]
+    db = load()
+    mine = [t for t in db["tasks"]
+            if t["owner"] == agent and t["status"] in ("open", "claimed")]
+    if not mine:
+        print(f"✓ {agent}: inbox empty — nothing waiting on you")
+        return 0
+    print(f"📥 {agent}: {len(mine)} task(s) waiting")
+    for t in mine:
+        icon = STATUS_ICON[t["status"]]
+        need = f"  (needs: {t['need']})" if t["need"] else ""
+        print(f"  {icon} {t['id']} {t['title']}{need}  ·from {t['created_by']}")
+    return 0
+
+
+def cmd_watch(args):
+    """Quiet trigger check: prints actionable work or nothing. Exit 0 if work."""
+    if not args:
+        return 1
+    agent = args[0]
+    db = load()
+    mine = [t for t in db["tasks"]
+            if t["owner"] == agent and t["status"] == "open"]
+    if mine:
+        ids = ", ".join(t["id"] for t in mine)
+        print(f"🔔 {agent}: {len(mine)} new task(s) → {ids}")
+        return 0
+    return 3  # nothing new
+
+
+def cmd_list(args):
+    status, args = pick(args, "--status", "open")
+    agent, args = pick(args, "--agent", None)
+    db = load()
+    rows = db["tasks"]
+    if status != "all":
+        rows = [t for t in rows if t["status"] == status]
+    if agent:
+        rows = [t for t in rows if t["owner"] == agent]
+    if not rows:
+        print(f"(no tasks: status={status}"
+              + (f", agent={agent}" if agent else "") + ")")
+        return 0
+    for t in rows:
+        icon = STATUS_ICON[t["status"]]
+        print(f"{icon} {t['id']} [{t['owner']}] {t['title']}"
+              + (f"  ↳ {t['result']}" if t["result"] else ""))
+    return 0
+
+
+def cmd_board(args):
+    db = load()
+    if not db["tasks"]:
+        print("📋 agent board — empty. Add one: agentbus add \"...\" --to gemini")
+        return 0
+    by_status = {}
+    for t in db["tasks"]:
+        by_status.setdefault(t["status"], []).append(t)
+    order = ["open", "claimed", "blocked", "done", "cancelled"]
+    labels = {
+        "open": "○ OPEN", "claimed": "◐ IN PROGRESS", "blocked": "▲ BLOCKED",
+        "done": "● DONE", "cancelled": "✗ CANCELLED",
+    }
+    print("📋 Agent Task Board\n" + "=" * 40)
+    for s in order:
+        items = by_status.get(s, [])
+        if not items:
+            continue
+        print(f"\n{labels[s]}  ({len(items)})")
+        for t in items:
+            owner = f"[{t['owner']}]"
+            extra = f"  ↳ {t['result']}" if t["result"] else (
+                f"  (needs: {t['need']})" if t["need"] else "")
+            print(f"  {t['id']} {owner:<12} {t['title']}{extra}")
+    open_n = len(by_status.get("open", [])) + len(by_status.get("claimed", []))
+    done_n = len(by_status.get("done", []))
+    print("\n" + "=" * 40)
+    print(f"  {open_n} in flight · {done_n} done")
+    return 0
+
+
+def cmd_get(args):
+    if not args:
+        print("agentbus: get needs a task id", file=sys.stderr)
+        return 1
+    db = load()
+    t = find(db, args[0])
+    if not t:
+        print(f"agentbus: no such task {args[0]}", file=sys.stderr)
+        return 1
+    print(f"{STATUS_ICON[t['status']]} {t['id']} — {t['title']}")
+    print(f"   owner:   {t['owner']}   (from {t['created_by']})")
+    print(f"   status:  {t['status']}")
+    if t["need"]:
+        print(f"   needs:   {t['need']}")
+    if t["result"]:
+        print(f"   result:  {t['result']}")
+    print(f"   created: {t['created']}   updated: {t['updated']}")
+    print("   history:")
+    for h in t["history"]:
+        print(f"     · {h['at']}  {h['event']}")
+    return 0
+
+
+USAGE = __doc__
+
+
+def main(argv):
+    if not argv:
+        return cmd_board([])
+    cmd, rest = argv[0], argv[1:]
+    if cmd in ("-h", "--help", "help"):
+        print(USAGE)
+        return 0
+    if cmd == "add":
+        return cmd_add(rest)
+    if cmd == "inbox":
+        return cmd_inbox(rest)
+    if cmd == "watch":
+        return cmd_watch(rest)
+    if cmd == "claim":
+        return _transition(rest, "claimed", "claimed")
+    if cmd == "done":
+        return _transition(rest, "done", "done")
+    if cmd == "block":
+        return _transition(rest, "blocked", "blocked")
+    if cmd == "cancel":
+        return _transition(rest, "cancelled", "cancelled")
+    if cmd == "note":
+        # note doesn't change status; record an event only
+        if not rest:
+            print("agentbus: note needs a task id", file=sys.stderr)
+            return 1
+        tid = rest[0]
+        by, tail = pick(rest[1:], "--by", "agent")
+        db = load()
+        t = find(db, tid)
+        if not t:
+            print(f"agentbus: no such task {tid}", file=sys.stderr)
+            return 1
+        msg = " ".join(tail)
+        t["updated"] = now()
+        t["history"].append({"at": now(), "by": by, "event": f"note: {msg}"})
+        save(db)
+        print(f"📝 {tid} note added")
+        return 0
+    if cmd == "list":
+        return cmd_list(rest)
+    if cmd == "board":
+        return cmd_board(rest)
+    if cmd == "get":
+        return cmd_get(rest)
+    print(f"agentbus: unknown command '{cmd}'\n", file=sys.stderr)
+    print(USAGE, file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
