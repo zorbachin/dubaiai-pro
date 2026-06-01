@@ -54,32 +54,22 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 07:57 UTC
-- **Branch:** `claude/nucleus-signals`
-- **Last commit:** ceff804 chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **When:** 2026-06-01 07:58 UTC
+- **Branch:** `main`
+- **Last commit:** ff9c06d New capture signals + nucleus self-improvement loop (#15) — 22 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
- M CLAUDE.md
- M bin/nucleus
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md |  8 ++++++++
- CLAUDE.md                  | 36 ++++++++++++++++++++++++++++++++++++
- bin/nucleus                | 39 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 83 insertions(+)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-ceff804 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-edaa8c2 Make the nucleus capture context proactively (#14) (4 minutes ago)
-3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (8 minutes ago)
+ff9c06d New capture signals + nucleus self-improvement loop (#15) (22 seconds ago)
+ceff804 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+edaa8c2 Make the nucleus capture context proactively (#14) (5 minutes ago)
+3fe7887 feat: add AI Intake Call section and mobile responsive grid Fix (9 minutes ago)
 4e0cd67 CLAUDE.md — manage the nucleus by talking, not commands (#13) (13 minutes ago)
-99104b0 Stop hook auto-pushes nucleus state commits (#12) (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
