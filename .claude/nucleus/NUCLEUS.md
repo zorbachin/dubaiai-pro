@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 05:29 UTC · chat
+SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@z.ai (msg 19e86ccebe1f1112); HighLevel cancel+refund -> billing@gohighlevel.com (msg 19e86cd2a4dd19f9). DAILY at CEO sync: check for their reply, resend follow-up until written cancel+refund confirmed, then verify charges stopped via Stripe receipts. Agentbus T015 (AutoGLM follow-up), T016 (HighLevel confirm), T017 (Etsy OrganizedOrionDesign digital venture). ETSY = DIGITAL (PDFs/AI guides/student planners/story guides); Zorba 1hr/wk creates, Claude markets/optimizes. NEXT BUILDS: GHL feature->rebuild map on free stack; stand up OrganizedOrionDesign + first product.
+
 ### 2026-06-02 05:23 UTC · chat
 SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $200/mo — TOP tier, NOT $100. Flat-rate, can't 'exceed' in $, only hit rate limits. He runs whole OS on it → KEEP, it's the engine. ChatGPT $20 + Gemini $20 worth it. AI-model spend (~$240) is his MOST productive spend, don't trim. (2) AutoGLM = $100/mo billed by Z.ai (autoglm@z.ai) — CAN'T CANCEL, shady. PRIORITY CUT. Drafted cancellation+refund-demand email in Gmail; fallback = Stripe/card chargeback. (3) GoHighLevel ~$100/mo — rebuildable on existing free stack (Netlify forms + Gmail + Google Cal/Cal.com + sheet/Airtable CRM); only SMS-at-scale (Twilio) is harder & he's not using it → CUT, Claude rebuilds the lead→CRM→follow-up flow. (4) Runway — KEEP but right-size: pause between production sprints, resub only in months he batches hero videos (made the BYB 'Transformers' video). (5) Etsy/OrganizedOrionDesign → keep ONLY as low-touch: Zorba ~1hr/wk builds assets, Claude markets/optimizes, else cut. Add as venture. (6) Vybewear (Isaac@vybewear.com) = CLIENT/friend for LAI/BYB (forwarded GTAA tournament leads) — track as customer, revenue-relevant. TRUE BLEED = AutoGLM $100 + GHL $100 = ~$200/mo.
 
@@ -161,18 +164,15 @@ VENTURES: Minimovies, letaidoit, sellsellingai (= the money maker), buildyourbot
 
 ### 2026-06-01 18:03 UTC · code
 Built bin/agentwatch: free local auto-dispatch — polls agentbus for ollama/hermes tasks, runs them on local Ollama, closes the loop at ZERO cost. Paid agents (chatgpt/gemini) stay manual relay to avoid spend. Roster updated: ollama+hermes=auto(free), chatgpt+gemini=manual, claude+cowork. Hermes assumed = Ollama model (confirm).
-
-### 2026-06-01 18:00 UTC · code
-Built the AI OS scaffold adapted from AIS-OS: .claude/os/ (connections.md roster, decisions/log.md, README), bin/os (board+audit+onboard tying nucleus+agentbus+roster), and 3 talk-driven skills (os-board, os-onboard, os-audit). 4Cs audit all green. agentbus = the closed-loop layer the reference kit lacks.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:23 UTC
-- **Branch:** `main`
-- **Last commit:** 1e1b7e4 chore: refresh nucleus live state [skip ci] — 9 seconds ago
+- **When:** 2026-06-02 05:29 UTC
+- **Branch:** `claude/cancellations-log`
+- **Last commit:** 3fc08e5 chore: refresh nucleus live state [skip ci] — 6 minutes ago
 
 **Working tree:**
 ```
@@ -181,11 +181,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-1e1b7e4 chore: refresh nucleus live state [skip ci] (9 seconds ago)
-8e3f17d chore: refresh nucleus live state [skip ci] (10 minutes ago)
-426fd33 $1M North Star + operating model + real spend audit (#33) (10 minutes ago)
-3593145 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-22a565c Portfolio command center — org chart, workstreams, spend audit (#32) (15 minutes ago)
+3fc08e5 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+1e1b7e4 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+8e3f17d chore: refresh nucleus live state [skip ci] (15 minutes ago)
+426fd33 $1M North Star + operating model + real spend audit (#33) (16 minutes ago)
+3593145 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
