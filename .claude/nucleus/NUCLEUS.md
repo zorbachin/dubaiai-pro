@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 09:09 UTC
 - **Branch:** `main`
-- **Last commit:** 5c8bc10 Etsy publish kit — 20 thumbnails + listings + design cleanup (#38) — 25 seconds ago
+- **Last commit:** e0bb9bc chore: refresh nucleus live state [skip ci] — 12 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 31 ++++++++++++++++++++-----------
- 1 file changed, 20 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-5c8bc10 Etsy publish kit — 20 thumbnails + listings + design cleanup (#38) (25 seconds ago)
+e0bb9bc chore: refresh nucleus live state [skip ci] (12 seconds ago)
+5c8bc10 Etsy publish kit — 20 thumbnails + listings + design cleanup (#38) (37 seconds ago)
 2b63714 chore: refresh nucleus live state [skip ci] (3 hours ago)
 2f92baa Sync OS state — research tasks + handoffs (#37) (3 hours ago)
 484163f All 20 Etsy products + Work-With-Me CTA + per-venture research briefs (#36) (3 hours ago)
-dee00d1 chore: refresh nucleus live state [skip ci] (4 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
