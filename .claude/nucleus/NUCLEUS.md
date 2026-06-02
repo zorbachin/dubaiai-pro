@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 09:45 UTC · chat
+CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 quote cards (built) + COPY.md (FB/IG/LI/X captions + newsletter draft + demo recording brief + hero-video spec). One message: 'deals die in the follow-up gap — this closes it.' WAITING ON: Zorba records the basic demo (drop in Drive) -> Claude cuts the website hero video + queues everything. COMMAND CENTER #1 DONE: nucleus serve exposes /command.json (per-venture board+brain) for the existing localhost widget to sync; / now renders a per-venture dashboard.
+
 ### 2026-06-02 09:36 UTC · chat
 NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
 
@@ -161,31 +164,34 @@ CRITICAL STEERING: user does NOT want a 70%-working system — half-working tool
 
 ### 2026-06-01 18:05 UTC · chat
 TODAY'S MISSES (open loops): did not launch the sites, the challenge, the email drafts, or user's content. These are carried-over priorities.
-
-### 2026-06-01 18:05 UTC · chat
-USER WORKING STYLE: ADHD — needs coaching, guidance, clear workstreams, not a wall of options. LIKES creating content when he knows what he's doing. GETS STUCK on POSTING — insecurity is the blocker, not the creation. Posting friction is a recurring pattern to design around.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 09:37 UTC
+- **When:** 2026-06-02 09:46 UTC
 - **Branch:** `main`
-- **Last commit:** 475a851 chore: refresh nucleus live state [skip ci] — 10 seconds ago
+- **Last commit:** 172e238 Closing-tool content push — carousel + quote cards + copy pack (#44) — 28 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 23 ++++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-475a851 chore: refresh nucleus live state [skip ci] (10 seconds ago)
-85dfc66 All 20 products at elite depth + prompt libraries + repricing (#42) (89 seconds ago)
-1ddc1ac chore: refresh nucleus live state [skip ci] (11 minutes ago)
-e0a73b8 Hyperlink letaidoit.pro everywhere + clickable contact buttons (#41) (12 minutes ago)
-ba6f1e7 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+172e238 Closing-tool content push — carousel + quote cards + copy pack (#44) (28 seconds ago)
+3332f82 Command-center sync feed + per-venture dashboard (#43) (3 minutes ago)
+1e3db2b chore: refresh nucleus live state [skip ci] (9 minutes ago)
+475a851 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+85dfc66 All 20 products at elite depth + prompt libraries + repricing (#42) (10 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
