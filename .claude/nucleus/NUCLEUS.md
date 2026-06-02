@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 09:19 UTC · chat
+PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product structure: COVER -> ADHD ONE-PAGER (whole system at a glance, 1 page) -> DEEP WALKTHROUGH (numbered steps, easy-to-follow) -> each step has a copy-paste PROMPT box with CLICKABLE 'Run in ChatGPT/Claude' links that auto-fill (chatgpt.com/?q= and claude.ai/new?q= URL-encoded) -> bonus prompt pack -> Work-With-Me CTA. Engine upgraded (bin/etsybuild.py: onepager/step/prompt blocks). Flagship #01 rebuilt as the exemplar/template (6KB->22KB). AWAITING format approval, then batch all 20 to this template + reprice bundle to $60.
+
 ### 2026-06-02 09:06 UTC · chat
 ETSY PUBLISH KIT COMPLETE: 20 thumbnails (etsy-shop/thumbs/*.png, 2000x2000 branded) + LISTINGS.md (SEO title/13 tags/price/description for all 20) + 20 PDFs (each w/ Work-With-Me page). Prices: Lite $9, Kit $17, Flagship $24, Bundle $59. CONSTRAINT: Etsy is NOT API-listable from here (not on Zapier; digital file+image upload must be done in Etsy UI). So final publish = Zorba pastes title/tags/desc + uploads thumb (image 1) + PDF (digital file), ~2 min each. LAUNCH SHELF recommendation: Bundle + Beat the Posting Block + Audit Subscriptions + 50 Tasks + ADHD Planner first, then drip 2-3/week as marketing beats.
 
@@ -161,31 +164,34 @@ USER WORKING STYLE: ADHD — needs coaching, guidance, clear workstreams, not a 
 
 ### 2026-06-01 18:05 UTC · chat
 MY ROLE (Claude): chief of staff / orchestrator + ADHD coach. Set daily (or 2x/day) task lists per venture & agent. When user brings new ideas mid-stream, find balance: 'yes we can do that AND here's what still must ship today' — don't let new shiny derail committed goals.
-
-### 2026-06-01 18:05 UTC · chat
-GOALS (the north star for all ventures): more leads, more bookings, more inbound business, more organization so the user doesn't have to guess.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 09:09 UTC
+- **When:** 2026-06-02 09:20 UTC
 - **Branch:** `main`
-- **Last commit:** e0bb9bc chore: refresh nucleus live state [skip ci] — 12 seconds ago
+- **Last commit:** 7309ff0 Deep product format — ADHD one-pager + walkthrough + clickable prompts (#39) — 25 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 32 +++++++++++++++++++++-----------
+ 1 file changed, 21 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-e0bb9bc chore: refresh nucleus live state [skip ci] (12 seconds ago)
-5c8bc10 Etsy publish kit — 20 thumbnails + listings + design cleanup (#38) (37 seconds ago)
-2b63714 chore: refresh nucleus live state [skip ci] (3 hours ago)
-2f92baa Sync OS state — research tasks + handoffs (#37) (3 hours ago)
-484163f All 20 Etsy products + Work-With-Me CTA + per-venture research briefs (#36) (3 hours ago)
+7309ff0 Deep product format — ADHD one-pager + walkthrough + clickable prompts (#39) (25 seconds ago)
+5c60d5d chore: refresh nucleus live state [skip ci] (11 minutes ago)
+e0bb9bc chore: refresh nucleus live state [skip ci] (11 minutes ago)
+5c8bc10 Etsy publish kit — 20 thumbnails + listings + design cleanup (#38) (12 minutes ago)
+2b63714 chore: refresh nucleus live state [skip ci] (4 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
