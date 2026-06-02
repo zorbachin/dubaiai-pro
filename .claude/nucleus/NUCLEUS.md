@@ -43,6 +43,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 03:13 UTC · code
+REAL SITE MAP (Netlify, 16 sites, owned by zorbachin/PodSupps team): letaidoit→letaidoit.netlify.app (OWNED, exists!), minimovies→minimovies.io (LIVE custom domain), byb-ambassador→byb-ambassador.netlify.app (forms enabled), foxy-close-tool→foxy-close-tool.netlify.app (the Instant Proposals closing tool), podsupps→podsupps.com, plus machberet, dad-ai-discovery, vybe-discovery, pbgai, zorbasphere, tlv-summer, polar-bear-prep, foxy-epoxy-discovery. NOTE: owned 'letaidoit' project already exists — redrop may be done or it's an empty shell; verify deploy.
+
+### 2026-06-02 03:09 UTC · chat
+SAFETY RULE (standing): Claude may CREATE drafts/designs with real tools (Gmail drafts, Canva, image-gen) but NEVER auto-send, auto-publish, or charge. User always does the final send/post/deploy. Applies to Netlify too — prep, don't flip live without explicit yes.
+
 ### 2026-06-02 03:01 UTC · code
 PILLAR 1 created + atomized: 'How I got into AI business' → 10 pieces across a week (anchor video, carousel, 3 written posts, 3 quote cards, meme, newsletter), queued T008-T014 for LetAIDoIt. Through-line: 'You don't need to learn AI, you need someone who already did the 1000 hours.' Voice guide upgraded to v1 with his real word samples.
 
@@ -126,33 +132,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 03:01 UTC
-- **Branch:** `claude/pillar-1`
-- **Last commit:** 9d5f76e chore: refresh nucleus live state [skip ci] — 8 hours ago
+- **When:** 2026-06-02 03:14 UTC
+- **Branch:** `main`
+- **Last commit:** da511b7 Pillar 1: "How I got into AI" → a week of content + voice v1 (#27) — 12 minutes ago
 
 **Working tree:**
 ```
 M .claude/nucleus/NUCLEUS.md
- M .claude/nucleus/tasks.json
- M .claude/os/references/voice-guide.md
-?? .claude/os/content/pillar-1-ai-business-story.md
 ```
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md           |  22 +++---
- .claude/nucleus/tasks.json           | 128 ++++++++++++++++++++++++++++++++++-
- .claude/os/references/voice-guide.md |  18 ++++-
- 3 files changed, 157 insertions(+), 11 deletions(-)
+.claude/nucleus/NUCLEUS.md | 31 ++++++++++++++++---------------
+ 1 file changed, 16 insertions(+), 15 deletions(-)
 ```
 
 **Recent commits:**
 ```
-9d5f76e chore: refresh nucleus live state [skip ci] (8 hours ago)
-bc7d6a5 Batch & repurpose content system (create once, ship all week) (#26) (8 hours ago)
-63c2b2b chore: refresh nucleus live state [skip ci] (8 hours ago)
-8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (8 hours ago)
-8d9a946 Dopaminergic focus dashboard (focus.html) (#24) (9 hours ago)
+da511b7 Pillar 1: "How I got into AI" → a week of content + voice v1 (#27) (12 minutes ago)
+9d5f76e chore: refresh nucleus live state [skip ci] (9 hours ago)
+bc7d6a5 Batch & repurpose content system (create once, ship all week) (#26) (9 hours ago)
+63c2b2b chore: refresh nucleus live state [skip ci] (9 hours ago)
+8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (9 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
