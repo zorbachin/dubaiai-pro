@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 14:19 UTC
 - **Branch:** `main`
-- **Last commit:** bac1770 Rename publication to Zorbasphere + glasses logo (#59) — 22 seconds ago
+- **Last commit:** 26ef109 chore: refresh nucleus live state [skip ci] — 13 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 41 ++++++++++++++++++++++++++++++-----------
- 1 file changed, 30 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-bac1770 Rename publication to Zorbasphere + glasses logo (#59) (22 seconds ago)
+26ef109 chore: refresh nucleus live state [skip ci] (13 seconds ago)
+bac1770 Rename publication to Zorbasphere + glasses logo (#59) (35 seconds ago)
 2b9901c chore: refresh nucleus live state [skip ci] (4 minutes ago)
 458ff3f chore: refresh nucleus live state [skip ci] (4 minutes ago)
-33a5346 Issue 001 publish/SEO spec + masthead name options (#58) (4 minutes ago)
-5aee7bc chore: refresh nucleus live state [skip ci] (13 minutes ago)
+33a5346 Issue 001 publish/SEO spec + masthead name options (#58) (5 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
