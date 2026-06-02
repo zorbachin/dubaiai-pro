@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 09:20 UTC
 - **Branch:** `main`
-- **Last commit:** 7309ff0 Deep product format — ADHD one-pager + walkthrough + clickable prompts (#39) — 25 seconds ago
+- **Last commit:** 88fd461 chore: refresh nucleus live state [skip ci] — 14 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 32 +++++++++++++++++++++-----------
- 1 file changed, 21 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-7309ff0 Deep product format — ADHD one-pager + walkthrough + clickable prompts (#39) (25 seconds ago)
+88fd461 chore: refresh nucleus live state [skip ci] (14 seconds ago)
+7309ff0 Deep product format — ADHD one-pager + walkthrough + clickable prompts (#39) (39 seconds ago)
 5c60d5d chore: refresh nucleus live state [skip ci] (11 minutes ago)
-e0bb9bc chore: refresh nucleus live state [skip ci] (11 minutes ago)
+e0bb9bc chore: refresh nucleus live state [skip ci] (12 minutes ago)
 5c8bc10 Etsy publish kit — 20 thumbnails + listings + design cleanup (#38) (12 minutes ago)
-2b63714 chore: refresh nucleus live state [skip ci] (4 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
