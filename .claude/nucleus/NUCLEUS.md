@@ -170,9 +170,9 @@ Built bin/agentwatch: free local auto-dispatch — polls agentbus for ollama/her
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:29 UTC
-- **Branch:** `claude/cancellations-log`
-- **Last commit:** 3fc08e5 chore: refresh nucleus live state [skip ci] — 6 minutes ago
+- **When:** 2026-06-02 05:33 UTC
+- **Branch:** `main`
+- **Last commit:** 63ee41b Etsy digital-product engine + 20-product catalog + flagship sample (#35) — 22 seconds ago
 
 **Working tree:**
 ```
@@ -181,11 +181,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-3fc08e5 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-1e1b7e4 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-8e3f17d chore: refresh nucleus live state [skip ci] (15 minutes ago)
-426fd33 $1M North Star + operating model + real spend audit (#33) (16 minutes ago)
-3593145 chore: refresh nucleus live state [skip ci] (20 minutes ago)
+63ee41b Etsy digital-product engine + 20-product catalog + flagship sample (#35) (22 seconds ago)
+14bcf09 Log subscription cancellations + Etsy digital venture (#34) (3 minutes ago)
+3fc08e5 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+1e1b7e4 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+8e3f17d chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
