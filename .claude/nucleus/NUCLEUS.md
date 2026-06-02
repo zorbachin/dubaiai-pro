@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 05:23 UTC · chat
+SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $200/mo — TOP tier, NOT $100. Flat-rate, can't 'exceed' in $, only hit rate limits. He runs whole OS on it → KEEP, it's the engine. ChatGPT $20 + Gemini $20 worth it. AI-model spend (~$240) is his MOST productive spend, don't trim. (2) AutoGLM = $100/mo billed by Z.ai (autoglm@z.ai) — CAN'T CANCEL, shady. PRIORITY CUT. Drafted cancellation+refund-demand email in Gmail; fallback = Stripe/card chargeback. (3) GoHighLevel ~$100/mo — rebuildable on existing free stack (Netlify forms + Gmail + Google Cal/Cal.com + sheet/Airtable CRM); only SMS-at-scale (Twilio) is harder & he's not using it → CUT, Claude rebuilds the lead→CRM→follow-up flow. (4) Runway — KEEP but right-size: pause between production sprints, resub only in months he batches hero videos (made the BYB 'Transformers' video). (5) Etsy/OrganizedOrionDesign → keep ONLY as low-touch: Zorba ~1hr/wk builds assets, Claude markets/optimizes, else cut. Add as venture. (6) Vybewear (Isaac@vybewear.com) = CLIENT/friend for LAI/BYB (forwarded GTAA tournament leads) — track as customer, revenue-relevant. TRUE BLEED = AutoGLM $100 + GHL $100 = ~$200/mo.
+
 ### 2026-06-02 05:13 UTC · chat
 SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM (already tried to cancel, charged anyway — RESOLVE), Runway AI (premium video, redundant — CUT), TopView (cheap video), OpusClip/opus.pro (clipping — keep for MM), AutoGLM (GLM sub — likely redundant w/ Claude, review), ElevenLabs (voice — right-size), X Premium, Etsy Plus $10 (live shop OrganizedOrionDesign jewelry), Anthropic/Claude (core). NOT paying → HeyGen, Higgsfield, Manus (don't start any; brand is self-shot). Recoverable ~$155-235/mo. SURFACED ventures not in ventures.md: Etsy shop OrganizedOrionDesign + Vybe/vybewear. Ambo call booked today 11:30 EST (Meet: meet.google.com/wfd-zwvt-ies) — need Sam & Jack emails to invite. North Star set to $1M.
 
@@ -161,31 +164,34 @@ Built bin/agentwatch: free local auto-dispatch — polls agentbus for ollama/her
 
 ### 2026-06-01 18:00 UTC · code
 Built the AI OS scaffold adapted from AIS-OS: .claude/os/ (connections.md roster, decisions/log.md, README), bin/os (board+audit+onboard tying nucleus+agentbus+roster), and 3 talk-driven skills (os-board, os-onboard, os-audit). 4Cs audit all green. agentbus = the closed-loop layer the reference kit lacks.
-
-### 2026-06-01 17:47 UTC · code
-Building multi-agent OS: agentbus task ledger (bin/agentbus) gives explicit open→claimed→done→blocked states so delegated work CLOSES THE LOOP. Demo proved full delegate→work→report-back cycle. Core pain being solved: command center never registers 'done'.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:14 UTC
+- **When:** 2026-06-02 05:23 UTC
 - **Branch:** `main`
-- **Last commit:** 426fd33 $1M North Star + operating model + real spend audit (#33) — 21 seconds ago
+- **Last commit:** 8e3f17d chore: refresh nucleus live state [skip ci] — 10 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-426fd33 $1M North Star + operating model + real spend audit (#33) (21 seconds ago)
-3593145 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-22a565c Portfolio command center — org chart, workstreams, spend audit (#32) (5 minutes ago)
-1490a56 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-2c8e3ee chore: refresh nucleus live state [skip ci] (22 minutes ago)
+8e3f17d chore: refresh nucleus live state [skip ci] (10 minutes ago)
+426fd33 $1M North Star + operating model + real spend audit (#33) (10 minutes ago)
+3593145 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+22a565c Portfolio command center — org chart, workstreams, spend audit (#32) (15 minutes ago)
+1490a56 chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
