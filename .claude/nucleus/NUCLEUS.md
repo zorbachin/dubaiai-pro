@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 04:03 UTC · chat
+PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
+
 ### 2026-06-02 03:58 UTC · chat
 BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
 
@@ -153,22 +156,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 04:00 UTC
+- **When:** 2026-06-02 04:03 UTC
 - **Branch:** `main`
-- **Last commit:** c5b4798 chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **Last commit:** decfdb0 chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-c5b4798 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-353c2da chore: refresh nucleus live state [skip ci] (3 minutes ago)
-d49fb8b chore: refresh nucleus live state [skip ci] (5 minutes ago)
-b9b498e chore: refresh nucleus live state [skip ci] (8 minutes ago)
-bbfd09f chore: refresh nucleus live state [skip ci] (9 minutes ago)
+decfdb0 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+c5b4798 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+353c2da chore: refresh nucleus live state [skip ci] (6 minutes ago)
+d49fb8b chore: refresh nucleus live state [skip ci] (9 minutes ago)
+b9b498e chore: refresh nucleus live state [skip ci] (12 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
