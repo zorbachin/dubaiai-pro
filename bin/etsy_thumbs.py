@@ -71,9 +71,13 @@ def make(stem, kicker, title, is_bundle=False):
     # title
     tf = F(SERIF_B, 130)
     lines = wrap(d, title, tf, S-360)
-    y = 850
+    y = 760 if is_bundle else 850
     for ln in lines:
         d.text((180, y), ln, font=tf, fill=CREAM); y += 150
+    if is_bundle:
+        gf = F(SANS_B, 44)
+        for tl in wrap(d, "Run your whole business with AI. 20 systems, one download.", gf, S-360):
+            d.text((180, y + 10), tl, font=gf, fill=GOLD); y += 56
     # badge
     bf = F(SANS_B, 42)
     badge = "COMPLETE BUNDLE · 20 GUIDES" if is_bundle else "DIGITAL PDF GUIDE · INSTANT DOWNLOAD"
