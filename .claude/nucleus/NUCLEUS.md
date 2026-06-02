@@ -45,6 +45,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 13:10 UTC · chat
+CHANNELS FINALIZED: (A) THE NEWSLETTER = 'The Build Log' (content-assets/newsletter/THE-BUILD-LOG.md): super brief weekly, ~150 words, format = Building / Idea / Next / Steal-this(time-saver). Sample 001 ready. (B) SUBSTACK 'The Dispatch' = in-depth story/insight + the HUB that holds EVERYTHING he offers (story, Etsy shop, work-with-me/letaidoit.pro, buildyourbot/selfsellingai tools, Minimovies films) via the About page. PERK LADDER = FULL (content-assets/newsletter/PERK-LADDER.md): Reader(free web) -> Free subscriber (15% Etsy code DISPATCH15 + occasional free guide) -> Paid (~$7/mo: 40% code INSIDER40 + 1 free guide/mo + early access + BTS build breakdowns + discounted audit call + prompt vault) -> Client (the revenue the ladder funnels to). Etsy codes made in Shop Manager>Marketing>Sales&discounts. Welcome email drafted. No em-dashes.
+
+### 2026-06-02 13:06 UTC · chat
+CHANNEL SPLIT (strategic): TWO lanes. (A) SUBSTACK = 'The Dispatch' = STORY/INSIGHT/building-in-public (origin story lives here, NOT time-saving). EXCLUSIVE perk: Substack subscribers get Zorba's ETSY products at a DISCOUNT (+ early access/behind-the-scenes). (B) THE NEWSLETTER = PRODUCTIVITY / time-saving AI tips (home for the 'Three Time-Savers' practical content). PHOTO/ASSET corrections for Issue 001: the DUOMO photos = ENGAGEMENT (proposal on knee w/ visible tripod 'alibi', kiss at lit facade, night selfie w/ RING on hand -> sets up Amazon-ring tease). The chuppah/crowd/first-dance photos = WEDDING. NISSIM BLACK (longtime friend+collaborator) performed a SURPRISE set at the WEDDING (crowd-under-spotlight = the performance photo); Meytal surprised too. Surprise WEDDING FILM (made morning of wedding, played live, youtu.be/pd3musK_Nbo) = seed of MINIMOVIES.io. Melinda BAT mitzvah film = another Minimovies example. Substack embeds YouTube natively (no compression needed).
+
 ### 2026-06-02 12:53 UTC · chat
 ISSUE 001 full entertainment pass (craft only, invented nothing): tighter comedic timing on the secret-filming caper, sharper 'IG vs reality' turn, leaner hardship montage, planted the AMAZON RING early as a wink, added a cinematic 'NEXT ISSUE' tease. RING SUBPLOT (next story): proposed with an Amazon ring -> they later MADE their own rings by hand with ALON MESIKA, on camera, became part of THE DOCUMENTARY. (There is a documentary about them — capture as asset.) Wedding PHOTOS exist (3 shared: crowd-under-spotlight hora, chuppah w/ green dress+kippot, first dance) but came inline in chat, NOT saved to repo — Zorba drags them into Substack at layout. Photo slots noted in ISSUE-001.md.
 
@@ -158,34 +164,34 @@ Built master content-board.md (color-coded by type, idea→POSTED pipeline), scr
 
 ### 2026-06-01 18:19 UTC · chat
 VOICE-LEARNING METHOD: Claude researches user online + builds a voice guide from chat notes, user corrects it (lowest friction). REUSE INSIGHT: user has a great buildyourbot.io video he wants to repurpose for letaidoit + others.
-
-### 2026-06-01 18:19 UTC · chat
-BIG INITIATIVE: full content map sprint — audit ALL content across ventures, then schedule + queue everything. Nothing floating. Treat as a structured sprint.
-
-### 2026-06-01 18:14 UTC · chat
-STORY ASSETS to learn & use in content: the house, the war, and the previous drafts we wrote but never published. These are raw material for authentic launches.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 12:54 UTC
+- **When:** 2026-06-02 13:11 UTC
 - **Branch:** `main`
-- **Last commit:** 875a5ec chore: refresh nucleus live state [skip ci] — 17 seconds ago
+- **Last commit:** 9aa719b The Build Log + Substack perk ladder (#54) — 24 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 36 ++++++++++++++++++++++--------------
+ 1 file changed, 22 insertions(+), 14 deletions(-)
 ```
 
 **Recent commits:**
 ```
-875a5ec chore: refresh nucleus live state [skip ci] (17 seconds ago)
-c857aae Issue 001 entertainment pass + ring tease + photo slots (#52) (42 seconds ago)
-f04fe19 chore: refresh nucleus live state [skip ci] (37 minutes ago)
-0fd46cd chore: refresh nucleus live state [skip ci] (37 minutes ago)
-6d9d6f7 Issue 001 — full real origin story, subplots tied (#51) (37 minutes ago)
+9aa719b The Build Log + Substack perk ladder (#54) (24 seconds ago)
+765261f Issue 001 real assets — engagement/wedding photos, Nissim, Minimovies (#53) (5 minutes ago)
+ca3906e chore: refresh nucleus live state [skip ci] (17 minutes ago)
+875a5ec chore: refresh nucleus live state [skip ci] (17 minutes ago)
+c857aae Issue 001 entertainment pass + ring tease + photo slots (#52) (18 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
