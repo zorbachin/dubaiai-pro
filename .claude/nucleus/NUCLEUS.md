@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 09:37 UTC
 - **Branch:** `main`
-- **Last commit:** 85dfc66 All 20 products at elite depth + prompt libraries + repricing (#42) — 79 seconds ago
+- **Last commit:** 475a851 chore: refresh nucleus live state [skip ci] — 10 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-85dfc66 All 20 products at elite depth + prompt libraries + repricing (#42) (79 seconds ago)
+475a851 chore: refresh nucleus live state [skip ci] (10 seconds ago)
+85dfc66 All 20 products at elite depth + prompt libraries + repricing (#42) (89 seconds ago)
 1ddc1ac chore: refresh nucleus live state [skip ci] (11 minutes ago)
-e0a73b8 Hyperlink letaidoit.pro everywhere + clickable contact buttons (#41) (11 minutes ago)
+e0a73b8 Hyperlink letaidoit.pro everywhere + clickable contact buttons (#41) (12 minutes ago)
 ba6f1e7 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-490fccf Clean prompt cards — pill buttons + drawn triangles (#40) (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
