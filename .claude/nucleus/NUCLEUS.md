@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 15:43 UTC · chat
+ISSUE 003 'The Ring' WRITTEN (content-assets/newsletter/ISSUE-003-the-ring.md), full story in Zorba's voice, no em-dashes, 4 acts (The Amazon Ring / Diamonds for Adir / Made by Hand / More Than a Ring). KEY FACTS: budget Amazon ring guessed (size/cut/style), seen by Meytal in LA but covered; back in Israel launched MORAL EDGE media channel (doing well); documentary on Oct 7 (7 families, tragedy->life-saving impact); met JEN AIRLEY (son Binyamin died a hero) who reminded him of his mom (his BROWN's death non-violent — sensitive, flagged optional); she introduced ALON MESIKA + 'Diamonds for Adir' (son Adir killed at Nova festival, was about to propose; Alon donated a diamond to an engaged soldier -> grew to hundreds; Zorba wears Adir's hat+necklace brand). Alon's workshop: get sized, come back, make/finish each other's wedding rings; 2 soldiers told combat/Adir stories (some off-camera); rings made by hand worn at wedding outside Jerusalem. THEME: Amazon-ring-that-doesn't-fit -> handmade-with-history = sign things are changing; Substack now = accountability/reflection/motivation ('motivation is contagious to seekers, repulsive to the fearful'); CTA pivots to practical tips/tutorials next + asks audience to comment what they want. AUTOMATION: built content-assets/COWORK-QUEUE.md = browser task specs (Substack publish-as-draft + Etsy listings + discount codes) Cowork reads from the shared nucleus and executes; nucleus can't auto-spawn Cowork but this is the turnkey handoff.
+
 ### 2026-06-02 15:19 UTC · chat
 SUBSTACK AUTOMATION: confirmed NO way for Claude to post into Substack (no Zapier integration, no public write API). Only paths: Cowork/computer-use browser agent (clicks publish) or Zorba pastes (~10s). Everything stays paste-ready. MORE CONTENT READY: (1) ISSUE 002 (ready, no gaps) = insight essay 'I Don't Sell AI. I Sell Time.' (content-assets/newsletter/ISSUE-002-time-not-ai.md). (2) NOTES-BANK.md = 12 ready Substack Notes (post 1/day). Note: the RING story + the venture CHRONOLOGY are stronger but still need Zorba's inputs/assets (queued). No em-dashes throughout.
 
@@ -161,31 +164,34 @@ BRAND PALETTE DIRECTION: gold glasses on BLUE, or GREEN — Seahawks colors (Col
 
 ### 2026-06-02 03:26 UTC · code
 Built cardgen2 with golden-glasses signature mark (vector, recurring brand element). 3 style directions: A navy+glasses-watermark, B cream editorial (glasses hero), C bold split. Awaiting user's pick + real brand refs (can't fetch zorbot/buildyourbot/selfsellingai — all 403 bot-blocked).
-
-### 2026-06-02 03:24 UTC · chat
-DESIGN DIRECTION: content is good but visuals need more edge — distinct, scroll-stopping, recognizably HIS. Brand references: zorbot.io, buildyourbot.io, selfsellingai.pro. SIGNATURE ELEMENT: his 'golden glasses' — use as a recurring brand mark to give cards a distinct edge. Match the existing brand worlds, not generic.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 15:20 UTC
+- **When:** 2026-06-02 15:44 UTC
 - **Branch:** `main`
-- **Last commit:** e62c92d chore: refresh nucleus live state [skip ci] — 20 seconds ago
+- **Last commit:** 7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) — 32 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-e62c92d chore: refresh nucleus live state [skip ci] (20 seconds ago)
-ee78750 More Zorbasphere: ready Issue 002 essay + 12-note bank (#62) (46 seconds ago)
-c57a6ca chore: refresh nucleus live state [skip ci] (47 minutes ago)
-b2783cc chore: refresh nucleus live state [skip ci] (47 minutes ago)
-c0a6f93 Launch Substack Notes + reply kit (#61) (47 minutes ago)
+7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) (32 seconds ago)
+a02ab5e chore: refresh nucleus live state [skip ci] (23 minutes ago)
+e62c92d chore: refresh nucleus live state [skip ci] (24 minutes ago)
+ee78750 More Zorbasphere: ready Issue 002 essay + 12-note bank (#62) (24 minutes ago)
+c57a6ca chore: refresh nucleus live state [skip ci] (70 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
