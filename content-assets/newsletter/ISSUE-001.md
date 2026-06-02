@@ -14,7 +14,7 @@ I had the perfect cover to film it, too. I had just bought a new iPhone micropho
 
 (The ring inside it came from Amazon. That is a story for another issue, and it gets better.)
 
-[PHOTO: the engagement at the Duomo, golden hour]
+[PHOTOS: the engagement at the Duomo. Use the 3 you sent: the proposal on one knee (you can spot the little tripod in the background, the one that "needed testing"), the kiss in front of the lit facade, and the night selfie where the ring is already on her hand.]
 
 It was hot. Italy in August always is. We kept circling the piazza, waiting, because it had to be golden hour. It had to be. So I started an awkward fake interview about the trip. The highlights. How it all felt. We were both tired. And then she said she wanted to switch places and interview me.
 
@@ -40,7 +40,15 @@ Now, I should pause, because this next part is true and it matters. In that same
 
 The wedding itself was something else. People came from around the world. Alaskan and Ethiopian, Israeli and American, all colliding in one room in a way nobody there had quite seen before.
 
-[PHOTO: the wedding, the cultures colliding. Use the 3 you sent: (1) the whole room around you under the spotlight mid-celebration, (2) the chuppah ceremony with the green dress and the kippot, (3) the first dance on the lit floor.]
+My friend Nissim Black, who I have known and collaborated with for years, got up and performed a surprise set for the whole room. Meytal did not see it coming either. The place went up.
+
+[PHOTOS: the wedding. Use your 3: the chuppah, Nissim's surprise set with the crowd under the spotlight, and the first dance.]
+
+And I had a surprise of my own. I made a wedding film, start to finish, on the morning of the wedding itself, and we played it live for the room. There are little signs hidden in it, but it was made to be felt once, live, not paused and studied frame by frame.
+
+[VIDEO: the surprise wedding film, https://youtu.be/pd3musK_Nbo]
+
+That film is the seed that became Minimovies. Same instinct as always. Make the thing, watch it land, build something around it. (The Melinda bat mitzvah film is another one I am proud of, and I will line these up properly on the site.)
 
 And then the music stops, and somebody has to pay for it. The wedding. The rent. The life. Nine days later, the war started. Movement closed in. Meytal was out of work.
 
