@@ -170,9 +170,9 @@ MY ROLE (Claude): chief of staff / orchestrator + ADHD coach. Set daily (or 2x/d
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 09:20 UTC
+- **When:** 2026-06-02 09:23 UTC
 - **Branch:** `main`
-- **Last commit:** 88fd461 chore: refresh nucleus live state [skip ci] — 14 seconds ago
+- **Last commit:** 490fccf Clean prompt cards — pill buttons + drawn triangles (#40) — 23 seconds ago
 
 **Working tree:**
 ```
@@ -181,11 +181,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-88fd461 chore: refresh nucleus live state [skip ci] (14 seconds ago)
-7309ff0 Deep product format — ADHD one-pager + walkthrough + clickable prompts (#39) (39 seconds ago)
-5c60d5d chore: refresh nucleus live state [skip ci] (11 minutes ago)
-e0bb9bc chore: refresh nucleus live state [skip ci] (12 minutes ago)
-5c8bc10 Etsy publish kit — 20 thumbnails + listings + design cleanup (#38) (12 minutes ago)
+490fccf Clean prompt cards — pill buttons + drawn triangles (#40) (23 seconds ago)
+25261ea chore: refresh nucleus live state [skip ci] (3 minutes ago)
+88fd461 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+7309ff0 Deep product format — ADHD one-pager + walkthrough + clickable prompts (#39) (3 minutes ago)
+5c60d5d chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
