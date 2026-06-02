@@ -168,9 +168,9 @@ Steering signals to always note: (1) when user says something 'works'/validates 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:06 UTC
+- **When:** 2026-06-02 05:09 UTC
 - **Branch:** `main`
-- **Last commit:** 1490a56 chore: refresh nucleus live state [skip ci] — 5 minutes ago
+- **Last commit:** 22a565c Portfolio command center — org chart, workstreams, spend audit (#32) — 47 seconds ago
 
 **Working tree:**
 ```
@@ -179,11 +179,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-1490a56 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-2c8e3ee chore: refresh nucleus live state [skip ci] (15 minutes ago)
-1b14813 Sustainable posting cadence + multi-platform publish log (#31) (15 minutes ago)
-3e960b1 chore: refresh nucleus live state [skip ci] (29 minutes ago)
-9f11855 chore: refresh nucleus live state [skip ci] (32 minutes ago)
+22a565c Portfolio command center — org chart, workstreams, spend audit (#32) (47 seconds ago)
+1490a56 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+2c8e3ee chore: refresh nucleus live state [skip ci] (18 minutes ago)
+1b14813 Sustainable posting cadence + multi-platform publish log (#31) (18 minutes ago)
+3e960b1 chore: refresh nucleus live state [skip ci] (32 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
