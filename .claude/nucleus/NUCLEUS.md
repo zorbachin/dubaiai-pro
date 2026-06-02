@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 12:54 UTC
 - **Branch:** `main`
-- **Last commit:** c857aae Issue 001 entertainment pass + ring tease + photo slots (#52) — 25 seconds ago
+- **Last commit:** 875a5ec chore: refresh nucleus live state [skip ci] — 17 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
- 1 file changed, 19 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-c857aae Issue 001 entertainment pass + ring tease + photo slots (#52) (25 seconds ago)
-f04fe19 chore: refresh nucleus live state [skip ci] (36 minutes ago)
-0fd46cd chore: refresh nucleus live state [skip ci] (36 minutes ago)
+875a5ec chore: refresh nucleus live state [skip ci] (17 seconds ago)
+c857aae Issue 001 entertainment pass + ring tease + photo slots (#52) (42 seconds ago)
+f04fe19 chore: refresh nucleus live state [skip ci] (37 minutes ago)
+0fd46cd chore: refresh nucleus live state [skip ci] (37 minutes ago)
 6d9d6f7 Issue 001 — full real origin story, subplots tied (#51) (37 minutes ago)
-43f678f chore: refresh nucleus live state [skip ci] (84 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
