@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 12:17 UTC
 - **Branch:** `main`
-- **Last commit:** 6d9d6f7 Issue 001 — full real origin story, subplots tied (#51) — 40 seconds ago
+- **Last commit:** 0fd46cd chore: refresh nucleus live state [skip ci] — 13 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
- 1 file changed, 19 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-6d9d6f7 Issue 001 — full real origin story, subplots tied (#51) (40 seconds ago)
+0fd46cd chore: refresh nucleus live state [skip ci] (13 seconds ago)
+6d9d6f7 Issue 001 — full real origin story, subplots tied (#51) (53 seconds ago)
 43f678f chore: refresh nucleus live state [skip ci] (48 minutes ago)
 e624d29 chore: refresh nucleus live state [skip ci] (48 minutes ago)
 937f4f0 Rewrite Issue 001 — more human, cinematic, corrected timeline (#50) (49 minutes ago)
-a7ad7c7 chore: refresh nucleus live state [skip ci] (63 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
