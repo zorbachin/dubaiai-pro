@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 14:15 UTC
 - **Branch:** `main`
-- **Last commit:** 33a5346 Issue 001 publish/SEO spec + masthead name options (#58) — 19 seconds ago
+- **Last commit:** 458ff3f chore: refresh nucleus live state [skip ci] — 14 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 26 ++++++++++++++------------
- 1 file changed, 14 insertions(+), 12 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-33a5346 Issue 001 publish/SEO spec + masthead name options (#58) (19 seconds ago)
+458ff3f chore: refresh nucleus live state [skip ci] (14 seconds ago)
+33a5346 Issue 001 publish/SEO spec + masthead name options (#58) (33 seconds ago)
 5aee7bc chore: refresh nucleus live state [skip ci] (9 minutes ago)
 6aa591d Ambo/Jack payroll call cheat-sheet (#57) (9 minutes ago)
-bfff3a9 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-b70c69e chore: refresh nucleus live state [skip ci] (16 minutes ago)
+bfff3a9 chore: refresh nucleus live state [skip ci] (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
