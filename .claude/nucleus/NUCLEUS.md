@@ -43,6 +43,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 03:33 UTC · code
+Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Green #69BE28 accent + cream serif. 3 variants. This is the Seahawks-palette synthesis per user direction. Still need real site screenshots to exact-match gold shade/fonts (env is bot-blocked: WebFetch 403 everywhere, Netlify MCP 502).
+
+### 2026-06-02 03:31 UTC · chat
+BRAND PALETTE DIRECTION: gold glasses on BLUE, or GREEN — Seahawks colors (College Navy #002244 + Action Green ~#69BE28) WITH gold. Synthesize a Zorba-wide brand from zorbot.io + buildyourbot.io + selfsellingai.pro. Method: pull real deployed code from Netlify (bot-blocked to WebFetch). Mapping: selfsellingai.pro→letaidoit site; buildyourbot→byb-ambassador.
+
 ### 2026-06-02 03:26 UTC · code
 Built cardgen2 with golden-glasses signature mark (vector, recurring brand element). 3 style directions: A navy+glasses-watermark, B cream editorial (glasses hero), C bold split. Awaiting user's pick + real brand refs (can't fetch zorbot/buildyourbot/selfsellingai — all 403 bot-blocked).
 
@@ -138,38 +144,36 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 03:26 UTC
-- **Branch:** `claude/glasses-brand`
-- **Last commit:** 455f2ac chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **When:** 2026-06-02 03:33 UTC
+- **Branch:** `claude/brand-v3`
+- **Last commit:** 4837c73 Golden-glasses brand mark + cardgen2 (3 style directions) (#29) — 6 minutes ago
 
 **Working tree:**
 ```
 M .claude/nucleus/NUCLEUS.md
-A  bin/cardgen2
-A  content-assets/v2/glasses-mark.png
-A  content-assets/v2/styleA-navy-watermark.png
-A  content-assets/v2/styleB-cream-editorial.png
-A  content-assets/v2/styleC-bold-split.png
+A  bin/cardgen3
+A  content-assets/v3/v3-green-glasses.png
+A  content-assets/v3/v3-navy-gold.png
+A  content-assets/v3/v3-navy-green-gold.png
 ```
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md                   |  17 +--
- bin/cardgen2                                 | 150 +++++++++++++++++++++++++++
- content-assets/v2/glasses-mark.png           | Bin 0 -> 11416 bytes
- content-assets/v2/styleA-navy-watermark.png  | Bin 0 -> 49470 bytes
- content-assets/v2/styleB-cream-editorial.png | Bin 0 -> 41432 bytes
- content-assets/v2/styleC-bold-split.png      | Bin 0 -> 44171 bytes
- 6 files changed, 160 insertions(+), 7 deletions(-)
+.claude/nucleus/NUCLEUS.md               |  37 ++++---------
+ bin/cardgen3                             |  92 +++++++++++++++++++++++++++++++
+ content-assets/v3/v3-green-glasses.png   | Bin 0 -> 35429 bytes
+ content-assets/v3/v3-navy-gold.png       | Bin 0 -> 42306 bytes
+ content-assets/v3/v3-navy-green-gold.png | Bin 0 -> 42306 bytes
+ 5 files changed, 104 insertions(+), 25 deletions(-)
 ```
 
 **Recent commits:**
 ```
-455f2ac chore: refresh nucleus live state [skip ci] (4 minutes ago)
-98db75e Branded card generator + real content assets (pillar 1) (#28) (4 minutes ago)
-33dc927 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-1037ce2 chore: refresh nucleus live state [skip ci] (13 minutes ago)
-da511b7 Pillar 1: "How I got into AI" → a week of content + voice v1 (#27) (25 minutes ago)
+4837c73 Golden-glasses brand mark + cardgen2 (3 style directions) (#29) (6 minutes ago)
+455f2ac chore: refresh nucleus live state [skip ci] (10 minutes ago)
+98db75e Branded card generator + real content assets (pillar 1) (#28) (11 minutes ago)
+33dc927 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+1037ce2 chore: refresh nucleus live state [skip ci] (19 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 

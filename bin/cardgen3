@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+"""
+cardgen3 — Seahawks-inspired palette per user direction: gold glasses on navy,
+with action-green accent. Distinct, bold, recognizably Zorba.
+
+Palette: College Navy #002244, Action Green #69BE28, Gold #c8a45c, Cream #faf8f3.
+Two variants: navy-gold and navy-green-gold. 1080x1080. Local Pillow render.
+"""
+import os
+from PIL import Image, ImageDraw, ImageFont
+
+OUT = os.path.join(os.getcwd(), "content-assets", "v3")
+os.makedirs(OUT, exist_ok=True)
+FDIR = "/usr/share/fonts/truetype/liberation/"
+SERIF_B = FDIR + "LiberationSerif-Bold.ttf"
+SANS_B = FDIR + "LiberationSans-Bold.ttf"
+
+NAVY = (0, 34, 68)        # College Navy #002244
+GREEN = (105, 190, 40)    # Action Green #69BE28
+GOLD = (200, 164, 92)
+GOLD_L = (232, 213, 168)
+CREAM = (250, 248, 243)
+W = H = 1080
+
+
+def F(p, s):
+    return ImageFont.truetype(p, s)
+
+
+def wrap(d, text, fnt, mw):
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        t = (cur + " " + w).strip()
+        if d.textlength(t, font=fnt) <= mw:
+            cur = t
+        else:
+            lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+def glasses(d, cx, cy, scale=1.0, color=GOLD, width=14):
+    r = int(95 * scale)
+    gap = int(24 * scale)
+    w = max(4, int(width * scale))
+    d.ellipse([cx - gap - 2 * r, cy - r, cx - gap, cy + r], outline=color, width=w)
+    d.ellipse([cx + gap, cy - r, cx + gap + 2 * r, cy + r], outline=color, width=w)
+    d.line([(cx - gap, cy - int(8 * scale)), (cx + gap, cy - int(8 * scale))], fill=color, width=w)
+    d.line([(cx - gap - 2 * r, cy - int(6 * scale)),
+            (cx - gap - 2 * r - int(50 * scale), cy - int(28 * scale))], fill=color, width=w)
+    d.line([(cx + gap + 2 * r, cy - int(6 * scale)),
+            (cx + gap + 2 * r + int(50 * scale), cy - int(28 * scale))], fill=color, width=w)
+
+
+def wordmark(d, accent=GOLD, y=H - 95):
+    f = F(SANS_B, 30)
+    txt = "LETAIDOIT.PRO"
+    tw = d.textlength(txt, font=f)
+    glasses(d, int((W - tw) / 2 - 60), int(y + 16), scale=0.16, color=accent, width=10)
+    d.text(((W - tw) / 2 + 18, y), txt, font=f, fill=accent)
+
+
+def card(text, fname, accent=GOLD, accent2=None):
+    img = Image.new("RGB", (W, H), NAVY)
+    d = ImageDraw.Draw(img)
+    # glasses hero up top
+    glasses(d, W // 2, 200, scale=1.15, color=accent, width=16)
+    # accent rule (green or gold)
+    bar = accent2 or accent
+    d.rectangle([W // 2 - 44, 350, W // 2 + 44, 360], fill=bar)
+    fnt = F(SERIF_B, 78)
+    lines = wrap(d, text, fnt, W - 220)
+    y = 430
+    for ln in lines:
+        tw = d.textlength(ln, font=fnt)
+        d.text(((W - tw) / 2, y), ln, font=fnt, fill=CREAM)
+        y += 94
+    wordmark(d, accent)
+    img.save(os.path.join(OUT, fname))
+    print("  ●", fname)
+
+
+if __name__ == "__main__":
+    q = "You don't need to learn AI. You need the 1000 hours someone already did."
+    print("🎨 v3 Seahawks palette →", OUT)
+    card(q, "v3-navy-gold.png", accent=GOLD)
+    card(q, "v3-navy-green-gold.png", accent=GOLD, accent2=GREEN)
+    card("AI isn't magic. It's just time you get back.",
+         "v3-green-glasses.png", accent=GREEN, accent2=GOLD)
+    print("done.")
