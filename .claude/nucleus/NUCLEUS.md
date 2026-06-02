@@ -170,28 +170,22 @@ REAL SITE MAP (Netlify, 16 sites, owned by zorbachin/PodSupps team): letaidoit�
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 14:33 UTC
+- **When:** 2026-06-02 14:34 UTC
 - **Branch:** `main`
-- **Last commit:** c0a6f93 Launch Substack Notes + reply kit (#61) — 30 seconds ago
+- **Last commit:** b2783cc chore: refresh nucleus live state [skip ci] — 12 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 40 +++++++++++++++++++++++-----------------
- 1 file changed, 23 insertions(+), 17 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-c0a6f93 Launch Substack Notes + reply kit (#61) (30 seconds ago)
+b2783cc chore: refresh nucleus live state [skip ci] (12 seconds ago)
+c0a6f93 Launch Substack Notes + reply kit (#61) (42 seconds ago)
 70ac89e chore: refresh nucleus live state [skip ci] (5 minutes ago)
 10ea9ee chore: refresh nucleus live state [skip ci] (5 minutes ago)
 d6847ad Zorbasphere live: fill subscribe link into invite kit (#60) (6 minutes ago)
-a4823c4 chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
