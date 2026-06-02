@@ -132,16 +132,21 @@
       "title": "MON: Post anchor video 'Why I got into this'",
       "owner": "lai-mktg",
       "created_by": "you",
-      "status": "open",
+      "status": "done",
       "need": "60-90s one take. [copy:Everyone is becoming an AI guy right now. Here is the honest reason I did. AI is not magic — it is a tool that does real work and gives you real time back. Your expertise is yours. My job is to find where your time slips away and build the thing that brings it back. You do not need to become an AI expert. You need someone who already did the 1000 hours.]",
       "result": "",
       "created": "2026-06-02 03:01 UTC",
-      "updated": "2026-06-02 03:01 UTC",
+      "updated": "2026-06-02 04:43 UTC",
       "history": [
         {
           "at": "2026-06-02 03:01 UTC",
           "by": "you",
           "event": "created → lai-mktg"
+        },
+        {
+          "at": "2026-06-02 04:43 UTC",
+          "by": "agent",
+          "event": "done by agent"
         }
       ]
     },

@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 04:43 UTC · chat
+🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
+
 ### 2026-06-02 04:31 UTC · chat
 Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
 
@@ -162,22 +165,30 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 04:37 UTC
+- **When:** 2026-06-02 04:43 UTC
 - **Branch:** `main`
-- **Last commit:** 9f11855 chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** 3e960b1 chore: refresh nucleus live state [skip ci] — 6 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M .claude/nucleus/tasks.json
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 17 ++++++++++-------
+ .claude/nucleus/tasks.json |  9 +++++++--
+ 2 files changed, 17 insertions(+), 9 deletions(-)
 ```
 
 **Recent commits:**
 ```
-9f11855 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-420d280 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-1650631 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-eead399 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-014d99f chore: refresh nucleus live state [skip ci] (15 minutes ago)
+3e960b1 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+9f11855 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+420d280 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+1650631 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+eead399 chore: refresh nucleus live state [skip ci] (21 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
