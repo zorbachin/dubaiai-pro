@@ -1,4 +1,4 @@
-# 🎟️ The Dispatch — Subscriber Perk Ladder (Substack)
+# 🎟️ The Dispatch: Subscriber Perk Ladder (Substack)
 
 _Subscribing should obviously pay off. Each rung gives more and pulls people
 toward the real goal: products sold and clients booked. Substack is the hub that
