@@ -26,12 +26,37 @@ Endpoints (all CORS-enabled):
 
 | Method | Path | Purpose |
 |---|---|---|
-| GET | `/` | Human-readable nucleus view |
+| GET | `/` | The **command center** (per-venture dashboard) |
+| GET | `/command.json` | **Sync feed** for your command-center widget (see below) |
 | GET | `/nucleus.json` | `{ markdown, brief, handoffs, state, branch, updated }` |
 | GET | `/nucleus.md` | Raw markdown |
 | GET | `/brief` | Catch-up digest (text) |
 | GET | `/widget.js` | The embeddable widget |
 | POST | `/push` | Body `{ "note": "...", "from": "localhost:3001" }` |
+
+### The command-center sync feed — `/command.json`
+
+This is what your existing 3001 command-center widget points at to **sync with
+this workflow** (ventures, the live task board, the brain). It separates work
+per project so one chat thread never blurs them:
+
+```jsonc
+{
+  "north_star": "$1,000,000",
+  "ventures": [                       // one entry per project, ordered by priority
+    { "key": "ssa", "name": "sellsellingai", "emoji": "💰", "color": "#c8a45c",
+      "open": [ { "id": "T001", "title": "...", "need": "...", "role": "ssa-ceo" } ],
+      "done": 0 }
+  ],
+  "handoffs": [ { "when": "...", "source": "chat", "text": "..." } ],
+  "totals": { "open": 18, "done": 1 },
+  "branch": "main", "updated": "2026-..."
+}
+```
+
+Tasks come straight from `agentbus` (`tasks.json`), grouped by venture; push
+new context back with `POST /push`. So the widget renders the same board, brain,
+and per-project separation you get in chat — one screen, live.
 
 ## 3. Drop it into the 3001 app — pick one
 
