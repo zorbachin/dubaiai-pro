@@ -170,30 +170,22 @@ PEAK CONTENT TIME: user records content best EARLY AM, ~7:30am. Schedule content
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 11:08 UTC
+- **When:** 2026-06-02 11:09 UTC
 - **Branch:** `main`
-- **Last commit:** 88597e3 Dispatch Issue 002 skeleton — build-in-public venture chronology (#48) — 40 seconds ago
+- **Last commit:** c2cfed7 Commit recut "The First Call" masthead PNG (#49) — 17 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
- M content-assets/newsletter/dispatch-no-001.png
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md                    |  37 ++++++++++++++++----------
- content-assets/newsletter/dispatch-no-001.png | Bin 102330 -> 93980 bytes
- 2 files changed, 23 insertions(+), 14 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-88597e3 Dispatch Issue 002 skeleton — build-in-public venture chronology (#48) (40 seconds ago)
-6dbc706 Rewrite Dispatch Issue 001 as the origin story "The First Call" (#47) (2 minutes ago)
-a1ca5bd chore: refresh nucleus live state [skip ci] (5 minutes ago)
+c2cfed7 Commit recut "The First Call" masthead PNG (#49) (17 seconds ago)
+88597e3 Dispatch Issue 002 skeleton — build-in-public venture chronology (#48) (2 minutes ago)
+6dbc706 Rewrite Dispatch Issue 001 as the origin story "The First Call" (#47) (3 minutes ago)
+a1ca5bd chore: refresh nucleus live state [skip ci] (6 minutes ago)
 f368c0e chore: refresh nucleus live state [skip ci] (6 minutes ago)
-ea99af4 The Dispatch Issue 001 + Three Time-Savers segment + opt-in invite (#46) (6 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
