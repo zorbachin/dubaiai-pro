@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 15:19 UTC · chat
+SUBSTACK AUTOMATION: confirmed NO way for Claude to post into Substack (no Zapier integration, no public write API). Only paths: Cowork/computer-use browser agent (clicks publish) or Zorba pastes (~10s). Everything stays paste-ready. MORE CONTENT READY: (1) ISSUE 002 (ready, no gaps) = insight essay 'I Don't Sell AI. I Sell Time.' (content-assets/newsletter/ISSUE-002-time-not-ai.md). (2) NOTES-BANK.md = 12 ready Substack Notes (post 1/day). Note: the RING story + the venture CHRONOLOGY are stronger but still need Zorba's inputs/assets (queued). No em-dashes throughout.
+
 ### 2026-06-02 14:33 UTC · chat
 CONTENT IDEA (open loop): 'Keeping Up with the Claudashians' — a series concept (play on Keeping Up with the Kardashians x Claude). Zorba wants it to eventually make it into the content engine once we can get it working. Capture + develop later; needs the concept/format defined.
 
@@ -161,31 +164,34 @@ Built cardgen2 with golden-glasses signature mark (vector, recurring brand eleme
 
 ### 2026-06-02 03:24 UTC · chat
 DESIGN DIRECTION: content is good but visuals need more edge — distinct, scroll-stopping, recognizably HIS. Brand references: zorbot.io, buildyourbot.io, selfsellingai.pro. SIGNATURE ELEMENT: his 'golden glasses' — use as a recurring brand mark to give cards a distinct edge. Match the existing brand worlds, not generic.
-
-### 2026-06-02 03:13 UTC · code
-REAL SITE MAP (Netlify, 16 sites, owned by zorbachin/PodSupps team): letaidoit→letaidoit.netlify.app (OWNED, exists!), minimovies→minimovies.io (LIVE custom domain), byb-ambassador→byb-ambassador.netlify.app (forms enabled), foxy-close-tool→foxy-close-tool.netlify.app (the Instant Proposals closing tool), podsupps→podsupps.com, plus machberet, dad-ai-discovery, vybe-discovery, pbgai, zorbasphere, tlv-summer, polar-bear-prep, foxy-epoxy-discovery. NOTE: owned 'letaidoit' project already exists — redrop may be done or it's an empty shell; verify deploy.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 14:34 UTC
+- **When:** 2026-06-02 15:20 UTC
 - **Branch:** `main`
-- **Last commit:** b2783cc chore: refresh nucleus live state [skip ci] — 12 seconds ago
+- **Last commit:** ee78750 More Zorbasphere: ready Issue 002 essay + 12-note bank (#62) — 26 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-b2783cc chore: refresh nucleus live state [skip ci] (12 seconds ago)
-c0a6f93 Launch Substack Notes + reply kit (#61) (42 seconds ago)
-70ac89e chore: refresh nucleus live state [skip ci] (5 minutes ago)
-10ea9ee chore: refresh nucleus live state [skip ci] (5 minutes ago)
-d6847ad Zorbasphere live: fill subscribe link into invite kit (#60) (6 minutes ago)
+ee78750 More Zorbasphere: ready Issue 002 essay + 12-note bank (#62) (26 seconds ago)
+c57a6ca chore: refresh nucleus live state [skip ci] (46 minutes ago)
+b2783cc chore: refresh nucleus live state [skip ci] (47 minutes ago)
+c0a6f93 Launch Substack Notes + reply kit (#61) (47 minutes ago)
+70ac89e chore: refresh nucleus live state [skip ci] (51 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
