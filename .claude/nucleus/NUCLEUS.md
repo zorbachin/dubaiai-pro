@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 12:53 UTC · chat
+ISSUE 001 full entertainment pass (craft only, invented nothing): tighter comedic timing on the secret-filming caper, sharper 'IG vs reality' turn, leaner hardship montage, planted the AMAZON RING early as a wink, added a cinematic 'NEXT ISSUE' tease. RING SUBPLOT (next story): proposed with an Amazon ring -> they later MADE their own rings by hand with ALON MESIKA, on camera, became part of THE DOCUMENTARY. (There is a documentary about them — capture as asset.) Wedding PHOTOS exist (3 shared: crowd-under-spotlight hora, chuppah w/ green dress+kippot, first dance) but came inline in chat, NOT saved to repo — Zorba drags them into Substack at layout. Photo slots noted in ISSUE-001.md.
+
 ### 2026-06-02 12:16 UTC · chat
 ISSUE 001 = full real origin (Zorba's own words, polished, no em-dashes, cinematic). KEY BIO FACTS (durable): Engaged at the Duomo, Milan, sunset, last night of a 6-wk budget trip; filmed it using a 'new iPhone mic to test' as alibi (tripod+mics+ring box in a bag). Moved to Israel ~1yr prior; laid off 2 days after booking ticket; company folded 6 wks later; six-figure cushion gone. Met Meytal within 6 wks (hours before a flight); rocket jammed her door -> she moved into his room; Yom Haatzmaut -> first sublet (extended 2x). Money came from 'angels', one who seemed to track his bank account. SUBPLOTS: a FILM in active development w/ investor signed; a TV series being pitched to big names (both months away). Wedding = global, Alaskan+Ethiopian+Israeli+American culture collision; war began 9 days later; has a mamad/safe room; 1st month of marriage in own place then spare room (mom's bed). THE HOUSE: family friends' beautiful home near Netanya (near mother-in-law) they can't live in = chance at dream home = the MISSION (support family, get the home, use AI). Passover: said AI makes him feel free (lets him bring ideas to life fast, like standup). Chronology woven in: zorbot.io -> chatbot on his ChatGPT history+his book on how to think -> 'that's a product' = bloop -> algorithm shifted to AI tool builds -> ~$1k + 1000+ hrs -> reaching out to businesses -> buildyourbot.io + selfsellingai.pro. Tone: warm, determined, grateful, anti-hype. Tied subplots: film/TV ('AI did not make me wait'), the angel (pay it forward), the house (building toward it in public).
 
@@ -161,31 +164,34 @@ BIG INITIATIVE: full content map sprint — audit ALL content across ventures, t
 
 ### 2026-06-01 18:14 UTC · chat
 STORY ASSETS to learn & use in content: the house, the war, and the previous drafts we wrote but never published. These are raw material for authentic launches.
-
-### 2026-06-01 18:14 UTC · chat
-VOICE: user's own voice + Hormozi-style direct marketer, but human/good. Self-aware, meta, slightly subversive. Reframes in human terms: 'get your time back' (benefit) vs 'AI is the solution' (feature). This is a SKILL to implement for all content agents.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 12:17 UTC
+- **When:** 2026-06-02 12:54 UTC
 - **Branch:** `main`
-- **Last commit:** 0fd46cd chore: refresh nucleus live state [skip ci] — 13 seconds ago
+- **Last commit:** c857aae Issue 001 entertainment pass + ring tease + photo slots (#52) — 25 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-0fd46cd chore: refresh nucleus live state [skip ci] (13 seconds ago)
-6d9d6f7 Issue 001 — full real origin story, subplots tied (#51) (53 seconds ago)
-43f678f chore: refresh nucleus live state [skip ci] (48 minutes ago)
-e624d29 chore: refresh nucleus live state [skip ci] (48 minutes ago)
-937f4f0 Rewrite Issue 001 — more human, cinematic, corrected timeline (#50) (49 minutes ago)
+c857aae Issue 001 entertainment pass + ring tease + photo slots (#52) (25 seconds ago)
+f04fe19 chore: refresh nucleus live state [skip ci] (36 minutes ago)
+0fd46cd chore: refresh nucleus live state [skip ci] (36 minutes ago)
+6d9d6f7 Issue 001 — full real origin story, subplots tied (#51) (37 minutes ago)
+43f678f chore: refresh nucleus live state [skip ci] (84 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
