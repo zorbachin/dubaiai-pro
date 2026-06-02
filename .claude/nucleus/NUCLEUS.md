@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 09:06 UTC · chat
+ETSY PUBLISH KIT COMPLETE: 20 thumbnails (etsy-shop/thumbs/*.png, 2000x2000 branded) + LISTINGS.md (SEO title/13 tags/price/description for all 20) + 20 PDFs (each w/ Work-With-Me page). Prices: Lite $9, Kit $17, Flagship $24, Bundle $59. CONSTRAINT: Etsy is NOT API-listable from here (not on Zapier; digital file+image upload must be done in Etsy UI). So final publish = Zorba pastes title/tags/desc + uploads thumb (image 1) + PDF (digital file), ~2 min each. LAUNCH SHELF recommendation: Bundle + Beat the Posting Block + Audit Subscriptions + 50 Tasks + ADHD Planner first, then drip 2-3/week as marketing beats.
+
 ### 2026-06-02 05:46 UTC · chat
 ALL 20 Etsy products BUILT (etsy-shop/*.pdf) via upgraded engine: each now has page numbers + a branded 'Work With Me / Go Deeper' CTA closing page (contact: letaidoit.pro + @zorb_ai DM) so every sale is a potential consulting lead. ETSY GOAL = $3,000+/month for OrganizedOrionDesign. NEW STRUCTURE (all ventures): each gets a RESEARCH sub-agent running a standing brief — study who's winning, reverse-engineer why, filter through Zorba's real approach/skills (honest/self-shot/buy-back-time/anti-hype), recommend 1-3 moves at weekly review. Doc: .claude/os/research-briefs.md. Default product CTA contact = letaidoit.pro + @zorb_ai (confirm if you want a booking link/email added).
 
@@ -161,31 +164,34 @@ MY ROLE (Claude): chief of staff / orchestrator + ADHD coach. Set daily (or 2x/d
 
 ### 2026-06-01 18:05 UTC · chat
 GOALS (the north star for all ventures): more leads, more bookings, more inbound business, more organization so the user doesn't have to guess.
-
-### 2026-06-01 18:05 UTC · chat
-VENTURES: Minimovies, letaidoit, sellsellingai (= the money maker), buildyourbot.io (strong branding+site), buddy botz (coming). Each needs its own CEO agent delegating to marketing/research/product sub-agents.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:48 UTC
+- **When:** 2026-06-02 09:09 UTC
 - **Branch:** `main`
-- **Last commit:** 2f92baa Sync OS state — research tasks + handoffs (#37) — 18 seconds ago
+- **Last commit:** 5c8bc10 Etsy publish kit — 20 thumbnails + listings + design cleanup (#38) — 25 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 31 ++++++++++++++++++++-----------
+ 1 file changed, 20 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-2f92baa Sync OS state — research tasks + handoffs (#37) (18 seconds ago)
-484163f All 20 Etsy products + Work-With-Me CTA + per-venture research briefs (#36) (76 seconds ago)
-dee00d1 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-63ee41b Etsy digital-product engine + 20-product catalog + flagship sample (#35) (15 minutes ago)
-14bcf09 Log subscription cancellations + Etsy digital venture (#34) (18 minutes ago)
+5c8bc10 Etsy publish kit — 20 thumbnails + listings + design cleanup (#38) (25 seconds ago)
+2b63714 chore: refresh nucleus live state [skip ci] (3 hours ago)
+2f92baa Sync OS state — research tasks + handoffs (#37) (3 hours ago)
+484163f All 20 Etsy products + Work-With-Me CTA + per-venture research briefs (#36) (3 hours ago)
+dee00d1 chore: refresh nucleus live state [skip ci] (4 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
