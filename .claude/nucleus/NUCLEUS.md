@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 14:13 UTC · chat
+PUBLISH DECISIONS for Dispatch Issue 001: (1) AUDIENCE = EVERYONE / FREE / PUBLIC. Do NOT paywall the premiere (Zorba's instinct correct) — origin story's job = reach + subscribers, not revenue; too early to ask for payment. Paid perk ladder kicks in LATER once there's an audience. (2) Substack TAGS = yes add ~6: building in public, AI, founder story, entrepreneurship, productivity, solopreneur. (3) SEO pass = via post settings, NOT body stuffing: SEO subtitle/meta = 'How I went from laid off and broke in a sublet to building an AI business that gives people their time back. The honest origin of Let AI Do It.', slug the-first-call, image alt text per photo. Post type = Text. Spec added to ISSUE-001.md. Also: call prep for Jack@Ambo EMAILED to zgrashin@gmail.com (msg 19e88ad951490236) — payroll report time-savings + undercut a SaaS he pays for.
+
 ### 2026-06-02 13:59 UTC · chat
 ISSUE 001 act titles set (cover PROGRAM + in-story section headers, they mirror): 'Sunset at the Duomo' (engagement + broke backstory), 'Weddings and Wartime' (wedding + Nissim + Minimovies film + war + safe room), 'Mission Possible: AI' (the house/mission + Passover + zorbot/bloop/feed-flip + buildyourbot/selfsellingai + close). Replaced the weak 'The Feed That Went Quiet' etc. 'Mission Possible - Ai' tidied to 'Mission Possible: AI'. Masthead regenerated. No em-dashes.
 
@@ -161,18 +164,15 @@ FEATURE: dopaminergic focus dashboard. User has ADHD, misses scroll/gamification
 
 ### 2026-06-01 18:26 UTC · code
 Built dump parser: bin/dump (reliable capture to .claude/os/dumps/) + dump skill (Opus parses raw dump → flywheel content across video/carousel/meme/writing, in user's voice, queued to content board, with 3 hook options). Idea input valve is live.
-
-### 2026-06-01 18:25 UTC · chat
-FEATURE: brain-dump parser. User dumps a raw idea/theme (one post or a week), Claude (Opus 4.8) parses it into outstanding FLYWHEEL content — structured, in his voice, queued to the content board. Input valve for his ADHD idea flow.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 14:06 UTC
+- **When:** 2026-06-02 14:15 UTC
 - **Branch:** `main`
-- **Last commit:** 6aa591d Ambo/Jack payroll call cheat-sheet (#57) — 26 seconds ago
+- **Last commit:** 33a5346 Issue 001 publish/SEO spec + masthead name options (#58) — 19 seconds ago
 
 **Working tree:**
 ```
@@ -181,17 +181,17 @@ M .claude/nucleus/NUCLEUS.md
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+.claude/nucleus/NUCLEUS.md | 26 ++++++++++++++------------
+ 1 file changed, 14 insertions(+), 12 deletions(-)
 ```
 
 **Recent commits:**
 ```
-6aa591d Ambo/Jack payroll call cheat-sheet (#57) (26 seconds ago)
-bfff3a9 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-b70c69e chore: refresh nucleus live state [skip ci] (7 minutes ago)
-d54660e Real act titles: Sunset at the Duomo / Weddings and Wartime / Mission Possible: AI (#56) (7 minutes ago)
-413db59 chore: refresh nucleus live state [skip ci] (27 minutes ago)
+33a5346 Issue 001 publish/SEO spec + masthead name options (#58) (19 seconds ago)
+5aee7bc chore: refresh nucleus live state [skip ci] (9 minutes ago)
+6aa591d Ambo/Jack payroll call cheat-sheet (#57) (9 minutes ago)
+bfff3a9 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+b70c69e chore: refresh nucleus live state [skip ci] (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
