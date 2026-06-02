@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+"""
+cardgen — render branded quote cards & memes as real PNGs (exact text, no API).
+
+Brand: gold #c8a45c, navy #0a1628, cream #faf8f3. Square 1080x1080 (IG-ready).
+Fully local + deterministic — no flaky image API, no text-mangling model.
+
+Usage: cardgen   → writes PNGs into ./content-assets/
+"""
+import os
+from PIL import Image, ImageDraw, ImageFont
+
+OUT = os.path.join(os.getcwd(), "content-assets")
+os.makedirs(OUT, exist_ok=True)
+FDIR = "/usr/share/fonts/truetype/liberation/"
+SERIF_B = FDIR + "LiberationSerif-Bold.ttf"
+SANS = FDIR + "LiberationSans-Regular.ttf"
+SANS_B = FDIR + "LiberationSans-Bold.ttf"
+
+GOLD = (200, 164, 92)
+GOLD_L = (232, 213, 168)
+NAVY = (10, 22, 40)
+NAVY2 = (20, 35, 63)
+CREAM = (250, 248, 243)
+MUT = (138, 154, 170)
+W = H = 1080
+
+
+def font(path, size):
+    return ImageFont.truetype(path, size)
+
+
+def wrap(draw, text, fnt, max_w):
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        t = (cur + " " + w).strip()
+        if draw.textlength(t, font=fnt) <= max_w:
+            cur = t
+        else:
+            if cur:
+                lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+def quote_card(text, fname, accent=GOLD, bg=NAVY, fg=CREAM):
+    img = Image.new("RGB", (W, H), bg)
+    d = ImageDraw.Draw(img)
+    # subtle top/bottom gradient feel via two bands
+    d.rectangle([0, 0, W, 14], fill=accent)
+    d.rectangle([0, H - 14, W, H], fill=accent)
+    # big opening quote mark
+    qf = font(SERIF_B, 240)
+    d.text((70, 30), "“", font=qf, fill=(accent[0], accent[1], accent[2]))
+    # the quote
+    fnt = font(SERIF_B, 78)
+    lines = wrap(d, text, fnt, W - 200)
+    line_h = 96
+    total = len(lines) * line_h
+    y = (H - total) // 2 + 20
+    for ln in lines:
+        tw = d.textlength(ln, font=fnt)
+        d.text(((W - tw) / 2, y), ln, font=fnt, fill=fg)
+        y += line_h
+    # footer wordmark
+    ff = font(SANS_B, 34)
+    mark = "LETAIDOIT.PRO"
+    tw = d.textlength(mark, font=ff)
+    d.text(((W - tw) / 2, H - 110), mark, font=ff, fill=accent)
+    img.save(os.path.join(OUT, fname), "PNG")
+    print("  ●", fname)
+
+
+def meme_card(top, bottom, fname):
+    # two-panel red-x / green-check style on cream
+    img = Image.new("RGB", (W, H), CREAM)
+    d = ImageDraw.Draw(img)
+    mid = H // 2
+    d.line([(0, mid), (W, mid)], fill=(220, 210, 190), width=4)
+    fnt = font(SANS_B, 60)
+    # top panel (the ❌ wrong way)
+    d.ellipse([60, 70, 150, 160], outline=(192, 57, 43), width=12)
+    d.line([(85, 95), (125, 135)], fill=(192, 57, 43), width=12)
+    d.line([(125, 95), (85, 135)], fill=(192, 57, 43), width=12)
+    for i, ln in enumerate(wrap(d, top, fnt, W - 320)):
+        d.text((180, 90 + i * 74), ln, font=fnt, fill=NAVY)
+    # bottom panel (the ✅ right way)
+    cy = mid + 70
+    d.ellipse([60, cy, 150, cy + 90], outline=(39, 157, 143), width=12)
+    d.line([(83, cy + 48), (105, cy + 70)], fill=(39, 157, 143), width=12)
+    d.line([(105, cy + 70), (135, cy + 28)], fill=(39, 157, 143), width=12)
+    for i, ln in enumerate(wrap(d, bottom, fnt, W - 320)):
+        d.text((180, cy + 20 + i * 74), ln, font=fnt, fill=NAVY)
+    # footer
+    ff = font(SANS_B, 30)
+    d.text((W - 360, H - 60), "LETAIDOIT.PRO", font=ff, fill=GOLD)
+    img.save(os.path.join(OUT, fname), "PNG")
+    print("  ●", fname)
+
+
+if __name__ == "__main__":
+    print("🎨 rendering branded cards →", OUT)
+    quote_card("AI isn't magic. It's just time you get back.",
+               "quote-1-ai-isnt-magic.png")
+    quote_card("You don't need to learn AI. You need the 1000 hours someone already did.",
+               "quote-2-1000-hours.png")
+    quote_card("Paying for Claude and not using it well isn't saving money. It's wasting it twice.",
+               "quote-3-wasting-twice.png")
+    meme_card("Spending 6 months learning to build the AI tool yourself",
+              "The tool already running while you did your actual job",
+              "meme-fri-your-expertise.png")
+    print("done.")
