@@ -93,7 +93,7 @@ if __name__ == "__main__":
         presents="Let AI Do It Proudly Presents",
         title_lines=["Buy Back", "Your Time"],
         tagline=["An honest dispatch on AI — from a man who did", "the 1,000 hours so you don't have to."],
-        billing=["The Closing Tool", "The Time You Lost", "A Glimpse Behind the Curtain"],
+        billing=["The Closing Tool", "Three Two-Minute Time-Savers", "A Glimpse Behind the Curtain"],
         dateline="Vol. I  ·  The Premiere Issue  ·  2026",
         cta="Now Showing At",
         fname="dispatch-no-001.png",
