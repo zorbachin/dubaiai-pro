@@ -170,22 +170,28 @@ FEATURE: brain-dump parser. User dumps a raw idea/theme (one post or a week), Cl
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 14:00 UTC
+- **When:** 2026-06-02 14:06 UTC
 - **Branch:** `main`
-- **Last commit:** b70c69e chore: refresh nucleus live state [skip ci] — 11 seconds ago
+- **Last commit:** 6aa591d Ambo/Jack payroll call cheat-sheet (#57) — 26 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-b70c69e chore: refresh nucleus live state [skip ci] (11 seconds ago)
-d54660e Real act titles: Sunset at the Duomo / Weddings and Wartime / Mission Possible: AI (#56) (35 seconds ago)
-413db59 chore: refresh nucleus live state [skip ci] (20 minutes ago)
-1dabee0 chore: refresh nucleus live state [skip ci] (20 minutes ago)
-4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) (21 minutes ago)
+6aa591d Ambo/Jack payroll call cheat-sheet (#57) (26 seconds ago)
+bfff3a9 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+b70c69e chore: refresh nucleus live state [skip ci] (7 minutes ago)
+d54660e Real act titles: Sunset at the Duomo / Weddings and Wartime / Mission Possible: AI (#56) (7 minutes ago)
+413db59 chore: refresh nucleus live state [skip ci] (27 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
