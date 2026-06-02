@@ -170,22 +170,28 @@ PEAK CONTENT TIME: user records content best EARLY AM, ~7:30am. Schedule content
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 11:09 UTC
+- **When:** 2026-06-02 11:14 UTC
 - **Branch:** `main`
-- **Last commit:** c2cfed7 Commit recut "The First Call" masthead PNG (#49) — 17 seconds ago
+- **Last commit:** 6ce4d2d chore: refresh nucleus live state [skip ci] — 5 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-c2cfed7 Commit recut "The First Call" masthead PNG (#49) (17 seconds ago)
-88597e3 Dispatch Issue 002 skeleton — build-in-public venture chronology (#48) (2 minutes ago)
-6dbc706 Rewrite Dispatch Issue 001 as the origin story "The First Call" (#47) (3 minutes ago)
-a1ca5bd chore: refresh nucleus live state [skip ci] (6 minutes ago)
-f368c0e chore: refresh nucleus live state [skip ci] (6 minutes ago)
+6ce4d2d chore: refresh nucleus live state [skip ci] (5 minutes ago)
+c2cfed7 Commit recut "The First Call" masthead PNG (#49) (6 minutes ago)
+88597e3 Dispatch Issue 002 skeleton — build-in-public venture chronology (#48) (7 minutes ago)
+6dbc706 Rewrite Dispatch Issue 001 as the origin story "The First Call" (#47) (8 minutes ago)
+a1ca5bd chore: refresh nucleus live state [skip ci] (12 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
