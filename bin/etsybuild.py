@@ -61,6 +61,7 @@ class Doc:
         self.c = canvas.Canvas(path, pagesize=LETTER)
         self.footer = footer
         self.y = PH - M
+        self.page = 0
 
     def _footer(self):
         c = self.c
@@ -71,6 +72,10 @@ class Doc:
         c.drawString(M + 22, 0.42 * inch, "LETAIDOIT.PRO")
         c.setFont(SANS, 7.5); c.setFillColorRGB(*MUT)
         c.drawRightString(PW - M, 0.42 * inch, self.footer)
+        if self.page:
+            c.setFont(SANS, 7.5); c.setFillColorRGB(*MUT)
+            c.drawCentredString(PW / 2, 0.42 * inch, str(self.page))
+        self.page += 1
 
     def _page_break(self):
         self._footer(); self.c.showPage(); self.y = PH - M
@@ -160,8 +165,47 @@ class Doc:
     def space(self, h=8):
         self.y -= h
 
+    def cta_page(self, contact):
+        """Branded closing page — every product invites deeper paid work."""
+        self._footer(); self.c.showPage()
+        c = self.c
+        c.setFillColorRGB(*NAVY); c.rect(0, 0, PW, PH, fill=1, stroke=0)
+        c.setFillColorRGB(*NAVY2); c.rect(0, PH - 2.0 * inch, PW, 2.0 * inch, fill=1, stroke=0)
+        glasses(c, PW / 2, PH - 1.8 * inch, scale=2.2, color=GOLD, width=2.6)
+        c.setFillColorRGB(*GREEN); c.rect(M, PH - 3.2 * inch, 0.9 * inch, 5, fill=1, stroke=0)
+        c.setFont(SANS_B, 11); c.setFillColorRGB(*GOLD)
+        c.drawString(M, PH - 3.05 * inch, "GO DEEPER")
+        c.setFont(SERIF, 30); c.setFillColorRGB(*CREAM)
+        y = PH - 3.85 * inch
+        for ln in wrap("Want this done for you?", SERIF, 30, PW - 2 * M):
+            c.drawString(M, y, ln); y -= 36
+        y -= 6
+        c.setFont(SERIF_R, 13.5); c.setFillColorRGB(0.74, 0.79, 0.85)
+        body = ("This guide hands you the system. If you'd rather have it built "
+                "for you, that's what I do: I find where your time leaks and build "
+                "the tool that plugs it. No hype — just your hours, back.")
+        for ln in wrap(body, SERIF_R, 13.5, PW - 2 * M):
+            c.drawString(M, y, ln); y -= 19
+        y -= 18
+        c.setFont(SANS_B, 10.5); c.setFillColorRGB(*GOLD)
+        c.drawString(M, y, "LET'S TALK"); y -= 22
+        c.setFont(SANS, 12.5); c.setFillColorRGB(*CREAM)
+        for line in contact:
+            c.drawString(M, y, line); y -= 20
+        c.setFont(SANS_B, 9); c.setFillColorRGB(*GOLD)
+        c.drawString(M, 1.0 * inch, "A LET AI DO IT GUIDE")
+        c.drawRightString(PW - M, 1.0 * inch, "letaidoit.pro")
+        c.showPage()
+
     def save(self):
-        self._footer(); self.c.save()
+        self.c.save()
+
+
+DEFAULT_CONTACT = [
+    "Web:  letaidoit.pro",
+    "Instagram:  @zorb_ai  (DM me — I reply)",
+    "Built something with this guide? Send it. I love seeing it.",
+]
 
 
 def build(spec):
@@ -177,6 +221,7 @@ def build(spec):
         elif t == "check": d.bullets(blk[1], check=True)
         elif t == "callout": d.callout(blk[1], blk[2])
         elif t == "space": d.space()
+    d.cta_page(spec.get("contact", DEFAULT_CONTACT))
     d.save()
     print("  ●", spec["file"])
     return path
