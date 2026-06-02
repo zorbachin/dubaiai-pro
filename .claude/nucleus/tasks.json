@@ -1,5 +1,5 @@
 {
-  "seq": 14,
+  "seq": 19,
   "tasks": [
     {
       "id": "T001",
@@ -15,7 +15,7 @@
         {
           "at": "2026-06-01 18:08 UTC",
           "by": "claude",
-          "event": "created \u2192 ssa-ceo"
+          "event": "created → ssa-ceo"
         }
       ]
     },
@@ -33,7 +33,7 @@
         {
           "at": "2026-06-01 18:08 UTC",
           "by": "claude",
-          "event": "created \u2192 ssa-mktg"
+          "event": "created → ssa-mktg"
         }
       ]
     },
@@ -43,7 +43,7 @@
       "owner": "ssa-mktg",
       "created_by": "claude",
       "status": "open",
-      "need": "carryover; drafted\u2260done, must SEND",
+      "need": "carryover; drafted≠done, must SEND",
       "result": "",
       "created": "2026-06-01 18:08 UTC",
       "updated": "2026-06-01 18:08 UTC",
@@ -51,7 +51,7 @@
         {
           "at": "2026-06-01 18:08 UTC",
           "by": "claude",
-          "event": "created \u2192 ssa-mktg"
+          "event": "created → ssa-mktg"
         }
       ]
     },
@@ -69,7 +69,7 @@
         {
           "at": "2026-06-01 18:08 UTC",
           "by": "claude",
-          "event": "created \u2192 ssa-ceo"
+          "event": "created → ssa-ceo"
         }
       ]
     },
@@ -87,7 +87,7 @@
         {
           "at": "2026-06-01 18:19 UTC",
           "by": "claude",
-          "event": "created \u2192 ssa-ceo"
+          "event": "created → ssa-ceo"
         }
       ]
     },
@@ -105,7 +105,7 @@
         {
           "at": "2026-06-01 18:23 UTC",
           "by": "claude",
-          "event": "created \u2192 ssa-ceo"
+          "event": "created → ssa-ceo"
         }
       ]
     },
@@ -123,7 +123,7 @@
         {
           "at": "2026-06-01 18:23 UTC",
           "by": "claude",
-          "event": "created \u2192 ssa-ceo"
+          "event": "created → ssa-ceo"
         }
       ]
     },
@@ -133,7 +133,7 @@
       "owner": "lai-mktg",
       "created_by": "you",
       "status": "done",
-      "need": "60-90s one take. [copy:Everyone is becoming an AI guy right now. Here is the honest reason I did. AI is not magic \u2014 it is a tool that does real work and gives you real time back. Your expertise is yours. My job is to find where your time slips away and build the thing that brings it back. You do not need to become an AI expert. You need someone who already did the 1000 hours.]",
+      "need": "60-90s one take. [copy:Everyone is becoming an AI guy right now. Here is the honest reason I did. AI is not magic — it is a tool that does real work and gives you real time back. Your expertise is yours. My job is to find where your time slips away and build the thing that brings it back. You do not need to become an AI expert. You need someone who already did the 1000 hours.]",
       "result": "",
       "created": "2026-06-02 03:01 UTC",
       "updated": "2026-06-02 04:43 UTC",
@@ -141,7 +141,7 @@
         {
           "at": "2026-06-02 03:01 UTC",
           "by": "you",
-          "event": "created \u2192 lai-mktg"
+          "event": "created → lai-mktg"
         },
         {
           "at": "2026-06-02 04:43 UTC",
@@ -164,7 +164,7 @@
         {
           "at": "2026-06-02 03:01 UTC",
           "by": "you",
-          "event": "created \u2192 lai-mktg"
+          "event": "created → lai-mktg"
         },
         {
           "at": "2026-06-02 04:50 UTC",
@@ -179,7 +179,7 @@
       "owner": "lai-mktg",
       "created_by": "you",
       "status": "open",
-      "need": "[copy:Should you hire an AI guy? Yes. And not because AI is magic \u2014 it is not. The time it takes YOU to learn this, it could already be done. And the second you invest a little, you are committed anyway. If you are already paying for Claude and barely using it, you are not saving money \u2014 you are wasting it twice. Your job is your expertise. My job is finding where your time slips away and building the tool that brings it back.]",
+      "need": "[copy:Should you hire an AI guy? Yes. And not because AI is magic — it is not. The time it takes YOU to learn this, it could already be done. And the second you invest a little, you are committed anyway. If you are already paying for Claude and barely using it, you are not saving money — you are wasting it twice. Your job is your expertise. My job is finding where your time slips away and building the tool that brings it back.]",
       "result": "",
       "created": "2026-06-02 03:01 UTC",
       "updated": "2026-06-02 03:01 UTC",
@@ -187,7 +187,7 @@
         {
           "at": "2026-06-02 03:01 UTC",
           "by": "you",
-          "event": "created \u2192 lai-mktg"
+          "event": "created → lai-mktg"
         }
       ]
     },
@@ -205,7 +205,7 @@
         {
           "at": "2026-06-02 03:01 UTC",
           "by": "you",
-          "event": "created \u2192 lai-mktg"
+          "event": "created → lai-mktg"
         },
         {
           "at": "2026-06-02 04:50 UTC",
@@ -228,7 +228,7 @@
         {
           "at": "2026-06-02 03:01 UTC",
           "by": "you",
-          "event": "created \u2192 lai-mktg"
+          "event": "created → lai-mktg"
         },
         {
           "at": "2026-06-02 04:50 UTC",
@@ -251,7 +251,7 @@
         {
           "at": "2026-06-02 03:01 UTC",
           "by": "you",
-          "event": "created \u2192 lai-mktg"
+          "event": "created → lai-mktg"
         },
         {
           "at": "2026-06-02 04:50 UTC",
@@ -274,7 +274,97 @@
         {
           "at": "2026-06-02 03:01 UTC",
           "by": "you",
-          "event": "created \u2192 lai-mktg"
+          "event": "created → lai-mktg"
+        }
+      ]
+    },
+    {
+      "id": "T015",
+      "title": "Weekly research: study winners, reverse-engineer, recommend 1-3 moves filtered through Zorba's approach",
+      "owner": "ssa-research",
+      "created_by": "you",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-02 05:46 UTC",
+      "updated": "2026-06-02 05:46 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 05:46 UTC",
+          "by": "you",
+          "event": "created → ssa-research"
+        }
+      ]
+    },
+    {
+      "id": "T016",
+      "title": "Weekly research: study winners, reverse-engineer, recommend 1-3 moves filtered through Zorba's approach",
+      "owner": "byb-research",
+      "created_by": "you",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-02 05:46 UTC",
+      "updated": "2026-06-02 05:46 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 05:46 UTC",
+          "by": "you",
+          "event": "created → byb-research"
+        }
+      ]
+    },
+    {
+      "id": "T017",
+      "title": "Weekly research: study winners, reverse-engineer, recommend 1-3 moves filtered through Zorba's approach",
+      "owner": "lai-research",
+      "created_by": "you",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-02 05:46 UTC",
+      "updated": "2026-06-02 05:46 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 05:46 UTC",
+          "by": "you",
+          "event": "created → lai-research"
+        }
+      ]
+    },
+    {
+      "id": "T018",
+      "title": "Weekly research: study winners, reverse-engineer, recommend 1-3 moves filtered through Zorba's approach",
+      "owner": "mm-research",
+      "created_by": "you",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-02 05:46 UTC",
+      "updated": "2026-06-02 05:46 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 05:46 UTC",
+          "by": "you",
+          "event": "created → mm-research"
+        }
+      ]
+    },
+    {
+      "id": "T019",
+      "title": "Etsy researcher: study top digital shops (AI guides/planners), nail titles/tags/pricing for $3k/mo path",
+      "owner": "ssa-research",
+      "created_by": "you",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-02 05:46 UTC",
+      "updated": "2026-06-02 05:46 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 05:46 UTC",
+          "by": "you",
+          "event": "created → ssa-research"
         }
       ]
     }

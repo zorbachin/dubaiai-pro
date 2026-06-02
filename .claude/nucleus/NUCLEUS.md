@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 05:46 UTC · chat
+ALL 20 Etsy products BUILT (etsy-shop/*.pdf) via upgraded engine: each now has page numbers + a branded 'Work With Me / Go Deeper' CTA closing page (contact: letaidoit.pro + @zorb_ai DM) so every sale is a potential consulting lead. ETSY GOAL = $3,000+/month for OrganizedOrionDesign. NEW STRUCTURE (all ventures): each gets a RESEARCH sub-agent running a standing brief — study who's winning, reverse-engineer why, filter through Zorba's real approach/skills (honest/self-shot/buy-back-time/anti-hype), recommend 1-3 moves at weekly review. Doc: .claude/os/research-briefs.md. Default product CTA contact = letaidoit.pro + @zorb_ai (confirm if you want a booking link/email added).
+
 ### 2026-06-02 05:29 UTC · chat
 SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@z.ai (msg 19e86ccebe1f1112); HighLevel cancel+refund -> billing@gohighlevel.com (msg 19e86cd2a4dd19f9). DAILY at CEO sync: check for their reply, resend follow-up until written cancel+refund confirmed, then verify charges stopped via Stripe receipts. Agentbus T015 (AutoGLM follow-up), T016 (HighLevel confirm), T017 (Etsy OrganizedOrionDesign digital venture). ETSY = DIGITAL (PDFs/AI guides/student planners/story guides); Zorba 1hr/wk creates, Claude markets/optimizes. NEXT BUILDS: GHL feature->rebuild map on free stack; stand up OrganizedOrionDesign + first product.
 
@@ -161,31 +164,36 @@ GOALS (the north star for all ventures): more leads, more bookings, more inbound
 
 ### 2026-06-01 18:05 UTC · chat
 VENTURES: Minimovies, letaidoit, sellsellingai (= the money maker), buildyourbot.io (strong branding+site), buddy botz (coming). Each needs its own CEO agent delegating to marketing/research/product sub-agents.
-
-### 2026-06-01 18:03 UTC · code
-Built bin/agentwatch: free local auto-dispatch — polls agentbus for ollama/hermes tasks, runs them on local Ollama, closes the loop at ZERO cost. Paid agents (chatgpt/gemini) stay manual relay to avoid spend. Roster updated: ollama+hermes=auto(free), chatgpt+gemini=manual, claude+cowork. Hermes assumed = Ollama model (confirm).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:33 UTC
+- **When:** 2026-06-02 05:47 UTC
 - **Branch:** `main`
-- **Last commit:** 63ee41b Etsy digital-product engine + 20-product catalog + flagship sample (#35) — 22 seconds ago
+- **Last commit:** 484163f All 20 Etsy products + Work-With-Me CTA + per-venture research briefs (#36) — 29 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M .claude/nucleus/tasks.json
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md |  53 +++++++++++++++----
+ .claude/nucleus/tasks.json | 126 ++++++++++++++++++++++++++++++++++++++-------
+ 2 files changed, 150 insertions(+), 29 deletions(-)
 ```
 
 **Recent commits:**
 ```
-63ee41b Etsy digital-product engine + 20-product catalog + flagship sample (#35) (22 seconds ago)
-14bcf09 Log subscription cancellations + Etsy digital venture (#34) (3 minutes ago)
-3fc08e5 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-1e1b7e4 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-8e3f17d chore: refresh nucleus live state [skip ci] (20 minutes ago)
+484163f All 20 Etsy products + Work-With-Me CTA + per-venture research briefs (#36) (29 seconds ago)
+dee00d1 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+63ee41b Etsy digital-product engine + 20-product catalog + flagship sample (#35) (14 minutes ago)
+14bcf09 Log subscription cancellations + Etsy digital venture (#34) (17 minutes ago)
+3fc08e5 chore: refresh nucleus live state [skip ci] (24 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
