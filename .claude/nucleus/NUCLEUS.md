@@ -10,6 +10,8 @@
 ## 📌 North Star
 _What we're ultimately building and why. Edit this by hand — it changes rarely._
 
+- **🎯 THE NUMBER: $1,000,000.** Get the venture portfolio to a million.
+- **Operating model:** Claude **works**; Zorba **guides + approves**. No task lists *for* Zorba — execute, then surface for approval. Sync with the CEO daily.
 - **Project:** DubaiAI.pro — marketing site for a Dubai-based AI consultancy
   ("Bespoke AI Implementation & Audit").
 - **What they sell:** Full-stack AI engineering across three layers —
@@ -43,6 +45,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 05:13 UTC · chat
+SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM (already tried to cancel, charged anyway — RESOLVE), Runway AI (premium video, redundant — CUT), TopView (cheap video), OpusClip/opus.pro (clipping — keep for MM), AutoGLM (GLM sub — likely redundant w/ Claude, review), ElevenLabs (voice — right-size), X Premium, Etsy Plus $10 (live shop OrganizedOrionDesign jewelry), Anthropic/Claude (core). NOT paying → HeyGen, Higgsfield, Manus (don't start any; brand is self-shot). Recoverable ~$155-235/mo. SURFACED ventures not in ventures.md: Etsy shop OrganizedOrionDesign + Vybe/vybewear. Ambo call booked today 11:30 EST (Meet: meet.google.com/wfd-zwvt-ies) — need Sam & Jack emails to invite. North Star set to $1M.
+
+### 2026-06-02 05:10 UTC · chat
+OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APPROVE. Stop handing Zorba task lists for himself; execute, then surface for approval. NORTH STAR NUMBER = $1,000,000 (get the portfolio to a million). CADENCE: sync with the CEO daily. ACTIVE: schedule call with Sam & Jack at Ambo (byb-ambassador / Ambassador program) for 11:30 EST today (2026-06-02).
+
 ### 2026-06-02 05:06 UTC · chat
 BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. (1) PodSupps (podsupps.com) → run autonomously, Claude starts marketing it + drives signups/logins. (2) For other ventures, Claude is the guide — tell him what to do. (3) SPEND AUDIT: monitor wasted spend — still need Manus? Etsy? right-size ElevenLabs? pay for HeyGen? cheapest effective video tool (Higgsfield vs Topview)? (4) Build CORPORATE AGENTIC STRUCTURE: who runs which workstream, cost, investment needed. (5) Send him prompts/nudges when lagging — 'your job is 24/7'. KEY INSIGHT to apply: his brand is REAL/self-shot (calisthenics) → expensive AI-video/avatar tools may be redundant.
 
@@ -156,34 +164,34 @@ Built the AI OS scaffold adapted from AIS-OS: .claude/os/ (connections.md roster
 
 ### 2026-06-01 17:47 UTC · code
 Building multi-agent OS: agentbus task ledger (bin/agentbus) gives explicit open→claimed→done→blocked states so delegated work CLOSES THE LOOP. Demo proved full delegate→work→report-back cycle. Core pain being solved: command center never registers 'done'.
-
-### 2026-06-01 10:07 UTC · chat
-User needs to SEE the system work with concrete proof, not be told it works. Show, don't tell — demo live output, point at the actual file.
-
-### 2026-06-01 07:57 UTC · chat
-Steering signals to always note: (1) when user says something 'works'/validates an approach, (2) when user steers thinking in a direction, (3) patterns recurring across workstreams. Plus: the nucleus should self-check and get smarter over time.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:09 UTC
+- **When:** 2026-06-02 05:13 UTC
 - **Branch:** `main`
-- **Last commit:** 22a565c Portfolio command center — org chart, workstreams, spend audit (#32) — 47 seconds ago
+- **Last commit:** 3593145 chore: refresh nucleus live state [skip ci] — 3 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 ```
 
 **Recent commits:**
 ```
-22a565c Portfolio command center — org chart, workstreams, spend audit (#32) (47 seconds ago)
-1490a56 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-2c8e3ee chore: refresh nucleus live state [skip ci] (18 minutes ago)
-1b14813 Sustainable posting cadence + multi-platform publish log (#31) (18 minutes ago)
-3e960b1 chore: refresh nucleus live state [skip ci] (32 minutes ago)
+3593145 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+22a565c Portfolio command center — org chart, workstreams, spend audit (#32) (4 minutes ago)
+1490a56 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+2c8e3ee chore: refresh nucleus live state [skip ci] (21 minutes ago)
+1b14813 Sustainable posting cadence + multi-platform publish log (#31) (21 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
