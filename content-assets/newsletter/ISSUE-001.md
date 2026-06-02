@@ -4,7 +4,7 @@ _Masthead: `dispatch-no-001.png`. Body below. Photo slots marked [PHOTO: ...]._
 
 ---
 
-## The First Call
+## Sunset at the Duomo
 
 It is pretty romantic, if I am honest.
 
@@ -38,6 +38,8 @@ By the time the wedding got close, the freelance work keeping us afloat was dryi
 
 Now, I should pause, because this next part is true and it matters. In that same stretch I got a film into active development, with an investor attached. It is happening, and I cannot wait. I also have a TV series being pitched to names that could change my life. But those land months from now, if they land. And our safety net was never that safe.
 
+## Weddings and Wartime
+
 The wedding itself was something else. People came from around the world. Alaskan and Ethiopian, Israeli and American, all colliding in one room in a way nobody there had quite seen before.
 
 My friend Nissim Black, who I have known and collaborated with for years, got up and performed a surprise set for the whole room. Meytal did not see it coming either. The place went up.
@@ -53,6 +55,8 @@ That film is the seed that became Minimovies. Same instinct as always. Make the 
 And then the music stops, and somebody has to pay for it. The wedding. The rent. The life. Nine days later, the war started. Movement closed in. Meytal was out of work.
 
 We have a mamad, a safe room. So the first month of our marriage, our first month finally in our own place after eight months of sublets, we spent partly in that spare room. My mom had set up a bed in there for her visits, so honestly, we were fine.
+
+## Mission Possible: AI
 
 But the place is small. It is not where you raise a family. Which brings me to the house.
 
