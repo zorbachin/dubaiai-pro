@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 13:11 UTC
 - **Branch:** `main`
-- **Last commit:** 9aa719b The Build Log + Substack perk ladder (#54) — 24 seconds ago
+- **Last commit:** a25b9cf chore: refresh nucleus live state [skip ci] — 12 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 36 ++++++++++++++++++++++--------------
- 1 file changed, 22 insertions(+), 14 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-9aa719b The Build Log + Substack perk ladder (#54) (24 seconds ago)
+a25b9cf chore: refresh nucleus live state [skip ci] (12 seconds ago)
+9aa719b The Build Log + Substack perk ladder (#54) (36 seconds ago)
 765261f Issue 001 real assets — engagement/wedding photos, Nissim, Minimovies (#53) (5 minutes ago)
 ca3906e chore: refresh nucleus live state [skip ci] (17 minutes ago)
-875a5ec chore: refresh nucleus live state [skip ci] (17 minutes ago)
-c857aae Issue 001 entertainment pass + ring tease + photo slots (#52) (18 minutes ago)
+875a5ec chore: refresh nucleus live state [skip ci] (18 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
