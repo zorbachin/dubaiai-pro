@@ -74,22 +74,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 11:06 UTC
+- **When:** 2026-06-02 17:05 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** 340ad27 docs: refresh nucleus — add PodSupps project, update active threads and decisions — 14 seconds ago
+- **Last commit:** a47e65c chore: refresh nucleus live state [skip ci] — 6 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-340ad27 docs: refresh nucleus — add PodSupps project, update active threads and decisions (14 seconds ago)
-ba22c7d chore: refresh nucleus live state [skip ci] (16 hours ago)
-7df3a84 chore: refresh nucleus live state [skip ci] (16 hours ago)
-f8e1aee chore: refresh nucleus live state [skip ci] (17 hours ago)
-6a20450 chore: refresh nucleus live state [skip ci] (17 hours ago)
+a47e65c chore: refresh nucleus live state [skip ci] (6 hours ago)
+340ad27 docs: refresh nucleus — add PodSupps project, update active threads and decisions (6 hours ago)
+ba22c7d chore: refresh nucleus live state [skip ci] (22 hours ago)
+7df3a84 chore: refresh nucleus live state [skip ci] (22 hours ago)
+f8e1aee chore: refresh nucleus live state [skip ci] (23 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
