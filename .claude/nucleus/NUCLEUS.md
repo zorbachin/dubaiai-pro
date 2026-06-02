@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 10:59 UTC · chat
+NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (built: content-assets/newsletter/dispatch-no-001.png via bin/cinema_news.py). Aged paper, double frame, 'proudly presents', dramatic serif billing, marquee bar, 'printed for a select readership'. NO LIST YET + DO NOT spam his contacts (kills deliverability + relationships). PLAN: use a real ESP (Substack or Beehiiv free) for compliance/unsubscribe; SEED via personal opt-in invites (Claude drafts) to people he knows + warm leads (post-repliers, clients like vybewear, video commenters); grow as a byproduct of the content engine (every post -> 'join the Dispatch'). Cadence: monthly/biweekly 'issue' = an event, quality over frequency. Positioning: 'a select readership', worth-their-time storytelling.
+
 ### 2026-06-02 09:45 UTC · chat
 CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 quote cards (built) + COPY.md (FB/IG/LI/X captions + newsletter draft + demo recording brief + hero-video spec). One message: 'deals die in the follow-up gap — this closes it.' WAITING ON: Zorba records the basic demo (drop in Drive) -> Claude cuts the website hero video + queues everything. COMMAND CENTER #1 DONE: nucleus serve exposes /command.json (per-venture board+brain) for the existing localhost widget to sync; / now renders a per-venture dashboard.
 
@@ -161,31 +164,34 @@ COMMS preference: wants concise 'caveman style' text pings when action needed (l
 
 ### 2026-06-01 18:08 UTC · chat
 CRITICAL STEERING: user does NOT want a 70%-working system — half-working tools annoy him and splinter his focus (the opposite of the goal). He LIKES working in Claude. Preference: stay inside Claude, or a command-center widget that ACTUALLY functions — not a fragile notification mesh. Build fewer things that fully work.
-
-### 2026-06-01 18:05 UTC · chat
-TODAY'S MISSES (open loops): did not launch the sites, the challenge, the email drafts, or user's content. These are carried-over priorities.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 09:46 UTC
+- **When:** 2026-06-02 11:00 UTC
 - **Branch:** `main`
-- **Last commit:** 27a94e1 chore: refresh nucleus live state [skip ci] — 11 seconds ago
+- **Last commit:** 7b2c4ae The Dispatch — cinematic vintage movie-announcement newsletter (#45) — 27 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-27a94e1 chore: refresh nucleus live state [skip ci] (11 seconds ago)
-172e238 Closing-tool content push — carousel + quote cards + copy pack (#44) (39 seconds ago)
-3332f82 Command-center sync feed + per-venture dashboard (#43) (3 minutes ago)
-1e3db2b chore: refresh nucleus live state [skip ci] (9 minutes ago)
-475a851 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+7b2c4ae The Dispatch — cinematic vintage movie-announcement newsletter (#45) (27 seconds ago)
+8fde60d chore: refresh nucleus live state [skip ci] (74 minutes ago)
+27a94e1 chore: refresh nucleus live state [skip ci] (74 minutes ago)
+172e238 Closing-tool content push — carousel + quote cards + copy pack (#44) (75 minutes ago)
+3332f82 Command-center sync feed + per-venture dashboard (#43) (77 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
