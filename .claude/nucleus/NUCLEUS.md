@@ -171,29 +171,21 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 18:26 UTC
+- **When:** 2026-06-02 18:27 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 423810e Log trades cold-outreach batch 1 (8 personalized sends) — 63 seconds ago
+- **Last commit:** 02610d3 Refresh nucleus state; gitignore generated focus dashboard — 7 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-?? .claude/nucleus/focus-stats.json
-?? focus.html
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 38 +++++++++-----------------------------
- 1 file changed, 9 insertions(+), 29 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-423810e Log trades cold-outreach batch 1 (8 personalized sends) (63 seconds ago)
+02610d3 Refresh nucleus state; gitignore generated focus dashboard (7 seconds ago)
+423810e Log trades cold-outreach batch 1 (8 personalized sends) (2 minutes ago)
 9149567 chore: refresh nucleus live state [skip ci] (35 hours ago)
 1b23a2d chore: refresh nucleus live state [skip ci] (35 hours ago)
 96b48f6 chore: refresh nucleus live state [skip ci] (35 hours ago)
-51b08ce chore: refresh nucleus live state [skip ci] (35 hours ago)
 ```
 <!-- AUTOSTATE:END -->
