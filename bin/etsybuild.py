@@ -72,6 +72,7 @@ class Doc:
         c.drawString(M + 34, 0.42 * inch, "LETAIDOIT.PRO")
         c.setFont(SANS, 7.5); c.setFillColorRGB(*MUT)
         c.drawRightString(PW - M, 0.42 * inch, self.footer)
+        c.linkURL("https://letaidoit.pro", (M + 30, 0.40 * inch, M + 30 + c.stringWidth("LETAIDOIT.PRO", SANS_B, 7.5) + 6, 0.40 * inch + 11), relative=0)
         if self.page:
             c.setFont(SANS, 7.5); c.setFillColorRGB(*MUT)
             c.drawCentredString(PW / 2, 0.42 * inch, str(self.page))
@@ -106,6 +107,8 @@ class Doc:
         c.setFont(SANS_B, 9); c.setFillColorRGB(*GOLD)
         c.drawString(M, 1.0 * inch, "A LET AI DO IT GUIDE")
         c.drawRightString(PW - M, 1.0 * inch, "letaidoit.pro")
+        c.linkURL("https://letaidoit.pro",
+                  (PW - M - c.stringWidth("letaidoit.pro", SANS_B, 9), 0.98 * inch, PW - M, 1.0 * inch + 11), relative=0)
         c.showPage(); self.y = PH - M
 
     def h1(self, text):
@@ -161,6 +164,16 @@ class Doc:
             c.setFont(SERIF_R, 11); c.setFillColorRGB(*INK)
             c.drawString(M + 14, yy, ln); yy -= 15
         self.y = top - h - 12
+
+    def _linkbtn(self, x, by, text, fill, txtcol, url, pad=18, h=30, size=11):
+        c = self.c
+        tw = c.stringWidth(text, SANS_B, size)
+        w = tw + pad * 2
+        c.setFillColorRGB(*fill); c.roundRect(x, by, w, h, 6, fill=1, stroke=0)
+        c.setFont(SANS_B, size); c.setFillColorRGB(*txtcol)
+        c.drawString(x + pad, by + (h - size) / 2 + 1, text)
+        c.linkURL(url, (x, by, x + w, by + h), relative=0)
+        return x + w + 14
 
     def _pill(self, x, by, text, fill, txtcol, url):
         c = self.c
@@ -270,13 +283,17 @@ class Doc:
             c.drawString(M, y, ln); y -= 19
         y -= 18
         c.setFont(SANS_B, 10.5); c.setFillColorRGB(*GOLD)
-        c.drawString(M, y, "LET'S TALK"); y -= 22
-        c.setFont(SANS, 12.5); c.setFillColorRGB(*CREAM)
-        for line in contact:
-            c.drawString(M, y, line); y -= 20
+        c.drawString(M, y, "LET'S TALK"); y -= 40
+        nx = self._linkbtn(M, y, "Visit letaidoit.pro", GOLD, NAVY, "https://letaidoit.pro")
+        self._linkbtn(nx, y, "Message @zorb_ai", GREEN, (1, 1, 1), "https://instagram.com/zorb_ai")
+        y -= 30
+        c.setFont(SERIF_R, 12); c.setFillColorRGB(0.74, 0.79, 0.85)
+        c.drawString(M, y, "Built something with this guide? Send it — I love seeing it.")
         c.setFont(SANS_B, 9); c.setFillColorRGB(*GOLD)
         c.drawString(M, 1.0 * inch, "A LET AI DO IT GUIDE")
         c.drawRightString(PW - M, 1.0 * inch, "letaidoit.pro")
+        c.linkURL("https://letaidoit.pro",
+                  (PW - M - c.stringWidth("letaidoit.pro", SANS_B, 9), 0.98 * inch, PW - M, 1.0 * inch + 11), relative=0)
         c.showPage()
 
     def save(self):
