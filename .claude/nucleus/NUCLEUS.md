@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 17:27 UTC
 - **Branch:** `main`
-- **Last commit:** c5726ff chore: refresh nucleus live state [skip ci] — 20 minutes ago
+- **Last commit:** c55a864 chore: refresh nucleus live state [skip ci] — 15 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+c55a864 chore: refresh nucleus live state [skip ci] (15 seconds ago)
 c5726ff chore: refresh nucleus live state [skip ci] (20 minutes ago)
 cb7f9c7 chore: refresh nucleus live state [skip ci] (21 minutes ago)
 ef4cd2c chore: refresh nucleus live state [skip ci] (60 minutes ago)
-db7c7e3 Aspirational family framing + durable privacy rule (#65) (60 minutes ago)
-45c47bb chore: refresh nucleus live state [skip ci] (2 hours ago)
+db7c7e3 Aspirational family framing + durable privacy rule (#65) (61 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
