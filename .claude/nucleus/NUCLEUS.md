@@ -170,28 +170,22 @@ FEATURE: brain-dump parser. User dumps a raw idea/theme (one post or a week), Cl
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 13:59 UTC
+- **When:** 2026-06-02 14:00 UTC
 - **Branch:** `main`
-- **Last commit:** d54660e Real act titles: Sunset at the Duomo / Weddings and Wartime / Mission Possible: AI (#56) — 24 seconds ago
+- **Last commit:** b70c69e chore: refresh nucleus live state [skip ci] — 11 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 34 +++++++++++++++++++++++-----------
- 1 file changed, 23 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-d54660e Real act titles: Sunset at the Duomo / Weddings and Wartime / Mission Possible: AI (#56) (24 seconds ago)
+b70c69e chore: refresh nucleus live state [skip ci] (11 seconds ago)
+d54660e Real act titles: Sunset at the Duomo / Weddings and Wartime / Mission Possible: AI (#56) (35 seconds ago)
 413db59 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 1dabee0 chore: refresh nucleus live state [skip ci] (20 minutes ago)
-4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) (20 minutes ago)
-c353385 chore: refresh nucleus live state [skip ci] (29 minutes ago)
+4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) (21 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
