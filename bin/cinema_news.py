@@ -147,5 +147,6 @@ if __name__ == "__main__":
         dateline="Vol. I  ·  The Premiere Issue  ·  2026",
         cta="Now Showing At",
         fname="dispatch-no-001.png",
+        masthead="ZORBASPHERE",
     )
     print("done.")

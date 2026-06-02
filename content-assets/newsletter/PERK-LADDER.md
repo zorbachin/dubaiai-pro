@@ -1,4 +1,4 @@
-# 🎟️ The Dispatch: Subscriber Perk Ladder (Substack)
+# 🎟️ Zorbasphere: Subscriber Perk Ladder (Substack)
 
 _Subscribing should obviously pay off. Each rung gives more and pulls people
 toward the real goal: products sold and clients booked. Substack is the hub that
@@ -10,7 +10,7 @@ holds everything you offer._
 - Reads the free story issues. No perks yet. The goal is to convert them to a subscriber.
 
 **2. Free subscriber (email)**
-- Every story issue of The Dispatch, in their inbox.
+- Every story issue of Zorbasphere, in their inbox.
 - **Welcome perk: 15% off the Etsy shop** (code `DISPATCH15`).
 - An occasional free guide.
 - The Build Log updates (if you run it here too).
@@ -43,7 +43,7 @@ _I draft the codes and the copy; you create the two codes in Etsy in about two m
 
 > Subject: You're in. Here's your code.
 >
-> Welcome to The Dispatch.
+> Welcome to Zorbasphere.
 >
 > This is where I build in public. The real story, the wins, the misses, and what I am making next. No hype, no firehose.
 >
@@ -58,7 +58,7 @@ _I draft the codes and the copy; you create the two codes in Etsy in about two m
 
 ## The "everything" hub (Substack About page)
 Substack should hold the full menu in one place:
-- The story (The Dispatch issues).
+- The story (Zorbasphere issues).
 - The shop (Etsy, with the subscriber discount).
 - Work with me (letaidoit.pro, book a call).
 - The tools (buildyourbot.io, selfsellingai.pro).

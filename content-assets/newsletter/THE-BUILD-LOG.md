@@ -1,6 +1,6 @@
 # 📡 The Build Log: the brief productivity newsletter
 
-_Companion to The Dispatch (Substack). Where The Dispatch is the cinematic deep
+_Companion to Zorbasphere (Substack). Where Zorbasphere is the cinematic deep
 story, The Build Log is the opposite: super brief, fast, useful. What I built,
 one idea, the next goal, and a time-saver you can steal. Under 60 seconds to read._
 
