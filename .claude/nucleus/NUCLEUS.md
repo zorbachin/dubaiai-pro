@@ -45,6 +45,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 11:07 UTC · chat
+VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-public timeline for Dispatch Issue 002 'How One Site Became a Whole Build'): (1) zorbot.io = his FIRST site, built to try and get work (the digital first call). (2) -> led to a PRODUCT 'bloop' on buildyourbot.io. (3) Riley + selfsellingai evolved from it. (4) a CLOSING TOOL (foxy-close-tool/Instant Proposals) became its own product. Through-line: same instinct each time — find where time leaks, build the fix; mission got clearer = take back your time, give time back to others. NEEDS FROM ZORBA: one-line confirm per beat + the asset to embed (video link + site URL/screenshot) — sites are bot-blocked so Claude can't pull them. Skeleton: content-assets/newsletter/ISSUE-002-chronology.md. NOTE: we 'started this' 2026-06-01 (OS + AUDIT.md + decision log).
+
+### 2026-06-02 11:05 UTC · chat
+ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back engaged/broke/no job/sublet -> married -> baby coming -> WAR days after wedding -> obsessing over AI in the bomb shelter -> first call, second call -> finally got over the unease of POSTING. MISSION (clearer now): build a business to take back his own time AND give time back to others. NOT to make people AI-obsessed; he likes people who want to grow + use tools well; loves solving problems like he does ON SET. Building LIVE, exposed: 'follow me, make that first call/post yourself.' Voice: plain, confessional, anti-hype, sell the WHY (time/freedom). Masthead recut (title 'The First Call'). Kept Three Two-Minute Time-Savers as closing segment. Substack IS SET UP — ready to paste & publish. Updated voice-guide story assets (house/war now filled).
+
 ### 2026-06-02 11:02 UTC · chat
 NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three Two-Minute Time-Savers' (one WORK, one LIFE, one HEALTH; quick/fun; each a copy-paste prompt). Issue 001 written (content-assets/newsletter/ISSUE-001.md): feature 'Buy Back Your Time' + the 3 time-savers (kill the email thread / plan the night out / fridge->meal + 12-min calisthenics workout). Opt-in INVITE drafted (content-assets/newsletter/INVITE.md) — personal invites + warm leads + content-engine growth, NEVER import-and-blast. Masthead billing updated to feature the time-savers segment.
 
@@ -158,34 +164,36 @@ LAUNCH RESET: nothing is truly launched yet except kinda Minimovies. Treat EVERY
 
 ### 2026-06-01 18:14 UTC · chat
 PEAK CONTENT TIME: user records content best EARLY AM, ~7:30am. Schedule content creation/recording into that window; protect it.
-
-### 2026-06-01 18:11 UTC · chat
-DECISION: Home = Claude (100% reliable today). Command-center widget = PARKED as future upgrade, only if it earns it — not built now (anti-splinter). Comms style = caveman-warm (1.5): one line, action-first, light encouragement. No fragile channels.
-
-### 2026-06-01 18:08 UTC · chat
-COMMS preference: wants concise 'caveman style' text pings when action needed (link / approval / yes-no). Telegram annoying. WhatsApp or iMessage preferred. But this is secondary to: don't splinter him — only add a channel if it works 100%.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 11:02 UTC
+- **When:** 2026-06-02 11:08 UTC
 - **Branch:** `main`
-- **Last commit:** f368c0e chore: refresh nucleus live state [skip ci] — 9 seconds ago
+- **Last commit:** 88597e3 Dispatch Issue 002 skeleton — build-in-public venture chronology (#48) — 40 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M content-assets/newsletter/dispatch-no-001.png
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md                    |  37 ++++++++++++++++----------
+ content-assets/newsletter/dispatch-no-001.png | Bin 102330 -> 93980 bytes
+ 2 files changed, 23 insertions(+), 14 deletions(-)
 ```
 
 **Recent commits:**
 ```
-f368c0e chore: refresh nucleus live state [skip ci] (9 seconds ago)
-ea99af4 The Dispatch Issue 001 + Three Time-Savers segment + opt-in invite (#46) (32 seconds ago)
-c0afb07 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-e37a49d chore: refresh nucleus live state [skip ci] (3 minutes ago)
-7b2c4ae The Dispatch — cinematic vintage movie-announcement newsletter (#45) (3 minutes ago)
+88597e3 Dispatch Issue 002 skeleton — build-in-public venture chronology (#48) (40 seconds ago)
+6dbc706 Rewrite Dispatch Issue 001 as the origin story "The First Call" (#47) (2 minutes ago)
+a1ca5bd chore: refresh nucleus live state [skip ci] (5 minutes ago)
+f368c0e chore: refresh nucleus live state [skip ci] (6 minutes ago)
+ea99af4 The Dispatch Issue 001 + Three Time-Savers segment + opt-in invite (#46) (6 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
