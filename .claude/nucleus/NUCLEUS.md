@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 14:18 UTC · chat
+PUBLICATION NAME = ZORBASPHERE (replaces 'The Dispatch' — that was generic; Zorba owns the zorbasphere domain, works as the everything-hub). Masthead cover regenerated to ZORBASPHERE; all newsletter docs renamed The Dispatch->Zorbasphere (ISSUE-001, PERK-LADDER, INVITE, THE-BUILD-LOG, ISSUE-002). PUBLICATION LOGO = the golden glasses on navy (content-assets/newsletter/logo-glasses.png, avatar/circle-safe) — his signature mark. Subtitle stays 'A LET AI DO IT PICTURE'. All em-dashes scrubbed.
+
 ### 2026-06-02 14:13 UTC · chat
 PUBLISH DECISIONS for Dispatch Issue 001: (1) AUDIENCE = EVERYONE / FREE / PUBLIC. Do NOT paywall the premiere (Zorba's instinct correct) — origin story's job = reach + subscribers, not revenue; too early to ask for payment. Paid perk ladder kicks in LATER once there's an audience. (2) Substack TAGS = yes add ~6: building in public, AI, founder story, entrepreneurship, productivity, solopreneur. (3) SEO pass = via post settings, NOT body stuffing: SEO subtitle/meta = 'How I went from laid off and broke in a sublet to building an AI business that gives people their time back. The honest origin of Let AI Do It.', slug the-first-call, image alt text per photo. Post type = Text. Spec added to ISSUE-001.md. Also: call prep for Jack@Ambo EMAILED to zgrashin@gmail.com (msg 19e88ad951490236) — payroll report time-savings + undercut a SaaS he pays for.
 
@@ -161,31 +164,34 @@ CONTENT SYSTEM (key workflow): user batches 2-4 hrs Sun/Mon on RAW content creat
 
 ### 2026-06-01 18:27 UTC · chat
 FEATURE: dopaminergic focus dashboard. User has ADHD, misses scroll/gamification/focus-meter — text-only is hard to visualize his day. Build self-contained focus.html (no server, double-click, brand colors): focus meter, progress ring, XP/streaks, scrollable task cards. Generated from the live board.
-
-### 2026-06-01 18:26 UTC · code
-Built dump parser: bin/dump (reliable capture to .claude/os/dumps/) + dump skill (Opus parses raw dump → flywheel content across video/carousel/meme/writing, in user's voice, queued to content board, with 3 hook options). Idea input valve is live.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 14:15 UTC
+- **When:** 2026-06-02 14:19 UTC
 - **Branch:** `main`
-- **Last commit:** 458ff3f chore: refresh nucleus live state [skip ci] — 14 seconds ago
+- **Last commit:** bac1770 Rename publication to Zorbasphere + glasses logo (#59) — 22 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 41 ++++++++++++++++++++++++++++++-----------
+ 1 file changed, 30 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-458ff3f chore: refresh nucleus live state [skip ci] (14 seconds ago)
-33a5346 Issue 001 publish/SEO spec + masthead name options (#58) (33 seconds ago)
-5aee7bc chore: refresh nucleus live state [skip ci] (9 minutes ago)
-6aa591d Ambo/Jack payroll call cheat-sheet (#57) (9 minutes ago)
-bfff3a9 chore: refresh nucleus live state [skip ci] (16 minutes ago)
+bac1770 Rename publication to Zorbasphere + glasses logo (#59) (22 seconds ago)
+2b9901c chore: refresh nucleus live state [skip ci] (4 minutes ago)
+458ff3f chore: refresh nucleus live state [skip ci] (4 minutes ago)
+33a5346 Issue 001 publish/SEO spec + masthead name options (#58) (4 minutes ago)
+5aee7bc chore: refresh nucleus live state [skip ci] (13 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
