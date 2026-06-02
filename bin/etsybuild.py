@@ -162,6 +162,82 @@ class Doc:
             c.drawString(M + 14, yy, ln); yy -= 15
         self.y = top - h - 12
 
+    def prompt(self, label, text):
+        """A copy-ready prompt in a box + clickable 'Run in ChatGPT / Claude' links."""
+        from urllib.parse import quote
+        plines = wrap(text, "Courier", 9.5, PW - 2 * M - 28)
+        h = 30 + len(plines) * 13 + 26
+        self.need(h + 12); c = self.c
+        top = self.y
+        # box
+        c.setFillColorRGB(0.96, 0.965, 0.975); c.rect(M, top - h, PW - 2 * M, h, fill=1, stroke=0)
+        c.setStrokeColorRGB(*GOLD); c.setLineWidth(0.8); c.rect(M, top - h, PW - 2 * M, h, fill=0, stroke=1)
+        c.setFont(SANS_B, 8.5); c.setFillColorRGB(*GOLD)
+        c.drawString(M + 14, top - 17, ("PROMPT — " + label).upper())
+        yy = top - 33
+        c.setFillColorRGB(0.12, 0.16, 0.22)
+        for ln in plines:
+            c.setFont("Courier", 9.5); c.drawString(M + 14, yy, ln); yy -= 13
+        # run links
+        enc = quote(text)
+        gpt = "https://chatgpt.com/?q=" + enc
+        cla = "https://claude.ai/new?q=" + enc
+        ly = top - h + 9
+        c.setFont(SANS_B, 9)
+        c.setFillColorRGB(*GREEN); c.drawString(M + 14, ly, "▶ Run in ChatGPT")
+        w1 = c.stringWidth("▶ Run in ChatGPT", SANS_B, 9)
+        c.linkURL(gpt, (M + 14, ly - 3, M + 14 + w1, ly + 10), relative=0)
+        x2 = M + 14 + w1 + 28
+        c.setFillColorRGB(*GOLD); c.drawString(x2, ly, "▶ Run in Claude")
+        w2 = c.stringWidth("▶ Run in Claude", SANS_B, 9)
+        c.linkURL(cla, (x2, ly - 3, x2 + w2, ly + 10), relative=0)
+        c.setFont(SANS, 7.5); c.setFillColorRGB(*MUT)
+        c.drawRightString(PW - M - 14, ly, "tap to auto-fill")
+        self.y = top - h - 12
+
+    def onepager(self, headline, steps):
+        """Full-page ADHD-friendly summary: the whole system at a glance."""
+        c = self.c; self.y = PH - M
+        c.setFillColorRGB(*GREEN); c.rect(M, self.y - 20, 246, 28, fill=1, stroke=0)
+        c.setFont(SANS_B, 11); c.setFillColorRGB(*NAVY)
+        c.drawString(M + 10, self.y - 14, "START HERE  ·  THE 1-PAGE VERSION")
+        self.y -= 52
+        c.setFont(SERIF, 23); c.setFillColorRGB(*NAVY)
+        for ln in wrap(headline, SERIF, 23, PW - 2 * M):
+            c.drawString(M, self.y, ln); self.y -= 28
+        self.y -= 12
+        for i, s in enumerate(steps, 1):
+            cy = self.y
+            c.setFillColorRGB(*GOLD); c.circle(M + 12, cy + 3, 12, fill=1, stroke=0)
+            c.setFont(SANS_B, 12); c.setFillColorRGB(*NAVY)
+            c.drawCentredString(M + 12, cy - 1, str(i))
+            for j, ln in enumerate(wrap(s, SANS_B if False else SERIF_R, 12.5, PW - 2 * M - 46)):
+                c.setFont(SERIF_R, 12.5); c.setFillColorRGB(*INK)
+                c.drawString(M + 40, self.y, ln); self.y -= 17
+            self.y -= 11
+        self.y -= 4
+        c.setFillColorRGB(*CREAM); c.rect(M, self.y - 30, PW - 2 * M, 34, fill=1, stroke=0)
+        c.setFillColorRGB(*GOLD); c.rect(M, self.y - 30, 4, 34, fill=1, stroke=0)
+        c.setFont(SANS_B, 9); c.setFillColorRGB(*INK)
+        c.drawString(M + 14, self.y - 13, "That's the whole system. The rest of this guide walks each step,")
+        c.drawString(M + 14, self.y - 25, "with copy-paste prompts you can run in one tap.")
+        self._footer(); c.showPage(); self.y = PH - M
+
+    def step(self, n, title, body):
+        """A numbered, easy-to-follow instruction step."""
+        self.need(72); c = self.c; cy = self.y
+        c.setFillColorRGB(*NAVY); c.circle(M + 13, cy - 3, 14, fill=1, stroke=0)
+        c.setFont(SANS_B, 13); c.setFillColorRGB(*GOLD)
+        c.drawCentredString(M + 13, cy - 8, str(n))
+        c.setFont(SERIF, 16); c.setFillColorRGB(*NAVY)
+        for ln in wrap(title, SERIF, 16, PW - 2 * M - 46):
+            c.drawString(M + 42, self.y, ln); self.y -= 20
+        self.y -= 3
+        for ln in wrap(body, SERIF_R, 11.5, PW - 2 * M - 42):
+            self.need(15); c.setFont(SERIF_R, 11.5); c.setFillColorRGB(*INK)
+            c.drawString(M + 42, self.y, ln); self.y -= 16
+        self.y -= 9
+
     def space(self, h=8):
         self.y -= h
 
@@ -220,6 +296,9 @@ def build(spec):
         elif t == "ul": d.bullets(blk[1])
         elif t == "check": d.bullets(blk[1], check=True)
         elif t == "callout": d.callout(blk[1], blk[2])
+        elif t == "onepager": d.onepager(blk[1], blk[2])
+        elif t == "step": d.step(blk[1], blk[2], blk[3])
+        elif t == "prompt": d.prompt(blk[1], blk[2])
         elif t == "space": d.space()
     d.cta_page(spec.get("contact", DEFAULT_CONTACT))
     d.save()
