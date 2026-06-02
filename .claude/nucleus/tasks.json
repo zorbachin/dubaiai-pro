@@ -1,5 +1,5 @@
 {
-  "seq": 7,
+  "seq": 14,
   "tasks": [
     {
       "id": "T001",
@@ -124,6 +124,132 @@
           "at": "2026-06-01 18:23 UTC",
           "by": "claude",
           "event": "created → ssa-ceo"
+        }
+      ]
+    },
+    {
+      "id": "T008",
+      "title": "MON: Post anchor video 'Why I got into this'",
+      "owner": "lai-mktg",
+      "created_by": "you",
+      "status": "open",
+      "need": "60-90s one take. [copy:Everyone is becoming an AI guy right now. Here is the honest reason I did. AI is not magic — it is a tool that does real work and gives you real time back. Your expertise is yours. My job is to find where your time slips away and build the thing that brings it back. You do not need to become an AI expert. You need someone who already did the 1000 hours.]",
+      "result": "",
+      "created": "2026-06-02 03:01 UTC",
+      "updated": "2026-06-02 03:01 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 03:01 UTC",
+          "by": "you",
+          "event": "created → lai-mktg"
+        }
+      ]
+    },
+    {
+      "id": "T009",
+      "title": "TUE: Post carousel 'Was it easy to build that?'",
+      "owner": "lai-mktg",
+      "created_by": "you",
+      "status": "open",
+      "need": "7 slides in pillar-1 file",
+      "result": "",
+      "created": "2026-06-02 03:01 UTC",
+      "updated": "2026-06-02 03:01 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 03:01 UTC",
+          "by": "you",
+          "event": "created → lai-mktg"
+        }
+      ]
+    },
+    {
+      "id": "T010",
+      "title": "WED: Post 'Should you hire an AI guy?'",
+      "owner": "lai-mktg",
+      "created_by": "you",
+      "status": "open",
+      "need": "[copy:Should you hire an AI guy? Yes. And not because AI is magic — it is not. The time it takes YOU to learn this, it could already be done. And the second you invest a little, you are committed anyway. If you are already paying for Claude and barely using it, you are not saving money — you are wasting it twice. Your job is your expertise. My job is finding where your time slips away and building the tool that brings it back.]",
+      "result": "",
+      "created": "2026-06-02 03:01 UTC",
+      "updated": "2026-06-02 03:01 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 03:01 UTC",
+          "by": "you",
+          "event": "created → lai-mktg"
+        }
+      ]
+    },
+    {
+      "id": "T011",
+      "title": "THU: Post 3 quote cards",
+      "owner": "lai-mktg",
+      "created_by": "you",
+      "status": "open",
+      "need": "in pillar-1 file",
+      "result": "",
+      "created": "2026-06-02 03:01 UTC",
+      "updated": "2026-06-02 03:01 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 03:01 UTC",
+          "by": "you",
+          "event": "created → lai-mktg"
+        }
+      ]
+    },
+    {
+      "id": "T012",
+      "title": "FRI: Post the meme",
+      "owner": "lai-mktg",
+      "created_by": "you",
+      "status": "open",
+      "need": "[copy:Your expertise is yours. The boring build is mine.]",
+      "result": "",
+      "created": "2026-06-02 03:01 UTC",
+      "updated": "2026-06-02 03:01 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 03:01 UTC",
+          "by": "you",
+          "event": "created → lai-mktg"
+        }
+      ]
+    },
+    {
+      "id": "T013",
+      "title": "SAT: Post use-case list",
+      "owner": "lai-mktg",
+      "created_by": "you",
+      "status": "open",
+      "need": "[copy:What does an AI guy actually build? Real things that eat your time: content that posts itself, inventory that tracks itself, one dashboard instead of 9 tabs, a company GPT that knows your business, outreach that runs while you sleep. Pick the one stealing the most hours. That is where we start.]",
+      "result": "",
+      "created": "2026-06-02 03:01 UTC",
+      "updated": "2026-06-02 03:01 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 03:01 UTC",
+          "by": "you",
+          "event": "created → lai-mktg"
+        }
+      ]
+    },
+    {
+      "id": "T014",
+      "title": "SUN: Send newsletter 'The 1000 hours'",
+      "owner": "lai-mktg",
+      "created_by": "you",
+      "status": "open",
+      "need": "full email in pillar-1 file [link:https://mail.google.com/mail/u/0/#drafts]",
+      "result": "",
+      "created": "2026-06-02 03:01 UTC",
+      "updated": "2026-06-02 03:01 UTC",
+      "history": [
+        {
+          "at": "2026-06-02 03:01 UTC",
+          "by": "you",
+          "event": "created → lai-mktg"
         }
       ]
     }

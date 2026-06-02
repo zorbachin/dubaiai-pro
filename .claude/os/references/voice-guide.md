@@ -31,6 +31,20 @@ AI is the *how*. Time / freedom / less stress is the *why*. Always sell the why.
 - No corporate AI jargon. No "unlock," "supercharge," "game-changer."
 - Don't hide behind the tech. Don't over-edit the humanity out.
 
+## Real voice samples (his actual words — mirror this rhythm)
+From his "how I got into AI" dump:
+- "AI isn't magic. But it can do work for you that can save you real time."
+- "Your job/expertise is yours, my job is to identify where time is slipping away
+  and build tools to bring it back."
+- "After 1000 hours the process becomes more efficient, but the value isn't the
+  idea — it's the testing and refining and ensuring its stability."
+- "By the time you take to learn it, it could already be done."
+- "If you subscribe to Claude but don't use it effectively you're wasting more
+  time and money."
+**Patterns to keep:** plain, declarative, slightly understated. He undersells
+("like most things"), then lands a sharp truth. Not hypey. Concedes the obvious
+("yes there are a lot of people getting into it / for good reason") then
+differentiates. Lists concrete use-cases, not abstractions.
+
 ## Status
-v0 — Claude drafted from chat. **Needs:** user's read on accuracy + the house/war
-specifics + a couple of "this sounds like me" / "this doesn't" examples.
+v1 — now anchored to real samples above. **Still needs:** the house/war specifics.
