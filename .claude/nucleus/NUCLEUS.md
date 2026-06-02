@@ -10,33 +10,47 @@
 ## 📌 North Star
 _What we're ultimately building and why. Edit this by hand — it changes rarely._
 
-- **Project:** DubaiAI.pro — marketing site for a Dubai-based AI consultancy
-  ("Bespoke AI Implementation & Audit").
-- **What they sell:** Full-stack AI engineering across three layers —
-  Layer 1 (AI Infrastructure), Layer 2 (AI Applications), Layer 3 (Agentic AI) —
-  plus regulatory-grade AI auditing, for enterprises and government.
-- **Goal:** A premium, high-trust landing page that converts enterprise/gov
-  leads into a contact (`hello@dubaiai.pro`). Live at https://dubaiai.pro.
+### DubaiAI.pro
+- Marketing site for a Dubai-based AI consultancy ("Bespoke AI Implementation & Audit").
+- Sells full-stack AI engineering (Layer 1/2/3) + regulatory-grade auditing for enterprises and government.
+- Goal: premium landing page → leads to `hello@dubaiai.pro`. Live at https://dubaiai.pro.
+
+### PodSupps — podcast product database (podsupps.com)
+- "One-stop shop" — listeners search for any product, restaurant, supplement, or life hack mentioned/sponsored by top podcasts.
+- Revenue model: affiliate links. Target: 10,000 MAU.
+- Manus built the storefront (`podsupps2` repo: React 19, tRPC, Drizzle, MySQL, 107 shows, 873 products). The missing moat: automated ingestion — no episode has ever been auto-processed.
+- We built the **Comb Engine** in `dubaiai-pro/pipeline/` — fully tested, ready to lift into `podsupps2`.
 
 ## 🎯 Active Threads
 _What's in flight right now. The 1–5 things a new session should care about._
 
-- [ ] Context Nucleus system is built (hooks + CLI + web bridge) — PR #10 open
-      on `claude/epic-einstein-jPNIL`, not yet merged to `main`.
-- [ ] Wire the nucleus widget into the local app at http://localhost:3001/.
-- [ ] (add the next real landing-page task here)
+**PodSupps pipeline — deployment blocked on user action:**
+- [ ] User needs to paste `ingest.yml` + `qa.yml` into `podsupps2/.github/workflows/` via GitHub web editor.
+- [ ] Copy `pipeline/` folder from `dubaiai-pro` into `podsupps2` — start a new Claude Code session scoped to `podsupps2` to do this in one shot.
+- [ ] Connect `podsupps2` to Vercel (custom domain: podsupps.com) so git pushes trigger rebuilds.
+- [ ] Secrets already added to `podsupps2`: `FORGE_API_KEY` (OpenAI key), `FORGE_API_URL` = `https://api.openai.com/v1`. Variable needed: `SITE_URL` = `https://www.podsupps.com`.
+
+**DubaiAI.pro:**
+- [ ] Context Nucleus PR #10 on `claude/epic-einstein-jPNIL` — not yet merged to `main`.
+- [ ] Next landing-page task TBD.
 
 ## 🧩 Decisions & Conventions
 _Choices already made, so no surface re-litigates them._
 
-- **Single-file site:** everything lives in `index.html` (inline CSS/JS), no
-  build step. Hosted on GitHub Pages via `CNAME` → dubaiai.pro.
-- **Brand palette:** gold `#c8a45c` (accent), navy `#0a1628` (text/dark),
-  cream/sand backgrounds (`#faf8f3`, `#f5f0e6`, `#e8e0d0`).
+### DubaiAI.pro
+- **Single-file site:** everything lives in `index.html` (inline CSS/JS), no build step. GitHub Pages via `CNAME` → dubaiai.pro.
+- **Brand palette:** gold `#c8a45c`, navy `#0a1628`, cream `#faf8f3`/`#f5f0e6`/`#e8e0d0`.
 - **Type:** DM Serif Display (headings), Inter (body), JetBrains Mono (mono).
-- **Sections / nav anchors:** hero, about, services, audit, process, cases,
-  contact.
+- **Sections:** hero, about, services, audit, process, cases, contact.
 - **Contact:** `hello@dubaiai.pro`.
+
+### PodSupps — Comb Engine
+- **LLM provider:** OpenAI API (`gpt-4o-mini` default). User's key is in `podsupps2` secrets as `FORGE_API_KEY`; base URL `https://api.openai.com/v1` as `FORGE_API_URL`.
+- **Deployment model:** GitHub-native. Pipeline commits JSON files → git push → Vercel rebuild. No DB server needed for the pipeline itself.
+- **Pipeline package lives in `dubaiai-pro/pipeline/`** and must be copied to `podsupps2/pipeline/` for workflows to find it.
+- **PIPELINE_DEPS_MODULE:** `./src/adapters/json-deps.js` for GitHub Actions (JSON files); `./src/adapters/podsupps.js` for MySQL native mode.
+- **33 tests, zero TS errors** — all passing on branch `claude/podcast-product-database-4ixZu`.
+- **Do NOT rebuild the frontend** — Manus storefront is ~90% done. Focus is the ingestion engine only.
 
 ## 📥 Handoffs
 _Newest first. Written automatically by hooks and by `nucleus push` from any
@@ -60,22 +74,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:38 UTC
+- **When:** 2026-06-02 11:06 UTC
 - **Branch:** `claude/podcast-product-database-4ixZu`
-- **Last commit:** 7df3a84 chore: refresh nucleus live state [skip ci] — 14 seconds ago
+- **Last commit:** ba22c7d chore: refresh nucleus live state [skip ci] — 16 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 52 +++++++++++++++++++++++++++++-----------------
+ 1 file changed, 33 insertions(+), 19 deletions(-)
 ```
 
 **Recent commits:**
 ```
-7df3a84 chore: refresh nucleus live state [skip ci] (14 seconds ago)
-f8e1aee chore: refresh nucleus live state [skip ci] (42 minutes ago)
-6a20450 chore: refresh nucleus live state [skip ci] (45 minutes ago)
-6daaa03 chore: refresh nucleus live state [skip ci] (45 minutes ago)
-a926c84 chore: refresh nucleus live state [skip ci] (68 minutes ago)
+ba22c7d chore: refresh nucleus live state [skip ci] (16 hours ago)
+7df3a84 chore: refresh nucleus live state [skip ci] (16 hours ago)
+f8e1aee chore: refresh nucleus live state [skip ci] (17 hours ago)
+6a20450 chore: refresh nucleus live state [skip ci] (17 hours ago)
+6daaa03 chore: refresh nucleus live state [skip ci] (17 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
