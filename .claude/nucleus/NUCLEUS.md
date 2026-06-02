@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 11:00 UTC
 - **Branch:** `main`
-- **Last commit:** 7b2c4ae The Dispatch — cinematic vintage movie-announcement newsletter (#45) — 27 seconds ago
+- **Last commit:** e37a49d chore: refresh nucleus live state [skip ci] — 12 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
- 1 file changed, 19 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-7b2c4ae The Dispatch — cinematic vintage movie-announcement newsletter (#45) (27 seconds ago)
+e37a49d chore: refresh nucleus live state [skip ci] (12 seconds ago)
+7b2c4ae The Dispatch — cinematic vintage movie-announcement newsletter (#45) (39 seconds ago)
 8fde60d chore: refresh nucleus live state [skip ci] (74 minutes ago)
 27a94e1 chore: refresh nucleus live state [skip ci] (74 minutes ago)
 172e238 Closing-tool content push — carousel + quote cards + copy pack (#44) (75 minutes ago)
-3332f82 Command-center sync feed + per-venture dashboard (#43) (77 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
