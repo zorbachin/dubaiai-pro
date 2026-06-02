@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 11:28 UTC · chat
+ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more human (use commas/periods/parentheses). Durable voice rule. (2) Corrected timeline: OBSESSION came BEFORE the business. During the war his YouTube feed flipped (no news, only AI builds) -> got obsessed -> started PAYING for subscriptions to test them himself, figuring 'if it lands one job it's worth it.' Baby found out MIDWAY through the war while deep in AI, not knowing what to do -> that 'changed the math' -> first call -> second -> hardest part = posting. (3) Story rewritten present-tense/cinematic (in-the-moment, not safe past tense). (4) DROPPED the Three Time-Savers from the premiere — he 'didn't get the tips'; premiere = pure origin story. Segment returns later reworked. Masthead billing now teases story beats (The Feed That Went Quiet / Midway Through the War / The Mission, Made Plain).
+
 ### 2026-06-02 11:07 UTC · chat
 VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-public timeline for Dispatch Issue 002 'How One Site Became a Whole Build'): (1) zorbot.io = his FIRST site, built to try and get work (the digital first call). (2) -> led to a PRODUCT 'bloop' on buildyourbot.io. (3) Riley + selfsellingai evolved from it. (4) a CLOSING TOOL (foxy-close-tool/Instant Proposals) became its own product. Through-line: same instinct each time — find where time leaks, build the fix; mission got clearer = take back your time, give time back to others. NEEDS FROM ZORBA: one-line confirm per beat + the asset to embed (video link + site URL/screenshot) — sites are bot-blocked so Claude can't pull them. Skeleton: content-assets/newsletter/ISSUE-002-chronology.md. NOTE: we 'started this' 2026-06-01 (OS + AUDIT.md + decision log).
 
@@ -161,31 +164,34 @@ VOICE: user's own voice + Hormozi-style direct marketer, but human/good. Self-aw
 
 ### 2026-06-01 18:14 UTC · chat
 LAUNCH RESET: nothing is truly launched yet except kinda Minimovies. Treat EVERY venture as Day 1 / square one. Marketing + research sub-agents start from scratch, no assumed traction.
-
-### 2026-06-01 18:14 UTC · chat
-PEAK CONTENT TIME: user records content best EARLY AM, ~7:30am. Schedule content creation/recording into that window; protect it.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 11:14 UTC
+- **When:** 2026-06-02 11:29 UTC
 - **Branch:** `main`
-- **Last commit:** 9332db2 chore: refresh nucleus live state [skip ci] — 12 seconds ago
+- **Last commit:** 937f4f0 Rewrite Issue 001 — more human, cinematic, corrected timeline (#50) — 29 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 34 +++++++++++++++++++++++-----------
+ 1 file changed, 23 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-9332db2 chore: refresh nucleus live state [skip ci] (12 seconds ago)
-6ce4d2d chore: refresh nucleus live state [skip ci] (5 minutes ago)
-c2cfed7 Commit recut "The First Call" masthead PNG (#49) (6 minutes ago)
-88597e3 Dispatch Issue 002 skeleton — build-in-public venture chronology (#48) (7 minutes ago)
-6dbc706 Rewrite Dispatch Issue 001 as the origin story "The First Call" (#47) (9 minutes ago)
+937f4f0 Rewrite Issue 001 — more human, cinematic, corrected timeline (#50) (29 seconds ago)
+a7ad7c7 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+9332db2 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+6ce4d2d chore: refresh nucleus live state [skip ci] (20 minutes ago)
+c2cfed7 Commit recut "The First Call" masthead PNG (#49) (21 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
