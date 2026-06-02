@@ -75,14 +75,12 @@ def make(stem, kicker, title, is_bundle=False):
     for ln in lines:
         d.text((180, y), ln, font=tf, fill=CREAM); y += 150
     # badge
-    bf = F(SANS_B, 44)
+    bf = F(SANS_B, 42)
     badge = "COMPLETE BUNDLE · 20 GUIDES" if is_bundle else "DIGITAL PDF GUIDE · INSTANT DOWNLOAD"
-    d.text((180, S-300), badge, font=bf, fill=GREEN if is_bundle else MUT)
-    # footer mark
-    ff = F(SANS_B, 50)
-    glasses(d, 205, S-150, 0.28, GOLD, 14)
-    d.text((250, S-178), "LET AI DO IT", font=ff, fill=GOLD)
-    d.text((180, S-100), "letaidoit.pro", font=F(SANS_B, 38), fill=MUT)
+    d.text((180, S-330), badge, font=bf, fill=GREEN if is_bundle else MUT)
+    # footer mark (clean, minimal — hero glasses already carry the mark)
+    d.text((180, S-185), "LET AI DO IT", font=F(SANS_B, 54), fill=GOLD)
+    d.text((182, S-108), "letaidoit.pro", font=F(SANS_B, 36), fill=MUT)
     img.save(os.path.join(OUT, stem + ".png"))
     print("  ●", stem + ".png")
 
