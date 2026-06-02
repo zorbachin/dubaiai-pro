@@ -147,9 +147,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 03:50 UTC
+- **When:** 2026-06-02 03:51 UTC
 - **Branch:** `main`
-- **Last commit:** 0949e1a chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** bbfd09f chore: refresh nucleus live state [skip ci] — 60 seconds ago
 
 **Working tree:**
 ```
@@ -158,11 +158,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-0949e1a chore: refresh nucleus live state [skip ci] (3 minutes ago)
-5607d4a chore: refresh nucleus live state [skip ci] (4 minutes ago)
-d5bce49 chore: refresh nucleus live state [skip ci] (17 minutes ago)
-3f9b32e v3 brand system — navy + gold glasses + action green (#30) (17 minutes ago)
-4837c73 Golden-glasses brand mark + cardgen2 (3 style directions) (#29) (24 minutes ago)
+bbfd09f chore: refresh nucleus live state [skip ci] (60 seconds ago)
+0949e1a chore: refresh nucleus live state [skip ci] (4 minutes ago)
+5607d4a chore: refresh nucleus live state [skip ci] (5 minutes ago)
+d5bce49 chore: refresh nucleus live state [skip ci] (18 minutes ago)
+3f9b32e v3 brand system — navy + gold glasses + action green (#30) (18 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
