@@ -170,22 +170,28 @@ Built cardgen2 with golden-glasses signature mark (vector, recurring brand eleme
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 15:44 UTC
+- **When:** 2026-06-02 15:53 UTC
 - **Branch:** `main`
-- **Last commit:** 1624ccc chore: refresh nucleus live state [skip ci] — 16 seconds ago
+- **Last commit:** c277b73 chore: refresh nucleus live state [skip ci] — 9 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-1624ccc chore: refresh nucleus live state [skip ci] (16 seconds ago)
-7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) (48 seconds ago)
-a02ab5e chore: refresh nucleus live state [skip ci] (23 minutes ago)
-e62c92d chore: refresh nucleus live state [skip ci] (24 minutes ago)
-ee78750 More Zorbasphere: ready Issue 002 essay + 12-note bank (#62) (24 minutes ago)
+c277b73 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+1624ccc chore: refresh nucleus live state [skip ci] (9 minutes ago)
+7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) (10 minutes ago)
+a02ab5e chore: refresh nucleus live state [skip ci] (32 minutes ago)
+e62c92d chore: refresh nucleus live state [skip ci] (33 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
