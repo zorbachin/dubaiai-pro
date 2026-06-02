@@ -170,28 +170,22 @@ CONTENT SYSTEM (key workflow): user batches 2-4 hrs Sun/Mon on RAW content creat
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 14:28 UTC
+- **When:** 2026-06-02 14:29 UTC
 - **Branch:** `main`
-- **Last commit:** d6847ad Zorbasphere live: fill subscribe link into invite kit (#60) — 34 seconds ago
+- **Last commit:** 10ea9ee chore: refresh nucleus live state [skip ci] — 14 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
- 1 file changed, 19 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-d6847ad Zorbasphere live: fill subscribe link into invite kit (#60) (34 seconds ago)
-a4823c4 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+10ea9ee chore: refresh nucleus live state [skip ci] (14 seconds ago)
+d6847ad Zorbasphere live: fill subscribe link into invite kit (#60) (48 seconds ago)
+a4823c4 chore: refresh nucleus live state [skip ci] (10 minutes ago)
 26ef109 chore: refresh nucleus live state [skip ci] (10 minutes ago)
 bac1770 Rename publication to Zorbasphere + glasses logo (#59) (10 minutes ago)
-2b9901c chore: refresh nucleus live state [skip ci] (13 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
