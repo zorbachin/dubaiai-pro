@@ -171,22 +171,28 @@ BRAND PALETTE DIRECTION: gold glasses on BLUE, or GREEN — Seahawks colors (Col
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 16:27 UTC
+- **When:** 2026-06-02 17:06 UTC
 - **Branch:** `main`
-- **Last commit:** db7c7e3 Aspirational family framing + durable privacy rule (#65) — 40 seconds ago
+- **Last commit:** ef4cd2c chore: refresh nucleus live state [skip ci] — 39 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-db7c7e3 Aspirational family framing + durable privacy rule (#65) (40 seconds ago)
-45c47bb chore: refresh nucleus live state [skip ci] (31 minutes ago)
-0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) (31 minutes ago)
-85da280 chore: refresh nucleus live state [skip ci] (34 minutes ago)
-c277b73 chore: refresh nucleus live state [skip ci] (43 minutes ago)
+ef4cd2c chore: refresh nucleus live state [skip ci] (39 minutes ago)
+db7c7e3 Aspirational family framing + durable privacy rule (#65) (40 minutes ago)
+45c47bb chore: refresh nucleus live state [skip ci] (70 minutes ago)
+0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) (70 minutes ago)
+85da280 chore: refresh nucleus live state [skip ci] (73 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
