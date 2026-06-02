@@ -70,7 +70,7 @@ We have a mamad, a safe room. So the first month of our marriage, our first mont
 
 ## Mission Possible: AI
 
-But the place is small. It is not where you raise a family. Which brings me to the house.
+But the place is small. We are hoping to start a family, and it is not the place for that. Which brings me to the house.
 
 Family friends built a beautiful home near Netanya, close to my mother in law. For their own reasons, they cannot live in it. Which means we have a real shot at our dream home. Which means I have a mission. Support my family. Get us into that house. Use AI to do it.
 
