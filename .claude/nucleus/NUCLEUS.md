@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 15:56 UTC · chat
+NUDGE ENGINE BUILT (Google Calendar = the 'email me when to post' system Zorba asked for). Created 6 calendar events 6/3-6/8, 09:00 Asia/Jerusalem, each with the exact copy/link in the description + email reminder 30min before + popup at time: 6/3 LAUNCH socials, 6/4 Note+restack, 6/5 Build Log 001, 6/6 Note (posting fear), 6/7 PUBLISH Issue 002, 6/8 Note. Calendar auto-emails him. Notes also banked in NOTES-BANK.md. PATTERN going forward: Claude schedules posts as Calendar events w/ copy in notes = hands-off reminders toward the 2-week automation goal.
+
 ### 2026-06-02 15:43 UTC · chat
 ISSUE 003 'The Ring' WRITTEN (content-assets/newsletter/ISSUE-003-the-ring.md), full story in Zorba's voice, no em-dashes, 4 acts (The Amazon Ring / Diamonds for Adir / Made by Hand / More Than a Ring). KEY FACTS: budget Amazon ring guessed (size/cut/style), seen by Meytal in LA but covered; back in Israel launched MORAL EDGE media channel (doing well); documentary on Oct 7 (7 families, tragedy->life-saving impact); met JEN AIRLEY (son Binyamin died a hero) who reminded him of his mom (his BROWN's death non-violent — sensitive, flagged optional); she introduced ALON MESIKA + 'Diamonds for Adir' (son Adir killed at Nova festival, was about to propose; Alon donated a diamond to an engaged soldier -> grew to hundreds; Zorba wears Adir's hat+necklace brand). Alon's workshop: get sized, come back, make/finish each other's wedding rings; 2 soldiers told combat/Adir stories (some off-camera); rings made by hand worn at wedding outside Jerusalem. THEME: Amazon-ring-that-doesn't-fit -> handmade-with-history = sign things are changing; Substack now = accountability/reflection/motivation ('motivation is contagious to seekers, repulsive to the fearful'); CTA pivots to practical tips/tutorials next + asks audience to comment what they want. AUTOMATION: built content-assets/COWORK-QUEUE.md = browser task specs (Substack publish-as-draft + Etsy listings + discount codes) Cowork reads from the shared nucleus and executes; nucleus can't auto-spawn Cowork but this is the turnkey handoff.
 
@@ -161,37 +164,28 @@ Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Gre
 
 ### 2026-06-02 03:31 UTC · chat
 BRAND PALETTE DIRECTION: gold glasses on BLUE, or GREEN — Seahawks colors (College Navy #002244 + Action Green ~#69BE28) WITH gold. Synthesize a Zorba-wide brand from zorbot.io + buildyourbot.io + selfsellingai.pro. Method: pull real deployed code from Netlify (bot-blocked to WebFetch). Mapping: selfsellingai.pro→letaidoit site; buildyourbot→byb-ambassador.
-
-### 2026-06-02 03:26 UTC · code
-Built cardgen2 with golden-glasses signature mark (vector, recurring brand element). 3 style directions: A navy+glasses-watermark, B cream editorial (glasses hero), C bold split. Awaiting user's pick + real brand refs (can't fetch zorbot/buildyourbot/selfsellingai — all 403 bot-blocked).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 15:53 UTC
+- **When:** 2026-06-02 15:56 UTC
 - **Branch:** `main`
-- **Last commit:** c277b73 chore: refresh nucleus live state [skip ci] — 9 minutes ago
+- **Last commit:** 85da280 chore: refresh nucleus live state [skip ci] — 3 minutes ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-c277b73 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-1624ccc chore: refresh nucleus live state [skip ci] (9 minutes ago)
-7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) (10 minutes ago)
-a02ab5e chore: refresh nucleus live state [skip ci] (32 minutes ago)
-e62c92d chore: refresh nucleus live state [skip ci] (33 minutes ago)
+85da280 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+c277b73 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+1624ccc chore: refresh nucleus live state [skip ci] (12 minutes ago)
+7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) (13 minutes ago)
+a02ab5e chore: refresh nucleus live state [skip ci] (35 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
