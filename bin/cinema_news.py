@@ -91,9 +91,9 @@ if __name__ == "__main__":
     print("🎬 cinematic newsletter →", OUT)
     build(
         presents="Let AI Do It Proudly Presents",
-        title_lines=["Buy Back", "Your Time"],
-        tagline=["An honest dispatch on AI — from a man who did", "the 1,000 hours so you don't have to."],
-        billing=["The Closing Tool", "Three Two-Minute Time-Savers", "A Glimpse Behind the Curtain"],
+        title_lines=["The First", "Call"],
+        tagline=["Built live — from a bomb shelter to the first call.", "An honest origin, and where we go from here."],
+        billing=["From a Sublet to the Shelter", "The Mission, Made Plain", "Three Two-Minute Time-Savers"],
         dateline="Vol. I  ·  The Premiere Issue  ·  2026",
         cta="Now Showing At",
         fname="dispatch-no-001.png",
