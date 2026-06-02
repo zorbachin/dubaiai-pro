@@ -40,7 +40,7 @@ Now, I should pause, because this next part is true and it matters. In that same
 
 The wedding itself was something else. People came from around the world. Alaskan and Ethiopian, Israeli and American, all colliding in one room in a way nobody there had quite seen before.
 
-[PHOTO: the wedding — the cultures colliding. Use the 3 you sent: (1) the whole room around you under the spotlight mid-celebration, (2) the chuppah/ceremony with the green dress and the kippot, (3) the first dance on the lit floor.]
+[PHOTO: the wedding, the cultures colliding. Use the 3 you sent: (1) the whole room around you under the spotlight mid-celebration, (2) the chuppah ceremony with the green dress and the kippot, (3) the first dance on the lit floor.]
 
 And then the music stops, and somebody has to pay for it. The wedding. The rent. The life. Nine days later, the war started. Movement closed in. Meytal was out of work.
 
