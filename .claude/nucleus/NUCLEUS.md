@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 11:29 UTC
 - **Branch:** `main`
-- **Last commit:** 937f4f0 Rewrite Issue 001 — more human, cinematic, corrected timeline (#50) — 29 seconds ago
+- **Last commit:** e624d29 chore: refresh nucleus live state [skip ci] — 14 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 34 +++++++++++++++++++++++-----------
- 1 file changed, 23 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-937f4f0 Rewrite Issue 001 — more human, cinematic, corrected timeline (#50) (29 seconds ago)
+e624d29 chore: refresh nucleus live state [skip ci] (14 seconds ago)
+937f4f0 Rewrite Issue 001 — more human, cinematic, corrected timeline (#50) (43 seconds ago)
 a7ad7c7 chore: refresh nucleus live state [skip ci] (15 minutes ago)
 9332db2 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-6ce4d2d chore: refresh nucleus live state [skip ci] (20 minutes ago)
-c2cfed7 Commit recut "The First Call" masthead PNG (#49) (21 minutes ago)
+6ce4d2d chore: refresh nucleus live state [skip ci] (21 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
