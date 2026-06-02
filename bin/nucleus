@@ -339,6 +339,125 @@ def build_payload():
     }
 
 
+# Per-venture command center — separates projects so one thread doesn't blur them.
+VMETA = {
+    "ssa": ("sellsellingai", "\U0001F4B0", "#c8a45c"),
+    "byb": ("buildyourbot", "\U0001F916", "#69be28"),
+    "lai": ("letaidoit", "\U0001F576", "#5aa9e6"),
+    "mm": ("Minimovies", "\U0001F3AC", "#e6794a"),
+    "etsy": ("Etsy · OrionDesign", "\U0001F6CD", "#d98cc0"),
+    "pod": ("PodSupps", "\U0001F48A", "#b07ad6"),
+    "bb": ("buddy botz", "\U0001F47E", "#8a93a0"),
+}
+VORDER = ["ssa", "byb", "lai", "etsy", "mm", "pod", "bb"]
+
+
+def _parse_handoffs(text):
+    block = get_block(text, HANDOFFS_START, HANDOFFS_END)
+    out, cur = [], None
+    for line in block.splitlines():
+        if line.startswith("### "):
+            if cur:
+                out.append(cur)
+            head = line[4:].strip()
+            when, _, src = head.partition(" · ")
+            cur = {"when": when.strip(), "source": src.strip(), "text": ""}
+        elif cur is not None and line.strip():
+            cur["text"] = (cur["text"] + " " + line.strip()).strip()
+    if cur:
+        out.append(cur)
+    return out
+
+
+def build_command():
+    text = read()
+    try:
+        tp = os.path.join(NUCLEUS_DIR, "tasks.json")
+        tasks = json.loads(open(tp).read()).get("tasks", [])
+    except Exception:
+        tasks = []
+    groups = {}
+    for t in tasks:
+        key = (t.get("owner") or "misc").split("-")[0]
+        g = groups.setdefault(key, {"open": [], "done": 0})
+        if t.get("status") == "done":
+            g["done"] += 1
+        else:
+            g["open"].append({"id": t.get("id"), "title": t.get("title"),
+                              "need": t.get("need", ""), "role": (t.get("owner") or "")})
+    ventures = []
+    seen = set()
+    for key in VORDER + [k for k in groups if k not in VORDER]:
+        if key in seen or key not in groups:
+            continue
+        seen.add(key)
+        name, emoji, color = VMETA.get(key, (key, "\U0001F4C1", "#888"))
+        ventures.append({"key": key, "name": name, "emoji": emoji, "color": color,
+                         "open": groups[key]["open"], "done": groups[key]["done"]})
+    north = "$1,000,000"
+    for line in text.splitlines():
+        if "THE NUMBER" in line:
+            north = line.split(":", 1)[-1].split("**")[0].strip(" *-.") or north
+            break
+    op = sum(len(v["open"]) for v in ventures)
+    dn = sum(v["done"] for v in ventures)
+    return {"north_star": north, "ventures": ventures,
+            "handoffs": _parse_handoffs(text)[:6],
+            "totals": {"open": op, "done": dn},
+            "branch": git("rev-parse", "--abbrev-ref", "HEAD") or "(unknown)",
+            "updated": now_iso()}
+
+
+COMMAND_HTML = r"""<!doctype html><html><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Command Center</title><style>
+*{box-sizing:border-box}body{background:#0a1018;color:#e8edf2;font:14px/1.55 system-ui,sans-serif;margin:0;padding:24px}
+a{color:inherit}.wrap{max-width:1180px;margin:0 auto}
+.top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-bottom:1px solid #1d2a3a;padding-bottom:14px;margin-bottom:20px}
+h1{font:700 20px system-ui;margin:0;color:#c8a45c}.ns{font:700 15px system-ui;color:#69be28}
+.meta{color:#6b7a8d;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.card{background:#0e1622;border:1px solid #1d2a3a;border-top:3px solid var(--c);border-radius:12px;padding:14px 16px;min-height:120px}
+.card h2{font:700 15px system-ui;margin:0 0 2px;display:flex;align-items:center;gap:8px}
+.cnt{margin-left:auto;font:600 12px system-ui;color:#6b7a8d}
+.task{padding:8px 0;border-top:1px solid #16202e}.task:first-of-type{border-top:none;margin-top:6px}
+.tid{color:var(--c);font:600 11px ui-monospace,monospace;margin-right:6px}
+.need{color:#7d8b9c;font-size:12px;margin-top:2px}
+.empty{color:#46546580;font-style:italic;padding:10px 0}
+.foot{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.foot{grid-template-columns:1fr}}
+.panel{background:#0e1622;border:1px solid #1d2a3a;border-radius:12px;padding:14px 16px}
+.panel h3{font:700 13px system-ui;color:#c8a45c;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em}
+.ho{padding:7px 0;border-top:1px solid #16202e;font-size:12.5px}.ho:first-of-type{border-top:none}
+.ho .w{color:#6b7a8d;font-size:11px}
+textarea{width:100%;background:#0a1018;color:#fff;border:1px solid #28384b;border-radius:8px;padding:9px;resize:vertical;min-height:60px;font:13px system-ui}
+button{margin-top:8px;width:100%;padding:9px;border:none;border-radius:8px;background:#c8a45c;color:#0a1018;font-weight:700;cursor:pointer}
+.done{color:#69be28}</style></head>
+<body><div class=wrap>
+<div class=top><h1>🧠 Command Center</h1><div class=ns id=ns></div><div class=meta id=meta></div></div>
+<div class=grid id=grid></div>
+<div class=foot>
+<div class=panel><h3>Recent activity</h3><div id=ho></div></div>
+<div class=panel><h3>Push to the brain</h3><textarea id=note placeholder="Capture a decision, idea, or update…"></textarea><button id=send>→ Push to nucleus</button></div>
+</div></div>
+<script>
+function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function load(){fetch("/command.json").then(r=>r.json()).then(d=>{
+ document.getElementById("ns").textContent="🎯 "+d.north_star;
+ document.getElementById("meta").textContent="branch "+d.branch+" · "+d.totals.open+" open · "+d.totals.done+" done · "+d.updated;
+ var g=d.ventures.map(function(v){
+  var tasks=v.open.length?v.open.map(function(t){return '<div class=task><div><span class=tid>'+esc(t.id)+'</span>'+esc(t.title)+'</div>'+(t.need?'<div class=need>'+esc(t.need)+'</div>':'')+'</div>'}).join(''):'<div class=empty>clear ✓</div>';
+  return '<div class=card style="--c:'+v.color+'"><h2>'+v.emoji+' '+esc(v.name)+'<span class=cnt>'+v.open.length+' open'+(v.done?' · <span class=done>'+v.done+' done</span>':'')+'</span></h2>'+tasks+'</div>';
+ }).join('');
+ document.getElementById("grid").innerHTML=g;
+ document.getElementById("ho").innerHTML=d.handoffs.map(function(h){return '<div class=ho><div class=w>'+esc(h.when)+' · '+esc(h.source)+'</div>'+esc(h.text.slice(0,180))+'</div>'}).join('')||'<div class=empty>—</div>';
+});}
+document.getElementById("send").onclick=function(){var n=document.getElementById("note").value.trim();if(!n)return;var b=this;b.textContent="…";
+ fetch("/push",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({note:n,from:"command-center"})}).then(function(){document.getElementById("note").value="";b.textContent="✓ pushed";load();setTimeout(function(){b.textContent="→ Push to nucleus"},1200)})};
+load();setInterval(load,15000);
+</script></body></html>"""
+
+
 # Single-line embeddable widget. Any web app adds:
 #   <script src="http://localhost:4040/widget.js"></script>
 # ...and gets a floating 🧠 panel showing live context + a push box.
@@ -405,22 +524,11 @@ def cmd_serve(port=4040):
 
         def do_GET(self):
             path = self.path.split("?", 1)[0]
-            if path in ("/", "/index.html"):
-                p = build_payload()
-                html = (
-                    "<!doctype html><meta charset=utf-8>"
-                    "<title>Context Nucleus</title>"
-                    "<body style='background:#0d0d0f;color:#eee;font:14px/1.6 "
-                    "system-ui;max-width:780px;margin:40px auto;padding:0 20px'>"
-                    "<h1 style='color:#C8A45C'>\U0001F9E0 Context Nucleus</h1>"
-                    "<p>Branch <code>" + p["branch"] + "</code> · updated "
-                    + p["updated"] + "</p><pre style='white-space:pre-wrap;"
-                    "background:#15151a;padding:16px;border-radius:10px;"
-                    "border:1px solid #C8A45C'>"
-                    + p["markdown"].replace("&", "&amp;").replace("<", "&lt;")
-                    + "</pre>"
-                )
-                self._send(200, html, "text/html; charset=utf-8")
+            if path in ("/", "/index.html", "/command"):
+                self._send(200, COMMAND_HTML, "text/html; charset=utf-8")
+            elif path == "/command.json":
+                self._send(200, json.dumps(build_command()),
+                           "application/json; charset=utf-8")
             elif path == "/widget.js":
                 self._send(200, WIDGET_JS, "application/javascript; charset=utf-8")
             elif path == "/nucleus.json":
