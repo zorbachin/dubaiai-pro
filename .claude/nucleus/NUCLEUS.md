@@ -43,6 +43,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 04:50 UTC · chat
+🎉 BIG WIN 2026-06-02: calisthenics video published LIVE to Facebook, Instagram (Reel, zorb_ai), and LinkedIn. X uncertain (Buffer timed out mid-86MB-upload — verify manually). Posting block broken. SUSTAINABLE CADENCE in .claude/os/content/posting-cadence.md: batch 1 pillar video/Sun → Claude atomizes + queues all platforms in Buffer → user approves + posts FB manually. Floor 3/wk; FB 3-5x, IG 4-5x, LI 3x, X 5x, TikTok 3x, newsletter 1x.
+
+### 2026-06-02 04:43 UTC · chat
+🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
+
 ### 2026-06-02 04:31 UTC · chat
 Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
 
@@ -162,22 +168,22 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 04:37 UTC
-- **Branch:** `main`
-- **Last commit:** 9f11855 chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **When:** 2026-06-02 04:50 UTC
+- **Branch:** `claude/posting-cadence`
+- **Last commit:** 5f44c4f chore: mark anchor video posted + capture Buffer video workflow — 6 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+?? .claude/os/content/posting-cadence.md
 ```
 
 **Recent commits:**
 ```
-9f11855 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-420d280 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-1650631 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-eead399 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-014d99f chore: refresh nucleus live state [skip ci] (15 minutes ago)
+5f44c4f chore: mark anchor video posted + capture Buffer video workflow (6 minutes ago)
+3e960b1 chore: refresh nucleus live state [skip ci] (13 minutes ago)
+9f11855 chore: refresh nucleus live state [skip ci] (16 minutes ago)
+420d280 chore: refresh nucleus live state [skip ci] (17 minutes ago)
+1650631 chore: refresh nucleus live state [skip ci] (18 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
