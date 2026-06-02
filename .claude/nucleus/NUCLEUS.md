@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 05:06 UTC · chat
+BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. (1) PodSupps (podsupps.com) → run autonomously, Claude starts marketing it + drives signups/logins. (2) For other ventures, Claude is the guide — tell him what to do. (3) SPEND AUDIT: monitor wasted spend — still need Manus? Etsy? right-size ElevenLabs? pay for HeyGen? cheapest effective video tool (Higgsfield vs Topview)? (4) Build CORPORATE AGENTIC STRUCTURE: who runs which workstream, cost, investment needed. (5) Send him prompts/nudges when lagging — 'your job is 24/7'. KEY INSIGHT to apply: his brand is REAL/self-shot (calisthenics) → expensive AI-video/avatar tools may be redundant.
+
 ### 2026-06-02 04:50 UTC · chat
 🎉 BIG WIN 2026-06-02: calisthenics video published LIVE to Facebook, Instagram (Reel, zorb_ai), and LinkedIn. X uncertain (Buffer timed out mid-86MB-upload — verify manually). Posting block broken. SUSTAINABLE CADENCE in .claude/os/content/posting-cadence.md: batch 1 pillar video/Sun → Claude atomizes + queues all platforms in Buffer → user approves + posts FB manually. Floor 3/wk; FB 3-5x, IG 4-5x, LI 3x, X 5x, TikTok 3x, newsletter 1x.
 
@@ -159,18 +162,15 @@ User needs to SEE the system work with concrete proof, not be told it works. Sho
 
 ### 2026-06-01 07:57 UTC · chat
 Steering signals to always note: (1) when user says something 'works'/validates an approach, (2) when user steers thinking in a direction, (3) patterns recurring across workstreams. Plus: the nucleus should self-check and get smarter over time.
-
-### 2026-06-01 07:52 UTC · chat
-User preference: capture useful things (decisions, preferences, milestones, open loops) PROACTIVELY without being asked — they should rarely need to say 'remember this'.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:01 UTC
+- **When:** 2026-06-02 05:06 UTC
 - **Branch:** `main`
-- **Last commit:** 2c8e3ee chore: refresh nucleus live state [skip ci] — 10 minutes ago
+- **Last commit:** 1490a56 chore: refresh nucleus live state [skip ci] — 5 minutes ago
 
 **Working tree:**
 ```
@@ -179,11 +179,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-2c8e3ee chore: refresh nucleus live state [skip ci] (10 minutes ago)
-1b14813 Sustainable posting cadence + multi-platform publish log (#31) (10 minutes ago)
-3e960b1 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-9f11855 chore: refresh nucleus live state [skip ci] (27 minutes ago)
-420d280 chore: refresh nucleus live state [skip ci] (29 minutes ago)
+1490a56 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+2c8e3ee chore: refresh nucleus live state [skip ci] (15 minutes ago)
+1b14813 Sustainable posting cadence + multi-platform publish log (#31) (15 minutes ago)
+3e960b1 chore: refresh nucleus live state [skip ci] (29 minutes ago)
+9f11855 chore: refresh nucleus live state [skip ci] (32 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
