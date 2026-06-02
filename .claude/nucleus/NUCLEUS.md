@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 12:16 UTC · chat
+ISSUE 001 = full real origin (Zorba's own words, polished, no em-dashes, cinematic). KEY BIO FACTS (durable): Engaged at the Duomo, Milan, sunset, last night of a 6-wk budget trip; filmed it using a 'new iPhone mic to test' as alibi (tripod+mics+ring box in a bag). Moved to Israel ~1yr prior; laid off 2 days after booking ticket; company folded 6 wks later; six-figure cushion gone. Met Meytal within 6 wks (hours before a flight); rocket jammed her door -> she moved into his room; Yom Haatzmaut -> first sublet (extended 2x). Money came from 'angels', one who seemed to track his bank account. SUBPLOTS: a FILM in active development w/ investor signed; a TV series being pitched to big names (both months away). Wedding = global, Alaskan+Ethiopian+Israeli+American culture collision; war began 9 days later; has a mamad/safe room; 1st month of marriage in own place then spare room (mom's bed). THE HOUSE: family friends' beautiful home near Netanya (near mother-in-law) they can't live in = chance at dream home = the MISSION (support family, get the home, use AI). Passover: said AI makes him feel free (lets him bring ideas to life fast, like standup). Chronology woven in: zorbot.io -> chatbot on his ChatGPT history+his book on how to think -> 'that's a product' = bloop -> algorithm shifted to AI tool builds -> ~$1k + 1000+ hrs -> reaching out to businesses -> buildyourbot.io + selfsellingai.pro. Tone: warm, determined, grateful, anti-hype. Tied subplots: film/TV ('AI did not make me wait'), the angel (pay it forward), the house (building toward it in public).
+
 ### 2026-06-02 11:28 UTC · chat
 ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more human (use commas/periods/parentheses). Durable voice rule. (2) Corrected timeline: OBSESSION came BEFORE the business. During the war his YouTube feed flipped (no news, only AI builds) -> got obsessed -> started PAYING for subscriptions to test them himself, figuring 'if it lands one job it's worth it.' Baby found out MIDWAY through the war while deep in AI, not knowing what to do -> that 'changed the math' -> first call -> second -> hardest part = posting. (3) Story rewritten present-tense/cinematic (in-the-moment, not safe past tense). (4) DROPPED the Three Time-Savers from the premiere — he 'didn't get the tips'; premiere = pure origin story. Segment returns later reworked. Masthead billing now teases story beats (The Feed That Went Quiet / Midway Through the War / The Mission, Made Plain).
 
@@ -161,31 +164,34 @@ STORY ASSETS to learn & use in content: the house, the war, and the previous dra
 
 ### 2026-06-01 18:14 UTC · chat
 VOICE: user's own voice + Hormozi-style direct marketer, but human/good. Self-aware, meta, slightly subversive. Reframes in human terms: 'get your time back' (benefit) vs 'AI is the solution' (feature). This is a SKILL to implement for all content agents.
-
-### 2026-06-01 18:14 UTC · chat
-LAUNCH RESET: nothing is truly launched yet except kinda Minimovies. Treat EVERY venture as Day 1 / square one. Marketing + research sub-agents start from scratch, no assumed traction.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 11:29 UTC
+- **When:** 2026-06-02 12:17 UTC
 - **Branch:** `main`
-- **Last commit:** e624d29 chore: refresh nucleus live state [skip ci] — 14 seconds ago
+- **Last commit:** 6d9d6f7 Issue 001 — full real origin story, subplots tied (#51) — 40 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-e624d29 chore: refresh nucleus live state [skip ci] (14 seconds ago)
-937f4f0 Rewrite Issue 001 — more human, cinematic, corrected timeline (#50) (43 seconds ago)
-a7ad7c7 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-9332db2 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-6ce4d2d chore: refresh nucleus live state [skip ci] (21 minutes ago)
+6d9d6f7 Issue 001 — full real origin story, subplots tied (#51) (40 seconds ago)
+43f678f chore: refresh nucleus live state [skip ci] (48 minutes ago)
+e624d29 chore: refresh nucleus live state [skip ci] (48 minutes ago)
+937f4f0 Rewrite Issue 001 — more human, cinematic, corrected timeline (#50) (49 minutes ago)
+a7ad7c7 chore: refresh nucleus live state [skip ci] (63 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
