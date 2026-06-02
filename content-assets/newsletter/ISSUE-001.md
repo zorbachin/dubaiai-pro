@@ -1,4 +1,4 @@
-# 🎬 The Dispatch — Issue No. 001 · "The First Call"
+# 🎬 The Dispatch · Issue No. 001 · "The First Call"
 
 _Masthead: `dispatch-no-001.png`. Body below. The premiere is pure origin story.
 (The recurring "time-savers" segment returns in a later issue, reworked.)_
