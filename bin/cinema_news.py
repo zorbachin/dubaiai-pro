@@ -92,8 +92,8 @@ if __name__ == "__main__":
     build(
         presents="Let AI Do It Proudly Presents",
         title_lines=["The First", "Call"],
-        tagline=["Built live — from a bomb shelter to the first call.", "An honest origin, and where we go from here."],
-        billing=["From a Sublet to the Shelter", "The Mission, Made Plain", "Three Two-Minute Time-Savers"],
+        tagline=["The honest origin. Built live, exposed.", "From a shelter, to a feed full of AI, to the first call."],
+        billing=["The Feed That Went Quiet", "Midway Through the War", "The Mission, Made Plain"],
         dateline="Vol. I  ·  The Premiere Issue  ·  2026",
         cta="Now Showing At",
         fname="dispatch-no-001.png",
