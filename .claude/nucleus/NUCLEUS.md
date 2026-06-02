@@ -145,35 +145,21 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 03:33 UTC
-- **Branch:** `claude/brand-v3`
-- **Last commit:** 4837c73 Golden-glasses brand mark + cardgen2 (3 style directions) (#29) — 6 minutes ago
+- **Branch:** `main`
+- **Last commit:** 3f9b32e v3 brand system — navy + gold glasses + action green (#30) — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-A  bin/cardgen3
-A  content-assets/v3/v3-green-glasses.png
-A  content-assets/v3/v3-navy-gold.png
-A  content-assets/v3/v3-navy-green-gold.png
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md               |  37 ++++---------
- bin/cardgen3                             |  92 +++++++++++++++++++++++++++++++
- content-assets/v3/v3-green-glasses.png   | Bin 0 -> 35429 bytes
- content-assets/v3/v3-navy-gold.png       | Bin 0 -> 42306 bytes
- content-assets/v3/v3-navy-green-gold.png | Bin 0 -> 42306 bytes
- 5 files changed, 104 insertions(+), 25 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-4837c73 Golden-glasses brand mark + cardgen2 (3 style directions) (#29) (6 minutes ago)
-455f2ac chore: refresh nucleus live state [skip ci] (10 minutes ago)
+3f9b32e v3 brand system — navy + gold glasses + action green (#30) (21 seconds ago)
+4837c73 Golden-glasses brand mark + cardgen2 (3 style directions) (#29) (7 minutes ago)
+455f2ac chore: refresh nucleus live state [skip ci] (11 minutes ago)
 98db75e Branded card generator + real content assets (pillar 1) (#28) (11 minutes ago)
 33dc927 chore: refresh nucleus live state [skip ci] (19 minutes ago)
-1037ce2 chore: refresh nucleus live state [skip ci] (19 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
