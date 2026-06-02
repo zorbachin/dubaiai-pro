@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 03:01 UTC · code
+PILLAR 1 created + atomized: 'How I got into AI business' → 10 pieces across a week (anchor video, carousel, 3 written posts, 3 quote cards, meme, newsletter), queued T008-T014 for LetAIDoIt. Through-line: 'You don't need to learn AI, you need someone who already did the 1000 hours.' Voice guide upgraded to v1 with his real word samples.
+
 ### 2026-06-01 18:38 UTC · chat
 CONTENT SYSTEM (key workflow): user batches 2-4 hrs Sun/Mon on RAW content creation only (his strength, peak 7:30am). Then Claude atomizes each raw asset into many formats across the week (video→clips/carousel/quotes/memes/written/email). Create once, ship all week. Removes midweek blank-page + posting friction.
 
@@ -123,22 +126,33 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-01 18:40 UTC
-- **Branch:** `main`
-- **Last commit:** bc7d6a5 Batch & repurpose content system (create once, ship all week) (#26) — 20 seconds ago
+- **When:** 2026-06-02 03:01 UTC
+- **Branch:** `claude/pillar-1`
+- **Last commit:** 9d5f76e chore: refresh nucleus live state [skip ci] — 8 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M .claude/nucleus/tasks.json
+ M .claude/os/references/voice-guide.md
+?? .claude/os/content/pillar-1-ai-business-story.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md           |  22 +++---
+ .claude/nucleus/tasks.json           | 128 ++++++++++++++++++++++++++++++++++-
+ .claude/os/references/voice-guide.md |  18 ++++-
+ 3 files changed, 157 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-bc7d6a5 Batch & repurpose content system (create once, ship all week) (#26) (20 seconds ago)
-63c2b2b chore: refresh nucleus live state [skip ci] (5 minutes ago)
-8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (5 minutes ago)
-8d9a946 Dopaminergic focus dashboard (focus.html) (#24) (10 minutes ago)
-3e8cfb1 chore: refresh nucleus live state [skip ci] (13 minutes ago)
+9d5f76e chore: refresh nucleus live state [skip ci] (8 hours ago)
+bc7d6a5 Batch & repurpose content system (create once, ship all week) (#26) (8 hours ago)
+63c2b2b chore: refresh nucleus live state [skip ci] (8 hours ago)
+8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (8 hours ago)
+8d9a946 Dopaminergic focus dashboard (focus.html) (#24) (9 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
