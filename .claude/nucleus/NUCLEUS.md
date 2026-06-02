@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 15:44 UTC
 - **Branch:** `main`
-- **Last commit:** 7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) — 32 seconds ago
+- **Last commit:** 1624ccc chore: refresh nucleus live state [skip ci] — 16 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
- 1 file changed, 19 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) (32 seconds ago)
+1624ccc chore: refresh nucleus live state [skip ci] (16 seconds ago)
+7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) (48 seconds ago)
 a02ab5e chore: refresh nucleus live state [skip ci] (23 minutes ago)
 e62c92d chore: refresh nucleus live state [skip ci] (24 minutes ago)
 ee78750 More Zorbasphere: ready Issue 002 essay + 12-note bank (#62) (24 minutes ago)
-c57a6ca chore: refresh nucleus live state [skip ci] (70 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
