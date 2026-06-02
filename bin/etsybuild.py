@@ -162,37 +162,43 @@ class Doc:
             c.drawString(M + 14, yy, ln); yy -= 15
         self.y = top - h - 12
 
+    def _pill(self, x, by, text, fill, txtcol, url):
+        c = self.c
+        tw = c.stringWidth(text, SANS_B, 8.5)
+        w = tw + 32
+        c.setFillColorRGB(*fill); c.roundRect(x, by, w, 21, 5, fill=1, stroke=0)
+        # play triangle
+        c.setFillColorRGB(*txtcol)
+        p = c.beginPath(); p.moveTo(x + 12, by + 6); p.lineTo(x + 12, by + 15)
+        p.lineTo(x + 19, by + 10.5); p.close(); c.drawPath(p, fill=1, stroke=0)
+        c.setFont(SANS_B, 8.5); c.setFillColorRGB(*txtcol)
+        c.drawString(x + 24, by + 6.5, text)
+        c.linkURL(url, (x, by, x + w, by + 21), relative=0)
+        return x + w + 12
+
     def prompt(self, label, text):
-        """A copy-ready prompt in a box + clickable 'Run in ChatGPT / Claude' links."""
+        """A clean, copy-ready prompt card + 'Run in ChatGPT / Claude' pill buttons."""
         from urllib.parse import quote
-        plines = wrap(text, "Courier", 9.5, PW - 2 * M - 28)
-        h = 30 + len(plines) * 13 + 26
+        plines = wrap(text, SANS, 10, PW - 2 * M - 34)
+        h = 30 + len(plines) * 14 + 18 + 24
         self.need(h + 12); c = self.c
         top = self.y
-        # box
-        c.setFillColorRGB(0.96, 0.965, 0.975); c.rect(M, top - h, PW - 2 * M, h, fill=1, stroke=0)
-        c.setStrokeColorRGB(*GOLD); c.setLineWidth(0.8); c.rect(M, top - h, PW - 2 * M, h, fill=0, stroke=1)
-        c.setFont(SANS_B, 8.5); c.setFillColorRGB(*GOLD)
-        c.drawString(M + 14, top - 17, ("PROMPT — " + label).upper())
-        yy = top - 33
-        c.setFillColorRGB(0.12, 0.16, 0.22)
+        c.setFillColorRGB(0.972, 0.972, 0.965); c.rect(M, top - h, PW - 2 * M, h, fill=1, stroke=0)
+        c.setFillColorRGB(*GOLD); c.rect(M, top - h, 3.5, h, fill=1, stroke=0)
+        c.setFont(SANS_B, 8); c.setFillColorRGB(*GOLD)
+        c.drawString(M + 16, top - 18, ("PROMPT  ·  " + label).upper())
+        yy = top - 36
+        c.setFillColorRGB(0.13, 0.16, 0.21)
         for ln in plines:
-            c.setFont("Courier", 9.5); c.drawString(M + 14, yy, ln); yy -= 13
-        # run links
+            c.setFont(SANS, 10); c.drawString(M + 16, yy, ln); yy -= 14
         enc = quote(text)
-        gpt = "https://chatgpt.com/?q=" + enc
-        cla = "https://claude.ai/new?q=" + enc
-        ly = top - h + 9
-        c.setFont(SANS_B, 9)
-        c.setFillColorRGB(*GREEN); c.drawString(M + 14, ly, "▶ Run in ChatGPT")
-        w1 = c.stringWidth("▶ Run in ChatGPT", SANS_B, 9)
-        c.linkURL(gpt, (M + 14, ly - 3, M + 14 + w1, ly + 10), relative=0)
-        x2 = M + 14 + w1 + 28
-        c.setFillColorRGB(*GOLD); c.drawString(x2, ly, "▶ Run in Claude")
-        w2 = c.stringWidth("▶ Run in Claude", SANS_B, 9)
-        c.linkURL(cla, (x2, ly - 3, x2 + w2, ly + 10), relative=0)
+        by = top - h + 11
+        x = self._pill(M + 16, by, "Run in ChatGPT", GREEN, (1, 1, 1),
+                       "https://chatgpt.com/?q=" + enc)
+        self._pill(x, by, "Run in Claude", GOLD, NAVY,
+                   "https://claude.ai/new?q=" + enc)
         c.setFont(SANS, 7.5); c.setFillColorRGB(*MUT)
-        c.drawRightString(PW - M - 14, ly, "tap to auto-fill")
+        c.drawRightString(PW - M - 14, by + 6.5, "tap to auto-fill")
         self.y = top - h - 12
 
     def onepager(self, headline, steps):
