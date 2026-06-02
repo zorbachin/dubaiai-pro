@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 09:46 UTC
 - **Branch:** `main`
-- **Last commit:** 172e238 Closing-tool content push — carousel + quote cards + copy pack (#44) — 28 seconds ago
+- **Last commit:** 27a94e1 chore: refresh nucleus live state [skip ci] — 11 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 23 ++++++++++++-----------
- 1 file changed, 12 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-172e238 Closing-tool content push — carousel + quote cards + copy pack (#44) (28 seconds ago)
+27a94e1 chore: refresh nucleus live state [skip ci] (11 seconds ago)
+172e238 Closing-tool content push — carousel + quote cards + copy pack (#44) (39 seconds ago)
 3332f82 Command-center sync feed + per-venture dashboard (#43) (3 minutes ago)
 1e3db2b chore: refresh nucleus live state [skip ci] (9 minutes ago)
 475a851 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-85dfc66 All 20 products at elite depth + prompt libraries + repricing (#42) (10 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
