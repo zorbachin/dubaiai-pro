@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 17:26 UTC · chat
+SSA EMAILS STATUS: NOT sent (Claude has no recipient list + sending in Zorba's name to real people needs his nod). Drafts exist: .claude/os/customers/challenge-emails.md (5-day 'Get Your Weekend Back' challenge sequence) + outreach-scripts.md. BLOCKERS: (1) challenge emails need CHALLENGE SIGNUPS to send to (challenge not launched yet). (2) 'new clients' + 'send to more' = Claude needs WHO (names/emails) to personalize. DURABLE RULE: DON'T BE GENERIC — outreach must be personalized/researched per person (1 specific line up top), never template blasts. Warm leads on file: Isaac/vybewear, GTAA tournament leads (Phil Immordino/gtaaweb.org), Jack@Ambo. NEXT: Zorba names the new clients -> Claude writes a specific message per person + sends via Gmail.
+
 ### 2026-06-02 15:56 UTC · chat
 NUDGE ENGINE BUILT (Google Calendar = the 'email me when to post' system Zorba asked for). Created 6 calendar events 6/3-6/8, 09:00 Asia/Jerusalem, each with the exact copy/link in the description + email reminder 30min before + popup at time: 6/3 LAUNCH socials, 6/4 Note+restack, 6/5 Build Log 001, 6/6 Note (posting fear), 6/7 PUBLISH Issue 002, 6/8 Note. Calendar auto-emails him. Notes also banked in NOTES-BANK.md. PATTERN going forward: Claude schedules posts as Calendar events w/ copy in notes = hands-off reminders toward the 2-week automation goal.
 
@@ -162,31 +165,34 @@ User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real
 
 ### 2026-06-02 03:33 UTC · code
 Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Green #69BE28 accent + cream serif. 3 variants. This is the Seahawks-palette synthesis per user direction. Still need real site screenshots to exact-match gold shade/fonts (env is bot-blocked: WebFetch 403 everywhere, Netlify MCP 502).
-
-### 2026-06-02 03:31 UTC · chat
-BRAND PALETTE DIRECTION: gold glasses on BLUE, or GREEN — Seahawks colors (College Navy #002244 + Action Green ~#69BE28) WITH gold. Synthesize a Zorba-wide brand from zorbot.io + buildyourbot.io + selfsellingai.pro. Method: pull real deployed code from Netlify (bot-blocked to WebFetch). Mapping: selfsellingai.pro→letaidoit site; buildyourbot→byb-ambassador.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 17:06 UTC
+- **When:** 2026-06-02 17:27 UTC
 - **Branch:** `main`
-- **Last commit:** cb7f9c7 chore: refresh nucleus live state [skip ci] — 28 seconds ago
+- **Last commit:** c5726ff chore: refresh nucleus live state [skip ci] — 20 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-cb7f9c7 chore: refresh nucleus live state [skip ci] (28 seconds ago)
-ef4cd2c chore: refresh nucleus live state [skip ci] (40 minutes ago)
-db7c7e3 Aspirational family framing + durable privacy rule (#65) (40 minutes ago)
-45c47bb chore: refresh nucleus live state [skip ci] (70 minutes ago)
-0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) (71 minutes ago)
+c5726ff chore: refresh nucleus live state [skip ci] (20 minutes ago)
+cb7f9c7 chore: refresh nucleus live state [skip ci] (21 minutes ago)
+ef4cd2c chore: refresh nucleus live state [skip ci] (60 minutes ago)
+db7c7e3 Aspirational family framing + durable privacy rule (#65) (60 minutes ago)
+45c47bb chore: refresh nucleus live state [skip ci] (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
