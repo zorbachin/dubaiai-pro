@@ -170,28 +170,22 @@ Building multi-agent OS: agentbus task ledger (bin/agentbus) gives explicit open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:13 UTC
+- **When:** 2026-06-02 05:14 UTC
 - **Branch:** `main`
-- **Last commit:** 3593145 chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** 426fd33 $1M North Star + operating model + real spend audit (#33) — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 +++++++++++---------
- 1 file changed, 11 insertions(+), 9 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-3593145 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-22a565c Portfolio command center — org chart, workstreams, spend audit (#32) (4 minutes ago)
-1490a56 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-2c8e3ee chore: refresh nucleus live state [skip ci] (21 minutes ago)
-1b14813 Sustainable posting cadence + multi-platform publish log (#31) (21 minutes ago)
+426fd33 $1M North Star + operating model + real spend audit (#33) (21 seconds ago)
+3593145 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+22a565c Portfolio command center — org chart, workstreams, spend audit (#32) (5 minutes ago)
+1490a56 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+2c8e3ee chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
