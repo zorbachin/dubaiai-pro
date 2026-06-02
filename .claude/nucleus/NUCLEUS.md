@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 09:36 UTC · chat
+NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
+
 ### 2026-06-02 09:19 UTC · chat
 PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product structure: COVER -> ADHD ONE-PAGER (whole system at a glance, 1 page) -> DEEP WALKTHROUGH (numbered steps, easy-to-follow) -> each step has a copy-paste PROMPT box with CLICKABLE 'Run in ChatGPT/Claude' links that auto-fill (chatgpt.com/?q= and claude.ai/new?q= URL-encoded) -> bonus prompt pack -> Work-With-Me CTA. Engine upgraded (bin/etsybuild.py: onepager/step/prompt blocks). Flagship #01 rebuilt as the exemplar/template (6KB->22KB). AWAITING format approval, then batch all 20 to this template + reprice bundle to $60.
 
@@ -161,31 +164,34 @@ TODAY'S MISSES (open loops): did not launch the sites, the challenge, the email 
 
 ### 2026-06-01 18:05 UTC · chat
 USER WORKING STYLE: ADHD — needs coaching, guidance, clear workstreams, not a wall of options. LIKES creating content when he knows what he's doing. GETS STUCK on POSTING — insecurity is the blocker, not the creation. Posting friction is a recurring pattern to design around.
-
-### 2026-06-01 18:05 UTC · chat
-MY ROLE (Claude): chief of staff / orchestrator + ADHD coach. Set daily (or 2x/day) task lists per venture & agent. When user brings new ideas mid-stream, find balance: 'yes we can do that AND here's what still must ship today' — don't let new shiny derail committed goals.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 09:26 UTC
+- **When:** 2026-06-02 09:37 UTC
 - **Branch:** `main`
-- **Last commit:** e0a73b8 Hyperlink letaidoit.pro everywhere + clickable contact buttons (#41) — 18 seconds ago
+- **Last commit:** 85dfc66 All 20 products at elite depth + prompt libraries + repricing (#42) — 79 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-e0a73b8 Hyperlink letaidoit.pro everywhere + clickable contact buttons (#41) (18 seconds ago)
-ba6f1e7 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-490fccf Clean prompt cards — pill buttons + drawn triangles (#40) (3 minutes ago)
-25261ea chore: refresh nucleus live state [skip ci] (5 minutes ago)
-88fd461 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+85dfc66 All 20 products at elite depth + prompt libraries + repricing (#42) (79 seconds ago)
+1ddc1ac chore: refresh nucleus live state [skip ci] (11 minutes ago)
+e0a73b8 Hyperlink letaidoit.pro everywhere + clickable contact buttons (#41) (11 minutes ago)
+ba6f1e7 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+490fccf Clean prompt cards — pill buttons + drawn triangles (#40) (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
