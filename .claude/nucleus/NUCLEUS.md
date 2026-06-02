@@ -172,7 +172,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 15:56 UTC
 - **Branch:** `main`
-- **Last commit:** 85da280 chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** 0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) — 21 seconds ago
 
 **Working tree:**
 ```
@@ -181,11 +181,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-85da280 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) (21 seconds ago)
+85da280 chore: refresh nucleus live state [skip ci] (4 minutes ago)
 c277b73 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-1624ccc chore: refresh nucleus live state [skip ci] (12 minutes ago)
+1624ccc chore: refresh nucleus live state [skip ci] (13 minutes ago)
 7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) (13 minutes ago)
-a02ab5e chore: refresh nucleus live state [skip ci] (35 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
