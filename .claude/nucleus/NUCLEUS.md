@@ -43,6 +43,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 03:26 UTC · code
+Built cardgen2 with golden-glasses signature mark (vector, recurring brand element). 3 style directions: A navy+glasses-watermark, B cream editorial (glasses hero), C bold split. Awaiting user's pick + real brand refs (can't fetch zorbot/buildyourbot/selfsellingai — all 403 bot-blocked).
+
+### 2026-06-02 03:24 UTC · chat
+DESIGN DIRECTION: content is good but visuals need more edge — distinct, scroll-stopping, recognizably HIS. Brand references: zorbot.io, buildyourbot.io, selfsellingai.pro. SIGNATURE ELEMENT: his 'golden glasses' — use as a recurring brand mark to give cards a distinct edge. Match the existing brand worlds, not generic.
+
 ### 2026-06-02 03:13 UTC · code
 REAL SITE MAP (Netlify, 16 sites, owned by zorbachin/PodSupps team): letaidoit→letaidoit.netlify.app (OWNED, exists!), minimovies→minimovies.io (LIVE custom domain), byb-ambassador→byb-ambassador.netlify.app (forms enabled), foxy-close-tool→foxy-close-tool.netlify.app (the Instant Proposals closing tool), podsupps→podsupps.com, plus machberet, dad-ai-discovery, vybe-discovery, pbgai, zorbasphere, tlv-summer, polar-bear-prep, foxy-epoxy-discovery. NOTE: owned 'letaidoit' project already exists — redrop may be done or it's an empty shell; verify deploy.
 
@@ -132,22 +138,38 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 03:22 UTC
-- **Branch:** `main`
-- **Last commit:** 98db75e Branded card generator + real content assets (pillar 1) (#28) — 23 seconds ago
+- **When:** 2026-06-02 03:26 UTC
+- **Branch:** `claude/glasses-brand`
+- **Last commit:** 455f2ac chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+A  bin/cardgen2
+A  content-assets/v2/glasses-mark.png
+A  content-assets/v2/styleA-navy-watermark.png
+A  content-assets/v2/styleB-cream-editorial.png
+A  content-assets/v2/styleC-bold-split.png
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md                   |  17 +--
+ bin/cardgen2                                 | 150 +++++++++++++++++++++++++++
+ content-assets/v2/glasses-mark.png           | Bin 0 -> 11416 bytes
+ content-assets/v2/styleA-navy-watermark.png  | Bin 0 -> 49470 bytes
+ content-assets/v2/styleB-cream-editorial.png | Bin 0 -> 41432 bytes
+ content-assets/v2/styleC-bold-split.png      | Bin 0 -> 44171 bytes
+ 6 files changed, 160 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-98db75e Branded card generator + real content assets (pillar 1) (#28) (23 seconds ago)
-33dc927 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-1037ce2 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-da511b7 Pillar 1: "How I got into AI" → a week of content + voice v1 (#27) (21 minutes ago)
-9d5f76e chore: refresh nucleus live state [skip ci] (9 hours ago)
+455f2ac chore: refresh nucleus live state [skip ci] (4 minutes ago)
+98db75e Branded card generator + real content assets (pillar 1) (#28) (4 minutes ago)
+33dc927 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+1037ce2 chore: refresh nucleus live state [skip ci] (13 minutes ago)
+da511b7 Pillar 1: "How I got into AI" → a week of content + voice v1 (#27) (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 

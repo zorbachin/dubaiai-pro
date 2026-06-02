@@ -1,0 +1,150 @@
+#!/usr/bin/env python3
+"""
+cardgen2 — stronger, distinct branded cards with the GOLDEN GLASSES signature.
+
+Three style directions so the user can pick the vibe. The golden glasses are
+drawn as a vector motif (recognizable recurring mark = scroll-stopping edge).
+Local Pillow render, exact text, brand gold/navy. 1080x1080.
+
+Usage: cardgen2  → writes style variants of one quote into ./content-assets/v2/
+"""
+import os
+from PIL import Image, ImageDraw, ImageFont
+
+OUT = os.path.join(os.getcwd(), "content-assets", "v2")
+os.makedirs(OUT, exist_ok=True)
+FDIR = "/usr/share/fonts/truetype/liberation/"
+SERIF_B = FDIR + "LiberationSerif-Bold.ttf"
+SANS = FDIR + "LiberationSans-Regular.ttf"
+SANS_B = FDIR + "LiberationSans-Bold.ttf"
+
+GOLD = (200, 164, 92)
+GOLD_L = (232, 213, 168)
+NAVY = (10, 22, 40)
+NAVY2 = (16, 31, 54)
+CREAM = (250, 248, 243)
+MUT = (120, 138, 158)
+W = H = 1080
+
+
+def F(p, s):
+    return ImageFont.truetype(p, s)
+
+
+def wrap(d, text, fnt, max_w):
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        t = (cur + " " + w).strip()
+        if d.textlength(t, font=fnt) <= max_w:
+            cur = t
+        else:
+            lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+def glasses(d, cx, cy, scale=1.0, color=GOLD, width=14):
+    """Draw an iconic pair of round glasses centered at (cx,cy)."""
+    r = int(95 * scale)          # lens radius
+    gap = int(24 * scale)        # half-distance between lens centers (tight bridge)
+    w = max(4, int(width * scale))
+    lx, rx = cx - gap - r, cx + gap + r   # outer-ish anchors
+    # left lens
+    d.ellipse([cx - gap - 2 * r, cy - r, cx - gap, cy + r], outline=color, width=w)
+    # right lens
+    d.ellipse([cx + gap, cy - r, cx + gap + 2 * r, cy + r], outline=color, width=w)
+    # bridge
+    d.line([(cx - gap, cy - int(8 * scale)), (cx + gap, cy - int(8 * scale))],
+           fill=color, width=w)
+    # temples (arms)
+    d.line([(cx - gap - 2 * r, cy - int(6 * scale)),
+            (cx - gap - 2 * r - int(50 * scale), cy - int(28 * scale))],
+           fill=color, width=w)
+    d.line([(cx + gap + 2 * r, cy - int(6 * scale)),
+            (cx + gap + 2 * r + int(50 * scale), cy - int(28 * scale))],
+           fill=color, width=w)
+
+
+def wordmark(d, color=GOLD, y=H - 95):
+    f = F(SANS_B, 30)
+    txt = "LETAIDOIT.PRO"
+    # small glasses + wordmark, centered
+    tw = d.textlength(txt, font=f)
+    gx = (W - tw) / 2 - 60
+    glasses(d, int(gx), int(y + 16), scale=0.16, color=color, width=10)
+    d.text(((W - tw) / 2 + 18, y), txt, font=f, fill=color)
+
+
+def style_A(text, fname):
+    """Navy, giant glasses watermark behind bold text. Premium + edgy."""
+    img = Image.new("RGB", (W, H), NAVY)
+    d = ImageDraw.Draw(img)
+    # faint oversized glasses watermark
+    glasses(d, W // 2, 360, scale=2.6, color=NAVY2, width=26)
+    # gold rule top
+    d.rectangle([90, 150, 250, 162], fill=GOLD)
+    fnt = F(SERIF_B, 82)
+    lines = wrap(d, text, fnt, W - 220)
+    y = (H - len(lines) * 100) // 2 + 30
+    for ln in lines:
+        tw = d.textlength(ln, font=fnt)
+        d.text(((W - tw) / 2, y), ln, font=fnt, fill=CREAM)
+        y += 100
+    wordmark(d, GOLD)
+    img.save(os.path.join(OUT, fname))
+    print("  ●", fname)
+
+
+def style_B(text, fname):
+    """Cream editorial, glasses as a crisp top mark, navy text. Clean + distinct."""
+    img = Image.new("RGB", (W, H), CREAM)
+    d = ImageDraw.Draw(img)
+    glasses(d, W // 2, 210, scale=1.15, color=GOLD, width=16)
+    d.rectangle([W // 2 - 40, 360, W // 2 + 40, 368], fill=NAVY)
+    fnt = F(SERIF_B, 76)
+    lines = wrap(d, text, fnt, W - 240)
+    y = 440
+    for ln in lines:
+        tw = d.textlength(ln, font=fnt)
+        d.text(((W - tw) / 2, y), ln, font=fnt, fill=NAVY)
+        y += 92
+    wordmark(d, GOLD, y=H - 90)
+    img.save(os.path.join(OUT, fname))
+    print("  ●", fname)
+
+
+def style_C(text, fname):
+    """Bold split: gold top band w/ glasses, navy body. High-contrast, loud."""
+    img = Image.new("RGB", (W, H), NAVY)
+    d = ImageDraw.Draw(img)
+    d.rectangle([0, 0, W, 300], fill=GOLD)
+    glasses(d, W // 2, 150, scale=1.2, color=NAVY, width=18)
+    fnt = F(SANS_B, 74)
+    lines = wrap(d, text, fnt, W - 200)
+    y = 420
+    for ln in lines:
+        d.text((100, y), ln, font=fnt, fill=CREAM)
+        y += 92
+    # gold accent under text
+    d.rectangle([100, y + 20, 280, y + 32], fill=GOLD)
+    f2 = F(SANS_B, 30)
+    d.text((100, H - 90), "LETAIDOIT.PRO", font=f2, fill=GOLD)
+    img.save(os.path.join(OUT, fname))
+    print("  ●", fname)
+
+
+if __name__ == "__main__":
+    q = "You don't need to learn AI. You need the 1000 hours someone already did."
+    print("🎨 v2 glasses-branded styles →", OUT)
+    style_A(q, "styleA-navy-watermark.png")
+    style_B(q, "styleB-cream-editorial.png")
+    style_C(q, "styleC-bold-split.png")
+    # a glasses-only logo mark for reuse
+    lg = Image.new("RGB", (W, H), NAVY)
+    dd = ImageDraw.Draw(lg)
+    glasses(dd, W // 2, H // 2, scale=2.2, color=GOLD, width=24)
+    lg.save(os.path.join(OUT, "glasses-mark.png"))
+    print("  ● glasses-mark.png")
+    print("done.")
