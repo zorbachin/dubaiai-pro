@@ -159,22 +159,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 04:07 UTC
+- **When:** 2026-06-02 04:22 UTC
 - **Branch:** `main`
-- **Last commit:** 21dc79a chore: refresh nucleus live state [skip ci] — 11 seconds ago
+- **Last commit:** 5cf8596 chore: refresh nucleus live state [skip ci] — 15 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-21dc79a chore: refresh nucleus live state [skip ci] (11 seconds ago)
-4b937ce chore: refresh nucleus live state [skip ci] (3 minutes ago)
-fae7a10 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-decfdb0 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-c5b4798 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+5cf8596 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+21dc79a chore: refresh nucleus live state [skip ci] (15 minutes ago)
+4b937ce chore: refresh nucleus live state [skip ci] (18 minutes ago)
+fae7a10 chore: refresh nucleus live state [skip ci] (18 minutes ago)
+decfdb0 chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
