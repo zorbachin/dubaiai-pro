@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 14:26 UTC · chat
+🎉 PUBLISHED & LIVE: Zorbasphere premiere 'The First Call' is OUT on Substack. URL: https://zgrashin.substack.com/p/the-first-call (pub: zgrashin.substack.com). Zorba overcame the exact posting fear he wrote about. MILESTONE. Invite kit (INVITE.md) updated with the real subscribe link https://zgrashin.substack.com. NEXT: (a) send warm opt-in invites, (b) cross-post the launch to FB/IG/LI/X via the content engine, (c) set up Etsy codes DISPATCH15/INSIDER40 + bundle listing. Build Log + Issue 002 (ring / chronology) queued.
+
 ### 2026-06-02 14:18 UTC · chat
 PUBLICATION NAME = ZORBASPHERE (replaces 'The Dispatch' — that was generic; Zorba owns the zorbasphere domain, works as the everything-hub). Masthead cover regenerated to ZORBASPHERE; all newsletter docs renamed The Dispatch->Zorbasphere (ISSUE-001, PERK-LADDER, INVITE, THE-BUILD-LOG, ISSUE-002). PUBLICATION LOGO = the golden glasses on navy (content-assets/newsletter/logo-glasses.png, avatar/circle-safe) — his signature mark. Subtitle stays 'A LET AI DO IT PICTURE'. All em-dashes scrubbed.
 
@@ -161,31 +164,34 @@ PILLAR 1 created + atomized: 'How I got into AI business' → 10 pieces across a
 
 ### 2026-06-01 18:38 UTC · chat
 CONTENT SYSTEM (key workflow): user batches 2-4 hrs Sun/Mon on RAW content creation only (his strength, peak 7:30am). Then Claude atomizes each raw asset into many formats across the week (video→clips/carousel/quotes/memes/written/email). Create once, ship all week. Removes midweek blank-page + posting friction.
-
-### 2026-06-01 18:27 UTC · chat
-FEATURE: dopaminergic focus dashboard. User has ADHD, misses scroll/gamification/focus-meter — text-only is hard to visualize his day. Build self-contained focus.html (no server, double-click, brand colors): focus meter, progress ring, XP/streaks, scrollable task cards. Generated from the live board.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 14:19 UTC
+- **When:** 2026-06-02 14:28 UTC
 - **Branch:** `main`
-- **Last commit:** 26ef109 chore: refresh nucleus live state [skip ci] — 13 seconds ago
+- **Last commit:** d6847ad Zorbasphere live: fill subscribe link into invite kit (#60) — 34 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-26ef109 chore: refresh nucleus live state [skip ci] (13 seconds ago)
-bac1770 Rename publication to Zorbasphere + glasses logo (#59) (35 seconds ago)
-2b9901c chore: refresh nucleus live state [skip ci] (4 minutes ago)
-458ff3f chore: refresh nucleus live state [skip ci] (4 minutes ago)
-33a5346 Issue 001 publish/SEO spec + masthead name options (#58) (5 minutes ago)
+d6847ad Zorbasphere live: fill subscribe link into invite kit (#60) (34 seconds ago)
+a4823c4 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+26ef109 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+bac1770 Rename publication to Zorbasphere + glasses logo (#59) (10 minutes ago)
+2b9901c chore: refresh nucleus live state [skip ci] (13 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
