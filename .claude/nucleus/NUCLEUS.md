@@ -168,22 +168,22 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 04:50 UTC
-- **Branch:** `claude/posting-cadence`
-- **Last commit:** 5f44c4f chore: mark anchor video posted + capture Buffer video workflow — 6 minutes ago
+- **When:** 2026-06-02 04:52 UTC
+- **Branch:** `main`
+- **Last commit:** 1b14813 Sustainable posting cadence + multi-platform publish log (#31) — 21 seconds ago
 
 **Working tree:**
 ```
-?? .claude/os/content/posting-cadence.md
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-5f44c4f chore: mark anchor video posted + capture Buffer video workflow (6 minutes ago)
-3e960b1 chore: refresh nucleus live state [skip ci] (13 minutes ago)
-9f11855 chore: refresh nucleus live state [skip ci] (16 minutes ago)
-420d280 chore: refresh nucleus live state [skip ci] (17 minutes ago)
-1650631 chore: refresh nucleus live state [skip ci] (18 minutes ago)
+1b14813 Sustainable posting cadence + multi-platform publish log (#31) (21 seconds ago)
+3e960b1 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+9f11855 chore: refresh nucleus live state [skip ci] (18 minutes ago)
+420d280 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+1650631 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
