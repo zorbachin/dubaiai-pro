@@ -43,6 +43,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 03:46 UTC · chat
+User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real clock for standups/cadence/day-planning.
+
 ### 2026-06-02 03:33 UTC · code
 Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Green #69BE28 accent + cream serif. 3 variants. This is the Seahawks-palette synthesis per user direction. Still need real site screenshots to exact-match gold shade/fonts (env is bot-blocked: WebFetch 403 everywhere, Netlify MCP 502).
 
@@ -144,22 +147,28 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 03:33 UTC
+- **When:** 2026-06-02 03:47 UTC
 - **Branch:** `main`
-- **Last commit:** 3f9b32e v3 brand system — navy + gold glasses + action green (#30) — 21 seconds ago
+- **Last commit:** d5bce49 chore: refresh nucleus live state [skip ci] — 13 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 25 +++++++++++++++++--------
+ 1 file changed, 17 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-3f9b32e v3 brand system — navy + gold glasses + action green (#30) (21 seconds ago)
-4837c73 Golden-glasses brand mark + cardgen2 (3 style directions) (#29) (7 minutes ago)
-455f2ac chore: refresh nucleus live state [skip ci] (11 minutes ago)
-98db75e Branded card generator + real content assets (pillar 1) (#28) (11 minutes ago)
-33dc927 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+d5bce49 chore: refresh nucleus live state [skip ci] (13 minutes ago)
+3f9b32e v3 brand system — navy + gold glasses + action green (#30) (14 minutes ago)
+4837c73 Golden-glasses brand mark + cardgen2 (3 style directions) (#29) (20 minutes ago)
+455f2ac chore: refresh nucleus live state [skip ci] (24 minutes ago)
+98db75e Branded card generator + real content assets (pillar 1) (#28) (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
