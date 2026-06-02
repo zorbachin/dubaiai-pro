@@ -171,9 +171,9 @@ BRAND PALETTE DIRECTION: gold glasses on BLUE, or GREEN — Seahawks colors (Col
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 16:18 UTC
-- **Branch:** `claude/privacy-family`
-- **Last commit:** b46644e fix: aspirational family framing + durable privacy rule (pregnancy private) — 33 seconds ago
+- **When:** 2026-06-02 16:27 UTC
+- **Branch:** `main`
+- **Last commit:** db7c7e3 Aspirational family framing + durable privacy rule (#65) — 40 seconds ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-b46644e fix: aspirational family framing + durable privacy rule (pregnancy private) (33 seconds ago)
-45c47bb chore: refresh nucleus live state [skip ci] (22 minutes ago)
-0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) (23 minutes ago)
-85da280 chore: refresh nucleus live state [skip ci] (26 minutes ago)
-c277b73 chore: refresh nucleus live state [skip ci] (35 minutes ago)
+db7c7e3 Aspirational family framing + durable privacy rule (#65) (40 seconds ago)
+45c47bb chore: refresh nucleus live state [skip ci] (31 minutes ago)
+0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) (31 minutes ago)
+85da280 chore: refresh nucleus live state [skip ci] (34 minutes ago)
+c277b73 chore: refresh nucleus live state [skip ci] (43 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
