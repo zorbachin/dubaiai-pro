@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 11:02 UTC
 - **Branch:** `main`
-- **Last commit:** ea99af4 The Dispatch Issue 001 + Three Time-Savers segment + opt-in invite (#46) — 23 seconds ago
+- **Last commit:** f368c0e chore: refresh nucleus live state [skip ci] — 9 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 32 +++++++++++++++++++++-----------
- 1 file changed, 21 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-ea99af4 The Dispatch Issue 001 + Three Time-Savers segment + opt-in invite (#46) (23 seconds ago)
-c0afb07 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+f368c0e chore: refresh nucleus live state [skip ci] (9 seconds ago)
+ea99af4 The Dispatch Issue 001 + Three Time-Savers segment + opt-in invite (#46) (32 seconds ago)
+c0afb07 chore: refresh nucleus live state [skip ci] (3 minutes ago)
 e37a49d chore: refresh nucleus live state [skip ci] (3 minutes ago)
 7b2c4ae The Dispatch — cinematic vintage movie-announcement newsletter (#45) (3 minutes ago)
-8fde60d chore: refresh nucleus live state [skip ci] (77 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
