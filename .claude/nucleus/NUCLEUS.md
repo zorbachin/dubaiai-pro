@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 13:38 UTC · chat
+DESIGN: (1) Newsletter masthead REDESIGNED as a vintage NEWSPAPER MOVIE-LISTING: two columns split by a center rule (left = NOW SHOWING feature 'The First Call' + tagline, right = THE PROGRAM billing + ADMIT ONE stamp + run-time/credits), masthead 'THE DISPATCH / A LET AI DO IT PICTURE', bottom marquee. Was too book/poster-like before; now split-the-middle newsprint. cinema_news.py rewritten, 1200x1000. (2) Bundle thumb ('The Solo Founder's AI Operating System') now has a VALUE TAGLINE: 'Run your whole business with AI. 20 systems, one download.' SUBSTACK note: standard newsletter/article = the 'Text' post type (confirmed).
+
 ### 2026-06-02 13:10 UTC · chat
 CHANNELS FINALIZED: (A) THE NEWSLETTER = 'The Build Log' (content-assets/newsletter/THE-BUILD-LOG.md): super brief weekly, ~150 words, format = Building / Idea / Next / Steal-this(time-saver). Sample 001 ready. (B) SUBSTACK 'The Dispatch' = in-depth story/insight + the HUB that holds EVERYTHING he offers (story, Etsy shop, work-with-me/letaidoit.pro, buildyourbot/selfsellingai tools, Minimovies films) via the About page. PERK LADDER = FULL (content-assets/newsletter/PERK-LADDER.md): Reader(free web) -> Free subscriber (15% Etsy code DISPATCH15 + occasional free guide) -> Paid (~$7/mo: 40% code INSIDER40 + 1 free guide/mo + early access + BTS build breakdowns + discounted audit call + prompt vault) -> Client (the revenue the ladder funnels to). Etsy codes made in Shop Manager>Marketing>Sales&discounts. Welcome email drafted. No em-dashes.
 
@@ -161,31 +164,34 @@ FEATURE: brain-dump parser. User dumps a raw idea/theme (one post or a week), Cl
 
 ### 2026-06-01 18:23 UTC · code
 Built master content-board.md (color-coded by type, idea→POSTED pipeline), scripts-tomorrow.md (2 ready-to-read scripts for 7:30 SSA-C + Origin-Drafts), voice-guide v0. Tomorrow's shoot is on the bus.
-
-### 2026-06-01 18:19 UTC · chat
-VOICE-LEARNING METHOD: Claude researches user online + builds a voice guide from chat notes, user corrects it (lowest friction). REUSE INSIGHT: user has a great buildyourbot.io video he wants to repurpose for letaidoit + others.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 13:30 UTC
+- **When:** 2026-06-02 13:39 UTC
 - **Branch:** `main`
-- **Last commit:** 6044216 chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** 4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) — 27 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 34 +++++++++++++++++++++++-----------
+ 1 file changed, 23 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-6044216 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-7ae46b6 chore: refresh nucleus live state [skip ci] (19 minutes ago)
-a25b9cf chore: refresh nucleus live state [skip ci] (19 minutes ago)
-9aa719b The Build Log + Substack perk ladder (#54) (20 minutes ago)
-765261f Issue 001 real assets — engagement/wedding photos, Nissim, Minimovies (#53) (24 minutes ago)
+4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) (27 seconds ago)
+c353385 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+6044216 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+7ae46b6 chore: refresh nucleus live state [skip ci] (28 minutes ago)
+a25b9cf chore: refresh nucleus live state [skip ci] (28 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
