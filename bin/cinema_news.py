@@ -59,7 +59,7 @@ def glasses(d, cx, cy, sc, color=GOLD, wd=2):
     d.line([(cx - g, cy), (cx + g, cy)], fill=color, width=w)
 
 
-def build(presents, title_lines, tagline, billing, dateline, cta, fname):
+def build(presents, title_lines, tagline, billing, dateline, cta, fname, masthead="THE DISPATCH"):
     img = Image.new("RGB", (W, H), PAPER); d = ImageDraw.Draw(img)
     for i in range(36):
         d.rectangle([i, i, W - i, H - i], outline=(238 - i // 2, 232 - i // 2, 218 - i // 2))
@@ -71,7 +71,7 @@ def build(presents, title_lines, tagline, billing, dateline, cta, fname):
     ctext(d, cx, 92, dateline.upper(), F(SANS_B, 20), INK, ls=6)
     rule(d, 90, W - 90, 128, 3)
     rule(d, 90, W - 90, 136, 1)
-    ctext(d, cx, 150, "THE DISPATCH", F(SERIF_B, 70), INK, ls=8)
+    ctext(d, cx, 150, masthead, F(SERIF_B, 70), INK, ls=8)
     ctext(d, cx, 232, "A LET AI DO IT PICTURE", F(SERIF_I, 24), GOLD)
     glasses(d, cx, 266, 0.8, GOLD, 3)
     rule(d, 90, W - 90, 290, 1)
