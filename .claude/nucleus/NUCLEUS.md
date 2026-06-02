@@ -168,9 +168,9 @@ User preference: capture useful things (decisions, preferences, milestones, open
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 04:52 UTC
+- **When:** 2026-06-02 05:01 UTC
 - **Branch:** `main`
-- **Last commit:** 1b14813 Sustainable posting cadence + multi-platform publish log (#31) — 21 seconds ago
+- **Last commit:** 2c8e3ee chore: refresh nucleus live state [skip ci] — 10 minutes ago
 
 **Working tree:**
 ```
@@ -179,11 +179,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-1b14813 Sustainable posting cadence + multi-platform publish log (#31) (21 seconds ago)
-3e960b1 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-9f11855 chore: refresh nucleus live state [skip ci] (18 minutes ago)
-420d280 chore: refresh nucleus live state [skip ci] (19 minutes ago)
-1650631 chore: refresh nucleus live state [skip ci] (20 minutes ago)
+2c8e3ee chore: refresh nucleus live state [skip ci] (10 minutes ago)
+1b14813 Sustainable posting cadence + multi-platform publish log (#31) (10 minutes ago)
+3e960b1 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+9f11855 chore: refresh nucleus live state [skip ci] (27 minutes ago)
+420d280 chore: refresh nucleus live state [skip ci] (29 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
