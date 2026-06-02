@@ -45,6 +45,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 13:59 UTC · chat
+ISSUE 001 act titles set (cover PROGRAM + in-story section headers, they mirror): 'Sunset at the Duomo' (engagement + broke backstory), 'Weddings and Wartime' (wedding + Nissim + Minimovies film + war + safe room), 'Mission Possible: AI' (the house/mission + Passover + zorbot/bloop/feed-flip + buildyourbot/selfsellingai + close). Replaced the weak 'The Feed That Went Quiet' etc. 'Mission Possible - Ai' tidied to 'Mission Possible: AI'. Masthead regenerated. No em-dashes.
+
 ### 2026-06-02 13:38 UTC · chat
 DESIGN: (1) Newsletter masthead REDESIGNED as a vintage NEWSPAPER MOVIE-LISTING: two columns split by a center rule (left = NOW SHOWING feature 'The First Call' + tagline, right = THE PROGRAM billing + ADMIT ONE stamp + run-time/credits), masthead 'THE DISPATCH / A LET AI DO IT PICTURE', bottom marquee. Was too book/poster-like before; now split-the-middle newsprint. cinema_news.py rewritten, 1200x1000. (2) Bundle thumb ('The Solo Founder's AI Operating System') now has a VALUE TAGLINE: 'Run your whole business with AI. 20 systems, one download.' SUBSTACK note: standard newsletter/article = the 'Text' post type (confirmed).
 
@@ -161,31 +164,34 @@ Built dump parser: bin/dump (reliable capture to .claude/os/dumps/) + dump skill
 
 ### 2026-06-01 18:25 UTC · chat
 FEATURE: brain-dump parser. User dumps a raw idea/theme (one post or a week), Claude (Opus 4.8) parses it into outstanding FLYWHEEL content — structured, in his voice, queued to the content board. Input valve for his ADHD idea flow.
-
-### 2026-06-01 18:23 UTC · code
-Built master content-board.md (color-coded by type, idea→POSTED pipeline), scripts-tomorrow.md (2 ready-to-read scripts for 7:30 SSA-C + Origin-Drafts), voice-guide v0. Tomorrow's shoot is on the bus.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 13:40 UTC
+- **When:** 2026-06-02 13:59 UTC
 - **Branch:** `main`
-- **Last commit:** 1dabee0 chore: refresh nucleus live state [skip ci] — 13 seconds ago
+- **Last commit:** d54660e Real act titles: Sunset at the Duomo / Weddings and Wartime / Mission Possible: AI (#56) — 24 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 34 +++++++++++++++++++++++-----------
+ 1 file changed, 23 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-1dabee0 chore: refresh nucleus live state [skip ci] (13 seconds ago)
-4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) (40 seconds ago)
-c353385 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-6044216 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-7ae46b6 chore: refresh nucleus live state [skip ci] (28 minutes ago)
+d54660e Real act titles: Sunset at the Duomo / Weddings and Wartime / Mission Possible: AI (#56) (24 seconds ago)
+413db59 chore: refresh nucleus live state [skip ci] (20 minutes ago)
+1dabee0 chore: refresh nucleus live state [skip ci] (20 minutes ago)
+4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) (20 minutes ago)
+c353385 chore: refresh nucleus live state [skip ci] (29 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
