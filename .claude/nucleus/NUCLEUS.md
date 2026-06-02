@@ -170,30 +170,22 @@ VENTURES: Minimovies, letaidoit, sellsellingai (= the money maker), buildyourbot
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 05:47 UTC
+- **When:** 2026-06-02 05:48 UTC
 - **Branch:** `main`
-- **Last commit:** 484163f All 20 Etsy products + Work-With-Me CTA + per-venture research briefs (#36) — 29 seconds ago
+- **Last commit:** 2f92baa Sync OS state — research tasks + handoffs (#37) — 18 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
- M .claude/nucleus/tasks.json
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md |  53 +++++++++++++++----
- .claude/nucleus/tasks.json | 126 ++++++++++++++++++++++++++++++++++++++-------
- 2 files changed, 150 insertions(+), 29 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-484163f All 20 Etsy products + Work-With-Me CTA + per-venture research briefs (#36) (29 seconds ago)
-dee00d1 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-63ee41b Etsy digital-product engine + 20-product catalog + flagship sample (#35) (14 minutes ago)
-14bcf09 Log subscription cancellations + Etsy digital venture (#34) (17 minutes ago)
-3fc08e5 chore: refresh nucleus live state [skip ci] (24 minutes ago)
+2f92baa Sync OS state — research tasks + handoffs (#37) (18 seconds ago)
+484163f All 20 Etsy products + Work-With-Me CTA + per-venture research briefs (#36) (76 seconds ago)
+dee00d1 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+63ee41b Etsy digital-product engine + 20-product catalog + flagship sample (#35) (15 minutes ago)
+14bcf09 Log subscription cancellations + Etsy digital venture (#34) (18 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
