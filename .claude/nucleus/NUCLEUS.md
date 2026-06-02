@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 11:14 UTC
 - **Branch:** `main`
-- **Last commit:** 6ce4d2d chore: refresh nucleus live state [skip ci] — 5 minutes ago
+- **Last commit:** 9332db2 chore: refresh nucleus live state [skip ci] — 12 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+9332db2 chore: refresh nucleus live state [skip ci] (12 seconds ago)
 6ce4d2d chore: refresh nucleus live state [skip ci] (5 minutes ago)
 c2cfed7 Commit recut "The First Call" masthead PNG (#49) (6 minutes ago)
 88597e3 Dispatch Issue 002 skeleton — build-in-public venture chronology (#48) (7 minutes ago)
-6dbc706 Rewrite Dispatch Issue 001 as the origin story "The First Call" (#47) (8 minutes ago)
-a1ca5bd chore: refresh nucleus live state [skip ci] (12 minutes ago)
+6dbc706 Rewrite Dispatch Issue 001 as the origin story "The First Call" (#47) (9 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
