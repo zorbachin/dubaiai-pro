@@ -134,26 +134,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 03:14 UTC
 - **Branch:** `main`
-- **Last commit:** da511b7 Pillar 1: "How I got into AI" → a week of content + voice v1 (#27) — 12 minutes ago
+- **Last commit:** 1037ce2 chore: refresh nucleus live state [skip ci] — 24 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 31 ++++++++++++++++---------------
- 1 file changed, 16 insertions(+), 15 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+1037ce2 chore: refresh nucleus live state [skip ci] (24 seconds ago)
 da511b7 Pillar 1: "How I got into AI" → a week of content + voice v1 (#27) (12 minutes ago)
 9d5f76e chore: refresh nucleus live state [skip ci] (9 hours ago)
 bc7d6a5 Batch & repurpose content system (create once, ship all week) (#26) (9 hours ago)
 63c2b2b chore: refresh nucleus live state [skip ci] (9 hours ago)
-8cdc5ba Actionable command cockpit (cockpit.html) + overnight content batch (#25) (9 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
