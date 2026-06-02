@@ -67,9 +67,9 @@ class Doc:
         c = self.c
         c.setStrokeColorRGB(*GOLD); c.setLineWidth(0.5)
         c.line(M, 0.6 * inch, PW - M, 0.6 * inch)
-        glasses(c, M + 6, 0.45 * inch, scale=0.32, color=GOLD, width=2)
+        glasses(c, M + 7, 0.45 * inch, scale=0.30, color=GOLD, width=2)
         c.setFont(SANS_B, 7.5); c.setFillColorRGB(*GOLD)
-        c.drawString(M + 22, 0.42 * inch, "LETAIDOIT.PRO")
+        c.drawString(M + 34, 0.42 * inch, "LETAIDOIT.PRO")
         c.setFont(SANS, 7.5); c.setFillColorRGB(*MUT)
         c.drawRightString(PW - M, 0.42 * inch, self.footer)
         if self.page:
