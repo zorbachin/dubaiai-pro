@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 15:20 UTC
 - **Branch:** `main`
-- **Last commit:** ee78750 More Zorbasphere: ready Issue 002 essay + 12-note bank (#62) — 26 seconds ago
+- **Last commit:** e62c92d chore: refresh nucleus live state [skip ci] — 20 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
- 1 file changed, 19 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-ee78750 More Zorbasphere: ready Issue 002 essay + 12-note bank (#62) (26 seconds ago)
-c57a6ca chore: refresh nucleus live state [skip ci] (46 minutes ago)
+e62c92d chore: refresh nucleus live state [skip ci] (20 seconds ago)
+ee78750 More Zorbasphere: ready Issue 002 essay + 12-note bank (#62) (46 seconds ago)
+c57a6ca chore: refresh nucleus live state [skip ci] (47 minutes ago)
 b2783cc chore: refresh nucleus live state [skip ci] (47 minutes ago)
 c0a6f93 Launch Substack Notes + reply kit (#61) (47 minutes ago)
-70ac89e chore: refresh nucleus live state [skip ci] (51 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
