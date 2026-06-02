@@ -2,6 +2,18 @@
 
 _Masthead: `dispatch-no-001.png`. Body below. Photo slots marked [PHOTO: ...]._
 
+## Publish settings (Substack) + SEO
+- **Audience: Everyone (free / public).** Do not paywall the premiere. Its job is reach and subscribers, not revenue. Paid perks come later once there is an audience.
+- **Post type:** Text.
+- **Cover image:** `dispatch-no-001.png` (the newspaper listing).
+- **Title (SEO):** The First Call
+- **Subtitle (this is your meta description, what Google and the feed show):** How I went from laid off and broke in a sublet to building an AI business that gives people their time back. The honest origin of Let AI Do It.
+- **Tags (add ~6):** building in public, AI, founder story, entrepreneurship, productivity, solopreneur
+- **URL slug:** the-first-call (or the-first-call-ai-origin for more keywords)
+- **Image alt text:** "The Dispatch, premiere issue: The First Call" + describe each photo ("engagement at the Duomo", "wedding", etc.) so images are searchable and accessible.
+- **First line matters:** the opening sentence doubles as search/preview text, so the strong hook already does double duty.
+- Do not keyword-stuff the story itself. Title, subtitle, tags, slug, and alt text carry the SEO; the body stays human.
+
 ---
 
 ## Sunset at the Duomo
