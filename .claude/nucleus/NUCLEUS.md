@@ -172,26 +172,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-02 05:23 UTC
 - **Branch:** `main`
-- **Last commit:** 8e3f17d chore: refresh nucleus live state [skip ci] — 10 minutes ago
+- **Last commit:** 1e1b7e4 chore: refresh nucleus live state [skip ci] — 9 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+1e1b7e4 chore: refresh nucleus live state [skip ci] (9 seconds ago)
 8e3f17d chore: refresh nucleus live state [skip ci] (10 minutes ago)
 426fd33 $1M North Star + operating model + real spend audit (#33) (10 minutes ago)
 3593145 chore: refresh nucleus live state [skip ci] (14 minutes ago)
 22a565c Portfolio command center — org chart, workstreams, spend audit (#32) (15 minutes ago)
-1490a56 chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
