@@ -170,28 +170,22 @@ Built master content-board.md (color-coded by type, idea→POSTED pipeline), scr
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 13:39 UTC
+- **When:** 2026-06-02 13:40 UTC
 - **Branch:** `main`
-- **Last commit:** 4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) — 27 seconds ago
+- **Last commit:** 1dabee0 chore: refresh nucleus live state [skip ci] — 13 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 34 +++++++++++++++++++++++-----------
- 1 file changed, 23 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) (27 seconds ago)
+1dabee0 chore: refresh nucleus live state [skip ci] (13 seconds ago)
+4b09c10 Newspaper movie-listing masthead + bundle value tagline (#55) (40 seconds ago)
 c353385 chore: refresh nucleus live state [skip ci] (9 minutes ago)
 6044216 chore: refresh nucleus live state [skip ci] (12 minutes ago)
 7ae46b6 chore: refresh nucleus live state [skip ci] (28 minutes ago)
-a25b9cf chore: refresh nucleus live state [skip ci] (28 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
