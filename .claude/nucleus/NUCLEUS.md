@@ -39,6 +39,7 @@ _Choices already made, so no surface re-litigates them._
 - **Sections / nav anchors:** hero, about, services, audit, process, cases,
   contact.
 - **Contact:** `hello@dubaiai.pro`.
+- **PRIVACY (durable, important):** Zorba and Meytal's pregnancy is FRESH and PRIVATE. NEVER reference a baby / pregnancy / expecting in any public content. Keep all family framing aspirational only: "hoping to start a family."
 
 ## 📥 Handoffs
 _Newest first. Written automatically by hooks and by `nucleus push` from any
@@ -170,9 +171,9 @@ BRAND PALETTE DIRECTION: gold glasses on BLUE, or GREEN — Seahawks colors (Col
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 15:56 UTC
-- **Branch:** `main`
-- **Last commit:** 0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) — 21 seconds ago
+- **When:** 2026-06-02 16:18 UTC
+- **Branch:** `claude/privacy-family`
+- **Last commit:** b46644e fix: aspirational family framing + durable privacy rule (pregnancy private) — 33 seconds ago
 
 **Working tree:**
 ```
@@ -181,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) (21 seconds ago)
-85da280 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-c277b73 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-1624ccc chore: refresh nucleus live state [skip ci] (13 minutes ago)
-7928207 Issue 003 "The Ring" + Cowork task-queue handoff (#63) (13 minutes ago)
+b46644e fix: aspirational family framing + durable privacy rule (pregnancy private) (33 seconds ago)
+45c47bb chore: refresh nucleus live state [skip ci] (22 minutes ago)
+0ad181a Log calendar nudge engine (scheduled posting reminders) (#64) (23 minutes ago)
+85da280 chore: refresh nucleus live state [skip ci] (26 minutes ago)
+c277b73 chore: refresh nucleus live state [skip ci] (35 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
