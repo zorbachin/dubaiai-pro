@@ -170,28 +170,22 @@ VOICE-LEARNING METHOD: Claude researches user online + builds a voice guide from
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 13:28 UTC
+- **When:** 2026-06-02 13:30 UTC
 - **Branch:** `main`
-- **Last commit:** 7ae46b6 chore: refresh nucleus live state [skip ci] — 16 minutes ago
+- **Last commit:** 6044216 chore: refresh nucleus live state [skip ci] — 3 minutes ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-7ae46b6 chore: refresh nucleus live state [skip ci] (16 minutes ago)
-a25b9cf chore: refresh nucleus live state [skip ci] (17 minutes ago)
-9aa719b The Build Log + Substack perk ladder (#54) (17 minutes ago)
-765261f Issue 001 real assets — engagement/wedding photos, Nissim, Minimovies (#53) (22 minutes ago)
-ca3906e chore: refresh nucleus live state [skip ci] (34 minutes ago)
+6044216 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+7ae46b6 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+a25b9cf chore: refresh nucleus live state [skip ci] (19 minutes ago)
+9aa719b The Build Log + Substack perk ladder (#54) (20 minutes ago)
+765261f Issue 001 real assets — engagement/wedding photos, Nissim, Minimovies (#53) (24 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
