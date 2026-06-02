@@ -45,6 +45,15 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-02 14:33 UTC · chat
+CONTENT IDEA (open loop): 'Keeping Up with the Claudashians' — a series concept (play on Keeping Up with the Kardashians x Claude). Zorba wants it to eventually make it into the content engine once we can get it working. Capture + develop later; needs the concept/format defined.
+
+### 2026-06-02 14:33 UTC · chat
+CADENCE GOAL (durable): 1+ post per day, lean into volume. Refined rule: it's not about volume, it's ASK-WEIGHT — don't stack two HEAVY asks (video / go-read-and-subscribe) on the same feed same day; pair one heavy + one light (quote card/tip/meme). 2-WEEK TARGET: content + posting basically FULLY AUTOMATED. Claude to keep adjusting/learning the system toward that (within constraints: FB personal=manual, IG needs media, native>API for TikTok). 'do the substack note' = Zorba posting the launch Note now (Claude can't post to Substack; delivered final Note text to paste).
+
+### 2026-06-02 14:32 UTC · chat
+CADENCE RULE (durable): don't stack two big asks on the same feed same day. He posted the calisthenics VIDEO today -> SCHEDULE the Zorbasphere social launch posts (FB/IG/LI/X) for TOMORROW. Today is fine for: Substack being live, warm 1:1 DMs (the invite), and one Substack Note (different channel). Buffer LI+X launch drafts = set to tomorrow. LAUNCH KIT saved: content-assets/newsletter/LAUNCH-NOTES-REPLIES.md (3 Substack Notes + reply templates). REPLY MODE ON: Zorba pastes comments/DMs, Claude drafts on-brand replies.
+
 ### 2026-06-02 14:26 UTC · chat
 🎉 PUBLISHED & LIVE: Zorbasphere premiere 'The First Call' is OUT on Substack. URL: https://zgrashin.substack.com/p/the-first-call (pub: zgrashin.substack.com). Zorba overcame the exact posting fear he wrote about. MILESTONE. Invite kit (INVITE.md) updated with the real subscribe link https://zgrashin.substack.com. NEXT: (a) send warm opt-in invites, (b) cross-post the launch to FB/IG/LI/X via the content engine, (c) set up Etsy codes DISPATCH15/INSIDER40 + bundle listing. Build Log + Issue 002 (ring / chronology) queued.
 
@@ -155,37 +164,34 @@ DESIGN DIRECTION: content is good but visuals need more edge — distinct, scrol
 
 ### 2026-06-02 03:13 UTC · code
 REAL SITE MAP (Netlify, 16 sites, owned by zorbachin/PodSupps team): letaidoit→letaidoit.netlify.app (OWNED, exists!), minimovies→minimovies.io (LIVE custom domain), byb-ambassador→byb-ambassador.netlify.app (forms enabled), foxy-close-tool→foxy-close-tool.netlify.app (the Instant Proposals closing tool), podsupps→podsupps.com, plus machberet, dad-ai-discovery, vybe-discovery, pbgai, zorbasphere, tlv-summer, polar-bear-prep, foxy-epoxy-discovery. NOTE: owned 'letaidoit' project already exists — redrop may be done or it's an empty shell; verify deploy.
-
-### 2026-06-02 03:09 UTC · chat
-SAFETY RULE (standing): Claude may CREATE drafts/designs with real tools (Gmail drafts, Canva, image-gen) but NEVER auto-send, auto-publish, or charge. User always does the final send/post/deploy. Applies to Netlify too — prep, don't flip live without explicit yes.
-
-### 2026-06-02 03:01 UTC · code
-PILLAR 1 created + atomized: 'How I got into AI business' → 10 pieces across a week (anchor video, carousel, 3 written posts, 3 quote cards, meme, newsletter), queued T008-T014 for LetAIDoIt. Through-line: 'You don't need to learn AI, you need someone who already did the 1000 hours.' Voice guide upgraded to v1 with his real word samples.
-
-### 2026-06-01 18:38 UTC · chat
-CONTENT SYSTEM (key workflow): user batches 2-4 hrs Sun/Mon on RAW content creation only (his strength, peak 7:30am). Then Claude atomizes each raw asset into many formats across the week (video→clips/carousel/quotes/memes/written/email). Create once, ship all week. Removes midweek blank-page + posting friction.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 14:29 UTC
+- **When:** 2026-06-02 14:33 UTC
 - **Branch:** `main`
-- **Last commit:** 10ea9ee chore: refresh nucleus live state [skip ci] — 14 seconds ago
+- **Last commit:** c0a6f93 Launch Substack Notes + reply kit (#61) — 30 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 40 +++++++++++++++++++++++-----------------
+ 1 file changed, 23 insertions(+), 17 deletions(-)
 ```
 
 **Recent commits:**
 ```
-10ea9ee chore: refresh nucleus live state [skip ci] (14 seconds ago)
-d6847ad Zorbasphere live: fill subscribe link into invite kit (#60) (48 seconds ago)
-a4823c4 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-26ef109 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-bac1770 Rename publication to Zorbasphere + glasses logo (#59) (10 minutes ago)
+c0a6f93 Launch Substack Notes + reply kit (#61) (30 seconds ago)
+70ac89e chore: refresh nucleus live state [skip ci] (5 minutes ago)
+10ea9ee chore: refresh nucleus live state [skip ci] (5 minutes ago)
+d6847ad Zorbasphere live: fill subscribe link into invite kit (#60) (6 minutes ago)
+a4823c4 chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
