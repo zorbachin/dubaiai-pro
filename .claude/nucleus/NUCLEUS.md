@@ -171,42 +171,29 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-<<<<<<< Updated upstream
-- **When:** 2026-06-01 07:50 UTC
+- **When:** 2026-06-02 18:26 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 1b23a2d chore: refresh nucleus live state [skip ci] — 29 seconds ago
-=======
-- **When:** 2026-06-02 18:25 UTC
-- **Branch:** `main`
-- **Last commit:** fbf2155 chore: refresh nucleus live state [skip ci] — 58 minutes ago
->>>>>>> Stashed changes
+- **Last commit:** 423810e Log trades cold-outreach batch 1 (8 personalized sends) — 63 seconds ago
 
 **Working tree:**
 ```
 M .claude/nucleus/NUCLEUS.md
-?? .claude/os/customers/trades-outreach.md
+?? .claude/nucleus/focus-stats.json
+?? focus.html
 ```
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 35 +++++++++++++++++++++--------------
- 1 file changed, 21 insertions(+), 14 deletions(-)
+.claude/nucleus/NUCLEUS.md | 38 +++++++++-----------------------------
+ 1 file changed, 9 insertions(+), 29 deletions(-)
 ```
 
 **Recent commits:**
 ```
-<<<<<<< Updated upstream
-1b23a2d chore: refresh nucleus live state [skip ci] (29 seconds ago)
-96b48f6 chore: refresh nucleus live state [skip ci] (61 seconds ago)
-51b08ce chore: refresh nucleus live state [skip ci] (2 minutes ago)
-e3100d1 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-c5ff561 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-=======
-fbf2155 chore: refresh nucleus live state [skip ci] (58 minutes ago)
-c55a864 chore: refresh nucleus live state [skip ci] (58 minutes ago)
-c5726ff chore: refresh nucleus live state [skip ci] (78 minutes ago)
-cb7f9c7 chore: refresh nucleus live state [skip ci] (79 minutes ago)
-ef4cd2c chore: refresh nucleus live state [skip ci] (2 hours ago)
->>>>>>> Stashed changes
+423810e Log trades cold-outreach batch 1 (8 personalized sends) (63 seconds ago)
+9149567 chore: refresh nucleus live state [skip ci] (35 hours ago)
+1b23a2d chore: refresh nucleus live state [skip ci] (35 hours ago)
+96b48f6 chore: refresh nucleus live state [skip ci] (35 hours ago)
+51b08ce chore: refresh nucleus live state [skip ci] (35 hours ago)
 ```
 <!-- AUTOSTATE:END -->
