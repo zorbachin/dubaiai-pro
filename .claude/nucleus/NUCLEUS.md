@@ -196,9 +196,9 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 09:41 UTC
+- **When:** 2026-06-03 09:51 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** d8e0a19 chore: refresh nucleus live state [skip ci] — 11 seconds ago
+- **Last commit:** 5a91ec2 PBG v2 pass: white polar-bear logo, Bloop mascot, product-first attention cards, preview-tag floor tools — 43 seconds ago
 
 **Working tree:**
 ```
@@ -207,10 +207,10 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-d8e0a19 chore: refresh nucleus live state [skip ci] (11 seconds ago)
-b8ad579 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-1b8c763 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-d9298aa PBG dashboard v2: annotated (vs Lightspeed), premium mobile-first, Polar Bear yellow + bear logo, phone scan + Bear Bloop Bot (9 minutes ago)
-499e99d chore: refresh nucleus live state [skip ci] (25 minutes ago)
+5a91ec2 PBG v2 pass: white polar-bear logo, Bloop mascot, product-first attention cards, preview-tag floor tools (43 seconds ago)
+94da094 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+d8e0a19 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+b8ad579 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+1b8c763 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
