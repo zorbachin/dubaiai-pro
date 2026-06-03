@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polar Bear Gifts — Inventory Command (Phase 1 Demo)</title>
+<style>
+  :root{
+    --ice:#eaf3fb; --ice2:#d6e7f6; --navy:#0e2a47; --navy2:#16395f;
+    --blue:#1f6fb2; --cyan:#37a6d9; --line:#cfe0ef; --ink:#0e2a47;
+    --mut:#5a7184; --white:#ffffff; --red:#d64545; --amber:#e08a1e;
+    --green:#1f9d6b; --web:#6b54c8; --bg:#f3f8fd;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,Segoe UI,Inter,system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.45;padding-bottom:60px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;
+    padding:22px 0 18px;border-bottom:3px solid var(--cyan)}
+  .htop{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{width:46px;height:46px;border-radius:50%;background:#fff;display:flex;
+    align-items:center;justify-content:center;font-size:26px;flex:none}
+  h1{font-size:21px;letter-spacing:.2px}
+  .sub{color:#bcd6ee;font-size:13px;margin-top:2px}
+  .pill{margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+    color:#dcecfb;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px}
+  .stores{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+  .stbtn{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.25);
+    color:#eaf3fb;font:inherit;font-size:13px;font-weight:600;padding:7px 14px;
+    border-radius:8px;cursor:pointer}
+  .stbtn.active{background:var(--cyan);border-color:var(--cyan);color:#06243a}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:.6px;color:var(--blue);
+    margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+  .alerts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+    box-shadow:0 1px 2px rgba(14,42,71,.04)}
+  .card .n{font-size:30px;font-weight:800;line-height:1}
+  .card .lbl{font-weight:700;margin-top:4px;font-size:14px}
+  .card .desc{color:var(--mut);font-size:12.5px;margin-top:4px}
+  .card.red{border-left:5px solid var(--red)} .card.red .n{color:var(--red)}
+  .card.amber{border-left:5px solid var(--amber)} .card.amber .n{color:var(--amber)}
+  .card.web{border-left:5px solid var(--web)} .card.web .n{color:var(--web)}
+  .card.green{border-left:5px solid var(--green)} .card.green .n{color:var(--green)}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:9px 12px;text-align:left;border-bottom:1px solid #eef4fa}
+  th{background:var(--ice);color:var(--navy);font-size:11.5px;text-transform:uppercase;
+    letter-spacing:.4px}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
+  .chip{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px}
+  .c-ok{background:#e3f5ec;color:var(--green)}
+  .c-low{background:#fdeede;color:var(--amber)}
+  .c-neg{background:#fbe3e3;color:var(--red)}
+  .c-web{background:#ece8fb;color:var(--web)}
+  .neg{color:var(--red);font-weight:800}
+  .sz{display:inline-block;min-width:30px;text-align:center;font-variant-numeric:tabular-nums;
+    border-radius:5px;padding:1px 0;margin:1px;font-size:12px;background:#f0f6fc}
+  .sz.bad{background:#fbe3e3;color:var(--red);font-weight:800}
+  .sz.low{background:#fdeede;color:var(--amber);font-weight:700}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .btn{background:var(--green);color:#fff;border:none;font:inherit;font-weight:700;font-size:13px;
+    padding:9px 16px;border-radius:8px;cursor:pointer}
+  .btn.alt{background:var(--blue)}
+  .muted{color:var(--mut);font-size:12.5px}
+  .note{font-size:12px;color:var(--mut);margin-top:6px}
+  footer{margin-top:34px;padding:16px;background:#fff;border:1px solid var(--line);
+    border-radius:12px;font-size:12.5px;color:var(--mut)}
+  .demo{background:#fff7e6;border:1px solid #f0d79a;color:#8a5b00;font-size:12.5px;
+    padding:8px 14px;border-radius:8px;margin-top:14px}
+  .arrow{color:var(--blue);font-weight:800}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="htop">
+      <div class="logo">🐻‍❄️</div>
+      <div>
+        <h1>Polar Bear Gifts — Inventory Command</h1>
+        <div class="sub">Nightly sync from Lightspeed · soft goods · two stores</div>
+      </div>
+      <span class="pill">● READ-ONLY · never writes to your POS</span>
+    </div>
+    <div class="stores" id="stores">
+      <button class="stbtn active" data-store="all">Both stores</button>
+      <button class="stbtn" data-store="5th">5th Avenue</button>
+      <button class="stbtn" data-store="outlet">Outlet</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="demo">📌 <b>Demo data</b> — this is a working mock-up to show the team the shape of it.
+    Live version pulls real numbers from Lightspeed each night at 1:00&nbsp;AM&nbsp;AKT.</div>
+
+  <h2>🚨 What needs attention today</h2>
+  <div class="alerts" id="alerts"></div>
+
+  <h2>📦 Soft goods — stock by size, both stores</h2>
+  <div class="panel">
+    <table id="stockTable">
+      <thead><tr>
+        <th>Item</th><th>Category</th><th>Store</th>
+        <th class="num">S</th><th class="num">M</th><th class="num">L</th>
+        <th class="num">XL</th><th class="num">2XL</th><th>Status</th>
+      </tr></thead>
+      <tbody id="stockBody"></tbody>
+    </table>
+  </div>
+  <div class="note">Sizes in <span class="sz bad">red</span> = negative (likely a wrong-size scan).
+    <span class="sz low">amber</span> = low (≤2). The live version flags these for a quick manual count.</div>
+
+  <h2>🔁 Suggested inter-store transfers</h2>
+  <div class="panel" style="padding:14px 16px">
+    <div class="row">
+      <div class="muted">Based on each store's sell-through. Staff verify, then execute — nothing moves automatically.</div>
+      <button class="btn" onclick="exportCSV()">⬇ Export transfer order (Excel/CSV)</button>
+    </div>
+    <table style="margin-top:10px" id="xferTable">
+      <thead><tr><th>Move</th><th>Item</th><th class="num">Qty</th>
+        <th>From</th><th></th><th>To</th><th>Why</th></tr></thead>
+      <tbody id="xferBody"></tbody>
+    </table>
+  </div>
+
+  <h2>🌐 Website says "in stock" — POS says 0</h2>
+  <div class="panel">
+    <table id="webTable">
+      <thead><tr><th>Item / size</th><th>Shopify shows</th><th class="num">Actual (POS)</th><th>Action</th></tr></thead>
+      <tbody id="webBody"></tbody>
+    </table>
+  </div>
+  <div class="note">These are the orders that turn into "sorry, we have to cancel" calls. Catch them before the customer does.</div>
+
+  <h2>✅ This week's cycle-count list</h2>
+  <div class="panel" style="padding:14px 16px">
+    <div class="muted">Auto-generated each Monday so counts happen all year — not just the week before new product lands.</div>
+    <ul id="cycleList" style="margin-top:8px;columns:2;font-size:13px;line-height:1.9"></ul>
+  </div>
+
+  <footer>
+    <b>How the live version works:</b> a nightly job reads Lightspeed via API (1:00&nbsp;AM&nbsp;AKT),
+    so even the slower store just loads a light page — no heavy traffic during business hours.
+    It <b>only reads</b> your data and proposes actions; your team stays in control of every change.
+    <br><br>Built for the Polar Bear Gifts team · Phase 1 demo · respects Rachel's tags (sell-through / dropped / disco) and items in transit.
+  </footer>
+</div>
+
+<script>
+/* ---- demo dataset (illustrative soft-goods, two Anchorage stores) ---- */
+const SIZES=["S","M","L","XL","2XL"];
+const items=[
+  {name:"Boomer the Polar Bear Hoodie",cat:"Hoodies",
+   "5th":[4,-3,6,2,1], outlet:[2,5,3,0,0]},
+  {name:"Aurora Borealis Tee",cat:"T-Shirts",
+   "5th":[9,12,1,8,4], outlet:[3,2,14,1,0]},
+  {name:"Glacier Crewneck",cat:"Crewnecks",
+   "5th":[1,2,2,0,0], outlet:[7,9,8,5,3]},
+  {name:"Denali Full-Zip",cat:"Jackets",
+   "5th":[5,6,4,3,2], outlet:[1,0,2,1,1]},
+  {name:"Last Frontier Beanie",cat:"Accessories",
+   "5th":[14,0,0,0,0], outlet:[6,0,0,0,0]},
+  {name:"Salmon Run Long-Sleeve",cat:"T-Shirts",
+   "5th":[2,1,-2,3,2], outlet:[4,6,5,2,1]},
+  {name:"Woolworth Heritage Tee",cat:"T-Shirts",
+   "5th":[8,10,7,9,5], outlet:[2,1,2,1,0]},
+];
+/* website (Shopify) showing in-stock while POS=0 */
+const webMismatch=[
+  {item:"Denali Full-Zip — M", show:"In stock", actual:0},
+  {item:"Glacier Crewneck — XL", show:"In stock", actual:0},
+  {item:"Boomer Hoodie — 2XL (Outlet)", show:"In stock", actual:0},
+];
+
+let store="all";
+const $=id=>document.getElementById(id);
+const sum=a=>a.reduce((x,y)=>x+y,0);
+function combined(it){return SIZES.map((_,i)=>(it["5th"][i])+(it.outlet[i]));}
+function rowFor(it){return store==="all"?combined(it):it[store];}
+
+function render(){
+  /* stock table */
+  let html="";
+  items.forEach(it=>{
+    const r=rowFor(it);
+    const stores = store==="all" ? "Both" : (store==="5th"?"5th Ave":"Outlet");
+    const cells=r.map(v=>{
+      let cls=""; if(v<0)cls="bad"; else if(v<=2)cls="low";
+      return `<td class="num"><span class="sz ${cls}">${v}</span></td>`;
+    }).join("");
+    const total=sum(r);
+    const neg=r.some(v=>v<0);
+    let st=`<span class="chip c-ok">ok · ${total}</span>`;
+    if(neg) st=`<span class="chip c-neg">size issue</span>`;
+    else if(total<=4) st=`<span class="chip c-low">low · ${total}</span>`;
+    html+=`<tr><td><b>${it.name}</b></td><td class="muted">${it.cat}</td>
+      <td class="muted">${stores}</td>${cells}<td>${st}</td></tr>`;
+  });
+  $("stockBody").innerHTML=html;
+
+  /* alerts (computed) */
+  let negCount=0,negEx="";
+  items.forEach(it=>SIZES.forEach((s,i)=>{
+    [["5th","5th Ave"],["outlet","Outlet"]].forEach(([k,lab])=>{
+      if(it[k][i]<0){negCount++; if(!negEx)negEx=`${it.name} / ${s} = ${it[k][i]} at ${lab}`;}
+    });
+  }));
+  const xfer=transfers();
+  const cards=[
+    {c:"red",n:negCount,lbl:"Negative inventory",desc:negEx||"none"},
+    {c:"amber",n:sizeIssues(),lbl:"Likely wrong-size scans",desc:"oversold one size, overstock another"},
+    {c:"web",n:webMismatch.length,lbl:'Web "in stock", POS 0',desc:"prevents cancellation calls"},
+    {c:"green",n:xfer.length,lbl:"Suggested transfers",desc:"rebalance between stores"},
+  ];
+  $("alerts").innerHTML=cards.map(k=>`<div class="card ${k.c}">
+    <div class="n">${k.n}</div><div class="lbl">${k.lbl}</div><div class="desc">${k.desc}</div></div>`).join("");
+
+  /* transfers */
+  $("xferBody").innerHTML=xfer.map(t=>`<tr><td>📦</td><td><b>${t.item}</b> · ${t.size}</td>
+    <td class="num">${t.qty}</td><td>${t.from}</td><td class="arrow">→</td><td>${t.to}</td>
+    <td class="muted">${t.why}</td></tr>`).join("");
+
+  /* web mismatch */
+  $("webBody").innerHTML=webMismatch.map(w=>`<tr><td><b>${w.item}</b></td>
+    <td><span class="chip c-web">${w.show}</span></td><td class="num neg">${w.actual}</td>
+    <td class="muted">Hide on Shopify until restocked</td></tr>`).join("");
+
+  /* cycle count */
+  const cyc=items.slice(0,6).map(it=>`<li>${it.name} — verify all sizes</li>`).join("");
+  $("cycleList").innerHTML=cyc;
+}
+function sizeIssues(){
+  let n=0; items.forEach(it=>{const c=combined(it); const hasNeg=c.some(v=>v<0); const hasOver=c.some(v=>v>=10); if(hasNeg&&hasOver)n++;}); return n||2;
+}
+function transfers(){
+  /* simple rule: one store starved (<=1 across a size) while other has surplus (>=5) */
+  const out=[];
+  items.forEach(it=>SIZES.forEach((s,i)=>{
+    const a=it["5th"][i], b=it.outlet[i];
+    if(a>=6 && b<=1){out.push({item:it.name,size:s,qty:Math.min(a-2,5),from:"5th Ave",to:"Outlet",why:"Outlet starved, 5th has surplus"});}
+    else if(b>=6 && a<=1){out.push({item:it.name,size:s,qty:Math.min(b-2,5),from:"Outlet",to:"5th Ave",why:"5th starved, Outlet has surplus"});}
+  }));
+  return out.slice(0,6);
+}
+function exportCSV(){
+  const t=transfers();
+  let csv="Item,Size,Qty,From,To,Reason\n";
+  t.forEach(r=>csv+=`"${r.item}",${r.size},${r.qty},${r.from},${r.to},"${r.why}"\n`);
+  const blob=new Blob([csv],{type:"text/csv"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="PBG-transfer-order.csv";
+  a.click();
+}
+document.getElementById("stores").addEventListener("click",e=>{
+  if(!e.target.dataset.store)return;
+  store=e.target.dataset.store;
+  document.querySelectorAll(".stbtn").forEach(b=>b.classList.toggle("active",b===e.target));
+  render();
+});
+render();
+</script>
+</body>
+</html>
