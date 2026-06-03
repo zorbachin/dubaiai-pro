@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 13:48 UTC · code
+PBG PROPOSAL FINALIZED (supersedes pricing in earlier handoff): Zorba decided NO PRICES on the doc — he invoices separately, Jay (owner) already knows the ballpark. Proposal is now a clean 2-PAGER (clients/pbg/PBG-proposal.html): Page 1 = JUST THIS BUILD, visualized (phone preview w/ real attention cards + problem->solution tiles + savings strip + read-only/live/floor badges); Page 2 = WHERE IT GOES AFTER (July expand+harden, smarter buying, website growth play) — all vision, zero numbers. Also clarified earlier: Phase 1 = THE LIVE TOOL (reads real Lightspeed before July; 'demo data' only a stand-in until we get the read-only key); the July visit = expand to full catalog + turn on floor tools (scan/Bloop) + hourly + on-site tuning + train team (NOT 'go live'). Two clean assets ready for Travis: interactive dashboard + 2-page plan. OPEN (unchanged): publish both to private links for the email; Lightspeed R vs X (asked in draft); real branding (yellow hex/logo/store names/top sellers).
+
 ### 2026-06-03 10:57 UTC · code
 BUILT 2 things. (1) COMMAND-CENTER RELIABILITY FIX (the 'how is this different' answer): added a TASK LEDGER to nucleus — .claude/nucleus/tasks.json + 'nucleus tasks' (auto-derives done from git/files) + 'nucleus task <id> <status>'. Each task names its SOURCE OF TRUTH (git/gmail/calendar). SessionStart hook now injects a '⚠ RECONCILE NOW' block listing the exact Gmail/Calendar checks to run BEFORE trusting memory -> state is derived from sources, not recalled. Demo'd: pbg-dashboard + pbg-proposal auto-flip to done because the files exist. This is the same architecture as the PBG dashboard (read the system of record, don't remember). (2) PBG DESIGNED PROPOSAL one-pager clients/pbg/PBG-proposal.html — ADHD-skimmable phased roadmap, polar-bear-yellow, mobile-friendly: Phase 1 before July $2,500 (firm, 50% start), Phase 2 July on-site go-live+expand+hourly ≈$3,000, Phase 3 smarter buying (reorder AI + tiered markdown) scoped, WEBSITE track from ≈$3,000 (Bloop chatbot + content engine + the $250k online opportunity / cut the middleman). Sent to Zorba. Pairs with dashboard. Zorba wants to work on the website — featured as its own growth track. OPEN: send proposal+dashboard to Travis (via link?), Lightspeed R vs X, real branding inputs.
 
@@ -187,36 +190,27 @@ SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $20
 
 ### 2026-06-02 05:13 UTC · chat
 SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM (already tried to cancel, charged anyway — RESOLVE), Runway AI (premium video, redundant — CUT), TopView (cheap video), OpusClip/opus.pro (clipping — keep for MM), AutoGLM (GLM sub — likely redundant w/ Claude, review), ElevenLabs (voice — right-size), X Premium, Etsy Plus $10 (live shop OrganizedOrionDesign jewelry), Anthropic/Claude (core). NOT paying → HeyGen, Higgsfield, Manus (don't start any; brand is self-shot). Recoverable ~$155-235/mo. SURFACED ventures not in ventures.md: Etsy shop OrganizedOrionDesign + Vybe/vybewear. Ambo call booked today 11:30 EST (Meet: meet.google.com/wfd-zwvt-ies) — need Sam & Jack emails to invite. North Star set to $1M.
-
-### 2026-06-02 05:10 UTC · chat
-OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APPROVE. Stop handing Zorba task lists for himself; execute, then surface for approval. NORTH STAR NUMBER = $1,000,000 (get the portfolio to a million). CADENCE: sync with the CEO daily. ACTIVE: schedule call with Sam & Jack at Ambo (byb-ambassador / Ambassador program) for 11:30 EST today (2026-06-02).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 13:47 UTC
+- **When:** 2026-06-03 13:48 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** dcacbe4 PBG proposal: drop all pricing; split into 2-pager (Page 1 the build, Page 2 where it goes) — 11 seconds ago
+- **Last commit:** 96f9030 chore: refresh nucleus live state [skip ci] — 30 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-dcacbe4 PBG proposal: drop all pricing; split into 2-pager (Page 1 the build, Page 2 where it goes) (11 seconds ago)
-7f06931 chore: refresh nucleus live state [skip ci] (16 minutes ago)
+96f9030 chore: refresh nucleus live state [skip ci] (30 seconds ago)
+dcacbe4 PBG proposal: drop all pricing; split into 2-pager (Page 1 the build, Page 2 where it goes) (41 seconds ago)
+7f06931 chore: refresh nucleus live state [skip ci] (17 minutes ago)
 f14971d chore: refresh nucleus live state [skip ci] (17 minutes ago)
 114469f PBG proposal: clarify Phase 1 is the live tool; reframe Phase 2 as expand+harden (not 'go live') (17 minutes ago)
-edda0e8 chore: refresh nucleus live state [skip ci] (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
