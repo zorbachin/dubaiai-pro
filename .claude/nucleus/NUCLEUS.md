@@ -198,25 +198,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 14:08 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** c6f3bd9 chore: refresh nucleus live state [skip ci] — 8 minutes ago
+- **Last commit:** 402d5bd chore: refresh nucleus live state [skip ci] — 25 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-c6f3bd9 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+402d5bd chore: refresh nucleus live state [skip ci] (25 seconds ago)
+c6f3bd9 chore: refresh nucleus live state [skip ci] (9 minutes ago)
 1a217fd chore: refresh nucleus live state [skip ci] (9 minutes ago)
 662b76d Harden .gitignore: never commit .env / secrets / keys (9 minutes ago)
 1b5ddad chore: refresh nucleus live state [skip ci] (20 minutes ago)
-d09c699 chore: capture finalized no-price 2-pager decision in nucleus [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
