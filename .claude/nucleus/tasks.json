@@ -24,7 +24,7 @@
       "status": "pending",
       "source": "gmail",
       "check": "in:sent to:Entr0801@gmail.com newer_than:10d subject:(Polar Bear)",
-      "note": "Access-focused draft in Drafts ('let's get the inventory tool building') — asks Lightspeed R vs X + read-only key. PBG already committed. Send this one; DELETE the 2 older Travis drafts."
+      "note": "SEND the token-guide draft 'One quick thing to get the inventory tool started' (Option 1: self-serve X-Series token -> reply with it; Option 2: 'let's call' = catch-all incl R-Series/unsure). Ends with Zorba holding access same-day. Zorba sends (his customer; Claude never contacts PBG). DELETE all older Travis drafts (4+ now exist)."
     },
     {
       "id": "first-call-post",

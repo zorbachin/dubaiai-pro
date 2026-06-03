@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 15:51 UTC · code
+PBG TOKEN EMAIL FINALIZED: created the guided 'get me the read-only key' draft to Travis ('One quick thing to get the inventory tool started'). Designed to END with Zorba holding access: Option 1 = self-serve Lightspeed X-Series Personal Token (Setup -> Personal Tokens -> Add -> Generate, w/ screenshot help link) then 'reply & paste it'; Option 2 = reply 'let's call' = 5-min screen-share catch-all (covers R-Series + 'not sure', avoids OAuth confusion). Tone: confident, Zorba-is-the-expert ('I'll handle all the technical setup on my end'). BOUNDARY (Zorba reminder): it's HIS customer — Claude DRAFTS only, never emails/contacts PBG; Zorba sends. CLEANUP: 4+ Travis drafts now exist -> send this newest token-guide one, delete the rest. Lightspeed version still unknown (Option 2 covers it). Netlify MCP still 502 for the off-brand proposal link; Zorba can self-host via Netlify Drop using the index.html/zip already sent. STILL PARKED: closing-tool licensing/key-security architecture answer (after PBG).
+
 ### 2026-06-03 14:12 UTC · code
 PBG STRATEGY LOCKED: PBG is ALREADY IN (committed) — so no selling / no live-link promises. Build on REAL DATA once we have Lightspeed access, not on speculative ideas. The HTML proposal mockup (Page-1 phone preview) is enough; live interactive dashboard is NOT being sent — we show it once Zorba has the login + it's QA'd, ideally on their real numbers. REWROTE the Travis email -> new lean ACCESS-FOCUSED draft 'Polar Bear Gifts — let's get the inventory tool building' (asks Lightspeed R vs X + read-only key + offers 20-min call). Dropped the 'I'll send the mock-up to your phone' promise. CLEANUP: 3 Travis drafts now exist — Zorba should send the newest (access-focused) and delete the 2 older ones. Proposal delivery (PDF via Chrome export vs hosted link) still Zorba's call but lower priority now — the email's job is getting access. NEXT after PBG: licensing/architecture answer for the closing tool (how to ship it as a licensable product without exposing the Gemini/OpenAI keys) — SAVED for after PBG per Zorba.
 
@@ -187,30 +190,35 @@ ALL 20 Etsy products BUILT (etsy-shop/*.pdf) via upgraded engine: each now has p
 
 ### 2026-06-02 05:29 UTC · chat
 SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@z.ai (msg 19e86ccebe1f1112); HighLevel cancel+refund -> billing@gohighlevel.com (msg 19e86cd2a4dd19f9). DAILY at CEO sync: check for their reply, resend follow-up until written cancel+refund confirmed, then verify charges stopped via Stripe receipts. Agentbus T015 (AutoGLM follow-up), T016 (HighLevel confirm), T017 (Etsy OrganizedOrionDesign digital venture). ETSY = DIGITAL (PDFs/AI guides/student planners/story guides); Zorba 1hr/wk creates, Claude markets/optimizes. NEXT BUILDS: GHL feature->rebuild map on free stack; stand up OrganizedOrionDesign + first product.
-
-### 2026-06-02 05:23 UTC · chat
-SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $200/mo — TOP tier, NOT $100. Flat-rate, can't 'exceed' in $, only hit rate limits. He runs whole OS on it → KEEP, it's the engine. ChatGPT $20 + Gemini $20 worth it. AI-model spend (~$240) is his MOST productive spend, don't trim. (2) AutoGLM = $100/mo billed by Z.ai (autoglm@z.ai) — CAN'T CANCEL, shady. PRIORITY CUT. Drafted cancellation+refund-demand email in Gmail; fallback = Stripe/card chargeback. (3) GoHighLevel ~$100/mo — rebuildable on existing free stack (Netlify forms + Gmail + Google Cal/Cal.com + sheet/Airtable CRM); only SMS-at-scale (Twilio) is harder & he's not using it → CUT, Claude rebuilds the lead→CRM→follow-up flow. (4) Runway — KEEP but right-size: pause between production sprints, resub only in months he batches hero videos (made the BYB 'Transformers' video). (5) Etsy/OrganizedOrionDesign → keep ONLY as low-touch: Zorba ~1hr/wk builds assets, Claude markets/optimizes, else cut. Add as venture. (6) Vybewear (Isaac@vybewear.com) = CLIENT/friend for LAI/BYB (forwarded GTAA tournament leads) — track as customer, revenue-relevant. TRUE BLEED = AutoGLM $100 + GHL $100 = ~$200/mo.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 15:40 UTC
+- **When:** 2026-06-03 15:51 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 5436029 chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **Last commit:** b1f0ad9 chore: refresh nucleus live state [skip ci] — 11 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M .claude/nucleus/tasks.json
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ .claude/nucleus/tasks.json |  2 +-
+ 2 files changed, 8 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-5436029 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-ba9d5e5 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-1614288 PBG: add noindex to proposal+dashboard; gitignore netlify-drop artifacts (4 minutes ago)
-af44736 chore: refresh nucleus live state [skip ci] (26 minutes ago)
-1b8d4b3 chore: refresh nucleus live state [skip ci] (27 minutes ago)
+b1f0ad9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+5436029 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+ba9d5e5 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+1614288 PBG: add noindex to proposal+dashboard; gitignore netlify-drop artifacts (15 minutes ago)
+af44736 chore: refresh nucleus live state [skip ci] (37 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
