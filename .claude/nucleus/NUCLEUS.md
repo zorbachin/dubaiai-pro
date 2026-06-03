@@ -197,21 +197,27 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 03:57 UTC
+- **When:** 2026-06-03 05:35 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** e7aab9f chore: capture command-center handoff [skip ci] — 49 seconds ago
+- **Last commit:** 83fe8dc chore: refresh nucleus live state [skip ci] — 2 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-e7aab9f chore: capture command-center handoff [skip ci] (49 seconds ago)
-01f6c61 Add command center to nucleus bridge (board view + /command.json) (76 seconds ago)
-2e56981 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-e21af61 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-c8706bb chore: refresh nucleus live state [skip ci] (10 hours ago)
+83fe8dc chore: refresh nucleus live state [skip ci] (2 hours ago)
+e7aab9f chore: capture command-center handoff [skip ci] (2 hours ago)
+01f6c61 Add command center to nucleus bridge (board view + /command.json) (2 hours ago)
+2e56981 chore: refresh nucleus live state [skip ci] (2 hours ago)
+e21af61 chore: refresh nucleus live state [skip ci] (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
