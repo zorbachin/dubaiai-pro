@@ -198,25 +198,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 08:06 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) — 35 seconds ago
+- **Last commit:** a6f896a chore: refresh nucleus live state [skip ci] — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) (35 seconds ago)
+a6f896a chore: refresh nucleus live state [skip ci] (21 seconds ago)
+3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) (56 seconds ago)
 1ae7876 chore: refresh nucleus live state [skip ci] (2 hours ago)
 2e6f7d8 Log: PBG first paying client + Phase 1 email draft; Hermes findings [skip ci] (2 hours ago)
 5a69a8b chore: refresh nucleus live state [skip ci] (2 hours ago)
-909628c Log: The First Call posted across platforms; 6/3 nudge done [skip ci] (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
