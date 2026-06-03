@@ -3,178 +3,221 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Polar Bear Gifts × Zorba — The Plan</title>
+<title>Polar Bear Gifts × Zorba — The Build</title>
 <style>
   :root{
     --yellow:#F7C948; --yellow-deep:#E3A81C; --yellow-soft:#FFF3D1;
     --navy:#0c1b2e; --navy2:#13283f; --ink:#0e1f33; --mut:#5d7185;
     --snow:#fff; --frost:#f1f6fb; --line:#e3edf6; --line2:#d2e0ee;
     --blue:#1f6fb2; --bluebg:#e6f1fa; --green:#1f9d6b; --greenbg:#e3f5ec;
+    --red:#d6453f; --redbg:#fbe6e5;
     --shadow:0 8px 26px rgba(13,27,42,.09); --shadow2:0 2px 8px rgba(13,27,42,.06);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
     background:var(--frost);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:880px;margin:0 auto;padding:0 18px 70px}
   .bear{flex:none;display:inline-grid;place-items:center;border-radius:50%;background:var(--yellow);
     box-shadow:0 2px 0 var(--yellow-deep) inset}
 
   header{background:radial-gradient(120% 150% at 85% -30%,#1b3a5c 0%,var(--navy) 60%);color:#fff;
     border-bottom:3px solid var(--yellow)}
-  .hwrap{max-width:880px;margin:0 auto;padding:26px 18px 24px}
-  .htop{display:flex;align-items:center;gap:14px}
-  .htop h1{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700}
-  .hero{font-size:27px;font-weight:800;line-height:1.2;margin-top:14px;max-width:620px}
-  .hero .y{color:var(--yellow)}
-  .hsub{color:#a9c6e2;font-size:14px;margin-top:8px;max-width:600px}
+  .hwrap{max-width:860px;margin:0 auto;padding:22px 18px;display:flex;align-items:center;gap:13px}
+  .hwrap h1{font-size:12.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--yellow);font-weight:700}
+  .hwrap .t2{color:#a9c6e2;font-size:12px;margin-top:2px}
 
-  .principle{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-  .pchip{background:rgba(247,201,72,.12);border:1px solid rgba(247,201,72,.45);color:var(--yellow-soft);
-    font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px}
+  .page{max-width:860px;margin:0 auto;padding:30px 18px 50px}
+  .plabel{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+    color:var(--mut);background:var(--snow);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+  .big{font-size:30px;font-weight:800;line-height:1.15;margin:14px 0 6px}
+  .big .y{color:var(--yellow-deep)}
+  .sub{font-size:15px;color:var(--mut);max-width:620px}
 
-  .lead{font-size:14.5px;color:var(--mut);margin:24px 0 6px;font-weight:600;text-transform:uppercase;letter-spacing:.6px}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .bd{font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:999px;border:1px solid}
+  .bd.g{background:var(--greenbg);color:var(--green);border-color:#bfe6d3}
+  .bd.y{background:var(--yellow-soft);color:#8a5b00;border-color:#f0dca0}
+  .bd.b{background:var(--bluebg);color:var(--blue);border-color:#c4ddf1}
 
-  .phase{background:var(--snow);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow2);
-    padding:20px;margin-top:16px;border-top:5px solid var(--line2);position:relative}
-  .phase.p1{border-top-color:var(--yellow)} .phase.p2{border-top-color:var(--blue)}
-  .phase.p3{border-top-color:var(--navy)} .phase.pw{border-top-color:var(--green)}
-  .ptag{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .badge{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 11px;border-radius:999px}
-  .b-y{background:var(--yellow-soft);color:#8a5b00} .b-b{background:var(--bluebg);color:var(--blue)}
-  .b-n{background:#e7edf4;color:var(--navy)} .b-g{background:var(--greenbg);color:var(--green)}
-  .when{color:var(--mut);font-size:13px;font-weight:600}
-  .price{margin-left:auto;font-size:21px;font-weight:800;color:var(--navy)}
-  .price small{display:block;font-size:11px;color:var(--mut);font-weight:600;text-align:right}
-  .ptitle{font-size:20px;font-weight:800;margin:10px 0 2px}
-  .pwhat{font-size:13px;color:var(--mut);margin-bottom:10px}
-  ul{list-style:none;margin:6px 0}
-  li{display:flex;gap:9px;align-items:flex-start;margin:7px 0;font-size:14.5px}
-  li::before{content:"✓";color:var(--green);font-weight:800;flex:none;margin-top:1px}
-  .save{margin-top:12px;background:var(--frost);border:1px solid var(--line);border-radius:11px;
-    padding:10px 13px;font-size:13px}
-  .save b{color:var(--navy)}
-  .p1 .save{background:var(--yellow-soft);border-color:#f0dca0}
+  /* phone visual */
+  .show{display:flex;gap:24px;align-items:center;margin:26px 0 6px;flex-wrap:wrap}
+  .phone{flex:none;width:230px;background:var(--navy);border-radius:26px;padding:10px;box-shadow:var(--shadow)}
+  .screen{background:var(--frost);border-radius:18px;overflow:hidden}
+  .sbar{background:linear-gradient(135deg,var(--navy2),var(--navy));color:#fff;padding:9px 11px;display:flex;
+    align-items:center;gap:7px;font-size:11px;font-weight:700}
+  .sbar .ro{margin-left:auto;color:var(--yellow);font-size:9px}
+  .scard{background:#fff;margin:8px;border-radius:11px;padding:9px 10px;display:flex;gap:9px;align-items:center;
+    border-left:4px solid var(--red);box-shadow:0 1px 4px rgba(13,27,42,.06)}
+  .scard.g{border-left-color:var(--green)} .scard.b{border-left-color:var(--blue)}
+  .thumb{width:34px;height:34px;border-radius:8px;background:var(--frost);display:grid;place-items:center;font-size:18px;flex:none}
+  .scard .nm{font-size:11.5px;font-weight:800;line-height:1.15}
+  .scard .cp{font-size:9.5px;color:var(--mut);margin-top:1px}
+  .szrow{display:flex;gap:3px;margin:2px 8px 10px}
+  .sz{flex:1;text-align:center;font-size:10px;font-weight:700;padding:3px 0;border-radius:5px;background:#eef5fb}
+  .sz.bad{background:var(--redbg);color:var(--red)} .sz.low{background:var(--yellow-soft);color:#8a5b00}
+  .showcopy{flex:1;min-width:230px}
+  .showcopy h3{font-size:16px;margin-bottom:6px}
+  .showcopy p{font-size:13.5px;color:var(--mut)}
 
-  .connector{height:18px;width:3px;background:var(--line2);margin:0 auto;border-radius:2px}
+  .tiles{display:grid;gap:13px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:24px}
+  .tile{background:var(--snow);border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:var(--shadow2)}
+  .tile .ic{font-size:22px}
+  .tile .pr{font-size:12.5px;color:var(--red);font-weight:700;margin-top:8px}
+  .tile .so{font-size:14.5px;margin-top:3px}
+  .tile .so b{color:var(--navy)}
 
-  .cta{margin-top:26px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;
-    border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+  .saves{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-top:22px}
+  .save{background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:15px;text-align:center;box-shadow:var(--shadow2)}
+  .save .n{font-size:22px;font-weight:800;color:var(--yellow-deep)} .save .l{font-size:12px;color:var(--mut);margin-top:3px}
+  .how{margin-top:20px;background:var(--bluebg);border:1px solid #c4ddf1;border-radius:12px;padding:13px 15px;
+    font-size:13.5px;color:#244b6b}
+
+  .divider{height:10px;background:repeating-linear-gradient(90deg,var(--line2) 0 8px,transparent 8px 16px);margin:0}
+
+  /* page 2 */
+  .step{background:var(--snow);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-top:14px;
+    box-shadow:var(--shadow2);border-left:5px solid var(--line2)}
+  .step.j{border-left-color:var(--blue)} .step.s{border-left-color:var(--navy)} .step.w{border-left-color:var(--green)}
+  .step .tag{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--mut)}
+  .step h3{font-size:19px;margin:3px 0 8px}
+  .step ul{list-style:none} .step li{display:flex;gap:9px;font-size:14.5px;margin:6px 0}
+  .step li::before{content:"→";color:var(--yellow-deep);font-weight:800;flex:none}
+  .win{margin-top:10px;font-size:13px;color:var(--mut)} .win b{color:var(--navy)}
+
+  .cta{margin-top:24px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:16px;padding:22px;box-shadow:var(--shadow)}
   .cta h3{font-size:18px;color:var(--yellow)} .cta p{color:#cfe0ef;font-size:14px;margin-top:6px}
-  .cta ol{margin:12px 0 0 18px;color:#eef4fa;font-size:14px} .cta li2{margin:5px 0}
-  .foot{color:var(--mut);font-size:12.5px;text-align:center;margin-top:22px}
-  @media(max-width:560px){.hero{font-size:23px}.price{margin-left:0;width:100%;text-align:left}.price small{text-align:left}}
+  .cta ol{margin:12px 0 0 18px;color:#eef4fa;font-size:14.5px} .cta ol li{margin:6px 0}
+  .foot{color:var(--mut);font-size:12px;text-align:center;margin-top:22px}
+  @media print{.page{page-break-after:always}.divider{display:none}}
+  @media(max-width:560px){.big{font-size:24px}.phone{margin:0 auto}}
 </style>
 </head>
 <body>
 <header>
   <div class="hwrap">
-    <div class="htop">
-      <span class="bear" style="width:42px;height:42px">
-        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
-          <g fill="#fff" stroke="#0c1b2e" stroke-width="0.7">
-            <circle cx="9" cy="8.5" r="3.5"/><circle cx="23" cy="8.5" r="3.5"/><circle cx="16" cy="17" r="11"/></g>
-          <circle cx="12.4" cy="15" r="1.3" fill="#0c1b2e"/><circle cx="19.6" cy="15" r="1.3" fill="#0c1b2e"/>
-          <ellipse cx="16" cy="19.8" rx="3.5" ry="2.7" fill="#fff" stroke="#0c1b2e" stroke-width="0.7"/>
-          <ellipse cx="16" cy="18.7" rx="1.3" ry="1" fill="#0c1b2e"/></svg>
-      </span>
-      <h1>Polar Bear Gifts × Zorba</h1>
-    </div>
-    <div class="hero">From <span class="y">clean counts</span> to a store that <span class="y">sells itself online</span>.</div>
-    <div class="hsub">A simple, phased plan. Each step proves its value before the next one starts — and nothing
-      ever touches your live system without your say-so.</div>
-    <div class="principle">
-      <span class="pchip">● Read-only &amp; reversible</span>
-      <span class="pchip">● Built on your own Lightspeed data</span>
-      <span class="pchip">● Each phase earns the next</span>
-    </div>
+    <span class="bear" style="width:40px;height:40px">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+        <g fill="#fff" stroke="#0c1b2e" stroke-width="0.7">
+          <circle cx="9" cy="8.5" r="3.5"/><circle cx="23" cy="8.5" r="3.5"/><circle cx="16" cy="17" r="11"/></g>
+        <circle cx="12.4" cy="15" r="1.3" fill="#0c1b2e"/><circle cx="19.6" cy="15" r="1.3" fill="#0c1b2e"/>
+        <ellipse cx="16" cy="19.8" rx="3.5" ry="2.7" fill="#fff" stroke="#0c1b2e" stroke-width="0.7"/>
+        <ellipse cx="16" cy="18.7" rx="1.3" ry="1" fill="#0c1b2e"/></svg>
+    </span>
+    <div><h1>Polar Bear Gifts × Zorba</h1><div class="t2">Inventory Command — the plan</div></div>
   </div>
 </header>
 
-<div class="wrap">
+<!-- ====================== PAGE 1 — THE BUILD ====================== -->
+<div class="page">
+  <span class="plabel">The build · 1 of 2</span>
+  <div class="big">What we're building <span class="y">first</span></div>
+  <div class="sub">An inventory dashboard, live on your real Lightspeed data — on every phone, in daily use
+    before I even land in July.</div>
 
-  <div class="lead">Start here · before July</div>
-  <div class="phase p1">
-    <div class="ptag">
-      <span class="badge b-y">Phase 1 · the live tool</span><span class="when">Built remotely · running before I land</span>
-      <span class="price">$2,500<small>fixed · 50% to start</small></span>
-    </div>
-    <div class="ptitle">🐻‍❄️ Inventory Command — live</div>
-    <div class="pwhat">Connected to your real Lightspeed (read-only), soft goods first, both stores, on your phone —
-      and you're using it every morning before I ever set foot in the store.</div>
-    <ul>
-      <li><b>Live on your real data</b> from day one — a scheduled read from Lightspeed, no waiting on the visit</li>
-      <li>Every top item, <b>both stores, every size</b>, on one screen — ready before you open</li>
-      <li>Flags the quiet money-losers: <b>negatives, wrong-size scans</b>, and <b>"website says in stock" but the shelf is empty</b></li>
-      <li>Suggested <b>store-to-store transfers</b> + one-tap Excel order, and a <b>weekly cycle-count list</b></li>
-    </ul>
-    <div class="save">💰 <b>What it gives back:</b> ~6 hrs/wk of manual counting · 2–4 stockouts/mo caught early ·
-      fewer "sorry, we're out" calls. <b>Risk: zero</b> — it only reads Lightspeed, never writes to it.</div>
+  <div class="badges">
+    <span class="bd g">● Read-only — can't touch your POS</span>
+    <span class="bd y">● Live on your real data</span>
+    <span class="bd b">● Built for the floor, on a phone</span>
   </div>
 
-  <div class="connector"></div>
-  <div class="lead">What the July visit adds</div>
-  <div class="phase p2">
-    <div class="ptag">
-      <span class="badge b-b">Phase 2 · the on-site block</span><span class="when">The Anchorage visit (after July 12)</span>
-      <span class="price">≈ $3,000<small>scoped on the visit</small></span>
+  <div class="show">
+    <div class="phone"><div class="screen">
+      <div class="sbar">🐻‍❄️ Inventory Command <span class="ro">● READ-ONLY</span></div>
+      <div class="scard"><div class="thumb">🧥</div><div><div class="nm">Boomer Hoodie</div>
+        <div class="cp">Negative inventory · M = −3 @ 5th — count it</div></div></div>
+      <div class="szrow"><span class="sz">S 4</span><span class="sz bad">M −3</span><span class="sz">L 6</span><span class="sz low">XL 2</span><span class="sz">2XL 1</span></div>
+      <div class="scard b"><div class="thumb">🧥</div><div><div class="nm">Denali Full-Zip — M</div>
+        <div class="cp">On the website, not on the shelf · hide it</div></div></div>
+      <div class="scard g"><div class="thumb">🧶</div><div><div class="nm">Glacier Crew · S</div>
+        <div class="cp">Move 5 from Outlet → 5th Ave</div></div></div>
+    </div></div>
+    <div class="showcopy">
+      <h3>One glance, before you open</h3>
+      <p>Lightspeed has the data — it just won't hand you the answer, and never on the floor. This turns the
+        raw numbers into "here's what's off and here's the fix," every morning, on the phone in your pocket.</p>
     </div>
-    <div class="ptitle">Expand it &amp; make it bulletproof</div>
-    <div class="pwhat">Phase 1 is already running. The visit is where it grows up — in person, with your team.</div>
-    <ul>
-      <li>Expand from soft goods to the <b>full catalog</b> — more product types, more rules</li>
-      <li>Turn on the <b>floor tools</b> — <b>scan a tag</b> &amp; <b>ask Bloop</b> — and bump to <b>hourly</b> updates (Jay's ask)</li>
-      <li><b>Tune the alerts against your real floor</b> so the mis-scan &amp; transfer calls are trustworthy, not noisy — the part that makes it bulletproof for Jay</li>
-      <li>Train Jordan, Rachel &amp; the team so it's <b>yours to run</b> without me</li>
-    </ul>
-    <div class="save">💰 <b>What it gives back:</b> the whole store covered, the floor tools in everyone's pocket,
-      and a team that owns it — not a demo, a habit.</div>
   </div>
 
-  <div class="connector"></div>
-  <div class="lead">Where it goes from there</div>
-  <div class="phase p3">
-    <div class="ptag">
-      <span class="badge b-n">Phase 3 · later</span><span class="when">Scoped together, once it's earned it</span>
-      <span class="price">scoped<small>per piece</small></span>
-    </div>
-    <div class="ptitle">Smarter buying</div>
+  <div class="tiles">
+    <div class="tile"><div class="ic">🔢</div>
+      <div class="pr">Sizes drift across two stores</div>
+      <div class="so"><b>Every item, both stores, every size</b> on one screen — ready before you open.</div></div>
+    <div class="tile"><div class="ic">🚩</div>
+      <div class="pr">Mis-scans &amp; negatives hide for months</div>
+      <div class="so">Flags <b>negatives &amp; wrong-size scans the next morning</b>, not next quarter.</div></div>
+    <div class="tile"><div class="ic">🌐</div>
+      <div class="pr">The website oversells what's gone</div>
+      <div class="so">A <b>daily web-vs-shelf check</b> so you cancel zero online orders.</div></div>
+    <div class="tile"><div class="ic">🔁</div>
+      <div class="pr">Transfers &amp; counts are all manual</div>
+      <div class="so"><b>Suggested transfers</b> (one-tap Excel) + a <b>weekly cycle-count list</b>.</div></div>
+  </div>
+
+  <div class="saves">
+    <div class="save"><div class="n">~6 hrs/wk</div><div class="l">manual counting given back to the team</div></div>
+    <div class="save"><div class="n">2–4 / mo</div><div class="l">reorderable stockouts caught early in peak</div></div>
+    <div class="save"><div class="n">Fewer</div><div class="l">"sorry, we're out" calls &amp; bad reviews</div></div>
+  </div>
+
+  <div class="how">⚙️ <b>How it runs:</b> a scheduled read from Lightspeed (saved locally, built for the slower
+    store line) → a clean morning dashboard built around Rachel's tags. It only ever <b>reads</b> and
+    <b>suggests</b> — your team approves every move.</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ====================== PAGE 2 — WHERE IT GOES ====================== -->
+<div class="page">
+  <span class="plabel">Where it goes after · 2 of 2</span>
+  <div class="big">Where it goes <span class="y">from here</span></div>
+  <div class="sub">The roadmap once the inventory tool has proven itself. Each step only starts once the last
+    one has earned it — no big bang, no risk.</div>
+
+  <div class="step j">
+    <div class="tag">The July visit · on-site</div>
+    <h3>Expand it &amp; make it bulletproof</h3>
     <ul>
-      <li><b>AI reorder suggestions</b> by size, season-aware — learns what Smalls vs Mediums sell when</li>
-      <li><b>Tiered markdown logic</b> (25% → 50% → clearance) so you stop jumping straight to deep discounts</li>
+      <li>Grow from soft goods to the <b>full catalog</b></li>
+      <li>Turn on the <b>floor tools</b> — scan a tag &amp; ask Bloop — and bump to <b>hourly</b> updates</li>
+      <li><b>Tune the alerts against the real floor</b> so they're trustworthy, not noisy</li>
+      <li>Train Jordan, Rachel &amp; the team so it's <b>yours to run</b></li>
+    </ul>
+    <div class="win">🎯 <b>The win:</b> the whole store covered, the tools in everyone's pocket, a team that owns it.</div>
+  </div>
+
+  <div class="step s">
+    <div class="tag">After that · smarter buying</div>
+    <h3>Stop guessing the orders</h3>
+    <ul>
+      <li><b>AI reorder suggestions</b> by size, season-aware — learns what sells when</li>
+      <li><b>Tiered markdown</b> (25% → 50% → clearance) instead of jumping to deep discounts</li>
       <li>Lift the slow, manual pieces off <b>Rachel's</b> plate</li>
     </ul>
-    <div class="save">💰 <b>What it gives back:</b> buy the right quantities, protect margin on closeouts,
-      hours back on the work nobody enjoys.</div>
+    <div class="win">🎯 <b>The win:</b> buy the right quantities, protect margin, hours back on the boring stuff.</div>
   </div>
 
-  <div class="connector"></div>
-  <div class="lead">The growth play (its own track)</div>
-  <div class="phase pw">
-    <div class="ptag">
-      <span class="badge b-g">Website · parallel</span><span class="when">Run alongside, whenever you're ready</span>
-      <span class="price">from ≈ $3,000<small>scoped to goals</small></span>
-    </div>
-    <div class="ptitle">🌐 A website that actually sells</div>
+  <div class="step w">
+    <div class="tag">The growth play · its own track</div>
+    <h3>🌐 A website that actually sells</h3>
     <ul>
-      <li>Real <b>product discovery</b> + a <b>Bloop chatbot on the site</b> answering shipping, sizes, "do you carry X"</li>
-      <li>A <b>heritage + Boomer-mascot content engine</b> (that Woolworth post already proved the appetite)</li>
-      <li>Aim at the <b>$250k+ online opportunity</b> — and bring the margin in-house instead of to the middleman</li>
+      <li>Real <b>product discovery</b> + a <b>Bloop chatbot</b> answering shipping, sizes, "do you carry X"</li>
+      <li>A <b>heritage + Boomer-mascot content engine</b> (the Woolworth post already proved the appetite)</li>
+      <li>Aim at the <b>$250k+ online opportunity</b> — and bring that margin in-house</li>
     </ul>
-    <div class="save">💰 <b>What it gives back:</b> a brand-new revenue line that you own — not a one-time fix, a flywheel.</div>
+    <div class="win">🎯 <b>The win:</b> a brand-new revenue line you own — a flywheel, not a one-time fix.</div>
   </div>
 
   <div class="cta">
     <h3>The next step is small</h3>
-    <p>Approve Phase 1, point me at Lightspeed (read-only), and I'll have it working before I land in July —
-      so the visit is about refining a live tool, not starting from scratch.</p>
+    <p>Get me read-only access to Lightspeed and a quick call to lock the details — and the inventory tool is
+      live on your real numbers before I land in July.</p>
     <ol>
-      <li>👍 Green-light Phase 1 ($2,500)</li>
       <li>🔑 Which Lightspeed — Retail (R-Series) or X-Series? + a read-only key</li>
-      <li>🗓 A quick call to lock the size/category list and Rachel's tags</li>
+      <li>🗓 A 20-min call to confirm the size/category list &amp; Rachel's tags</li>
+      <li>🐻‍❄️ Then it's building — you'll be using it every morning</li>
     </ol>
   </div>
 
-  <div class="foot">Polar Bear Gifts · Anchorage, AK — prepared by Zorba Grashin · estimates locked per phase, never a surprise.</div>
+  <div class="foot">Polar Bear Gifts · Anchorage, AK — prepared by Zorba Grashin</div>
 </div>
 </body>
 </html>
