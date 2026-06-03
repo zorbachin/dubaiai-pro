@@ -173,25 +173,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 03:49 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** c8706bb chore: refresh nucleus live state [skip ci] — 9 hours ago
+- **Last commit:** e21af61 chore: refresh nucleus live state [skip ci] — 18 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
- 1 file changed, 14 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+e21af61 chore: refresh nucleus live state [skip ci] (18 seconds ago)
 c8706bb chore: refresh nucleus live state [skip ci] (9 hours ago)
 02610d3 Refresh nucleus state; gitignore generated focus dashboard (9 hours ago)
 423810e Log trades cold-outreach batch 1 (8 personalized sends) (9 hours ago)
 9149567 chore: refresh nucleus live state [skip ci] (2 days ago)
-1b23a2d chore: refresh nucleus live state [skip ci] (2 days ago)
 ```
 <!-- AUTOSTATE:END -->
