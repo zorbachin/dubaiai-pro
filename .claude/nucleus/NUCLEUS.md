@@ -198,25 +198,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 06:33 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 5a69a8b chore: refresh nucleus live state [skip ci] — 12 minutes ago
+- **Last commit:** 2e6f7d8 Log: PBG first paying client + Phase 1 email draft; Hermes findings [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+2e6f7d8 Log: PBG first paying client + Phase 1 email draft; Hermes findings [skip ci] (19 seconds ago)
 5a69a8b chore: refresh nucleus live state [skip ci] (12 minutes ago)
 909628c Log: The First Call posted across platforms; 6/3 nudge done [skip ci] (12 minutes ago)
-be5f342 chore: refresh nucleus live state [skip ci] (57 minutes ago)
-df3a4ab chore: refresh nucleus live state [skip ci] (57 minutes ago)
-83fe8dc chore: refresh nucleus live state [skip ci] (3 hours ago)
+be5f342 chore: refresh nucleus live state [skip ci] (58 minutes ago)
+df3a4ab chore: refresh nucleus live state [skip ci] (58 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
