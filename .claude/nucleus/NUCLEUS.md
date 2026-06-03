@@ -198,25 +198,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 09:32 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** d9298aa PBG dashboard v2: annotated (vs Lightspeed), premium mobile-first, Polar Bear yellow + bear logo, phone scan + Bear Bloop Bot — 18 seconds ago
+- **Last commit:** 1b8c763 chore: refresh nucleus live state [skip ci] — 10 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-d9298aa PBG dashboard v2: annotated (vs Lightspeed), premium mobile-first, Polar Bear yellow + bear logo, phone scan + Bear Bloop Bot (18 seconds ago)
+1b8c763 chore: refresh nucleus live state [skip ci] (10 seconds ago)
+d9298aa PBG dashboard v2: annotated (vs Lightspeed), premium mobile-first, Polar Bear yellow + bear logo, phone scan + Bear Bloop Bot (28 seconds ago)
 499e99d chore: refresh nucleus live state [skip ci] (16 minutes ago)
 d60f2bb chore: refresh nucleus live state [skip ci] (16 minutes ago)
 583e3fc Align PBG dashboard to vision one-pager (savings, Rachel's tags, local sync); save doc (17 minutes ago)
-0986719 chore: refresh nucleus live state [skip ci] (86 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
