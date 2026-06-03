@@ -196,21 +196,27 @@ SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 13:48 UTC
+- **When:** 2026-06-03 13:59 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** d09c699 chore: capture finalized no-price 2-pager decision in nucleus [skip ci] — 8 seconds ago
+- **Last commit:** 662b76d Harden .gitignore: never commit .env / secrets / keys — 20 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-d09c699 chore: capture finalized no-price 2-pager decision in nucleus [skip ci] (8 seconds ago)
-96f9030 chore: refresh nucleus live state [skip ci] (38 seconds ago)
-dcacbe4 PBG proposal: drop all pricing; split into 2-pager (Page 1 the build, Page 2 where it goes) (49 seconds ago)
-7f06931 chore: refresh nucleus live state [skip ci] (17 minutes ago)
-f14971d chore: refresh nucleus live state [skip ci] (17 minutes ago)
+662b76d Harden .gitignore: never commit .env / secrets / keys (20 seconds ago)
+1b5ddad chore: refresh nucleus live state [skip ci] (11 minutes ago)
+d09c699 chore: capture finalized no-price 2-pager decision in nucleus [skip ci] (11 minutes ago)
+96f9030 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+dcacbe4 PBG proposal: drop all pricing; split into 2-pager (Page 1 the build, Page 2 where it goes) (12 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
