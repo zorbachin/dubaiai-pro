@@ -5,3 +5,10 @@ __pycache__/
 # Generated local focus dashboard + state
 focus.html
 .claude/nucleus/focus-stats.json
+
+# Secrets — never commit real keys
+.env
+.env.*
+!.env.example
+*.key
+secrets.json
