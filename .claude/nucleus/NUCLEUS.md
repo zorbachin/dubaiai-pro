@@ -198,25 +198,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 06:21 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** be5f342 chore: refresh nucleus live state [skip ci] — 45 minutes ago
+- **Last commit:** 909628c Log: The First Call posted across platforms; 6/3 nudge done [skip ci] — 13 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+909628c Log: The First Call posted across platforms; 6/3 nudge done [skip ci] (13 seconds ago)
 be5f342 chore: refresh nucleus live state [skip ci] (45 minutes ago)
-df3a4ab chore: refresh nucleus live state [skip ci] (45 minutes ago)
+df3a4ab chore: refresh nucleus live state [skip ci] (46 minutes ago)
 83fe8dc chore: refresh nucleus live state [skip ci] (2 hours ago)
 e7aab9f chore: capture command-center handoff [skip ci] (2 hours ago)
-01f6c61 Add command center to nucleus bridge (board view + /command.json) (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
