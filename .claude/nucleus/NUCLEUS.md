@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 03:56 UTC · code
+Built the COMMAND CENTER into the nucleus bridge: nucleus serve now renders a board at / (North Star + Active Threads + Connections + Automations + catch-up) and exposes /command.json for the localhost:3001 app to render natively. Added two new editable sections to NUCLEUS.md — Connections (Claude/you, Hermes [evaluating], ad MCPs, Gamma, design, video, Gmail/Cal/Drive, Stripe) and Automations (SessionStart/Stop hooks, nudge engine, follow-up bumps, focus dashboard). Grammar: '- **Name** · status · note'. INTEGRATION.md documents wiring. Hermes now INSTALLED on Zorba's desktop but capabilities still unconfirmed -> needs a research pass before it becomes a real (widget/feed) connection, not just a listed one. OPEN: still don't know what Hermes actually does/who makes it. NOTE: NUCLEUS.md has a leftover git stash conflict marker inside HANDOFFS (lines ~46-167) — classifier blocks hand-editing that region; needs user OK or git-level resolve.
+
 <<<<<<< Updated upstream
 =======
 ### 2026-06-02 18:24 UTC · code
@@ -194,9 +197,9 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 03:49 UTC
+- **When:** 2026-06-03 03:56 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** e21af61 chore: refresh nucleus live state [skip ci] — 18 seconds ago
+- **Last commit:** 01f6c61 Add command center to nucleus bridge (board view + /command.json) — 13 seconds ago
 
 **Working tree:**
 ```
@@ -205,10 +208,10 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-e21af61 chore: refresh nucleus live state [skip ci] (18 seconds ago)
+01f6c61 Add command center to nucleus bridge (board view + /command.json) (13 seconds ago)
+2e56981 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+e21af61 chore: refresh nucleus live state [skip ci] (7 minutes ago)
 c8706bb chore: refresh nucleus live state [skip ci] (9 hours ago)
 02610d3 Refresh nucleus state; gitignore generated focus dashboard (9 hours ago)
-423810e Log trades cold-outreach batch 1 (8 personalized sends) (9 hours ago)
-9149567 chore: refresh nucleus live state [skip ci] (2 days ago)
 ```
 <!-- AUTOSTATE:END -->
