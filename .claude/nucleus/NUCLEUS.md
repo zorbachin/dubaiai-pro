@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 09:31 UTC · code
+PBG DASHBOARD V2 BUILT (clients/pbg/inventory-dashboard-v2.html). Answered Zorba's core Q 'what does it do that Lightspeed doesn't' = Lightspeed is system of RECORD, this is system of ACTION (glanceable morning view, proactive flags, tag-aware, daily Shopify reconcile, transfer suggestions+Excel, scheduled cycle counts, floor tools). v2 upgrades per Zorba's design notes: (1) ANNOTATED 'Why it beats Lightspeed' toggle (on by default) explains each feature vs the POS per pain point; (2) PREMIUM look + consistent inline SVG bear logo + POLAR BEAR YELLOW (#F7C948) brand; (3) MOBILE-FIRST (Travis/Jordan on the floor) — sticky bottom floor bar; (4) NEW floor tools: '📷 Scan a tag' (simulated scan -> item card w/ by-size both-store stock + verdict) and 'Bear Bloop Bot' (🐻‍❄️ Bloop) natural-language search answering item/size, what's low, oversold, what to move, web mismatches — all offline/canned, can't fail. Sent + committed. OPEN DESIGN INPUTS to make it truly theirs: real PBG brand yellow hex + actual logo, real two store names, a few real top-selling soft-goods item names. STILL OPEN (email): confirm Jay==Jordan Michaels (uncle); Jordan+Rachel emails; Lightspeed R-Series vs X-Series + read-only API.
+
 ### 2026-06-03 09:15 UTC · code
 PBG VISION DOC received (clients/pbg/PBG-where-we-want-to-take-this.pdf) — Zorba's polished management-facing one-pager 'Where we want to take this'. CORRECTIONS to earlier notes: management/family team = RACHEL ROBINSON + JORDAN MICHAELS (Travis Enter = ops contact). AMBIGUITY TO RESOLVE: doc says 'Jordan Michaels' but Zorba's emails/tl;dv call him 'Jay' + 'Zorba is Jay's nephew' -> need to confirm Jay == Jordan (the critical uncle) before any email goes out (avoid a Trevor/Travis-style name slip). PHASING per doc: Phase 1 = clean counts/inventory ('the number one'); Phase 2 = soft-goods morning dashboard built around Rachel's 3 tags (sell-through=alert, dropped/disco=ignore); Phase 3 = AI reorder suggestions (size/season-aware). Nightly 1AM Lightspeed sync SAVED LOCALLY (for 10/2 Mbps store). SAVINGS pitched: ~6 hrs/wk counting back, 2-4 reorderable stockouts/mo caught, fewer 'sorry we're out' calls/bad reviews. Site visit after July 12. ACTION: updated clients/pbg/inventory-dashboard.html to mirror the doc (savings strip + tag logic + local-sync note) — re-sent to Zorba; PDF saved+committed. The mock-up + doc now tell ONE story. STILL OPEN: confirm Jay/Jordan; Jordan's + Rachel's emails; which Lightspeed (R vs X-Series) + read-only API access; any real store names/catalog to swap into the demo.
 
@@ -187,30 +190,33 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 
 ### 2026-06-02 04:50 UTC · chat
 🎉 BIG WIN 2026-06-02: calisthenics video published LIVE to Facebook, Instagram (Reel, zorb_ai), and LinkedIn. X uncertain (Buffer timed out mid-86MB-upload — verify manually). Posting block broken. SUSTAINABLE CADENCE in .claude/os/content/posting-cadence.md: batch 1 pillar video/Sun → Claude atomizes + queues all platforms in Buffer → user approves + posts FB manually. Floor 3/wk; FB 3-5x, IG 4-5x, LI 3x, X 5x, TikTok 3x, newsletter 1x.
-
-### 2026-06-02 04:43 UTC · chat
-🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 09:16 UTC
+- **When:** 2026-06-03 09:32 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** d60f2bb chore: refresh nucleus live state [skip ci] — 15 seconds ago
+- **Last commit:** d9298aa PBG dashboard v2: annotated (vs Lightspeed), premium mobile-first, Polar Bear yellow + bear logo, phone scan + Bear Bloop Bot — 18 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-d60f2bb chore: refresh nucleus live state [skip ci] (15 seconds ago)
-583e3fc Align PBG dashboard to vision one-pager (savings, Rachel's tags, local sync); save doc (30 seconds ago)
-0986719 chore: refresh nucleus live state [skip ci] (70 minutes ago)
-a6f896a chore: refresh nucleus live state [skip ci] (70 minutes ago)
-3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) (71 minutes ago)
+d9298aa PBG dashboard v2: annotated (vs Lightspeed), premium mobile-first, Polar Bear yellow + bear logo, phone scan + Bear Bloop Bot (18 seconds ago)
+499e99d chore: refresh nucleus live state [skip ci] (16 minutes ago)
+d60f2bb chore: refresh nucleus live state [skip ci] (16 minutes ago)
+583e3fc Align PBG dashboard to vision one-pager (savings, Rachel's tags, local sync); save doc (17 minutes ago)
+0986719 chore: refresh nucleus live state [skip ci] (86 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
