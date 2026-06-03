@@ -171,22 +171,28 @@ Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Gre
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 18:15 UTC
+- **When:** 2026-06-03 19:43 UTC
 - **Branch:** `claude/floori-competitor-analysis-gGYEs`
-- **Last commit:** 1573791 chore: refresh nucleus live state [skip ci] — 8 seconds ago
+- **Last commit:** f07ae41 chore: refresh nucleus live state [skip ci] — 88 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-1573791 chore: refresh nucleus live state [skip ci] (8 seconds ago)
-9b67de0 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-99608c9 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-fbf2155 chore: refresh nucleus live state [skip ci] (25 hours ago)
-c55a864 chore: refresh nucleus live state [skip ci] (25 hours ago)
+f07ae41 chore: refresh nucleus live state [skip ci] (88 minutes ago)
+1573791 chore: refresh nucleus live state [skip ci] (88 minutes ago)
+9b67de0 chore: refresh nucleus live state [skip ci] (2 hours ago)
+99608c9 chore: refresh nucleus live state [skip ci] (2 hours ago)
+fbf2155 chore: refresh nucleus live state [skip ci] (26 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
