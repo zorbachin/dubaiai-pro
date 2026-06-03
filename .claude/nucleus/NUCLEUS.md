@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 09:40 UTC · code
+PBG ROLES CLARIFIED: Jay = OWNER (owns PBG), Jordan = on the FLOOR (ops/manager), Travis = Zorba's contact (Entr0801@gmail.com). They are DIFFERENT people (earlier Jay==Jordan ambiguity RESOLVED: not the same). FINAL EMAIL CREATED in Drafts -> to Travis only: 'Polar Bear Gifts — the inventory dashboard (working mock-up) + 2 quick things' = recap of Phase 1 (soft goods, both stores, read-only, floor scan + Bloop), $2,500 / half-half / before July, and ASKS which Lightspeed (R-Series vs X-Series, screenshot fallback) + read-only API key. NOTE: two drafts to Travis now exist — tell Zorba to DELETE the earlier generic 'Phase 1 plan + a couple quick questions' draft and send the new one. Lightspeed version still UNKNOWN -> deliberately asked Travis in the email. OPEN: (1) how to deliver the mock-up to Travis — offered to publish inventory-dashboard-v2.html to a private unguessable GitHub Pages link so Zorba pastes a URL (awaiting yes). (2) real branding inputs (PBG yellow hex, logo, store names, real top sellers) to finalize the demo.
+
 ### 2026-06-03 09:31 UTC · code
 PBG DASHBOARD V2 BUILT (clients/pbg/inventory-dashboard-v2.html). Answered Zorba's core Q 'what does it do that Lightspeed doesn't' = Lightspeed is system of RECORD, this is system of ACTION (glanceable morning view, proactive flags, tag-aware, daily Shopify reconcile, transfer suggestions+Excel, scheduled cycle counts, floor tools). v2 upgrades per Zorba's design notes: (1) ANNOTATED 'Why it beats Lightspeed' toggle (on by default) explains each feature vs the POS per pain point; (2) PREMIUM look + consistent inline SVG bear logo + POLAR BEAR YELLOW (#F7C948) brand; (3) MOBILE-FIRST (Travis/Jordan on the floor) — sticky bottom floor bar; (4) NEW floor tools: '📷 Scan a tag' (simulated scan -> item card w/ by-size both-store stock + verdict) and 'Bear Bloop Bot' (🐻‍❄️ Bloop) natural-language search answering item/size, what's low, oversold, what to move, web mismatches — all offline/canned, can't fail. Sent + committed. OPEN DESIGN INPUTS to make it truly theirs: real PBG brand yellow hex + actual logo, real two store names, a few real top-selling soft-goods item names. STILL OPEN (email): confirm Jay==Jordan Michaels (uncle); Jordan+Rachel emails; Lightspeed R-Series vs X-Series + read-only API.
 
@@ -187,30 +190,33 @@ OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APP
 
 ### 2026-06-02 05:06 UTC · chat
 BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. (1) PodSupps (podsupps.com) → run autonomously, Claude starts marketing it + drives signups/logins. (2) For other ventures, Claude is the guide — tell him what to do. (3) SPEND AUDIT: monitor wasted spend — still need Manus? Etsy? right-size ElevenLabs? pay for HeyGen? cheapest effective video tool (Higgsfield vs Topview)? (4) Build CORPORATE AGENTIC STRUCTURE: who runs which workstream, cost, investment needed. (5) Send him prompts/nudges when lagging — 'your job is 24/7'. KEY INSIGHT to apply: his brand is REAL/self-shot (calisthenics) → expensive AI-video/avatar tools may be redundant.
-
-### 2026-06-02 04:50 UTC · chat
-🎉 BIG WIN 2026-06-02: calisthenics video published LIVE to Facebook, Instagram (Reel, zorb_ai), and LinkedIn. X uncertain (Buffer timed out mid-86MB-upload — verify manually). Posting block broken. SUSTAINABLE CADENCE in .claude/os/content/posting-cadence.md: batch 1 pillar video/Sun → Claude atomizes + queues all platforms in Buffer → user approves + posts FB manually. Floor 3/wk; FB 3-5x, IG 4-5x, LI 3x, X 5x, TikTok 3x, newsletter 1x.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 09:32 UTC
+- **When:** 2026-06-03 09:40 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 1b8c763 chore: refresh nucleus live state [skip ci] — 10 seconds ago
+- **Last commit:** b8ad579 chore: refresh nucleus live state [skip ci] — 9 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-1b8c763 chore: refresh nucleus live state [skip ci] (10 seconds ago)
-d9298aa PBG dashboard v2: annotated (vs Lightspeed), premium mobile-first, Polar Bear yellow + bear logo, phone scan + Bear Bloop Bot (28 seconds ago)
-499e99d chore: refresh nucleus live state [skip ci] (16 minutes ago)
-d60f2bb chore: refresh nucleus live state [skip ci] (16 minutes ago)
-583e3fc Align PBG dashboard to vision one-pager (savings, Rachel's tags, local sync); save doc (17 minutes ago)
+b8ad579 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+1b8c763 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+d9298aa PBG dashboard v2: annotated (vs Lightspeed), premium mobile-first, Polar Bear yellow + bear logo, phone scan + Bear Bloop Bot (9 minutes ago)
+499e99d chore: refresh nucleus live state [skip ci] (25 minutes ago)
+d60f2bb chore: refresh nucleus live state [skip ci] (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
