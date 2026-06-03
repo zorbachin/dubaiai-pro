@@ -198,25 +198,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 14:12 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** b9265c8 chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **Last commit:** 8a7edd7 PBG: access-focused Travis email (they're in; build on real data) [skip ci] — 12 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/tasks.json
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/tasks.json | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+8a7edd7 PBG: access-focused Travis email (they're in; build on real data) [skip ci] (12 seconds ago)
 b9265c8 chore: refresh nucleus live state [skip ci] (4 minutes ago)
 402d5bd chore: refresh nucleus live state [skip ci] (5 minutes ago)
 c6f3bd9 chore: refresh nucleus live state [skip ci] (13 minutes ago)
-1a217fd chore: refresh nucleus live state [skip ci] (13 minutes ago)
-662b76d Harden .gitignore: never commit .env / secrets / keys (14 minutes ago)
+1a217fd chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
