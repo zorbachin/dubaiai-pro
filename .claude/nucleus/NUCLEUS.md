@@ -196,27 +196,21 @@ SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $20
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 15:13 UTC
+- **When:** 2026-06-03 15:14 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 62d7ea1 chore: refresh nucleus live state [skip ci] — 51 minutes ago
+- **Last commit:** 1b8d4b3 chore: refresh nucleus live state [skip ci] — 38 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-62d7ea1 chore: refresh nucleus live state [skip ci] (51 minutes ago)
+1b8d4b3 chore: refresh nucleus live state [skip ci] (38 seconds ago)
+62d7ea1 chore: refresh nucleus live state [skip ci] (52 minutes ago)
 0989759 chore: refresh nucleus live state [skip ci] (52 minutes ago)
-1d6322d chore: refresh nucleus live state [skip ci] (60 minutes ago)
+1d6322d chore: refresh nucleus live state [skip ci] (61 minutes ago)
 8a7edd7 PBG: access-focused Travis email (they're in; build on real data) [skip ci] (61 minutes ago)
-b9265c8 chore: refresh nucleus live state [skip ci] (65 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
