@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 10:57 UTC · code
+BUILT 2 things. (1) COMMAND-CENTER RELIABILITY FIX (the 'how is this different' answer): added a TASK LEDGER to nucleus — .claude/nucleus/tasks.json + 'nucleus tasks' (auto-derives done from git/files) + 'nucleus task <id> <status>'. Each task names its SOURCE OF TRUTH (git/gmail/calendar). SessionStart hook now injects a '⚠ RECONCILE NOW' block listing the exact Gmail/Calendar checks to run BEFORE trusting memory -> state is derived from sources, not recalled. Demo'd: pbg-dashboard + pbg-proposal auto-flip to done because the files exist. This is the same architecture as the PBG dashboard (read the system of record, don't remember). (2) PBG DESIGNED PROPOSAL one-pager clients/pbg/PBG-proposal.html — ADHD-skimmable phased roadmap, polar-bear-yellow, mobile-friendly: Phase 1 before July $2,500 (firm, 50% start), Phase 2 July on-site go-live+expand+hourly ≈$3,000, Phase 3 smarter buying (reorder AI + tiered markdown) scoped, WEBSITE track from ≈$3,000 (Bloop chatbot + content engine + the $250k online opportunity / cut the middleman). Sent to Zorba. Pairs with dashboard. Zorba wants to work on the website — featured as its own growth track. OPEN: send proposal+dashboard to Travis (via link?), Lightspeed R vs X, real branding inputs.
+
 ### 2026-06-03 09:40 UTC · code
 PBG ROLES CLARIFIED: Jay = OWNER (owns PBG), Jordan = on the FLOOR (ops/manager), Travis = Zorba's contact (Entr0801@gmail.com). They are DIFFERENT people (earlier Jay==Jordan ambiguity RESOLVED: not the same). FINAL EMAIL CREATED in Drafts -> to Travis only: 'Polar Bear Gifts — the inventory dashboard (working mock-up) + 2 quick things' = recap of Phase 1 (soft goods, both stores, read-only, floor scan + Bloop), $2,500 / half-half / before July, and ASKS which Lightspeed (R-Series vs X-Series, screenshot fallback) + read-only API key. NOTE: two drafts to Travis now exist — tell Zorba to DELETE the earlier generic 'Phase 1 plan + a couple quick questions' draft and send the new one. Lightspeed version still UNKNOWN -> deliberately asked Travis in the email. OPEN: (1) how to deliver the mock-up to Travis — offered to publish inventory-dashboard-v2.html to a private unguessable GitHub Pages link so Zorba pastes a URL (awaiting yes). (2) real branding inputs (PBG yellow hex, logo, store names, real top sellers) to finalize the demo.
 
@@ -187,30 +190,35 @@ SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM
 
 ### 2026-06-02 05:10 UTC · chat
 OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APPROVE. Stop handing Zorba task lists for himself; execute, then surface for approval. NORTH STAR NUMBER = $1,000,000 (get the portfolio to a million). CADENCE: sync with the CEO daily. ACTIVE: schedule call with Sam & Jack at Ambo (byb-ambassador / Ambassador program) for 11:30 EST today (2026-06-02).
-
-### 2026-06-02 05:06 UTC · chat
-BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. (1) PodSupps (podsupps.com) → run autonomously, Claude starts marketing it + drives signups/logins. (2) For other ventures, Claude is the guide — tell him what to do. (3) SPEND AUDIT: monitor wasted spend — still need Manus? Etsy? right-size ElevenLabs? pay for HeyGen? cheapest effective video tool (Higgsfield vs Topview)? (4) Build CORPORATE AGENTIC STRUCTURE: who runs which workstream, cost, investment needed. (5) Send him prompts/nudges when lagging — 'your job is 24/7'. KEY INSIGHT to apply: his brand is REAL/self-shot (calisthenics) → expensive AI-video/avatar tools may be redundant.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 09:51 UTC
+- **When:** 2026-06-03 10:58 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 5a91ec2 PBG v2 pass: white polar-bear logo, Bloop mascot, product-first attention cards, preview-tag floor tools — 43 seconds ago
+- **Last commit:** 41c3d0f Add task ledger (derive done from git/Gmail/Calendar) + PBG phased proposal one-pager — 25 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M .claude/nucleus/tasks.json
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
+ .claude/nucleus/tasks.json |  5 +++--
+ 2 files changed, 22 insertions(+), 13 deletions(-)
 ```
 
 **Recent commits:**
 ```
-5a91ec2 PBG v2 pass: white polar-bear logo, Bloop mascot, product-first attention cards, preview-tag floor tools (43 seconds ago)
-94da094 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-d8e0a19 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-b8ad579 chore: refresh nucleus live state [skip ci] (19 minutes ago)
-1b8c763 chore: refresh nucleus live state [skip ci] (20 minutes ago)
+41c3d0f Add task ledger (derive done from git/Gmail/Calendar) + PBG phased proposal one-pager (25 seconds ago)
+b6a909c chore: refresh nucleus live state [skip ci] (66 minutes ago)
+5a91ec2 PBG v2 pass: white polar-bear logo, Bloop mascot, product-first attention cards, preview-tag floor tools (67 minutes ago)
+94da094 chore: refresh nucleus live state [skip ci] (77 minutes ago)
+d8e0a19 chore: refresh nucleus live state [skip ci] (77 minutes ago)
 ```
 <!-- AUTOSTATE:END -->

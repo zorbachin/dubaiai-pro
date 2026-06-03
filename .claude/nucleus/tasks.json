@@ -12,10 +12,11 @@
     {
       "id": "pbg-proposal",
       "title": "PBG designed phased proposal one-pager",
-      "status": "pending",
+      "status": "done",
       "source": "git",
       "check": "clients/pbg/PBG-proposal.html",
-      "note": "Designed roadmap to send Travis (Phase 1 / July / beyond / website)."
+      "note": "Designed roadmap to send Travis (Phase 1 / July / beyond / website).",
+      "derived": true
     },
     {
       "id": "pbg-email-travis",
