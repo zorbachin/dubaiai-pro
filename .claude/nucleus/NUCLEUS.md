@@ -198,27 +198,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 15:51 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** b1f0ad9 chore: refresh nucleus live state [skip ci] — 11 minutes ago
+- **Last commit:** ed84a91 PBG: finalize guided token-request email (ends with access in hand) [skip ci] — 13 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
- M .claude/nucleus/tasks.json
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- .claude/nucleus/tasks.json |  2 +-
- 2 files changed, 8 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+ed84a91 PBG: finalize guided token-request email (ends with access in hand) [skip ci] (13 seconds ago)
 b1f0ad9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
 5436029 chore: refresh nucleus live state [skip ci] (15 minutes ago)
 ba9d5e5 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-1614288 PBG: add noindex to proposal+dashboard; gitignore netlify-drop artifacts (15 minutes ago)
-af44736 chore: refresh nucleus live state [skip ci] (37 minutes ago)
+1614288 PBG: add noindex to proposal+dashboard; gitignore netlify-drop artifacts (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
