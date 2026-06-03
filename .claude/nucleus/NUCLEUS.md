@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 08:05 UTC · code
+PBG PHASE 1 SCOPED + MOCK-UP BUILT. Jay = Zorba's UNCLE (the 'highly critical' one, family business, born in AK); Travis = ops ally (ex-GCI, AI chatbots/sales tools, email Entr0801@gmail.com); Rachel = inventory/invoicing, protective, tags = sell-through/dropped/disco. Stack: Lightspeed POS = source of truth; Shopify website pulls from Lightspeed. Agreed strategy (from tl;dv): prove value on INVENTORY first, start with SOFT GOODS by size, then expand. PHASE 1 = 'Inventory Command' dashboard, deliberately READ-ONLY (pulls Lightspeed nightly 1am AKT, never writes back -> physically can't corrupt POS = the 'cannot fail' design). Features: two-store by-size stock; flags negative inventory, wrong-size-scan discrepancies, website-in-stock-but-POS-0; suggested inter-store transfers w/ Excel/CSV export; weekly cycle-count list. SAVED FOR JULY/UPSELL: order-qty forecasting, tiered markdown 25/50/clearance, 50k social + Boomer mascot, Rachel invoice automation, website chatbot, local-LLM version. Price: $2,500 Phase 1. Timeline: live before July visit (~after July 12). BUILT: clients/pbg/inventory-dashboard.html (self-contained, works offline incl one poor-internet store; store toggle + CSV export functional) — committed + sent to Zorba. Fulfills tl;dv action item 'build dashboard mock-up + email team.' NEXT/OPEN: need Jay's + Rachel's email addresses + which Lightspeed (R-Series vs X-Series) + API access to wire live. Email to team drafted in chat for Zorba's review (NOT sent — going to his critical uncle).
+
 ### 2026-06-03 06:33 UTC · code
 FIRST PAYING CLIENT in motion: Polar Bear Gifts (PBG), Anchorage AK — two retail/gift stores. Contact = Travis (Entr0801@gmail.com, decision-maker, already downloaded Claude + likes it). Other stakeholders: Jay (Zorba speaks with him) and Rachel (runs content/ops workflow; was skeptical -> now receptive). Approved/discussed scope: ONE unified system across both stores + a repeatable CONTENT system + pricing/buying/product-lifecycle, value-driven step-by-step, plus in-house coaching. Timeline: Zorba visits Anchorage ~July 12 -> 'build before July' = Phase 1 live before he lands. ACTION TAKEN: drafted (NOT sent) a Gmail draft to Travis 'Polar Bear Gifts — Phase 1 plan + a couple quick questions' = ,500 Phase 1, priority questions (rank #1/#2/#3 pain), access/tools checklist (POS/e-comm both stores, product+pricing+inventory location, content channels+owner, Rachel's tools, logins), + bonus AI website chatbot. Offered 50/50 split. Zorba reviews/sends. OPEN: couldn't find a discrete 'proposal sent to Jay' in Gmail — drafted from the Travis-discussed scope; if a specific Jay doc exists, mirror it. CONTENT: Substack 'The First Call' posted across platforms; Instagram intentionally skipped (fine). Zorbasphere Issue 002 already queued for 6/7 via nudge engine = matches 'newsletter end of week / early next week.'
 
@@ -187,30 +190,33 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 
 ### 2026-06-02 04:31 UTC · chat
 Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
-
-### 2026-06-02 04:06 UTC · chat
-Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-posted/scheduled by Buffer or any tool (Meta API rule). FB stays a MANUAL post by Zorba. Buffer handles the rest: IG (Business), LinkedIn, TikTok. Connecting Buffer via Zapier for scheduling those.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 06:33 UTC
+- **When:** 2026-06-03 08:06 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 2e6f7d8 Log: PBG first paying client + Phase 1 email draft; Hermes findings [skip ci] — 19 seconds ago
+- **Last commit:** 3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) — 35 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-2e6f7d8 Log: PBG first paying client + Phase 1 email draft; Hermes findings [skip ci] (19 seconds ago)
-5a69a8b chore: refresh nucleus live state [skip ci] (12 minutes ago)
-909628c Log: The First Call posted across platforms; 6/3 nudge done [skip ci] (12 minutes ago)
-be5f342 chore: refresh nucleus live state [skip ci] (58 minutes ago)
-df3a4ab chore: refresh nucleus live state [skip ci] (58 minutes ago)
+3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) (35 seconds ago)
+1ae7876 chore: refresh nucleus live state [skip ci] (2 hours ago)
+2e6f7d8 Log: PBG first paying client + Phase 1 email draft; Hermes findings [skip ci] (2 hours ago)
+5a69a8b chore: refresh nucleus live state [skip ci] (2 hours ago)
+909628c Log: The First Call posted across platforms; 6/3 nudge done [skip ci] (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
