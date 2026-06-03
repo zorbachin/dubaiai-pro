@@ -196,21 +196,27 @@ SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 15:51 UTC
+- **When:** 2026-06-03 16:30 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** ed84a91 PBG: finalize guided token-request email (ends with access in hand) [skip ci] — 13 seconds ago
+- **Last commit:** 7df4123 chore: refresh nucleus live state [skip ci] — 39 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-ed84a91 PBG: finalize guided token-request email (ends with access in hand) [skip ci] (13 seconds ago)
-b1f0ad9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-5436029 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-ba9d5e5 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-1614288 PBG: add noindex to proposal+dashboard; gitignore netlify-drop artifacts (16 minutes ago)
+7df4123 chore: refresh nucleus live state [skip ci] (39 minutes ago)
+ed84a91 PBG: finalize guided token-request email (ends with access in hand) [skip ci] (39 minutes ago)
+b1f0ad9 chore: refresh nucleus live state [skip ci] (50 minutes ago)
+5436029 chore: refresh nucleus live state [skip ci] (54 minutes ago)
+ba9d5e5 chore: refresh nucleus live state [skip ci] (54 minutes ago)
 ```
 <!-- AUTOSTATE:END -->

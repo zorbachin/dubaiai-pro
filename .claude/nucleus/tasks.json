@@ -57,6 +57,46 @@
       "source": "manual",
       "check": "Zorba does it on his phone: Settings > Apple ID > Subscriptions > Manus",
       "note": "Can't be done from here; manual on device."
+    },
+    {
+      "id": "vybewear-reengage",
+      "title": "Re-engage Vybewear (Isaac) — co-brand outreach machine + GTAA leads",
+      "status": "pending",
+      "source": "gmail",
+      "check": "in:sent to:isaac@vybewear.com newer_than:10d",
+      "note": "Draft ready in Drafts ('flip on the outreach machine'). Zorba sends. I can build the GTAA outreach solo once he points me at assets."
+    },
+    {
+      "id": "foxy-reengage",
+      "title": "Re-engage Foxy Epoxy (Kevin) — closing tool",
+      "status": "blocked",
+      "source": "gmail",
+      "check": "in:sent to:info@foxyepoxyfloors.com newer_than:10d",
+      "note": "Draft ready (info@ — kevin@ bounced). BEST sent WITH a live redeployed closing-tool link -> gated on closing-tool relaunch (= keys)."
+    },
+    {
+      "id": "closing-tool-relaunch",
+      "title": "Redeploy + productize the closing tool (licensable)",
+      "status": "blocked",
+      "source": "manual",
+      "check": "new OpenAI+Gemini keys wired via env; tool redeployed; licensing architecture answered",
+      "note": "Unlocks Foxy. Needs the secure key handoff. Architecture answer parked per Zorba. I can do most of this solo once keys are in env."
+    },
+    {
+      "id": "keys-secure-handoff",
+      "title": "Securely hand off new OpenAI + Gemini API keys",
+      "status": "blocked",
+      "source": "manual",
+      "check": "keys set as env/secret vars (NOT chat/git); .env.example wired",
+      "note": "NEEDS ZORBA: paste keys into env/secret box, not chat. Gates closing-tool relaunch."
+    },
+    {
+      "id": "netlify-proposal-link",
+      "title": "Host PBG proposal at an off-brand link",
+      "status": "blocked",
+      "source": "manual",
+      "check": "Netlify deploy URL exists",
+      "note": "Netlify MCP 502 (their side). Deploy when it recovers; meanwhile Zorba can self-host via Netlify Drop (index.html/zip already sent)."
     }
   ]
 }
