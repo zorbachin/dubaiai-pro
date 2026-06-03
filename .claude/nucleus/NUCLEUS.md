@@ -198,27 +198,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 10:58 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 41c3d0f Add task ledger (derive done from git/Gmail/Calendar) + PBG phased proposal one-pager — 25 seconds ago
+- **Last commit:** a56778f chore: sync nucleus state + reconciled task ledger [skip ci] — 7 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
- M .claude/nucleus/tasks.json
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 30 +++++++++++++++++++-----------
- .claude/nucleus/tasks.json |  5 +++--
- 2 files changed, 22 insertions(+), 13 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-41c3d0f Add task ledger (derive done from git/Gmail/Calendar) + PBG phased proposal one-pager (25 seconds ago)
-b6a909c chore: refresh nucleus live state [skip ci] (66 minutes ago)
-5a91ec2 PBG v2 pass: white polar-bear logo, Bloop mascot, product-first attention cards, preview-tag floor tools (67 minutes ago)
+a56778f chore: sync nucleus state + reconciled task ledger [skip ci] (7 seconds ago)
+41c3d0f Add task ledger (derive done from git/Gmail/Calendar) + PBG phased proposal one-pager (48 seconds ago)
+b6a909c chore: refresh nucleus live state [skip ci] (67 minutes ago)
+5a91ec2 PBG v2 pass: white polar-bear logo, Bloop mascot, product-first attention cards, preview-tag floor tools (68 minutes ago)
 94da094 chore: refresh nucleus live state [skip ci] (77 minutes ago)
-d8e0a19 chore: refresh nucleus live state [skip ci] (77 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
