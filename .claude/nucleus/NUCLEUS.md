@@ -191,27 +191,21 @@ PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 19:49 UTC
+- **When:** 2026-06-03 19:50 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 768595c Add Foxy Epoxy + Ambo signing one-pagers (for next week), no-price style — 17 seconds ago
+- **Last commit:** 41201d4 chore: refresh nucleus memory [skip ci] — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/tasks.json
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/tasks.json | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-768595c Add Foxy Epoxy + Ambo signing one-pagers (for next week), no-price style (17 seconds ago)
-f69ffc4 Content pack for 6/4 (first-client / sell-time, all platforms) + queue Foxy/Ambo proposals (2 minutes ago)
-03b5043 nucleus: self-heal conflict markers on write + add 'doctor' integrity self-test; clean corrupted handoffs (4 minutes ago)
+41201d4 chore: refresh nucleus memory [skip ci] (21 seconds ago)
+768595c Add Foxy Epoxy + Ambo signing one-pagers (for next week), no-price style (64 seconds ago)
+f69ffc4 Content pack for 6/4 (first-client / sell-time, all platforms) + queue Foxy/Ambo proposals (3 minutes ago)
+03b5043 nucleus: self-heal conflict markers on write + add 'doctor' integrity self-test; clean corrupted handoffs (5 minutes ago)
 7f6c5bf chore: refresh nucleus live state [skip ci] (3 hours ago)
-216bb3d Ledger: add Vybewear + Foxy re-engagement, closing-tool/keys, netlify link threads [skip ci] (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
