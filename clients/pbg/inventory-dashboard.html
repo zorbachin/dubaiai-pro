@@ -69,6 +69,13 @@
   .demo{background:#fff7e6;border:1px solid #f0d79a;color:#8a5b00;font-size:12.5px;
     padding:8px 14px;border-radius:8px;margin-top:14px}
   .arrow{color:var(--blue);font-weight:800}
+  .saves{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:14px}
+  .save{background:linear-gradient(135deg,#fff,#eef6fd);border:1px solid var(--line);
+    border-radius:12px;padding:14px 16px;text-align:center}
+  .sv-n{font-size:22px;font-weight:800;color:var(--blue)}
+  .sv-l{font-size:12px;color:var(--mut);margin-top:4px}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .tag{font-size:11px;font-weight:700;padding:1px 9px;border-radius:999px;background:#eef4fa;color:var(--navy)}
 </style>
 </head>
 <body>
@@ -92,7 +99,14 @@
 
 <div class="wrap">
   <div class="demo">📌 <b>Demo data</b> — this is a working mock-up to show the team the shape of it.
-    Live version pulls real numbers from Lightspeed each night at 1:00&nbsp;AM&nbsp;AKT.</div>
+    Live version pulls real numbers from Lightspeed each night at 1:00&nbsp;AM&nbsp;AKT, saved locally
+    (built for the 10/2&nbsp;Mbps store line).</div>
+
+  <div class="saves">
+    <div class="save"><div class="sv-n">~6 hrs / wk</div><div class="sv-l">manual cross-store counting given back to the team</div></div>
+    <div class="save"><div class="sv-n">2–4 / mo</div><div class="sv-l">reorderable stockouts caught early during peak</div></div>
+    <div class="save"><div class="sv-n">Fewer</div><div class="sv-l">"sorry, we're out" calls &amp; bad reviews from website orders</div></div>
+  </div>
 
   <h2>🚨 What needs attention today</h2>
   <div class="alerts" id="alerts"></div>
@@ -109,7 +123,13 @@
     </table>
   </div>
   <div class="note">Sizes in <span class="sz bad">red</span> = negative (likely a wrong-size scan).
-    <span class="sz low">amber</span> = low (≤2). The live version flags these for a quick manual count.</div>
+    <span class="sz low">amber</span> = low (≤2). The live version flags these for a quick manual count.
+    <div class="tags">Built around Rachel's tags:
+      <span class="tag">sell-through → alert</span>
+      <span class="tag">dropped → ignore</span>
+      <span class="tag">disco → ignore</span>
+      <span class="tag">in-transit → balanced</span></div>
+    <span class="muted">Only reorderables trigger low-stock alerts — closeouts won't blow up the dashboard.</span></div>
 
   <h2>🔁 Suggested inter-store transfers</h2>
   <div class="panel" style="padding:14px 16px">
