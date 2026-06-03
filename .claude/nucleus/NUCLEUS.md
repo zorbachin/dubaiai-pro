@@ -196,27 +196,21 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 09:15 UTC
+- **When:** 2026-06-03 09:16 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 583e3fc Align PBG dashboard to vision one-pager (savings, Rachel's tags, local sync); save doc — 15 seconds ago
+- **Last commit:** d60f2bb chore: refresh nucleus live state [skip ci] — 15 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-583e3fc Align PBG dashboard to vision one-pager (savings, Rachel's tags, local sync); save doc (15 seconds ago)
-0986719 chore: refresh nucleus live state [skip ci] (69 minutes ago)
+d60f2bb chore: refresh nucleus live state [skip ci] (15 seconds ago)
+583e3fc Align PBG dashboard to vision one-pager (savings, Rachel's tags, local sync); save doc (30 seconds ago)
+0986719 chore: refresh nucleus live state [skip ci] (70 minutes ago)
 a6f896a chore: refresh nucleus live state [skip ci] (70 minutes ago)
-3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) (70 minutes ago)
-1ae7876 chore: refresh nucleus live state [skip ci] (3 hours ago)
+3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) (71 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
