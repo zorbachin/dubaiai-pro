@@ -196,21 +196,27 @@ OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APP
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 13:31 UTC
+- **When:** 2026-06-03 13:47 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** f14971d chore: refresh nucleus live state [skip ci] — 15 seconds ago
+- **Last commit:** dcacbe4 PBG proposal: drop all pricing; split into 2-pager (Page 1 the build, Page 2 where it goes) — 11 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 ```
 
 **Recent commits:**
 ```
-f14971d chore: refresh nucleus live state [skip ci] (15 seconds ago)
-114469f PBG proposal: clarify Phase 1 is the live tool; reframe Phase 2 as expand+harden (not 'go live') (29 seconds ago)
+dcacbe4 PBG proposal: drop all pricing; split into 2-pager (Page 1 the build, Page 2 where it goes) (11 seconds ago)
+7f06931 chore: refresh nucleus live state [skip ci] (16 minutes ago)
+f14971d chore: refresh nucleus live state [skip ci] (17 minutes ago)
+114469f PBG proposal: clarify Phase 1 is the live tool; reframe Phase 2 as expand+harden (not 'go live') (17 minutes ago)
 edda0e8 chore: refresh nucleus live state [skip ci] (3 hours ago)
-a56778f chore: sync nucleus state + reconciled task ledger [skip ci] (3 hours ago)
-41c3d0f Add task ledger (derive done from git/Gmail/Calendar) + PBG phased proposal one-pager (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
