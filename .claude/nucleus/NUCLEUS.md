@@ -38,6 +38,29 @@ _Choices already made, so no surface re-litigates them._
   contact.
 - **Contact:** `hello@dubaiai.pro`.
 
+## 🔌 Connections
+_External tools & partners wired into the command center. Grammar:
+`- **Name** · <status> · <note>` — status: active | evaluating | planned | paused._
+
+- **Claude (you)** · active · the brain — every build, content, automation, and outreach job runs through here.
+- **Hermes (desktop app)** · evaluating · candidate ads + content-creation partner. Pending: confirm vendor/capabilities, then a research pass.
+- **Ad platforms — Meta / Google / LinkedIn / TikTok** · active · campaign read/write via MCP.
+- **Gamma** · active · decks, one-pagers, social posts.
+- **Design — Canva / Adobe / Figma** · active · creative production & brand assets.
+- **Video generation** · active · hero video + short-form clips.
+- **Gmail / Calendar / Drive** · active · outreach, the nudge engine, asset storage.
+- **Stripe** · active · billing, payment links, invoices.
+
+## ⚙️ Automations
+_Running jobs & rituals. Grammar: `- **Name** · <status> · <note>` —
+status: on | manual | planned | off._
+
+- **SessionStart → nucleus load** · on · injects this brain into every Claude session.
+- **Stop → nucleus sync** · on · auto-writes a fresh handoff + git state after each turn.
+- **Nudge engine (Google Calendar)** · on · auto-emails the exact post copy/links on schedule.
+- **Outreach follow-up bumps** · manual · 3-day nudge on the 8 sent cold emails (awaiting your go).
+- **Focus dashboard (focus.html)** · planned · daily regen — currently stale (Jun 1).
+
 ## 📥 Handoffs
 _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._

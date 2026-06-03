@@ -26,12 +26,38 @@ Endpoints (all CORS-enabled):
 
 | Method | Path | Purpose |
 |---|---|---|
-| GET | `/` | Human-readable nucleus view |
+| GET | `/` | **Command Center** — board view (North Star, threads, connections, automations) |
+| GET | `/command.json` | Structured board: `{ northStar, threads[], decisions[], connections[], automations[], brief, branch, updated }` |
 | GET | `/nucleus.json` | `{ markdown, brief, handoffs, state, branch, updated }` |
-| GET | `/nucleus.md` | Raw markdown |
+| GET | `/nucleus.md` · `/raw` | Raw markdown · raw HTML view |
 | GET | `/brief` | Catch-up digest (text) |
 | GET | `/widget.js` | The embeddable widget |
 | POST | `/push` | Body `{ "note": "...", "from": "localhost:3001" }` |
+
+### The command center, in the 3001 app
+
+`/command.json` is the feed built for the command center. Goals/aspirations come
+from the nucleus **North Star** + **Active Threads**; **Connections** (Hermes,
+Claude, ad platforms, …) and **Automations** are dedicated sections in
+`NUCLEUS.md` — edit them there and the board updates. Render it however you like:
+
+```jsx
+const [board, setBoard] = useState(null);
+useEffect(() => {
+  fetch("http://localhost:4040/command.json").then(r => r.json()).then(setBoard);
+}, []);
+// board.connections.map(c => <Card name={c.name} status={c.status} note={c.note}/>)
+```
+
+To add a connection (e.g. **Hermes**) or automation, add a bullet under the
+matching section in `NUCLEUS.md`:
+
+```
+- **Hermes (desktop app)** · active · ads + content-creation partner.
+```
+
+Grammar: `- **Name** · <status> · <note>` — status colours: `active`/`on` =
+green, `evaluating`/`manual` = amber, `planned` = grey, `paused`/`off` = red.
 
 ## 3. Drop it into the 3001 app — pick one
 

@@ -16,8 +16,9 @@ Manual / cross-surface use (copy/paste friendly):
   nucleus sync                 refresh the live git state block
   nucleus status               short one-screen summary
   nucleus brief                the "catch me up" digest for a fresh session
-  nucleus serve [--port 4040]  HTTP bridge so web apps (e.g. localhost:3001)
-                               can read/push the nucleus; serves /widget.js
+  nucleus serve [--port 4040]  HTTP bridge + command center so web apps (e.g.
+                               localhost:3001) can read/push the nucleus.
+                               Serves / (board), /command.json, /widget.js
   nucleus init                 create the nucleus if it does not exist
   nucleus edit                 print the nucleus file path
 
@@ -302,6 +303,101 @@ def build_payload():
     }
 
 
+# ------------------------------------------------- command center (board view)
+
+# Status words the dashboard knows how to colour. Anything else renders neutral.
+KNOWN_STATUS = {
+    "active", "evaluating", "planned", "paused",  # connections
+    "on", "manual", "off",                        # automations
+}
+
+
+def get_section(text, title_contains):
+    """Return the body under the first '## ' heading containing title_contains.
+
+    Stops at the next '## ' heading. Case-insensitive, emoji-tolerant.
+    """
+    out, capturing = [], False
+    for line in text.splitlines():
+        if line.startswith("## "):
+            if capturing:
+                break
+            capturing = title_contains.lower() in line.lower()
+            continue
+        if capturing:
+            out.append(line)
+    return "\n".join(out).strip()
+
+
+def parse_items(section):
+    """Parse `- **Name** · status · note` bullets into dicts.
+
+    Tolerant: status/note are optional and the `**` around the name is
+    stripped. Non-bullet lines (blanks, the `_…_` legend) are skipped.
+    """
+    items = []
+    for raw in section.splitlines():
+        line = raw.strip()
+        if not line.startswith("- "):
+            continue
+        parts = [p.strip() for p in line[2:].split(" · ")]
+        name = parts[0].replace("**", "").strip()
+        status, note, rest = "", "", parts[1:]
+        if rest and rest[0].lower() in KNOWN_STATUS:
+            status = rest[0].lower()
+            note = " · ".join(rest[1:]).strip()
+        else:
+            note = " · ".join(rest).strip()
+        if name:
+            items.append({"name": name, "status": status, "note": note})
+    return items
+
+
+def parse_threads(section):
+    """Parse `- [ ]` / `- [x]` checkbox bullets into {text, done} dicts."""
+    out = []
+    for raw in section.splitlines():
+        line = raw.strip()
+        low = line.lower()
+        if low.startswith("- [ ]") or low.startswith("- [x]"):
+            out.append({
+                "text": line[5:].strip(),
+                "done": low.startswith("- [x]"),
+            })
+    return out
+
+
+def build_command():
+    """Structured 'command center' board for the localhost:3001 app.
+
+    Goals/threads/decisions are parsed from the hand-edited top of the
+    nucleus; connections + automations come from their dedicated sections.
+    Everything the command center renders lives in ONE file (the nucleus).
+    """
+    text = read()
+
+    def strip_legend(section):
+        # Drop the italic `_…_` helper line under each heading.
+        keep = [ln for ln in section.splitlines()
+                if not ln.strip().startswith("_")]
+        return "\n".join(keep).strip()
+
+    return {
+        "northStar": strip_legend(get_section(text, "North Star")),
+        "threads": parse_threads(get_section(text, "Active Threads")),
+        "decisions": [
+            l.strip()[2:].strip()
+            for l in get_section(text, "Decisions").splitlines()
+            if l.strip().startswith("- ")
+        ],
+        "connections": parse_items(get_section(text, "Connections")),
+        "automations": parse_items(get_section(text, "Automations")),
+        "brief": build_brief(),
+        "branch": git("rev-parse", "--abbrev-ref", "HEAD") or "(unknown)",
+        "updated": now_iso(),
+    }
+
+
 # Single-line embeddable widget. Any web app adds:
 #   <script src="http://localhost:4040/widget.js"></script>
 # ...and gets a floating 🧠 panel showing live context + a push box.
@@ -337,6 +433,88 @@ WIDGET_JS = r"""
 """
 
 
+# Status → accent colour for the dashboard chips.
+STATUS_COLOR = {
+    "active": "#2a9d8f", "on": "#2a9d8f",
+    "evaluating": "#e09f3e", "manual": "#e09f3e",
+    "planned": "#8a9aaa", "paused": "#c0563b", "off": "#c0563b",
+}
+
+
+def render_command_html(c):
+    """Render build_command() as a brand-styled command-center page."""
+    def esc(s):
+        return (str(s).replace("&", "&amp;").replace("<", "&lt;")
+                .replace(">", "&gt;"))
+
+    def chip(status):
+        if not status:
+            return ""
+        col = STATUS_COLOR.get(status, "#8a9aaa")
+        return (f"<span style='display:inline-block;font-size:11px;"
+                f"font-weight:600;letter-spacing:.3px;text-transform:uppercase;"
+                f"color:{col};border:1px solid {col};border-radius:999px;"
+                f"padding:1px 8px;margin-left:8px'>{esc(status)}</span>")
+
+    def cards(items):
+        if not items:
+            return "<p style='color:#8a9aaa'>—</p>"
+        rows = []
+        for it in items:
+            note = (f"<div style='color:#aeb8c4;margin-top:3px;font-size:13px'>"
+                    f"{esc(it['note'])}</div>") if it.get("note") else ""
+            rows.append(
+                "<div style='background:#15151a;border:1px solid #243653;"
+                "border-radius:10px;padding:12px 14px'>"
+                f"<div><b style='color:#eef2f7'>{esc(it['name'])}</b>"
+                f"{chip(it.get('status'))}</div>{note}</div>"
+            )
+        return ("<div style='display:grid;gap:10px;"
+                "grid-template-columns:repeat(auto-fill,minmax(240px,1fr))'>"
+                + "".join(rows) + "</div>")
+
+    def threads(items):
+        if not items:
+            return "<p style='color:#8a9aaa'>—</p>"
+        rows = []
+        for t in items:
+            box = "✅" if t["done"] else "⬜"
+            col = "#8a9aaa" if t["done"] else "#eef2f7"
+            rows.append(f"<li style='color:{col};margin:4px 0;list-style:none'>"
+                        f"{box} {esc(t['text'])}</li>")
+        return "<ul style='padding:0;margin:0'>" + "".join(rows) + "</ul>"
+
+    def h(title):
+        return (f"<h2 style='color:#C8A45C;font-size:15px;letter-spacing:.5px;"
+                f"text-transform:uppercase;margin:30px 0 12px'>{title}</h2>")
+
+    north = esc(c["northStar"]) or "—"
+    return (
+        "<!doctype html><meta charset=utf-8>"
+        "<title>🎯 Command Center</title>"
+        "<meta name='viewport' content='width=device-width,initial-scale=1'>"
+        "<body style=\"background:radial-gradient(1200px 600px at 70% -10%,"
+        "#14233f 0%,#0a1628 55%);color:#eef2f7;font:14px/1.6 system-ui,"
+        "sans-serif;max-width:920px;margin:0 auto;padding:40px 22px 80px\">"
+        "<div style='display:flex;justify-content:space-between;align-items:"
+        "baseline;flex-wrap:wrap;gap:8px'>"
+        "<h1 style='color:#C8A45C;font-size:26px;margin:0'>🎯 Command Center</h1>"
+        f"<span style='color:#8a9aaa;font-size:13px'>branch <code>"
+        f"{esc(c['branch'])}</code> · {esc(c['updated'])}</span></div>"
+        + h("📌 North Star")
+        + f"<div style='background:#15151a;border:1px solid #C8A45C;"
+          f"border-radius:10px;padding:14px 16px;white-space:pre-wrap'>{north}</div>"
+        + h("🎯 Active Threads") + threads(c["threads"])
+        + h("🔌 Connections") + cards(c["connections"])
+        + h("⚙️ Automations") + cards(c["automations"])
+        + h("📥 Catch-up")
+        + f"<pre style='background:#15151a;border:1px solid #243653;"
+          f"border-radius:10px;padding:14px 16px;white-space:pre-wrap;"
+          f"color:#cfd8e3'>{esc(c['brief'])}</pre>"
+        "<script src='/widget.js'></script>"
+    )
+
+
 def cmd_serve(port=4040):
     import http.server
     import urllib.parse  # noqa: F401 (kept for clarity / future use)
@@ -369,10 +547,13 @@ def cmd_serve(port=4040):
         def do_GET(self):
             path = self.path.split("?", 1)[0]
             if path in ("/", "/index.html"):
+                self._send(200, render_command_html(build_command()),
+                           "text/html; charset=utf-8")
+            elif path == "/raw":
                 p = build_payload()
                 html = (
                     "<!doctype html><meta charset=utf-8>"
-                    "<title>Context Nucleus</title>"
+                    "<title>Context Nucleus (raw)</title>"
                     "<body style='background:#0d0d0f;color:#eee;font:14px/1.6 "
                     "system-ui;max-width:780px;margin:40px auto;padding:0 20px'>"
                     "<h1 style='color:#C8A45C'>\U0001F9E0 Context Nucleus</h1>"
@@ -386,6 +567,9 @@ def cmd_serve(port=4040):
                 self._send(200, html, "text/html; charset=utf-8")
             elif path == "/widget.js":
                 self._send(200, WIDGET_JS, "application/javascript; charset=utf-8")
+            elif path == "/command.json":
+                self._send(200, json.dumps(build_command()),
+                           "application/json; charset=utf-8")
             elif path == "/nucleus.json":
                 self._send(200, json.dumps(build_payload()),
                            "application/json; charset=utf-8")
@@ -418,9 +602,10 @@ def cmd_serve(port=4040):
 
     httpd = http.server.HTTPServer(("0.0.0.0", port), Handler)
     print(f"\U0001F9E0 nucleus serving on http://localhost:{port}")
-    print(f"   browser view : http://localhost:{port}/")
-    print(f"   JSON feed    : http://localhost:{port}/nucleus.json")
-    print(f"   embed widget : <script src=\"http://localhost:{port}/widget.js\"></script>")
+    print(f"   command center : http://localhost:{port}/")
+    print(f"   board feed     : http://localhost:{port}/command.json")
+    print(f"   raw nucleus    : http://localhost:{port}/nucleus.json  (· /raw for markdown)")
+    print(f"   embed widget   : <script src=\"http://localhost:{port}/widget.js\"></script>")
     print("   (Ctrl+C to stop)")
     try:
         httpd.serve_forever()
