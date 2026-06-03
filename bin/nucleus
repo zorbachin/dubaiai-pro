@@ -18,6 +18,7 @@ Manual / cross-surface use (copy/paste friendly):
   nucleus brief                the "catch me up" digest for a fresh session
   nucleus tasks                task ledger; auto-derives "done" from git/files
   nucleus task <id> <status>   set a task's status after checking its source
+  nucleus doctor               integrity self-test (markers, conflicts, tasks)
   nucleus serve [--port 4040]  HTTP bridge + command center so web apps (e.g.
                                localhost:3001) can read/push the nucleus.
                                Serves / (board), /command.json, /widget.js
@@ -147,10 +148,27 @@ def read():
         return f.read()
 
 
+def heal_conflicts(text):
+    """Strip leftover git merge-conflict marker lines (corrupted memory).
+
+    A bad stash/merge can leave <<<<<<<, =======, >>>>>>> lines wedged inside
+    the tooling-managed blocks, where they'd otherwise persist forever. Dropping
+    just the three marker lines keeps BOTH sides' content — exactly right for an
+    append-only handoff log.
+    """
+    out = []
+    for ln in text.split("\n"):
+        s = ln.rstrip()
+        if s.startswith("<<<<<<<") or s.startswith(">>>>>>>") or s == "=======":
+            continue
+        out.append(ln)
+    return "\n".join(out)
+
+
 def write(text):
     os.makedirs(NUCLEUS_DIR, exist_ok=True)
     with open(NUCLEUS, "w", encoding="utf-8") as f:
-        f.write(text)
+        f.write(heal_conflicts(text))
 
 
 def replace_block(text, start, end, new_inner):
@@ -394,6 +412,37 @@ def cmd_task(args):
             return 0
     print(f"nucleus: no task with id '{tid}'", file=sys.stderr)
     return 1
+
+
+def cmd_doctor():
+    """Integrity self-test for the memory system. Exit 0 = healthy, 1 = issues."""
+    text = read()
+    issues = []
+    for m in (HANDOFFS_START, HANDOFFS_END, AUTOSTATE_START, AUTOSTATE_END):
+        if m not in text:
+            issues.append(f"missing marker {m}")
+    conflicts = [ln for ln in text.split("\n")
+                 if ln.startswith("<<<<<<<") or ln.startswith(">>>>>>>")
+                 or ln.rstrip() == "======="]
+    if conflicts:
+        issues.append(f"{len(conflicts)} git-conflict marker line(s) "
+                      "(run `nucleus sync` to auto-heal)")
+    try:
+        ntasks = len(load_tasks())
+    except Exception as e:
+        issues.append(f"tasks.json unreadable: {e}")
+        ntasks = "?"
+    handoffs = get_block(text, HANDOFFS_START, HANDOFFS_END).count("### ")
+    print("🩺 nucleus doctor")
+    print(f"   file:     {os.path.relpath(NUCLEUS, ROOT)}")
+    print(f"   handoffs: {handoffs}   tasks: {ntasks}")
+    if issues:
+        print("   status:   ⚠ ISSUES")
+        for i in issues:
+            print(f"     - {i}")
+        return 1
+    print("   status:   ✅ healthy")
+    return 0
 
 
 def build_payload():
@@ -756,6 +805,8 @@ def main(argv):
         cmd_tasks()
     elif cmd == "task":
         return cmd_task(rest)
+    elif cmd == "doctor":
+        return cmd_doctor()
     elif cmd == "serve":
         port = 4040
         if "--port" in rest:
