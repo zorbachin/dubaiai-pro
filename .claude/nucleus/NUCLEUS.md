@@ -66,6 +66,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 06:33 UTC · code
+FIRST PAYING CLIENT in motion: Polar Bear Gifts (PBG), Anchorage AK — two retail/gift stores. Contact = Travis (Entr0801@gmail.com, decision-maker, already downloaded Claude + likes it). Other stakeholders: Jay (Zorba speaks with him) and Rachel (runs content/ops workflow; was skeptical -> now receptive). Approved/discussed scope: ONE unified system across both stores + a repeatable CONTENT system + pricing/buying/product-lifecycle, value-driven step-by-step, plus in-house coaching. Timeline: Zorba visits Anchorage ~July 12 -> 'build before July' = Phase 1 live before he lands. ACTION TAKEN: drafted (NOT sent) a Gmail draft to Travis 'Polar Bear Gifts — Phase 1 plan + a couple quick questions' = ,500 Phase 1, priority questions (rank #1/#2/#3 pain), access/tools checklist (POS/e-comm both stores, product+pricing+inventory location, content channels+owner, Rachel's tools, logins), + bonus AI website chatbot. Offered 50/50 split. Zorba reviews/sends. OPEN: couldn't find a discrete 'proposal sent to Jay' in Gmail — drafted from the Travis-discussed scope; if a specific Jay doc exists, mirror it. CONTENT: Substack 'The First Call' posted across platforms; Instagram intentionally skipped (fine). Zorbasphere Issue 002 already queued for 6/7 via nudge engine = matches 'newsletter end of week / early next week.'
+
+### 2026-06-03 06:30 UTC · code
+HERMES IDENTIFIED + ROOT CAUSE FOUND. (1) Hermes = 'Hermes Agent OS' (Julian Goldie / AI Money Lab Skool, juliangoldie.com; also RoboNuggets) — autonomous AI agent desktop app, versions like v0.15. Does voice/TTS (Zorba had it generate a 'George Washington response' mp3) + content/agent tasks. (2) ROOT CAUSE of the API timeouts/'it just shuts down': Gmail has an email 6/3 04:50 from google-cloud-compliance@google.com — 'Your Google Cloud Platform/API project hermes (id gen-lang-client-0259937710) is being SUSPENDED' for ToS violation. gen-lang-client = a Gemini API key project. Hermes is backed by that Gemini/Google-AI project; its suspension/rate-limit is the likely reason Hermes times out. CAVEAT: suspension emails are a common PHISHING lure — verify in console.cloud.google.com directly, do NOT click links in the email. (3) The George Washington mp3 is NOT in Google Drive or Gmail (searched both). Drive audio = only the June-1 AI music .wav tracks in /Music. So the mp3 is local on Zorba's Mac (Hermes output) — Claude can't reach local FS from the cloud container. (4) PLAN for robustness: add a LOCAL MODEL fallback via Ollama (Zorba already gets Ollama emails; MiniMax M3 just landed on Ollama Cloud) so Hermes doesn't die when the cloud API is down. Need to research Hermes Agent OS config to wire a local backend. OPEN: Zorba thinks he sent Claude a link — not present in this session; ask him to paste it.
+
 ### 2026-06-03 06:21 UTC · code
 POSTED ✅: 'The First Call' (Zorbasphere Issue 001) is LIVE across platforms (Substack + FB/LinkedIn/X/IG) as of 6/3. The 6/3 nudge '📮 LAUNCH: Zorbasphere on socials' is DONE — do NOT re-suggest or duplicate it. That calendar reminder was one-time and already fired (08:30), so it won't re-nag. Remaining nudges still PENDING + untouched: 6/4 Substack Note + restack 'The First Call', 6/5 Build Log No.001, 6/6 Note (posting fear), 6/7 PUBLISH Issue 002, 6/8 Note (time line). NOTE: tried to delete the 6/3 calendar event for tidiness but the write guard blocked it (no explicit delete directive); not required since it already fired. Want explicit OK to delete done nudges going forward.
 
@@ -184,33 +190,33 @@ Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin pr
 
 ### 2026-06-02 04:06 UTC · chat
 Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-posted/scheduled by Buffer or any tool (Meta API rule). FB stays a MANUAL post by Zorba. Buffer handles the rest: IG (Business), LinkedIn, TikTok. Connecting Buffer via Zapier for scheduling those.
-
-### 2026-06-02 04:03 UTC · chat
-PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
-
-### 2026-06-02 03:58 UTC · chat
-BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 06:21 UTC
+- **When:** 2026-06-03 06:33 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 909628c Log: The First Call posted across platforms; 6/3 nudge done [skip ci] — 13 seconds ago
+- **Last commit:** 5a69a8b chore: refresh nucleus live state [skip ci] — 12 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-909628c Log: The First Call posted across platforms; 6/3 nudge done [skip ci] (13 seconds ago)
-be5f342 chore: refresh nucleus live state [skip ci] (45 minutes ago)
-df3a4ab chore: refresh nucleus live state [skip ci] (46 minutes ago)
-83fe8dc chore: refresh nucleus live state [skip ci] (2 hours ago)
-e7aab9f chore: capture command-center handoff [skip ci] (2 hours ago)
+5a69a8b chore: refresh nucleus live state [skip ci] (12 minutes ago)
+909628c Log: The First Call posted across platforms; 6/3 nudge done [skip ci] (12 minutes ago)
+be5f342 chore: refresh nucleus live state [skip ci] (57 minutes ago)
+df3a4ab chore: refresh nucleus live state [skip ci] (57 minutes ago)
+83fe8dc chore: refresh nucleus live state [skip ci] (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
