@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 09:15 UTC · code
+PBG VISION DOC received (clients/pbg/PBG-where-we-want-to-take-this.pdf) — Zorba's polished management-facing one-pager 'Where we want to take this'. CORRECTIONS to earlier notes: management/family team = RACHEL ROBINSON + JORDAN MICHAELS (Travis Enter = ops contact). AMBIGUITY TO RESOLVE: doc says 'Jordan Michaels' but Zorba's emails/tl;dv call him 'Jay' + 'Zorba is Jay's nephew' -> need to confirm Jay == Jordan (the critical uncle) before any email goes out (avoid a Trevor/Travis-style name slip). PHASING per doc: Phase 1 = clean counts/inventory ('the number one'); Phase 2 = soft-goods morning dashboard built around Rachel's 3 tags (sell-through=alert, dropped/disco=ignore); Phase 3 = AI reorder suggestions (size/season-aware). Nightly 1AM Lightspeed sync SAVED LOCALLY (for 10/2 Mbps store). SAVINGS pitched: ~6 hrs/wk counting back, 2-4 reorderable stockouts/mo caught, fewer 'sorry we're out' calls/bad reviews. Site visit after July 12. ACTION: updated clients/pbg/inventory-dashboard.html to mirror the doc (savings strip + tag logic + local-sync note) — re-sent to Zorba; PDF saved+committed. The mock-up + doc now tell ONE story. STILL OPEN: confirm Jay/Jordan; Jordan's + Rachel's emails; which Lightspeed (R vs X-Series) + read-only API access; any real store names/catalog to swap into the demo.
+
 ### 2026-06-03 08:05 UTC · code
 PBG PHASE 1 SCOPED + MOCK-UP BUILT. Jay = Zorba's UNCLE (the 'highly critical' one, family business, born in AK); Travis = ops ally (ex-GCI, AI chatbots/sales tools, email Entr0801@gmail.com); Rachel = inventory/invoicing, protective, tags = sell-through/dropped/disco. Stack: Lightspeed POS = source of truth; Shopify website pulls from Lightspeed. Agreed strategy (from tl;dv): prove value on INVENTORY first, start with SOFT GOODS by size, then expand. PHASE 1 = 'Inventory Command' dashboard, deliberately READ-ONLY (pulls Lightspeed nightly 1am AKT, never writes back -> physically can't corrupt POS = the 'cannot fail' design). Features: two-store by-size stock; flags negative inventory, wrong-size-scan discrepancies, website-in-stock-but-POS-0; suggested inter-store transfers w/ Excel/CSV export; weekly cycle-count list. SAVED FOR JULY/UPSELL: order-qty forecasting, tiered markdown 25/50/clearance, 50k social + Boomer mascot, Rachel invoice automation, website chatbot, local-LLM version. Price: $2,500 Phase 1. Timeline: live before July visit (~after July 12). BUILT: clients/pbg/inventory-dashboard.html (self-contained, works offline incl one poor-internet store; store toggle + CSV export functional) — committed + sent to Zorba. Fulfills tl;dv action item 'build dashboard mock-up + email team.' NEXT/OPEN: need Jay's + Rachel's email addresses + which Lightspeed (R-Series vs X-Series) + API access to wire live. Email to team drafted in chat for Zorba's review (NOT sent — going to his critical uncle).
 
@@ -187,30 +190,33 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 
 ### 2026-06-02 04:43 UTC · chat
 🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
-
-### 2026-06-02 04:31 UTC · chat
-Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 08:06 UTC
+- **When:** 2026-06-03 09:15 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** a6f896a chore: refresh nucleus live state [skip ci] — 21 seconds ago
+- **Last commit:** 583e3fc Align PBG dashboard to vision one-pager (savings, Rachel's tags, local sync); save doc — 15 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-a6f896a chore: refresh nucleus live state [skip ci] (21 seconds ago)
-3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) (56 seconds ago)
-1ae7876 chore: refresh nucleus live state [skip ci] (2 hours ago)
-2e6f7d8 Log: PBG first paying client + Phase 1 email draft; Hermes findings [skip ci] (2 hours ago)
-5a69a8b chore: refresh nucleus live state [skip ci] (2 hours ago)
+583e3fc Align PBG dashboard to vision one-pager (savings, Rachel's tags, local sync); save doc (15 seconds ago)
+0986719 chore: refresh nucleus live state [skip ci] (69 minutes ago)
+a6f896a chore: refresh nucleus live state [skip ci] (70 minutes ago)
+3072c61 Add PBG Phase 1 inventory dashboard mock-up (read-only, two-store, by-size) (70 minutes ago)
+1ae7876 chore: refresh nucleus live state [skip ci] (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
