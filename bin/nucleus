@@ -16,6 +16,8 @@ Manual / cross-surface use (copy/paste friendly):
   nucleus sync                 refresh the live git state block
   nucleus status               short one-screen summary
   nucleus brief                the "catch me up" digest for a fresh session
+  nucleus tasks                task ledger; auto-derives "done" from git/files
+  nucleus task <id> <status>   set a task's status after checking its source
   nucleus serve [--port 4040]  HTTP bridge + command center so web apps (e.g.
                                localhost:3001) can read/push the nucleus.
                                Serves / (board), /command.json, /widget.js
@@ -245,6 +247,7 @@ def cmd_load(hook=False):
         "user to re-explain anything. After meaningful work, capture a handoff "
         "with `nucleus push \"...\"` (or it happens automatically on Stop).\n\n"
         + body
+        + "\n\n---\n\n" + tasks_view(hook=True)
     )
     out = {
         "hookSpecificOutput": {
@@ -288,6 +291,109 @@ def build_brief():
 
 def cmd_brief():
     print(build_brief())
+
+
+# ------------------------------------------------- task ledger (derive, don't remember)
+# Each task names the SOURCE OF TRUTH that proves it done, so status is derived
+# from reality (git / Gmail / Calendar), not from anyone's memory. Locally
+# checkable sources (git, files) auto-verify; Gmail/Calendar tasks are surfaced
+# at session start with the exact check to run, then confirmed via `nucleus task`.
+
+TASKS = os.path.join(NUCLEUS_DIR, "tasks.json")
+TASK_ICON = {"done": "✅", "pending": "⬜", "scheduled": "🗓", "blocked": "⛔"}
+
+
+def load_tasks():
+    if not os.path.exists(TASKS):
+        return []
+    try:
+        with open(TASKS, encoding="utf-8") as f:
+            return json.load(f).get("tasks", [])
+    except Exception:
+        return []
+
+
+def save_tasks(tasks):
+    os.makedirs(NUCLEUS_DIR, exist_ok=True)
+    with open(TASKS, "w", encoding="utf-8") as f:
+        json.dump({"tasks": tasks}, f, indent=2, ensure_ascii=False)
+
+
+def verify_git_task(check):
+    """Derive done-ness for source==git from the repo/filesystem (fully local)."""
+    if not check:
+        return None
+    if check.startswith("commit:"):
+        return bool(git("rev-parse", "--verify", "--quiet", check.split(":", 1)[1]))
+    if check.startswith("grep:"):
+        _, pat, path = check.split(":", 2)
+        try:
+            with open(os.path.join(ROOT, path), encoding="utf-8") as f:
+                return pat in f.read()
+        except Exception:
+            return False
+    return os.path.exists(os.path.join(ROOT, check))
+
+
+def reconcile_tasks():
+    """Auto-verify everything locally checkable (git/files). Returns the list."""
+    tasks = load_tasks()
+    changed = False
+    for t in tasks:
+        if t.get("source") == "git":
+            new = "done" if verify_git_task(t.get("check", "")) else "pending"
+            if t.get("status") != new:
+                t["status"], t["derived"] = new, True
+                changed = True
+    if changed:
+        save_tasks(tasks)
+    return tasks
+
+
+def tasks_view(hook=False):
+    tasks = reconcile_tasks()
+    if not tasks:
+        return "## ✅ Task ledger\n(none yet — add to .claude/nucleus/tasks.json)"
+    todo = [t for t in tasks
+            if t.get("source") in ("gmail", "calendar") and t.get("status") != "done"]
+    lines = ["## ✅ Task ledger (derived from sources, not memory)"]
+    for t in tasks:
+        ic = TASK_ICON.get(t.get("status"), "•")
+        d = " · derived" if t.get("derived") else ""
+        lines.append(f"{ic} [{t.get('id','?')}] {t.get('title','?')} — {t.get('source','manual')}{d}")
+        if t.get("note"):
+            lines.append(f"     ↳ {t['note']}")
+    out = "\n".join(lines)
+    if hook and todo:
+        out += ("\n\n⚠ RECONCILE NOW — before trusting memory or asking the user, verify these "
+                "against the live source, then `nucleus task <id> <status>`:\n")
+        for t in todo:
+            out += f"  • [{t.get('id')}] {t.get('source')} → {t.get('check','(no check)')}\n"
+    return out
+
+
+def cmd_tasks():
+    print(tasks_view())
+
+
+def cmd_task(args):
+    """`nucleus task <id> <status> [note...]` — set a task's status by hand."""
+    if len(args) < 2:
+        print("usage: nucleus task <id> <status> [note]", file=sys.stderr)
+        return 2
+    tid, status, note = args[0], args[1], " ".join(args[2:])
+    tasks = load_tasks()
+    for t in tasks:
+        if t.get("id") == tid:
+            t["status"] = status
+            t.pop("derived", None)
+            if note:
+                t["note"] = note
+            save_tasks(tasks)
+            print(f"✅ task '{tid}' → {status}")
+            return 0
+    print(f"nucleus: no task with id '{tid}'", file=sys.stderr)
+    return 1
 
 
 def build_payload():
@@ -646,6 +752,10 @@ def main(argv):
         cmd_status()
     elif cmd == "brief":
         cmd_brief()
+    elif cmd == "tasks":
+        cmd_tasks()
+    elif cmd == "task":
+        return cmd_task(rest)
     elif cmd == "serve":
         port = 4040
         if "--port" in rest:

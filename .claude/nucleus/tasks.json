@@ -1,0 +1,61 @@
+{
+  "tasks": [
+    {
+      "id": "pbg-dashboard",
+      "title": "PBG inventory dashboard mock-up (v2)",
+      "status": "done",
+      "source": "git",
+      "check": "clients/pbg/inventory-dashboard-v2.html",
+      "note": "verified present",
+      "derived": true
+    },
+    {
+      "id": "pbg-proposal",
+      "title": "PBG designed phased proposal one-pager",
+      "status": "pending",
+      "source": "git",
+      "check": "clients/pbg/PBG-proposal.html",
+      "note": "Designed roadmap to send Travis (Phase 1 / July / beyond / website)."
+    },
+    {
+      "id": "pbg-email-travis",
+      "title": "Send Travis the PBG Phase 1 email",
+      "status": "pending",
+      "source": "gmail",
+      "check": "in:sent to:Entr0801@gmail.com newer_than:10d subject:(Polar Bear)",
+      "note": "Final draft in Drafts; send after he answers Lightspeed R vs X. Delete the older generic draft."
+    },
+    {
+      "id": "first-call-post",
+      "title": "Post 'The First Call' across platforms",
+      "status": "done",
+      "source": "manual",
+      "check": "Zorba confirmed posted 6/3 (Substack + FB/LI/X/IG; IG intentionally skipped)",
+      "note": "Done — do not re-suggest."
+    },
+    {
+      "id": "zorbasphere-002",
+      "title": "Publish Zorbasphere Issue 002",
+      "status": "scheduled",
+      "source": "calendar",
+      "check": "calendar event 6/7 09:00 AKT-ish 'Publish: Zorbasphere Issue 002'",
+      "note": "Queued via nudge engine for 6/7 (end of week)."
+    },
+    {
+      "id": "followup-bumps",
+      "title": "3-day follow-up bumps on the 8 cold-outreach emails",
+      "status": "blocked",
+      "source": "manual",
+      "check": "awaiting Zorba's go",
+      "note": "Hold until Zorba says queue them."
+    },
+    {
+      "id": "manus-cancel",
+      "title": "Cancel Manus (Apple-ID subscription)",
+      "status": "blocked",
+      "source": "manual",
+      "check": "Zorba does it on his phone: Settings > Apple ID > Subscriptions > Manus",
+      "note": "Can't be done from here; manual on device."
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Polar Bear Gifts × Zorba — The Plan</title>
+<style>
+  :root{
+    --yellow:#F7C948; --yellow-deep:#E3A81C; --yellow-soft:#FFF3D1;
+    --navy:#0c1b2e; --navy2:#13283f; --ink:#0e1f33; --mut:#5d7185;
+    --snow:#fff; --frost:#f1f6fb; --line:#e3edf6; --line2:#d2e0ee;
+    --blue:#1f6fb2; --bluebg:#e6f1fa; --green:#1f9d6b; --greenbg:#e3f5ec;
+    --shadow:0 8px 26px rgba(13,27,42,.09); --shadow2:0 2px 8px rgba(13,27,42,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+    background:var(--frost);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px 70px}
+  .bear{flex:none;display:inline-grid;place-items:center;border-radius:50%;background:var(--yellow);
+    box-shadow:0 2px 0 var(--yellow-deep) inset}
+
+  header{background:radial-gradient(120% 150% at 85% -30%,#1b3a5c 0%,var(--navy) 60%);color:#fff;
+    border-bottom:3px solid var(--yellow)}
+  .hwrap{max-width:880px;margin:0 auto;padding:26px 18px 24px}
+  .htop{display:flex;align-items:center;gap:14px}
+  .htop h1{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);font-weight:700}
+  .hero{font-size:27px;font-weight:800;line-height:1.2;margin-top:14px;max-width:620px}
+  .hero .y{color:var(--yellow)}
+  .hsub{color:#a9c6e2;font-size:14px;margin-top:8px;max-width:600px}
+
+  .principle{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+  .pchip{background:rgba(247,201,72,.12);border:1px solid rgba(247,201,72,.45);color:var(--yellow-soft);
+    font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px}
+
+  .lead{font-size:14.5px;color:var(--mut);margin:24px 0 6px;font-weight:600;text-transform:uppercase;letter-spacing:.6px}
+
+  .phase{background:var(--snow);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow2);
+    padding:20px;margin-top:16px;border-top:5px solid var(--line2);position:relative}
+  .phase.p1{border-top-color:var(--yellow)} .phase.p2{border-top-color:var(--blue)}
+  .phase.p3{border-top-color:var(--navy)} .phase.pw{border-top-color:var(--green)}
+  .ptag{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .badge{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 11px;border-radius:999px}
+  .b-y{background:var(--yellow-soft);color:#8a5b00} .b-b{background:var(--bluebg);color:var(--blue)}
+  .b-n{background:#e7edf4;color:var(--navy)} .b-g{background:var(--greenbg);color:var(--green)}
+  .when{color:var(--mut);font-size:13px;font-weight:600}
+  .price{margin-left:auto;font-size:21px;font-weight:800;color:var(--navy)}
+  .price small{display:block;font-size:11px;color:var(--mut);font-weight:600;text-align:right}
+  .ptitle{font-size:20px;font-weight:800;margin:10px 0 2px}
+  .pwhat{font-size:13px;color:var(--mut);margin-bottom:10px}
+  ul{list-style:none;margin:6px 0}
+  li{display:flex;gap:9px;align-items:flex-start;margin:7px 0;font-size:14.5px}
+  li::before{content:"✓";color:var(--green);font-weight:800;flex:none;margin-top:1px}
+  .save{margin-top:12px;background:var(--frost);border:1px solid var(--line);border-radius:11px;
+    padding:10px 13px;font-size:13px}
+  .save b{color:var(--navy)}
+  .p1 .save{background:var(--yellow-soft);border-color:#f0dca0}
+
+  .connector{height:18px;width:3px;background:var(--line2);margin:0 auto;border-radius:2px}
+
+  .cta{margin-top:26px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;
+    border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+  .cta h3{font-size:18px;color:var(--yellow)} .cta p{color:#cfe0ef;font-size:14px;margin-top:6px}
+  .cta ol{margin:12px 0 0 18px;color:#eef4fa;font-size:14px} .cta li2{margin:5px 0}
+  .foot{color:var(--mut);font-size:12.5px;text-align:center;margin-top:22px}
+  @media(max-width:560px){.hero{font-size:23px}.price{margin-left:0;width:100%;text-align:left}.price small{text-align:left}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div class="htop">
+      <span class="bear" style="width:42px;height:42px">
+        <svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true">
+          <g fill="#fff" stroke="#0c1b2e" stroke-width="0.7">
+            <circle cx="9" cy="8.5" r="3.5"/><circle cx="23" cy="8.5" r="3.5"/><circle cx="16" cy="17" r="11"/></g>
+          <circle cx="12.4" cy="15" r="1.3" fill="#0c1b2e"/><circle cx="19.6" cy="15" r="1.3" fill="#0c1b2e"/>
+          <ellipse cx="16" cy="19.8" rx="3.5" ry="2.7" fill="#fff" stroke="#0c1b2e" stroke-width="0.7"/>
+          <ellipse cx="16" cy="18.7" rx="1.3" ry="1" fill="#0c1b2e"/></svg>
+      </span>
+      <h1>Polar Bear Gifts × Zorba</h1>
+    </div>
+    <div class="hero">From <span class="y">clean counts</span> to a store that <span class="y">sells itself online</span>.</div>
+    <div class="hsub">A simple, phased plan. Each step proves its value before the next one starts — and nothing
+      ever touches your live system without your say-so.</div>
+    <div class="principle">
+      <span class="pchip">● Read-only &amp; reversible</span>
+      <span class="pchip">● Built on your own Lightspeed data</span>
+      <span class="pchip">● Each phase earns the next</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="lead">Start here · before July</div>
+  <div class="phase p1">
+    <div class="ptag">
+      <span class="badge b-y">Phase 1 · let's go</span><span class="when">Live before the July visit</span>
+      <span class="price">$2,500<small>fixed · 50% to start</small></span>
+    </div>
+    <div class="ptitle">🐻‍❄️ Inventory Command</div>
+    <div class="pwhat">The dashboard you've seen — soft goods first, both stores, on your phone.</div>
+    <ul>
+      <li>Every top item, <b>both stores, every size</b>, on one screen — ready before you open</li>
+      <li>Flags the quiet money-losers: <b>negatives, wrong-size scans</b>, and <b>"website says in stock" but the shelf is empty</b></li>
+      <li>Suggested <b>store-to-store transfers</b> + one-tap Excel order, and a <b>weekly cycle-count list</b></li>
+    </ul>
+    <div class="save">💰 <b>What it gives back:</b> ~6 hrs/wk of manual counting · 2–4 stockouts/mo caught early ·
+      fewer "sorry, we're out" calls and bad reviews. <b>Risk: zero</b> — it only reads Lightspeed, never writes to it.</div>
+  </div>
+
+  <div class="connector"></div>
+  <div class="lead">Where the July visit takes us</div>
+  <div class="phase p2">
+    <div class="ptag">
+      <span class="badge b-b">Phase 2 · on-site</span><span class="when">The Anchorage visit (after July 12)</span>
+      <span class="price">≈ $3,000<small>locked on the visit</small></span>
+    </div>
+    <div class="ptitle">Go live &amp; expand</div>
+    <ul>
+      <li>Flip from demo to your <b>real Lightspeed data</b>, dialed in with the team in person</li>
+      <li>Expand past soft goods to the <b>full catalog</b></li>
+      <li>Turn on the <b>floor tools live</b> — scan a tag, ask Bloop — and update <b>hourly</b> (Jay's ask)</li>
+      <li>Train Jordan, Rachel &amp; the team so it's <b>yours to run</b></li>
+    </ul>
+    <div class="save">💰 <b>What it gives back:</b> store-wide clean counts and a floor that stops guessing —
+      the system everyone checks first thing in the morning.</div>
+  </div>
+
+  <div class="connector"></div>
+  <div class="lead">Where it goes from there</div>
+  <div class="phase p3">
+    <div class="ptag">
+      <span class="badge b-n">Phase 3 · later</span><span class="when">Scoped together, once it's earned it</span>
+      <span class="price">scoped<small>per piece</small></span>
+    </div>
+    <div class="ptitle">Smarter buying</div>
+    <ul>
+      <li><b>AI reorder suggestions</b> by size, season-aware — learns what Smalls vs Mediums sell when</li>
+      <li><b>Tiered markdown logic</b> (25% → 50% → clearance) so you stop jumping straight to deep discounts</li>
+      <li>Lift the slow, manual pieces off <b>Rachel's</b> plate</li>
+    </ul>
+    <div class="save">💰 <b>What it gives back:</b> buy the right quantities, protect margin on closeouts,
+      hours back on the work nobody enjoys.</div>
+  </div>
+
+  <div class="connector"></div>
+  <div class="lead">The growth play (its own track)</div>
+  <div class="phase pw">
+    <div class="ptag">
+      <span class="badge b-g">Website · parallel</span><span class="when">Run alongside, whenever you're ready</span>
+      <span class="price">from ≈ $3,000<small>scoped to goals</small></span>
+    </div>
+    <div class="ptitle">🌐 A website that actually sells</div>
+    <ul>
+      <li>Real <b>product discovery</b> + a <b>Bloop chatbot on the site</b> answering shipping, sizes, "do you carry X"</li>
+      <li>A <b>heritage + Boomer-mascot content engine</b> (that Woolworth post already proved the appetite)</li>
+      <li>Aim at the <b>$250k+ online opportunity</b> — and bring the margin in-house instead of to the middleman</li>
+    </ul>
+    <div class="save">💰 <b>What it gives back:</b> a brand-new revenue line that you own — not a one-time fix, a flywheel.</div>
+  </div>
+
+  <div class="cta">
+    <h3>The next step is small</h3>
+    <p>Approve Phase 1, point me at Lightspeed (read-only), and I'll have it working before I land in July —
+      so the visit is about refining a live tool, not starting from scratch.</p>
+    <ol>
+      <li>👍 Green-light Phase 1 ($2,500)</li>
+      <li>🔑 Which Lightspeed — Retail (R-Series) or X-Series? + a read-only key</li>
+      <li>🗓 A quick call to lock the size/category list and Rachel's tags</li>
+    </ol>
+  </div>
+
+  <div class="foot">Polar Bear Gifts · Anchorage, AK — prepared by Zorba Grashin · estimates locked per phase, never a surprise.</div>
+</div>
+</body>
+</html>
