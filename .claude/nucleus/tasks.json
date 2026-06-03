@@ -97,6 +97,30 @@
       "source": "manual",
       "check": "Netlify deploy URL exists",
       "note": "Netlify MCP 502 (their side). Deploy when it recovers; meanwhile Zorba can self-host via Netlify Drop (index.html/zip already sent)."
+    },
+    {
+      "id": "content-0604",
+      "title": "Post 6/4 content (first-client / sell-time)",
+      "status": "pending",
+      "source": "manual",
+      "check": "Zorba posts FB/IG/LI/X + Substack Note 6/4",
+      "note": "Ready: content/2026-06-04.md (copy-paste, all platforms). Sent to Zorba."
+    },
+    {
+      "id": "foxy-proposal",
+      "title": "Foxy Epoxy signing one-pager (BuildYourBot/closing tool)",
+      "status": "pending",
+      "source": "git",
+      "check": "clients/foxy/Foxy-proposal.html",
+      "note": "For signing next week. Adapt PBG template."
+    },
+    {
+      "id": "ambo-proposal",
+      "title": "Ambo (Jack) signing one-pager (payroll time-back)",
+      "status": "pending",
+      "source": "git",
+      "check": "clients/ambo/Ambo-proposal.html",
+      "note": "For signing next week. Jack: cut payroll report-review time, undercut a SaaS."
     }
   ]
 }
