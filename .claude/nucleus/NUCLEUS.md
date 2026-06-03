@@ -197,9 +197,9 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 03:56 UTC
+- **When:** 2026-06-03 03:57 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 01f6c61 Add command center to nucleus bridge (board view + /command.json) — 13 seconds ago
+- **Last commit:** e7aab9f chore: capture command-center handoff [skip ci] — 49 seconds ago
 
 **Working tree:**
 ```
@@ -208,10 +208,10 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-01f6c61 Add command center to nucleus bridge (board view + /command.json) (13 seconds ago)
-2e56981 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-e21af61 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-c8706bb chore: refresh nucleus live state [skip ci] (9 hours ago)
-02610d3 Refresh nucleus state; gitignore generated focus dashboard (9 hours ago)
+e7aab9f chore: capture command-center handoff [skip ci] (49 seconds ago)
+01f6c61 Add command center to nucleus bridge (board view + /command.json) (76 seconds ago)
+2e56981 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+e21af61 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+c8706bb chore: refresh nucleus live state [skip ci] (10 hours ago)
 ```
 <!-- AUTOSTATE:END -->
