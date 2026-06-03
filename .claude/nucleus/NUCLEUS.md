@@ -196,9 +196,9 @@ SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $20
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 15:36 UTC
+- **When:** 2026-06-03 15:40 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** ba9d5e5 chore: refresh nucleus live state [skip ci] — 14 seconds ago
+- **Last commit:** 5436029 chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
@@ -207,10 +207,10 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-ba9d5e5 chore: refresh nucleus live state [skip ci] (14 seconds ago)
-1614288 PBG: add noindex to proposal+dashboard; gitignore netlify-drop artifacts (28 seconds ago)
-af44736 chore: refresh nucleus live state [skip ci] (22 minutes ago)
-1b8d4b3 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-62d7ea1 chore: refresh nucleus live state [skip ci] (74 minutes ago)
+5436029 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+ba9d5e5 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+1614288 PBG: add noindex to proposal+dashboard; gitignore netlify-drop artifacts (4 minutes ago)
+af44736 chore: refresh nucleus live state [skip ci] (26 minutes ago)
+1b8d4b3 chore: refresh nucleus live state [skip ci] (27 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
