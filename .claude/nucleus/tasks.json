@@ -24,7 +24,7 @@
       "status": "pending",
       "source": "gmail",
       "check": "in:sent to:Entr0801@gmail.com newer_than:10d subject:(Polar Bear)",
-      "note": "Final draft in Drafts; send after he answers Lightspeed R vs X. Delete the older generic draft."
+      "note": "Access-focused draft in Drafts ('let's get the inventory tool building') — asks Lightspeed R vs X + read-only key. PBG already committed. Send this one; DELETE the 2 older Travis drafts."
     },
     {
       "id": "first-call-post",

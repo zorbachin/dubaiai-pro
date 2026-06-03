@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 14:12 UTC · code
+PBG STRATEGY LOCKED: PBG is ALREADY IN (committed) — so no selling / no live-link promises. Build on REAL DATA once we have Lightspeed access, not on speculative ideas. The HTML proposal mockup (Page-1 phone preview) is enough; live interactive dashboard is NOT being sent — we show it once Zorba has the login + it's QA'd, ideally on their real numbers. REWROTE the Travis email -> new lean ACCESS-FOCUSED draft 'Polar Bear Gifts — let's get the inventory tool building' (asks Lightspeed R vs X + read-only key + offers 20-min call). Dropped the 'I'll send the mock-up to your phone' promise. CLEANUP: 3 Travis drafts now exist — Zorba should send the newest (access-focused) and delete the 2 older ones. Proposal delivery (PDF via Chrome export vs hosted link) still Zorba's call but lower priority now — the email's job is getting access. NEXT after PBG: licensing/architecture answer for the closing tool (how to ship it as a licensable product without exposing the Gemini/OpenAI keys) — SAVED for after PBG per Zorba.
+
 ### 2026-06-03 13:48 UTC · code
 PBG PROPOSAL FINALIZED (supersedes pricing in earlier handoff): Zorba decided NO PRICES on the doc — he invoices separately, Jay (owner) already knows the ballpark. Proposal is now a clean 2-PAGER (clients/pbg/PBG-proposal.html): Page 1 = JUST THIS BUILD, visualized (phone preview w/ real attention cards + problem->solution tiles + savings strip + read-only/live/floor badges); Page 2 = WHERE IT GOES AFTER (July expand+harden, smarter buying, website growth play) — all vision, zero numbers. Also clarified earlier: Phase 1 = THE LIVE TOOL (reads real Lightspeed before July; 'demo data' only a stand-in until we get the read-only key); the July visit = expand to full catalog + turn on floor tools (scan/Bloop) + hourly + on-site tuning + train team (NOT 'go live'). Two clean assets ready for Travis: interactive dashboard + 2-page plan. OPEN (unchanged): publish both to private links for the email; Lightspeed R vs X (asked in draft); real branding (yellow hex/logo/store names/top sellers).
 
@@ -187,30 +190,33 @@ SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@
 
 ### 2026-06-02 05:23 UTC · chat
 SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $200/mo — TOP tier, NOT $100. Flat-rate, can't 'exceed' in $, only hit rate limits. He runs whole OS on it → KEEP, it's the engine. ChatGPT $20 + Gemini $20 worth it. AI-model spend (~$240) is his MOST productive spend, don't trim. (2) AutoGLM = $100/mo billed by Z.ai (autoglm@z.ai) — CAN'T CANCEL, shady. PRIORITY CUT. Drafted cancellation+refund-demand email in Gmail; fallback = Stripe/card chargeback. (3) GoHighLevel ~$100/mo — rebuildable on existing free stack (Netlify forms + Gmail + Google Cal/Cal.com + sheet/Airtable CRM); only SMS-at-scale (Twilio) is harder & he's not using it → CUT, Claude rebuilds the lead→CRM→follow-up flow. (4) Runway — KEEP but right-size: pause between production sprints, resub only in months he batches hero videos (made the BYB 'Transformers' video). (5) Etsy/OrganizedOrionDesign → keep ONLY as low-touch: Zorba ~1hr/wk builds assets, Claude markets/optimizes, else cut. Add as venture. (6) Vybewear (Isaac@vybewear.com) = CLIENT/friend for LAI/BYB (forwarded GTAA tournament leads) — track as customer, revenue-relevant. TRUE BLEED = AutoGLM $100 + GHL $100 = ~$200/mo.
-
-### 2026-06-02 05:13 UTC · chat
-SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM (already tried to cancel, charged anyway — RESOLVE), Runway AI (premium video, redundant — CUT), TopView (cheap video), OpusClip/opus.pro (clipping — keep for MM), AutoGLM (GLM sub — likely redundant w/ Claude, review), ElevenLabs (voice — right-size), X Premium, Etsy Plus $10 (live shop OrganizedOrionDesign jewelry), Anthropic/Claude (core). NOT paying → HeyGen, Higgsfield, Manus (don't start any; brand is self-shot). Recoverable ~$155-235/mo. SURFACED ventures not in ventures.md: Etsy shop OrganizedOrionDesign + Vybe/vybewear. Ambo call booked today 11:30 EST (Meet: meet.google.com/wfd-zwvt-ies) — need Sam & Jack emails to invite. North Star set to $1M.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 14:08 UTC
+- **When:** 2026-06-03 14:12 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 402d5bd chore: refresh nucleus live state [skip ci] — 25 seconds ago
+- **Last commit:** b9265c8 chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/tasks.json
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/tasks.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
 **Recent commits:**
 ```
-402d5bd chore: refresh nucleus live state [skip ci] (25 seconds ago)
-c6f3bd9 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-1a217fd chore: refresh nucleus live state [skip ci] (9 minutes ago)
-662b76d Harden .gitignore: never commit .env / secrets / keys (9 minutes ago)
-1b5ddad chore: refresh nucleus live state [skip ci] (20 minutes ago)
+b9265c8 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+402d5bd chore: refresh nucleus live state [skip ci] (5 minutes ago)
+c6f3bd9 chore: refresh nucleus live state [skip ci] (13 minutes ago)
+1a217fd chore: refresh nucleus live state [skip ci] (13 minutes ago)
+662b76d Harden .gitignore: never commit .env / secrets / keys (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
