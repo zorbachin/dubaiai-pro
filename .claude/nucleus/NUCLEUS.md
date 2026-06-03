@@ -198,7 +198,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 13:48 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 96f9030 chore: refresh nucleus live state [skip ci] — 30 seconds ago
+- **Last commit:** d09c699 chore: capture finalized no-price 2-pager decision in nucleus [skip ci] — 8 seconds ago
 
 **Working tree:**
 ```
@@ -207,10 +207,10 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-96f9030 chore: refresh nucleus live state [skip ci] (30 seconds ago)
-dcacbe4 PBG proposal: drop all pricing; split into 2-pager (Page 1 the build, Page 2 where it goes) (41 seconds ago)
+d09c699 chore: capture finalized no-price 2-pager decision in nucleus [skip ci] (8 seconds ago)
+96f9030 chore: refresh nucleus live state [skip ci] (38 seconds ago)
+dcacbe4 PBG proposal: drop all pricing; split into 2-pager (Page 1 the build, Page 2 where it goes) (49 seconds ago)
 7f06931 chore: refresh nucleus live state [skip ci] (17 minutes ago)
 f14971d chore: refresh nucleus live state [skip ci] (17 minutes ago)
-114469f PBG proposal: clarify Phase 1 is the live tool; reframe Phase 2 as expand+harden (not 'go live') (17 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
