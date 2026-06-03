@@ -196,21 +196,27 @@ SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 13:59 UTC
+- **When:** 2026-06-03 14:08 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 1a217fd chore: refresh nucleus live state [skip ci] — 17 seconds ago
+- **Last commit:** c6f3bd9 chore: refresh nucleus live state [skip ci] — 8 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-1a217fd chore: refresh nucleus live state [skip ci] (17 seconds ago)
-662b76d Harden .gitignore: never commit .env / secrets / keys (37 seconds ago)
-1b5ddad chore: refresh nucleus live state [skip ci] (12 minutes ago)
-d09c699 chore: capture finalized no-price 2-pager decision in nucleus [skip ci] (12 minutes ago)
-96f9030 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+c6f3bd9 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+1a217fd chore: refresh nucleus live state [skip ci] (9 minutes ago)
+662b76d Harden .gitignore: never commit .env / secrets / keys (9 minutes ago)
+1b5ddad chore: refresh nucleus live state [skip ci] (20 minutes ago)
+d09c699 chore: capture finalized no-price 2-pager decision in nucleus [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
