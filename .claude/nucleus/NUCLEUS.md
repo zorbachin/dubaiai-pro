@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-03 18:04 UTC
 - **Branch:** `claude/floori-competitor-analysis-gGYEs`
-- **Last commit:** fbf2155 chore: refresh nucleus live state [skip ci] — 25 hours ago
+- **Last commit:** 99608c9 chore: refresh nucleus live state [skip ci] — 6 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+99608c9 chore: refresh nucleus live state [skip ci] (6 seconds ago)
 fbf2155 chore: refresh nucleus live state [skip ci] (25 hours ago)
 c55a864 chore: refresh nucleus live state [skip ci] (25 hours ago)
 c5726ff chore: refresh nucleus live state [skip ci] (25 hours ago)
 cb7f9c7 chore: refresh nucleus live state [skip ci] (25 hours ago)
-ef4cd2c chore: refresh nucleus live state [skip ci] (26 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
