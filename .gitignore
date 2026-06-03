@@ -12,3 +12,7 @@ focus.html
 !.env.example
 *.key
 secrets.json
+
+# Generated Netlify-drop artifacts
+clients/pbg/drop/
+clients/pbg/*.zip
