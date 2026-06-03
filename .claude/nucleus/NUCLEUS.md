@@ -196,21 +196,27 @@ SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $20
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 15:14 UTC
+- **When:** 2026-06-03 15:35 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 1b8d4b3 chore: refresh nucleus live state [skip ci] — 38 seconds ago
+- **Last commit:** 1614288 PBG: add noindex to proposal+dashboard; gitignore netlify-drop artifacts — 13 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-1b8d4b3 chore: refresh nucleus live state [skip ci] (38 seconds ago)
-62d7ea1 chore: refresh nucleus live state [skip ci] (52 minutes ago)
-0989759 chore: refresh nucleus live state [skip ci] (52 minutes ago)
-1d6322d chore: refresh nucleus live state [skip ci] (61 minutes ago)
-8a7edd7 PBG: access-focused Travis email (they're in; build on real data) [skip ci] (61 minutes ago)
+1614288 PBG: add noindex to proposal+dashboard; gitignore netlify-drop artifacts (13 seconds ago)
+af44736 chore: refresh nucleus live state [skip ci] (22 minutes ago)
+1b8d4b3 chore: refresh nucleus live state [skip ci] (23 minutes ago)
+62d7ea1 chore: refresh nucleus live state [skip ci] (74 minutes ago)
+0989759 chore: refresh nucleus live state [skip ci] (74 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
