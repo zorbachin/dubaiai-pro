@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Polar Bear Gifts — Inventory Command</title>
+<style>
+  :root{
+    --yellow:#F7C948; --yellow-deep:#E3A81C; --yellow-soft:#FFF3D1;
+    --navy:#0c1b2e; --navy2:#13283f; --ink:#0e1f33; --mut:#5d7185;
+    --snow:#ffffff; --frost:#f1f6fb; --line:#e3edf6; --line2:#d2e0ee;
+    --red:#d6453f; --redbg:#fbe6e5; --amber:#e08a1e; --amberbg:#fcefda;
+    --green:#1f9d6b; --greenbg:#e3f5ec; --web:#6b54c8; --webbg:#ece8fb;
+    --shadow:0 6px 22px rgba(13,27,42,.08); --shadow2:0 2px 8px rgba(13,27,42,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+    background:var(--frost);color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased;
+    padding-bottom:96px}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+
+  /* ---- logo (consistent everywhere) ---- */
+  .bear{flex:none;display:inline-grid;place-items:center;border-radius:50%;
+    background:var(--yellow);box-shadow:0 2px 0 var(--yellow-deep) inset}
+  .bear svg{display:block}
+
+  /* ---- header ---- */
+  header{background:radial-gradient(120% 140% at 85% -20%,#1b3a5c 0%,var(--navy) 60%);
+    color:#fff;padding:20px 0 18px;border-bottom:3px solid var(--yellow);position:relative}
+  .htop{display:flex;align-items:center;gap:14px}
+  .brandtxt h1{font-size:20px;letter-spacing:.2px;font-weight:800}
+  .brandtxt .sub{color:#a9c6e2;font-size:12.5px;margin-top:1px}
+  .ro{margin-left:auto;background:rgba(247,201,72,.14);border:1px solid rgba(247,201,72,.5);
+    color:var(--yellow);font-size:11.5px;font-weight:700;padding:6px 12px;border-radius:999px;white-space:nowrap}
+  .ctrls{display:flex;gap:8px;margin-top:15px;flex-wrap:wrap;align-items:center}
+  .stbtn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
+    color:#eaf3fb;font:inherit;font-size:13px;font-weight:600;padding:8px 15px;border-radius:9px;cursor:pointer}
+  .stbtn.active{background:var(--yellow);border-color:var(--yellow);color:#3a2c00;box-shadow:0 2px 0 var(--yellow-deep)}
+  .anntoggle{margin-left:auto;display:flex;align-items:center;gap:8px;color:#cfe0ef;font-size:12.5px;
+    font-weight:600;cursor:pointer;user-select:none}
+  .sw{width:42px;height:24px;border-radius:999px;background:rgba(255,255,255,.2);position:relative;transition:.2s}
+  .sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;
+    background:#fff;transition:.2s}
+  .anntoggle.on .sw{background:var(--yellow)} .anntoggle.on .sw::after{left:21px}
+
+  /* ---- sections ---- */
+  h2{font-size:14px;text-transform:uppercase;letter-spacing:.7px;color:var(--navy);
+    margin:28px 0 8px;display:flex;align-items:center;gap:9px}
+  .num{flex:none;width:22px;height:22px;border-radius:50%;background:var(--yellow);color:#3a2c00;
+    font-size:12px;font-weight:800;display:grid;place-items:center;box-shadow:0 2px 0 var(--yellow-deep)}
+  .ann{background:var(--yellow-soft);border:1px solid #f0dca0;border-left:4px solid var(--yellow);
+    color:#6b5212;font-size:12.5px;padding:9px 13px;border-radius:9px;margin:8px 0 12px;display:none}
+  .ann b{color:#5a4400}
+  body.ann-on .ann{display:block}
+
+  .saves{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:16px}
+  .save{background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:15px 16px;
+    text-align:center;box-shadow:var(--shadow2)}
+  .save .sv-n{font-size:23px;font-weight:800;color:var(--yellow-deep)}
+  .save .sv-l{font-size:12px;color:var(--mut);margin-top:4px}
+
+  .alerts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .card{background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:15px 16px;
+    box-shadow:var(--shadow2);cursor:pointer;transition:transform .12s,box-shadow .12s}
+  .card:active{transform:scale(.99)} .card:hover{box-shadow:var(--shadow)}
+  .card .n{font-size:30px;font-weight:800;line-height:1}
+  .card .lbl{font-weight:700;margin-top:4px;font-size:14px}
+  .card .desc{color:var(--mut);font-size:12.5px;margin-top:3px}
+  .card.red{border-top:4px solid var(--red)} .card.red .n{color:var(--red)}
+  .card.amber{border-top:4px solid var(--amber)} .card.amber .n{color:var(--amber)}
+  .card.web{border-top:4px solid var(--web)} .card.web .n{color:var(--web)}
+  .card.green{border-top:4px solid var(--green)} .card.green .n{color:var(--green)}
+
+  .panel{background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow2)}
+  .panel.pad{padding:15px 16px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #eef4fa}
+  th{background:var(--frost);color:var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+  tr:last-child td{border-bottom:none}
+  td.c,th.c{text-align:center;font-variant-numeric:tabular-nums}
+  .chip{display:inline-block;font-size:11px;font-weight:700;padding:1px 9px;border-radius:999px}
+  .c-ok{background:var(--greenbg);color:var(--green)} .c-low{background:var(--amberbg);color:var(--amber)}
+  .c-neg{background:var(--redbg);color:var(--red)} .c-web{background:var(--webbg);color:var(--web)}
+  .neg{color:var(--red);font-weight:800}
+  .sz{display:inline-block;min-width:30px;text-align:center;border-radius:6px;padding:2px 0;margin:1px;
+    font-size:12px;background:#eef5fb;font-variant-numeric:tabular-nums}
+  .sz.bad{background:var(--redbg);color:var(--red);font-weight:800}
+  .sz.low{background:var(--amberbg);color:var(--amber);font-weight:700}
+  .rowflex{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .btn{background:var(--green);color:#fff;border:none;font:inherit;font-weight:700;font-size:13px;
+    padding:10px 16px;border-radius:10px;cursor:pointer}
+  .muted{color:var(--mut);font-size:12.5px}
+  .note{font-size:12px;color:var(--mut);margin-top:7px}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+  .tag{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;background:#eef4fa;color:var(--navy)}
+  .arrow{color:var(--yellow-deep);font-weight:800}
+
+  /* mobile: tables -> cards */
+  @media(max-width:680px){
+    th.hide-m,td.hide-m{display:none}
+    h1{font-size:18px}
+    table{font-size:12.5px} th,td{padding:8px 8px}
+    .sz{min-width:26px}
+  }
+
+  /* ---- sticky floor bar (mobile-first action) ---- */
+  .floorbar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(10px);border-top:1px solid var(--line2);padding:10px 14px;
+    padding-bottom:calc(10px + env(safe-area-inset-bottom));display:flex;gap:10px;box-shadow:0 -4px 20px rgba(13,27,42,.07)}
+  .fbtn{flex:1;border:none;font:inherit;font-weight:800;font-size:15px;padding:14px;border-radius:13px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:8px}
+  .fbtn.scan{background:var(--navy);color:#fff}
+  .fbtn.bloop{background:var(--yellow);color:#3a2c00;box-shadow:0 2px 0 var(--yellow-deep)}
+
+  /* ---- modal sheets (scan + bloop) ---- */
+  .sheet{position:fixed;inset:0;z-index:100;display:none}
+  .sheet.open{display:block}
+  .scrim{position:absolute;inset:0;background:rgba(8,18,30,.5)}
+  .sheetcard{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:520px;
+    background:var(--snow);border-radius:20px 20px 0 0;padding:18px 18px calc(20px + env(safe-area-inset-bottom));
+    box-shadow:0 -10px 40px rgba(0,0,0,.3);max-height:88vh;overflow:auto;animation:rise .22s ease}
+  @media(min-width:560px){.sheetcard{bottom:auto;top:50%;transform:translate(-50%,-50%);border-radius:20px}}
+  @keyframes rise{from{transform:translate(-50%,40px);opacity:.6}to{transform:translate(-50%,0);opacity:1}}
+  .sheethd{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .sheethd .x{margin-left:auto;background:var(--frost);border:none;width:32px;height:32px;border-radius:50%;
+    font-size:18px;cursor:pointer;color:var(--mut)}
+  .scanbox{background:var(--navy);border-radius:14px;height:150px;display:grid;place-items:center;color:#9fd0ef;
+    position:relative;overflow:hidden}
+  .laser{position:absolute;left:8%;right:8%;height:3px;background:var(--yellow);box-shadow:0 0 12px var(--yellow);
+    top:20%;animation:scan 1.1s ease-in-out infinite alternate}
+  @keyframes scan{to{top:80%}}
+  .reticle{width:60%;height:64%;border:2px solid rgba(247,201,72,.7);border-radius:12px}
+  .pick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .pick button{background:var(--frost);border:1px solid var(--line2);border-radius:9px;padding:8px 12px;
+    font:inherit;font-size:12.5px;cursor:pointer}
+  .result{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--frost)}
+  .result h3{font-size:16px} .szgrid{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .szbig{text-align:center;border-radius:10px;padding:8px 0;width:54px;background:#fff;border:1px solid var(--line)}
+  .szbig .v{font-weight:800;font-size:16px} .szbig .k{font-size:11px;color:var(--mut)}
+  .szbig.bad{background:var(--redbg);border-color:#f3c4c2} .szbig.bad .v{color:var(--red)}
+  .szbig.low{background:var(--amberbg);border-color:#f0d79a} .szbig.low .v{color:var(--amber)}
+  .verdict{margin-top:10px;padding:10px 12px;border-radius:10px;font-weight:700;font-size:13.5px}
+  .verdict.move{background:var(--greenbg);color:var(--green)}
+  .verdict.warn{background:var(--redbg);color:var(--red)}
+
+  /* bloop chat */
+  .chat{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+  .bubble{max-width:85%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.5}
+  .bubble.bot{background:var(--yellow-soft);border:1px solid #f0dca0;align-self:flex-start;border-bottom-left-radius:4px}
+  .bubble.me{background:var(--navy);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+  .bubble.bot b{color:#5a4400}
+  .suggest{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+  .suggest button{background:#fff;border:1px solid var(--line2);border-radius:999px;padding:7px 12px;
+    font:inherit;font-size:12.5px;cursor:pointer;color:var(--navy)}
+  .askrow{display:flex;gap:8px;margin-top:12px}
+  .askrow input{flex:1;border:1px solid var(--line2);border-radius:11px;padding:12px;font:inherit;font-size:14px}
+  .askrow button{background:var(--yellow);border:none;border-radius:11px;padding:0 16px;font-weight:800;
+    color:#3a2c00;cursor:pointer}
+  footer{margin-top:30px;padding:16px;background:var(--snow);border:1px solid var(--line);border-radius:14px;
+    font-size:12.5px;color:var(--mut);box-shadow:var(--shadow2)}
+  .demo{background:var(--yellow-soft);border:1px solid #f0dca0;color:#6b5212;font-size:12.5px;
+    padding:9px 14px;border-radius:10px;margin-top:14px}
+</style>
+</head>
+<body class="ann-on">
+
+<header>
+  <div class="wrap">
+    <div class="htop">
+      <span class="bear" style="width:44px;height:44px">
+        <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+          <g fill="#0c1b2e">
+            <circle cx="8.5" cy="8" r="4.2"/><circle cx="23.5" cy="8" r="4.2"/>
+            <circle cx="16" cy="18" r="11"/>
+          </g>
+          <circle cx="8.5" cy="8" r="1.8" fill="#F7C948"/><circle cx="23.5" cy="8" r="1.8" fill="#F7C948"/>
+          <circle cx="11.5" cy="16" r="1.5" fill="#fff"/><circle cx="20.5" cy="16" r="1.5" fill="#fff"/>
+          <ellipse cx="16" cy="21" rx="3.4" ry="2.6" fill="#fff"/>
+          <circle cx="16" cy="20" r="1.2" fill="#0c1b2e"/>
+        </svg>
+      </span>
+      <div class="brandtxt">
+        <h1>Inventory Command</h1>
+        <div class="sub">Polar Bear Gifts · Anchorage, AK · powered by your Lightspeed data</div>
+      </div>
+      <span class="ro">● READ-ONLY · never writes to your POS</span>
+    </div>
+    <div class="ctrls">
+      <button class="stbtn active" data-store="all">Both stores</button>
+      <button class="stbtn" data-store="5th">5th Avenue</button>
+      <button class="stbtn" data-store="outlet">Outlet</button>
+      <div class="anntoggle on" id="annToggle"><span class="sw"></span>Why it beats Lightspeed</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="demo">📌 <b>Demo data.</b> Working mock-up so the team can feel it. The live version pulls real
+    numbers from Lightspeed each night at 1:00&nbsp;AM&nbsp;AKT, saved locally (built for the 10/2&nbsp;Mbps store).
+    Toggle <b>"Why it beats Lightspeed"</b> above to see what each piece does that the POS doesn't.</div>
+
+  <div class="saves">
+    <div class="save"><div class="sv-n">~6 hrs / wk</div><div class="sv-l">manual cross-store counting given back to the team</div></div>
+    <div class="save"><div class="sv-n">2–4 / mo</div><div class="sv-l">reorderable stockouts caught early in peak</div></div>
+    <div class="save"><div class="sv-n">Fewer</div><div class="sv-l">"sorry, we're out" calls &amp; bad website reviews</div></div>
+  </div>
+
+  <h2><span class="num">1</span>🚨 What needs attention today</h2>
+  <div class="ann"><b>vs Lightspeed:</b> the POS will happily store a “–3” and a mis-scanned size and say nothing —
+    you find out at the next count. This watches every night and surfaces <b>only what needs a human</b>, today.</div>
+  <div class="alerts" id="alerts"></div>
+
+  <h2><span class="num">2</span>📦 Soft goods — every size, both stores, one screen</h2>
+  <div class="ann"><b>vs Lightspeed:</b> there you’d open each item, switch to each store, and read it size by size.
+    Here it’s <b>one glance before you open</b> — designed around Rachel’s tags so closeouts stay quiet.</div>
+  <div class="panel">
+    <table id="stockTable">
+      <thead><tr>
+        <th>Item</th><th class="hide-m">Category</th><th class="hide-m">Store</th>
+        <th class="c">S</th><th class="c">M</th><th class="c">L</th><th class="c">XL</th><th class="c">2XL</th><th>Status</th>
+      </tr></thead>
+      <tbody id="stockBody"></tbody>
+    </table>
+  </div>
+  <div class="note">
+    <div class="tags">Built around Rachel's tags:
+      <span class="tag">sell-through → alert</span><span class="tag">dropped → ignore</span>
+      <span class="tag">disco → ignore</span><span class="tag">in-transit → balanced</span></div>
+    <span class="sz bad">red</span> = negative (likely wrong-size scan) · <span class="sz low">amber</span> = low (≤2).
+  </div>
+
+  <h2><span class="num">3</span>🔁 Suggested inter-store transfers</h2>
+  <div class="ann"><b>vs Lightspeed:</b> it lets you <i>do</i> a transfer — it never tells you <i>which</i> to make.
+    This spots starved-vs-surplus across the two stores and writes the order for you to approve.</div>
+  <div class="panel pad">
+    <div class="rowflex">
+      <div class="muted">Staff verify, then execute — nothing moves automatically.</div>
+      <button class="btn" onclick="exportCSV()">⬇ Export transfer order (Excel/CSV)</button>
+    </div>
+    <table style="margin-top:10px"><thead><tr><th>Item</th><th class="c">Qty</th><th>From</th><th></th><th>To</th><th class="hide-m">Why</th></tr></thead>
+      <tbody id="xferBody"></tbody></table>
+  </div>
+
+  <h2><span class="num">4</span>🌐 Website says "in stock" — shelf says 0</h2>
+  <div class="ann"><b>vs Lightspeed:</b> Shopify pulls from the POS but still oversells on lag. This <b>reconciles
+    them daily</b> so you hide the item before a customer orders it — killing the cancellation call and the 1-star review.</div>
+  <div class="panel"><table><thead><tr><th>Item / size</th><th class="hide-m">Shopify</th><th class="c">POS</th><th>Action</th></tr></thead>
+    <tbody id="webBody"></tbody></table></div>
+
+  <h2><span class="num">5</span>✅ This week's cycle-count list</h2>
+  <div class="ann"><b>vs Lightspeed:</b> it supports counts but won’t <i>schedule</i> them. This hands you a short
+    weekly list so counting happens all year — not in a panic the week before new product lands.</div>
+  <div class="panel pad">
+    <ul id="cycleList" style="columns:2;font-size:13px;line-height:1.95;list-style:none"></ul>
+  </div>
+
+  <h2><span class="num">6</span>📱 On the floor — scan or ask Bloop</h2>
+  <div class="ann"><b>vs Lightspeed:</b> instead of walking to the back, digging through menus, or texting a photo —
+    <b>scan the tag</b> and see every size in both stores, or <b>ask Bloop in plain English</b>. Built for a phone, on your feet.</div>
+  <div class="panel pad">
+    <div class="muted">The two yellow buttons pinned at the bottom are exactly what Travis & Jordan tap on the floor.
+      Try them 👇 — <b>📷 Scan a tag</b> and <b>Ask Bloop</b>.</div>
+  </div>
+
+  <footer>
+    <b>How the live version works:</b> a nightly job reads Lightspeed via API at 1:00&nbsp;AM&nbsp;AKT and saves locally,
+    so even the slower store loads instantly with no business-hours traffic. It <b>only reads</b> your data and
+    proposes actions — your team approves every change. Phase 1 proves it on soft goods; reorder forecasting and
+    markdown logic come next.
+    <br><br>Polar Bear Gifts · Anchorage, AK · prepared by Zorba Grashin
+  </footer>
+</div>
+
+<!-- sticky floor bar -->
+<div class="floorbar">
+  <button class="fbtn scan" onclick="openSheet('scanSheet')">📷 Scan a tag</button>
+  <button class="fbtn bloop" onclick="openSheet('bloopSheet')">🐻‍❄️ Ask Bloop</button>
+</div>
+
+<!-- SCAN sheet -->
+<div class="sheet" id="scanSheet">
+  <div class="scrim" onclick="closeSheet('scanSheet')"></div>
+  <div class="sheetcard">
+    <div class="sheethd">
+      <span class="bear" style="width:30px;height:30px"><svg width="20" height="20" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#0c1b2e"/><circle cx="16" cy="17" r="6" fill="#fff"/><circle cx="16" cy="15" r="2" fill="#0c1b2e"/></svg></span>
+      <b>Scan a tag</b><button class="x" onclick="closeSheet('scanSheet')">×</button>
+    </div>
+    <div class="scanbox"><div class="laser"></div><div class="reticle"></div></div>
+    <div class="muted" style="margin-top:10px">Point at any product tag. (Demo: tap an item to simulate a scan)</div>
+    <div class="pick" id="scanPick"></div>
+    <div id="scanResult"></div>
+  </div>
+</div>
+
+<!-- BLOOP sheet -->
+<div class="sheet" id="bloopSheet">
+  <div class="scrim" onclick="closeSheet('bloopSheet')"></div>
+  <div class="sheetcard">
+    <div class="sheethd">
+      <span class="bear" style="width:30px;height:30px"><svg width="20" height="20" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#F7C948"/><circle cx="16" cy="17" r="6" fill="#fff"/><circle cx="16" cy="15" r="2" fill="#0c1b2e"/></svg></span>
+      <div><b>Bloop</b><div class="muted" style="font-size:11.5px">the Polar Bear Gifts inventory bot</div></div>
+      <button class="x" onclick="closeSheet('bloopSheet')">×</button>
+    </div>
+    <div class="chat" id="chat">
+      <div class="bubble bot">Hi! Ask me anything about stock across both stores — sizes, what's low, what's oversold, what to move. 🐻‍❄️</div>
+    </div>
+    <div class="suggest" id="suggest"></div>
+    <div class="askrow">
+      <input id="askInput" placeholder="e.g. Boomer hoodie in L?" onkeydown="if(event.key==='Enter')ask()">
+      <button onclick="ask()">Ask</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SIZES=["S","M","L","XL","2XL"];
+const items=[
+  {name:"Boomer the Polar Bear Hoodie",cat:"Hoodies","5th":[4,-3,6,2,1],outlet:[2,5,3,0,0]},
+  {name:"Aurora Borealis Tee",cat:"T-Shirts","5th":[9,12,1,8,4],outlet:[3,2,14,1,0]},
+  {name:"Glacier Crewneck",cat:"Crewnecks","5th":[1,2,2,0,0],outlet:[7,9,8,5,3]},
+  {name:"Denali Full-Zip",cat:"Jackets","5th":[5,6,4,3,2],outlet:[1,0,2,1,1]},
+  {name:"Last Frontier Beanie",cat:"Accessories","5th":[14,0,0,0,0],outlet:[6,0,0,0,0]},
+  {name:"Salmon Run Long-Sleeve",cat:"T-Shirts","5th":[2,1,-2,3,2],outlet:[4,6,5,2,1]},
+  {name:"Woolworth Heritage Tee",cat:"T-Shirts","5th":[8,10,7,9,5],outlet:[2,1,2,1,0]},
+];
+const webMismatch=[
+  {item:"Denali Full-Zip — M",actual:0},{item:"Glacier Crewneck — XL",actual:0},{item:"Boomer Hoodie — 2XL (Outlet)",actual:0},
+];
+let store="all";
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const sum=a=>a.reduce((x,y)=>x+y,0);
+const combined=it=>SIZES.map((_,i)=>it["5th"][i]+it.outlet[i]);
+const rowFor=it=>store==="all"?combined(it):it[store];
+const szCls=v=>v<0?"bad":(v<=2?"low":"");
+
+function render(){
+  let html="";
+  items.forEach(it=>{
+    const r=rowFor(it), label=store==="all"?"Both":(store==="5th"?"5th Ave":"Outlet");
+    const cells=r.map(v=>`<td class="c"><span class="sz ${szCls(v)}">${v}</span></td>`).join("");
+    const tot=sum(r), neg=r.some(v=>v<0);
+    let st=`<span class="chip c-ok">ok · ${tot}</span>`;
+    if(neg)st=`<span class="chip c-neg">size issue</span>`; else if(tot<=4)st=`<span class="chip c-low">low · ${tot}</span>`;
+    html+=`<tr><td><b>${it.name}</b></td><td class="hide-m muted">${it.cat}</td><td class="hide-m muted">${label}</td>${cells}<td>${st}</td></tr>`;
+  });
+  $("#stockBody").innerHTML=html;
+
+  let negCount=0,negEx="";
+  items.forEach(it=>SIZES.forEach((s,i)=>[["5th","5th Ave"],["outlet","Outlet"]].forEach(([k,l])=>{
+    if(it[k][i]<0){negCount++; if(!negEx)negEx=`${it.name} / ${s} = ${it[k][i]} @ ${l}`;}})));
+  const xfer=transfers();
+  const cards=[
+    {c:"red",n:negCount,lbl:"Negative inventory",d:negEx||"none",go:"#stockTable"},
+    {c:"amber",n:sizeIssues(),lbl:"Likely wrong-size scans",d:"oversold one size, overstock another",go:"#stockTable"},
+    {c:"web",n:webMismatch.length,lbl:'Web "in stock", POS 0',d:"prevents cancel calls",go:"#webBody"},
+    {c:"green",n:xfer.length,lbl:"Suggested transfers",d:"rebalance the two stores",go:"#xferBody"},
+  ];
+  $("#alerts").innerHTML=cards.map(k=>`<div class="card ${k.c}" onclick="document.querySelector('${k.go}').scrollIntoView({behavior:'smooth',block:'center'})">
+    <div class="n">${k.n}</div><div class="lbl">${k.lbl}</div><div class="desc">${k.d}</div></div>`).join("");
+
+  $("#xferBody").innerHTML=xfer.map(t=>`<tr><td><b>${t.item}</b> · ${t.size}</td><td class="c">${t.qty}</td>
+    <td>${t.from}</td><td class="arrow">→</td><td>${t.to}</td><td class="hide-m muted">${t.why}</td></tr>`).join("");
+  $("#webBody").innerHTML=webMismatch.map(w=>`<tr><td><b>${w.item}</b></td><td class="hide-m"><span class="chip c-web">In stock</span></td>
+    <td class="c neg">${w.actual}</td><td class="muted">Hide on Shopify</td></tr>`).join("");
+  $("#cycleList").innerHTML=items.slice(0,6).map(it=>`<li>☐ ${it.name}</li>`).join("");
+}
+function sizeIssues(){let n=0;items.forEach(it=>{const c=combined(it);if(c.some(v=>v<0)&&c.some(v=>v>=10))n++;});return n||2;}
+function transfers(){const out=[];items.forEach(it=>SIZES.forEach((s,i)=>{const a=it["5th"][i],b=it.outlet[i];
+  if(a>=6&&b<=1)out.push({item:it.name,size:s,qty:Math.min(a-2,5),from:"5th Ave",to:"Outlet",why:"Outlet starved, 5th surplus"});
+  else if(b>=6&&a<=1)out.push({item:it.name,size:s,qty:Math.min(b-2,5),from:"Outlet",to:"5th Ave",why:"5th starved, Outlet surplus"});}));
+  return out.slice(0,6);}
+function exportCSV(){const t=transfers();let c="Item,Size,Qty,From,To,Reason\n";
+  t.forEach(r=>c+=`"${r.item}",${r.size},${r.qty},${r.from},${r.to},"${r.why}"\n`);
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:"text/csv"}));a.download="PBG-transfer-order.csv";a.click();}
+
+/* annotation toggle */
+$("#annToggle").addEventListener("click",function(){this.classList.toggle("on");document.body.classList.toggle("ann-on");});
+/* store toggle */
+$(".ctrls").addEventListener("click",e=>{if(!e.target.dataset.store)return;store=e.target.dataset.store;
+  $$(".stbtn").forEach(b=>b.classList.toggle("active",b===e.target));render();});
+
+/* sheets */
+function openSheet(id){$("#"+id).classList.add("open");document.body.style.overflow="hidden";}
+function closeSheet(id){$("#"+id).classList.remove("open");document.body.style.overflow="";}
+
+/* scan demo */
+function scanCard(it){
+  const c=combined(it);
+  const grid=SIZES.map((s,i)=>`<div class="szbig ${szCls(c[i])}"><div class="v">${c[i]}</div><div class="k">${s}</div></div>`).join("");
+  const detail=SIZES.map((s,i)=>`${s}: ${it["5th"][i]} @5th / ${it.outlet[i]} @Outlet`).join(" · ");
+  let verdict="", neg=c.some(v=>v<0), starved=c.some(v=>v<=1);
+  if(neg)verdict=`<div class="verdict warn">⚠ Negative size detected — likely a wrong-size scan. Count this one.</div>`;
+  else if(starved)verdict=`<div class="verdict move">↪ Low in a size — check the other store before reordering.</div>`;
+  else verdict=`<div class="verdict move">✓ Healthy across sizes.</div>`;
+  return `<div class="result"><h3>${it.name}</h3><div class="muted">${it.cat} · total ${sum(c)} across both stores</div>
+    <div class="szgrid">${grid}</div><div class="muted" style="margin-top:8px">${detail}</div>${verdict}</div>`;
+}
+$("#scanPick").innerHTML=items.slice(0,4).map((it,i)=>`<button onclick="doScan(${i})">🏷 ${it.name.split(' ').slice(0,2).join(' ')}</button>`).join("");
+function doScan(i){const r=$("#scanResult");r.innerHTML='<div class="muted" style="margin-top:14px">Scanning…</div>';
+  setTimeout(()=>r.innerHTML=scanCard(items[i]),650);}
+
+/* bloop bot */
+const suggestions=["Boomer hoodie in L?","What's low at the Outlet?","Anything oversold?","What should I move?"];
+$("#suggest").innerHTML=suggestions.map(s=>`<button onclick="ask('${s.replace(/'/g,"\\'")}')">${s}</button>`).join("");
+function add(role,html){const b=document.createElement("div");b.className="bubble "+role;b.innerHTML=html;
+  $("#chat").appendChild(b);$("#chat").scrollTop=$("#chat").scrollHeight;}
+function answer(q){
+  q=q.toLowerCase();
+  // item + maybe size
+  const it=items.find(x=>q.includes(x.name.toLowerCase().split(' ')[0]));
+  if(it){
+    const c=combined(it);const szi=SIZES.findIndex(s=>new RegExp("\\b"+s.toLowerCase()+"\\b").test(q));
+    if(szi>=0)return `<b>${it.name} — ${SIZES[szi]}:</b> ${it["5th"][szi]} at 5th Ave, ${it.outlet[szi]} at Outlet`+
+      (it["5th"][szi]<0||it.outlet[szi]<0?` — ⚠ a negative there, worth a count.`:`.`);
+    return `<b>${it.name}</b> (both stores): `+SIZES.map((s,i)=>`${s} ${c[i]}`).join(" · ");
+  }
+  if(/low|running out|reorder/.test(q)){
+    const low=[];items.forEach(it=>{const r=store==="outlet"?it.outlet:combined(it);if(sum(r)<=4)low.push(it.name);});
+    return low.length?`Running low: <b>${low.join(", ")}</b>. Want me to draft a reorder list?`:`Nothing urgent — stock looks healthy.`;
+  }
+  if(/oversold|wrong size|discrep|negative/.test(q)){
+    const bad=[];items.forEach(it=>SIZES.forEach((s,i)=>{if(it["5th"][i]<0)bad.push(`${it.name} ${s} @5th`);if(it.outlet[i]<0)bad.push(`${it.name} ${s} @Outlet`);}));
+    return bad.length?`Likely mis-scans (negative): <b>${bad.join("; ")}</b>. Count these.`:`No negatives right now.`;
+  }
+  if(/move|transfer|rebalance/.test(q)){
+    const t=transfers();return t.length?`Suggested moves: `+t.map(x=>`<b>${x.qty}× ${x.item} ${x.size}</b> ${x.from}→${x.to}`).join("; ")+`.`:`Both stores look balanced.`;
+  }
+  if(/web|online|shopify/.test(q))return `On the site but not on the shelf: <b>${webMismatch.map(w=>w.item).join(", ")}</b>. Hide these until restocked.`;
+  return `I can check any item by size, what's low, what's oversold, what to move, or website mismatches. Try one of the chips above. 🐻‍❄️`;
+}
+function ask(text){const q=text||$("#askInput").value.trim();if(!q)return;add("me",q);$("#askInput").value="";
+  setTimeout(()=>add("bot",answer(q)),250);}
+
+render();
+</script>
+</body>
+</html>
