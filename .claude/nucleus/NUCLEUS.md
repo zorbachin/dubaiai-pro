@@ -196,21 +196,27 @@ OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APP
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 10:58 UTC
+- **When:** 2026-06-03 13:30 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** a56778f chore: sync nucleus state + reconciled task ledger [skip ci] — 7 seconds ago
+- **Last commit:** 114469f PBG proposal: clarify Phase 1 is the live tool; reframe Phase 2 as expand+harden (not 'go live') — 14 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-a56778f chore: sync nucleus state + reconciled task ledger [skip ci] (7 seconds ago)
-41c3d0f Add task ledger (derive done from git/Gmail/Calendar) + PBG phased proposal one-pager (48 seconds ago)
-b6a909c chore: refresh nucleus live state [skip ci] (67 minutes ago)
-5a91ec2 PBG v2 pass: white polar-bear logo, Bloop mascot, product-first attention cards, preview-tag floor tools (68 minutes ago)
-94da094 chore: refresh nucleus live state [skip ci] (77 minutes ago)
+114469f PBG proposal: clarify Phase 1 is the live tool; reframe Phase 2 as expand+harden (not 'go live') (14 seconds ago)
+edda0e8 chore: refresh nucleus live state [skip ci] (3 hours ago)
+a56778f chore: sync nucleus state + reconciled task ledger [skip ci] (3 hours ago)
+41c3d0f Add task ledger (derive done from git/Gmail/Calendar) + PBG phased proposal one-pager (3 hours ago)
+b6a909c chore: refresh nucleus live state [skip ci] (4 hours ago)
 ```
 <!-- AUTOSTATE:END -->
