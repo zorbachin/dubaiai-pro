@@ -60,7 +60,22 @@
   .save .sv-n{font-size:23px;font-weight:800;color:var(--yellow-deep)}
   .save .sv-l{font-size:12px;color:var(--mut);margin-top:4px}
 
-  .alerts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .alerts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .acard{display:flex;gap:12px;align-items:center;background:var(--snow);border:1px solid var(--line);
+    border-radius:14px;padding:12px 14px;box-shadow:var(--shadow2);border-left:5px solid var(--line2)}
+  .acard.red{border-left-color:var(--red)} .acard.amber{border-left-color:var(--amber)}
+  .acard.web{border-left-color:var(--web)} .acard.green{border-left-color:var(--green)}
+  .thumb{flex:none;width:56px;height:56px;border-radius:12px;background:var(--frost);
+    display:grid;place-items:center;font-size:28px;border:1px solid var(--line)}
+  .aname{font-size:16px;font-weight:800;line-height:1.2}
+  .acap{font-size:12.8px;color:var(--mut);margin-top:4px}
+  .acap .chip{margin-right:5px}
+  .badge{font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
+    background:var(--webbg);color:var(--web);padding:2px 8px;border-radius:999px;margin-left:4px}
+  .bloopintro{display:flex;gap:14px;align-items:flex-start}
+  .bloopav{background:linear-gradient(135deg,#eaf4fd,#d4e9fb)!important;box-shadow:none!important;border:1px solid var(--line2)}
+  .bloopbubble{background:var(--yellow-soft);border:1px solid #f0dca0;border-radius:14px;
+    border-top-left-radius:4px;padding:11px 14px;font-size:13.5px;line-height:1.5;color:#5a4400}
   .card{background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:15px 16px;
     box-shadow:var(--shadow2);cursor:pointer;transition:transform .12s,box-shadow .12s}
   .card:active{transform:scale(.99)} .card:hover{box-shadow:var(--shadow)}
@@ -171,14 +186,13 @@
     <div class="htop">
       <span class="bear" style="width:44px;height:44px">
         <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
-          <g fill="#0c1b2e">
-            <circle cx="8.5" cy="8" r="4.2"/><circle cx="23.5" cy="8" r="4.2"/>
-            <circle cx="16" cy="18" r="11"/>
+          <g fill="#fff" stroke="#0c1b2e" stroke-width="0.7">
+            <circle cx="9" cy="8.5" r="3.5"/><circle cx="23" cy="8.5" r="3.5"/>
+            <circle cx="16" cy="17" r="11"/>
           </g>
-          <circle cx="8.5" cy="8" r="1.8" fill="#F7C948"/><circle cx="23.5" cy="8" r="1.8" fill="#F7C948"/>
-          <circle cx="11.5" cy="16" r="1.5" fill="#fff"/><circle cx="20.5" cy="16" r="1.5" fill="#fff"/>
-          <ellipse cx="16" cy="21" rx="3.4" ry="2.6" fill="#fff"/>
-          <circle cx="16" cy="20" r="1.2" fill="#0c1b2e"/>
+          <circle cx="12.4" cy="15" r="1.3" fill="#0c1b2e"/><circle cx="19.6" cy="15" r="1.3" fill="#0c1b2e"/>
+          <ellipse cx="16" cy="19.8" rx="3.5" ry="2.7" fill="#fff" stroke="#0c1b2e" stroke-width="0.7"/>
+          <ellipse cx="16" cy="18.7" rx="1.3" ry="1" fill="#0c1b2e"/>
         </svg>
       </span>
       <div class="brandtxt">
@@ -256,12 +270,17 @@
     <ul id="cycleList" style="columns:2;font-size:13px;line-height:1.95;list-style:none"></ul>
   </div>
 
-  <h2><span class="num">6</span>📱 On the floor — scan or ask Bloop</h2>
+  <h2><span class="num">6</span>📱 On the floor — scan or ask Bloop <span class="badge">later phase · preview</span></h2>
   <div class="ann"><b>vs Lightspeed:</b> instead of walking to the back, digging through menus, or texting a photo —
     <b>scan the tag</b> and see every size in both stores, or <b>ask Bloop in plain English</b>. Built for a phone, on your feet.</div>
   <div class="panel pad">
-    <div class="muted">The two yellow buttons pinned at the bottom are exactly what Travis & Jordan tap on the floor.
-      Try them 👇 — <b>📷 Scan a tag</b> and <b>Ask Bloop</b>.</div>
+    <div class="bloopintro">
+      <span class="bear bloopav" style="width:62px;height:62px;flex:none"><svg width="44" height="44" viewBox="0 0 32 32"><g fill="#fff" stroke="#0c1b2e" stroke-width="0.7"><circle cx="9" cy="8.5" r="3.4"/><circle cx="23" cy="8.5" r="3.4"/><circle cx="16" cy="17" r="11"/></g><circle cx="12.4" cy="15" r="1.25" fill="#0c1b2e"/><circle cx="19.6" cy="15" r="1.25" fill="#0c1b2e"/><circle cx="10.8" cy="18.8" r="1.5" fill="#FFC3C3"/><circle cx="21.2" cy="18.8" r="1.5" fill="#FFC3C3"/><ellipse cx="16" cy="19.8" rx="3.4" ry="2.6" fill="#fff" stroke="#0c1b2e" stroke-width="0.7"/><ellipse cx="16" cy="18.8" rx="1.2" ry="0.95" fill="#0c1b2e"/><path d="M13.7 21.3 Q16 23.1 18.3 21.3" stroke="#0c1b2e" stroke-width="0.9" fill="none" stroke-linecap="round"/></svg></span>
+      <div>
+        <div class="bloopbubble">Hi, I'm <b>Bloop</b> 🐻‍❄️ — ask me anything about stock and I'll check both stores for you. Try <i>"Boomer hoodie in L?"</i> or <i>"What's low at the Outlet?"</i></div>
+        <div class="muted" style="margin-top:8px">The two buttons pinned at the bottom are what Travis &amp; Jordan tap on the floor — <b>📷 Scan a tag</b> and <b>🐻‍❄️ Ask Bloop</b>. Give them a try 👇</div>
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -284,7 +303,7 @@
   <div class="scrim" onclick="closeSheet('scanSheet')"></div>
   <div class="sheetcard">
     <div class="sheethd">
-      <span class="bear" style="width:30px;height:30px"><svg width="20" height="20" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#0c1b2e"/><circle cx="16" cy="17" r="6" fill="#fff"/><circle cx="16" cy="15" r="2" fill="#0c1b2e"/></svg></span>
+      <span class="bear" style="width:32px;height:32px"><svg width="22" height="22" viewBox="0 0 32 32"><g fill="#fff" stroke="#0c1b2e" stroke-width="0.8"><circle cx="9" cy="8.5" r="3.3"/><circle cx="23" cy="8.5" r="3.3"/><circle cx="16" cy="17" r="10.5"/></g><circle cx="12.5" cy="15.2" r="1.2" fill="#0c1b2e"/><circle cx="19.5" cy="15.2" r="1.2" fill="#0c1b2e"/><ellipse cx="16" cy="19.6" rx="3.2" ry="2.5" fill="#fff" stroke="#0c1b2e" stroke-width="0.8"/><ellipse cx="16" cy="18.6" rx="1.2" ry="0.9" fill="#0c1b2e"/></svg></span>
       <b>Scan a tag</b><button class="x" onclick="closeSheet('scanSheet')">×</button>
     </div>
     <div class="scanbox"><div class="laser"></div><div class="reticle"></div></div>
@@ -299,7 +318,7 @@
   <div class="scrim" onclick="closeSheet('bloopSheet')"></div>
   <div class="sheetcard">
     <div class="sheethd">
-      <span class="bear" style="width:30px;height:30px"><svg width="20" height="20" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#F7C948"/><circle cx="16" cy="17" r="6" fill="#fff"/><circle cx="16" cy="15" r="2" fill="#0c1b2e"/></svg></span>
+      <span class="bear bloopav" style="width:34px;height:34px"><svg width="24" height="24" viewBox="0 0 32 32"><g fill="#fff" stroke="#0c1b2e" stroke-width="0.7"><circle cx="9" cy="8.5" r="3.4"/><circle cx="23" cy="8.5" r="3.4"/><circle cx="16" cy="17" r="11"/></g><circle cx="12.4" cy="15" r="1.25" fill="#0c1b2e"/><circle cx="19.6" cy="15" r="1.25" fill="#0c1b2e"/><circle cx="10.8" cy="18.8" r="1.5" fill="#FFC3C3"/><circle cx="21.2" cy="18.8" r="1.5" fill="#FFC3C3"/><ellipse cx="16" cy="19.8" rx="3.4" ry="2.6" fill="#fff" stroke="#0c1b2e" stroke-width="0.7"/><ellipse cx="16" cy="18.8" rx="1.2" ry="0.95" fill="#0c1b2e"/><path d="M13.7 21.3 Q16 23.1 18.3 21.3" stroke="#0c1b2e" stroke-width="0.9" fill="none" stroke-linecap="round"/></svg></span>
       <div><b>Bloop</b><div class="muted" style="font-size:11.5px">the Polar Bear Gifts inventory bot</div></div>
       <button class="x" onclick="closeSheet('bloopSheet')">×</button>
     </div>
@@ -328,6 +347,20 @@ const items=[
 const webMismatch=[
   {item:"Denali Full-Zip — M",actual:0},{item:"Glacier Crewneck — XL",actual:0},{item:"Boomer Hoodie — 2XL (Outlet)",actual:0},
 ];
+const CAT_ICON={Hoodies:"🧥","T-Shirts":"👕",Crewnecks:"🧶",Jackets:"🧥",Accessories:"🧢"};
+function iconFor(name){const it=items.find(x=>name.toLowerCase().includes(x.name.toLowerCase().split(' ')[0]));return it?(CAT_ICON[it.cat]||"🐻‍❄️"):"🐻‍❄️";}
+function attention(){
+  const out=[];
+  items.forEach(it=>SIZES.forEach((s,i)=>[["5th","5th Ave"],["outlet","Outlet"]].forEach(([k,l])=>{
+    if(it[k][i]<0)out.push({name:it.name,icon:CAT_ICON[it.cat]||"🐻‍❄️",sev:"red",chip:"c-neg",
+      label:"Negative inventory",detail:`Size ${s} · ${it[k][i]} at ${l} — likely a wrong-size scan. Count it.`});
+  })));
+  webMismatch.forEach(w=>out.push({name:w.item,icon:iconFor(w.item),sev:"web",chip:"c-web",
+    label:"On the website, not on the shelf",detail:"Hide on Shopify until restocked — saves a cancellation call."}));
+  transfers().slice(0,2).forEach(t=>out.push({name:`${t.item} · ${t.size}`,icon:iconFor(t.item),sev:"green",chip:"c-ok",
+    label:"Move between stores",detail:`Send ${t.qty} from ${t.from} → ${t.to} (${t.why}).`}));
+  return out;
+}
 let store="all";
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const sum=a=>a.reduce((x,y)=>x+y,0);
@@ -347,18 +380,12 @@ function render(){
   });
   $("#stockBody").innerHTML=html;
 
-  let negCount=0,negEx="";
-  items.forEach(it=>SIZES.forEach((s,i)=>[["5th","5th Ave"],["outlet","Outlet"]].forEach(([k,l])=>{
-    if(it[k][i]<0){negCount++; if(!negEx)negEx=`${it.name} / ${s} = ${it[k][i]} @ ${l}`;}})));
   const xfer=transfers();
-  const cards=[
-    {c:"red",n:negCount,lbl:"Negative inventory",d:negEx||"none",go:"#stockTable"},
-    {c:"amber",n:sizeIssues(),lbl:"Likely wrong-size scans",d:"oversold one size, overstock another",go:"#stockTable"},
-    {c:"web",n:webMismatch.length,lbl:'Web "in stock", POS 0',d:"prevents cancel calls",go:"#webBody"},
-    {c:"green",n:xfer.length,lbl:"Suggested transfers",d:"rebalance the two stores",go:"#xferBody"},
-  ];
-  $("#alerts").innerHTML=cards.map(k=>`<div class="card ${k.c}" onclick="document.querySelector('${k.go}').scrollIntoView({behavior:'smooth',block:'center'})">
-    <div class="n">${k.n}</div><div class="lbl">${k.lbl}</div><div class="desc">${k.d}</div></div>`).join("");
+  $("#alerts").innerHTML=attention().map(a=>`<div class="acard ${a.sev}">
+      <div class="thumb">${a.icon}</div>
+      <div><div class="aname">${a.name}</div>
+        <div class="acap"><span class="chip ${a.chip}">${a.label}</span>${a.detail}</div></div>
+    </div>`).join("");
 
   $("#xferBody").innerHTML=xfer.map(t=>`<tr><td><b>${t.item}</b> · ${t.size}</td><td class="c">${t.qty}</td>
     <td>${t.from}</td><td class="arrow">→</td><td>${t.to}</td><td class="hide-m muted">${t.why}</td></tr>`).join("");
