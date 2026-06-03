@@ -109,18 +109,20 @@
     {
       "id": "foxy-proposal",
       "title": "Foxy Epoxy signing one-pager (BuildYourBot/closing tool)",
-      "status": "pending",
+      "status": "done",
       "source": "git",
       "check": "clients/foxy/Foxy-proposal.html",
-      "note": "For signing next week. Adapt PBG template."
+      "note": "For signing next week. Adapt PBG template.",
+      "derived": true
     },
     {
       "id": "ambo-proposal",
       "title": "Ambo (Jack) signing one-pager (payroll time-back)",
-      "status": "pending",
+      "status": "done",
       "source": "git",
       "check": "clients/ambo/Ambo-proposal.html",
-      "note": "For signing next week. Jack: cut payroll report-review time, undercut a SaaS."
+      "note": "For signing next week. Jack: cut payroll report-review time, undercut a SaaS.",
+      "derived": true
     }
   ]
 }

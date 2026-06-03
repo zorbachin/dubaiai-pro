@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-03 19:49 UTC · code
+OVERNIGHT BATCH (Zorba away, authorized 'spend the night fixing/testing/improving + prepping'): (1) MEMORY SYSTEM FIXED+TESTED: nucleus now self-heals git-conflict markers on every write (cleaned the corrupted HANDOFFS), added 'nucleus doctor' integrity self-test (markers/conflicts/tasks), smoke-tested all commands + serve endpoints (/ /command.json /nucleus.json /widget.js all 200) — doctor = healthy. (2) STOP-HOOK FIX BLOCKED BY GUARD: rewrote nucleus-stop.sh to always commit+push the memory files (NUCLEUS.md+tasks.json) path-limited so it never self-nags — but the auto-mode classifier BLOCKED editing the hook (agent-behavior/self-modification). NEEDS ZORBA's explicit OK to apply (or a settings permission rule). This is the root cause of the recurring 'uncommitted changes' nag. (3) CONTENT for 6/4 ready + sent: content/2026-06-04.md (FB/IG/LI/X + Substack Note; theme = first paying client / 'I sell time not AI'). (4) SIGNING PREP for next week, sent: clients/foxy/Foxy-proposal.html (Instant Proposals closing tool) + clients/ambo/Ambo-proposal.html (Jack payroll review autopilot, replace SaaS) — no-price style like PBG. Re-engage drafts for Isaac (Vybewear) + Kevin (Foxy) already in Drafts. STILL QUEUED/solo-able: Vybewear GTAA outreach build, closing-tool licensing/key-security architecture answer (parked), Netlify off-brand proposal link (their API was 502).
+
 ### 2026-06-03 19:45 UTC · code
 Memory-system hardening pass: added self-healing (strips git-conflict markers on every write), 'nucleus doctor' integrity self-test, and confirmed all CLI commands + serve endpoints green. Conflict markers that were stuck in HANDOFFS are now cleaned.
 
@@ -182,38 +185,33 @@ NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / 
 
 ### 2026-06-02 09:19 UTC · chat
 PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product structure: COVER -> ADHD ONE-PAGER (whole system at a glance, 1 page) -> DEEP WALKTHROUGH (numbered steps, easy-to-follow) -> each step has a copy-paste PROMPT box with CLICKABLE 'Run in ChatGPT/Claude' links that auto-fill (chatgpt.com/?q= and claude.ai/new?q= URL-encoded) -> bonus prompt pack -> Work-With-Me CTA. Engine upgraded (bin/etsybuild.py: onepager/step/prompt blocks). Flagship #01 rebuilt as the exemplar/template (6KB->22KB). AWAITING format approval, then batch all 20 to this template + reprice bundle to $60.
-
-### 2026-06-02 09:06 UTC · chat
-ETSY PUBLISH KIT COMPLETE: 20 thumbnails (etsy-shop/thumbs/*.png, 2000x2000 branded) + LISTINGS.md (SEO title/13 tags/price/description for all 20) + 20 PDFs (each w/ Work-With-Me page). Prices: Lite $9, Kit $17, Flagship $24, Bundle $59. CONSTRAINT: Etsy is NOT API-listable from here (not on Zapier; digital file+image upload must be done in Etsy UI). So final publish = Zorba pastes title/tags/desc + uploads thumb (image 1) + PDF (digital file), ~2 min each. LAUNCH SHELF recommendation: Bundle + Beat the Posting Block + Audit Subscriptions + 50 Tasks + ADHD Planner first, then drip 2-3/week as marketing beats.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 19:45 UTC
+- **When:** 2026-06-03 19:49 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 7f6c5bf chore: refresh nucleus live state [skip ci] — 3 hours ago
+- **Last commit:** 768595c Add Foxy Epoxy + Ambo signing one-pagers (for next week), no-price style — 17 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
- M bin/nucleus
+M .claude/nucleus/tasks.json
 ```
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 26 ++++++++++++++---------
- bin/nucleus                | 53 +++++++++++++++++++++++++++++++++++++++++++++-
- 2 files changed, 68 insertions(+), 11 deletions(-)
+.claude/nucleus/tasks.json | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 ```
 
 **Recent commits:**
 ```
+768595c Add Foxy Epoxy + Ambo signing one-pagers (for next week), no-price style (17 seconds ago)
+f69ffc4 Content pack for 6/4 (first-client / sell-time, all platforms) + queue Foxy/Ambo proposals (2 minutes ago)
+03b5043 nucleus: self-heal conflict markers on write + add 'doctor' integrity self-test; clean corrupted handoffs (4 minutes ago)
 7f6c5bf chore: refresh nucleus live state [skip ci] (3 hours ago)
 216bb3d Ledger: add Vybewear + Foxy re-engagement, closing-tool/keys, netlify link threads [skip ci] (3 hours ago)
-7df4123 chore: refresh nucleus live state [skip ci] (4 hours ago)
-ed84a91 PBG: finalize guided token-request email (ends with access in hand) [skip ci] (4 hours ago)
-b1f0ad9 chore: refresh nucleus live state [skip ci] (4 hours ago)
 ```
 <!-- AUTOSTATE:END -->
