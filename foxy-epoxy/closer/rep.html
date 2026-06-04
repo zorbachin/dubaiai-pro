@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Foxy Epoxy — Rep Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0c0c; --s: #161616; --card: #1e1e1e;
+      --b: #2a2a2a; --bl: #383838;
+      --orange: #FF4820; --og: rgba(255,72,32,0.12);
+      --text: #f0f0f0; --t2: #999; --t3: #555;
+      --green: #22c55e; --gold: #f59e0b;
+      --fh: 'Syne',sans-serif; --fb: 'Inter',sans-serif;
+      --r: 10px; --t: .2s ease;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:var(--fb);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4{font-family:var(--fh);font-weight:800;line-height:1.1}
+
+    /* LAYOUT */
+    .app{display:flex;flex-direction:column;min-height:100vh;max-width:480px;margin:0 auto}
+    .topbar{background:var(--s);border-bottom:1px solid var(--b);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .logo{font-family:var(--fh);font-size:18px;font-weight:800;letter-spacing:-.02em}
+    .logo span{color:var(--orange)}
+    .rep-badge{font-size:11px;font-weight:700;color:var(--t2);font-family:var(--fh);letter-spacing:.06em;text-transform:uppercase;background:var(--card);padding:4px 10px;border-radius:100px;border:1px solid var(--b)}
+
+    .body{flex:1;padding:20px;display:flex;flex-direction:column;gap:20px;padding-bottom:100px}
+
+    /* CARDS */
+    .card{background:var(--card);border:1px solid var(--b);border-radius:14px;overflow:hidden}
+    .card-head{padding:16px 18px 12px;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:10px}
+    .card-head h3{font-size:14px;font-weight:700;font-family:var(--fh)}
+    .step-num{width:24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;font-family:var(--fh);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .card-body{padding:16px 18px}
+
+    /* PRESETS */
+    .presets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+    .preset{background:var(--s);border:1px solid var(--b);border-radius:var(--r);padding:10px 8px;text-align:center;cursor:pointer;transition:var(--t)}
+    .preset:hover,.preset.active{border-color:var(--orange);background:var(--og)}
+    .preset .pl{font-family:var(--fh);font-size:13px;font-weight:700;display:block}
+    .preset .ps{font-size:11px;color:var(--t2);display:block;margin-top:2px}
+    .preset.active .pl{color:var(--orange)}
+
+    /* SLIDER */
+    .slider-wrap{margin-bottom:4px}
+    input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--b);outline:none}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--orange);cursor:pointer;box-shadow:0 0 0 3px rgba(255,72,32,.2)}
+    .slider-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--t3);margin-top:6px}
+    .sqft-display{text-align:center;margin-bottom:12px}
+    .sqft-num{font-family:var(--fh);font-size:40px;font-weight:800;color:var(--orange);line-height:1}
+    .sqft-unit{font-size:14px;color:var(--t2);margin-top:2px}
+
+    /* CONDITION */
+    .cond-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .cond-btn{background:var(--s);border:1px solid var(--b);border-radius:var(--r);padding:12px 8px;text-align:center;cursor:pointer;transition:var(--t)}
+    .cond-btn:hover,.cond-btn.active{border-color:var(--orange);background:var(--og)}
+    .cond-btn .cl{font-family:var(--fh);font-size:13px;font-weight:700;display:block}
+    .cond-btn .cs{font-size:11px;color:var(--t2);margin-top:3px;display:block}
+    .cond-btn.active .cl{color:var(--orange)}
+
+    /* COLORS */
+    .color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .color-swatch{border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:var(--t)}
+    .color-swatch:hover,.color-swatch.active{border-color:var(--orange);transform:scale(1.05)}
+    .swatch-box{height:52px}
+    .swatch-label{background:var(--s);padding:4px 6px;font-size:10px;font-weight:600;font-family:var(--fh);color:var(--t2);text-align:center;line-height:1.2}
+    .color-swatch.active .swatch-label{color:var(--orange)}
+
+    /* PHOTO */
+    .photo-zone{border:2px dashed var(--b);border-radius:12px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:var(--t);position:relative;overflow:hidden}
+    .photo-zone:hover{border-color:var(--orange);background:var(--og)}
+    .photo-zone .pz-icon{font-size:36px;opacity:.4}
+    .photo-zone .pz-label{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--t2)}
+    .photo-zone .pz-sub{font-size:12px;color:var(--t3)}
+    .photo-zone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .photo-zone .photo-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;padding:10px}
+    .photo-actions{display:flex;gap:8px;margin-top:10px}
+
+    /* RENDER */
+    .render-wrap{position:relative;border-radius:12px;overflow:hidden;background:#111;min-height:160px;display:flex;align-items:center;justify-content:center}
+    .render-wrap img{width:100%;display:block}
+    .render-placeholder{text-align:center;padding:32px 20px;opacity:.4}
+    .render-placeholder .rp-icon{font-size:40px;margin-bottom:8px}
+    .render-placeholder p{font-size:13px;color:var(--t2)}
+    .render-loading{position:absolute;inset:0;background:rgba(0,0,0,.8);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+    .spinner{width:36px;height:36px;border:3px solid var(--b);border-top-color:var(--orange);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .render-loading p{font-size:13px;color:var(--t2);font-family:var(--fh)}
+
+    /* PRICING */
+    .tier-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .tier-card{background:var(--s);border:1px solid var(--b);border-radius:var(--r);padding:14px 10px;text-align:center;position:relative;transition:var(--t)}
+    .tier-card.best{border-color:var(--orange);background:var(--og)}
+    .tier-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:9px;font-weight:800;font-family:var(--fh);padding:2px 10px;border-radius:100px;letter-spacing:.06em;white-space:nowrap}
+    .tier-name{font-family:var(--fh);font-size:11px;font-weight:700;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+    .tier-name.best-name{color:var(--orange)}
+    .tier-price{font-family:var(--fh);font-size:22px;font-weight:800;line-height:1;margin-bottom:4px}
+    .tier-dep{font-size:11px;color:var(--t2)}
+    .tier-rate{font-size:10px;color:var(--t3);margin-top:4px}
+    .tier-edit{display:block;margin-top:8px;font-size:11px;color:var(--orange);font-family:var(--fh);font-weight:700;cursor:pointer;opacity:.7}
+    .tier-edit:hover{opacity:1}
+    .price-note{font-size:12px;color:var(--t3);text-align:center;margin-top:8px}
+
+    /* BUTTONS */
+    .btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:var(--r);font-family:var(--fh);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:var(--t);width:100%;letter-spacing:.02em}
+    .btn-orange{background:var(--orange);color:#fff;box-shadow:0 4px 20px rgba(255,72,32,.3)}
+    .btn-orange:hover{filter:brightness(1.1);transform:translateY(-1px)}
+    .btn-outline{background:transparent;color:var(--t2);border:1px solid var(--bl)}
+    .btn-outline:hover{border-color:var(--orange);color:var(--orange);background:var(--og)}
+    .btn-sm{padding:9px 16px;font-size:13px}
+    .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+    /* BOTTOM BAR */
+    .bottom-bar{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;background:var(--s);border-top:1px solid var(--b);padding:14px 20px;display:flex;gap:10px}
+    .bottom-bar .btn{flex:1}
+
+    /* TOAST */
+    .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--b);border-radius:10px;padding:12px 20px;font-size:14px;font-weight:600;font-family:var(--fh);opacity:0;transition:all .3s;z-index:999;white-space:nowrap;pointer-events:none}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .toast.success{border-color:var(--green);color:var(--green)}
+    .toast.error{border-color:#ef4444;color:#ef4444}
+
+    /* EDIT MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .25s}
+    .modal-overlay.open{opacity:1;pointer-events:all}
+    .modal{background:var(--card);border-radius:20px 20px 0 0;padding:24px;width:100%;max-width:480px;margin:0 auto;transform:translateY(100%);transition:transform .3s ease}
+    .modal-overlay.open .modal{transform:translateY(0)}
+    .modal h4{font-size:16px;margin-bottom:16px}
+    .modal-field{margin-bottom:14px}
+    .modal-label{font-size:12px;font-weight:600;color:var(--t2);font-family:var(--fh);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;display:block}
+    .modal-input{width:100%;background:var(--s);border:1px solid var(--bl);color:var(--text);padding:12px 14px;border-radius:var(--r);font-size:15px;font-family:var(--fb)}
+    .modal-input:focus{outline:none;border-color:var(--orange)}
+    .modal-btns{display:flex;gap:10px;margin-top:20px}
+
+    /* UTILS */
+    .divider{height:1px;background:var(--b);margin:4px 0}
+    .label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .field-label{font-size:12px;font-weight:700;color:var(--t2);font-family:var(--fh);letter-spacing:.06em;text-transform:uppercase}
+    .field-value{font-size:12px;color:var(--t3)}
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="logo">Foxy<span>Epoxy</span></div>
+    <div class="rep-badge">Rep Tool</div>
+  </div>
+
+  <div class="body">
+
+    <!-- STEP 1: SIZE -->
+    <div class="card">
+      <div class="card-head">
+        <div class="step-num">1</div>
+        <h3>Job Size</h3>
+      </div>
+      <div class="card-body">
+        <div class="presets">
+          <div class="preset" data-sqft="300" onclick="setPreset(this)">
+            <span class="pl">1-Car</span><span class="ps">~300 sf</span>
+          </div>
+          <div class="preset active" data-sqft="480" onclick="setPreset(this)">
+            <span class="pl">2-Car</span><span class="ps">~480 sf</span>
+          </div>
+          <div class="preset" data-sqft="660" onclick="setPreset(this)">
+            <span class="pl">3-Car</span><span class="ps">~660 sf</span>
+          </div>
+        </div>
+        <div class="sqft-display">
+          <div class="sqft-num" id="sqft-display">480</div>
+          <div class="sqft-unit">square feet</div>
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="sqft-slider" min="100" max="1200" value="480" step="10" oninput="onSlider(this)">
+          <div class="slider-labels"><span>100</span><span>Custom</span><span>1,200</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: CONDITION -->
+    <div class="card">
+      <div class="card-head">
+        <div class="step-num">2</div>
+        <h3>Slab Condition</h3>
+      </div>
+      <div class="card-body">
+        <div class="cond-btns">
+          <div class="cond-btn active" data-mod="0" onclick="setCond(this)">
+            <span class="cl">Good</span><span class="cs">Clean, minor cracks</span>
+          </div>
+          <div class="cond-btn" data-mod="0.75" onclick="setCond(this)">
+            <span class="cl">Fair</span><span class="cs">Oil stains, cracks</span>
+          </div>
+          <div class="cond-btn" data-mod="1.5" onclick="setCond(this)">
+            <span class="cl">Poor</span><span class="cs">Heavy damage, prior coat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: FINISH -->
+    <div class="card">
+      <div class="card-head">
+        <div class="step-num">3</div>
+        <h3>Choose Finish</h3>
+      </div>
+      <div class="card-body">
+        <div class="color-grid" id="color-grid">
+          <!-- populated by JS -->
+        </div>
+        <div style="margin-top:12px;padding:10px 12px;background:var(--s);border-radius:8px;border:1px solid var(--b);">
+          <div style="font-size:12px;color:var(--t3);">Selected:</div>
+          <div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-top:2px;" id="finish-name">Galaxy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: PHOTO -->
+    <div class="card">
+      <div class="card-head">
+        <div class="step-num">4</div>
+        <h3>Snap the Floor</h3>
+      </div>
+      <div class="card-body">
+        <div class="photo-zone" id="photo-zone" onclick="triggerPhoto()">
+          <div class="pz-icon">📸</div>
+          <div class="pz-label">Take a photo</div>
+          <div class="pz-sub">Tap to use camera or upload</div>
+        </div>
+        <input type="file" id="photo-input" accept="image/*" capture="environment" style="display:none" onchange="onPhotoSelected(this)">
+        <div class="photo-actions" id="photo-actions" style="display:none">
+          <button class="btn btn-outline btn-sm" onclick="clearPhoto()">✕ Remove</button>
+          <button class="btn btn-orange btn-sm" id="render-btn" onclick="doRender()">✨ Generate AI Render</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: RENDER RESULT -->
+    <div class="card" id="render-card">
+      <div class="card-head">
+        <div class="step-num">5</div>
+        <h3>AI Preview</h3>
+      </div>
+      <div class="card-body">
+        <div class="render-wrap" id="render-wrap">
+          <div class="render-placeholder">
+            <div class="rp-icon">🎨</div>
+            <p>Take a photo above to generate an AI preview of the finished floor</p>
+          </div>
+        </div>
+        <div id="render-note" style="margin-top:10px;font-size:12px;color:var(--t3);display:none;">
+          Rendered with <strong style="color:var(--orange);">Gemini AI</strong> · Preview only — actual finish may vary
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: PRICING -->
+    <div class="card">
+      <div class="card-head">
+        <div class="step-num">6</div>
+        <h3>Pricing</h3>
+      </div>
+      <div class="card-body">
+        <div class="tier-cards" id="tier-cards">
+          <!-- populated by JS -->
+        </div>
+        <p class="price-note" id="price-note">Tap a price to edit · Deposit = 50%</p>
+        <div style="margin-top:16px;background:var(--s);border-radius:var(--r);border:1px solid var(--b);padding:12px 14px;">
+          <div class="label-row" style="margin-bottom:4px">
+            <span class="field-label">Sqft</span><span class="field-value" id="br-sqft">480 sf</span>
+          </div>
+          <div class="label-row" style="margin-bottom:4px">
+            <span class="field-label">Condition</span><span class="field-value" id="br-cond">Good (+$0)</span>
+          </div>
+          <div class="label-row" style="margin-bottom:0">
+            <span class="field-label">Finish</span><span class="field-value" id="br-finish">Galaxy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <button class="btn btn-outline" onclick="resetTool()">↺ Reset</button>
+    <button class="btn btn-orange" id="proposal-btn" onclick="sendProposal()">Send Proposal →</button>
+  </div>
+</div>
+
+<!-- EDIT PRICE MODAL -->
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal">
+    <h4>Edit <span id="edit-tier-name">Better</span> Price</h4>
+    <div class="modal-field">
+      <label class="modal-label">Job Total ($)</label>
+      <input type="number" class="modal-input" id="edit-price-input" placeholder="2400">
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-orange" onclick="saveEdit()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  /* ── CONFIG ── */
+  const CFG = {
+    minPrice: 900,
+    rates: { good: 4.50, better: 6.00, best: 9.50 },
+    condLabels: { '0': 'Good (+$0)', '0.75': 'Fair (+$0.75/sf)', '1.5': 'Poor (+$1.50/sf)' },
+    geminiKey: '', // Set via prompt or leave blank for demo mode
+    proposalBase: window.location.origin + window.location.pathname.replace('rep.html','') + 'proposal.html',
+    watermark: 'Foxy Epoxy Austin · Preview only · Actual finish may vary'
+  };
+
+  const FINISHES = [
+    { id:'glacier',   label:'Glacier',   type:'solid',    prompt:'solid white epoxy',          css:'linear-gradient(135deg,#f0efea,#e5e4de)' },
+    { id:'charcoal',  label:'Charcoal',  type:'solid',    prompt:'charcoal grey solid epoxy',  css:'linear-gradient(135deg,#3a3a3a,#2a2a2a)' },
+    { id:'slate',     label:'Slate Blue',type:'solid',    prompt:'slate blue solid epoxy',     css:'linear-gradient(135deg,#4a5568,#2d3748)' },
+    { id:'jet',       label:'Jet Black', type:'solid',    prompt:'jet black solid epoxy',      css:'linear-gradient(135deg,#1a1a1a,#0a0a0a)' },
+    { id:'arctic',    label:'Arctic',    type:'flake',    prompt:'white and grey color chip flake epoxy blend', css:'radial-gradient(circle at 30% 40%,#e0e0e0 2px,transparent 2px),radial-gradient(circle at 70% 60%,#c0c0c0 3px,transparent 3px),#b8b8b8' },
+    { id:'galaxy',    label:'Galaxy',    type:'flake',    prompt:'dark galaxy black and silver color chip flake epoxy', css:'radial-gradient(circle at 30% 40%,#888 2px,transparent 2px),radial-gradient(circle at 70% 60%,#555 3px,transparent 3px),#222' },
+    { id:'autumn',    label:'Autumn',    type:'flake',    prompt:'autumn harvest brown gold color chip flake epoxy', css:'radial-gradient(circle at 30% 40%,#c8a45c 3px,transparent 3px),radial-gradient(circle at 70% 60%,#a0783a 2px,transparent 2px),#5a3a1a' },
+    { id:'desert',    label:'Desert',    type:'flake',    prompt:'desert storm orange tan color chip flake epoxy', css:'radial-gradient(circle at 30% 40%,#FF8C42 2px,transparent 2px),radial-gradient(circle at 70% 60%,#cc6622 3px,transparent 3px),#8a4a20' },
+    { id:'silver',    label:'Silver',    type:'metallic', prompt:'silver metallic epoxy floor, swirling 3D effect', css:'linear-gradient(135deg,#c0c0c0,#808080,#e0e0e0,#909090)' },
+    { id:'copper',    label:'Copper',    type:'metallic', prompt:'copper rush metallic epoxy floor, swirling 3D effect', css:'linear-gradient(135deg,#b87333,#da8a67,#ff8c00,#b87333)' },
+    { id:'midnight',  label:'Midnight',  type:'metallic', prompt:'midnight blue metallic epoxy floor, deep swirling effect', css:'linear-gradient(135deg,#1a237e,#3949ab,#1a237e,#0d1757)' },
+    { id:'champagne', label:'Champagne', type:'metallic', prompt:'champagne gold metallic epoxy floor, luxury swirling effect', css:'linear-gradient(135deg,#f7e7ce,#c8a45c,#f0d080,#c8a45c)' },
+  ];
+
+  /* ── STATE ── */
+  const S = {
+    sqft: 480,
+    cond: 0,
+    finish: FINISHES.find(f=>f.id==='galaxy'),
+    photo: null,   // File object
+    photoUrl: null,
+    renderUrl: null,
+    overrides: {}  // tier -> price override
+  };
+
+  /* ── INIT ── */
+  function init() {
+    buildColorGrid();
+    updatePricing();
+    updateBreakdown();
+    loadGeminiKey();
+  }
+
+  function loadGeminiKey() {
+    const saved = localStorage.getItem('fe_gemini_key');
+    if (saved) CFG.geminiKey = saved;
+  }
+
+  /* ── COLOR GRID ── */
+  function buildColorGrid() {
+    const grid = document.getElementById('color-grid');
+    grid.innerHTML = FINISHES.map(f => `
+      <div class="color-swatch ${f.id === S.finish.id ? 'active' : ''}" onclick="setFinish('${f.id}')">
+        <div class="swatch-box" style="background:${f.css}"></div>
+        <div class="swatch-label">${f.label}</div>
+      </div>
+    `).join('');
+  }
+
+  /* ── SETTERS ── */
+  function setPreset(el) {
+    document.querySelectorAll('.preset').forEach(p=>p.classList.remove('active'));
+    el.classList.add('active');
+    const v = parseInt(el.dataset.sqft);
+    S.sqft = v;
+    document.getElementById('sqft-slider').value = v;
+    document.getElementById('sqft-display').textContent = v;
+    S.overrides = {};
+    updatePricing();
+    updateBreakdown();
+  }
+
+  function onSlider(el) {
+    const v = parseInt(el.value);
+    S.sqft = v;
+    document.getElementById('sqft-display').textContent = v;
+    document.querySelectorAll('.preset').forEach(p=>p.classList.remove('active'));
+    S.overrides = {};
+    updatePricing();
+    updateBreakdown();
+  }
+
+  function setCond(el) {
+    document.querySelectorAll('.cond-btn').forEach(b=>b.classList.remove('active'));
+    el.classList.add('active');
+    S.cond = parseFloat(el.dataset.mod);
+    S.overrides = {};
+    updatePricing();
+    updateBreakdown();
+  }
+
+  function setFinish(id) {
+    S.finish = FINISHES.find(f=>f.id===id);
+    document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('active'));
+    document.querySelector(`.color-swatch[onclick="setFinish('${id}')"]`)?.classList.add('active');
+    document.getElementById('finish-name').textContent = S.finish.label;
+    S.renderUrl = null;
+    updateBreakdown();
+  }
+
+  /* ── PRICING ── */
+  function calcTier(rate) {
+    const base = Math.max(S.sqft * (rate + S.cond), CFG.minPrice);
+    return Math.round(base / 50) * 50;
+  }
+
+  function dep(price) { return Math.round(price * 0.5 / 50) * 50; }
+
+  function updatePricing() {
+    const prices = {
+      good:   S.overrides.good   ?? calcTier(CFG.rates.good),
+      better: S.overrides.better ?? calcTier(CFG.rates.better),
+      best:   S.overrides.best   ?? calcTier(CFG.rates.best),
+    };
+
+    document.getElementById('tier-cards').innerHTML = `
+      <div class="tier-card" style="padding-top:18px">
+        <div class="tier-name">Good</div>
+        <div class="tier-price">$${prices.good.toLocaleString()}</div>
+        <div class="tier-dep">dep $${dep(prices.good).toLocaleString()}</div>
+        <div class="tier-rate">${CFG.rates.good}/sf base</div>
+        <span class="tier-edit" onclick="openEdit('good',${prices.good})">Edit price</span>
+      </div>
+      <div class="tier-card best" style="padding-top:18px">
+        <div class="tier-badge">POPULAR</div>
+        <div class="tier-name best-name">Better</div>
+        <div class="tier-price">$${prices.better.toLocaleString()}</div>
+        <div class="tier-dep">dep $${dep(prices.better).toLocaleString()}</div>
+        <div class="tier-rate">${CFG.rates.better}/sf base</div>
+        <span class="tier-edit" onclick="openEdit('better',${prices.better})">Edit price</span>
+      </div>
+      <div class="tier-card" style="padding-top:18px">
+        <div class="tier-name">Best</div>
+        <div class="tier-price">$${prices.best.toLocaleString()}</div>
+        <div class="tier-dep">dep $${dep(prices.best).toLocaleString()}</div>
+        <div class="tier-rate">${CFG.rates.best}/sf base</div>
+        <span class="tier-edit" onclick="openEdit('best',${prices.best})">Edit price</span>
+      </div>
+    `;
+  }
+
+  function updateBreakdown() {
+    document.getElementById('br-sqft').textContent = S.sqft + ' sf';
+    document.getElementById('br-cond').textContent = CFG.condLabels[String(S.cond)];
+    document.getElementById('br-finish').textContent = S.finish.label + ' (' + S.finish.type + ')';
+  }
+
+  /* ── PRICE EDIT MODAL ── */
+  let editingTier = null;
+
+  function openEdit(tier, currentPrice) {
+    editingTier = tier;
+    document.getElementById('edit-tier-name').textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
+    document.getElementById('edit-price-input').value = currentPrice;
+    document.getElementById('edit-modal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('edit-modal').classList.remove('open');
+  }
+
+  function saveEdit() {
+    const val = parseInt(document.getElementById('edit-price-input').value);
+    if (val && val > 0) {
+      S.overrides[editingTier] = Math.round(val / 50) * 50;
+      updatePricing();
+    }
+    closeModal();
+  }
+
+  /* ── PHOTO ── */
+  function triggerPhoto() {
+    document.getElementById('photo-input').click();
+  }
+
+  function onPhotoSelected(input) {
+    const file = input.files[0];
+    if (!file) return;
+    S.photo = file;
+    S.renderUrl = null;
+    const reader = new FileReader();
+    reader.onload = e => {
+      S.photoUrl = e.target.result;
+      const zone = document.getElementById('photo-zone');
+      zone.innerHTML = `<img src="${S.photoUrl}" alt="Floor photo"><div class="photo-overlay"></div>`;
+      document.getElementById('photo-actions').style.display = 'flex';
+      clearRender();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function clearPhoto() {
+    S.photo = null;
+    S.photoUrl = null;
+    S.renderUrl = null;
+    document.getElementById('photo-zone').innerHTML = `
+      <div class="pz-icon">📸</div>
+      <div class="pz-label">Take a photo</div>
+      <div class="pz-sub">Tap to use camera or upload</div>
+    `;
+    document.getElementById('photo-input').value = '';
+    document.getElementById('photo-actions').style.display = 'none';
+    clearRender();
+  }
+
+  function clearRender() {
+    document.getElementById('render-wrap').innerHTML = `
+      <div class="render-placeholder">
+        <div class="rp-icon">🎨</div>
+        <p>Take a photo above to generate an AI preview of the finished floor</p>
+      </div>
+    `;
+    document.getElementById('render-note').style.display = 'none';
+  }
+
+  /* ── AI RENDER ── */
+  async function doRender() {
+    if (!S.photo) { showToast('Take a photo first', 'error'); return; }
+
+    const wrap = document.getElementById('render-wrap');
+    wrap.innerHTML = `<div class="render-loading"><div class="spinner"></div><p>Generating AI render…</p></div>`;
+
+    const key = CFG.geminiKey || promptForKey();
+    if (!key) { clearRender(); return; }
+
+    try {
+      const base64 = S.photoUrl.split(',')[1];
+      const mime = S.photo.type;
+
+      const prompt = `You are a photorealistic floor visualization specialist.
+Apply ${S.finish.prompt} coating to the concrete floor in this garage photo.
+Keep all walls, doors, vehicles, belongings, and ceiling completely unchanged.
+The floor surface should be transformed to show a high-quality ${S.finish.prompt}.
+Make it photorealistic with appropriate reflections and sheen for epoxy/polyaspartic flooring.
+Same perspective, same lighting angle. Professional installation result.`;
+
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${key}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{
+            parts: [
+              { text: prompt },
+              { inline_data: { mime_type: mime, data: base64 } }
+            ]
+          }],
+          generationConfig: { responseModalities: ['IMAGE','TEXT'] }
+        })
+      });
+
+      const data = await res.json();
+      const imgPart = data?.candidates?.[0]?.content?.parts?.find(p => p.inline_data);
+
+      if (imgPart) {
+        const imgSrc = `data:${imgPart.inline_data.mime_type};base64,${imgPart.inline_data.data}`;
+        S.renderUrl = imgSrc;
+        showRender(imgSrc, true);
+      } else {
+        throw new Error('No image in response');
+      }
+    } catch(e) {
+      console.error(e);
+      showDemoRender();
+    }
+  }
+
+  function promptForKey() {
+    const key = window.prompt('Enter your Gemini API key (stored locally, never sent to our servers):');
+    if (key) {
+      CFG.geminiKey = key;
+      localStorage.setItem('fe_gemini_key', key);
+    }
+    return key;
+  }
+
+  function showRender(src, real) {
+    const wrap = document.getElementById('render-wrap');
+    wrap.innerHTML = `<img src="${src}" alt="AI Render" style="width:100%;display:block;border-radius:10px;">`;
+    document.getElementById('render-note').style.display = 'block';
+    if (!real) document.getElementById('render-note').innerHTML = '<strong style="color:var(--gold);">Demo render</strong> · Add Gemini key for real AI renders';
+  }
+
+  function showDemoRender() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 400; canvas.height = 280;
+    const ctx = canvas.getContext('2d');
+    const f = S.finish;
+    const grad = ctx.createLinearGradient(0,0,400,280);
+    const stops = getDemoGradient(f.id);
+    stops.forEach(([pos, col]) => grad.addColorStop(pos, col));
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,400,280);
+    ctx.fillStyle = 'rgba(255,255,255,0.06)';
+    for(let i=0;i<8;i++){ ctx.beginPath(); ctx.ellipse(50+i*50, 140, 60, 8, -0.3, 0, Math.PI*2); ctx.fill(); }
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.fillRect(0,240,400,40);
+    ctx.fillStyle = '#fff';
+    ctx.font = '12px Syne,sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(`DEMO — ${f.label} Finish · ${CFG.watermark}`, 200, 264);
+    S.renderUrl = canvas.toDataURL();
+    showRender(S.renderUrl, false);
+  }
+
+  function getDemoGradient(id) {
+    const maps = {
+      glacier: [[0,'#f0efea'],[1,'#e5e4de']], charcoal: [[0,'#3a3a3a'],[1,'#1a1a1a']],
+      slate: [[0,'#4a5568'],[1,'#2d3748']], jet: [[0,'#1a1a1a'],[1,'#000']],
+      arctic: [[0,'#d0d0d0'],[0.5,'#b0b0b0'],[1,'#c8c8c8']], galaxy: [[0,'#1a1a1a'],[0.4,'#444'],[1,'#222']],
+      autumn: [[0,'#5a3a1a'],[0.5,'#c8a45c'],[1,'#3d2010']], desert: [[0,'#8a4a20'],[0.5,'#FF8C42'],[1,'#5a2a08']],
+      silver: [[0,'#c0c0c0'],[0.3,'#e0e0e0'],[0.6,'#808080'],[1,'#c0c0c0']],
+      copper: [[0,'#b87333'],[0.4,'#ff8c00'],[0.7,'#da8a67'],[1,'#b87333']],
+      midnight: [[0,'#0d1757'],[0.4,'#3949ab'],[0.7,'#1a237e'],[1,'#0a0f3d']],
+      champagne: [[0,'#f7e7ce'],[0.3,'#f0d080'],[0.6,'#c8a45c'],[1,'#e8d090']],
+    };
+    return maps[id] || [[0,'#333'],[1,'#111']];
+  }
+
+  /* ── PROPOSAL ── */
+  function sendProposal() {
+    const prices = {
+      good:   S.overrides.good   ?? calcTier(CFG.rates.good),
+      better: S.overrides.better ?? calcTier(CFG.rates.better),
+      best:   S.overrides.best   ?? calcTier(CFG.rates.best),
+    };
+
+    const params = new URLSearchParams({
+      sqft: S.sqft,
+      cond: S.cond,
+      finish: S.finish.id,
+      finishLabel: S.finish.label,
+      finishType: S.finish.type,
+      gp: prices.good,
+      bp: prices.better,
+      xp: prices.best,
+      ts: Date.now()
+    });
+
+    if (S.renderUrl) {
+      const rk = 'fe_render_' + Date.now();
+      localStorage.setItem(rk, S.renderUrl);
+      params.set('renderKey', rk);
+    }
+
+    const url = CFG.proposalBase + '?' + params.toString();
+
+    // Try native share first (mobile)
+    if (navigator.share) {
+      navigator.share({ title: 'Your Foxy Epoxy Proposal', url });
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Proposal link copied! ✓', 'success');
+      }).catch(() => {
+        window.open(url, '_blank');
+      });
+    }
+  }
+
+  /* ── UTILS ── */
+  function resetTool() {
+    if (!confirm('Reset the tool?')) return;
+    S.sqft = 480; S.cond = 0;
+    S.finish = FINISHES.find(f=>f.id==='galaxy');
+    S.photo = null; S.photoUrl = null; S.renderUrl = null; S.overrides = {};
+    document.getElementById('sqft-slider').value = 480;
+    document.getElementById('sqft-display').textContent = 480;
+    document.querySelectorAll('.preset').forEach((p,i)=>p.classList.toggle('active',i===1));
+    document.querySelectorAll('.cond-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+    clearPhoto();
+    buildColorGrid();
+    updatePricing();
+    updateBreakdown();
+    document.getElementById('finish-name').textContent = 'Galaxy';
+  }
+
+  let toastTimer;
+  function showToast(msg, type='') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show ' + type;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  /* ── MODAL CLOSE ON BACKDROP ── */
+  document.getElementById('edit-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  init();
+</script>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Your Foxy Epoxy Proposal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0c0c; --s: #161616; --card: #1e1e1e;
+      --b: #2a2a2a; --bl: #383838;
+      --orange: #FF4820; --og: rgba(255,72,32,0.12); --og2: rgba(255,72,32,0.18);
+      --text: #f0f0f0; --t2: #999; --t3: #555;
+      --green: #22c55e; --gold: #f59e0b;
+      --fh: 'Syne',sans-serif; --fb: 'Inter',sans-serif;
+      --r: 10px; --t: .2s ease;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:var(--fb);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;min-height:100vh}
+    h1,h2,h3,h4{font-family:var(--fh);font-weight:800;line-height:1.1}
+
+    .app{max-width:480px;margin:0 auto;display:flex;flex-direction:column;min-height:100vh}
+
+    /* TOP BAR */
+    .topbar{background:var(--s);border-bottom:1px solid var(--b);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .logo{font-family:var(--fh);font-size:18px;font-weight:800;letter-spacing:-.02em}
+    .logo span{color:var(--orange)}
+    .proposal-badge{font-size:11px;font-weight:700;color:var(--t2);font-family:var(--fh);letter-spacing:.06em;text-transform:uppercase;background:var(--card);padding:4px 10px;border-radius:100px;border:1px solid var(--b)}
+
+    /* BODY */
+    .body{flex:1;padding:20px;display:flex;flex-direction:column;gap:20px;padding-bottom:120px}
+
+    /* HERO STRIP */
+    .hero-strip{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .hero-detail{display:flex;flex-direction:column;gap:4px}
+    .hero-label{font-size:11px;color:var(--t2);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+    .hero-value{font-family:var(--fh);font-size:22px;font-weight:800;color:var(--text);line-height:1}
+    .hero-sub{font-size:12px;color:var(--t2);margin-top:2px}
+    .hero-finish-swatch{width:48px;height:48px;border-radius:10px;border:2px solid var(--orange);flex-shrink:0}
+
+    /* URGENCY */
+    .urgency{background:linear-gradient(135deg,rgba(255,72,32,.15),rgba(255,72,32,.05));border:1px solid rgba(255,72,32,.3);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px}
+    .urgency-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0;animation:pulse 1.4s ease-in-out infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,72,32,.5)}50%{box-shadow:0 0 0 6px rgba(255,72,32,0)}}
+    .urgency-text{font-size:13px;font-weight:600;color:var(--text);font-family:var(--fh)}
+    .urgency-sub{font-size:11px;color:var(--t2);margin-top:1px}
+
+    /* BEFORE / AFTER SLIDER */
+    .ba-section{}
+    .ba-title{font-family:var(--fh);font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+    .ba-title-badge{font-size:10px;font-weight:700;color:var(--orange);background:var(--og);border:1px solid rgba(255,72,32,.3);padding:3px 8px;border-radius:100px;font-family:var(--fh);letter-spacing:.04em;text-transform:uppercase}
+
+    .ba-slider{border-radius:14px;overflow:hidden;position:relative;cursor:ew-resize;user-select:none;aspect-ratio:16/9;background:#111}
+    .ba-before,.ba-after{position:absolute;inset:0}
+    .ba-before{background:linear-gradient(135deg,#3a3530 0%,#2a2520 40%,#35302a 100%)}
+    .ba-after{clip-path:inset(0 50% 0 0);transition:clip-path .04s}
+
+    .ba-label{position:absolute;top:12px;font-family:var(--fh);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;z-index:2;pointer-events:none}
+    .ba-label-before{left:12px;background:rgba(0,0,0,.65);color:#aaa}
+    .ba-label-after{right:12px;background:var(--orange);color:#fff}
+
+    .ba-divider{position:absolute;top:0;bottom:0;width:3px;background:#fff;transform:translateX(-50%);left:50%;box-shadow:0 0 12px rgba(255,255,255,.4);pointer-events:none;z-index:3}
+    .ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 16px rgba(0,0,0,.5);pointer-events:none;z-index:4}
+    .ba-handle::before{content:'⟵⟶';font-size:12px;color:#333;font-weight:700;letter-spacing:-2px}
+
+    .ba-before-content,.ba-after-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    .ba-before-content{flex-direction:column;gap:8px}
+    .ba-placeholder-icon{font-size:28px;opacity:.3}
+    .ba-placeholder-text{font-size:12px;color:rgba(255,255,255,.3);font-family:var(--fh);font-weight:600}
+
+    .ba-after-img{width:100%;height:100%;object-fit:cover;display:block}
+    .ba-after-css{width:100%;height:100%}
+
+    .ba-hint{text-align:center;font-size:11px;color:var(--t3);margin-top:8px}
+
+    /* PRICING TIERS */
+    .tiers-title{font-family:var(--fh);font-size:15px;font-weight:700;margin-bottom:12px}
+    .tiers{display:flex;flex-direction:column;gap:10px}
+
+    .tier{background:var(--card);border:2px solid var(--b);border-radius:14px;padding:16px 18px;cursor:pointer;transition:border-color var(--t),background var(--t),transform var(--t);position:relative;overflow:hidden}
+    .tier:hover{border-color:var(--bl);transform:translateY(-1px)}
+    .tier.selected{border-color:var(--orange);background:linear-gradient(135deg,rgba(255,72,32,.08),rgba(255,72,32,.04))}
+    .tier.popular::before{content:'MOST POPULAR';position:absolute;top:0;right:0;background:var(--orange);color:#fff;font-family:var(--fh);font-size:9px;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-radius:0 12px 0 8px}
+
+    .tier-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .tier-info{}
+    .tier-name{font-family:var(--fh);font-size:16px;font-weight:800}
+    .tier-desc{font-size:12px;color:var(--t2);margin-top:3px;line-height:1.4}
+    .tier-price-wrap{text-align:right;flex-shrink:0}
+    .tier-price{font-family:var(--fh);font-size:24px;font-weight:800;line-height:1;color:var(--text)}
+    .tier.selected .tier-price{color:var(--orange)}
+    .tier-deposit{font-size:11px;color:var(--t2);margin-top:3px}
+
+    .tier-bullets{display:flex;flex-direction:column;gap:5px}
+    .tier-bullet{font-size:12px;color:var(--t2);display:flex;align-items:center;gap:6px;line-height:1.3}
+    .tier-bullet::before{content:'✓';color:var(--green);font-weight:700;font-size:12px;flex-shrink:0}
+    .tier.selected .tier-bullet{color:#c0c0c0}
+
+    .tier-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--b);background:var(--s);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:var(--t);margin-top:1px}
+    .tier.selected .tier-radio{border-color:var(--orange);background:var(--orange)}
+    .tier-radio::after{content:'';width:8px;height:8px;border-radius:50%;background:#fff;opacity:0;transition:var(--t)}
+    .tier.selected .tier-radio::after{opacity:1}
+
+    /* DATE PICKER */
+    .dates-title{font-family:var(--fh);font-size:15px;font-weight:700;margin-bottom:12px}
+    .dates{display:flex;flex-direction:column;gap:8px}
+    .date-slot{background:var(--card);border:1px solid var(--b);border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:var(--t)}
+    .date-slot:hover{border-color:var(--bl)}
+    .date-slot.selected{border-color:var(--orange);background:var(--og)}
+    .date-left{display:flex;align-items:center;gap:12px}
+    .date-dow{font-family:var(--fh);font-size:11px;font-weight:700;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;width:28px;flex-shrink:0}
+    .date-full{font-family:var(--fh);font-size:14px;font-weight:700}
+    .date-slot.selected .date-full{color:var(--orange)}
+    .date-avail{font-size:11px;color:var(--green);font-weight:600}
+    .date-avail.last{color:var(--gold)}
+    .date-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--b);background:var(--s);transition:var(--t)}
+    .date-slot.selected .date-radio{border-color:var(--orange);background:var(--orange)}
+
+    /* GUARANTEE */
+    .guarantee{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+    .guarantee-icon{font-size:28px;flex-shrink:0}
+    .guarantee-title{font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px}
+    .guarantee-text{font-size:12px;color:var(--t2);line-height:1.5}
+
+    /* TRUST ROW */
+    .trust-row{display:flex;gap:8px;justify-content:center}
+    .trust-chip{background:var(--card);border:1px solid var(--b);border-radius:100px;padding:7px 14px;font-size:11px;font-weight:600;color:var(--t2);font-family:var(--fh);display:flex;align-items:center;gap:5px}
+
+    /* STICKY BOTTOM */
+    .bottom-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(12,12,12,.95);backdrop-filter:blur(16px);border-top:1px solid var(--b);padding:14px 20px;z-index:200}
+    .bottom-summary{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .bottom-selected{font-family:var(--fh);font-size:13px;font-weight:700;color:var(--t2)}
+    .bottom-selected span{color:var(--text)}
+    .bottom-deposit{font-family:var(--fh);font-size:12px;color:var(--t2)}
+    .bottom-deposit strong{color:var(--orange)}
+    .cta-btn{width:100%;background:var(--orange);color:#fff;border:none;border-radius:12px;padding:16px 20px;font-family:var(--fh);font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:var(--t);letter-spacing:-.01em}
+    .cta-btn:hover{background:#e63d18;transform:translateY(-1px)}
+    .cta-btn:active{transform:translateY(0)}
+    .cta-sub{text-align:center;font-size:11px;color:var(--t3);margin-top:8px}
+
+    /* EXPIRY */
+    .expiry-bar{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gold);font-weight:600}
+    .expiry-icon{font-size:14px;flex-shrink:0}
+
+    /* TOAST */
+    .toast{position:fixed;bottom:140px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--card);border:1px solid var(--b);border-radius:100px;padding:10px 20px;font-size:13px;font-weight:600;font-family:var(--fh);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:300;max-width:90vw;text-align:center}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .toast.success{border-color:var(--green);color:var(--green)}
+
+    /* LOADING STATE */
+    .loading-overlay{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:500;flex-direction:column;gap:16px}
+    .loading-overlay.hidden{display:none}
+    .loading-logo{font-family:var(--fh);font-size:24px;font-weight:800}
+    .loading-logo span{color:var(--orange)}
+    .loading-text{font-size:13px;color:var(--t2)}
+    .loading-bar{width:120px;height:3px;background:var(--b);border-radius:2px;overflow:hidden;margin-top:4px}
+    .loading-fill{height:100%;background:var(--orange);border-radius:2px;animation:load .8s ease-in-out infinite alternate}
+    @keyframes load{0%{width:20%}100%{width:90%}}
+
+    /* WATERMARK */
+    .watermark{text-align:center;font-size:10px;color:var(--t3);padding-bottom:8px}
+
+    @media (prefers-color-scheme: light) {
+      /* Keep dark — this is a proposal doc */
+    }
+  </style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loading">
+  <div class="loading-logo">Foxy <span>Epoxy</span></div>
+  <div class="loading-text">Loading your proposal…</div>
+  <div class="loading-bar"><div class="loading-fill"></div></div>
+</div>
+
+<div class="app" id="app" style="display:none">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="logo">Foxy <span>Epoxy</span></div>
+    <div class="proposal-badge">Your Proposal</div>
+  </div>
+
+  <div class="body">
+
+    <!-- HERO STRIP -->
+    <div class="hero-strip">
+      <div class="hero-detail">
+        <div class="hero-label">Project Size</div>
+        <div class="hero-value" id="display-sqft">—</div>
+        <div class="hero-sub" id="display-cond">—</div>
+      </div>
+      <div style="flex:1;text-align:center">
+        <div class="hero-label" style="text-align:center">Finish</div>
+        <div style="font-family:var(--fh);font-size:15px;font-weight:700;color:var(--text);margin-top:4px" id="display-finish">—</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:2px;font-weight:600;text-transform:uppercase;letter-spacing:.05em" id="display-type">—</div>
+      </div>
+      <div class="hero-finish-swatch" id="finish-swatch"></div>
+    </div>
+
+    <!-- URGENCY -->
+    <div class="urgency">
+      <div class="urgency-dot"></div>
+      <div>
+        <div class="urgency-text">🔥 3 install slots remaining this week</div>
+        <div class="urgency-sub">Austin crews book fast. Lock your date below.</div>
+      </div>
+    </div>
+
+    <!-- EXPIRY -->
+    <div class="expiry-bar" id="expiry-bar">
+      <span class="expiry-icon">⏱</span>
+      <span id="expiry-text">This proposal is valid for 7 days.</span>
+    </div>
+
+    <!-- BEFORE / AFTER SLIDER -->
+    <div class="ba-section">
+      <div class="ba-title">
+        See the transformation
+        <span class="ba-title-badge">Drag to compare</span>
+      </div>
+
+      <div class="ba-slider" id="ba-slider">
+        <!-- BEFORE -->
+        <div class="ba-before" id="ba-before">
+          <div class="ba-before-content">
+            <div class="ba-placeholder-icon">🏠</div>
+            <div class="ba-placeholder-text">Bare Concrete</div>
+          </div>
+        </div>
+        <!-- AFTER -->
+        <div class="ba-after" id="ba-after">
+          <div class="ba-after-content" id="ba-after-content">
+            <!-- filled by JS: img or css div -->
+          </div>
+        </div>
+        <!-- Overlay labels -->
+        <div class="ba-label ba-label-before">BEFORE</div>
+        <div class="ba-label ba-label-after" id="ba-label-after">AFTER</div>
+        <!-- Divider + handle -->
+        <div class="ba-divider" id="ba-divider"></div>
+        <div class="ba-handle" id="ba-handle"></div>
+      </div>
+      <div class="ba-hint">Drag the handle to reveal your finished floor</div>
+    </div>
+
+    <!-- PRICING TIERS -->
+    <div>
+      <div class="tiers-title">Choose your system</div>
+      <div class="tiers" id="tiers"></div>
+    </div>
+
+    <!-- DATE PICKER -->
+    <div>
+      <div class="dates-title">Select your install date</div>
+      <div class="dates" id="dates"></div>
+    </div>
+
+    <!-- GUARANTEE -->
+    <div class="guarantee">
+      <div class="guarantee-icon">🛡️</div>
+      <div>
+        <div class="guarantee-title">Foxy Epoxy Guarantee</div>
+        <div class="guarantee-text">We stand behind every pour. If your floor peels or fails within the warranty period, we fix it — no questions, no charge. Austin-owned and operated since Day 1.</div>
+      </div>
+    </div>
+
+    <!-- TRUST ROW -->
+    <div class="trust-row">
+      <div class="trust-chip">⭐ 5-Star Rated</div>
+      <div class="trust-chip">📍 Austin-Local</div>
+      <div class="trust-chip">🔒 Licensed & Insured</div>
+    </div>
+
+    <div class="watermark">Foxy Epoxy Austin · foxyepoxy.com · (512) 555-0100</div>
+
+  </div><!-- /.body -->
+</div><!-- /.app -->
+
+<!-- STICKY CTA BAR -->
+<div class="bottom-bar" id="bottom-bar" style="display:none">
+  <div class="bottom-summary">
+    <div class="bottom-selected">Selected: <span id="bottom-tier-name">Better</span></div>
+    <div class="bottom-deposit">Deposit: <strong id="bottom-deposit-amt">—</strong></div>
+  </div>
+  <button class="cta-btn" id="cta-btn" onclick="onCTA()">
+    Reserve My Date · Pay Deposit
+  </button>
+  <div class="cta-sub">Deposit held until install. Balance due day of service.</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ─── FINISHES (matches rep.html exactly) ─── */
+const FINISHES = [
+  { id:'glacier',   label:'Glacier',   type:'solid',    css:'linear-gradient(135deg,#f0efea,#e5e4de)' },
+  { id:'charcoal',  label:'Charcoal',  type:'solid',    css:'linear-gradient(135deg,#3a3a3a,#2a2a2a)' },
+  { id:'slate',     label:'Slate Blue',type:'solid',    css:'linear-gradient(135deg,#4a5568,#2d3748)' },
+  { id:'jet',       label:'Jet Black', type:'solid',    css:'linear-gradient(135deg,#1a1a1a,#0a0a0a)' },
+  { id:'arctic',    label:'Arctic',    type:'flake',    css:'radial-gradient(circle at 30% 40%,#e0e0e0 2px,transparent 2px),radial-gradient(circle at 70% 60%,#c0c0c0 3px,transparent 3px),#b8b8b8' },
+  { id:'galaxy',    label:'Galaxy',    type:'flake',    css:'radial-gradient(circle at 30% 40%,#888 2px,transparent 2px),radial-gradient(circle at 70% 60%,#555 3px,transparent 3px),#222' },
+  { id:'autumn',    label:'Autumn',    type:'flake',    css:'radial-gradient(circle at 30% 40%,#c8a45c 3px,transparent 3px),radial-gradient(circle at 70% 60%,#a0783a 2px,transparent 2px),#5a3a1a' },
+  { id:'desert',    label:'Desert',    type:'flake',    css:'radial-gradient(circle at 30% 40%,#FF8C42 2px,transparent 2px),radial-gradient(circle at 70% 60%,#cc6622 3px,transparent 3px),#8a4a20' },
+  { id:'silver',    label:'Silver',    type:'metallic', css:'linear-gradient(135deg,#c0c0c0,#808080,#e0e0e0,#909090)' },
+  { id:'copper',    label:'Copper',    type:'metallic', css:'linear-gradient(135deg,#b87333,#da8a67,#ff8c00,#b87333)' },
+  { id:'midnight',  label:'Midnight',  type:'metallic', css:'linear-gradient(135deg,#1a237e,#3949ab,#1a237e,#0d1757)' },
+  { id:'champagne', label:'Champagne', type:'metallic', css:'linear-gradient(135deg,#f7e7ce,#c8a45c,#f0d080,#c8a45c)' },
+];
+
+const TIER_INFO = {
+  good: {
+    name: 'Good',
+    label: 'Epoxy Base',
+    bullets: ['Premium garage epoxy base coat','Color chip broadcast','UV-stable topcoat','1-year workmanship warranty'],
+  },
+  better: {
+    name: 'Better',
+    label: 'Epoxy + Polyaspartic',
+    bullets: ['Epoxy base coat + color chips','Polyaspartic topcoat (handles Austin heat)','Faster cure — drive on in 24h','2-year workmanship warranty'],
+    popular: true,
+  },
+  best: {
+    name: 'Best',
+    label: 'Full Premium System',
+    bullets: ['Premium moisture-barrier primer','Epoxy base + polyaspartic topcoat','Metallic/ultra-dense chip options','Anti-skid additive included','5-year workmanship warranty'],
+  },
+};
+
+/* ─── PARSE PARAMS ─── */
+const params = new URLSearchParams(location.search);
+const P = {
+  sqft:        parseInt(params.get('sqft'))        || 480,
+  cond:        parseFloat(params.get('cond'))      || 0,
+  finish:      params.get('finish')                || 'galaxy',
+  finishLabel: params.get('finishLabel')           || 'Galaxy',
+  finishType:  params.get('finishType')            || 'flake',
+  gp:          parseInt(params.get('gp'))          || 0,
+  bp:          parseInt(params.get('bp'))          || 0,
+  xp:          parseInt(params.get('xp'))          || 0,
+  ts:          parseInt(params.get('ts'))          || Date.now(),
+  renderKey:   params.get('renderKey')             || null,
+};
+const finishObj = FINISHES.find(f => f.id === P.finish) || FINISHES[5];
+
+/* ─── STATE ─── */
+let selectedTier = 'better';
+let selectedDate = null;
+
+/* ─── INIT ─── */
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    buildPage();
+    document.getElementById('loading').classList.add('hidden');
+    document.getElementById('app').style.display = '';
+    document.getElementById('bottom-bar').style.display = '';
+  }, 600);
+});
+
+function buildPage() {
+  fillHero();
+  buildSlider();
+  buildTiers();
+  buildDates();
+  buildExpiry();
+  updateBottomBar();
+}
+
+function fillHero() {
+  document.getElementById('display-sqft').textContent = P.sqft.toLocaleString() + ' sq ft';
+  const condMap = { 0: 'Good condition', 0.75: 'Fair condition', 1.5: 'Poor condition' };
+  document.getElementById('display-cond').textContent = condMap[P.cond] || 'Good condition';
+  document.getElementById('display-finish').textContent = P.finishLabel || finishObj.label;
+  document.getElementById('display-type').textContent = (P.finishType || finishObj.type) + ' system';
+  document.getElementById('finish-swatch').style.background = finishObj.css;
+  // Update after label
+  document.getElementById('ba-label-after').textContent = 'AFTER: ' + (P.finishLabel || finishObj.label).toUpperCase();
+}
+
+function buildSlider() {
+  const afterContent = document.getElementById('ba-after-content');
+
+  // Try to load render from localStorage
+  const renderImg = P.renderKey ? localStorage.getItem(P.renderKey) : null;
+
+  if (renderImg) {
+    // AI render available — show as image
+    const img = document.createElement('img');
+    img.src = renderImg;
+    img.className = 'ba-after-img';
+    img.alt = 'AI floor render';
+    afterContent.appendChild(img);
+  } else {
+    // No render — use finish gradient as the "after"
+    const div = document.createElement('div');
+    div.className = 'ba-after-css';
+    div.style.background = finishObj.css;
+    // Add subtle overlay text
+    div.style.display = 'flex';
+    div.style.alignItems = 'center';
+    div.style.justifyContent = 'center';
+    const label = document.createElement('div');
+    label.style.cssText = 'font-family:Syne,sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.5);text-align:center;padding:8px;';
+    label.textContent = (P.finishLabel || finishObj.label) + ' Finish';
+    div.appendChild(label);
+    afterContent.appendChild(div);
+  }
+
+  // Animate to 35% on load (showing more "after")
+  setTimeout(() => setSliderPos(35), 800);
+
+  // Wire up drag
+  const slider = document.getElementById('ba-slider');
+  const after  = document.getElementById('ba-after');
+  const divider= document.getElementById('ba-divider');
+  const handle = document.getElementById('ba-handle');
+  let dragging = false;
+
+  const setPos = (pct) => {
+    pct = Math.max(5, Math.min(95, pct));
+    after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    divider.style.left   = pct + '%';
+    handle.style.left    = pct + '%';
+  };
+
+  // Store for external use
+  window._sliderSetPos = setPos;
+
+  const getPct = (e) => {
+    const rect = slider.getBoundingClientRect();
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    return (x / rect.width) * 100;
+  };
+
+  setPos(50);
+
+  slider.addEventListener('mousedown',  (e) => { dragging = true; setPos(getPct(e)); });
+  slider.addEventListener('touchstart', (e) => { dragging = true; setPos(getPct(e)); }, { passive: true });
+  window.addEventListener('mousemove',  (e) => { if (dragging) setPos(getPct(e)); });
+  window.addEventListener('touchmove',  (e) => { if (dragging) setPos(getPct(e)); }, { passive: true });
+  window.addEventListener('mouseup',   () => dragging = false);
+  window.addEventListener('touchend',  () => dragging = false);
+}
+
+function setSliderPos(pct) {
+  if (window._sliderSetPos) window._sliderSetPos(pct);
+}
+
+function buildTiers() {
+  const container = document.getElementById('tiers');
+  const tiers = [
+    { key: 'good',   price: P.gp },
+    { key: 'better', price: P.bp },
+    { key: 'best',   price: P.xp },
+  ];
+
+  container.innerHTML = tiers.map(({ key, price }) => {
+    const info = TIER_INFO[key];
+    const deposit = Math.round(price * 0.5 / 50) * 50;
+    const isSelected = key === selectedTier;
+    return `
+    <div class="tier ${isSelected ? 'selected' : ''} ${info.popular ? 'popular' : ''}" onclick="selectTier('${key}')" id="tier-${key}">
+      <div class="tier-top">
+        <div class="tier-info">
+          <div class="tier-name">${info.name} · <span style="font-size:12px;font-weight:600;color:var(--t2)">${info.label}</span></div>
+          <div class="tier-desc">${formatPrice(price)}</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div class="tier-price-wrap">
+            <div class="tier-price">${formatPrice(price)}</div>
+            <div class="tier-deposit">Deposit: ${formatPrice(deposit)}</div>
+          </div>
+          <div class="tier-radio" id="radio-${key}"></div>
+        </div>
+      </div>
+      <div class="tier-bullets">
+        ${info.bullets.map(b => `<div class="tier-bullet">${b}</div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function selectTier(key) {
+  selectedTier = key;
+  document.querySelectorAll('.tier').forEach(t => t.classList.remove('selected'));
+  document.getElementById('tier-' + key).classList.add('selected');
+  updateBottomBar();
+}
+
+function buildDates() {
+  const container = document.getElementById('dates');
+  const slots = getDateSlots();
+  container.innerHTML = slots.map((slot, i) => {
+    const isLast = slot.spots <= 1;
+    return `
+    <div class="date-slot" onclick="selectDate(${i})" id="date-${i}">
+      <div class="date-left">
+        <div class="date-dow">${slot.dow}</div>
+        <div>
+          <div class="date-full">${slot.label}</div>
+          <div class="date-avail ${isLast ? 'last' : ''}">${slot.spots} spot${slot.spots === 1 ? '' : 's'} available</div>
+        </div>
+      </div>
+      <div class="date-radio" id="date-radio-${i}"></div>
+    </div>`;
+  }).join('');
+}
+
+function selectDate(idx) {
+  selectedDate = idx;
+  document.querySelectorAll('.date-slot').forEach(d => d.classList.remove('selected'));
+  document.getElementById('date-' + idx).classList.add('selected');
+  updateBottomBar();
+}
+
+function getDateSlots() {
+  const today = new Date();
+  const slots = [];
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const spotCounts = [3, 2, 2, 1, 3]; // varies for realism
+  let i = 0;
+  let d = new Date(today);
+  d.setDate(d.getDate() + 3); // Start 3 days out
+  while (slots.length < 5) {
+    const dow = d.getDay();
+    if (dow !== 0 && dow !== 6) { // Weekdays only
+      slots.push({
+        dow: days[dow],
+        label: days[dow] + ', ' + months[d.getMonth()] + ' ' + d.getDate(),
+        spots: spotCounts[i % spotCounts.length],
+        date: new Date(d),
+      });
+      i++;
+    }
+    d.setDate(d.getDate() + 1);
+  }
+  return slots;
+}
+
+function buildExpiry() {
+  const created = P.ts;
+  const expires = created + (7 * 24 * 60 * 60 * 1000);
+  const now = Date.now();
+  const msLeft = expires - now;
+  const bar = document.getElementById('expiry-bar');
+  const txt = document.getElementById('expiry-text');
+  if (msLeft <= 0) {
+    bar.style.borderColor = 'rgba(239,68,68,.4)';
+    bar.style.background = 'rgba(239,68,68,.08)';
+    bar.style.color = '#ef4444';
+    txt.textContent = 'This proposal has expired. Contact us for a fresh quote.';
+  } else {
+    const daysLeft = Math.ceil(msLeft / (24 * 60 * 60 * 1000));
+    txt.textContent = `This proposal is valid for ${daysLeft} more day${daysLeft === 1 ? '' : 's'}.`;
+  }
+}
+
+function updateBottomBar() {
+  const prices = { good: P.gp, better: P.bp, best: P.xp };
+  const price = prices[selectedTier] || 0;
+  const deposit = Math.round(price * 0.5 / 50) * 50;
+  const info = TIER_INFO[selectedTier];
+  document.getElementById('bottom-tier-name').textContent = info.name + ' · ' + formatPrice(price);
+  document.getElementById('bottom-deposit-amt').textContent = formatPrice(deposit);
+  const btn = document.getElementById('cta-btn');
+  if (selectedDate !== null) {
+    btn.textContent = `Reserve My Date · Pay ${formatPrice(deposit)}`;
+  } else {
+    btn.textContent = `Select a Date Above ↑`;
+    btn.style.background = '#333';
+  }
+  if (selectedDate !== null) btn.style.background = '';
+}
+
+function onCTA() {
+  if (selectedDate === null) {
+    showToast('Please select an install date ↑', '');
+    document.getElementById('dates').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  const prices = { good: P.gp, better: P.bp, best: P.xp };
+  const price = prices[selectedTier] || 0;
+  const deposit = Math.round(price * 0.5 / 50) * 50;
+  const info = TIER_INFO[selectedTier];
+  const slots = getDateSlots();
+  const slot = slots[selectedDate];
+
+  // Build a summary message for call/text
+  const msg = encodeURIComponent(
+    `Hi! I'd like to book my Foxy Epoxy install.\n` +
+    `Size: ${P.sqft} sq ft | Finish: ${P.finishLabel || finishObj.label} | ` +
+    `Package: ${info.name} (${formatPrice(price)}) | ` +
+    `Date: ${slot ? slot.label : 'TBD'} | Deposit: ${formatPrice(deposit)}`
+  );
+
+  // Try Share API first (mobile)
+  const shareData = {
+    title: 'Foxy Epoxy Booking',
+    text: decodeURIComponent(msg),
+  };
+
+  if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+    navigator.share(shareData).catch(() => fallbackCTA(msg));
+  } else {
+    fallbackCTA(msg);
+  }
+}
+
+function fallbackCTA(msg) {
+  // Try SMS first, then tel
+  const phone = '5125550100';
+  const smsUrl = `sms:${phone}?body=${msg}`;
+  const a = document.createElement('a');
+  a.href = smsUrl;
+  a.click();
+
+  showToast('Opening message to Foxy Epoxy…', 'success');
+}
+
+/* ─── UTILS ─── */
+function formatPrice(n) {
+  if (!n) return '$0';
+  return '$' + Math.round(n).toLocaleString();
+}
+
+let toastTimer;
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + (type || '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>
