@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-04 04:25 UTC
 - **Branch:** `claude/floori-competitor-analysis-gGYEs`
-- **Last commit:** 8a00be7 chore: refresh nucleus live state [skip ci] — 17 minutes ago
+- **Last commit:** 8441334 chore: refresh nucleus live state [skip ci] — 8 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+8441334 chore: refresh nucleus live state [skip ci] (8 seconds ago)
 8a00be7 chore: refresh nucleus live state [skip ci] (17 minutes ago)
 be04bfa chore: refresh nucleus live state [skip ci] (17 minutes ago)
 50da96b Embed live closing tool from closingtool.netlify.app in Phase 1 section (17 minutes ago)
 e666718 chore: refresh nucleus live state [skip ci] (56 minutes ago)
-f48d193 Add Previz product proposal page — Phases 1/2/3 roadmap (56 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
