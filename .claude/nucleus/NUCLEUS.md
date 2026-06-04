@@ -193,25 +193,19 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-04 03:28 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 82013b8 Content batch: vending-machine carousel (html+text), Substack Issue 002 draft, engagement playbook — 55 seconds ago
+- **Last commit:** 9536c14 chore: refresh nucleus memory [skip ci] — 11 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
- 1 file changed, 14 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-82013b8 Content batch: vending-machine carousel (html+text), Substack Issue 002 draft, engagement playbook (55 seconds ago)
+9536c14 chore: refresh nucleus memory [skip ci] (11 seconds ago)
+82013b8 Content batch: vending-machine carousel (html+text), Substack Issue 002 draft, engagement playbook (66 seconds ago)
 e0fce1c chore: refresh nucleus live state [skip ci] (8 hours ago)
 41201d4 chore: refresh nucleus memory [skip ci] (8 hours ago)
 768595c Add Foxy Epoxy + Ambo signing one-pagers (for next week), no-price style (8 hours ago)
-f69ffc4 Content pack for 6/4 (first-client / sell-time, all platforms) + queue Foxy/Ambo proposals (8 hours ago)
 ```
 <!-- AUTOSTATE:END -->
