@@ -171,22 +171,28 @@ Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Gre
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-04 09:30 UTC
+- **When:** 2026-06-04 09:45 UTC
 - **Branch:** `claude/floori-competitor-analysis-gGYEs`
-- **Last commit:** d437237 chore: refresh nucleus live state [skip ci] — 7 seconds ago
+- **Last commit:** f3c0a95 chore: refresh nucleus live state [skip ci] — 15 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 ```
 
 **Recent commits:**
 ```
-d437237 chore: refresh nucleus live state [skip ci] (7 seconds ago)
-515f504 chore: refresh nucleus live state [skip ci] (3 hours ago)
-0f3b37f chore: refresh nucleus live state [skip ci] (3 hours ago)
+f3c0a95 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+d437237 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+515f504 chore: refresh nucleus live state [skip ci] (4 hours ago)
+0f3b37f chore: refresh nucleus live state [skip ci] (4 hours ago)
 b08c7c4 Add 3 SEO blog posts targeting Austin epoxy keywords GFP ignores (5 hours ago)
-c967386 chore: refresh nucleus live state [skip ci] (5 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
