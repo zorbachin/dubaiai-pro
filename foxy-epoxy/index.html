@@ -1500,5 +1500,817 @@
     });
   });
 </script>
+
+<!-- ============================================================
+     RILEY — AI LEAD QUALIFICATION CHAT WIDGET
+     Foxy Epoxy · Austin TX
+
+     CONFIG: Set RILEY_WEBHOOK below to your Zapier/Make webhook URL.
+     ============================================================ -->
+
+<style>
+  /* ---- CONFIG ---- */
+  :root {
+    --riley-orange: #FF4820;
+    --riley-orange-hover: #FF6040;
+    --riley-bg: #0e0e0e;
+    --riley-surface: #181818;
+    --riley-card: #222222;
+    --riley-border: #2e2e2e;
+    --riley-text: #f0f0f0;
+    --riley-muted: #888;
+    --riley-font-head: 'Syne', system-ui, sans-serif;
+    --riley-font-body: 'Inter', system-ui, sans-serif;
+    --riley-radius: 14px;
+    --riley-panel-w: 360px;
+    --riley-panel-h: 500px;
+  }
+
+  /* ---- TRIGGER BUTTON ---- */
+  #riley-trigger {
+    position: fixed;
+    bottom: 88px; /* above sticky mobile CTA */
+    right: 20px;
+    z-index: 950;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: #181818;
+    border: 1.5px solid #2e2e2e;
+    border-radius: 100px;
+    padding: 11px 18px 11px 14px;
+    cursor: pointer;
+    font-family: var(--riley-font-head);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--riley-text);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,72,32,0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+  #riley-trigger:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,72,32,0.45);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,72,32,0.3), 0 0 16px rgba(255,72,32,0.15);
+  }
+  #riley-trigger .riley-fox {
+    font-size: 22px;
+    line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(255,72,32,0.4));
+  }
+  #riley-trigger .riley-label {
+    line-height: 1;
+  }
+  #riley-trigger .riley-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--riley-orange);
+    flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(255,72,32,0.6);
+    animation: riley-pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes riley-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.75); }
+  }
+
+  /* hide label on very small screens to save space */
+  @media (max-width: 380px) {
+    #riley-trigger .riley-label { display: none; }
+    #riley-trigger { padding: 11px 13px; }
+  }
+
+  /* ---- CHAT PANEL ---- */
+  #riley-panel {
+    position: fixed;
+    bottom: 88px;
+    right: 20px;
+    z-index: 960;
+    width: var(--riley-panel-w);
+    height: var(--riley-panel-h);
+    background: var(--riley-bg);
+    border: 1px solid var(--riley-border);
+    border-radius: var(--riley-radius);
+    box-shadow: 0 16px 64px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,72,32,0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(24px) scale(0.97);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease;
+  }
+  #riley-panel.riley-open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Mobile: full-width slide-up drawer */
+  @media (max-width: 600px) {
+    #riley-panel {
+      width: 100%;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      border-radius: var(--riley-radius) var(--riley-radius) 0 0;
+      height: 78vh;
+      max-height: 560px;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.34,1.1,0.64,1), opacity 0.2s ease;
+    }
+    #riley-panel.riley-open { transform: translateY(0); }
+    #riley-trigger { bottom: 78px; }
+  }
+
+  /* ---- HEADER ---- */
+  .riley-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--riley-surface);
+    border-bottom: 1px solid var(--riley-border);
+    flex-shrink: 0;
+  }
+  .riley-header-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a1208, #FF4820);
+    border: 1.5px solid rgba(255,72,32,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .riley-header-info { flex: 1; min-width: 0; }
+  .riley-header-name {
+    font-family: var(--riley-font-head);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--riley-text);
+    line-height: 1.2;
+  }
+  .riley-header-status {
+    font-size: 11px;
+    color: var(--riley-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 1px;
+  }
+  .riley-header-status::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .riley-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--riley-muted);
+    font-size: 20px;
+    line-height: 1;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .riley-close:hover { color: var(--riley-text); background: rgba(255,255,255,0.06); }
+
+  /* ---- MESSAGES AREA ---- */
+  .riley-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+  }
+  .riley-messages::-webkit-scrollbar { width: 4px; }
+  .riley-messages::-webkit-scrollbar-track { background: transparent; }
+  .riley-messages::-webkit-scrollbar-thumb { background: var(--riley-border); border-radius: 4px; }
+
+  /* ---- INDIVIDUAL MESSAGE ---- */
+  .riley-msg {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: riley-fadein 0.3s ease forwards;
+  }
+  @keyframes riley-fadein {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .riley-msg.riley-msg-user { flex-direction: row-reverse; }
+  .riley-msg-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a1208, #FF4820);
+    border: 1px solid rgba(255,72,32,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-bottom: 2px;
+  }
+  .riley-msg-user .riley-msg-avatar {
+    background: var(--riley-card);
+    border-color: var(--riley-border);
+  }
+  .riley-bubble {
+    max-width: 82%;
+    padding: 9px 13px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    font-family: var(--riley-font-body);
+  }
+  .riley-msg-riley .riley-bubble {
+    background: var(--riley-surface);
+    color: var(--riley-text);
+    border: 1px solid var(--riley-border);
+    border-bottom-left-radius: 4px;
+  }
+  .riley-msg-user .riley-bubble {
+    background: var(--riley-orange);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+
+  /* Typing indicator */
+  .riley-typing {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 10px 14px;
+  }
+  .riley-typing span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--riley-muted);
+    animation: riley-type 1.3s ease-in-out infinite;
+  }
+  .riley-typing span:nth-child(2) { animation-delay: 0.18s; }
+  .riley-typing span:nth-child(3) { animation-delay: 0.36s; }
+  @keyframes riley-type {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+    30% { transform: translateY(-5px); opacity: 1; }
+  }
+
+  /* ---- QUICK REPLIES / BUTTONS ---- */
+  .riley-quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 4px 14px 4px 38px;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: riley-fadein 0.3s ease 0.15s forwards;
+  }
+  .riley-qr {
+    background: transparent;
+    border: 1.5px solid var(--riley-border);
+    color: var(--riley-text);
+    font-family: var(--riley-font-head);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 13px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: border-color 0.18s, background 0.18s, color 0.18s, transform 0.15s;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+  .riley-qr:hover {
+    border-color: var(--riley-orange);
+    color: var(--riley-orange);
+    background: rgba(255,72,32,0.08);
+    transform: translateY(-1px);
+  }
+  .riley-qr:active { transform: translateY(0); }
+  .riley-qr.riley-qr-selected {
+    border-color: var(--riley-orange);
+    background: var(--riley-orange);
+    color: #fff;
+    pointer-events: none;
+  }
+
+  /* ---- TEXT INPUT AREA ---- */
+  .riley-input-area {
+    padding: 10px 12px;
+    border-top: 1px solid var(--riley-border);
+    flex-shrink: 0;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    background: var(--riley-surface);
+  }
+  .riley-input-area.riley-hidden { display: none; }
+  #riley-text-input {
+    flex: 1;
+    background: var(--riley-card);
+    border: 1px solid var(--riley-border);
+    border-radius: 10px;
+    padding: 9px 13px;
+    font-size: 14px;
+    font-family: var(--riley-font-body);
+    color: var(--riley-text);
+    resize: none;
+    outline: none;
+    transition: border-color 0.2s;
+    min-height: 40px;
+    max-height: 100px;
+    overflow-y: auto;
+  }
+  #riley-text-input:focus { border-color: rgba(255,72,32,0.5); }
+  #riley-text-input::placeholder { color: var(--riley-muted); }
+  #riley-send-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--riley-orange);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, transform 0.15s;
+  }
+  #riley-send-btn:hover { background: var(--riley-orange-hover); transform: scale(1.05); }
+  #riley-send-btn svg { width: 15px; height: 15px; fill: white; }
+
+  /* ---- RESTART LINK ---- */
+  .riley-restart-link {
+    text-align: center;
+    font-size: 11px;
+    color: var(--riley-muted);
+    padding: 6px 0 2px;
+    cursor: pointer;
+    transition: color 0.15s;
+    flex-shrink: 0;
+    background: var(--riley-surface);
+  }
+  .riley-restart-link:hover { color: var(--riley-text); }
+</style>
+
+<!-- RILEY TRIGGER BUTTON -->
+<button id="riley-trigger" aria-label="Chat with Riley, Foxy Epoxy's AI assistant" aria-expanded="false">
+  <span class="riley-fox" aria-hidden="true">🦊</span>
+  <span class="riley-label">Chat with Riley</span>
+  <span class="riley-dot" aria-hidden="true"></span>
+</button>
+
+<!-- RILEY CHAT PANEL -->
+<div id="riley-panel" role="dialog" aria-modal="true" aria-label="Riley — Foxy Epoxy AI assistant">
+  <div class="riley-header">
+    <div class="riley-header-avatar" aria-hidden="true">🦊</div>
+    <div class="riley-header-info">
+      <div class="riley-header-name">Riley</div>
+      <div class="riley-header-status">Foxy Epoxy AI · Austin TX</div>
+    </div>
+    <button class="riley-close" id="riley-close-btn" aria-label="Close chat">✕</button>
+  </div>
+
+  <div class="riley-messages" id="riley-messages" aria-live="polite"></div>
+
+  <div id="riley-input-area" class="riley-input-area riley-hidden">
+    <textarea id="riley-text-input" placeholder="Type here…" rows="1" aria-label="Your message"></textarea>
+    <button id="riley-send-btn" aria-label="Send message">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div id="riley-restart" class="riley-restart-link" style="display:none;" tabindex="0">↺ Start over</div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  /* =====================================================
+     CONFIG — swap WEBHOOK_URL before going live
+  ===================================================== */
+  var WEBHOOK_URL   = 'https://hooks.zapier.com/REPLACE-WITH-YOUR-ZAP';
+  var FALLBACK_MAIL = 'info@foxyepoxy.com';
+  var SESSION_KEY   = 'riley_session_v1';
+
+  /* =====================================================
+     STATE
+  ===================================================== */
+  var state = {
+    step: 0,           // current flow step
+    space: '',
+    size: '',
+    timeline: '',
+    contact: '',       // phone or email captured
+    contactType: '',   // 'phone' or 'email'
+    done: false
+  };
+
+  var expectingInput = false; // true when free-text input is active
+
+  /* =====================================================
+     DOM REFS
+  ===================================================== */
+  var trigger     = document.getElementById('riley-trigger');
+  var panel       = document.getElementById('riley-panel');
+  var closeBtn    = document.getElementById('riley-close-btn');
+  var msgContainer= document.getElementById('riley-messages');
+  var inputArea   = document.getElementById('riley-input-area');
+  var textInput   = document.getElementById('riley-text-input');
+  var sendBtn     = document.getElementById('riley-send-btn');
+  var restartEl   = document.getElementById('riley-restart');
+
+  /* =====================================================
+     OPEN / CLOSE
+  ===================================================== */
+  function openPanel() {
+    panel.classList.add('riley-open');
+    trigger.setAttribute('aria-expanded', 'true');
+    trigger.style.opacity = '0';
+    trigger.style.pointerEvents = 'none';
+    // Start flow if fresh session
+    if (state.step === 0 && !state.done) {
+      startFlow();
+    }
+  }
+
+  function closePanel() {
+    panel.classList.remove('riley-open');
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.style.opacity = '1';
+    trigger.style.pointerEvents = 'all';
+  }
+
+  trigger.addEventListener('click', openPanel);
+  closeBtn.addEventListener('click', closePanel);
+
+  // Close on backdrop click (outside panel) on desktop
+  document.addEventListener('click', function(e) {
+    if (panel.classList.contains('riley-open') &&
+        !panel.contains(e.target) &&
+        e.target !== trigger &&
+        !trigger.contains(e.target)) {
+      closePanel();
+    }
+  });
+
+  // Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && panel.classList.contains('riley-open')) closePanel();
+  });
+
+  /* =====================================================
+     RESTORE SESSION — don't re-ask on reload
+  ===================================================== */
+  try {
+    var saved = sessionStorage.getItem(SESSION_KEY);
+    if (saved) {
+      state = JSON.parse(saved);
+    }
+  } catch(e) {}
+
+  function saveSession() {
+    try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  /* =====================================================
+     RENDER HELPERS
+  ===================================================== */
+  function scrollBottom() {
+    setTimeout(function() {
+      msgContainer.scrollTop = msgContainer.scrollHeight;
+    }, 40);
+  }
+
+  function addMessage(text, fromUser, delay) {
+    delay = delay || 0;
+    return new Promise(function(resolve) {
+      setTimeout(function() {
+        var msg = document.createElement('div');
+        msg.className = 'riley-msg riley-msg-' + (fromUser ? 'user' : 'riley');
+
+        var avatar = document.createElement('div');
+        avatar.className = 'riley-msg-avatar';
+        avatar.setAttribute('aria-hidden', 'true');
+        avatar.textContent = fromUser ? '👤' : '🦊';
+
+        var bubble = document.createElement('div');
+        bubble.className = 'riley-bubble';
+        bubble.innerHTML = text; // safe — we control all strings
+
+        msg.appendChild(avatar);
+        msg.appendChild(bubble);
+        msgContainer.appendChild(msg);
+        scrollBottom();
+        resolve();
+      }, delay);
+    });
+  }
+
+  function showTyping() {
+    var msg = document.createElement('div');
+    msg.className = 'riley-msg riley-msg-riley';
+    msg.id = 'riley-typing-indicator';
+
+    var avatar = document.createElement('div');
+    avatar.className = 'riley-msg-avatar';
+    avatar.setAttribute('aria-hidden', 'true');
+    avatar.textContent = '🦊';
+
+    var bubble = document.createElement('div');
+    bubble.className = 'riley-bubble';
+    bubble.innerHTML = '<div class="riley-typing"><span></span><span></span><span></span></div>';
+
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    msgContainer.appendChild(msg);
+    scrollBottom();
+    return msg;
+  }
+
+  function removeTyping() {
+    var el = document.getElementById('riley-typing-indicator');
+    if (el) el.remove();
+  }
+
+  function addQuickReplies(replies, onSelect) {
+    var wrap = document.createElement('div');
+    wrap.className = 'riley-quick-replies';
+
+    replies.forEach(function(r) {
+      var btn = document.createElement('button');
+      btn.className = 'riley-qr';
+      btn.textContent = r.label;
+      btn.setAttribute('aria-label', r.label);
+      btn.addEventListener('click', function() {
+        // Mark selected, disable all
+        wrap.querySelectorAll('.riley-qr').forEach(function(b) {
+          b.disabled = true;
+          b.style.opacity = b === btn ? '1' : '0.35';
+        });
+        btn.classList.add('riley-qr-selected');
+        addMessage(r.label, true);
+        onSelect(r.value);
+      });
+      wrap.appendChild(btn);
+    });
+
+    msgContainer.appendChild(wrap);
+    scrollBottom();
+  }
+
+  function speak(text, delay) {
+    var typing = null;
+    return new Promise(function(resolve) {
+      typing = showTyping();
+      setTimeout(function() {
+        removeTyping();
+        addMessage(text, false).then(resolve);
+      }, delay || 850);
+    });
+  }
+
+  function showInputFor(placeholder, inputType) {
+    expectingInput = true;
+    inputArea.classList.remove('riley-hidden');
+    textInput.placeholder = placeholder || 'Type here…';
+    textInput.type = inputType || 'text';
+    setTimeout(function() { textInput.focus(); }, 100);
+  }
+
+  function hideInput() {
+    expectingInput = false;
+    inputArea.classList.add('riley-hidden');
+    textInput.value = '';
+  }
+
+  /* =====================================================
+     LEAD SUBMISSION
+  ===================================================== */
+  function submitLead() {
+    var payload = {
+      source:      'riley_chat',
+      space:       state.space,
+      size:        state.size,
+      timeline:    state.timeline,
+      contactType: state.contactType,
+      contact:     state.contact,
+      timestamp:   new Date().toISOString(),
+      page:        window.location.href
+    };
+
+    // Zapier / webhook
+    if (WEBHOOK_URL.indexOf('REPLACE') === -1) {
+      try {
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(function(){});
+      } catch(e) {}
+    }
+
+    // Mailto fallback — silent, opens nothing visible
+    try {
+      var subject = encodeURIComponent('Foxy Epoxy Chat Lead — ' + state.space + ' · ' + state.timeline);
+      var body = encodeURIComponent(
+        'New lead from Riley chat widget:\n\n' +
+        'Space: ' + state.space + '\n' +
+        'Size: ' + state.size + '\n' +
+        'Timeline: ' + state.timeline + '\n' +
+        state.contactType + ': ' + state.contact + '\n\n' +
+        'Submitted: ' + new Date().toLocaleString()
+      );
+      // We create an invisible link rather than window.location to avoid navigation
+      var a = document.createElement('a');
+      a.href = 'mailto:' + FALLBACK_MAIL + '?subject=' + subject + '&body=' + body;
+      a.style.display = 'none';
+      a.setAttribute('data-riley-mailto', '1');
+      document.body.appendChild(a);
+      // Don't auto-click — just make it available; webhook is the primary path
+    } catch(e) {}
+
+    saveSession();
+  }
+
+  /* =====================================================
+     CONVERSATION FLOW
+  ===================================================== */
+  function startFlow() {
+    // If already completed, show summary
+    if (state.done) {
+      renderDoneState();
+      return;
+    }
+
+    // Step 0 → 1: greeting
+    state.step = 1;
+    saveSession();
+
+    speak("Hey! I'm Riley, Foxy Epoxy's AI assistant 🦊 Quick question — what kind of space are we talking about?", 600)
+      .then(function() {
+        addQuickReplies([
+          { label: 'Garage',     value: 'garage'     },
+          { label: 'Basement',   value: 'basement'   },
+          { label: 'Commercial', value: 'commercial' },
+          { label: 'Other',      value: 'other'      }
+        ], function(val) {
+          state.space = val;
+          state.step = 2;
+          saveSession();
+          stepSize();
+        });
+      });
+  }
+
+  function stepSize() {
+    var sizeMsg = state.space === 'commercial'
+      ? "Got it — commercial space! How big are we talking?"
+      : (state.space === 'basement'
+        ? "Nice! About how big is the basement?"
+        : "Nice! About how big is the garage?");
+
+    speak(sizeMsg, 700).then(function() {
+      addQuickReplies([
+        { label: '1-car (~300 sf)',  value: '1-car'    },
+        { label: '2-car (~480 sf)',  value: '2-car'    },
+        { label: '3-car (~660 sf)',  value: '3-car'    },
+        { label: 'Not sure',         value: 'not-sure' }
+      ], function(val) {
+        state.size = val;
+        state.step = 3;
+        saveSession();
+        stepTimeline();
+      });
+    });
+  }
+
+  function stepTimeline() {
+    speak("When are you thinking?", 700).then(function() {
+      addQuickReplies([
+        { label: 'ASAP',            value: 'asap'      },
+        { label: 'This month',      value: 'month'     },
+        { label: 'Just exploring',  value: 'exploring' }
+      ], function(val) {
+        state.timeline = val;
+        state.step = 4;
+        saveSession();
+        if (val === 'asap' || val === 'month') {
+          stepPhone();
+        } else {
+          stepEmail();
+        }
+      });
+    });
+  }
+
+  function stepPhone() {
+    speak("Perfect — what's the best number to reach you? We can usually get an estimate out same week. 📅", 800)
+      .then(function() {
+        state.contactType = 'phone';
+        showInputFor('(512) 555-0000', 'tel');
+      });
+  }
+
+  function stepEmail() {
+    speak("No pressure at all! Want me to send you our color guide and pricing range so you have it when you're ready? Drop your email below.", 800)
+      .then(function() {
+        state.contactType = 'email';
+        showInputFor('you@email.com', 'email');
+      });
+  }
+
+  function handleInputSubmit() {
+    var val = textInput.value.trim();
+    if (!val) return;
+    hideInput();
+    addMessage(val, true);
+    state.contact = val;
+    state.step = 5;
+    state.done = true;
+    saveSession();
+    submitLead();
+    stepConfirmation();
+  }
+
+  function stepConfirmation() {
+    var msgPhone = "You're all set! 🎉 We'll reach out within 2 hours. In the meantime, check out our color picker above 🎨";
+    var msgEmail = "You're all set! 🎉 We'll send that your way shortly. Check out our color picker above when you're ready 🎨";
+    var msg = state.contactType === 'phone' ? msgPhone : msgEmail;
+
+    speak(msg, 800).then(function() {
+      renderDoneState();
+    });
+  }
+
+  function renderDoneState() {
+    restartEl.style.display = 'block';
+    hideInput();
+  }
+
+  /* =====================================================
+     TEXT INPUT SUBMISSION
+  ===================================================== */
+  sendBtn.addEventListener('click', function() {
+    if (expectingInput) handleInputSubmit();
+  });
+
+  textInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (expectingInput) handleInputSubmit();
+    }
+  });
+
+  /* Auto-grow textarea */
+  textInput.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+  });
+
+  /* =====================================================
+     RESTART
+  ===================================================== */
+  function resetRiley() {
+    state = { step: 0, space: '', size: '', timeline: '', contact: '', contactType: '', done: false };
+    saveSession();
+    msgContainer.innerHTML = '';
+    restartEl.style.display = 'none';
+    hideInput();
+    expectingInput = false;
+    startFlow();
+  }
+
+  restartEl.addEventListener('click', resetRiley);
+  restartEl.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') resetRiley();
+  });
+
+  /* =====================================================
+     INIT — restore session or wait for open
+  ===================================================== */
+  if (state.done) {
+    // Silently ready to show done state on open
+  } else if (state.step > 0) {
+    // Mid-session: will restart cleanly on open
+    state = { step: 0, space: '', size: '', timeline: '', contact: '', contactType: '', done: false };
+    saveSession();
+  }
+
+})();
+</script>
 </body>
 </html>
