@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Carousel — Stop using AI like a vending machine</title>
+<style>
+  :root{ --gold:#c8a45c; --gold-lite:#e6cd96; --navy:#0a1628; --navy2:#13243d;
+    --cream:#faf8f3; --ink:#0a1628; --mut:#9fb0c4; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+    background:#222;color:#fff;-webkit-font-smoothing:antialiased;padding:26px 0 60px}
+  .hint{max-width:520px;margin:0 auto 22px;padding:0 18px;color:#bbb;font-size:13px;text-align:center}
+  .deck{display:flex;flex-direction:column;align-items:center;gap:22px}
+  .slide{width:min(92vw,460px);aspect-ratio:1/1;border-radius:22px;overflow:hidden;position:relative;
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);
+    display:flex;flex-direction:column;justify-content:center;padding:40px 38px;
+    box-shadow:0 16px 40px rgba(0,0,0,.45)}
+  .slide.cream{background:linear-gradient(160deg,#fbf7ee 0%,#efe6d2 100%);color:var(--navy)}
+  .num{position:absolute;top:22px;right:26px;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--gold)}
+  .slide.cream .num{color:#b8923f}
+  .mark{position:absolute;bottom:22px;left:38px;font-size:12px;font-weight:700;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--gold)}
+  .slide.cream .mark{color:#b8923f}
+  .eyebrow{font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .slide.cream .eyebrow{color:#b8923f}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:700;line-height:1.12;font-size:40px}
+  h1 .g{color:var(--gold)} .slide.cream h1 .g{color:#b8923f}
+  p{font-size:21px;line-height:1.45;margin-top:6px}
+  .big{font-size:26px;line-height:1.35;font-weight:600}
+  .prompt{background:rgba(200,164,92,.12);border:1px solid rgba(200,164,92,.5);border-radius:14px;
+    padding:16px 18px;margin-top:16px;font-size:18px;line-height:1.45;font-style:italic;color:var(--gold-lite)}
+  .arrow{margin-top:16px;font-size:18px;color:#fff;font-weight:700}
+  .slide.cream .arrow{color:var(--navy)}
+  .swipe{position:absolute;bottom:20px;right:30px;font-size:13px;color:var(--mut)}
+  .cta-name{margin-top:18px;font-size:18px;font-weight:800;color:var(--gold)}
+</style>
+</head>
+<body>
+  <div class="hint">📱 Carousel — screenshot each square slide for IG/LinkedIn (or rebuild in Canva from the text). 8 slides.</div>
+  <div class="deck">
+
+    <div class="slide"><span class="num">1 / 8</span>
+      <div class="eyebrow">For business owners</div>
+      <h1>Stop using AI like a <span class="g">vending machine.</span></h1>
+      <p style="margin-top:18px">Use it like a chief of staff.</p>
+      <span class="mark">Zorba · I sell time</span><span class="swipe">swipe →</span>
+    </div>
+
+    <div class="slide cream"><span class="num">2 / 8</span>
+      <p class="big">A vending machine: you ask, it drops one thing, you walk away.</p>
+      <p style="margin-top:14px;color:#7a674a"><b>That's about 5% of what it can do.</b></p>
+      <span class="mark">Zorba</span>
+    </div>
+
+    <div class="slide"><span class="num">3 / 8</span>
+      <p class="big">A chief of staff knows your week, your goals, your inbox —</p>
+      <p style="margin-top:12px;color:var(--gold-lite)">and quietly runs the boring parts so you don't have to.</p>
+      <span class="mark">Zorba</span>
+    </div>
+
+    <div class="slide cream"><span class="num">4 / 8</span>
+      <div class="eyebrow">Steal this · Email</div>
+      <p class="big">Don't say "write an email." Paste the whole messy thread:</p>
+      <div class="prompt" style="background:rgba(184,146,63,.1);border-color:rgba(184,146,63,.4);color:#5a4a28">"Tell me the decision needed, who owns the next step, and a reply I can send right now."</div>
+      <div class="arrow">→ 15 minutes becomes 2.</div>
+      <span class="mark">Zorba</span>
+    </div>
+
+    <div class="slide"><span class="num">5 / 8</span>
+      <div class="eyebrow">Steal this · Decisions</div>
+      <p class="big">Don't ask "should I do X?"</p>
+      <div class="prompt">"Here's my situation. Argue both sides honestly, then tell me what you'd do and why."</div>
+      <div class="arrow">→ A thinking partner, not a yes-man.</div>
+      <span class="mark">Zorba</span>
+    </div>
+
+    <div class="slide cream"><span class="num">6 / 8</span>
+      <div class="eyebrow">Steal this · Your day</div>
+      <div class="prompt" style="background:rgba(184,146,63,.1);border-color:rgba(184,146,63,.4);color:#5a4a28">"Here's everything on my plate. What are the 3 things that actually move the needle today — and what can wait?"</div>
+      <div class="arrow">→ Start the day pointed the right way.</div>
+      <span class="mark">Zorba</span>
+    </div>
+
+    <div class="slide"><span class="num">7 / 8</span>
+      <h1 style="font-size:36px">Stop <span class="g">fetching answers.</span><br>Start <span class="g">handing off work.</span></h1>
+      <p style="margin-top:18px;color:var(--gold-lite)">That's where the hours come back.</p>
+      <span class="mark">Zorba</span>
+    </div>
+
+    <div class="slide cream"><span class="num">8 / 8</span>
+      <p class="big">I build this into businesses — so the stuff you hate doing just… gets done.</p>
+      <p style="margin-top:12px;color:#7a674a">Got a task you dread? That's where we start.</p>
+      <div class="cta-name" style="color:#b8923f">— Zorba · I don't sell AI. I sell time.</div>
+    </div>
+
+  </div>
+</body>
+</html>

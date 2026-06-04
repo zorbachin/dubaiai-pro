@@ -123,6 +123,22 @@
       "check": "clients/ambo/Ambo-proposal.html",
       "note": "For signing next week. Jack: cut payroll report-review time, undercut a SaaS.",
       "derived": true
+    },
+    {
+      "id": "carousel-vending",
+      "title": "Post carousel: 'AI like a vending machine'",
+      "status": "pending",
+      "source": "manual",
+      "check": "Zorba posts the carousel IG/LI",
+      "note": "Ready: content/carousel-vending-machine.html (screenshot slides) + .md (text+caption). First of the carousel workstream."
+    },
+    {
+      "id": "substack-002",
+      "title": "Publish Zorbasphere Issue 002 ('I sell time')",
+      "status": "pending",
+      "source": "manual",
+      "check": "published on Substack (nudge-scheduled 6/7)",
+      "note": "Full draft ready: content/substack-issue-002.md. Can publish anytime; nudge has 6/7."
     }
   ]
 }
