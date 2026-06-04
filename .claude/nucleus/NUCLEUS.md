@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-04 06:03 UTC
 - **Branch:** `claude/floori-competitor-analysis-gGYEs`
-- **Last commit:** b08c7c4 Add 3 SEO blog posts targeting Austin epoxy keywords GFP ignores — 89 minutes ago
+- **Last commit:** 0f3b37f chore: refresh nucleus live state [skip ci] — 6 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+0f3b37f chore: refresh nucleus live state [skip ci] (6 seconds ago)
 b08c7c4 Add 3 SEO blog posts targeting Austin epoxy keywords GFP ignores (89 minutes ago)
 c967386 chore: refresh nucleus live state [skip ci] (2 hours ago)
 3c64899 Add design prompt pack + first SEO blog post (2 hours ago)
 07f7337 chore: refresh nucleus live state [skip ci] (2 hours ago)
-5de49da Add Foxy Epoxy blog index page (SEO content hub) (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
