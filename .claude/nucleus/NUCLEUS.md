@@ -171,22 +171,28 @@ Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Gre
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-04 04:30 UTC
+- **When:** 2026-06-04 06:03 UTC
 - **Branch:** `claude/floori-competitor-analysis-gGYEs`
-- **Last commit:** 3c64899 Add design prompt pack + first SEO blog post — 8 seconds ago
+- **Last commit:** b08c7c4 Add 3 SEO blog posts targeting Austin epoxy keywords GFP ignores — 89 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-3c64899 Add design prompt pack + first SEO blog post (8 seconds ago)
-07f7337 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-5de49da Add Foxy Epoxy blog index page (SEO content hub) (2 minutes ago)
-8566d5e Add Riley AI lead-qualification chat widget to Foxy Epoxy site (3 minutes ago)
-24d0110 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+b08c7c4 Add 3 SEO blog posts targeting Austin epoxy keywords GFP ignores (89 minutes ago)
+c967386 chore: refresh nucleus live state [skip ci] (2 hours ago)
+3c64899 Add design prompt pack + first SEO blog post (2 hours ago)
+07f7337 chore: refresh nucleus live state [skip ci] (2 hours ago)
+5de49da Add Foxy Epoxy blog index page (SEO content hub) (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
