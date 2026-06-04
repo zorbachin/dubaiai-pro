@@ -171,9 +171,9 @@ Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Gre
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 17:27 UTC
-- **Branch:** `main`
-- **Last commit:** c55a864 chore: refresh nucleus live state [skip ci] — 15 seconds ago
+- **When:** 2026-06-04 09:56 UTC
+- **Branch:** `claude/floori-competitor-analysis-gGYEs`
+- **Last commit:** f13d529 chore: refresh nucleus live state [skip ci] — 10 seconds ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-c55a864 chore: refresh nucleus live state [skip ci] (15 seconds ago)
-c5726ff chore: refresh nucleus live state [skip ci] (20 minutes ago)
-cb7f9c7 chore: refresh nucleus live state [skip ci] (21 minutes ago)
-ef4cd2c chore: refresh nucleus live state [skip ci] (60 minutes ago)
-db7c7e3 Aspirational family framing + durable privacy rule (#65) (61 minutes ago)
+f13d529 chore: refresh nucleus live state [skip ci] (10 seconds ago)
+96babb2 Add Foxy Epoxy rep tool + customer proposal page with before/after slider (66 seconds ago)
+20ee520 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+0d0f349 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+f3c0a95 chore: refresh nucleus live state [skip ci] (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
