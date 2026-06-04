@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epoxy Garage Floor Blog | Foxy Epoxy Austin TX</title>
+  <meta name="description" content="Expert guides on epoxy garage floors in Austin, TX. Real pricing, honest comparisons, and everything you need to know before hiring a contractor.">
+  <link rel="canonical" href="https://foxyepoxy.com/blog/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --card: #1a1a1a;
+      --card-hover: #202020;
+      --border: #2a2a2a;
+      --border-light: #333;
+      --orange: #FF4820;
+      --orange-hover: #FF6040;
+      --orange-glow: rgba(255,72,32,0.18);
+      --orange-pale: rgba(255,72,32,0.08);
+      --white: #ffffff;
+      --text-primary: #f0f0f0;
+      --text-secondary: #999;
+      --text-muted: #555;
+      --font-head: 'Syne', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --r-sm: 6px;
+      --r-md: 12px;
+      --r-lg: 20px;
+      --r-xl: 28px;
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+      --shadow-orange: 0 8px 40px rgba(255,72,32,0.25);
+      --transition: 0.25s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    .container { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); background: var(--orange-pale); border: 1px solid rgba(255,72,32,0.2); padding: 6px 14px; border-radius: 100px; }
+    .tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
+    h1,h2,h3,h4 { font-family: var(--font-head); font-weight: 800; line-height: 1.05; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: var(--r-md); font-family: var(--font-head); font-size: 15px; font-weight: 700; letter-spacing: 0.03em; transition: var(--transition); white-space: nowrap; }
+    .btn-orange { background: var(--orange); color: var(--white); box-shadow: var(--shadow-orange); }
+    .btn-orange:hover { background: var(--orange-hover); transform: translateY(-2px); box-shadow: 0 12px 48px rgba(255,72,32,0.35); }
+    .btn-outline { background: transparent; color: var(--text-primary); border: 1px solid var(--border-light); }
+    .btn-outline:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-pale); }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; transition: background 0.3s ease, padding 0.3s ease; }
+    #nav.scrolled { background: rgba(10,10,10,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .nav-logo { font-family: var(--font-head); font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .nav-phone { font-family: var(--font-head); font-weight: 700; font-size: 14px; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-phone:hover { color: var(--orange); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: var(--transition); }
+    .mobile-menu { display: none; position: fixed; inset: 0; z-index: 999; background: var(--bg); flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--font-head); font-size: 28px; font-weight: 800; color: var(--text-primary); }
+    .mobile-menu a:hover { color: var(--orange); }
+    .mobile-menu-close { position: absolute; top: 24px; right: 24px; font-size: 28px; color: var(--text-secondary); background: none; border: none; cursor: pointer; }
+
+    /* PAGE HERO */
+    .blog-hero { padding: 140px 0 80px; background: var(--bg); position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+    .blog-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(255,72,32,0.09) 0%, transparent 70%); pointer-events: none; }
+    .blog-hero-inner { position: relative; z-index: 1; text-align: center; }
+    .blog-hero .tag { margin-bottom: 20px; }
+    .blog-hero h1 { font-size: clamp(36px, 5vw, 64px); margin-bottom: 20px; }
+    .blog-hero h1 span { color: var(--orange); }
+    .blog-hero p { font-size: 18px; color: var(--text-secondary); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+
+    /* BLOG GRID */
+    .blog-section { padding: 80px 0 120px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .article-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; transition: background var(--transition), border-color var(--transition), transform var(--transition); display: flex; flex-direction: column; }
+    .article-card:hover { background: var(--card-hover); border-color: var(--border-light); transform: translateY(-4px); }
+    .article-card-thumb { height: 220px; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 20px; }
+    .article-card-thumb::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.7) 100%); }
+    .card-1-thumb { background: linear-gradient(135deg, #1a0d05 0%, #3d1a0a 40%, #FF4820 100%); }
+    .card-2-thumb { background: linear-gradient(135deg, #080f1a 0%, #0f1e35 40%, #c8a45c 100%); }
+    .card-3-thumb { background: linear-gradient(135deg, #0a1a0a 0%, #1a3520 40%, #22c55e 100%); }
+    .card-4-thumb { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 40%, #999 100%); }
+    .article-category { position: relative; z-index: 1; font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: var(--orange); color: white; padding: 4px 10px; border-radius: 100px; }
+    .article-card-body { padding: 28px 32px 32px; flex: 1; display: flex; flex-direction: column; }
+    .article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+    .article-meta span { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+    .article-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-light); }
+    .article-card h2 { font-size: clamp(18px, 2vw, 22px); font-weight: 800; line-height: 1.2; margin-bottom: 12px; color: var(--text-primary); transition: color var(--transition); }
+    .article-card:hover h2 { color: var(--orange); }
+    .article-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; flex: 1; margin-bottom: 24px; }
+    .article-read-more { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-head); font-size: 13px; font-weight: 700; color: var(--orange); letter-spacing: 0.04em; text-transform: uppercase; transition: gap var(--transition); }
+    .article-card:hover .article-read-more { gap: 10px; }
+
+    /* CTA BAND */
+    .blog-cta-band { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 0; }
+    .blog-cta-inner { text-align: center; }
+    .blog-cta-inner h2 { font-size: clamp(30px, 4vw, 48px); margin-bottom: 16px; }
+    .blog-cta-inner h2 span { color: var(--orange); }
+    .blog-cta-inner p { font-size: 17px; color: var(--text-secondary); max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; margin: 12px 0 20px; max-width: 280px; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; transition: color var(--transition); }
+    .footer-contact a:hover { color: var(--orange); }
+    .footer-col h5 { font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { font-size: 14px; color: var(--text-secondary); transition: color var(--transition); }
+    .footer-col ul li a:hover { color: var(--orange); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .footer-bottom p { font-size: 13px; color: var(--text-muted); }
+
+    @media (max-width: 900px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-cta .btn { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .blog-hero { padding: 120px 0 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="../" class="nav-logo">Foxy<span>Epoxy</span></a>
+      <div class="nav-links">
+        <a href="../#services">Services</a>
+        <a href="../#calculator">Pricing</a>
+        <a href="../#testimonials">Reviews</a>
+        <a href="/" class="active">Blog</a>
+        <a href="../#quote">Get Quote</a>
+      </div>
+      <div class="nav-cta">
+        <a href="tel:+15125550100" class="nav-phone">📞 (512) 555-0100</a>
+        <a href="../#quote" class="btn btn-orange">Free Estimate</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <a href="../#services">Services</a>
+  <a href="../#calculator">Pricing</a>
+  <a href="../#testimonials">Reviews</a>
+  <a href="/">Blog</a>
+  <a href="tel:+15125550100">📞 (512) 555-0100</a>
+  <a href="../#quote" class="btn btn-orange" style="margin-top:8px;">Free Estimate</a>
+</div>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <div class="container">
+    <div class="blog-hero-inner">
+      <div class="tag">Austin Epoxy Resource Guide</div>
+      <h1>Know Before You <span>Hire Anyone.</span></h1>
+      <p>Real answers on pricing, coatings, and what separates a 20-year floor from one that peels in three. Written by an Austin contractor — not a content mill.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG GRID -->
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-grid">
+
+      <!-- Article 1 -->
+      <a href="epoxy-floor-cost-austin.html" class="article-card">
+        <div class="article-card-thumb card-1-thumb">
+          <span class="article-category">Pricing</span>
+        </div>
+        <div class="article-card-body">
+          <div class="article-meta">
+            <span>June 2026</span>
+            <div class="dot"></div>
+            <span>8 min read</span>
+            <div class="dot"></div>
+            <span>Austin, TX</span>
+          </div>
+          <h2>How Much Does an Epoxy Garage Floor Cost in Austin, TX? (2026 Guide)</h2>
+          <p>1-car, 2-car, and 3-car price ranges with real Austin numbers. Why the $899 quotes you see on Facebook are a setup for disaster — and what transparent pricing actually looks like.</p>
+          <span class="article-read-more">Read the Guide →</span>
+        </div>
+      </a>
+
+      <!-- Article 2 -->
+      <a href="polyaspartic-vs-epoxy-austin.html" class="article-card">
+        <div class="article-card-thumb card-2-thumb">
+          <span class="article-category">Coatings 101</span>
+        </div>
+        <div class="article-card-body">
+          <div class="article-meta">
+            <span>May 2026</span>
+            <div class="dot"></div>
+            <span>7 min read</span>
+            <div class="dot"></div>
+            <span>Austin, TX</span>
+          </div>
+          <h2>Polyaspartic vs. Epoxy Garage Floor: Which Is Better for Austin, TX?</h2>
+          <p>Austin summers are brutal. Find out which coating holds up to 100°F heat, UV exposure, and the freeze-thaw cycles that crack inferior floors — and when each coating makes sense for your budget.</p>
+          <span class="article-read-more">Read the Guide →</span>
+        </div>
+      </a>
+
+      <!-- Article 3 -->
+      <a href="how-long-epoxy-floor-lasts.html" class="article-card">
+        <div class="article-card-thumb card-3-thumb">
+          <span class="article-category">Durability</span>
+        </div>
+        <div class="article-card-body">
+          <div class="article-meta">
+            <span>May 2026</span>
+            <div class="dot"></div>
+            <span>6 min read</span>
+            <div class="dot"></div>
+            <span>Austin, TX</span>
+          </div>
+          <h2>How Long Does an Epoxy Garage Floor Last? (And Why Most Fail Early)</h2>
+          <p>Done right, an epoxy floor should last 15–20 years. Most floors that peel or chip after a few years weren't done right. Here's what actually kills a floor — and what our lifetime warranty covers.</p>
+          <span class="article-read-more">Read the Guide →</span>
+        </div>
+      </a>
+
+      <!-- Coming Soon Card -->
+      <div class="article-card" style="opacity: 0.5; cursor: default;">
+        <div class="article-card-thumb card-4-thumb">
+          <span class="article-category">Coming Soon</span>
+        </div>
+        <div class="article-card-body">
+          <div class="article-meta">
+            <span>July 2026</span>
+            <div class="dot"></div>
+            <span>Coming Soon</span>
+          </div>
+          <h2>Best Garage Floor Coating in Austin, TX: An Honest Comparison</h2>
+          <p>We go head-to-head on every coating type available in Austin — epoxy, polyaspartic, polyurea, and acrylic sealers — so you can make an informed decision without the sales pressure.</p>
+          <span class="article-read-more" style="color: var(--text-muted);">Coming July 2026</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="blog-cta-band">
+  <div class="container">
+    <div class="blog-cta-inner">
+      <h2>Ready to Stop Reading<br>and <span>Start Building?</span></h2>
+      <p>Get a free, no-pressure estimate for your Austin garage. We'll give you a real number — not a bait-and-switch quote that doubles when we show up.</p>
+      <div class="cta-buttons">
+        <a href="../#quote" class="btn btn-orange" style="font-size:16px; padding:18px 40px;">Get My Free Estimate →</a>
+        <a href="tel:+15125550100" class="btn btn-outline">📞 (512) 555-0100</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;">Foxy<span style="color:var(--orange);">Epoxy</span></div>
+        <p>Austin's premium epoxy & polyaspartic garage floor specialists. Transparent pricing, lifetime warranty, owner on every job.</p>
+        <div class="footer-contact">
+          <a href="tel:+15125550100">📞 (512) 555-0100</a>
+          <a href="mailto:info@foxyepoxy.com">✉️ info@foxyepoxy.com</a>
+          <a href="#">📍 Austin, TX — Serving Central Texas</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="../#services">Epoxy Garage Floors</a></li>
+          <li><a href="../#services">Polyaspartic Coatings</a></li>
+          <li><a href="../#services">Metallic Epoxy</a></li>
+          <li><a href="../#services">Commercial Flooring</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="../#calculator">Pricing Calculator</a></li>
+          <li><a href="epoxy-floor-cost-austin.html">Cost Guide</a></li>
+          <li><a href="polyaspartic-vs-epoxy-austin.html">Polyaspartic vs Epoxy</a></li>
+          <li><a href="how-long-epoxy-floor-lasts.html">How Long It Lasts</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="../#testimonials">Reviews</a></li>
+          <li><a href="../#process">How It Works</a></li>
+          <li><a href="../#areas">Service Areas</a></li>
+          <li><a href="../#quote">Free Estimate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Foxy Epoxy · Austin, TX · All rights reserved</p>
+      <p>Epoxy Garage Floors Austin TX · Polyaspartic Coatings Austin · Garage Floor Coating Cedar Park TX</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileClose = document.getElementById('mobile-menu-close');
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+</script>
+</body>
+</html>
