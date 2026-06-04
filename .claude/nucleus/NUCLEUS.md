@@ -66,6 +66,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-04 03:28 UTC · code
+CONTENT BATCH delivered (Zorba editing documentary all day, wants content out + carousel workstream + maybe article 2 + engagement help): (1) CAROUSEL workstream kicked off — content/carousel-vending-machine.html (8 designed slides, brand navy/gold) + .md (slide text + caption) = 'Stop using AI like a vending machine / use it like a chief of staff' (value/teaching = saves). (2) SUBSTACK ISSUE 002 full draft content/substack-issue-002.md ('I Don't Sell AI. I Sell Time.' — first-client story, build-in-public, 'can't make more Tuesday'). Publishable now; nudge slots it 6/7. (3) ENGAGEMENT PLAYBOOK content/engagement-playbook.md — answer to 'post a month vs do more': do both but compound it; 5 levers (hook=80%, win FB first, 15min/day outward commenting = cheat code, 1 idea->5 posts, always ask for action); track 4 numbers (saves/shares, profile visits, replies/DMs, leads); realistic 30-day plan on the existing nudge engine. All committed + sent. OFFERED next: build 2 more carousels / spin Issue002 into note+carousel+video / set up Friday review nudge. REMINDER still open: 'apply the hook fix' (Stop-hook auto-persist, classifier-blocked, kills the commit nag) + closing-tool licensing answer (parked).
+
 ### 2026-06-03 19:49 UTC · code
 OVERNIGHT BATCH (Zorba away, authorized 'spend the night fixing/testing/improving + prepping'): (1) MEMORY SYSTEM FIXED+TESTED: nucleus now self-heals git-conflict markers on every write (cleaned the corrupted HANDOFFS), added 'nucleus doctor' integrity self-test (markers/conflicts/tasks), smoke-tested all commands + serve endpoints (/ /command.json /nucleus.json /widget.js all 200) — doctor = healthy. (2) STOP-HOOK FIX BLOCKED BY GUARD: rewrote nucleus-stop.sh to always commit+push the memory files (NUCLEUS.md+tasks.json) path-limited so it never self-nags — but the auto-mode classifier BLOCKED editing the hook (agent-behavior/self-modification). NEEDS ZORBA's explicit OK to apply (or a settings permission rule). This is the root cause of the recurring 'uncommitted changes' nag. (3) CONTENT for 6/4 ready + sent: content/2026-06-04.md (FB/IG/LI/X + Substack Note; theme = first paying client / 'I sell time not AI'). (4) SIGNING PREP for next week, sent: clients/foxy/Foxy-proposal.html (Instant Proposals closing tool) + clients/ambo/Ambo-proposal.html (Jack payroll review autopilot, replace SaaS) — no-price style like PBG. Re-engage drafts for Isaac (Vybewear) + Kevin (Foxy) already in Drafts. STILL QUEUED/solo-able: Vybewear GTAA outreach build, closing-tool licensing/key-security architecture answer (parked), Netlify off-brand proposal link (their API was 502).
 
@@ -182,30 +185,33 @@ CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 q
 
 ### 2026-06-02 09:36 UTC · chat
 NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
-
-### 2026-06-02 09:19 UTC · chat
-PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product structure: COVER -> ADHD ONE-PAGER (whole system at a glance, 1 page) -> DEEP WALKTHROUGH (numbered steps, easy-to-follow) -> each step has a copy-paste PROMPT box with CLICKABLE 'Run in ChatGPT/Claude' links that auto-fill (chatgpt.com/?q= and claude.ai/new?q= URL-encoded) -> bonus prompt pack -> Work-With-Me CTA. Engine upgraded (bin/etsybuild.py: onepager/step/prompt blocks). Flagship #01 rebuilt as the exemplar/template (6KB->22KB). AWAITING format approval, then batch all 20 to this template + reprice bundle to $60.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-03 19:50 UTC
+- **When:** 2026-06-04 03:28 UTC
 - **Branch:** `claude/epic-einstein-jPNIL`
-- **Last commit:** 41201d4 chore: refresh nucleus memory [skip ci] — 21 seconds ago
+- **Last commit:** 82013b8 Content batch: vending-machine carousel (html+text), Substack Issue 002 draft, engagement playbook — 55 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-41201d4 chore: refresh nucleus memory [skip ci] (21 seconds ago)
-768595c Add Foxy Epoxy + Ambo signing one-pagers (for next week), no-price style (64 seconds ago)
-f69ffc4 Content pack for 6/4 (first-client / sell-time, all platforms) + queue Foxy/Ambo proposals (3 minutes ago)
-03b5043 nucleus: self-heal conflict markers on write + add 'doctor' integrity self-test; clean corrupted handoffs (5 minutes ago)
-7f6c5bf chore: refresh nucleus live state [skip ci] (3 hours ago)
+82013b8 Content batch: vending-machine carousel (html+text), Substack Issue 002 draft, engagement playbook (55 seconds ago)
+e0fce1c chore: refresh nucleus live state [skip ci] (8 hours ago)
+41201d4 chore: refresh nucleus memory [skip ci] (8 hours ago)
+768595c Add Foxy Epoxy + Ambo signing one-pagers (for next week), no-price style (8 hours ago)
+f69ffc4 Content pack for 6/4 (first-client / sell-time, all platforms) + queue Foxy/Ambo proposals (8 hours ago)
 ```
 <!-- AUTOSTATE:END -->
