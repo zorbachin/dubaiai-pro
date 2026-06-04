@@ -171,22 +171,28 @@ Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Gre
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-04 04:08 UTC
+- **When:** 2026-06-04 04:25 UTC
 - **Branch:** `claude/floori-competitor-analysis-gGYEs`
-- **Last commit:** be04bfa chore: refresh nucleus live state [skip ci] — 6 seconds ago
+- **Last commit:** 8a00be7 chore: refresh nucleus live state [skip ci] — 17 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-be04bfa chore: refresh nucleus live state [skip ci] (6 seconds ago)
-50da96b Embed live closing tool from closingtool.netlify.app in Phase 1 section (14 seconds ago)
-e666718 chore: refresh nucleus live state [skip ci] (39 minutes ago)
-f48d193 Add Previz product proposal page — Phases 1/2/3 roadmap (40 minutes ago)
-dfc5160 chore: refresh nucleus live state [skip ci] (49 minutes ago)
+8a00be7 chore: refresh nucleus live state [skip ci] (17 minutes ago)
+be04bfa chore: refresh nucleus live state [skip ci] (17 minutes ago)
+50da96b Embed live closing tool from closingtool.netlify.app in Phase 1 section (17 minutes ago)
+e666718 chore: refresh nucleus live state [skip ci] (56 minutes ago)
+f48d193 Add Previz product proposal page — Phases 1/2/3 roadmap (56 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
