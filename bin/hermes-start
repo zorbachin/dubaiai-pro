@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# bin/hermes-start — start Hermes gateway (Telegram bot) in the background
+#
+# Usage:
+#   bin/hermes-start            # start gateway (keeps running, logs to ~/.hermes/gateway.log)
+#   bin/hermes-start --fg       # start in foreground (see live logs)
+#   bin/hermes-start --stop     # stop the gateway
+#   bin/hermes-start --status   # check if running
+
+export PATH="$HOME/.local/bin:$PATH"
+LOG="$HOME/.hermes/gateway.log"
+PID_FILE="$HOME/.hermes/gateway.pid"
+
+case "${1:-}" in
+  --stop)
+    if [ -f "$PID_FILE" ]; then
+      PID=$(cat "$PID_FILE")
+      kill "$PID" 2>/dev/null && echo "✓ gateway stopped (pid $PID)" || echo "⚠ gateway wasn't running"
+      rm -f "$PID_FILE"
+    else
+      echo "⚠ no gateway pid file found"
+    fi
+    ;;
+  --status)
+    if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+      echo "✓ gateway running (pid $(cat "$PID_FILE"))"
+    else
+      echo "✗ gateway not running"
+    fi
+    ;;
+  --fg)
+    echo "→ Starting Hermes gateway in foreground (Ctrl+C to stop) ..."
+    hermes gateway start
+    ;;
+  *)
+    echo "→ Starting Hermes gateway in background ..."
+    mkdir -p "$(dirname "$LOG")"
+    nohup hermes gateway start > "$LOG" 2>&1 &
+    PID=$!
+    echo "$PID" > "$PID_FILE"
+    echo "✓ gateway started (pid $PID)"
+    echo "  logs: tail -f $LOG"
+    echo "  stop: bin/hermes-start --stop"
+    ;;
+esac

@@ -1,0 +1,68 @@
+# Hermes Agent — Zorba AI OS Configuration
+# Applied by bin/hermes-setup → copied to ~/.hermes/config.yaml
+#
+# Root cause of token drain: Hermes defaults to Opus (very expensive) and
+# lets cron + tool loops run unbounded. This config fixes both.
+
+# =============================================================================
+# Model — use Sonnet, not Opus. Same quality for most tasks, 5× cheaper.
+# =============================================================================
+model:
+  default: "anthropic/claude-sonnet-4-6"
+  provider: "auto"       # auto-detects from OPENROUTER_API_KEY or ANTHROPIC_API_KEY
+  base_url: "https://openrouter.ai/api/v1"
+
+# =============================================================================
+# Turn limit — prevents runaway tool loops from eating the budget
+# =============================================================================
+max_turns: 25
+
+# =============================================================================
+# Context compression — compress aggressively to save tokens in long sessions
+# =============================================================================
+compression:
+  enabled: true
+  threshold: 0.65        # compress at 65% full (earlier = cheaper)
+  target_ratio: 0.15     # keep only 15% of old context after compress
+  protect_last: 15       # always preserve last 15 messages
+  protect_first: 3       # always preserve first 3 (system context)
+
+# =============================================================================
+# Cron — disable autonomous background runs by default.
+# Enable individual jobs manually with: hermes cron add "..." --every 1d
+# Leaving this on with expensive models = token drain.
+# =============================================================================
+cron:
+  enabled: false
+
+# =============================================================================
+# Terminal — local execution, conservative timeout
+# =============================================================================
+terminal:
+  backend: "local"
+  timeout: 60
+  cwd: "."
+
+# =============================================================================
+# Timezone — Tel Aviv
+# =============================================================================
+timezone: "Asia/Jerusalem"
+
+# =============================================================================
+# Display
+# =============================================================================
+display:
+  bell: false
+  personality: none
+  reasoning: off
+
+# =============================================================================
+# Toolsets — start minimal to reduce autonomous token use
+# =============================================================================
+toolsets:
+  default:
+    - terminal
+    - files
+    - search
+    - memory
+    - web

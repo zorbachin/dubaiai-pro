@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+# bin/hermes-setup — one-command Hermes Agent installer + configurator
+#
+# Usage:
+#   bin/hermes-setup                      # interactive (recommended)
+#   bin/hermes-setup --skip-keys          # install only, configure keys later
+#   bin/hermes-setup --update             # pull latest and reinstall
+#
+# What it does:
+#   1. Clones NousResearch/hermes-agent to ~/hermes-agent (skips if exists)
+#   2. Runs setup-hermes.sh (creates venv, installs deps, symlinks `hermes`)
+#   3. Applies our tuned config (Sonnet model, cron off, Tel Aviv tz)
+#   4. Copies the .env template and prompts for API key + Telegram token
+#   5. Prints verification: hermes status
+
+set -e
+
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
+RED='\033[0;31m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+ok()   { echo -e "${GREEN}✓${NC} $*"; }
+info() { echo -e "${CYAN}→${NC} $*"; }
+warn() { echo -e "${YELLOW}⚠${NC}  $*"; }
+err()  { echo -e "${RED}✗${NC} $*"; }
+hr()   { echo -e "${CYAN}──────────────────────────────────────────${NC}"; }
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(dirname "$SCRIPT_DIR")"
+HERMES_CONFIG_DIR="$REPO_ROOT/.hermes-config"
+HERMES_INSTALL_DIR="$HOME/hermes-agent"
+HERMES_HOME="$HOME/.hermes"
+SKIP_KEYS=false
+UPDATE=false
+
+for arg in "$@"; do
+  case "$arg" in
+    --skip-keys) SKIP_KEYS=true ;;
+    --update)    UPDATE=true ;;
+  esac
+done
+
+hr
+echo ""
+echo -e "  ${BOLD}⚕ Zorba AI OS — Hermes Agent Setup${NC}"
+echo ""
+hr
+echo ""
+
+# ─── 1. Clone / update hermes-agent ─────────────────────────────────────────
+
+if [ -d "$HERMES_INSTALL_DIR" ] && [ "$UPDATE" = false ]; then
+  ok "hermes-agent already cloned at $HERMES_INSTALL_DIR (use --update to refresh)"
+else
+  info "Cloning NousResearch/hermes-agent → $HERMES_INSTALL_DIR ..."
+  if [ -d "$HERMES_INSTALL_DIR" ]; then
+    git -C "$HERMES_INSTALL_DIR" pull origin main
+  else
+    git clone https://github.com/NousResearch/hermes-agent.git "$HERMES_INSTALL_DIR"
+  fi
+  ok "hermes-agent cloned"
+fi
+
+# ─── 2. Run the official setup script ───────────────────────────────────────
+
+info "Running setup-hermes.sh (installs deps, creates venv, symlinks hermes) ..."
+echo ""
+# Run non-interactively — skip the end-of-script wizard prompt
+(
+  cd "$HERMES_INSTALL_DIR"
+  # Feed 'n' to the "run wizard now?" prompt so setup completes cleanly
+  echo "n" | bash setup-hermes.sh
+)
+echo ""
+ok "Hermes Agent installed"
+
+# Ensure ~/.local/bin is on PATH for this session
+export PATH="$HOME/.local/bin:$PATH"
+
+# ─── 3. Apply our tuned config ───────────────────────────────────────────────
+
+info "Applying tuned config (Sonnet model, cron off, Tel Aviv timezone) ..."
+mkdir -p "$HERMES_HOME"
+cp "$HERMES_CONFIG_DIR/config.yaml" "$HERMES_HOME/config.yaml"
+ok "Config applied → $HERMES_HOME/config.yaml"
+
+# ─── 4. Copy system prompt ───────────────────────────────────────────────────
+
+info "Installing Zorba AI OS system prompt ..."
+HERMES_RULES_DIR="$HERMES_HOME/rules"
+mkdir -p "$HERMES_RULES_DIR"
+cp "$HERMES_CONFIG_DIR/system-prompt.md" "$HERMES_RULES_DIR/zorba-os.md"
+ok "System prompt → $HERMES_RULES_DIR/zorba-os.md"
+
+# ─── 5. Configure API keys ───────────────────────────────────────────────────
+
+HERMES_ENV="$HERMES_HOME/.env"
+
+if [ "$SKIP_KEYS" = true ]; then
+  warn "--skip-keys: skipping API key setup. Edit $HERMES_ENV manually."
+else
+  echo ""
+  hr
+  echo ""
+  echo -e "  ${BOLD}API Key Setup${NC}"
+  echo ""
+  echo "  Your API keys go here: $HERMES_ENV"
+  echo ""
+
+  # Copy template if .env doesn't exist yet
+  if [ ! -f "$HERMES_ENV" ]; then
+    cp "$HERMES_CONFIG_DIR/.env.template" "$HERMES_ENV"
+    ok "Created $HERMES_ENV from template"
+  else
+    ok ".env already exists — updating only missing keys"
+  fi
+
+  echo ""
+  echo "  Pick your LLM provider:"
+  echo "  [1] OpenRouter (recommended — one key, access to all models)"
+  echo "      Get key: https://openrouter.ai/keys"
+  echo "  [2] Direct Anthropic API"
+  echo "      Get key: https://console.anthropic.com/settings/keys"
+  echo ""
+  read -p "  Enter 1 or 2: " PROVIDER_CHOICE
+  echo ""
+
+  case "$PROVIDER_CHOICE" in
+    1)
+      read -p "  Paste your OpenRouter API key: " OR_KEY
+      if [ -n "$OR_KEY" ]; then
+        sed -i.bak "s|^OPENROUTER_API_KEY=.*|OPENROUTER_API_KEY=$OR_KEY|" "$HERMES_ENV"
+        ok "OpenRouter key saved"
+      fi
+      ;;
+    2)
+      read -p "  Paste your Anthropic API key: " AN_KEY
+      if [ -n "$AN_KEY" ]; then
+        sed -i.bak "s|^# ANTHROPIC_API_KEY=.*|ANTHROPIC_API_KEY=$AN_KEY|" "$HERMES_ENV"
+        # Update config to use direct Anthropic provider
+        sed -i.bak 's|provider: "auto"|provider: "anthropic"|' "$HERMES_HOME/config.yaml"
+        ok "Anthropic key saved + config updated to direct Anthropic"
+      fi
+      ;;
+    *)
+      warn "No provider selected. Add your key manually to $HERMES_ENV"
+      ;;
+  esac
+
+  # Telegram
+  echo ""
+  hr
+  echo ""
+  echo -e "  ${BOLD}Telegram Gateway${NC}"
+  echo ""
+  echo "  This lets you message Hermes from your phone 24/7."
+  echo ""
+  read -p "  Paste your Telegram bot token (from @BotFather): " TG_TOKEN
+  if [ -n "$TG_TOKEN" ]; then
+    sed -i.bak "s|^TELEGRAM_BOT_TOKEN=.*|TELEGRAM_BOT_TOKEN=$TG_TOKEN|" "$HERMES_ENV"
+    ok "Telegram bot token saved"
+    echo ""
+    echo "  Now get your Telegram user ID:"
+    echo "  Open Telegram → search @userinfobot → send /start"
+    echo "  Copy the 'Id' number it gives you."
+    echo ""
+    read -p "  Your Telegram user ID (numbers only): " TG_USER_ID
+    if [ -n "$TG_USER_ID" ]; then
+      sed -i.bak "s|^TELEGRAM_ALLOWED_USERS=.*|TELEGRAM_ALLOWED_USERS=$TG_USER_ID|" "$HERMES_ENV"
+      ok "Telegram allowlist set"
+    fi
+  else
+    warn "No Telegram token — skipping gateway. Run 'hermes gateway setup' later."
+  fi
+
+  # Clean up backup files
+  rm -f "$HERMES_ENV.bak" "$HERMES_HOME/config.yaml.bak"
+fi
+
+# ─── 6. Verify ──────────────────────────────────────────────────────────────
+
+echo ""
+hr
+echo ""
+info "Running hermes status ..."
+echo ""
+hermes status
+echo ""
+hr
+echo ""
+echo -e "  ${GREEN}${BOLD}✓ Setup complete!${NC}"
+echo ""
+echo "  Quick commands:"
+echo "    hermes               # start chatting (CLI)"
+echo "    hermes gateway start # start Telegram bot"
+echo "    hermes doctor        # diagnose any issues"
+echo "    hermes cron list     # see scheduled jobs (cron is OFF by default)"
+echo ""
+echo "  To fix token drain:"
+echo "    • Model is set to Sonnet (5× cheaper than Opus)"
+echo "    • Cron is OFF — enable individual jobs only when needed"
+echo "    • Max turns capped at 25 per session"
+echo ""
+echo -e "  Config: ${CYAN}$HERMES_HOME/config.yaml${NC}"
+echo -e "  Keys:   ${CYAN}$HERMES_HOME/.env${NC}"
+echo ""
