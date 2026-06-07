@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-07 17:19 UTC
 - **Branch:** `claude/hermes-setup-YnHMp`
-- **Last commit:** 3b10442 feat: Hermes Agent setup — one-command install with token-drain fixes — 55 seconds ago
+- **Last commit:** 362ef6c chore: refresh nucleus live state [skip ci] — 24 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 30 ++++++++++++++++++------------
- 1 file changed, 18 insertions(+), 12 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-3b10442 feat: Hermes Agent setup — one-command install with token-drain fixes (55 seconds ago)
+362ef6c chore: refresh nucleus live state [skip ci] (24 seconds ago)
+3b10442 feat: Hermes Agent setup — one-command install with token-drain fixes (79 seconds ago)
 fbf2155 chore: refresh nucleus live state [skip ci] (5 days ago)
 c55a864 chore: refresh nucleus live state [skip ci] (5 days ago)
 c5726ff chore: refresh nucleus live state [skip ci] (5 days ago)
-cb7f9c7 chore: refresh nucleus live state [skip ci] (5 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
