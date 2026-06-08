@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-08 20:28 UTC
 - **Branch:** `claude/israel-sirens-scoreboard-lh2jbw`
-- **Last commit:** 9d95aef Add Israel siren scoreboard (scoreboard.html) — 45 seconds ago
+- **Last commit:** a1cf627 chore: refresh nucleus live state [skip ci] — 9 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-9d95aef Add Israel siren scoreboard (scoreboard.html) (45 seconds ago)
+a1cf627 chore: refresh nucleus live state [skip ci] (9 seconds ago)
+9d95aef Add Israel siren scoreboard (scoreboard.html) (54 seconds ago)
 fbf2155 chore: refresh nucleus live state [skip ci] (6 days ago)
 c55a864 chore: refresh nucleus live state [skip ci] (6 days ago)
 c5726ff chore: refresh nucleus live state [skip ci] (6 days ago)
-cb7f9c7 chore: refresh nucleus live state [skip ci] (6 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
