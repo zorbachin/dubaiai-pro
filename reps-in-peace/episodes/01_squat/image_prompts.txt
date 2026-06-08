@@ -1,0 +1,63 @@
+# Episode 01 — Image Prompts (one per beat, 20 beats)
+# Paste each prompt into Draw Things on Mac M4 Pro using Flux.1-schnell or SDXL-Lightning.
+# Recommended settings: 1920x1080, 4 steps (schnell), CFG 1.0–1.5, batch size 1.
+
+[BEAT 001 — COLD OPEN: COACH MENACE]
+Cinematic 3D animated still, stylized Pixar-Tim Burton hybrid. Extreme close-up on a muscular skeleton character (Coach Skully), jaw set, deep eye-socket shadows. Faded crimson tank top, scuffed black leather weightlifting belt. Single crimson rim light from behind illuminates the skull edge. Charcoal black gym in deep shadow behind him. Hard side lighting from camera left. Visible dust motes drift in the air. Slight film grain. Mood: deadpan menace. Color palette: bone white #F5F1E8, crimson red #B0152F, charcoal black #1A1717. 16:9.
+
+[BEAT 002 — BONESY FEMUR SNAP]
+Cinematic 3D animated still, same Pixar-Burton hybrid style. A lanky anxious skeleton (Trainee Bonesy) frozen mid-back-squat with a heavy barbell across his upper traps. His right femur has snapped cleanly in half, small dust puff at the break. Expression of mild confusion, looking down at the fracture. Oversized gray gym shorts, high white socks pulled to knees. Rusted iron squat rack behind him. Side angle, medium shot. Dust hangs in shafts of warm overhead light. Slightly comedic, slightly horrifying. Bone white, crimson, charcoal, dusty gold rim.
+
+[BEAT 003 — TITLE CARD]
+Minimalist title card. Pure black background. Centered chunky distressed serif text "REPS IN PEACE" in bone white #F5F1E8 with chipped eroded letter edges. A single crimson red #B0152F drop slides from inside the letter P, leaving a faint trail. Below in smaller distressed serif: "Episode 01 — The Squat". Subtle film grain overlay. Cinematic 16:9. No characters, no other elements.
+
+[BEAT 004 — RE-HOOK 1: COACH KICKS PLATFORM]
+Cinematic 3D animated still. Coach Skully (muscular skeleton) mid-stride toward camera, boot kicking a chalk-dusted lifting platform. Chalk dust explodes upward into a shaft of warm overhead light. Smug, set jaw. Faded crimson tank top. Rusted iron squat rack and pull-up bar visible in background. Low-angle medium shot, dramatic. Color palette: bone white, crimson red, charcoal black, dusty gold rim light. Heavy dust haze atmosphere.
+
+[BEAT 005 — GOBLET SQUAT DEMO]
+Cinematic 3D animated still. Coach Skully demonstrating a goblet squat — holding a black kettlebell at chest height, elbows tucked tight, feet shoulder-width, knees bent in a deep squat position. Wide stance, hardstyle tension visible in his posture. Faded crimson tank top, black weightlifting belt. Gym backdrop with iron rack visible. Eye-level medium shot. Warm key light from above, cool blue ambient fill. Dust motes thick in air. Bone white, crimson, charcoal, dusty gold.
+
+[BEAT 006 — TOES FLARE TOP-DOWN]
+Cinematic 3D animated still. Top-down overhead view of Bonesy's skeletal feet inside athletic sneakers, positioned shoulder-width on a chalk-dusted concrete platform, toes flared exactly 15 degrees outward. A small graphic overlay shows "15°" in distressed serif text. Shallow depth of field. Soft directional light from above. Bone white feet, gray concrete, crimson chalk dust accents.
+
+[BEAT 007 — TENSION CHAIN DIAGRAM]
+Cinematic 3D animated still. Coach Skully facing camera in a goblet squat hold position, with stylized glowing crimson lines tracing the tension chain through his skeleton: grip → glutes → lats → spine. Each tension point has a small crimson glow. Stylized infographic-meets-cinematic feel. Gym background slightly blurred. Bone white, crimson, charcoal.
+
+[BEAT 008 — RE-HOOK 2: COACH LEAN-IN WHISPER]
+Cinematic 3D animated still. Medium close-up on Coach Skully leaning forward into camera, one finger raised conspiratorially near his jaw, lowering his voice. ONLY his right eye socket is lit by a sharp crimson beam — the rest of the skull in deep shadow. Charcoal black gym fully in shadow behind. Heavy dust hazy atmosphere. Mood: secret-sharing, menacing intimacy. Bone white, crimson, charcoal.
+
+[BEAT 009 — HIP BREAK / DESCENT]
+Cinematic 3D animated still. Side-angle medium shot of Bonesy initiating a back-squat descent with the barbell across his traps. Hips pushed back, back neutral, slightly anxious expression. Three small motion-blur arcs trail behind his hips to indicate movement. Rusted iron rack behind. Warm overhead light, cool ambient fill. Dust drifts. Bone white, crimson, charcoal, dusty gold.
+
+[BEAT 010 — DEPTH HIP-CREASE SHOT]
+Cinematic 3D animated still. Side-angle medium shot of Bonesy at full squat depth — hip crease clearly below kneecap, ribcage compressed, expression of strained focus. A subtle horizontal red line graphic indicates hip-crease depth. Dramatic side lighting from camera left, deep shadow on right side. Dust thick in air. Bone white, crimson, charcoal.
+
+[BEAT 011 — ANATOMICAL X-RAY KNEE TRACKING]
+Cinematic 3D animated still. Stylized medical-illustration view of a single skeleton leg mid-squat. Femur and tibia rendered crisp, knee joint tracking precisely over the toe with a faint crimson glow at the patella. Deep navy-black background, subtle grid pattern suggesting an anatomy chart. Bone white, crimson glow, deep navy.
+
+[BEAT 012 — KNEES OUT CUE DEMO]
+Cinematic 3D animated still. Coach Skully demonstrating the "knees out" cue from a front-facing low-angle. His legs in a squat position with knees actively driving outward against the bar path. Arms extended forward for balance. Iron rack background. Warm directional light from above. Dust shafts visible. Bone white, crimson, charcoal.
+
+[BEAT 013 — RE-HOOK 3: REP SCHEME WALL]
+Cinematic 3D animated still. Wide medium shot. Coach Skully standing beside a chalk-written gym wall covered in distressed chalk-script rep schemes: "STRENGTH 4–6 × 3–5 / 2–3min rest", "HYPERTROPHY 3–4 × 8–12 / 60–90s rest", "FREQUENCY 2–3x/wk", "VOLUME 1x/wk heavy". Coach taps the wall with a piece of chalk. Dust drifts. Charcoal wall, bone-white chalk, crimson tank top accent.
+
+[BEAT 014 — STRENGTH VS HYPERTROPHY SPLIT]
+Cinematic 3D animated still. Split-frame within the gym set. Left half: Bonesy lifting a heavy bar for 3 reps, labeled "STRENGTH 4–6 × 3–5". Right half: Bonesy lifting a moderate bar for 10 reps with a fatigued expression, labeled "HYPERTROPHY 3–4 × 8–12". Each side uses distinct lighting — left side cooler/harder, right side warmer/softer. Bone white, crimson, charcoal.
+
+[BEAT 015 — FREQUENCY VS VOLUME SPLIT]
+Cinematic 3D animated still. Split-frame infographic style. Left side: three smaller versions of Bonesy spread across a calendar grid (labeled "FREQUENCY 2–3x/wk"). Right side: one massive Bonesy under a heavily-loaded barbell with five plates a side (labeled "VOLUME 1x/wk"). Stylized calendar overlay subtle behind. Bone white, crimson, charcoal.
+
+[BEAT 016 — LEIJA FLOW: GOBLET → SWING]
+Cinematic 3D animated still. Composite sequential shot showing Coach Skully in three positions of a flow combo: (1) bottom of goblet squat with kettlebell at chest, (2) standing with kettlebell extended down at hips, (3) kettlebell swung up to chest height in a Russian swing. Three subtle motion-blur trails connect the positions. Wide medium shot. Iron rack background. Heavy dust haze. Bone white, crimson, charcoal, dusty gold rim.
+
+[BEAT 017 — RE-HOOK 4: COACH POINTS]
+Cinematic 3D animated still. Close-up on Coach Skully pointing directly at camera with one bony finger. Jaw set, single right eye socket lit by sharp crimson beam, rest of skull deep shadow. Dark gym fully behind. Mood: final warning. Bone white, crimson, charcoal.
+
+[BEAT 018 — KNEES CAVING MISTAKE]
+Cinematic 3D animated still. Side-angle close-up on Bonesy mid-squat with knees collapsed inward (valgus). Large crimson X graphic overlaid across his form. Slight motion-blur slow-motion feel. Crimson tone dominant. Iron rack background. Mood: warning slam. Bone white, crimson, charcoal.
+
+[BEAT 019 — KNEES OUT FIX]
+Cinematic 3D animated still. Same camera angle as 018, same Bonesy position — but now his knees are correctly driving outward. Small green check graphic subtly in lower right corner. Lighting now warmer, more confident. Iron rack background. Mood: correction. Bone white, charcoal, faint green accent, dusty gold rim.
+
+[BEAT 020 — END CARD HERO]
+Cinematic 3D animated still. Wide hero shot. Coach Skully facing camera dead-on, arms crossed, smug expression. Bonesy behind him giving a small worried wave with one hand. The "REPS IN PEACE" logo space at top center of frame (leave empty for overlay). Full gym revealed: rusted iron rack, pull-up bar on brick wall, dust shafts, exposed brick, kettlebell rack visible. Deep dramatic side lighting from camera left, warm crimson rim from camera right. Bone white, crimson, charcoal, dusty gold.

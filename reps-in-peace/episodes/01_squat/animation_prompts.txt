@@ -1,0 +1,64 @@
+# Episode 01 — Animation Prompts (20 clips)
+# Use with: LTX-Video (local Mac M4 Pro via MLX) OR Replicate (CogVideoX-5b / Mochi-1)
+# Recommended: 3–5 second clips, 24fps, 1920x1080
+# Each prompt is self-contained — assumes the corresponding image from image_prompts.txt as the starting frame
+
+[ANIM 001 — COACH MENACE HOLD]
+Static extreme close-up on Coach Skully (muscular skeleton). Subject motion: subtle jaw movement as he speaks two short lines, eye sockets shift left then back to center, micro-tilt of the skull at the end. Atmosphere: dust particles drift slowly from upper-left to lower-right through the crimson rim light. Camera: completely locked off. Duration: 4 seconds. Tone: deadpan menace. Ends on a held still.
+
+[ANIM 002 — BONESY FEMUR SNAP]
+Locked side-angle medium shot. Bonesy holds the bottom of a back squat. Subject motion: his femur visibly snaps in slow-motion over 1.5 seconds, tiny bone fragments puff outward in dust. His skull tilts down to inspect the break, then slowly tilts up toward camera. Atmosphere: static dust haze. Camera: static. Duration: 4 seconds. Tone: deadpan horror-comedy. Ends mid-look-up.
+
+[ANIM 003 — TITLE CARD DRIP]
+Static title card composition. Subject motion: a single crimson drop slides smoothly down inside the letter P over 2 seconds, leaving a faint trail; subtle film grain animates throughout; barely-perceptible flicker on the bone-white letters. Camera: completely static. Duration: 3 seconds. Tone: cinematic and branded. Ends on hold.
+
+[ANIM 004 — COACH KICKS PLATFORM]
+Low-angle tracking shot. Coach Skully takes two steps toward camera, then kicks the lifting platform on the second step. Atmosphere: chalk dust explodes upward into the warm overhead light shaft at the moment of impact. Camera: slight push-in over the 4 seconds. Duration: 4 seconds. Tone: confident swagger.
+
+[ANIM 005 — COACH GOBLET DEMO]
+Locked eye-level medium shot. Coach Skully holding a kettlebell at chest height. Subject motion: he descends into a goblet squat over 3 seconds with controlled tempo, holds at the bottom for 1 second, expression unchanged. Atmosphere: dust drifts through warm key light. Camera: static. Duration: 4 seconds. Tone: hardstyle authority.
+
+[ANIM 006 — TOES FLARE PIVOT]
+Top-down locked shot of skeletal feet in sneakers. Subject motion: feet pivot outward from a straight stance to a 15-degree flare over 2 seconds. Small chalk-dust puffs from the heels as they pivot. Camera: static, top-down. Duration: 3 seconds. Tone: instructional.
+
+[ANIM 007 — TENSION CHAIN GLOW]
+Locked medium shot of Coach Skully in goblet hold. Subject motion: the stylized crimson tension lines through his skeleton illuminate sequentially — grip first (1s), then glutes (1s), then lats (1s), then full cross-tension lights all at once with a soft pulse. Atmosphere: dust haze. Camera: very slow push-in. Duration: 4 seconds. Tone: instructional, slightly mystical.
+
+[ANIM 008 — COACH LEAN-IN WHISPER]
+Medium close-up. Coach Skully leans forward into camera over 2 seconds; crimson rim light intensifies during the lean; he raises one finger to the level of his jaw. Atmosphere: dust drifts heavier. Camera: very subtle push-in. Duration: 4 seconds. Tone: conspiratorial menace. Ends on hold.
+
+[ANIM 009 — HIP BREAK DESCENT]
+Locked side-angle medium shot. Bonesy initiates his squat descent — hips break back over 1.5 seconds, then knees bend, barbell tilts slightly under load. Atmosphere: dust drifts. Camera: static. Duration: 4 seconds. Tone: controlled tension.
+
+[ANIM 010 — DEPTH HOLD]
+Locked side-angle. Bonesy at full squat depth. Subject motion: subtle full-body tremor (1.5s), ribcage compresses and expands once. Atmosphere: dust hangs in side-light shafts. Camera: completely static. Duration: 3 seconds. Tone: peak strain.
+
+[ANIM 011 — X-RAY KNEE FLEX]
+Stylized anatomical view. Subject motion: the leg flexes through a slow squat range over 4 seconds, knee tracking smoothly over the toe, faint crimson pulse at the patella synced to a heartbeat rhythm (3 pulses across the clip). Camera: very slow zoom-in on the knee joint. Duration: 4 seconds. Tone: clinical drama.
+
+[ANIM 012 — KNEES OUT DEMO]
+Front-facing low-angle locked shot. Coach Skully in a squat hold. Subject motion: his knees actively flex outward in deliberate motion over 2 seconds, holding the externally-rotated position. Arms extend forward for balance. Atmosphere: dust drifts. Camera: static. Duration: 4 seconds. Tone: authoritative demo.
+
+[ANIM 013 — REP SCHEME WALL TAP]
+Slow lateral pan across the chalk-written gym wall. Coach Skully follows the camera, tapping each rep scheme with a piece of chalk as the camera passes. Subject motion: chalk-tap motions sync to camera pace; small chalk-dust puffs at each tap. Atmosphere: dust haze. Camera: smooth slow lateral pan over 5 seconds. Duration: 5 seconds. Tone: authoritative reveal.
+
+[ANIM 014 — STRENGTH VS HYPERTROPHY ANIMATION]
+Static split-frame. Left side: Bonesy executes 3 controlled heavy reps (subject motion within frame). Right side: Bonesy executes 10 faster moderate reps. Both sides loop their respective rep counts within the duration. Atmosphere: dust on both sides. Camera: static. Duration: 5 seconds. Tone: educational comparison.
+
+[ANIM 015 — FREQUENCY VS VOLUME ANIMATION]
+Static split-frame infographic style. Left side: three smaller Bonesys appear sequentially across a calendar grid over 3 seconds. Right side: one Bonesy lifts a single massive set in slow controlled motion. Atmosphere: stylized calendar overlay pulses faintly. Camera: static. Duration: 5 seconds. Tone: educational comparison.
+
+[ANIM 016 — LEIJA FLOW SEQUENCE]
+Locked wide medium shot. Coach Skully demonstrates the goblet-squat-to-swing flow. Subject motion: descends into goblet squat (1s), stands and drops bell between legs (1s), hinges and snaps hips to swing the bell to chest height (1.5s), catches and resets (0.5s). Atmosphere: dust drifts at the swing peak. Camera: static. Duration: 5 seconds. Tone: athletic flow.
+
+[ANIM 017 — COACH POINTS]
+Close-up. Coach Skully raises his finger and points sharply at camera over 1.5 seconds, then holds the point. Crimson beam across his eye socket intensifies during the point. Atmosphere: dust haze. Camera: very slight push-in. Duration: 3 seconds. Tone: final warning.
+
+[ANIM 018 — KNEES CAVING SLAM]
+Side-angle close-up. Subject motion: Bonesy's knees cave inward in slow-motion over 2 seconds. The large crimson X graphic flashes onto the frame on the cave-in. Camera: slight shake on the X flash. Atmosphere: motion-blur slow-mo feel. Duration: 3 seconds. Tone: warning slam.
+
+[ANIM 019 — KNEES OUT FIX RESOLUTION]
+Same camera angle as ANIM 018. Subject motion: Bonesy's knees drive correctly outward over 2 seconds. Small green check graphic fades in subtly in lower-right corner at the 2s mark. Atmosphere: lighting visibly warms during the fix. Camera: static. Duration: 3 seconds. Tone: resolution.
+
+[ANIM 020 — END CARD HERO PULL-BACK]
+Wide hero shot. Subject motion: Coach Skully turns slowly to face camera and crosses his arms over 2 seconds. Bonesy behind him gives a small worried wave (subtle). Camera: slow pull-back over 5 seconds to reveal the full gym set — iron rack, pull-up bar, kettlebell rack, exposed brick. Atmosphere: warm crimson rim light intensifies during the pull-back; dust shafts thicken. Duration: 5 seconds. Tone: confident close. Ends on a held wide shot with logo space at top center.
