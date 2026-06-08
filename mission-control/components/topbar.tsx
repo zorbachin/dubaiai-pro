@@ -1,0 +1,69 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { Command, Search, Bell, Cpu } from "lucide-react";
+import { motion } from "framer-motion";
+import { VaultBadge } from "./vault-badge";
+import { MobileNav } from "./mobile-nav";
+
+export function Topbar() {
+  const [now, setNow] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setNow(new Date());
+    const i = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(i);
+  }, []);
+
+  return (
+    <div className="sticky top-0 z-30 flex items-center gap-4 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/40 px-6 py-3 backdrop-blur-xl lg:px-10">
+      <MobileNav />
+      <div className="hidden items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)] md:flex">
+        <span className="hidden md:inline">SECTOR</span>
+        <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-1 text-[color:var(--color-ink-dim)]">
+          /ops/prime
+        </span>
+      </div>
+
+      <div className="ml-auto flex items-center gap-3">
+        <VaultBadge />
+
+        <div className="hidden h-8 w-px bg-white/10 sm:block" />
+
+        <div className="hidden items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 font-mono text-xs text-[color:var(--color-ink-dim)] sm:flex">
+          <Cpu className="h-3.5 w-3.5 text-cyan-300" />
+          <span className="tabular-nums">{now ? now.toLocaleTimeString([], { hour12: false }) : "--:--:--"}</span>
+          <span className="text-[color:var(--color-ink-mute)]">UTC</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Telemetry({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone: "cyan" | "violet" | "emerald";
+}) {
+  const tones: Record<string, string> = {
+    cyan: "text-cyan-300",
+    violet: "text-violet-300",
+    emerald: "text-emerald-300",
+  };
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -4 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="hidden items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 md:flex"
+    >
+      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)]">
+        {label}
+      </span>
+      <span className={`data-num text-sm font-semibold ${tones[tone]}`}>{value}</span>
+    </motion.div>
+  );
+}
