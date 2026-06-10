@@ -4,7 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0a1226">
-<meta name="description" content="Iron Dome — a light arcade game. Tap the rockets before they land. Works offline.">
+<meta name="description" content="כיפת ברזל — המשחק. לחצו על הרקטות לפני שהן נופלות. עובד בממ״ד בלי קליטה. Iron Dome — the game. Free, offline-ready.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="כיפת ברזל — המשחק | Iron Dome">
+<meta property="og:description" content="לחצו על הרקטות לפני שהן נופלות. עובד בממ״ד בלי קליטה. חינם, בלי הורדה — שניה ואתם משחקים.">
+<meta property="og:url" content="https://zorbachin.github.io/dubaiai-pro/irondome/">
+<meta property="og:image" content="https://zorbachin.github.io/dubaiai-pro/irondome/share-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="כיפת ברזל — Iron Dome">
+<meta name="twitter:image" content="https://zorbachin.github.io/dubaiai-pro/irondome/share-card.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
@@ -139,6 +150,7 @@
   <h1 data-i18n="title">כיפת ברזל<small>IRON DOME</small></h1>
   <p class="sub" data-i18n="tagline"></p>
   <button class="btn primary" id="btnPlay"></button>
+  <button class="btn" id="btnDaily" style="border-color:rgba(255,209,102,.6);box-shadow:0 0 18px rgba(255,209,102,.3)"></button>
   <button class="btn" id="btnEndless" style="display:none;border-color:rgba(255,93,115,.6);box-shadow:0 0 18px rgba(255,93,115,.3)"></button>
   <button class="btn" id="btnHow"></button>
   <div class="btnrow">
@@ -147,6 +159,7 @@
     <button class="pill" id="btnLang">EN</button>
     <button class="pill on" id="btnSound">🔊</button>
   </div>
+  <div id="challenge" style="display:none;background:var(--panel2);border:1px solid rgba(255,209,102,.5);border-radius:12px;padding:10px 18px;font-size:14px;color:var(--gold);font-weight:700;max-width:90vw"></div>
   <div class="stat" id="menuBest"></div>
   <p class="note" data-i18n="disclaimer"></p>
   <div id="verTag" style="position:absolute;top:calc(env(safe-area-inset-top,0px) + 8px);inset-inline-start:12px;font-size:10px;color:var(--dim);opacity:.6;letter-spacing:1px"></div>
@@ -220,6 +233,7 @@
     <button class="btn small" id="btnShare2"></button>
     <button class="btn" id="btnMenu2"></button>
   </div>
+  <div style="font-size:10px;color:var(--dim);opacity:.7;letter-spacing:.5px">zorbachin.github.io/dubaiai-pro/irondome</div>
 </div>
 
 <!-- ===== VICTORY ===== -->
@@ -239,7 +253,9 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v13';
+const GAME_VERSION = 'v15';
+const INBOUND = new URLSearchParams(location.search);
+const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
 
 /* ---------- persistence ---------- */
@@ -254,11 +270,13 @@ const save = Object.assign({
 /* harden against partial/legacy/typed-wrong saves: every field the game does
    math with must come out numeric, or firing breaks (NaN tube counts) */
 save.up = Object.assign({ blast: 0, speed: 0, launchers: 0, sling: 0 }, save.up);
-for (const k in save.up) save.up[k] = +save.up[k] || 0;
-if (!save.cal) save.cal = { x: 0, y: 0, done: false };
+for (const k in save.up) save.up[k] = Math.max(0, Math.min(k === 'launchers' ? 2 : 3, +save.up[k] || 0));
+if (!save.cal || typeof save.cal !== 'object') save.cal = { x: 0, y: 0, done: false };
+if (save.lang !== 'he' && save.lang !== 'en') save.lang = 'he';
+if (!['easy', 'normal', 'commando'].includes(save.diff)) save.diff = 'normal';
 save.cal.x = +save.cal.x || 0; save.cal.y = +save.cal.y || 0;
 save.coins = +save.coins || 0; save.best = +save.best || 0; save.unlocked = +save.unlocked || 0;
-function persist(){ localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }
+function persist(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }catch(e){} }
 
 /* ---------- i18n ---------- */
 const T = {
@@ -286,9 +304,14 @@ const T = {
     bonusTitle: '🎁 BONUS ROUND!', bonusHint: 'Nothing gets hit — pop EVERYTHING! Double points!',
     bonusDone: '🎁 BONUS COMPLETE!', crateHint: '🎁 Tap the falling crate!',
     diffN: { easy: 'Easy', normal: 'Normal', commando: 'Commando' },
+    daily: 'DAILY ALERT', dailyDone: '📅 DAILY ALERT — DONE!',
+    practiceNote: 'practice — today already counted', todayW: 'today',
+    streakW: 'streak', raLocked: '🚨 RED ALERT — clear Ashdod to unlock',
+    slingHint: '🪨 Pileup? Tap the SLING →',
     upSling: 'Iron Sling', upSlingD: 'Volley button 🪨: +1 charge per level',
     waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE ROCKETS!', direct: 'DIRECT HIT!',
-    share: '📤 Share', shared: '✓ Copied!',
+    share: '🥊 Challenge a friend', shared: '✓ Copied!',
+    challengeTxt: '🥊 Your friend scored {s} defending {c} — beat them!',
     lvlDone: [
       '{c} sleeps soundly tonight. You\'re welcome.',
       'Not a scratch. Okay… one scratch.',
@@ -361,9 +384,14 @@ const T = {
     bonusTitle: '🎁 סיבוב בונוס!', bonusHint: 'שום דבר לא נפגע — פוצצו הכל! נקודות כפולות!',
     bonusDone: '🎁 הבונוס הושלם!', crateHint: '🎁 לחצו על הארגז שנופל!',
     diffN: { easy: 'קל', normal: 'רגיל', commando: 'קומנדו' },
+    daily: 'אזעקת היום', dailyDone: '📅 אזעקת היום — הושלם!',
+    practiceNote: 'אימון — התוצאה של היום כבר נספרה', todayW: 'היום',
+    streakW: 'רצף', raLocked: '🚨 צבע אדום — נפתח אחרי אשדוד',
+    slingHint: '🪨 עומס? לחצו על הקלע ←',
     upSling: 'קלע ברזל', upSlingD: 'כפתור מטח 🪨: מטען נוסף לכל שלב',
     waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 לחצו על הרקטות!', direct: 'פגיעה ישירה!',
-    share: '📤 שתפו', shared: '✓ הועתק!',
+    share: '🥊 אתגרו חבר', shared: '✓ הועתק!',
+    challengeTxt: '🥊 חבר שלכם עשה {s} נקודות בהגנה על {c} — תנצחו!',
     lvlDone: [
       '{c} ישנה בשקט הלילה. על לא דבר.',
       'בלי שריטה. טוב… שריטה אחת.',
@@ -415,11 +443,25 @@ const T = {
 };
 function t(k){ return T[save.lang][k]; }
 function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+/* Daily Alert: a date-seeded barrage identical for every player on Earth.
+   One attempt per day counts; retries are practice. Streaks reward showing up. */
+function mulberry32(a){
+  return function(){
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function todayStr(){ return new Date().toISOString().slice(0, 10); }
+function dateSeed(s){ let h = 0; for (const ch of s) h = (h * 31 + ch.charCodeAt(0)) | 0; return h; }
+/* spawn-path randomness goes through here so dailies are deterministic */
+function rr(){ return (G && G.rng) ? G.rng() : Math.random(); }
 /* Tetris-style difficulty: harder = faster + tighter + pays more */
 const DIFFS = {
   easy:     { sp: 0.85, gap: 1.20, pts: 0.8, ic: '🐢' },
   normal:   { sp: 1.00, gap: 1.00, pts: 1.0, ic: '⚖️' },
-  commando: { sp: 1.30, gap: 0.78, pts: 1.5, ic: '🪖' }
+  commando: { sp: 1.50, gap: 0.60, pts: 1.5, ic: '🪖' }
 };
 const DIFF_ORDER = ['easy', 'normal', 'commando'];
 function diff(){ return DIFFS[save.diff] || DIFFS.normal; }
@@ -428,13 +470,13 @@ function diff(){ return DIFFS[save.diff] || DIFFS.normal; }
 /* count: rockets in level · gap: base seconds between spawns · speed: multiplier
    weights: [normal, fast, heavy, zigzag, splitter] · scene picks the city backdrop */
 const LEVELS = [
-  { count: 12, gap: 1.6, speed: 0.80, weights:[1.0,0,0,0,0],          accent:'#ffb46b', scene:'sderot'    },
-  { count: 16, gap: 1.5, speed: 0.90, weights:[0.8,0.2,0,0,0],       accent:'#7fd8ff', scene:'ashkelon'  },
+  { count: 14, gap: 1.05, speed: 0.95, weights:[1.0,0,0,0,0],          accent:'#ffb46b', scene:'sderot'    },
+  { count: 16, gap: 1.4, speed: 0.95, weights:[0.7,0.2,0.1,0,0],       accent:'#7fd8ff', scene:'ashkelon'  },
   { count: 16, gap: 1.7, speed: 0.95, weights:[0.6,0.2,0.2,0,0],     accent:'#9aa8ff', scene:'ashdod'    },
   { count: 20, gap: 1.3, speed: 1.15, weights:[0.5,0.3,0.2,0,0],     accent:'#ffd166', scene:'beersheva' },
   { count: 22, gap: 1.2, speed: 1.25, weights:[0.4,0.3,0.15,0.15,0], accent:'#ff9eb3', scene:'rishon'    },
   { count: 26, gap: 1.1, speed: 1.35, weights:[0.35,0.25,0.15,0.1,0.15], accent:'#3ee6ff', scene:'telaviv' },
-  { count: 28, gap: 1.0, speed: 1.50, weights:[0.3,0.35,0.1,0.1,0.15],  accent:'#8affc1', scene:'netanya' },
+  { count: 28, gap: 1.0, speed: 1.42, weights:[0.35,0.30,0.1,0.1,0.15],  accent:'#8affc1', scene:'netanya' },
   { count: 32, gap: 0.95, speed: 1.65, weights:[0.3,0.25,0.2,0.1,0.15],  accent:'#ffd9a0', scene:'jerusalem' },
   { count: 36, gap: 0.85, speed: 1.80, weights:[0.25,0.3,0.2,0.1,0.15],  accent:'#7fb4ff', scene:'haifa'   },
   { count: 42, gap: 0.75, speed: 2.00, weights:[0.2,0.3,0.2,0.15,0.15],  accent:'#ff8e6b', scene:'eilat'   }
@@ -479,7 +521,7 @@ window.addEventListener('orientationchange', () => setTimeout(resize, 120));
 
 /* ---------- audio (synth, no assets) ---------- */
 let AC = null;
-function ac(){ if(!AC) AC = new (window.AudioContext||window.webkitAudioContext)(); if(AC.state!=='running') AC.resume(); return AC; }
+function ac(){ try{ if(!AC) AC = new (window.AudioContext||window.webkitAudioContext)(); if(AC.state!=='running') AC.resume(); }catch(e){} return AC; }
 function tone(f0, f1, dur, type, vol, when){
   if (!save.sound) return;
   try{
@@ -501,12 +543,18 @@ function noise(dur, vol){
 }
 const sfx = {
   launch(){ tone(900, 300, 0.18, 'sawtooth', 0.05); },
-  boom(n){ noise(0.25, 0.20); tone(160 * Math.pow(2, Math.min(12, n || 0) / 12), 40, 0.3, 'triangle', 0.25); },
+  boom(n){ noise(0.25, 0.20); tone(160 * Math.pow(2, ([0,2,4,7,9][(n||0) % 5] + 12 * (((n||0) / 5 | 0) % 2)) / 12), 40, 0.3, 'triangle', 0.25); },
   hitCity(){ noise(0.4, 0.3); tone(90, 28, 0.5, 'sawtooth', 0.3); },
   power(){ tone(500, 1000, 0.12, 'square', 0.08); tone(750, 1500, 0.12, 'square', 0.08, 0.08); },
   combo(n){ tone(400+80*n, 400+80*n, 0.08, 'square', 0.06); },
   beam(){ tone(2000, 200, 0.6, 'sawtooth', 0.12); },
-  click(){ tone(700, 500, 0.05, 'square', 0.05); }
+  click(){ tone(700, 500, 0.05, 'square', 0.05); },
+  fanfare(big){
+    [0, 4, 7, 12].concat(big ? [16] : []).forEach((s, i) =>
+      tone(523 * Math.pow(2, s / 12), 523 * Math.pow(2, s / 12), 0.22, 'square', 0.10, i * 0.09));
+    noise(0.3, 0.06);
+  },
+  fail(){ [7, 3, 0].forEach((s, i) => tone(220 * Math.pow(2, s / 12), 110, 0.3, 'sawtooth', 0.12, i * 0.14)); }
 };
 function buzz(ms){ if (navigator.vibrate) try{ navigator.vibrate(ms); }catch(e){} }
 
@@ -533,7 +581,7 @@ function musicTick(){
     musStep++;
   }
   // tempo couples to threat: levels and a hot combo audibly accelerate the pulse
-  const next = Math.max(150, 220 - (G ? G.levelIdx * 5 + Math.min(12, G.combo) * 3 : 0));
+  const next = Math.max(150, 220 - (G ? G.levelIdx * 5 + Math.min(12, G.combo) * 3 : 0)) / (G && G.bonus ? 2 : 1);
   musTO = setTimeout(musicTick, next);
 }
 function musicStart(){ if (!musTO) musicTick(); }
@@ -546,11 +594,16 @@ let curLevel = 0;
 let stars = [];           // background starfield
 let lastFrame = 0;
 
-function newGame(levelIdx, endless, bonus){
+function newGame(levelIdx, endless, bonus, daily){
   // Red Alert: unlocked after the campaign — an open-ended barrage that ramps
   // every 20s until the city falls. The 'best' score finally has a real chase.
-  const L = bonus
-    ? { count: 30, gap: 0.35, speed: 1.35,
+  const dailyRng = daily ? mulberry32(dateSeed(todayStr())) : null;
+  const L = daily
+    ? { count: Infinity, gap: 1.0, speed: 1.25,
+        weights: [0.35, 0.3, 0.15, 0.1, 0.1], accent: '#ffd166',
+        scene: LEVELS[Math.floor(dailyRng() * LEVELS.length)].scene }
+    : bonus
+    ? { count: 48, gap: 0.18, speed: 1.35,
         weights: [0.5, 0.5, 0, 0, 0], accent: '#ffd166',
         scene: LEVELS[levelIdx].scene }
     : endless
@@ -560,7 +613,8 @@ function newGame(levelIdx, endless, bonus){
         scene: LEVELS[Math.floor(Math.random() * LEVELS.length)].scene }
     : LEVELS[levelIdx];
   G = {
-    L, levelIdx, endless: !!endless, bonus: !!bonus, endlessT: 0, nextRamp: 20,
+    L, levelIdx, endless: !!endless, bonus: !!bonus, daily: !!daily,
+    rng: dailyRng, dailyT: 0, endlessT: 0, nextRamp: 20,
     rockets: [], inters: [], booms: [], parts: [], pows: [], floats: [], warns: [],
     spawned: 0, resolved: 0, killed: 0,
     spawnT: 0.15, powT: 5 + Math.random()*3,
@@ -578,7 +632,7 @@ function newGame(levelIdx, endless, bonus){
 function buildSkyline(){
   if (!G) return;
   const prev = G.buildings;
-  const n = 7, bw = W / (n + 2);
+  const n = 6, bw = W / (n + 1.2);
   const arr = [];
   // deterministic-ish heights per level
   for (let i = 0; i < n; i++){
@@ -814,7 +868,7 @@ function comboWindow(){ return 2.2 + save.up.speed * 0.5; }   // 'Quick Fuse' up
 
 /* ---------- spawning ---------- */
 function pickType(){
-  const w = G.L.weights, r = Math.random();
+  const w = G.L.weights, r = rr();
   let acc = 0;
   for (let i = 0; i < w.length; i++){ acc += w[i]; if (r < acc) return i; }
   return 0;
@@ -832,8 +886,8 @@ function spawnRocket(type, x, y, child){
   // hard playfield rule: NOTHING spawns or flies outside 15–85% of the
   // visible width — every rocket must be fully on-screen and tappable
   const sx = Math.max(W * 0.15, Math.min(W * 0.85,
-    x !== undefined ? x : W * (0.16 + Math.random() * 0.68)));
-  const tx = W * (0.18 + Math.random() * 0.64);   // always lands over the city strip
+    x !== undefined ? x : W * (0.16 + rr() * 0.68)));
+  const tx = W * (0.18 + rr() * 0.64);   // always lands over the city strip
   const sy = y !== undefined ? y : -30;
   const ang = Math.atan2(GROUND - sy, tx - sx);
   // normalize to screen height so a tablet isn't 75% easier than a small phone;
@@ -841,7 +895,7 @@ function spawnRocket(type, x, y, child){
   const heatV = 1 + Math.min(0.30, (G.heat || 0) * 0.008);   // your skill speeds them up
   const prog = G.L.count === Infinity ? 0 : G.spawned / G.L.count;   // and the level itself accelerates
   const v = def.v * sp * diff().sp * heatV * (1 + prog * 0.35) *
-            (0.95 + Math.random() * 0.12) * Math.min(1.3, Math.max(0.8, H / 844));
+            (0.95 + rr() * 0.12) * Math.min(1.3, Math.max(0.8, H / 844));
   G.rockets.push({
     type, x: sx, y: sy,
     vx: Math.cos(ang) * v, vy: Math.sin(ang) * v,
@@ -877,7 +931,7 @@ function evXY(e){
            y: (e.clientY - rect.top) * sy + save.cal.y };
 }
 cv.addEventListener('pointerdown', e => {
-  if (screen !== 'play' || !G || G.over) return;
+  if (screen !== 'play' || !G || G.over || G.dyingT) return;
   const pt = evXY(e), x = pt.x, y = pt.y;
   // collect power-up? (instant, consumes the gesture)
   for (let i = G.pows.length - 1; i >= 0; i--){
@@ -892,7 +946,8 @@ cv.addEventListener('pointerdown', e => {
 
 /* finger-friendly hitbox: scales with rocket size, the Blast upgrade, and mega */
 function hitR(r){
-  return (Math.max(30, r.size * 2.1) + save.up.blast * 8) * (G.megaT > 0 ? 1.5 : 1);
+  return (Math.max(30, r.size * 2.1) + save.up.blast * 8) *
+         (G.megaT > 0 ? 1.5 : 1) * (save.diff === 'commando' ? 0.8 : 1);
 }
 function tapStrike(x, y){
   let best = null, bd = 1e9;
@@ -901,10 +956,12 @@ function tapStrike(x, y){
     if (d < hitR(r) && d < bd){ bd = d; best = r; }
   }
   if (!best){
-    // clean miss: a small dud ripple, and the combo drops one tier
-    G.booms.push({ x, y, r: 2, maxR: 14, t: 0.3, dud: true });
+    // clean miss: a visible ripple, a dry 'whff', and one combo tier
+    G.booms.push({ x, y, r: 2, maxR: 30, t: 0.22, dud: true });
+    noise(0.05, 0.10); tone(170, 80, 0.09, 'sine', 0.10);
+    buzz(8);
+    if (G.combo >= 3) addFloat(x, y - 24, '-' + Math.min(3, G.combo), '#8da3cc', 13, 0.8);
     if (G.combo > 0){ G.combo = Math.max(0, G.combo - 3); }
-    sfx.click();
     return;
   }
   if (bd < 80) learnCal(x - best.x, y - best.y);   // keep tuning to the thumb
@@ -919,8 +976,9 @@ function tapStrike(x, y){
   if (best.hp <= 0){
     G.rockets.splice(G.rockets.indexOf(best), 1);
     if (tipD < best.size * 1.2){
-      G.score += 15; G.combo++;
+      G.score += best.pts; G.combo++; G.directs = (G.directs || 0) + 1;
       G.shake = Math.max(G.shake, 6);
+      tone(1568, 2093, 0.12, 'sine', 0.12); buzz(25);
       addFloat(best.x, best.y - 26, t('direct'), '#ffffff', 15);
     }
     killRocket(best);
@@ -970,10 +1028,11 @@ function killRocket(r, silent){
   const mult = 1 + Math.min(4, Math.floor(G.combo / 3)) * 0.5;
   const pts = Math.round(r.pts * mult * diff().pts * (G.bonus ? 2 : 1));
   G.score += pts;
-  addFloat(r.x, r.y, '+' + pts, '#3ee6ff', 15);
-  if (G.combo >= 3 && G.combo % 3 === 0){
+  addFloat(r.x, r.y, '+' + pts + (G.bonus ? ' ×2' : ''), G.bonus ? '#ffd166' : '#3ee6ff', G.bonus ? 17 : 15);
+  if (G.bonus) burst(r.x, r.y, ['#ff5d73', '#ffd166', '#5dffa8', '#3ee6ff'][G.killed % 4], 16);
+  if ((G.combo >= 3 && G.combo <= 12 && G.combo % 3 === 0) || (G.combo > 12 && G.combo % 15 === 0)){
     const sh = t('comboShouts')[Math.min(4, Math.floor(G.combo / 3) - 1)];
-    addFloat(W / 2, H * 0.22, sh + ' ×' + Math.floor(mult * 10) / 10, '#ffd166', 21);
+    addFloat(W / 2 + (Math.random() - 0.5) * 80, H * 0.22, sh + ' ×' + Math.floor(mult * 10) / 10, '#ffd166', 21);
     sfx.combo(Math.floor(G.combo / 3));
     G.beamFx = Math.max(G.beamFx, 0.12);          // milestone flash
   }
@@ -1028,36 +1087,52 @@ function update(dt){
   if (G.megaT > 0) G.megaT -= dt;
   if (G.shieldT > 0) G.shieldT -= dt;
   if (G.beamFx > 0) G.beamFx -= dt;
+  if (G.dyingT){
+    G.timeScale = 0.25;
+    G.dyingT -= dt;
+    if (G.dyingT <= 0){ endLevel(false); return; }
+  }
   if (G.comboT > 0){ G.comboT -= dt * G.timeScale; if (G.comboT <= 0) G.combo = 0; }  // slow-mo protects your combo
   if (G.shake > 0) G.shake = Math.max(0, G.shake - dt * 30);
 
   const ts = G.timeScale, sdt = dt * ts;
 
+  // Daily Alert: 75 seconds, ramping gently, same for everyone
+  if (G.daily){
+    G.dailyT += sdt;
+    if (G.dailyT > G.nextRamp){
+      G.nextRamp += 15;
+      G.L.gap = Math.max(0.4, G.L.gap * 0.92);
+      G.L.speed = Math.min(3, G.L.speed + 0.08);
+    }
+    if (G.dailyT >= 75 && !G.dyingT){ endLevel(true); return; }
+  }
+
   // Red Alert ramp: tighter, faster, forever
   if (G.endless){
     G.endlessT += sdt;
     if (G.endlessT > G.nextRamp){
-      G.nextRamp += 12;
-      G.L.gap = Math.max(0.30, G.L.gap * 0.90);
-      G.L.speed = Math.min(4, G.L.speed + 0.07);
+      G.nextRamp += 8;
+      G.L.gap = Math.max(0.30, G.L.gap * 0.85);
+      G.L.speed = Math.min(4, G.L.speed + 0.12);
     }
   }
 
   // spawn rockets (with a short incoming warning first) — always over the city
-  const queueWarn = () => G.warns.push({ x: W * (0.16 + Math.random() * 0.68), type: pickType(), t: 0.45 });
+  const queueWarn = () => G.warns.push({ x: W * (0.16 + rr() * 0.68), type: pickType(), t: 0.45 });
   if (G.spawned < G.L.count){
     G.spawnT -= sdt;
     if (G.spawnT <= 0){
       queueWarn(); G.spawned++;
       // late-level mini barrages
-      if (G.levelIdx >= 3 && Math.random() < 0.18 && G.spawned < G.L.count){
+      if (G.levelIdx >= 3 && rr() < 0.18 && G.spawned < G.L.count){
         queueWarn(); G.spawned++;
       }
       // adaptive heat: every kill heats the barrage up to 35% faster; leaks cool it
-      const heatF = Math.max(0.65, 1 - G.heat * 0.012);
+      const heatF = G.bonus ? 1 : Math.max(0.65, 1 - G.heat * 0.012);   // never drain the fiesta
       // intra-level ramp: each level starts gentle and tightens ~30% by its end
       const prog = G.L.count === Infinity ? 0 : G.spawned / G.L.count;
-      G.spawnT = G.L.gap * diff().gap * (1 - prog * 0.3) * heatF * (0.85 + Math.random() * 0.3);
+      G.spawnT = G.L.gap * diff().gap * (1 - prog * 0.3) * heatF * (0.85 + rr() * 0.3);
     }
     // never leave the sky empty mid-level: the rhythm must not break
     if (!G.rockets.length && !G.warns.length) G.spawnT = Math.min(G.spawnT, 0.25);
@@ -1113,7 +1188,13 @@ function update(dt){
         G.shake = 14; sfx.hitCity(); buzz([30, 40, 60]);
         burst(r.x, GROUND - 10, '#ff8c42', 30);
         falafelBurst(r.x, 10);
-        if (!G.buildings.some(b => b.alive)){ endLevel(false); return; }
+        // loss threshold scales with difficulty: commando rounds are lost
+        // while the city still stands — attrition-wins are not wins
+        const minAlive = (G.endless || G.daily || G.bonus) ? 1
+          : ({ easy: 1, normal: 2, commando: 4 })[save.diff] || 1;
+        if (G.buildings.filter(b => b.alive).length < minAlive && !G.dyingT){
+          G.dyingT = 1.3; G.shake = 22; sfx.fail();   // watch the city fall before the overlay
+        }
       } else {
         burst(r.x, GROUND, '#8da3cc', 8); noise(0.15, 0.1);
         falafelBurst(r.x, 8);
@@ -1121,6 +1202,23 @@ function update(dt){
       }
       G.combo = 0;
       G.heat = Math.max(0, G.heat - 4);   // a leak cools the barrage back down
+    }
+  }
+
+  // sling sweep: 90ms drumroll between pops, heavy hit-stop on the last
+  if (G.slingQ && G.slingQ.length){
+    G.slingT -= dt;
+    if (G.slingT <= 0){
+      G.slingT = 0.09;
+      const r = G.slingQ.shift();
+      const i = G.rockets.indexOf(r);
+      if (i >= 0){
+        G.rockets.splice(i, 1);
+        G.inters.push({ x1: W / 2, y1: GROUND - 20, x2: r.x, y2: r.y, t: 0 });
+        G.booms.push({ x: r.x, y: r.y, r: 4, maxR: r.size * 4, t: 0, vis: true });
+        killRocket(r);
+        if (!G.slingQ.length) G.hitStop = 0.12;
+      }
     }
   }
 
@@ -1183,6 +1281,12 @@ function update(dt){
     if (G.doneT > 0.8) endLevel(true);
   }
 
+  // teach the sling exactly when it matters: first real pileup
+  if (!G.slingHinted && G.sling > 0 && G.rockets.length >= 4){
+    G.slingHinted = true;
+    addFloat(70, H - 110, t('slingHint'), '#5dffa8', 15, 2.5);
+  }
+
   // sling button live state
   const sb = $('btnSling');
   sb.textContent = '🪨 ×' + G.sling;
@@ -1196,7 +1300,11 @@ function update(dt){
     clearTimeout(scEl._to); scEl._to = setTimeout(() => scEl.style.transform = '', 110);
   }
   $('hudCombo').textContent = G.combo >= 3 ? (t('comboX') + (1 + Math.min(4, Math.floor(G.combo / 3)) * 0.5)) : '';
-  if (G.endless){
+  if (G.daily){
+    const left = Math.max(0, Math.ceil(75 - G.dailyT));
+    $('hudWave').textContent = '📅 ' + left + 's';
+    $('hudLevel').textContent = t('daily');
+  } else if (G.endless){
     const s = Math.floor(G.endlessT);
     $('hudWave').textContent = '🚨 ' + Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
     $('hudLevel').textContent = t('endlessName');
@@ -1481,16 +1589,17 @@ const SCREENS = ['scrMenu','scrHow','scrCal','scrIntro','scrPause','scrEnd','scr
 function show(name){
   for (const s of SCREENS) $(s).classList.remove('show');
   $('hud').style.display = 'none';
-  if (name === 'play'){ $('hud').style.display = 'flex'; $('btnSling').style.display = ''; musicStart(); }
-  else { if (name) $(name).classList.add('show'); $('btnSling').style.display = 'none'; musicStop(); }
+  // screen MUST be set before musicStart() — it checks it on the first tick
   screen = ({ scrMenu:'menu', scrHow:'how', scrCal:'cal', scrIntro:'intro', scrPause:'pause',
               scrEnd:'end', scrOver:'over', scrWin:'win' })[name] || 'play';
+  if (name === 'play'){ $('hud').style.display = 'flex'; $('btnSling').style.display = ''; musicStart(); }
+  else { if (name) $(name).classList.add('show'); $('btnSling').style.display = 'none'; musicStop(); }
 }
 
 let introTO = null;
 function gotoIntro(idx){
   clearTimeout(introTO);
-  introTO = setTimeout(() => { if (screen === 'intro') startLevel(); }, idx === 0 ? 2400 : 1300);
+  introTO = setTimeout(() => { if (screen === 'intro' && !document.hidden) startLevel(); }, idx === 0 ? 2400 : 1300);
   curLevel = idx;
   $('hudLevelIntro').textContent = t('level') + ' ' + (idx + 1) + ' / ' + LEVELS.length;
   $('levelTitle').textContent = '📍 ' + t('levels')[idx];
@@ -1500,43 +1609,81 @@ function gotoIntro(idx){
 
 let curMode = 'campaign';
 function startLevel(){
-  newGame(curLevel, curMode === 'endless');
+  bonusDue = false;
+  newGame(curLevel, curMode === 'endless', false, curMode === 'daily');
   show('play');
   if (curLevel === 0 && curMode !== 'endless')
     addFloat(W / 2, H * 0.32, t('tapHint'), '#ffd166', 17, 3);
   if (!trackedPlay){ trackedPlay = true; track('play'); }     // one per session
 }
 
-let bonusDue = false;
+let bonusDue = false, dailyEnded = false;
 function endLevel(won){
   G.over = true; G.won = won;
+  const total0 = Math.max(1, G.spawned);
+  const pct0 = G.killed / total0;
+  // surviving while leaking half the barrage is not 'defended'
+  if (won && !G.bonus && !G.endless && !G.daily && pct0 < 0.5) won = G.won = false;
+  track((won ? 'clear-' : 'fail-') + (G.endless ? 'ra' : G.daily ? 'daily' : G.bonus ? 'bonus' : 'lv' + (G.levelIdx + 1)));
+  const tot = Math.max(1, G.spawned);
+  const gN = Math.round(Math.min(10, G.killed / tot * 10));
   lastRun = { score: G.score,
-              city: G.endless ? t('endlessName') : t('levels')[G.levelIdx] };
+              city: G.daily ? (t('daily') + ' ' + todayStr()) :
+                    G.endless ? t('endlessName') : t('levels')[G.levelIdx],
+              grid: G.endless ? ('🚨 ' + Math.floor(G.endlessT) + 's') :
+                    ('🟩'.repeat(gN) + '🟥'.repeat(10 - gN) + ' ' + G.killed + '/' + tot) };
   const total = G.spawned;
   const pct = total ? G.killed / total : 0;
   const alive = G.buildings.filter(b => b.alive).length;
 
+  if (G.daily){
+    const today = todayStr();
+    const counted = !save.daily || save.daily.date !== today;
+    if (counted){
+      const y = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+      const streak = (save.daily && save.daily.date === y) ? (save.daily.streak || 1) + 1 : 1;
+      save.daily = { date: today, score: G.score, streak };
+    }
+    persist();
+    $('endStars').textContent = '📅';
+    $('endTitle').textContent = t('dailyDone');
+    $('endQuip').textContent = (counted
+      ? '🔥 ' + t('streakW') + ' ×' + save.daily.streak
+      : t('practiceNote'));
+    $('mkQuote').textContent = pick(t('mkQuotes'));
+    $('endStats').innerHTML = t('scoreW') + ': <b>' + G.score + '</b>' +
+      (counted ? '' : ' · ' + t('scoreW') + ' ' + t('todayW') + ': <b>' + save.daily.score + '</b>');
+    renderShop();
+    $('btnNext').textContent = t('menu');
+    dailyEnded = true;
+    show('scrEnd');
+    return;
+  }
   if (!won){
-    const prevBest = save.best;
-    save.best = Math.max(save.best, G.score);
-    const consolation = Math.round(G.score * 0.3);
+    const prevBest = G.endless ? (save.bestRA || 0) : save.best;
+    if (G.endless) save.bestRA = Math.max(save.bestRA || 0, G.score);
+    else if (!G.daily) save.best = Math.max(save.best, G.score);
+    const consolation = Math.min(G.endless ? 1500 : 1e9, Math.round(G.score * 0.3));
     save.coins += consolation;
     persist();
     $('overScore').textContent = G.score;
     $('overStats').textContent = pick(t('overLines')) + ' ' + t('overStats').replace('{n}', G.killed) +
       (G.endless ? ' · 🚨 ' + Math.floor(G.endlessT) + 's' : '');
     const gapD = prevBest - G.score;
-    $('overGap').textContent = gapD > 0
-      ? t('soClose').replace('{d}', gapD)
-      : (G.score > 0 && prevBest > 0 ? t('newBest') : '');
+    const isBest = G.score > prevBest && G.score > 0;   // first-ever best counts too
+    $('overGap').textContent = (gapD > 0 && gapD <= prevBest * 0.15)
+      ? t('soClose').replace('{d}', gapD)               // only when genuinely close
+      : (isBest ? t('newBest') : '');
+    $('btnShare2').className = isBest ? 'btn primary' : 'btn small';   // peak moment = loud CTA
     renderShop($('shopOver'), $('coinsOver'));     // the stuck player needs the shop MOST
     show('scrOver');
     return;
   }
 
-  if (G.bonus){    // bonus rounds always 'win': bank double-point haul, no unlock changes
-    const bGain = Math.round(G.score * 0.5);
-    save.coins += bGain; save.best = Math.max(save.best, G.score); persist();
+  if (won) sfx.fanfare(G.bonus);
+  if (G.bonus){    // bonus rounds always 'win': bank the haul, never touch records
+    const bGain = Math.round(G.score * 0.25);
+    save.coins += bGain; persist();
     $('endStars').textContent = '🎁🎁🎁';
     $('endTitle').textContent = t('bonusDone');
     $('endQuip').textContent = pick(t('lvlDone')).replace('{c}', t('levels')[curLevel]);
@@ -1553,7 +1700,7 @@ function endLevel(won){
   save.coins += coinGain;
   save.best = Math.max(save.best, G.score);
   save.unlocked = Math.max(save.unlocked, curLevel + 1);
-  if ([2, 5, 8].includes(curLevel)) bonusDue = true;   // falafel rush after L3/L6/L9
+  if (!replay && [2, 5, 8].includes(curLevel)) bonusDue = true;   // first clears only — no bonus farming
   persist();
 
   $('endStars').textContent = '★'.repeat(st) + '☆'.repeat(3 - st);
@@ -1627,8 +1774,13 @@ function applyLang(){
   $('btnCal').textContent = '🎯 ' + t('calTitle');
   $('btnDiff').textContent = diff().ic + ' ' + t('diffN')[save.diff];
   $('btnCalSkip').textContent = t('skip');
-  $('btnEndless').textContent = t('endless');
-  $('btnEndless').style.display = save.unlocked >= LEVELS.length ? '' : 'none';
+  const raOpen = save.unlocked >= 3;
+  $('btnEndless').textContent = raOpen ? t('endless') : t('raLocked');
+  $('btnEndless').style.display = '';
+  $('btnEndless').style.opacity = raOpen ? '1' : '.45';
+  $('btnDaily').textContent = '📅 ' + t('daily') +
+    (save.daily && save.daily.date === new Date().toISOString().slice(0, 10)
+      ? ' ✓' + save.daily.score + (save.daily.streak > 1 ? ' 🔥×' + save.daily.streak : '') : '');
   $('btnHowBack').textContent = t('back');
   $('btnStart').textContent = t('start');
   $('btnResume').textContent = t('resume');
@@ -1709,37 +1861,35 @@ $('btnCalSkip').onclick = () => {
 
 /* the Iron Sling: one tap volleys the 4 lowest rockets out of the sky */
 function slingVolley(){
-  if (!G || G.over || screen !== 'play' || G.sling <= 0 || !G.rockets.length){ sfx.click(); return; }
+  if (!G || G.over || G.dyingT || screen !== 'play' || G.sling <= 0 || !G.rockets.length){ sfx.click(); return; }
+  if (G.slingQ && G.slingQ.length) return;   // one sweep at a time
   G.sling--;
-  const targets = [...G.rockets].sort((a, b) => b.y - a.y).slice(0, 4);
-  for (const r of targets){
-    const i = G.rockets.indexOf(r);
-    if (i < 0) continue;
-    G.rockets.splice(i, 1);
-    G.inters.push({ x1: W / 2, y1: GROUND - 20, x2: r.x, y2: r.y, t: 0 });
-    G.booms.push({ x: r.x, y: r.y, r: 4, maxR: r.size * 3.2, t: 0, vis: true });
-    killRocket(r);
-  }
+  // a slow-mo sweep, left to right — four pops marching across the sky
+  G.slingQ = [...G.rockets].sort((a, b) => b.y - a.y).slice(0, 4).sort((a, b) => a.x - b.x);
+  G.slingT = 0;
+  G.slowT = Math.max(G.slowT, 0.6);
   addFloat(W / 2, H * 0.35, t('slingShot'), '#5dffa8', 20);
   sfx.power(); buzz([20, 30, 20]);
 }
 $('btnSling').onclick = () => slingVolley();
 
-/* one-tap bragging: Web Share API with clipboard fallback */
-let lastRun = { score: 0, city: '' };
+/* one-tap bragging: native share sheet, WhatsApp deep-link fallback.
+   Shared links carry ?ref + the score so recipients get a challenge banner
+   and we can finally measure K-factor. */
+let lastRun = { score: 0, city: '', grid: '' };
 function shareScore(btn){
   const txt = t('shareTxt').replace('{s}', lastRun.score)
-                           .replace('{c}', lastRun.city || t('levels')[0]);
-  const url = 'https://zorbachin.github.io/dubaiai-pro/irondome/';
-  track('share');
+                           .replace('{c}', lastRun.city || t('levels')[0]) +
+              (lastRun.grid ? '\n' + lastRun.grid : '');
+  const url = 'https://zorbachin.github.io/dubaiai-pro/irondome/?ref=share&b=' +
+              lastRun.score + '&c=' + encodeURIComponent(lastRun.city);
   if (navigator.share){
-    navigator.share({ text: txt, url }).catch(() => {});
-  } else if (navigator.clipboard){
-    navigator.clipboard.writeText(txt + ' ' + url).then(() => {
-      const old = btn.textContent;
-      btn.textContent = t('shared');
-      setTimeout(() => btn.textContent = old, 1500);
-    }).catch(() => {});
+    navigator.share({ text: txt, url })
+      .then(() => track('share'))               // count completions, not clicks
+      .catch(() => {});
+  } else {
+    track('share');
+    window.open('https://wa.me/?text=' + encodeURIComponent(txt + ' ' + url), '_blank');
   }
 }
 $('btnShare1').onclick = e => shareScore(e.target);
@@ -1752,7 +1902,15 @@ $('btnPlay').onclick = () => {
   // straight into the game — in-play learnCal self-tunes; the wizard stays on the 🎯 pill
   gotoIntro(Math.min(save.unlocked, LEVELS.length - 1));
 };
+$('btnDaily').onclick = () => {
+  ac(); sfx.click(); curMode = 'daily';
+  curLevel = 7;                                   // late-game tap rules
+  startLevel();
+  if (save.daily && save.daily.date === todayStr())
+    addFloat(W / 2, H * 0.3, t('practiceNote'), '#8da3cc', 15, 2.5);
+};
 $('btnEndless').onclick = () => {
+  if (save.unlocked < 3){ sfx.click(); return; }
   ac(); sfx.click(); curMode = 'endless';
   curLevel = LEVELS.length - 1;                   // endless uses late-game rules (snap, barrages)
   startLevel();
@@ -1779,6 +1937,7 @@ $('btnQuit').onclick = () => {
 };
 $('btnNext').onclick = () => {
   sfx.click();
+  if (dailyEnded){ dailyEnded = false; applyLang(); show('scrMenu'); return; }
   if (bonusDue){
     bonusDue = false;
     newGame(curLevel, false, true);
@@ -1819,6 +1978,14 @@ for (let i = 0; i < 70; i++)
   stars.push({ x: Math.random(), y: Math.random(), s: Math.random() < 0.8 ? 1 : 2, tw: Math.random() * 6.28 });
 resize();
 $('verTag').textContent = '🛡 ' + GAME_VERSION;
+{ // incoming challenge link? show the gauntlet
+  const cb = parseInt(INBOUND.get('b'), 10), cc = INBOUND.get('c');
+  if (cb > 0){
+    $('challenge').style.display = '';
+    $('challenge').textContent = t('challengeTxt').replace('{s}', cb).replace('{c}', cc || '');
+    track('challenged');
+  }
+}
 syncSound();
 applyLang();
 requestAnimationFrame(loop);
@@ -1833,11 +2000,21 @@ function track(event){
     img.src = 'https://irondome.goatcounter.com/count?' +
       'p=' + encodeURIComponent(event ? '/' + event : location.pathname) +
       (event ? '&e=true' : '') +
-      '&r=' + encodeURIComponent(document.referrer) +
+      '&r=' + encodeURIComponent(REF ? 'share:' + REF : document.referrer) +
       '&rnd=' + Date.now();
   }catch(e){}
 }
 track();                                                      // visit
+{ // D1/D7 retention measurement (cookieless, the metric this is all about)
+  const today = new Date().toISOString().slice(0, 10);
+  if (!save.firstSeen){ save.firstSeen = today; }
+  else if (save.lastSeen !== today){
+    const days = Math.round((new Date(today) - new Date(save.firstSeen)) / 864e5);
+    if (days === 1) track('return-d1');
+    if (days >= 7 && !save.d7) { save.d7 = 1; track('return-d7'); }
+  }
+  save.lastSeen = today; persist();
+}
 let trackedPlay = false;
 window.addEventListener('appinstalled', () => track('pwa-install'));   // "download"
 if (window.matchMedia && matchMedia('(display-mode: standalone)').matches)
