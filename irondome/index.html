@@ -222,7 +222,7 @@ const T = {
     play: '▶ PLAY', howBtn: 'HOW TO PLAY', back: 'BACK',
     howTitle: 'HOW TO PLAY',
     how1: 'Rockets fall from the sky. Big ones are slow, small ones are fast — some split or swerve.',
-    how2: 'Tap anywhere to fire an interceptor there. Its blast takes out every rocket in range. Lead your shots!',
+    how2: 'Tap a rocket to fire an interceptor — it locks on and detonates near its target. Or FLING: swipe toward a rocket to hurl one ahead of it!',
     how3: 'Tap falling crates 🎁 to grab power-ups: slow-motion, mega blasts, a shield dome, and the laser beam.',
     how4: 'Every rocket that lands destroys a building. Lose all buildings and the round is over.',
     how5: 'Earn ⭐ and coins to buy upgrades — bigger blasts, faster missiles, extra launchers and the Iron Sling.',
@@ -261,7 +261,7 @@ const T = {
     play: '▶ שחקו', howBtn: 'איך משחקים', back: 'חזרה',
     howTitle: 'איך משחקים',
     how1: 'רקטות נופלות מהשמיים. הגדולות איטיות, הקטנות מהירות — חלקן מתפצלות או מתפתלות.',
-    how2: 'הקליקו בכל מקום כדי לשגר מיירט לשם. הפיצוץ מפיל כל רקטה בטווח. קחו מקדם!',
+    how2: 'הקליקו על רקטה כדי לשגר מיירט — הוא ננעל ומתפוצץ ליד המטרה. או הניפו: החליקו במהירות לכיוון רקטה כדי להעיף מיירט לפניה!',
     how3: 'הקליקו על ארגזים נופלים 🎁 לאסוף כוחות: הילוך איטי, פיצוץ ענק, כיפת מגן וקרן לייזר.',
     how4: 'כל רקטה שנוחתת הורסת בניין. נגמרו הבניינים — נגמר הסיבוב.',
     how5: 'אספו ⭐ ומטבעות לשדרוגים — פיצוץ גדול יותר, טילים מהירים, משגר נוסף וקלע ברזל.',
@@ -659,26 +659,68 @@ function spawnPower(){
     ic: { slow: '⏱️', mega: '💥', shield: '🛡️', beam: '⚡' }[k] });
 }
 
-/* ---------- input ---------- */
+/* ---------- input: tap to fire, fling to throw ----------
+   Taps snap to the predicted intercept point of a nearby rocket (aim assist).
+   A quick swipe flings the interceptor ahead along the swipe direction —
+   the harder the fling, the further it leads. */
+const ptrs = new Map();
 cv.addEventListener('pointerdown', e => {
   if (screen !== 'play' || !G || G.over) return;
   const x = e.clientX, y = e.clientY;
-  // collect power-up?
+  // collect power-up? (instant, consumes the gesture)
   for (let i = G.pows.length - 1; i >= 0; i--){
     const p = G.pows[i];
     if (Math.hypot(p.x - x, p.y - y) < 48){
-      G.pows.splice(i, 1); applyPower(p.k); return;
+      G.pows.splice(i, 1); applyPower(p.k);
+      ptrs.set(e.pointerId, null);
+      return;
     }
   }
-  // fire interceptor
-  if (G.inters.length >= maxInters()){ sfx.click(); return; }
-  const ly = GROUND + 4;
-  const lx = W / 2;
-  const d = Math.hypot(x - lx, y - ly) || 1;
-  G.inters.push({ x: lx, y: ly, tx: x, ty: Math.min(y, GROUND - 10),
-    vx: (x - lx) / d * interSpeed(), vy: (Math.min(y, GROUND - 10) - ly) / d * interSpeed(), trail: [] });
-  sfx.launch(); buzz(8);
+  ptrs.set(e.pointerId, { x, y, t: performance.now() });
 });
+window.addEventListener('pointerup', e => {
+  const s = ptrs.get(e.pointerId);
+  ptrs.delete(e.pointerId);
+  if (!s || screen !== 'play' || !G || G.over) return;
+  const dx = e.clientX - s.x, dy = e.clientY - s.y;
+  const dist = Math.hypot(dx, dy);
+  const dur = Math.max((performance.now() - s.t) / 1000, 0.05);
+  if (dist > 26 && dur < 0.6){
+    // fling: project the aim point ahead along the swipe, scaled by fling speed
+    const lead = Math.min(320, (dist / dur) * 0.18);
+    fireAt(e.clientX + dx / dist * lead, e.clientY + dy / dist * lead, 1.25);
+  } else {
+    fireAt(e.clientX, e.clientY, 1);
+  }
+});
+window.addEventListener('pointercancel', e => ptrs.delete(e.pointerId));
+
+/* predict where a nearby rocket will be when the interceptor arrives */
+function aimAssist(x, y){
+  const lx = W / 2, ly = GROUND + 4, sp = interSpeed(), ts = G.timeScale;
+  let best = null, bd = 90;                      // snap radius in px
+  for (const r of G.rockets){
+    let px = r.x, py = r.y;
+    for (let k = 0; k < 2; k++){                 // two refinement passes
+      const t = Math.hypot(px - lx, py - ly) / sp;
+      px = r.x + r.vx * ts * t; py = r.y + r.vy * ts * t;
+    }
+    const d = Math.hypot(px - x, py - y);
+    if (d < bd){ bd = d; best = { x: px, y: py }; }
+  }
+  return best;
+}
+function fireAt(x, y, boost){
+  if (G.inters.length >= maxInters()){ sfx.click(); return; }
+  const aim = aimAssist(x, y) || { x, y };
+  const tx = aim.x, ty = Math.min(aim.y, GROUND - 10);
+  const lx = W / 2, ly = GROUND + 4;
+  const sp = interSpeed() * boost;
+  const d = Math.hypot(tx - lx, ty - ly) || 1;
+  G.inters.push({ x: lx, y: ly, tx, ty,
+    vx: (tx - lx) / d * sp, vy: (ty - ly) / d * sp, trail: [] });
+  sfx.launch(); buzz(8);
+}
 
 function applyPower(k){
   sfx.power(); buzz(30);
@@ -829,9 +871,18 @@ function update(dt){
     m.trail.push({ x: m.x, y: m.y });
     if (m.trail.length > 10) m.trail.shift();
     const reach = (m.vx * (m.tx - m.x) + m.vy * (m.ty - m.y)) <= 0;
-    if (reach || m.y < -20){
+    let bx = m.tx, by = m.ty, det = reach || m.y < -20;
+    if (!det){
+      // proximity fuze: detonate when passing near any rocket
+      for (const r of G.rockets){
+        if (Math.hypot(r.x - m.x, r.y - m.y) < blastR() * 0.7){
+          det = true; bx = m.x; by = m.y; break;
+        }
+      }
+    }
+    if (det){
       G.inters.splice(i, 1);
-      G.booms.push({ x: m.tx, y: m.ty, r: 6, maxR: blastR(), t: 0 });
+      G.booms.push({ x: bx, y: by, r: 6, maxR: blastR(), t: 0 });
       sfx.boom();
     }
   }
