@@ -412,13 +412,13 @@ function renderCard(s,coins,hood,line){
   if(line) txt(`"${line}"`,680,44,'#aef0dc',980);
   x.fillStyle='rgba(13,17,32,.88)';x.fillRect(0,1120,1080,230);
   txt(`CAN YOU BEAT ${s}?`,1198,64,'#7ee8c7',960);
-  txt('dubaiai.pro/mamaddash',1288,56,'#ffd166',960);
+  txt(SITE.replace(/^https?:\/\//,'').replace(/\/$/,''),1288,56,'#ffd166',960);
   return c;
 }
+const SITE=location.protocol.startsWith('http')?location.origin+location.pathname:'https://dubaiai.pro/mamaddash/';
 $('shareBtn').addEventListener('click',async()=>{
   const s=G.wave-1;
-  const link=G.daily?`https://dubaiai.pro/mamaddash/?daily=1`
-    :`https://dubaiai.pro/mamaddash/?beat=${s}&c=${G.coins}`;
+  const link=G.daily?`${SITE}?daily=1`:`${SITE}?beat=${s}&c=${G.coins}`;
   let txt;
   if(G.daily) txt=`📅 MAMAD DASH Daily #${G.daily} — ${s} siren${s===1?'':'s'} · ${G.coins}₪. Same gauntlet for everyone, once a day: ${link}`;
   else if(CHAL&&s>CHAL.beat) txt=`🤌 You said ${CHAL.beat}. I survived ${s} sirens and stacked ${G.coins}₪. Your move: ${link}`;
