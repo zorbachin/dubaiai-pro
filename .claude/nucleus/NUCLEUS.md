@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 10:08 UTC · code
+Built real screenshot pipeline for Iron Dome (jsdom + node-canvas at phone res, /tmp/render.js) — can now visually verify changes without a browser. Confirmed cityscapes render (Sderot/TLV/Haifa/Eilat all good); found+fixed Jerusalem dome/wall hidden behind foreground buildings, now elevated on ridge.
+
 ### 2026-06-10 09:47 UTC · code
 Durable preference: every Iron Dome (and similar) update message must end with the test/preview link — user tests on phone immediately. Preview while PR #70 unmerged: https://htmlpreview.github.io/?https://github.com/zorbachin/dubaiai-pro/blob/claude/iron-dome-game-zi3dtt/irondome/index.html (live link after merge: dubaiai.pro/irondome/)
 
@@ -162,31 +165,34 @@ Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin pr
 
 ### 2026-06-02 04:06 UTC · chat
 Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-posted/scheduled by Buffer or any tool (Meta API rule). FB stays a MANUAL post by Zorba. Buffer handles the rest: IG (Business), LinkedIn, TikTok. Connecting Buffer via Zapier for scheduling those.
-
-### 2026-06-02 04:03 UTC · chat
-PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 10:00 UTC
+- **When:** 2026-06-10 10:09 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** d0c531a chore: refresh nucleus live state [skip ci] — 13 seconds ago
+- **Last commit:** e2b6652 Lift Jerusalem dome and old-city wall above the foreground skyline — 25 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-d0c531a chore: refresh nucleus live state [skip ci] (13 seconds ago)
-61961bd chore: refresh nucleus live state [skip ci] (12 minutes ago)
-7f49504 chore: refresh nucleus live state [skip ci] (13 minutes ago)
-7d95eaf chore: refresh nucleus live state [skip ci] (23 minutes ago)
-fb194a7 chore: refresh nucleus live state [skip ci] (23 minutes ago)
+e2b6652 Lift Jerusalem dome and old-city wall above the foreground skyline (25 seconds ago)
+bb3676a chore: refresh nucleus live state [skip ci] (9 minutes ago)
+d0c531a chore: refresh nucleus live state [skip ci] (9 minutes ago)
+61961bd chore: refresh nucleus live state [skip ci] (21 minutes ago)
+7f49504 chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
