@@ -1,5 +1,5 @@
 /* Iron Dome — offline-first service worker */
-const CACHE = 'irondome-v5';
+const CACHE = 'irondome-v6';
 const ASSETS = [
   './',
   './index.html',

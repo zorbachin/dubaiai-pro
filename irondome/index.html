@@ -258,7 +258,7 @@ const T = {
     waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE SKY TO INTERCEPT!',
     calTitle: 'Touch Calibration', calTapMsg: 'Tap the center of the rocket',
     calFlingMsg: 'Now swipe through the rocket', calCloser: 'Closer to the rocket — try again',
-    calDoneMsg: 'Calibrated! Taps are now tuned to your thumb.', skip: 'Skip',
+    calDoneMsg: 'Calibrated! Taps are tuned to your thumb — and keep improving as you play.', skip: 'Skip',
     pSlow: 'SLOW-MO!', pMega: 'MEGA BLAST!', pShield: 'SHIELD UP!', pBeam: 'IRON BEAM!',
     slingShot: 'IRON SLING!',
     disclaimer: 'A fan-made morale game — not affiliated with any official body. In a real alert, follow Home Front Command instructions. Stay safe ❤️',
@@ -300,7 +300,7 @@ const T = {
     waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 הקליקו על השמיים כדי ליירט!',
     calTitle: 'כיול מגע', calTapMsg: 'הקליקו במרכז הרקטה',
     calFlingMsg: 'עכשיו החליקו דרך הרקטה', calCloser: 'קרוב יותר לרקטה — נסו שוב',
-    calDoneMsg: 'כויל! ההקלקות מכווננות לאצבע שלכם.', skip: 'דלג',
+    calDoneMsg: 'כויל! ההקלקות מכווננות לאצבע שלכם — וממשיכות להשתפר תוך כדי משחק.', skip: 'דלג',
     pSlow: 'הילוך איטי!', pMega: 'מגה פיצוץ!', pShield: 'מגן פעיל!', pBeam: 'קרן ברזל!',
     slingShot: 'קלע ברזל!',
     disclaimer: 'משחק מעריצים להרמת מורל — לא קשור לגוף רשמי. באזעקה אמיתית פעלו לפי הנחיות פיקוד העורף. שמרו על עצמכם ❤️',
@@ -688,10 +688,18 @@ function spawnPower(){
    Taps snap to the predicted intercept point of a nearby rocket (aim assist).
    A quick swipe flings the interceptor ahead along the swipe direction —
    the harder the fling, the further it leads. */
+/* map a pointer event to game coordinates: corrects for any CSS scaling of
+   the canvas (zoomed viewports, embeds) and applies the player's calibration */
+function evXY(e){
+  const rect = cv.getBoundingClientRect();
+  const sx = rect.width ? W / rect.width : 1, sy = rect.height ? H / rect.height : 1;
+  return { x: (e.clientX - rect.left) * sx + save.cal.x,
+           y: (e.clientY - rect.top) * sy + save.cal.y };
+}
 const ptrs = new Map();
 cv.addEventListener('pointerdown', e => {
   if (screen !== 'play' || !G || G.over) return;
-  const x = e.clientX + save.cal.x, y = e.clientY + save.cal.y;
+  const pt = evXY(e), x = pt.x, y = pt.y;
   // collect power-up? (instant, consumes the gesture)
   for (let i = G.pows.length - 1; i >= 0; i--){
     const p = G.pows[i];
@@ -707,16 +715,16 @@ window.addEventListener('pointerup', e => {
   const s = ptrs.get(e.pointerId);
   ptrs.delete(e.pointerId);
   if (!s || screen !== 'play' || !G || G.over) return;
-  const ux = e.clientX + save.cal.x, uy = e.clientY + save.cal.y;
-  const dx = ux - s.x, dy = uy - s.y;
+  const up = evXY(e);
+  const dx = up.x - s.x, dy = up.y - s.y;
   const dist = Math.hypot(dx, dy);
   const dur = Math.max((performance.now() - s.t) / 1000, 0.05);
   if (dist > 26 && dur < 0.6){
     // fling: project the aim point ahead along the swipe, scaled by fling speed
     const lead = Math.min(320, (dist / dur) * 0.18);
-    fireAt(ux + dx / dist * lead, uy + dy / dist * lead, 1.25);
+    fireAt(up.x + dx / dist * lead, up.y + dy / dist * lead, 1.25, false);
   } else {
-    fireAt(ux, uy, 1);
+    fireAt(up.x, up.y, 1, true);
   }
 });
 window.addEventListener('pointercancel', e => ptrs.delete(e.pointerId));
@@ -745,17 +753,33 @@ function aimAssist(x, y){
 }
 /* every tap is accepted: fire now if a tube is free, otherwise queue —
    the shot leaves the instant one frees up. No input is ever swallowed. */
-function fireAt(x, y, boost){
-  G.pending.push({ x, y, boost });
+function fireAt(x, y, boost, isTap){
+  G.pending.push({ x, y, boost, tap: !!isTap });
   if (G.pending.length > 8) G.pending.shift();
   sfx.launch(); buzz(8);
   processPending(0);                       // launch immediately if a tube is free
 }
+
+/* self-improving calibration: each tap that locks a rocket measures the
+   residual between the (corrected) touch and the rocket itself, and nudges
+   the offset with a moving average — accuracy keeps tightening as you play */
+let calDirty = 0;
+function learnCal(dx, dy){
+  const c = v => Math.max(-60, Math.min(60, v));
+  save.cal.x = c(save.cal.x - dx * 0.1);
+  save.cal.y = c(save.cal.y - dy * 0.1);
+  if (++calDirty >= 6){ calDirty = 0; persist(); }
+}
+
 function processPending(dt){
   G.fireCD -= dt;
   while (G.pending.length && G.inters.length < maxInters() && G.fireCD <= 0){
     const s = G.pending.shift();
     const aim = aimAssist(s.x, s.y) || { x: s.x, y: s.y };   // assist at launch time
+    if (s.tap && aim.r){
+      const rdx = s.x - aim.r.x, rdy = s.y - aim.r.y;
+      if (Math.hypot(rdx, rdy) < 80) learnCal(rdx, rdy);
+    }
     const tx = aim.x, ty = Math.min(aim.y, GROUND - 10);
     const lx = W / 2, ly = GROUND + 4;
     const sp = interSpeed() * s.boost;
