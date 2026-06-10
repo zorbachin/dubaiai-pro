@@ -171,28 +171,22 @@ SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:23 UTC
+- **When:** 2026-06-10 12:24 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish — 34 seconds ago
+- **Last commit:** 76817f9 chore: refresh nucleus live state [skip ci] — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish (34 seconds ago)
+76817f9 chore: refresh nucleus live state [skip ci] (21 seconds ago)
+8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish (55 seconds ago)
 038f829 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-d4bd6d8 chore: refresh nucleus live state [skip ci] (16 minutes ago)
-13dcb86 chore: refresh nucleus live state [skip ci] (18 minutes ago)
-efaaf05 chore: refresh nucleus live state [skip ci] (18 minutes ago)
+d4bd6d8 chore: refresh nucleus live state [skip ci] (17 minutes ago)
+13dcb86 chore: refresh nucleus live state [skip ci] (19 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
