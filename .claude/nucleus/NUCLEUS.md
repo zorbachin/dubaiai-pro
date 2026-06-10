@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 10:25 UTC · code
+Iron Dome input overhaul per user feedback ('tap accuracy off, add fling'): aim assist (taps snap to predicted intercept point), proximity-fuze detonation, fling/swipe gesture with speed-scaled lead. Verified by new automated checks (direct tap kills, fling kills) — 17/17.
+
 ### 2026-06-10 10:08 UTC · code
 Built real screenshot pipeline for Iron Dome (jsdom + node-canvas at phone res, /tmp/render.js) — can now visually verify changes without a browser. Confirmed cityscapes render (Sderot/TLV/Haifa/Eilat all good); found+fixed Jerusalem dome/wall hidden behind foreground buildings, now elevated on ridge.
 
@@ -162,31 +165,34 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 
 ### 2026-06-02 04:31 UTC · chat
 Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
-
-### 2026-06-02 04:06 UTC · chat
-Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-posted/scheduled by Buffer or any tool (Meta API rule). FB stays a MANUAL post by Zorba. Buffer handles the rest: IG (Business), LinkedIn, TikTok. Connecting Buffer via Zapier for scheduling those.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 10:09 UTC
+- **When:** 2026-06-10 10:25 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** d3f2ef1 chore: refresh nucleus live state [skip ci] — 18 seconds ago
+- **Last commit:** 1ae0169 Fix tap accuracy: aim assist + proximity fuze + fling gesture — 13 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-d3f2ef1 chore: refresh nucleus live state [skip ci] (18 seconds ago)
-e2b6652 Lift Jerusalem dome and old-city wall above the foreground skyline (43 seconds ago)
-bb3676a chore: refresh nucleus live state [skip ci] (9 minutes ago)
-d0c531a chore: refresh nucleus live state [skip ci] (9 minutes ago)
-61961bd chore: refresh nucleus live state [skip ci] (22 minutes ago)
+1ae0169 Fix tap accuracy: aim assist + proximity fuze + fling gesture (13 seconds ago)
+76be0ff chore: refresh nucleus live state [skip ci] (16 minutes ago)
+d3f2ef1 chore: refresh nucleus live state [skip ci] (16 minutes ago)
+e2b6652 Lift Jerusalem dome and old-city wall above the foreground skyline (17 minutes ago)
+bb3676a chore: refresh nucleus live state [skip ci] (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
