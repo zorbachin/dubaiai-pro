@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 12:28 UTC · code
+DNS BROKEN: dubaiai.pro resolves to 44.227.76.166 / 44.227.65.245 (registrar parking IPs, likely GoDaddy) instead of GitHub Pages (185.199.108-111.153). Entire site down incl. /mamadio/ — Pages deploys are green, files on main; fix is at the DNS provider: apex A records to the four 185.199.x.153 IPs. Nucleus 'Live at dubaiai.pro' claim is currently false. github.io fallback also dead-ends (301s to the broken custom domain via CNAME).
+
 ### 2026-06-10 12:15 UTC · code
 MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimous SHIP WITH FIXES, zero JS errors, economy math verified exact. P0 fixes: mobile dash HUD hidden by alert banner; latent siren-null game-freeze; mini-games have no cancel. Big balance finds: Mendy 2.4x dominant, haggle deterministic, scooters dead content, quest income dries up with 80% of day left, runner stumble death-spiral. Top virality lever = end-screen share card. Full reports in /tmp/qa-func|qa-ux|qa-fun|qa-design.
 
@@ -162,31 +165,34 @@ Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-po
 
 ### 2026-06-02 04:03 UTC · chat
 PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
-
-### 2026-06-02 03:58 UTC · chat
-BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:26 UTC
+- **When:** 2026-06-10 12:28 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 2a46fa0 chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **Last commit:** 97107fb chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-2a46fa0 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-9aba855 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-c37d3b9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-cdd4ee5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-ca4c52d chore: refresh nucleus live state [skip ci] (13 minutes ago)
+97107fb chore: refresh nucleus live state [skip ci] (2 minutes ago)
+2a46fa0 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+9aba855 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+c37d3b9 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+cdd4ee5 chore: refresh nucleus live state [skip ci] (13 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
