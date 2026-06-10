@@ -46,6 +46,14 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 12:23 UTC · code
+QA panel (4 agents) delivered + all fixes shipped to PR #73 branch: game was UNLOSABLE (blind tapper cleared L10) -> fail state restored w/ sim-tuned assists; Red Alert endless mode added (retention); 3 save-robustness P1s fixed (corrupt save bricked boot); skyline-clone math bug (37.7≈12π); shelter UX (pause mute, shop on loss, kind game-over copy). 26/26 + endless e2e tests.
+
+### 2026-06-10 12:05 UTC · code
+Analytics added to Iron Dome (PR #73 draft): GoatCounter cookieless tracking — visits, plays/session, wins, PWA installs. ACTION FOR ZORBA: claim site code 'irondome' at goatcounter.com (1 min) -> dashboard irondome.goatcounter.com. QA panel: 4 specialist agents (functionality/ease/fun/visual design) testing in background.
+
+### 2026-06-10 11:47 UTC · code
+PR #70 MERGED — Iron Dome is LIVE at https://dubaiai.pro/irondome/ (user approved merge after htmlpreview diagnosis). v6 includes self-improving calibration. Update the durable test-link preference: use the LIVE link from now on. Note: parallel session shipped MAMADIO companion game (PR #71, mamadio/) — merged main into our branch resolving nucleus conflicts as union.
 ### 2026-06-10 11:43 UTC · code
 Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.github.io strips meta viewport -> iOS lays out at 980px, city below fold, broken touch geometry. NOT a game bug. Added self-improving calibration (in-play EMA on tap residuals, converges ~12 taps, tested) + rect-based scale-proof touch mapping. Better preview host: raw.githack.com (serves HTML intact). Real fix = merge PR #70 to go live on dubaiai.pro/irondome/. 26/26 tests.
 
@@ -157,6 +165,8 @@ ALL 20 Etsy products BUILT (etsy-shop/*.pdf) via upgraded engine: each now has p
 ### 2026-06-02 05:29 UTC · chat
 SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@z.ai (msg 19e86ccebe1f1112); HighLevel cancel+refund -> billing@gohighlevel.com (msg 19e86cd2a4dd19f9). DAILY at CEO sync: check for their reply, resend follow-up until written cancel+refund confirmed, then verify charges stopped via Stripe receipts. Agentbus T015 (AutoGLM follow-up), T016 (HighLevel confirm), T017 (Etsy OrganizedOrionDesign digital venture). ETSY = DIGITAL (PDFs/AI guides/student planners/story guides); Zorba 1hr/wk creates, Claude markets/optimizes. NEXT BUILDS: GHL feature->rebuild map on free stack; stand up OrganizedOrionDesign + first product.
 
+
+
 ### 2026-06-02 05:23 UTC · chat
 SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $200/mo — TOP tier, NOT $100. Flat-rate, can't 'exceed' in $, only hit rate limits. He runs whole OS on it → KEEP, it's the engine. ChatGPT $20 + Gemini $20 worth it. AI-model spend (~$240) is his MOST productive spend, don't trim. (2) AutoGLM = $100/mo billed by Z.ai (autoglm@z.ai) — CAN'T CANCEL, shady. PRIORITY CUT. Drafted cancellation+refund-demand email in Gmail; fallback = Stripe/card chargeback. (3) GoHighLevel ~$100/mo — rebuildable on existing free stack (Netlify forms + Gmail + Google Cal/Cal.com + sheet/Airtable CRM); only SMS-at-scale (Twilio) is harder & he's not using it → CUT, Claude rebuilds the lead→CRM→follow-up flow. (4) Runway — KEEP but right-size: pause between production sprints, resub only in months he batches hero videos (made the BYB 'Transformers' video). (5) Etsy/OrganizedOrionDesign → keep ONLY as low-touch: Zorba ~1hr/wk builds assets, Claude markets/optimizes, else cut. Add as venture. (6) Vybewear (Isaac@vybewear.com) = CLIENT/friend for LAI/BYB (forwarded GTAA tournament leads) — track as customer, revenue-relevant. TRUE BLEED = AutoGLM $100 + GHL $100 = ~$200/mo.
 
@@ -197,6 +207,10 @@ User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-10 13:00 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** d41df29 chore: refresh nucleus live state [skip ci] — 7 minutes ago
+
 - **When:** 2026-06-10 11:43 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
 - **Last commit:** e7a755e Self-improving calibration + scale-proof touch mapping — 1 second ago
@@ -214,6 +228,12 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+d41df29 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+b4bdca7 chore: refresh nucleus live state [skip ci] (32 minutes ago)
+5c4b64b chore: refresh nucleus live state [skip ci] (36 minutes ago)
+76817f9 chore: refresh nucleus live state [skip ci] (37 minutes ago)
+8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish (37 minutes ago)
+
 e7a755e Self-improving calibration + scale-proof touch mapping (1 second ago)
 a7b9cf5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
 7cce0e9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
