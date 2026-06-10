@@ -381,6 +381,7 @@ function newGame(levelIdx){
   G = {
     L, levelIdx,
     rockets: [], inters: [], booms: [], parts: [], pows: [], floats: [], warns: [],
+    pending: [], fireCD: 0,
     spawned: 0, resolved: 0, killed: 0,
     spawnT: 0.6, powT: 6 + Math.random()*5,
     score: 0, combo: 0, comboT: 0,
@@ -404,7 +405,7 @@ function buildSkyline(){
     const r = Math.abs(Math.sin((G.levelIdx + 1) * 37.7 + i * 12.3));
     arr.push({
       x: bw * (i + 1) + bw * 0.08, w: bw * 0.84,
-      h: 36 + r * Math.min(80, H * 0.10),
+      h: 48 + r * Math.min(105, H * 0.13),
       alive: prev[i] ? prev[i].alive : true,
       win: 2 + Math.floor(r * 3)
     });
@@ -426,8 +427,8 @@ function renderBackdrop(){
   const b = BD.getContext('2d');
   b.setTransform(DPR, 0, 0, DPR, 0, 0);
   const acc = G.L.accent;
-  const FAR = '#0d1a3c', MID = '#152652', NEAR = '#1d3066';
-  const topoH = Math.min(H * 0.24, 230);   // scenery band height above the ground line
+  const FAR = '#1b2f60', MID = '#24407e', NEAR = '#2f519c';
+  const topoH = Math.min(H * 0.30, 300);   // scenery fills the bottom third
   const T = GROUND - topoH;
   const rnd = i => Math.abs(Math.sin((G.levelIdx + 2) * 39.7 + i * 17.31));
 
@@ -464,9 +465,9 @@ function renderBackdrop(){
     }
   }
   function lights(n, s){                            // sprinkle of lit windows
-    b.fillStyle = acc; b.globalAlpha = 0.55;
+    b.fillStyle = acc; b.globalAlpha = 0.85;
     for (let i = 0; i < n; i++)
-      b.fillRect(rnd(i + s) * W, GROUND - 8 - rnd(i + s + 99) * topoH * 0.45, 2.5, 2.5);
+      b.fillRect(rnd(i + s) * W, GROUND - 8 - rnd(i + s + 99) * topoH * 0.45, 3, 3);
     b.globalAlpha = 1;
   }
   function crane(x, h, col){                        // port crane
@@ -611,16 +612,16 @@ function renderBackdrop(){
   }
 
   // soft city-glow rising from the skyline
-  const glow = b.createLinearGradient(0, T - 40, 0, GROUND);
+  const glow = b.createLinearGradient(0, T - 50, 0, GROUND);
   glow.addColorStop(0, 'rgba(0,0,0,0)');
-  glow.addColorStop(1, hexA(acc, 0.10));
-  b.fillStyle = glow; b.fillRect(0, T - 40, W, GROUND - T + 40);
+  glow.addColorStop(1, hexA(acc, 0.17));
+  b.fillStyle = glow; b.fillRect(0, T - 50, W, GROUND - T + 50);
 }
 
 /* interceptor params with upgrades */
 function blastR(){ return (54 + save.up.blast * 15) * (G && G.megaT > 0 ? 1.7 : 1); }
-function interSpeed(){ return 520 + save.up.speed * 140; }
-function maxInters(){ return 2 + save.up.launchers; }
+function interSpeed(){ return 560 + save.up.speed * 140; }
+function maxInters(){ return 3 + save.up.launchers; }
 
 /* ---------- spawning ---------- */
 function pickType(){
@@ -639,8 +640,8 @@ function spawnRocket(type, x, y, child){
     { v: 80,  size: 14, hp: 1, col: '#c792ff', pts: 30 },
     { v: 55,  size: 19, hp: 1, col: '#5dffa8', pts: 35 }
   ][type];
-  const sx = x !== undefined ? x : W * (0.08 + Math.random() * 0.84);
-  const tx = W * (0.15 + Math.random() * 0.7);
+  const sx = x !== undefined ? x : W * (0.16 + Math.random() * 0.68);
+  const tx = W * (0.18 + Math.random() * 0.64);   // always lands over the city strip
   const sy = y !== undefined ? y : -30;
   const ang = Math.atan2(GROUND - sy, tx - sx);
   const v = def.v * sp * (0.9 + Math.random() * 0.25);
@@ -698,7 +699,7 @@ window.addEventListener('pointercancel', e => ptrs.delete(e.pointerId));
 /* predict where a nearby rocket will be when the interceptor arrives */
 function aimAssist(x, y){
   const lx = W / 2, ly = GROUND + 4, sp = interSpeed(), ts = G.timeScale;
-  let best = null, bd = 90;                      // snap radius in px
+  let best = null, bd = 110;                     // snap radius in px
   for (const r of G.rockets){
     let px = r.x, py = r.y;
     for (let k = 0; k < 2; k++){                 // two refinement passes
@@ -710,16 +711,26 @@ function aimAssist(x, y){
   }
   return best;
 }
+/* every tap is accepted: fire now if a tube is free, otherwise queue —
+   the shot leaves the instant one frees up. No input is ever swallowed. */
 function fireAt(x, y, boost){
-  if (G.inters.length >= maxInters()){ sfx.click(); return; }
-  const aim = aimAssist(x, y) || { x, y };
-  const tx = aim.x, ty = Math.min(aim.y, GROUND - 10);
-  const lx = W / 2, ly = GROUND + 4;
-  const sp = interSpeed() * boost;
-  const d = Math.hypot(tx - lx, ty - ly) || 1;
-  G.inters.push({ x: lx, y: ly, tx, ty,
-    vx: (tx - lx) / d * sp, vy: (ty - ly) / d * sp, trail: [] });
+  G.pending.push({ x, y, boost });
+  if (G.pending.length > 4) G.pending.shift();
   sfx.launch(); buzz(8);
+}
+function processPending(dt){
+  G.fireCD -= dt;
+  while (G.pending.length && G.inters.length < maxInters() && G.fireCD <= 0){
+    const s = G.pending.shift();
+    const aim = aimAssist(s.x, s.y) || { x: s.x, y: s.y };   // assist at launch time
+    const tx = aim.x, ty = Math.min(aim.y, GROUND - 10);
+    const lx = W / 2, ly = GROUND + 4;
+    const sp = interSpeed() * s.boost;
+    const d = Math.hypot(tx - lx, ty - ly) || 1;
+    G.inters.push({ x: lx, y: ly, tx, ty,
+      vx: (tx - lx) / d * sp, vy: (ty - ly) / d * sp, trail: [] });
+    G.fireCD = 0.11;
+  }
 }
 
 function applyPower(k){
@@ -753,6 +764,9 @@ function killRocket(r, silent){
     sfx.combo(Math.floor(G.combo / 3));
   }
   burst(r.x, r.y, r.col, 14);
+  // chain reaction: every kill detonates, catching nearby rockets
+  if (G.booms.length < 40)
+    G.booms.push({ x: r.x, y: r.y, r: 4, maxR: blastR() * 0.55, t: 0, chain: true });
   if (!silent){ sfx.boom(); buzz(15); }
 }
 
@@ -765,15 +779,15 @@ function burst(x, y, col, n){
 
 /* ground impacts explode into falafel balls 🧆 — they arc, bounce and roll */
 function falafelBurst(x, n){
-  const shades = ['#c08b3f', '#a9762f', '#8f6228', '#d19c4e'];
+  const shades = ['#e0a955', '#c98f3d', '#b07a30', '#edbb6a'];
   for (let i = 0; i < n; i++){
-    const a = -Math.PI / 2 + (Math.random() - 0.5) * 1.8;
-    const v = 120 + Math.random() * 220;
+    const a = -Math.PI / 2 + (Math.random() - 0.5) * 2.0;
+    const v = 160 + Math.random() * 280;
     G.parts.push({
-      f: true, x: x + (Math.random() - 0.5) * 14, y: GROUND - 6,
+      f: true, x: x + (Math.random() - 0.5) * 18, y: GROUND - 8,
       vx: Math.cos(a) * v * 0.6, vy: Math.sin(a) * v,
-      r: 3.5 + Math.random() * 3.5, col: shades[i % shades.length],
-      spin: Math.random() * 6.28, t: 0, life: 1.3 + Math.random() * 0.5
+      r: 5.5 + Math.random() * 4.5, col: shades[i % shades.length],
+      spin: Math.random() * 6.28, t: 0, life: 2.2 + Math.random() * 0.6
     });
   }
 }
@@ -790,9 +804,10 @@ function update(dt){
   if (G.shake > 0) G.shake = Math.max(0, G.shake - dt * 30);
 
   const ts = G.timeScale, sdt = dt * ts;
+  processPending(dt);
 
-  // spawn rockets (with a short incoming warning first)
-  const queueWarn = () => G.warns.push({ x: W * (0.08 + Math.random() * 0.84), type: pickType(), t: 0.7 });
+  // spawn rockets (with a short incoming warning first) — always over the city
+  const queueWarn = () => G.warns.push({ x: W * (0.16 + Math.random() * 0.68), type: pickType(), t: 0.7 });
   if (G.spawned < G.L.count){
     G.spawnT -= sdt;
     if (G.spawnT <= 0){
@@ -820,6 +835,7 @@ function update(dt){
     let vx = r.vx;
     if (r.type === 3) vx += Math.sin(r.t) * 90;   // zigzag
     r.x += vx * sdt; r.y += r.vy * sdt;
+    r.x = Math.max(W * 0.06, Math.min(W * 0.94, r.x));   // never drift into the margins
     r.trail.push({ x: r.x, y: r.y });
     if (r.trail.length > 14) r.trail.shift();
     // splitter splits
@@ -853,11 +869,11 @@ function update(dt){
         hit.alive = false;
         G.shake = 14; sfx.hitCity(); buzz([30, 40, 60]);
         burst(r.x, GROUND - 10, '#ff8c42', 30);
-        falafelBurst(r.x, 12);
+        falafelBurst(r.x, 16);
         if (!G.buildings.some(b => b.alive)){ endLevel(false); return; }
       } else {
         burst(r.x, GROUND, '#8da3cc', 8); noise(0.15, 0.1);
-        falafelBurst(r.x, 7);
+        falafelBurst(r.x, 10);
         G.shake = Math.max(G.shake, 4);
       }
       G.combo = 0;
@@ -875,7 +891,7 @@ function update(dt){
     if (!det){
       // proximity fuze: detonate when passing near any rocket
       for (const r of G.rockets){
-        if (Math.hypot(r.x - m.x, r.y - m.y) < blastR() * 0.7){
+        if (Math.hypot(r.x - m.x, r.y - m.y) < blastR() * 0.8){
           det = true; bx = m.x; by = m.y; break;
         }
       }
@@ -980,9 +996,11 @@ function drawCity(){
   // buildings
   for (const b of G.buildings){
     if (b.alive){
-      cx.fillStyle = '#23386f';
+      cx.fillStyle = '#3a5cae';
       cx.fillRect(b.x, GROUND - b.h, b.w, b.h);
-      cx.fillStyle = acc; cx.globalAlpha = 0.85;
+      cx.fillStyle = '#16244a';
+      cx.fillRect(b.x, GROUND - b.h, b.w, 4);   // roof line for definition
+      cx.fillStyle = acc; cx.globalAlpha = 0.95;
       // windows
       const rows = Math.floor(b.h / 16), cols = b.win;
       for (let r = 0; r < rows; r++)
@@ -1015,10 +1033,14 @@ function drawCity(){
   cx.beginPath(); cx.arc(lx, GROUND - 20, 30, Math.PI, 0); cx.strokeStyle = '#3ee6ff'; cx.stroke();
   cx.globalAlpha = 1;
 
-  // ammo pips (available interceptors)
+  // ammo pips: cyan = ready, dim = in flight, pulsing gold = shot queued
   const free = maxInters() - G.inters.length;
+  const pulse = 0.5 + 0.5 * Math.abs(Math.sin(performance.now() / 120));
   for (let i = 0; i < maxInters(); i++){
-    cx.fillStyle = i < free ? '#3ee6ff' : 'rgba(141,163,204,0.3)';
+    if (i < free) cx.fillStyle = '#3ee6ff';
+    else if (G.pending.length && i >= maxInters() - G.pending.length)
+      cx.fillStyle = 'rgba(255,209,102,' + pulse + ')';
+    else cx.fillStyle = 'rgba(141,163,204,0.3)';
     cx.beginPath(); cx.arc(lx - (maxInters() - 1) * 7 + i * 14, GROUND + 14, 4, 0, 6.29); cx.fill();
   }
   // sling charges
@@ -1130,13 +1152,13 @@ function drawEntities(){
     cx.beginPath(); cx.arc(m.tx, m.ty, rr, 0, 6.29); cx.stroke();
   }
 
-  // explosions
+  // explosions (chain blasts glow gold)
   for (const b of G.booms){
     const k = b.t / 0.45;
     cx.globalAlpha = 1 - k;
     cx.fillStyle = '#fff';
     cx.beginPath(); cx.arc(b.x, b.y, b.r * 0.45, 0, 6.29); cx.fill();
-    cx.strokeStyle = '#3ee6ff'; cx.lineWidth = 3;
+    cx.strokeStyle = b.chain ? '#ffd166' : '#3ee6ff'; cx.lineWidth = 3;
     cx.beginPath(); cx.arc(b.x, b.y, b.r, 0, 6.29); cx.stroke();
     cx.strokeStyle = '#ffd166'; cx.lineWidth = 1.5; cx.globalAlpha = (1 - k) * 0.7;
     cx.beginPath(); cx.arc(b.x, b.y, b.r * 0.75, 0, 6.29); cx.stroke();
@@ -1147,8 +1169,10 @@ function drawEntities(){
   for (const p of G.parts){
     cx.globalAlpha = Math.min(1, (1 - p.t / p.life) * 1.4);
     if (p.f){
+      cx.shadowColor = '#ffce7a'; cx.shadowBlur = 10;
       cx.fillStyle = p.col;
       cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 6.29); cx.fill();
+      cx.shadowBlur = 0;
       cx.fillStyle = 'rgba(70,48,18,0.8)';           // crispy speckles
       cx.beginPath();
       cx.arc(p.x + Math.cos(p.spin) * p.r * 0.4, p.y + Math.sin(p.spin) * p.r * 0.4, p.r * 0.22, 0, 6.29);
