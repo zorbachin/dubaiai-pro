@@ -256,7 +256,7 @@ const T = {
     play: '▶ PLAY', howBtn: 'HOW TO PLAY', back: 'BACK',
     howTitle: 'HOW TO PLAY',
     how1: 'Rockets fall from the sky. Big ones are slow, small ones are fast — some split or swerve.',
-    how2: 'Tap a rocket to fire an interceptor — it locks on and detonates near its target. Or FLING: swipe toward a rocket to hurl one ahead of it!',
+    how2: 'Tap directly ON a rocket to intercept it — catch the TIP for a DIRECT HIT bonus. Heavies take two taps; a clean miss costs combo.',
     how3: 'Tap falling crates 🎁 to grab power-ups: slow-motion, mega blasts, a shield dome, and the laser beam.',
     how4: 'Every rocket that lands destroys a building. Lose all buildings and the round is over.',
     how5: 'Earn ⭐ and coins to buy upgrades — bigger blasts, faster missiles, extra launchers and the Iron Sling.',
@@ -268,11 +268,11 @@ const T = {
     overTitle: 'THE DOME NEEDS YOU!', overStats: 'You intercepted {n} rockets. Reload and get back out there!',
     endless: '🚨 RED ALERT — Endless', endlessName: 'RED ALERT',
     winTitle: '🏆 ALL CLEAR!', winSub: 'You defended every city, from Sderot to Eilat. Total protection.',
-    upBlast: 'Bigger Blast', upBlastD: 'Wider interception radius',
-    upSpeed: 'Faster Tamir', upSpeedD: 'Interceptors fly faster',
-    upLaunch: 'Extra Launcher', upLaunchD: '+1 interceptor in the air',
+    upBlast: 'Bigger Blast', upBlastD: 'Bigger tap hitbox & chain blasts',
+    upSpeed: 'Quick Fuse', upSpeedD: 'Longer combo window',
+    upLaunch: 'City Armor', upLaunchD: 'Buildings survive +1 hit',
     upSling: 'Iron Sling', upSlingD: 'Auto-intercepts leakers (per level)',
-    waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE SKY TO INTERCEPT!',
+    waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE ROCKETS!', direct: 'DIRECT HIT!',
     calTitle: 'Touch Calibration', calTapMsg: 'Tap the center of the rocket',
     calFlingMsg: 'Now swipe through the rocket', calCloser: 'Closer to the rocket — try again',
     calDoneMsg: 'Calibrated! Taps are tuned to your thumb — and keep improving as you play.', skip: 'Skip',
@@ -282,8 +282,8 @@ const T = {
     levels: ['Sderot','Ashkelon','Ashdod','Beer Sheva','Rishon LeZion','Tel Aviv','Netanya','Jerusalem','Haifa','Eilat'],
     hints: [
       'Where it all begins. Easy skies — warm up your tapping finger.',
-      'Faster rockets join in. Tap right on them — the dome leads the shot for you.',
-      'Heavy rockets take a direct, close blast.',
+      'Faster rockets join in. Stay on rhythm — tap each one right on the body.',
+      'Heavy rockets take TWO taps — crack the armor, then pop them.',
       'The desert sky gets busy. Watch the edges.',
       'Swerving rockets! They zigzag on the way down.',
       'The big city. Splitters break into two — pop them high!',
@@ -299,7 +299,7 @@ const T = {
     play: '▶ שחקו', howBtn: 'איך משחקים', back: 'חזרה',
     howTitle: 'איך משחקים',
     how1: 'רקטות נופלות מהשמיים. הגדולות איטיות, הקטנות מהירות — חלקן מתפצלות או מתפתלות.',
-    how2: 'לחצו על רקטה כדי לשגר מיירט — הוא ננעל ומתפוצץ ליד המטרה. או הניפו: החליקו במהירות לכיוון רקטה כדי להעיף מיירט לפניה!',
+    how2: 'לחצו ישר על רקטה כדי ליירט — תפסו את החוד לבונוס פגיעה ישירה! כבדות צריכות שתי לחיצות; החטאה עולה בקומבו.',
     how3: 'לחצו על ארגזים נופלים 🎁 לאסוף כוחות: הילוך איטי, פיצוץ ענק, כיפת מגן וקרן לייזר.',
     how4: 'כל רקטה שנוחתת הורסת בניין. נגמרו הבניינים — נגמר הסיבוב.',
     how5: 'אספו ⭐ ומטבעות לשדרוגים — פיצוץ גדול יותר, טילים מהירים, משגר נוסף וקלע ברזל.',
@@ -311,11 +311,11 @@ const T = {
     overTitle: 'הכיפה צריכה אתכם!', overStats: 'יירטתם {n} רקטות. טוענים מחדש ויוצאים שוב!',
     endless: '🚨 צבע אדום — אינסופי', endlessName: 'צבע אדום',
     winTitle: '🏆 הכל נקי!', winSub: 'הגנתם על כל הערים, משדרות ועד אילת. הגנה מושלמת.',
-    upBlast: 'פיצוץ גדול יותר', upBlastD: 'רדיוס יירוט רחב יותר',
-    upSpeed: 'תמיר מהיר', upSpeedD: 'המיירטים טסים מהר יותר',
-    upLaunch: 'משגר נוסף', upLaunchD: 'מיירט נוסף באוויר בו־זמנית',
+    upBlast: 'פיצוץ גדול יותר', upBlastD: 'אזור פגיעה גדול יותר ופיצוצי שרשרת',
+    upSpeed: 'פתיל מהיר', upSpeedD: 'חלון קומבו ארוך יותר',
+    upLaunch: 'שריון לעיר', upLaunchD: 'בניינים סופגים פגיעה נוספת',
     upSling: 'קלע ברזל', upSlingD: 'יירוט אוטומטי של מסתננות (לכל שלב)',
-    waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 לחצו על השמיים כדי ליירט!',
+    waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 לחצו על הרקטות!', direct: 'פגיעה ישירה!',
     calTitle: 'כיול מגע', calTapMsg: 'לחצו במרכז הרקטה',
     calFlingMsg: 'עכשיו החליקו דרך הרקטה', calCloser: 'קרוב יותר לרקטה — נסו שוב',
     calDoneMsg: 'כויל! הלחיצות מכווננות לאצבע שלכם — וממשיכות להשתפר תוך כדי משחק.', skip: 'דלג',
@@ -325,8 +325,8 @@ const T = {
     levels: ['שדרות','אשקלון','אשדוד','באר שבע','ראשון לציון','תל אביב','נתניה','ירושלים','חיפה','אילת'],
     hints: [
       'כאן הכל מתחיל. שמיים רגועים — תחממו את האצבע.',
-      'רקטות מהירות מצטרפות. לחצו ישר עליהן — הכיפה מכוונת בשבילכם.',
-      'רקטות כבדות צריכות פיצוץ קרוב וישיר.',
+      'רקטות מהירות מצטרפות. שמרו על הקצב — לחצו על כל אחת ישר על הגוף.',
+      'רקטות כבדות צריכות שתי לחיצות — סדקו את השריון ואז פוצצו.',
       'שמי המדבר מתמלאים. שימו לב לקצוות.',
       'רקטות מתפתלות! הן עושות זיגזג בדרך למטה.',
       'העיר הגדולה. מתפצלות נשברות לשתיים — תפסו אותן גבוה!',
@@ -430,7 +430,6 @@ function newGame(levelIdx, endless){
   G = {
     L, levelIdx, endless: !!endless, endlessT: 0, nextRamp: 20,
     rockets: [], inters: [], booms: [], parts: [], pows: [], floats: [], warns: [],
-    pending: [], fireCD: 0,
     spawned: 0, resolved: 0, killed: 0,
     spawnT: 0.6, powT: 6 + Math.random()*5,
     score: 0, combo: 0, comboT: 0,
@@ -458,6 +457,7 @@ function buildSkyline(){
       x: bw * (i + 1) + bw * 0.08, w: bw * 0.84,
       h: 48 + r * Math.min(105, H * 0.13),
       alive: prev[i] ? prev[i].alive : true,
+      hp: prev[i] ? prev[i].hp : 1 + save.up.launchers,   // 'City Armor' upgrade
       win: 2 + Math.floor(r * 3)
     });
   }
@@ -678,8 +678,7 @@ function renderBackdrop(){
 
 /* interceptor params with upgrades */
 function blastR(){ return (54 + save.up.blast * 15) * (G && G.megaT > 0 ? 1.7 : 1); }
-function interSpeed(){ return 560 + save.up.speed * 140; }
-function maxInters(){ return 2 + save.up.launchers; }   // 2 base: the queue never drops taps, and the upgrade has to matter
+function comboWindow(){ return 2.2 + save.up.speed * 0.5; }   // 'Quick Fuse' upgrade: protect the streak
 
 /* ---------- spawning ---------- */
 function pickType(){
@@ -702,8 +701,9 @@ function spawnRocket(type, x, y, child){
   const tx = W * (0.18 + Math.random() * 0.64);   // always lands over the city strip
   const sy = y !== undefined ? y : -30;
   const ang = Math.atan2(GROUND - sy, tx - sx);
-  // normalize to screen height so a tablet isn't 75% easier than a small phone
-  const v = def.v * sp * (0.9 + Math.random() * 0.25) * Math.min(1.3, Math.max(0.8, H / 844));
+  // normalize to screen height so a tablet isn't 75% easier than a small phone;
+  // tight speed variance keeps the falling rhythm hypnotic, not chaotic
+  const v = def.v * sp * (0.95 + Math.random() * 0.12) * Math.min(1.3, Math.max(0.8, H / 844));
   G.rockets.push({
     type, x: sx, y: sy,
     vx: Math.cos(ang) * v, vy: Math.sin(ang) * v,
@@ -720,10 +720,11 @@ function spawnPower(){
     ic: { slow: '⏱️', mega: '💥', shield: '🛡️', beam: '⚡' }[k] });
 }
 
-/* ---------- input: tap to fire, fling to throw ----------
-   Taps snap to the predicted intercept point of a nearby rocket (aim assist).
-   A quick swipe flings the interceptor ahead along the swipe direction —
-   the harder the fling, the further it leads. */
+/* ---------- input: tap the rocket itself ----------
+   The whole game is your finger vs the rocket: tap directly ON one to
+   intercept it (an interceptor streak zips up instantly — zero latency,
+   the hit registers on touch-down). Catch the TIP for a DIRECT HIT bonus.
+   A miss costs a combo tier. No auto-aim. */
 /* map a pointer event to game coordinates: corrects for any CSS scaling of
    the canvas (zoomed viewports, embeds) and applies the player's calibration */
 function evXY(e){
@@ -732,7 +733,6 @@ function evXY(e){
   return { x: (e.clientX - rect.left) * sx + save.cal.x,
            y: (e.clientY - rect.top) * sy + save.cal.y };
 }
-const ptrs = new Map();
 cv.addEventListener('pointerdown', e => {
   if (screen !== 'play' || !G || G.over) return;
   const pt = evXY(e), x = pt.x, y = pt.y;
@@ -741,63 +741,55 @@ cv.addEventListener('pointerdown', e => {
     const p = G.pows[i];
     if (Math.hypot(p.x - x, p.y - y) < 48){
       G.pows.splice(i, 1); applyPower(p.k);
-      ptrs.set(e.pointerId, null);
       return;
     }
   }
-  ptrs.set(e.pointerId, { x, y, t: performance.now() });
+  tapStrike(x, y);
 });
-window.addEventListener('pointerup', e => {
-  const s = ptrs.get(e.pointerId);
-  ptrs.delete(e.pointerId);
-  if (!s || screen !== 'play' || !G || G.over) return;
-  const up = evXY(e);
-  const dx = up.x - s.x, dy = up.y - s.y;
-  const dist = Math.hypot(dx, dy);
-  const dur = Math.max((performance.now() - s.t) / 1000, 0.05);
-  if (dist > 26 && dur < 0.6){
-    // fling: project the aim point ahead along the swipe, scaled by fling speed
-    const lead = Math.min(320, (dist / dur) * 0.18);
-    fireAt(up.x + dx / dist * lead, up.y + dy / dist * lead, 1.25, false);
-  } else {
-    fireAt(up.x, up.y, 1, true);
-  }
-});
-window.addEventListener('pointercancel', e => ptrs.delete(e.pointerId));
 
-/* predict where a nearby rocket will be when the interceptor arrives */
-function aimAssist(x, y){
-  const lx = W / 2, ly = GROUND + 4, sp = interSpeed(), ts = G.timeScale;
-  // rockets already claimed by an in-flight interceptor yield to fresh threats,
-  // so a burst of taps spreads across the barrage instead of doubling up
-  const locked = new Set();
-  for (const m of G.inters) if (m.lock) locked.add(m.lock);
-  const SNAP = G.levelIdx < 3 ? 110 : 85;            // training wheels come off after level 3
-  let best = null, bd = SNAP, any = null, ad = SNAP;
+/* finger-friendly hitbox: scales with rocket size, the Blast upgrade, and mega */
+function hitR(r){
+  return (Math.max(30, r.size * 2.1) + save.up.blast * 8) * (G.megaT > 0 ? 1.5 : 1);
+}
+function tapStrike(x, y){
+  let best = null, bd = 1e9;
   for (const r of G.rockets){
-    let px = r.x, py = r.y;
-    for (let k = 0; k < 2; k++){                 // two refinement passes
-      const t = Math.hypot(px - lx, py - ly) / sp;
-      px = r.x + r.vx * ts * t; py = r.y + r.vy * ts * t;
-    }
-    // players aim at where the rocket IS; the shot must land where it WILL be —
-    // snap if either is in range, then target the predicted point
-    const d = Math.min(Math.hypot(px - x, py - y), Math.hypot(r.x - x, r.y - y));
-    if (d < ad){ ad = d; any = { x: px, y: py, r }; }
-    if (d < bd && !locked.has(r)){ bd = d; best = { x: px, y: py, r }; }
+    const d = Math.hypot(r.x - x, r.y - y);
+    if (d < hitR(r) && d < bd){ bd = d; best = r; }
   }
-  return best || any;
-}
-/* every tap is accepted: fire now if a tube is free, otherwise queue —
-   the shot leaves the instant one frees up. No input is ever swallowed. */
-function fireAt(x, y, boost, isTap){
-  G.pending.push({ x, y, boost, tap: !!isTap });
-  if (G.pending.length > 8) G.pending.shift();
-  sfx.launch(); buzz(8);
-  processPending(0);                       // launch immediately if a tube is free
+  if (!best){
+    // clean miss: a small dud ripple, and the combo drops one tier
+    G.booms.push({ x, y, r: 2, maxR: 14, t: 0.3, dud: true });
+    if (G.combo > 0){ G.combo = Math.max(0, G.combo - 3); }
+    sfx.click();
+    return;
+  }
+  if (bd < 80) learnCal(x - best.x, y - best.y);   // keep tuning to the thumb
+  // instant interceptor streak from the battery (cosmetic — hit already counted)
+  G.inters.push({ x1: W / 2, y1: GROUND - 20, x2: best.x, y2: best.y, t: 0 });
+  sfx.launch(); buzz(10);
+  // DIRECT HIT: caught it right on the nose cone
+  const a = Math.atan2(best.vy, best.type === 3 ? best.vx + Math.sin(best.t) * 90 : best.vx);
+  const tipD = Math.hypot(best.x + Math.cos(a) * best.size - x,
+                          best.y + Math.sin(a) * best.size - y);
+  best.hp--;
+  if (best.hp <= 0){
+    G.rockets.splice(G.rockets.indexOf(best), 1);
+    if (tipD < best.size * 1.2){
+      G.score += 15; G.combo++;
+      addFloat(best.x, best.y - 26, t('direct'), '#ffffff', 15);
+    }
+    killRocket(best);
+    G.booms.push({ x: best.x, y: best.y, r: 4, maxR: best.size * 1.6, t: 0, vis: true });  // pop visual
+  } else {
+    burst(best.x, best.y, '#ffffff', 8);
+    best.vy *= 0.85;
+    addFloat(best.x, best.y - 22, '🛡', '#ffffff', 14);
+    sfx.combo(1);
+  }
 }
 
-/* self-improving calibration: each tap that locks a rocket measures the
+/* self-improving calibration: each tap that hits a rocket measures the
    residual between the (corrected) touch and the rocket itself, and nudges
    the offset with a moving average — accuracy keeps tightening as you play */
 let calDirty = 0;
@@ -806,25 +798,6 @@ function learnCal(dx, dy){
   save.cal.x = c(save.cal.x - dx * 0.1);
   save.cal.y = c(save.cal.y - dy * 0.1);
   if (++calDirty >= 6){ calDirty = 0; persist(); }
-}
-
-function processPending(dt){
-  G.fireCD -= dt;
-  while (G.pending.length && G.inters.length < maxInters() && G.fireCD <= 0){
-    const s = G.pending.shift();
-    const aim = aimAssist(s.x, s.y) || { x: s.x, y: s.y };   // assist at launch time
-    if (s.tap && aim.r){
-      const rdx = s.x - aim.r.x, rdy = s.y - aim.r.y;
-      if (Math.hypot(rdx, rdy) < 80) learnCal(rdx, rdy);
-    }
-    const tx = aim.x, ty = Math.min(aim.y, GROUND - 10);
-    const lx = W / 2, ly = GROUND + 4;
-    const sp = interSpeed() * s.boost;
-    const d = Math.hypot(tx - lx, ty - ly) || 1;
-    G.inters.push({ x: lx, y: ly, tx, ty, lock: aim.r || null,
-      vx: (tx - lx) / d * sp, vy: (ty - ly) / d * sp, trail: [] });
-    G.fireCD = 0.11;
-  }
 }
 
 function applyPower(k){
@@ -848,7 +821,7 @@ function addFloat(x, y, txt, col, sz, life){
 /* ---------- kill / scoring ---------- */
 function killRocket(r, silent){
   G.killed++; G.resolved++;
-  G.combo++; G.comboT = 2.2;
+  G.combo++; G.comboT = comboWindow();
   const mult = 1 + Math.min(4, Math.floor(G.combo / 3)) * 0.5;
   const pts = Math.round(r.pts * mult);
   G.score += pts;
@@ -899,7 +872,6 @@ function update(dt){
   if (G.shake > 0) G.shake = Math.max(0, G.shake - dt * 30);
 
   const ts = G.timeScale, sdt = dt * ts;
-  processPending(dt);
 
   // Red Alert ramp: tighter, faster, forever
   if (G.endless){
@@ -921,8 +893,10 @@ function update(dt){
       if (G.levelIdx >= 3 && Math.random() < 0.18 && G.spawned < G.L.count){
         queueWarn(); G.spawned++;
       }
-      G.spawnT = G.L.gap * (0.7 + Math.random() * 0.6);
+      G.spawnT = G.L.gap * (0.85 + Math.random() * 0.3);   // steady cadence = hypnotic
     }
+    // never leave the sky empty mid-level: the rhythm must not break
+    if (!G.rockets.length && !G.warns.length) G.spawnT = Math.min(G.spawnT, 0.25);
   }
   for (let i = G.warns.length - 1; i >= 0; i--){
     const w = G.warns[i];
@@ -971,7 +945,9 @@ function update(dt){
         if (b.alive && r.x > b.x - 6 && r.x < b.x + b.w + 6){ hit = b; break; }
       }
       if (hit){
-        hit.alive = false;
+        hit.hp--;
+        if (hit.hp <= 0) hit.alive = false;
+        else addFloat(r.x, GROUND - hit.h - 14, '🛡', '#3ee6ff', 14);   // armor absorbed it
         G.shake = 14; sfx.hitCity(); buzz([30, 40, 60]);
         burst(r.x, GROUND - 10, '#ff8c42', 30);
         falafelBurst(r.x, 10);
@@ -985,29 +961,11 @@ function update(dt){
     }
   }
 
-  // interceptors
+  // interceptor streaks (cosmetic — the hit already registered on tap)
   for (let i = G.inters.length - 1; i >= 0; i--){
     const m = G.inters[i];
-    if (!Number.isFinite(m.x + m.y + m.vx + m.vy)){ G.inters.splice(i, 1); continue; }  // never let a bad shot jam a tube
-    m.x += m.vx * dt; m.y += m.vy * dt;   // interceptors ignore slow-mo: feels powerful
-    m.trail.push({ x: m.x, y: m.y });
-    if (m.trail.length > 10) m.trail.shift();
-    const reach = (m.vx * (m.tx - m.x) + m.vy * (m.ty - m.y)) <= 0;
-    let bx = m.tx, by = m.ty, det = reach || m.y < -20;
-    if (!det){
-      // proximity fuze: detonate when passing near any rocket
-      // (0.5x base — the Bigger Blast upgrade visibly widens this corridor)
-      for (const r of G.rockets){
-        if (Math.hypot(r.x - m.x, r.y - m.y) < blastR() * 0.5){
-          det = true; bx = m.x; by = m.y; break;
-        }
-      }
-    }
-    if (det){
-      G.inters.splice(i, 1);
-      G.booms.push({ x: bx, y: by, r: 6, maxR: blastR(), t: 0 });
-      sfx.boom();
-    }
+    m.t += dt;
+    if (m.t > 0.22) G.inters.splice(i, 1);
   }
 
   // explosions
@@ -1015,8 +973,9 @@ function update(dt){
     const b = G.booms[i];
     b.t += dt; b.r = b.maxR * Math.min(1, b.t / 0.18);
     // kill rockets in radius — each blast may damage a given rocket only once,
-    // or heavy armor (hp 2) dies to a single graze over consecutive frames
-    for (let j = G.rockets.length - 1; j >= 0; j--){
+    // or heavy armor (hp 2) dies to a single graze over consecutive frames.
+    // Visual-only pops/duds (b.vis/b.dud) never damage.
+    for (let j = G.rockets.length - 1; j >= 0 && !b.vis && !b.dud; j--){
       const r = G.rockets[j];
       if (r.lastBoom !== b && Math.hypot(r.x - b.x, r.y - b.y) < b.r + r.size){
         r.lastBoom = b;
@@ -1149,16 +1108,7 @@ function drawCity(){
   cx.beginPath(); cx.arc(lx, GROUND - 20, 30, Math.PI, 0); cx.strokeStyle = '#3ee6ff'; cx.stroke();
   cx.globalAlpha = 1;
 
-  // ammo pips: cyan = ready, dim = in flight, pulsing gold = shot queued
-  const free = maxInters() - G.inters.length;
-  const pulse = 0.5 + 0.5 * Math.abs(Math.sin(performance.now() / 250));
-  for (let i = 0; i < maxInters(); i++){
-    if (i < free) cx.fillStyle = '#3ee6ff';
-    else if (G.pending.length && i >= maxInters() - G.pending.length)
-      cx.fillStyle = 'rgba(255,209,102,' + pulse + ')';
-    else cx.fillStyle = 'rgba(141,163,204,0.3)';
-    cx.beginPath(); cx.arc(lx - (maxInters() - 1) * 7 + i * 14, GROUND + 14, 4, 0, 6.29); cx.fill();
-  }
+  // (no ammo pips: every tap fires instantly in the direct-hit model)
   // sling charges
   for (let i = 0; i < G.sling; i++){
     cx.fillStyle = '#5dffa8';
@@ -1258,23 +1208,19 @@ function drawEntities(){
     }
   }
 
-  // interceptors
+  // interceptor streaks: an instant zip from battery to the tapped rocket,
+  // racing up the line then fading — the dome answering your finger
   for (const m of G.inters){
-    cx.strokeStyle = '#3ee6ff'; cx.lineWidth = 2.5; cx.globalAlpha = 0.7;
-    cx.beginPath();
-    for (let i = 0; i < m.trail.length; i++){
-      const p = m.trail[i];
-      i ? cx.lineTo(p.x, p.y) : cx.moveTo(p.x, p.y);
-    }
-    cx.stroke(); cx.globalAlpha = 1;
-    cx.shadowColor = '#3ee6ff'; cx.shadowBlur = 16;
+    const k = Math.min(1, m.t / 0.22);
+    const head = Math.min(1, m.t / 0.08);          // tip races up in the first 80ms
+    const hx = m.x1 + (m.x2 - m.x1) * head, hy = m.y1 + (m.y2 - m.y1) * head;
+    cx.globalAlpha = 1 - k;
+    cx.strokeStyle = '#3ee6ff'; cx.lineWidth = 2.5;
+    cx.shadowColor = '#3ee6ff'; cx.shadowBlur = 12;
+    cx.beginPath(); cx.moveTo(m.x1, m.y1); cx.lineTo(hx, hy); cx.stroke();
     cx.fillStyle = '#eaffff';
-    cx.beginPath(); cx.arc(m.x, m.y, 4.5, 0, 6.29); cx.fill();
-    cx.shadowBlur = 0;
-    // target marker
-    cx.strokeStyle = 'rgba(62,230,255,0.5)'; cx.lineWidth = 1.5;
-    const rr = 10 + 4 * Math.sin(performance.now() / 250);
-    cx.beginPath(); cx.arc(m.tx, m.ty, rr, 0, 6.29); cx.stroke();
+    cx.beginPath(); cx.arc(hx, hy, 4.5, 0, 6.29); cx.fill();
+    cx.shadowBlur = 0; cx.globalAlpha = 1;
   }
 
   // explosions: hot radial core, neon ring (chain blasts glow gold)
@@ -1287,8 +1233,9 @@ function drawEntities(){
     core.addColorStop(1, 'rgba(255,140,66,0)');
     cx.fillStyle = core;
     cx.beginPath(); cx.arc(b.x, b.y, b.r * 0.5, 0, 6.29); cx.fill();
-    cx.strokeStyle = b.chain ? '#ffd166' : '#3ee6ff'; cx.lineWidth = 3;
-    cx.shadowColor = b.chain ? '#ffd166' : '#3ee6ff'; cx.shadowBlur = 18;
+    const ringCol = b.dud ? 'rgba(141,163,204,0.8)' : b.chain ? '#ffd166' : '#3ee6ff';
+    cx.strokeStyle = ringCol; cx.lineWidth = b.dud ? 1.5 : 3;
+    cx.shadowColor = ringCol; cx.shadowBlur = b.dud ? 0 : 18;
     cx.beginPath(); cx.arc(b.x, b.y, b.r, 0, 6.29); cx.stroke();
     cx.shadowBlur = 0;
     cx.strokeStyle = '#ffd166'; cx.lineWidth = 1.5; cx.globalAlpha = (1 - k) * 0.7;
