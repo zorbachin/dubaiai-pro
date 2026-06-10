@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 18:17 UTC · code
+Iron Dome v13: difficulty select (Easy/Normal/Commando w/ point multipliers), intra-level ramp (starts easy, +35% by level end), bonus falafel-rush rounds after L3/6/9 (double points, no risk), Iron Sling now an ACTIVE volley button (pops 4 lowest rockets, charges per level), crates more frequent + first-crate hint. All per Zorba's Tetris/DrMario feedback. E2E verified.
+
 ### 2026-06-10 18:12 UTC · code
 Iron Dome v12: Israeli voice pack per Zorba ('more branded, sabra sarcasm, yell at Knesset') — rotating sarcastic level-clear headlines, anonymous-MK reaction quotes (fictional/anonymous = playful not political), escalating Hebrew combo shouts, power-up attitude lines, family-style game-over teasing. DURABLE BRAND RULE: Iron Dome voice = sabra sarcasm, hummus/savta/Knesset-committee humor, bilingual, never name real politicians.
 ### 2026-06-10 15:14 UTC · code
@@ -170,18 +173,15 @@ NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (bui
 CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 quote cards (built) + COPY.md (FB/IG/LI/X captions + newsletter draft + demo recording brief + hero-video spec). One message: 'deals die in the follow-up gap — this closes it.' WAITING ON: Zorba records the basic demo (drop in Drive) -> Claude cuts the website hero video + queues everything. COMMAND CENTER #1 DONE: nucleus serve exposes /command.json (per-venture board+brain) for the existing localhost widget to sync; / now renders a per-venture dashboard.
 
 
-
-### 2026-06-02 09:36 UTC · chat
-NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:14 UTC
+- **When:** 2026-06-10 18:17 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e965ff0 chore: refresh nucleus live state [skip ci] — 44 seconds ago
+- **Last commit:** ed91283 v13: difficulty select, intra-level ramp, bonus rounds, active Iron Sling volley — 1 second ago
 
 **Working tree:**
 ```
@@ -190,11 +190,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-e965ff0 chore: refresh nucleus live state [skip ci] (44 seconds ago)
-3b19110 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (85 seconds ago)
-79f7776 chore: refresh nucleus live state [skip ci] (85 seconds ago)
-54dd188 v12: Israeli voice pack — sabra sarcasm woven through every touchpoint (2 minutes ago)
-0011b2d chore: refresh nucleus live state [skip ci] (3 hours ago)
+ed91283 v13: difficulty select, intra-level ramp, bonus rounds, active Iron Sling volley (1 second ago)
+1807ced chore: refresh nucleus live state [skip ci] (4 minutes ago)
+e965ff0 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+3b19110 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (5 minutes ago)
+79f7776 chore: refresh nucleus live state [skip ci] (5 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
