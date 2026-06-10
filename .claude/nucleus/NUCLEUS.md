@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 12:15 UTC · code
+MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimous SHIP WITH FIXES, zero JS errors, economy math verified exact. P0 fixes: mobile dash HUD hidden by alert banner; latent siren-null game-freeze; mini-games have no cancel. Big balance finds: Mendy 2.4x dominant, haggle deterministic, scooters dead content, quest income dries up with 80% of day left, runner stumble death-spiral. Top virality lever = end-screen share card. Full reports in /tmp/qa-func|qa-ux|qa-fun|qa-design.
+
 ### 2026-06-10 11:47 UTC · code
 MAMADIO headless playtest passed: full flow (title→char→level→play→forced siren→MAMAD DASH runner with jump) renders and runs with zero console errors via Playwright/Chromium. Screenshots delivered to Zorba. Open loop 'browser playtest before merge' effectively closed pending Zorba's hands-on check at dubaiai.pro/mamadio/.
 
@@ -162,31 +165,34 @@ PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then In
 
 ### 2026-06-02 03:58 UTC · chat
 BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
-
-### 2026-06-02 03:56 UTC · chat
-ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calisthenics park (working out, corny/human vibe) delivering the core pitch. Transcript on file. On-message: 'every business owner has something they don't wanna do… AI answers your call, schedules, email in your voice, inventory tracked… I'm not here to sell you on AI, I'm here to buy back your time… so you have more time to work out.' Calisthenics setting ties to the time-back close. POSTABLE TODAY. File local on his Mac (~/Movies/Zorba Explainer(5)) — not in container.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:14 UTC
+- **When:** 2026-06-10 12:16 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 2c4da4d chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **Last commit:** ca4c52d chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-2c4da4d chore: refresh nucleus live state [skip ci] (2 minutes ago)
-db69604 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-cdee404 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-e67bb19 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-02583b4 chore: refresh nucleus live state [skip ci] (26 minutes ago)
+ca4c52d chore: refresh nucleus live state [skip ci] (2 minutes ago)
+2c4da4d chore: refresh nucleus live state [skip ci] (4 minutes ago)
+db69604 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+cdee404 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+e67bb19 chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
