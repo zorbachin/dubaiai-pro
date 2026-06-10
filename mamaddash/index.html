@@ -353,10 +353,16 @@ function draw(){
   cx.beginPath();cx.ellipse(px,groundY+8,sw,6,0,0,7);cx.fill();
   if(!(G.invuln>0&&Math.floor(G.t*14)%2===0)){
     cx.save();cx.translate(px,groundY-p.y-30);
+    cx.scale(-1,1);                 // 🏃 faces left natively — mirror to run right
     if(G.stumble>0) cx.rotate(-.45);
     if(p.duckT>0&&p.y<=0){ cx.scale(1.18,.6); }
     else if(p.y<=0&&G.state==='run') cx.translate(0,Math.sin(G.t*17)*2.5);
-    drawEmoji('🏃',0,0,46);cx.restore();
+    drawEmoji('🏃',0,0,46);
+    // phone held out in front, filming the whole thing (mirrored space: front = -x)
+    cx.save();cx.translate(-27,-6);cx.rotate(.3);drawEmoji('📱',0,0,17);
+    cx.fillStyle=Math.floor(G.t*3)%2?'#ff3b3b':'#ff8a8a';
+    cx.beginPath();cx.arc(-1,-11,2.6,0,7);cx.fill();cx.restore();
+    cx.restore();
   }
   // dust at heels
   if(G.state==='run'&&p.y<=0) drawEmoji('💨',px-30,groundY-12,15+u*7);
@@ -404,7 +410,8 @@ function hud(left,u){
   cx.fillStyle='#46506b';r(bx,by,bw,8,4);
   cx.fillStyle=u>.62?'#ff5d5d':'#7ee8c7';r(bx,by,bw*clamp(G.prog/G.goal,0,1),8,4);
   drawEmoji('🛡️',bx+bw+16,by+4,18);
-  drawEmoji('🏃',bx+bw*clamp(G.prog/G.goal,0,1),by+4,16);
+  cx.save();cx.translate(bx+bw*clamp(G.prog/G.goal,0,1),by+4);cx.scale(-1,1);
+  drawEmoji('🏃',0,0,16);cx.restore();
   // wave + coins pills
   cx.font='800 15px sans-serif';cx.textAlign='left';cx.textBaseline='middle';
   const py=Math.max(30,H*.028+26);
@@ -420,7 +427,10 @@ function r(x,y,w,h,rad){cx.beginPath();
   if(cx.roundRect) cx.roundRect(x,y,w,h,rad); else cx.rect(x,y,w,h);
   cx.fill();}
 function titleScene(){
-  drawEmoji('🏃',W*.24,groundY-30,46);
+  cx.save();cx.translate(W*.24,groundY-30);cx.scale(-1,1);
+  drawEmoji('🏃',0,0,46);
+  cx.save();cx.translate(-26,-9);cx.rotate(.3);drawEmoji('📱',0,0,17);cx.restore();
+  cx.restore();
   drawEmoji('💨',W*.24-30,groundY-12,15);
   door(W*.72);
 }
