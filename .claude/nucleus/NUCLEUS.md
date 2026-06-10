@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 10:06 UTC · code
+Decision: MAMAD DASH spins out as its own standalone game. Master build prompt written (mamadio/MAMAD-DASH-MASTER-PROMPT.md) — endless runner, checkpoints, power-ups, Daily Dash seeded mode, share loop. Also: statically.io mirror shows raw source (no good); dubaiai.pro TLS issue on user's phone still unconfirmed — fix is re-saving custom domain in GitHub Pages settings.
+
 ### 2026-06-10 09:42 UTC · code
 Mamadio decision: siren flips the game into the MAMAD DASH — a temple-run side-scroller (jump old ladies/carts, duck pigeons/flying savtas, reach the shelter door in 16s). Replaced the walk-to-shelter mechanic. Also mobile-optimized: safe-area insets, retina canvas, touch jump/duck zones. Pushed to PR #71.
 
@@ -162,31 +165,34 @@ PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then In
 
 ### 2026-06-02 03:58 UTC · chat
 BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
-
-### 2026-06-02 03:56 UTC · chat
-ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calisthenics park (working out, corny/human vibe) delivering the core pitch. Transcript on file. On-message: 'every business owner has something they don't wanna do… AI answers your call, schedules, email in your voice, inventory tracked… I'm not here to sell you on AI, I'm here to buy back your time… so you have more time to work out.' Calisthenics setting ties to the time-back close. POSTABLE TODAY. File local on his Mac (~/Movies/Zorba Explainer(5)) — not in container.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 10:03 UTC
+- **When:** 2026-06-10 10:07 UTC
 - **Branch:** `claude/mamadio-game-design-v9mr1w`
-- **Last commit:** b10c2b6 chore: refresh nucleus live state [skip ci] — 18 seconds ago
+- **Last commit:** 515cf69 Add MAMAD DASH master build prompt — standalone runner spin-off spec — 51 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-b10c2b6 chore: refresh nucleus live state [skip ci] (18 seconds ago)
-f1fbf51 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-d687bbc chore: refresh nucleus live state [skip ci] (18 minutes ago)
-e2f3b3f chore: refresh nucleus live state [skip ci] (19 minutes ago)
-fc7a611 Siren now triggers the MAMAD DASH: temple-run sequence + mobile polish (21 minutes ago)
+515cf69 Add MAMAD DASH master build prompt — standalone runner spin-off spec (51 seconds ago)
+6b5cb2f chore: refresh nucleus live state [skip ci] (4 minutes ago)
+b10c2b6 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+f1fbf51 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+d687bbc chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
