@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 12:55 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 90d0e57 Fix timing mini-games: time-based cursor + touch-latency grace — 15 seconds ago
+- **Last commit:** 00a4505 chore: refresh nucleus live state [skip ci] — 17 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-90d0e57 Fix timing mini-games: time-based cursor + touch-latency grace (15 seconds ago)
+00a4505 chore: refresh nucleus live state [skip ci] (17 seconds ago)
+90d0e57 Fix timing mini-games: time-based cursor + touch-latency grace (32 seconds ago)
 f5a33e0 chore: refresh nucleus live state [skip ci] (6 minutes ago)
 9c8b353 chore: refresh nucleus live state [skip ci] (6 minutes ago)
 717477a MAMAD DASH: ramp difficulty with the countdown (8 minutes ago)
-f9e5159 chore: refresh nucleus live state [skip ci] (24 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
