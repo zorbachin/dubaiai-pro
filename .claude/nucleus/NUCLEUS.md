@@ -171,28 +171,22 @@ Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-po
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:48 UTC
+- **When:** 2026-06-10 12:49 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 717477a MAMAD DASH: ramp difficulty with the countdown — 2 minutes ago
+- **Last commit:** 9c8b353 chore: refresh nucleus live state [skip ci] — 17 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+9c8b353 chore: refresh nucleus live state [skip ci] (17 seconds ago)
 717477a MAMAD DASH: ramp difficulty with the countdown (2 minutes ago)
 f9e5159 chore: refresh nucleus live state [skip ci] (18 minutes ago)
 9c58dfa chore: refresh nucleus live state [skip ci] (20 minutes ago)
 902816b chore: refresh nucleus live state [skip ci] (20 minutes ago)
-97107fb chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
