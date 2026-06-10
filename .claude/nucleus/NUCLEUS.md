@@ -220,9 +220,9 @@ User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 13:31 UTC
+- **When:** 2026-06-10 13:32 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 40 seconds ago
+- **Last commit:** 3c7c3f7 chore: refresh nucleus live state [skip ci] — 68 seconds ago
 
 **Working tree:**
 ```
@@ -231,11 +231,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (40 seconds ago)
-13d5682 chore: refresh nucleus live state [skip ci] (75 seconds ago)
-817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (2 minutes ago)
-1b9fd79 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-7440fdd chore: refresh nucleus live state [skip ci] (25 minutes ago)
+3c7c3f7 chore: refresh nucleus live state [skip ci] (68 seconds ago)
+a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (2 minutes ago)
+13d5682 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (3 minutes ago)
+1b9fd79 chore: refresh nucleus live state [skip ci] (26 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
