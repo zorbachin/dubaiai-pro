@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 18:53 UTC · code
+Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was DEAD for everyone - D1 one-liner; 2 soft-lock paths closed), DAILY ALERT shipped (date-seeded, streaks, deterministic-verified), commando actually hard + loss thresholds + 50% win gate, per-mode bests, death beat + fanfares + whiff feel + bonus fiesta + sling sweep. Panel verdict: core loop tortured clean (saves/concurrency/soak all green).
+
 ### 2026-06-10 18:30 UTC · code
 Iron Dome v14 (growth Day-1 from brutal panel): OG/Twitter cards + share-card.png, ?ref attribution (K-factor measurable), challenge links w/ beat-this banner, wa.me fallback, NEW BEST first-run bug fixed + primary CTA at peak, emoji result grid, per-level funnel events. STILL BLOCKING (Zorba-only): claim irondome.goatcounter.com, buy domain (~$10, kipa.lol / irondome.lol style), WhatsApp-test the preview card. 3 more panel reports pending.
 
@@ -170,18 +173,15 @@ ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back 
 
 ### 2026-06-02 11:02 UTC · chat
 NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three Two-Minute Time-Savers' (one WORK, one LIFE, one HEALTH; quick/fun; each a copy-paste prompt). Issue 001 written (content-assets/newsletter/ISSUE-001.md): feature 'Buy Back Your Time' + the 3 time-savers (kill the email thread / plan the night out / fridge->meal + 12-min calisthenics workout). Opt-in INVITE drafted (content-assets/newsletter/INVITE.md) — personal invites + warm leads + content-engine growth, NEVER import-and-blast. Masthead billing updated to feature the time-savers segment.
-
-### 2026-06-02 10:59 UTC · chat
-NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (built: content-assets/newsletter/dispatch-no-001.png via bin/cinema_news.py). Aged paper, double frame, 'proudly presents', dramatic serif billing, marquee bar, 'printed for a select readership'. NO LIST YET + DO NOT spam his contacts (kills deliverability + relationships). PLAN: use a real ESP (Substack or Beehiiv free) for compliance/unsubscribe; SEED via personal opt-in invites (Claude drafts) to people he knows + warm leads (post-repliers, clients like vybewear, video commenters); grow as a byproduct of the content engine (every post -> 'join the Dispatch'). Cadence: monthly/biweekly 'issue' = an event, quality over frequency. Positioning: 'a select readership', worth-their-time storytelling.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:39 UTC
+- **When:** 2026-06-10 18:53 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** aff1a2e chore: refresh nucleus live state [skip ci] — 6 minutes ago
+- **Last commit:** 5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish — 1 second ago
 
 **Working tree:**
 ```
@@ -190,11 +190,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-aff1a2e chore: refresh nucleus live state [skip ci] (6 minutes ago)
-b2b5be8 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-3fc13b7 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-3e35a89 v14: growth funnel Day-1 — share cards, K-factor attribution, challenge loop (9 minutes ago)
-8d8eeff chore: refresh nucleus live state [skip ci] (14 minutes ago)
+5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (1 second ago)
+2c72477 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+aff1a2e chore: refresh nucleus live state [skip ci] (20 minutes ago)
+b2b5be8 chore: refresh nucleus live state [skip ci] (23 minutes ago)
+3fc13b7 chore: refresh nucleus live state [skip ci] (23 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
