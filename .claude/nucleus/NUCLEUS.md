@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 11:47 UTC · code
+MAMADIO headless playtest passed: full flow (title→char→level→play→forced siren→MAMAD DASH runner with jump) renders and runs with zero console errors via Playwright/Chromium. Screenshots delivered to Zorba. Open loop 'browser playtest before merge' effectively closed pending Zorba's hands-on check at dubaiai.pro/mamadio/.
+
 ### 2026-06-10 09:35 UTC · code
 Built MAMADIO — Tel Aviv hustle game, companion to Iron Dome. Single-file canvas game at mamadio/index.html (3 levels: Gordon Beach/Florentin/Old North; 3 characters: Chabadnik/Shop Owner/Influencer; shekel economy from unemployment money; random Home Front Command sirens force a run to the mamad). Draft PR #71 open on claude/mamadio-game-design-v9mr1w; needs a browser playtest before merge. Will be live at dubaiai.pro/mamadio/ once merged.
 
@@ -162,31 +165,34 @@ BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them
 
 ### 2026-06-02 03:56 UTC · chat
 ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calisthenics park (working out, corny/human vibe) delivering the core pitch. Transcript on file. On-message: 'every business owner has something they don't wanna do… AI answers your call, schedules, email in your voice, inventory tracked… I'm not here to sell you on AI, I'm here to buy back your time… so you have more time to work out.' Calisthenics setting ties to the time-back close. POSTABLE TODAY. File local on his Mac (~/Movies/Zorba Explainer(5)) — not in container.
-
-### 2026-06-02 03:46 UTC · chat
-User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real clock for standups/cadence/day-planning.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 11:41 UTC
+- **When:** 2026-06-10 11:47 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 7980927 chore: refresh nucleus live state [skip ci] — 23 seconds ago
+- **Last commit:** 36b668f chore: refresh nucleus live state [skip ci] — 6 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-7980927 chore: refresh nucleus live state [skip ci] (23 seconds ago)
+36b668f chore: refresh nucleus live state [skip ci] (6 minutes ago)
+7980927 chore: refresh nucleus live state [skip ci] (7 minutes ago)
 273622a Add Mamadio — Tel Aviv hustle game with MAMAD DASH siren runner (#71) (2 hours ago)
 fbf2155 chore: refresh nucleus live state [skip ci] (8 days ago)
 c55a864 chore: refresh nucleus live state [skip ci] (8 days ago)
-c5726ff chore: refresh nucleus live state [skip ci] (8 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
