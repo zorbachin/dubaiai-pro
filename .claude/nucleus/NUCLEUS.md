@@ -179,9 +179,9 @@ NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (bui
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:34 UTC
+- **When:** 2026-06-10 18:39 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** b2b5be8 chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** aff1a2e chore: refresh nucleus live state [skip ci] — 6 minutes ago
 
 **Working tree:**
 ```
@@ -190,11 +190,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-b2b5be8 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-3fc13b7 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-3e35a89 v14: growth funnel Day-1 — share cards, K-factor attribution, challenge loop (4 minutes ago)
-8d8eeff chore: refresh nucleus live state [skip ci] (9 minutes ago)
-43ed5f5 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+aff1a2e chore: refresh nucleus live state [skip ci] (6 minutes ago)
+b2b5be8 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+3fc13b7 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+3e35a89 v14: growth funnel Day-1 — share cards, K-factor attribution, challenge loop (9 minutes ago)
+8d8eeff chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
