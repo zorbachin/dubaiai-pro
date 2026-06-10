@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 10:03 UTC
 - **Branch:** `claude/mamadio-game-design-v9mr1w`
-- **Last commit:** f1fbf51 chore: refresh nucleus live state [skip ci] — 15 minutes ago
+- **Last commit:** b10c2b6 chore: refresh nucleus live state [skip ci] — 18 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+b10c2b6 chore: refresh nucleus live state [skip ci] (18 seconds ago)
 f1fbf51 chore: refresh nucleus live state [skip ci] (15 minutes ago)
 d687bbc chore: refresh nucleus live state [skip ci] (18 minutes ago)
 e2f3b3f chore: refresh nucleus live state [skip ci] (19 minutes ago)
-fc7a611 Siren now triggers the MAMAD DASH: temple-run sequence + mobile polish (20 minutes ago)
-1efd641 chore: refresh nucleus live state [skip ci] (27 minutes ago)
+fc7a611 Siren now triggers the MAMAD DASH: temple-run sequence + mobile polish (21 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
