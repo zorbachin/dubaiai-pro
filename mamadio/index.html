@@ -654,7 +654,7 @@ const Mini = {
       this.speed=q.speed||1;
       act.textContent='START';
       this.newZone();
-      this.cur=0; this.dir=1;
+      this.cur=0; this.dir=1; this.trail=[];
       this.renderBar();
     } else if(this.mode==='mash'){
       $('mashWrap').style.display='block';
@@ -684,14 +684,19 @@ const Mini = {
   },
   tick(){
     if(!this.active) return;
+    // time-based, not frame-based — 120Hz screens must not run 2x faster
+    const now=performance.now();
+    const dt=Math.min(.05,(now-(this.lastT||now))/1000); this.lastT=now;
     if((this.mode==='timing'||this.mode==='selfie')&&this.running){
-      this.cur+=this.dir*.013*this.speed;
+      this.cur+=this.dir*.78*this.speed*dt;
       if(this.cur>=1){this.cur=1;this.dir=-1;}
       if(this.cur<=0){this.cur=0;this.dir=1;}
+      this.trail.push([now,this.cur]);
+      while(this.trail.length&&now-this.trail[0][0]>140) this.trail.shift();
       this.renderBar();
     }
     if(this.mode==='mash'&&this.running){
-      this.mash=Math.max(0,this.mash-.045);          // decay
+      this.mash=Math.max(0,this.mash-2.7*dt);        // decay
       $('mashFill').style.width=clamp(this.mash/this.q.goal*100,0,100)+'%';
       const left=this.mashEnd-performance.now();
       $('miniStatus').textContent=`${Math.max(0,(left/1000)).toFixed(1)}s — ${Math.floor(this.mash)}/${this.q.goal}`;
@@ -708,10 +713,14 @@ const Mini = {
         cancelAnimationFrame(this.raf); this.tick(); return;
       }
       const need=this.q.hits;
-      if(this.cur>=this.zone[0]&&this.cur<=this.zone[1]){
+      // judge against the last ~100ms of cursor travel, not just this frame —
+      // touch latency must not turn a visually-perfect tap into a miss
+      const inZone=c=>c>=this.zone[0]&&c<=this.zone[1];
+      const now=performance.now();
+      if(inZone(this.cur)||this.trail.some(s=>now-s[0]<=100&&inZone(s[1]))){
         this.hits++; Sound.blip(1175,.07);
         $('miniStatus').textContent=`✅ ${this.hits}/${need}`;
-        this.newZone(); this.speed*=1.07;
+        this.newZone(); this.speed*=1.07; this.trail=[];
         if(this.hits>=need) this.finish(true);
       } else {
         this.misses++; Sound.bad();
