@@ -31,6 +31,7 @@
     position:fixed;top:0;left:0;right:0;display:none;justify-content:space-between;
     align-items:flex-start;padding:calc(env(safe-area-inset-top,0px) + 10px) 12px 0;
     pointer-events:none;z-index:5;
+    direction:ltr;   /* pause stays top-right in both languages */
   }
   .hudbox{
     background:rgba(10,18,38,.65);border:1px solid rgba(62,230,255,.25);
@@ -42,7 +43,7 @@
   #hudLevel{font-size:12px;color:var(--dim);text-align:center}
   #hudWave{font-size:13px;color:var(--ink);font-weight:600;text-align:center}
   #btnPause{pointer-events:auto;background:rgba(10,18,38,.65);border:1px solid rgba(62,230,255,.25);
-    color:var(--ink);border-radius:12px;font-size:18px;padding:7px 14px;cursor:pointer}
+    color:var(--ink);border-radius:12px;font-size:18px;padding:10px 16px;min-height:44px;min-width:44px;cursor:pointer}
 
   /* ---------- Overlay screens ---------- */
   .screen{
@@ -68,10 +69,10 @@
   .btn:active{transform:scale(.96)}
   .btn.primary{background:linear-gradient(180deg,#0fb3cf,#0b7e98);border-color:var(--cyan);
     box-shadow:0 0 26px rgba(62,230,255,.55)}
-  .btn.small{font-size:14px;padding:9px 18px;min-width:0}
+  .btn.small{font-size:14px;padding:9px 18px;min-width:0;min-height:44px}
   .btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
   .pill{background:var(--panel2);border:1px solid rgba(141,163,204,.35);color:var(--dim);
-    border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer}
+    border-radius:999px;padding:10px 18px;font-size:13px;min-height:44px;cursor:pointer}
   .pill.on{color:var(--ink);border-color:var(--cyan);box-shadow:0 0 10px rgba(62,230,255,.3)}
   .stat{font-family:"Courier New",monospace;font-size:16px;color:var(--ink)}
   .stat b{color:var(--gold)}
@@ -83,19 +84,20 @@
     position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);left:0;right:0;margin:auto}
 
   /* ---------- Upgrades ---------- */
-  #shop{display:flex;flex-direction:column;gap:8px;width:min(92vw,420px)}
+  #shop,.shoplist{display:flex;flex-direction:column;gap:8px;width:min(92vw,420px)}
   .up{
     display:flex;align-items:center;gap:10px;background:var(--panel);
     border:1px solid rgba(62,230,255,.2);border-radius:12px;padding:10px 12px;text-align:start;
   }
   .up .ic{font-size:24px;width:34px;text-align:center}
   .up .nm{font-weight:700;font-size:14px}
-  .up .ds{font-size:11px;color:var(--dim)}
+  .up .ds{font-size:13px;color:var(--dim)}
   .up .tiers{font-size:11px;color:var(--cyan);letter-spacing:2px}
   .up .info{flex:1;min-width:0}
   .up button{
-    background:#1d3a7a;border:1px solid rgba(255,209,102,.6);color:var(--gold);
-    border-radius:10px;padding:8px 12px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;
+    background:linear-gradient(180deg,#27498f,#1d3a7a);border:1px solid rgba(255,209,102,.6);color:var(--gold);
+    border-radius:10px;padding:10px 14px;min-height:44px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;
+    box-shadow:0 0 8px rgba(255,209,102,.25), inset 0 1px 0 rgba(255,255,255,.1);
   }
   .up button:disabled{opacity:.35;border-color:var(--dim);color:var(--dim)}
   #coins{font-family:"Courier New",monospace;color:var(--gold);font-size:18px;font-weight:700;
@@ -135,6 +137,7 @@
   <h1 data-i18n="title">כיפת ברזל<small>IRON DOME</small></h1>
   <p class="sub" data-i18n="tagline"></p>
   <button class="btn primary" id="btnPlay"></button>
+  <button class="btn" id="btnEndless" style="display:none;border-color:rgba(255,93,115,.6);box-shadow:0 0 18px rgba(255,93,115,.3)"></button>
   <button class="btn" id="btnHow"></button>
   <div class="btnrow">
     <button class="pill" id="btnCal">🎯</button>
@@ -178,6 +181,9 @@
   <h1 style="font-size:26px" data-i18n="paused"></h1>
   <button class="btn primary" id="btnResume"></button>
   <button class="btn" id="btnQuit"></button>
+  <div class="btnrow">
+    <button class="pill" id="btnSound2">🔊</button>
+  </div>
 </div>
 
 <!-- ===== LEVEL END / SHOP ===== -->
@@ -196,9 +202,11 @@
 
 <!-- ===== GAME OVER ===== -->
 <div id="scrOver" class="screen">
-  <h1 style="font-size:26px;color:var(--red);text-shadow:0 0 18px rgba(255,93,115,.7)" data-i18n="overTitle"></h1>
+  <h1 style="font-size:24px;color:var(--gold);text-shadow:0 0 18px rgba(255,209,102,.7)" data-i18n="overTitle"></h1>
   <div class="bigscore" id="overScore"></div>
   <div class="sub" id="overStats"></div>
+  <div id="coinsOver" style="font-family:'Courier New',monospace;color:var(--gold);font-size:16px;font-weight:700"></div>
+  <div id="shopOver" class="shoplist"></div>
   <div class="btnrow">
     <button class="btn primary" id="btnRetry2"></button>
     <button class="btn" id="btnMenu2"></button>
@@ -224,12 +232,20 @@ const $ = id => document.getElementById(id);
 
 /* ---------- persistence ---------- */
 const SAVE_KEY = 'irondome.save.v1';
+let _stored = {};
+try { _stored = JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') || {}; } catch (e) {}  // corrupt save must never brick boot
 const save = Object.assign({
   lang: 'he', sound: true, coins: 0, best: 0, unlocked: 0,
   cal: { x: 0, y: 0, done: false },
   up: { blast: 0, speed: 0, launchers: 0, sling: 0 }
-}, JSON.parse(localStorage.getItem(SAVE_KEY) || '{}'));
+}, _stored);
+/* harden against partial/legacy/typed-wrong saves: every field the game does
+   math with must come out numeric, or firing breaks (NaN tube counts) */
+save.up = Object.assign({ blast: 0, speed: 0, launchers: 0, sling: 0 }, save.up);
+for (const k in save.up) save.up[k] = +save.up[k] || 0;
 if (!save.cal) save.cal = { x: 0, y: 0, done: false };
+save.cal.x = +save.cal.x || 0; save.cal.y = +save.cal.y || 0;
+save.coins = +save.coins || 0; save.best = +save.best || 0; save.unlocked = +save.unlocked || 0;
 function persist(){ localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }
 
 /* ---------- i18n ---------- */
@@ -249,7 +265,8 @@ const T = {
     cleared: 'AREA DEFENDED!', failedLv: 'The city took too many hits…',
     intercepted: 'Intercepted', saved: 'Buildings saved', scoreW: 'Score', bestW: 'Best',
     coinsW: 'Coins', maxed: 'MAX', buy: 'Upgrade',
-    overTitle: 'CITY DOWN', overStats: 'You intercepted {n} rockets. The dome never sleeps — try again!',
+    overTitle: 'THE DOME NEEDS YOU!', overStats: 'You intercepted {n} rockets. Reload and get back out there!',
+    endless: '🚨 RED ALERT — Endless', endlessName: 'RED ALERT',
     winTitle: '🏆 ALL CLEAR!', winSub: 'You defended every city, from Sderot to Eilat. Total protection.',
     upBlast: 'Bigger Blast', upBlastD: 'Wider interception radius',
     upSpeed: 'Faster Tamir', upSpeedD: 'Interceptors fly faster',
@@ -265,7 +282,7 @@ const T = {
     levels: ['Sderot','Ashkelon','Ashdod','Beer Sheva','Rishon LeZion','Tel Aviv','Netanya','Jerusalem','Haifa','Eilat'],
     hints: [
       'Where it all begins. Easy skies — warm up your tapping finger.',
-      'Faster rockets join in. Tap slightly ahead of them.',
+      'Faster rockets join in. Tap right on them — the dome leads the shot for you.',
       'Heavy rockets take a direct, close blast.',
       'The desert sky gets busy. Watch the edges.',
       'Swerving rockets! They zigzag on the way down.',
@@ -278,12 +295,12 @@ const T = {
   },
   he: {
     title: 'כיפת ברזל', dir: 'rtl',
-    tagline: 'רקטות נופלות מהשמיים — תקליקו עליהן לפני שהן מגיעות לעיר. סבבים קצרים, עובד גם בלי אינטרנט.',
+    tagline: 'רקטות נופלות מהשמיים — לחצו עליהן לפני שהן מגיעות לעיר. סבבים קצרים, עובד גם בלי אינטרנט.',
     play: '▶ שחקו', howBtn: 'איך משחקים', back: 'חזרה',
     howTitle: 'איך משחקים',
     how1: 'רקטות נופלות מהשמיים. הגדולות איטיות, הקטנות מהירות — חלקן מתפצלות או מתפתלות.',
-    how2: 'הקליקו על רקטה כדי לשגר מיירט — הוא ננעל ומתפוצץ ליד המטרה. או הניפו: החליקו במהירות לכיוון רקטה כדי להעיף מיירט לפניה!',
-    how3: 'הקליקו על ארגזים נופלים 🎁 לאסוף כוחות: הילוך איטי, פיצוץ ענק, כיפת מגן וקרן לייזר.',
+    how2: 'לחצו על רקטה כדי לשגר מיירט — הוא ננעל ומתפוצץ ליד המטרה. או הניפו: החליקו במהירות לכיוון רקטה כדי להעיף מיירט לפניה!',
+    how3: 'לחצו על ארגזים נופלים 🎁 לאסוף כוחות: הילוך איטי, פיצוץ ענק, כיפת מגן וקרן לייזר.',
     how4: 'כל רקטה שנוחתת הורסת בניין. נגמרו הבניינים — נגמר הסיבוב.',
     how5: 'אספו ⭐ ומטבעות לשדרוגים — פיצוץ גדול יותר, טילים מהירים, משגר נוסף וקלע ברזל.',
     level: 'שלב', start: 'להגן!', paused: 'הפסקה', resume: 'המשך', quit: 'תפריט ראשי',
@@ -291,23 +308,24 @@ const T = {
     cleared: 'האזור הוגן!', failedLv: 'העיר ספגה יותר מדי פגיעות…',
     intercepted: 'יירוטים', saved: 'בניינים שניצלו', scoreW: 'ניקוד', bestW: 'שיא',
     coinsW: 'מטבעות', maxed: 'מקסימום', buy: 'שדרוג',
-    overTitle: 'העיר נפלה', overStats: 'יירטתם {n} רקטות. הכיפה לא ישנה — נסו שוב!',
+    overTitle: 'הכיפה צריכה אתכם!', overStats: 'יירטתם {n} רקטות. טוענים מחדש ויוצאים שוב!',
+    endless: '🚨 צבע אדום — אינסופי', endlessName: 'צבע אדום',
     winTitle: '🏆 הכל נקי!', winSub: 'הגנתם על כל הערים, משדרות ועד אילת. הגנה מושלמת.',
     upBlast: 'פיצוץ גדול יותר', upBlastD: 'רדיוס יירוט רחב יותר',
     upSpeed: 'תמיר מהיר', upSpeedD: 'המיירטים טסים מהר יותר',
     upLaunch: 'משגר נוסף', upLaunchD: 'מיירט נוסף באוויר בו־זמנית',
     upSling: 'קלע ברזל', upSlingD: 'יירוט אוטומטי של מסתננות (לכל שלב)',
-    waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 הקליקו על השמיים כדי ליירט!',
-    calTitle: 'כיול מגע', calTapMsg: 'הקליקו במרכז הרקטה',
+    waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 לחצו על השמיים כדי ליירט!',
+    calTitle: 'כיול מגע', calTapMsg: 'לחצו במרכז הרקטה',
     calFlingMsg: 'עכשיו החליקו דרך הרקטה', calCloser: 'קרוב יותר לרקטה — נסו שוב',
-    calDoneMsg: 'כויל! ההקלקות מכווננות לאצבע שלכם — וממשיכות להשתפר תוך כדי משחק.', skip: 'דלג',
+    calDoneMsg: 'כויל! הלחיצות מכווננות לאצבע שלכם — וממשיכות להשתפר תוך כדי משחק.', skip: 'דלג',
     pSlow: 'הילוך איטי!', pMega: 'מגה פיצוץ!', pShield: 'מגן פעיל!', pBeam: 'קרן ברזל!',
     slingShot: 'קלע ברזל!',
     disclaimer: 'משחק מעריצים להרמת מורל — לא קשור לגוף רשמי. באזעקה אמיתית פעלו לפי הנחיות פיקוד העורף. שמרו על עצמכם ❤️',
     levels: ['שדרות','אשקלון','אשדוד','באר שבע','ראשון לציון','תל אביב','נתניה','ירושלים','חיפה','אילת'],
     hints: [
       'כאן הכל מתחיל. שמיים רגועים — תחממו את האצבע.',
-      'רקטות מהירות מצטרפות. הקליקו קצת לפניהן.',
+      'רקטות מהירות מצטרפות. לחצו ישר עליהן — הכיפה מכוונת בשבילכם.',
       'רקטות כבדות צריכות פיצוץ קרוב וישיר.',
       'שמי המדבר מתמלאים. שימו לב לקצוות.',
       'רקטות מתפתלות! הן עושות זיגזג בדרך למטה.',
@@ -325,21 +343,21 @@ function t(k){ return T[save.lang][k]; }
 /* count: rockets in level · gap: base seconds between spawns · speed: multiplier
    weights: [normal, fast, heavy, zigzag, splitter] · scene picks the city backdrop */
 const LEVELS = [
-  { count: 10, gap: 2.0, speed: 0.80, weights:[1.0,0,0,0,0],          accent:'#ffb46b', scene:'sderot'    },
-  { count: 14, gap: 1.8, speed: 0.90, weights:[0.8,0.2,0,0,0],       accent:'#7fd8ff', scene:'ashkelon'  },
+  { count: 12, gap: 1.6, speed: 0.80, weights:[1.0,0,0,0,0],          accent:'#ffb46b', scene:'sderot'    },
+  { count: 16, gap: 1.5, speed: 0.90, weights:[0.8,0.2,0,0,0],       accent:'#7fd8ff', scene:'ashkelon'  },
   { count: 16, gap: 1.7, speed: 0.95, weights:[0.6,0.2,0.2,0,0],     accent:'#9aa8ff', scene:'ashdod'    },
   { count: 20, gap: 1.5, speed: 1.00, weights:[0.5,0.3,0.2,0,0],     accent:'#ffd166', scene:'beersheva' },
   { count: 22, gap: 1.4, speed: 1.05, weights:[0.4,0.3,0.15,0.15,0], accent:'#ff9eb3', scene:'rishon'    },
   { count: 26, gap: 1.3, speed: 1.10, weights:[0.35,0.25,0.15,0.1,0.15], accent:'#3ee6ff', scene:'telaviv' },
-  { count: 28, gap: 1.2, speed: 1.20, weights:[0.3,0.35,0.1,0.1,0.15],  accent:'#8affc1', scene:'netanya' },
-  { count: 32, gap: 1.1, speed: 1.20, weights:[0.3,0.25,0.2,0.1,0.15],  accent:'#ffe08a', scene:'jerusalem' },
-  { count: 36, gap: 1.0, speed: 1.30, weights:[0.25,0.3,0.2,0.1,0.15],  accent:'#9fd0ff', scene:'haifa'   },
-  { count: 42, gap: 0.9, speed: 1.40, weights:[0.2,0.3,0.2,0.15,0.15],  accent:'#ffb46b', scene:'eilat'   }
+  { count: 28, gap: 1.2, speed: 1.35, weights:[0.3,0.35,0.1,0.1,0.15],  accent:'#8affc1', scene:'netanya' },
+  { count: 32, gap: 1.1, speed: 1.45, weights:[0.3,0.25,0.2,0.1,0.15],  accent:'#ffd9a0', scene:'jerusalem' },
+  { count: 36, gap: 1.0, speed: 1.60, weights:[0.25,0.3,0.2,0.1,0.15],  accent:'#7fb4ff', scene:'haifa'   },
+  { count: 42, gap: 0.9, speed: 1.80, weights:[0.2,0.3,0.2,0.15,0.15],  accent:'#ff8e6b', scene:'eilat'   }
 ];
 
 /* ---------- upgrades ---------- */
 const UPGRADES = [
-  { key:'blast',     ic:'💥', max:3, cost:[150, 400, 900],  nm:'upBlast',  ds:'upBlastD'  },
+  { key:'blast',     ic:'💥', max:3, cost:[200, 600, 1500], nm:'upBlast',  ds:'upBlastD'  },
   { key:'speed',     ic:'🚀', max:3, cost:[120, 350, 800],  nm:'upSpeed',  ds:'upSpeedD'  },
   { key:'launchers', ic:'🗼', max:2, cost:[300, 1000],      nm:'upLaunch', ds:'upLaunchD' },
   { key:'sling',     ic:'🪨', max:3, cost:[250, 600, 1200], nm:'upSling',  ds:'upSlingD'  }
@@ -400,10 +418,17 @@ let curLevel = 0;
 let stars = [];           // background starfield
 let lastFrame = 0;
 
-function newGame(levelIdx){
-  const L = LEVELS[levelIdx];
+function newGame(levelIdx, endless){
+  // Red Alert: unlocked after the campaign — an open-ended barrage that ramps
+  // every 20s until the city falls. The 'best' score finally has a real chase.
+  const L = endless
+    ? { count: Infinity, gap: 1.25, speed: 1.15,
+        weights: [0.35, 0.25, 0.15, 0.1, 0.15],
+        accent: '#ff8a8a',
+        scene: LEVELS[Math.floor(Math.random() * LEVELS.length)].scene }
+    : LEVELS[levelIdx];
   G = {
-    L, levelIdx,
+    L, levelIdx, endless: !!endless, endlessT: 0, nextRamp: 20,
     rockets: [], inters: [], booms: [], parts: [], pows: [], floats: [], warns: [],
     pending: [], fireCD: 0,
     spawned: 0, resolved: 0, killed: 0,
@@ -426,7 +451,9 @@ function buildSkyline(){
   const arr = [];
   // deterministic-ish heights per level
   for (let i = 0; i < n; i++){
-    const r = Math.abs(Math.sin((G.levelIdx + 1) * 37.7 + i * 12.3));
+    // NB: multiplier must stay away from k*PI or the level term cancels and
+    // every city gets an identical skyline; index shuffle breaks the staircase
+    const r = Math.abs(Math.sin((G.levelIdx + 1) * 41.3 + ((i * 3 + G.levelIdx) % n) * 12.3));
     arr.push({
       x: bw * (i + 1) + bw * 0.08, w: bw * 0.84,
       h: 48 + r * Math.min(105, H * 0.13),
@@ -477,10 +504,17 @@ function renderBackdrop(){
   }
   function sea(y0){                                 // mediterranean / red sea band
     const g = b.createLinearGradient(0, y0, 0, GROUND);
-    g.addColorStop(0, 'rgba(62,230,255,0.22)'); g.addColorStop(1, 'rgba(62,230,255,0.03)');
+    g.addColorStop(0, 'rgba(62,230,255,0.10)'); g.addColorStop(1, 'rgba(62,230,255,0.02)');
     b.fillStyle = g; b.fillRect(0, y0, W, GROUND - y0);
     b.strokeStyle = 'rgba(62,230,255,0.35)'; b.lineWidth = 1;
     b.beginPath(); b.moveTo(0, y0); b.lineTo(W, y0); b.stroke();
+    // moonlight shimmer dashes so it reads as water, not fog
+    b.strokeStyle = 'rgba(62,230,255,0.5)'; b.lineWidth = 1.5;
+    for (let i = 0; i < 6; i++){
+      const sy = y0 + 6 + rnd(i + 200) * (GROUND - y0) * 0.5;
+      const sx2 = rnd(i + 210) * (W - 30);
+      b.beginPath(); b.moveTo(sx2, sy); b.lineTo(sx2 + 10 + rnd(i + 220) * 14, sy); b.stroke();
+    }
   }
   function blocks(col, hMin, hMax, n, s){           // generic skyline strip
     for (let i = 0; i < n; i++){
@@ -624,9 +658,9 @@ function renderBackdrop(){
       lights(14, 61);
       break;
     }
-    case 'eilat':        // red mountains, the gulf, palms + sail hotels
-      peaks(FAR, T + topoH * 0.35, topoH * 0.55, 63);
-      peaks(MID, T + topoH * 0.6, topoH * 0.4, 67);
+    case 'eilat':        // RED mountains (Edom at night), the gulf, palms + sail hotels
+      peaks('#3f2a45', T + topoH * 0.35, topoH * 0.55, 63);
+      peaks('#553449', T + topoH * 0.6, topoH * 0.4, 67);
       sea(T + topoH * 0.68);
       poly([[W * 0.6, GROUND], [W * 0.74, GROUND], [W * 0.63, GROUND - topoH * 0.5]], NEAR);  // sail hotel
       blocks(NEAR, 10, 30, 12, 69);
@@ -645,7 +679,7 @@ function renderBackdrop(){
 /* interceptor params with upgrades */
 function blastR(){ return (54 + save.up.blast * 15) * (G && G.megaT > 0 ? 1.7 : 1); }
 function interSpeed(){ return 560 + save.up.speed * 140; }
-function maxInters(){ return 3 + save.up.launchers; }
+function maxInters(){ return 2 + save.up.launchers; }   // 2 base: the queue never drops taps, and the upgrade has to matter
 
 /* ---------- spawning ---------- */
 function pickType(){
@@ -668,7 +702,8 @@ function spawnRocket(type, x, y, child){
   const tx = W * (0.18 + Math.random() * 0.64);   // always lands over the city strip
   const sy = y !== undefined ? y : -30;
   const ang = Math.atan2(GROUND - sy, tx - sx);
-  const v = def.v * sp * (0.9 + Math.random() * 0.25);
+  // normalize to screen height so a tablet isn't 75% easier than a small phone
+  const v = def.v * sp * (0.9 + Math.random() * 0.25) * Math.min(1.3, Math.max(0.8, H / 844));
   G.rockets.push({
     type, x: sx, y: sy,
     vx: Math.cos(ang) * v, vy: Math.sin(ang) * v,
@@ -678,8 +713,9 @@ function spawnRocket(type, x, y, child){
   });
 }
 function spawnPower(){
-  const kinds = ['slow', 'mega', 'shield', 'beam'];
-  const k = kinds[Math.floor(Math.random() * kinds.length)];
+  // beam is the strongest crate — weight it rarest
+  const roll = Math.random();
+  const k = roll < 0.3 ? 'slow' : roll < 0.6 ? 'mega' : roll < 0.85 ? 'shield' : 'beam';
   G.pows.push({ k, x: W * (0.18 + Math.random() * 0.64), y: -30, vy: 42, t: 0,
     ic: { slow: '⏱️', mega: '💥', shield: '🛡️', beam: '⚡' }[k] });
 }
@@ -736,7 +772,8 @@ function aimAssist(x, y){
   // so a burst of taps spreads across the barrage instead of doubling up
   const locked = new Set();
   for (const m of G.inters) if (m.lock) locked.add(m.lock);
-  let best = null, bd = 110, any = null, ad = 110;   // snap radius in px
+  const SNAP = G.levelIdx < 3 ? 110 : 85;            // training wheels come off after level 3
+  let best = null, bd = SNAP, any = null, ad = SNAP;
   for (const r of G.rockets){
     let px = r.x, py = r.y;
     for (let k = 0; k < 2; k++){                 // two refinement passes
@@ -821,8 +858,8 @@ function killRocket(r, silent){
     sfx.combo(Math.floor(G.combo / 3));
   }
   burst(r.x, r.y, r.col, 14);
-  // chain reaction: every kill detonates, catching nearby rockets
-  if (G.booms.length < 40)
+  // chain reaction is the COMBO's reward, not a freebie — only while hot
+  if (G.combo >= 3 && G.booms.length < 40)
     G.booms.push({ x: r.x, y: r.y, r: 4, maxR: blastR() * 0.55, t: 0, chain: true });
   if (!silent){ sfx.boom(); buzz(15); }
 }
@@ -834,7 +871,8 @@ function burst(x, y, col, n){
   }
 }
 
-/* ground impacts explode into falafel balls 🧆 — they arc, bounce and roll */
+/* ground impacts explode into falafel balls 🧆 — they arc, bounce and roll.
+   Fewer + bigger + outlined reads as falafel; a halo reads as bokeh mush. */
 function falafelBurst(x, n){
   const shades = ['#e0a955', '#c98f3d', '#b07a30', '#edbb6a'];
   for (let i = 0; i < n; i++){
@@ -843,7 +881,7 @@ function falafelBurst(x, n){
     G.parts.push({
       f: true, x: x + (Math.random() - 0.5) * 18, y: GROUND - 8,
       vx: Math.cos(a) * v * 0.6, vy: Math.sin(a) * v,
-      r: 5.5 + Math.random() * 4.5, col: shades[i % shades.length],
+      r: 7 + Math.random() * 5, col: shades[i % shades.length],
       spin: Math.random() * 6.28, t: 0, life: 2.2 + Math.random() * 0.6
     });
   }
@@ -857,11 +895,21 @@ function update(dt){
   if (G.megaT > 0) G.megaT -= dt;
   if (G.shieldT > 0) G.shieldT -= dt;
   if (G.beamFx > 0) G.beamFx -= dt;
-  if (G.comboT > 0){ G.comboT -= dt; if (G.comboT <= 0) G.combo = 0; }
+  if (G.comboT > 0){ G.comboT -= dt * G.timeScale; if (G.comboT <= 0) G.combo = 0; }  // slow-mo protects your combo
   if (G.shake > 0) G.shake = Math.max(0, G.shake - dt * 30);
 
   const ts = G.timeScale, sdt = dt * ts;
   processPending(dt);
+
+  // Red Alert ramp: tighter, faster, forever
+  if (G.endless){
+    G.endlessT += sdt;
+    if (G.endlessT > G.nextRamp){
+      G.nextRamp += 20;
+      G.L.gap = Math.max(0.35, G.L.gap * 0.93);
+      G.L.speed = Math.min(3, G.L.speed + 0.05);
+    }
+  }
 
   // spawn rockets (with a short incoming warning first) — always over the city
   const queueWarn = () => G.warns.push({ x: W * (0.16 + Math.random() * 0.68), type: pickType(), t: 0.7 });
@@ -926,11 +974,11 @@ function update(dt){
         hit.alive = false;
         G.shake = 14; sfx.hitCity(); buzz([30, 40, 60]);
         burst(r.x, GROUND - 10, '#ff8c42', 30);
-        falafelBurst(r.x, 16);
+        falafelBurst(r.x, 10);
         if (!G.buildings.some(b => b.alive)){ endLevel(false); return; }
       } else {
         burst(r.x, GROUND, '#8da3cc', 8); noise(0.15, 0.1);
-        falafelBurst(r.x, 10);
+        falafelBurst(r.x, 8);
         G.shake = Math.max(G.shake, 4);
       }
       G.combo = 0;
@@ -940,6 +988,7 @@ function update(dt){
   // interceptors
   for (let i = G.inters.length - 1; i >= 0; i--){
     const m = G.inters[i];
+    if (!Number.isFinite(m.x + m.y + m.vx + m.vy)){ G.inters.splice(i, 1); continue; }  // never let a bad shot jam a tube
     m.x += m.vx * dt; m.y += m.vy * dt;   // interceptors ignore slow-mo: feels powerful
     m.trail.push({ x: m.x, y: m.y });
     if (m.trail.length > 10) m.trail.shift();
@@ -947,8 +996,9 @@ function update(dt){
     let bx = m.tx, by = m.ty, det = reach || m.y < -20;
     if (!det){
       // proximity fuze: detonate when passing near any rocket
+      // (0.5x base — the Bigger Blast upgrade visibly widens this corridor)
       for (const r of G.rockets){
-        if (Math.hypot(r.x - m.x, r.y - m.y) < blastR() * 0.8){
+        if (Math.hypot(r.x - m.x, r.y - m.y) < blastR() * 0.5){
           det = true; bx = m.x; by = m.y; break;
         }
       }
@@ -964,10 +1014,12 @@ function update(dt){
   for (let i = G.booms.length - 1; i >= 0; i--){
     const b = G.booms[i];
     b.t += dt; b.r = b.maxR * Math.min(1, b.t / 0.18);
-    // kill rockets in radius
+    // kill rockets in radius — each blast may damage a given rocket only once,
+    // or heavy armor (hp 2) dies to a single graze over consecutive frames
     for (let j = G.rockets.length - 1; j >= 0; j--){
       const r = G.rockets[j];
-      if (Math.hypot(r.x - b.x, r.y - b.y) < b.r + r.size){
+      if (r.lastBoom !== b && Math.hypot(r.x - b.x, r.y - b.y) < b.r + r.size){
+        r.lastBoom = b;
         r.hp--;
         if (r.hp <= 0){ G.rockets.splice(j, 1); killRocket(r); }
         else { burst(r.x, r.y, '#ffffff', 6); r.vy *= 0.85; }
@@ -1012,8 +1064,14 @@ function update(dt){
   // HUD
   $('hudScore').textContent = G.score;
   $('hudCombo').textContent = G.combo >= 3 ? (t('comboX') + (1 + Math.min(4, Math.floor(G.combo / 3)) * 0.5)) : '';
-  $('hudWave').textContent = Math.min(G.spawned, G.L.count) + '/' + G.L.count + ' ' + t('waveOf');
-  $('hudLevel').textContent = t('level') + ' ' + (G.levelIdx + 1) + ' · ' + t('levels')[G.levelIdx];
+  if (G.endless){
+    const s = Math.floor(G.endlessT);
+    $('hudWave').textContent = '🚨 ' + Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+    $('hudLevel').textContent = t('endlessName');
+  } else {
+    $('hudWave').textContent = Math.min(G.spawned, G.L.count) + '/' + G.L.count + ' ' + t('waveOf');
+    $('hudLevel').textContent = t('level') + ' ' + (G.levelIdx + 1) + ' · ' + t('levels')[G.levelIdx];
+  }
 }
 
 /* ---------- drawing ---------- */
@@ -1093,7 +1151,7 @@ function drawCity(){
 
   // ammo pips: cyan = ready, dim = in flight, pulsing gold = shot queued
   const free = maxInters() - G.inters.length;
-  const pulse = 0.5 + 0.5 * Math.abs(Math.sin(performance.now() / 120));
+  const pulse = 0.5 + 0.5 * Math.abs(Math.sin(performance.now() / 250));
   for (let i = 0; i < maxInters(); i++){
     if (i < free) cx.fillStyle = '#3ee6ff';
     else if (G.pending.length && i >= maxInters() - G.pending.length)
@@ -1125,10 +1183,19 @@ function drawShield(){
 }
 
 function drawEntities(){
-  // beam flash
+  // iron beam: an actual beam sweeping the sky, with a gentle (photosensitivity-safe) flash
   if (G.beamFx > 0){
-    cx.globalAlpha = G.beamFx * 1.6;
+    cx.globalAlpha = Math.min(0.22, G.beamFx * 0.5);
     cx.fillStyle = '#fff'; cx.fillRect(0, 0, W, H);
+    const p = 1 - G.beamFx / 0.5;                 // sweep left → right over the burst
+    const bx = W * p;
+    const col = cx.createLinearGradient(bx - 16, 0, bx + 16, 0);
+    col.addColorStop(0, 'rgba(62,230,255,0)');
+    col.addColorStop(0.5, 'rgba(255,255,255,0.9)');
+    col.addColorStop(1, 'rgba(62,230,255,0)');
+    cx.globalAlpha = Math.min(1, G.beamFx * 3);
+    cx.fillStyle = col;
+    cx.fillRect(bx - 16, 0, 32, GROUND);
     cx.globalAlpha = 1;
   }
 
@@ -1206,18 +1273,24 @@ function drawEntities(){
     cx.shadowBlur = 0;
     // target marker
     cx.strokeStyle = 'rgba(62,230,255,0.5)'; cx.lineWidth = 1.5;
-    const rr = 10 + 4 * Math.sin(performance.now() / 100);
+    const rr = 10 + 4 * Math.sin(performance.now() / 250);
     cx.beginPath(); cx.arc(m.tx, m.ty, rr, 0, 6.29); cx.stroke();
   }
 
-  // explosions (chain blasts glow gold)
+  // explosions: hot radial core, neon ring (chain blasts glow gold)
   for (const b of G.booms){
     const k = b.t / 0.45;
     cx.globalAlpha = 1 - k;
-    cx.fillStyle = '#fff';
-    cx.beginPath(); cx.arc(b.x, b.y, b.r * 0.45, 0, 6.29); cx.fill();
+    const core = cx.createRadialGradient(b.x, b.y, 0, b.x, b.y, Math.max(2, b.r * 0.5));
+    core.addColorStop(0, '#ffffff');
+    core.addColorStop(0.45, 'rgba(255,209,102,0.55)');
+    core.addColorStop(1, 'rgba(255,140,66,0)');
+    cx.fillStyle = core;
+    cx.beginPath(); cx.arc(b.x, b.y, b.r * 0.5, 0, 6.29); cx.fill();
     cx.strokeStyle = b.chain ? '#ffd166' : '#3ee6ff'; cx.lineWidth = 3;
+    cx.shadowColor = b.chain ? '#ffd166' : '#3ee6ff'; cx.shadowBlur = 18;
     cx.beginPath(); cx.arc(b.x, b.y, b.r, 0, 6.29); cx.stroke();
+    cx.shadowBlur = 0;
     cx.strokeStyle = '#ffd166'; cx.lineWidth = 1.5; cx.globalAlpha = (1 - k) * 0.7;
     cx.beginPath(); cx.arc(b.x, b.y, b.r * 0.75, 0, 6.29); cx.stroke();
     cx.globalAlpha = 1;
@@ -1227,10 +1300,10 @@ function drawEntities(){
   for (const p of G.parts){
     cx.globalAlpha = Math.min(1, (1 - p.t / p.life) * 1.4);
     if (p.f){
-      cx.shadowColor = '#ffce7a'; cx.shadowBlur = 10;
       cx.fillStyle = p.col;
       cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 6.29); cx.fill();
-      cx.shadowBlur = 0;
+      cx.strokeStyle = '#7a5a22'; cx.lineWidth = 1.5;
+      cx.stroke();
       cx.fillStyle = 'rgba(70,48,18,0.8)';           // crispy speckles
       cx.beginPath();
       cx.arc(p.x + Math.cos(p.spin) * p.r * 0.4, p.y + Math.sin(p.spin) * p.r * 0.4, p.r * 0.22, 0, 6.29);
@@ -1303,10 +1376,12 @@ function gotoIntro(idx){
   show('scrIntro');
 }
 
+let curMode = 'campaign';
 function startLevel(){
-  newGame(curLevel);
+  newGame(curLevel, curMode === 'endless');
   show('play');
-  if (curLevel === 0) addFloat(W / 2, H * 0.32, t('tapHint'), '#ffd166', 17, 3);
+  if (curLevel === 0 && curMode !== 'endless')
+    addFloat(W / 2, H * 0.32, t('tapHint'), '#ffd166', 17, 3);
   if (!trackedPlay){ trackedPlay = true; track('play'); }     // one per session
 }
 
@@ -1318,16 +1393,20 @@ function endLevel(won){
 
   if (!won){
     save.best = Math.max(save.best, G.score);
-    save.coins += Math.round(G.score * 0.5);
+    const consolation = Math.round(G.score * 0.3);
+    save.coins += consolation;
     persist();
     $('overScore').textContent = G.score;
-    $('overStats').textContent = t('overStats').replace('{n}', G.killed);
+    $('overStats').textContent = t('overStats').replace('{n}', G.killed) +
+      (G.endless ? ' · 🚨 ' + Math.floor(G.endlessT) + 's' : '');
+    renderShop($('shopOver'), $('coinsOver'));     // the stuck player needs the shop MOST
     show('scrOver');
     return;
   }
 
   const st = pct >= 0.9 && alive === G.buildings.length ? 3 : pct >= 0.75 ? 2 : 1;
-  const coinGain = G.score + alive * 50;
+  const replay = save.unlocked > curLevel;          // re-clearing an old level pays a quarter
+  const coinGain = Math.round((G.score + alive * 20) * (replay ? 0.25 : 1));
   save.coins += coinGain;
   save.best = Math.max(save.best, G.score);
   save.unlocked = Math.max(save.unlocked, curLevel + 1);
@@ -1349,9 +1428,10 @@ function endLevel(won){
   show('scrEnd');
 }
 
-function renderShop(){
-  $('coins').textContent = '🪙 ' + save.coins + ' ' + t('coinsW');
-  const shop = $('shop');
+function renderShop(container, coinsEl){
+  const shop = container || $('shop');
+  const cEl = coinsEl || $('coins');
+  cEl.textContent = '🪙 ' + save.coins + ' ' + t('coinsW');
   shop.innerHTML = '';
   for (const u of UPGRADES){
     const lvl = save.up[u.key];
@@ -1366,8 +1446,10 @@ function renderShop(){
       '<button ' + (cost === null || cost > save.coins ? 'disabled' : '') + '>' +
       (cost === null ? t('maxed') : '🪙 ' + cost) + '</button>';
     row.querySelector('button').onclick = () => {
-      if (cost !== null && save.coins >= cost){
-        save.coins -= cost; save.up[u.key]++; persist(); sfx.power(); renderShop();
+      const cur = save.up[u.key];                      // re-derive: never trust render-time cost
+      if (cur < u.max && save.coins >= u.cost[cur]){
+        save.coins -= u.cost[cur]; save.up[u.key]++; persist(); sfx.power();
+        renderShop(shop, cEl);
       }
     };
     shop.appendChild(row);
@@ -1398,6 +1480,8 @@ function applyLang(){
   $('btnHow').textContent = t('howBtn');
   $('btnCal').textContent = '🎯 ' + t('calTitle');
   $('btnCalSkip').textContent = t('skip');
+  $('btnEndless').textContent = t('endless');
+  $('btnEndless').style.display = save.unlocked >= LEVELS.length ? '' : 'none';
   $('btnHowBack').textContent = t('back');
   $('btnStart').textContent = t('start');
   $('btnResume').textContent = t('resume');
@@ -1477,9 +1561,14 @@ $('btnCalSkip').onclick = () => {
 
 /* ---------- wire buttons ---------- */
 $('btnPlay').onclick = () => {
-  ac(); sfx.click();
+  ac(); sfx.click(); curMode = 'campaign';
   if (!save.cal.done) startCal('play');           // first run: calibrate, then play
   else gotoIntro(Math.min(save.unlocked, LEVELS.length - 1));
+};
+$('btnEndless').onclick = () => {
+  ac(); sfx.click(); curMode = 'endless';
+  curLevel = LEVELS.length - 1;                   // endless uses late-game rules (snap, barrages)
+  startLevel();
 };
 $('btnCal').onclick = () => { ac(); sfx.click(); startCal('menu'); };
 $('btnHow').onclick = () => { sfx.click(); show('scrHow'); };
@@ -1487,23 +1576,35 @@ $('btnHowBack').onclick = () => { sfx.click(); show('scrMenu'); };
 $('btnStart').onclick = () => { ac(); sfx.click(); startLevel(); };
 $('btnPause').onclick = () => { sfx.click(); show('scrPause'); };
 $('btnResume').onclick = () => { sfx.click(); show('play'); };
-$('btnQuit').onclick = () => { sfx.click(); applyLang(); show('scrMenu'); };
+$('btnQuit').onclick = () => {
+  sfx.click();
+  if (G && !G.over && G.score > 0){               // leaving mid-level still banks your coins
+    save.coins += Math.round(G.score * 0.3);
+    save.best = Math.max(save.best, G.score);
+    persist();
+  }
+  applyLang(); show('scrMenu');
+};
 $('btnNext').onclick = () => {
   sfx.click();
   if (curLevel + 1 >= LEVELS.length){ track('won'); show('scrWin'); }
   else gotoIntro(curLevel + 1);
 };
-$('btnRetry').onclick = () => { sfx.click(); gotoIntro(curLevel); };
-$('btnRetry2').onclick = () => { sfx.click(); gotoIntro(curLevel); };
+$('btnRetry').onclick = () => { sfx.click(); startLevel(); };   // one tap back into the fight
+$('btnRetry2').onclick = () => { sfx.click(); startLevel(); };
 $('btnMenu1').onclick = $('btnMenu2').onclick = $('btnMenu3').onclick =
   () => { sfx.click(); applyLang(); show('scrMenu'); };
 $('btnLang').onclick = () => {
   save.lang = save.lang === 'he' ? 'en' : 'he'; persist(); applyLang(); sfx.click();
 };
-$('btnSound').onclick = () => {
-  save.sound = !save.sound; persist();
-  $('btnSound').textContent = save.sound ? '🔊' : '🔇';
-  $('btnSound').classList.toggle('on', save.sound);
+function syncSound(){
+  for (const id of ['btnSound', 'btnSound2']){
+    $(id).textContent = save.sound ? '🔊' : '🔇';
+    $(id).classList.toggle('on', save.sound);
+  }
+}
+$('btnSound').onclick = $('btnSound2').onclick = () => {
+  save.sound = !save.sound; persist(); syncSound();
   if (save.sound) sfx.click();
 };
 
@@ -1516,8 +1617,7 @@ document.addEventListener('visibilitychange', () => {
 for (let i = 0; i < 70; i++)
   stars.push({ x: Math.random(), y: Math.random(), s: Math.random() < 0.8 ? 1 : 2, tw: Math.random() * 6.28 });
 resize();
-$('btnSound').textContent = save.sound ? '🔊' : '🔇';
-$('btnSound').classList.toggle('on', save.sound);
+syncSound();
 applyLang();
 requestAnimationFrame(loop);
 
