@@ -171,22 +171,28 @@ PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then In
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 09:47 UTC
+- **When:** 2026-06-10 10:00 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 7f49504 chore: refresh nucleus live state [skip ci] — 14 seconds ago
+- **Last commit:** 61961bd chore: refresh nucleus live state [skip ci] — 12 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-7f49504 chore: refresh nucleus live state [skip ci] (14 seconds ago)
-7d95eaf chore: refresh nucleus live state [skip ci] (10 minutes ago)
-fb194a7 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts (11 minutes ago)
-345bc58 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+61961bd chore: refresh nucleus live state [skip ci] (12 minutes ago)
+7f49504 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+7d95eaf chore: refresh nucleus live state [skip ci] (22 minutes ago)
+fb194a7 chore: refresh nucleus live state [skip ci] (23 minutes ago)
+e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts (23 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
