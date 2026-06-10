@@ -101,6 +101,12 @@
   #coins{font-family:"Courier New",monospace;color:var(--gold);font-size:18px;font-weight:700;
     text-shadow:0 0 10px rgba(255,209,102,.5)}
 
+  /* calibration target */
+  #calTarget{position:absolute;width:64px;height:64px;display:none;pointer-events:none;
+    font-size:50px;line-height:64px;text-align:center;
+    filter:drop-shadow(0 0 16px rgba(255,93,115,.95));
+    transform:rotate(135deg);transition:left .25s,top .25s}
+
   /* how to play */
   .howrow{display:flex;align-items:center;gap:12px;background:var(--panel);border-radius:12px;
     padding:8px 14px;width:min(92vw,400px);text-align:start}
@@ -131,6 +137,7 @@
   <button class="btn primary" id="btnPlay"></button>
   <button class="btn" id="btnHow"></button>
   <div class="btnrow">
+    <button class="pill" id="btnCal">🎯</button>
     <button class="pill" id="btnLang">EN</button>
     <button class="pill on" id="btnSound">🔊</button>
   </div>
@@ -147,6 +154,15 @@
   <div class="howrow"><span class="e">🏙️</span><span class="t" data-i18n="how4"></span></div>
   <div class="howrow"><span class="e">⭐</span><span class="t" data-i18n="how5"></span></div>
   <button class="btn primary" id="btnHowBack"></button>
+</div>
+
+<!-- ===== CALIBRATION ===== -->
+<div id="scrCal" class="screen">
+  <h1 style="font-size:22px" data-i18n="calTitle"></h1>
+  <p class="sub" id="calMsg"></p>
+  <div class="sub" id="calStep" style="font-size:18px;color:var(--gold)"></div>
+  <div id="calTarget">🚀</div>
+  <button class="btn small" id="btnCalSkip" style="margin-top:30vh"></button>
 </div>
 
 <!-- ===== LEVEL INTRO ===== -->
@@ -210,8 +226,10 @@ const $ = id => document.getElementById(id);
 const SAVE_KEY = 'irondome.save.v1';
 const save = Object.assign({
   lang: 'he', sound: true, coins: 0, best: 0, unlocked: 0,
+  cal: { x: 0, y: 0, done: false },
   up: { blast: 0, speed: 0, launchers: 0, sling: 0 }
 }, JSON.parse(localStorage.getItem(SAVE_KEY) || '{}'));
+if (!save.cal) save.cal = { x: 0, y: 0, done: false };
 function persist(){ localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }
 
 /* ---------- i18n ---------- */
@@ -238,6 +256,9 @@ const T = {
     upLaunch: 'Extra Launcher', upLaunchD: '+1 interceptor in the air',
     upSling: 'Iron Sling', upSlingD: 'Auto-intercepts leakers (per level)',
     waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE SKY TO INTERCEPT!',
+    calTitle: 'Touch Calibration', calTapMsg: 'Tap the center of the rocket',
+    calFlingMsg: 'Now swipe through the rocket', calCloser: 'Closer to the rocket — try again',
+    calDoneMsg: 'Calibrated! Taps are now tuned to your thumb.', skip: 'Skip',
     pSlow: 'SLOW-MO!', pMega: 'MEGA BLAST!', pShield: 'SHIELD UP!', pBeam: 'IRON BEAM!',
     slingShot: 'IRON SLING!',
     disclaimer: 'A fan-made morale game — not affiliated with any official body. In a real alert, follow Home Front Command instructions. Stay safe ❤️',
@@ -277,6 +298,9 @@ const T = {
     upLaunch: 'משגר נוסף', upLaunchD: 'מיירט נוסף באוויר בו־זמנית',
     upSling: 'קלע ברזל', upSlingD: 'יירוט אוטומטי של מסתננות (לכל שלב)',
     waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 הקליקו על השמיים כדי ליירט!',
+    calTitle: 'כיול מגע', calTapMsg: 'הקליקו במרכז הרקטה',
+    calFlingMsg: 'עכשיו החליקו דרך הרקטה', calCloser: 'קרוב יותר לרקטה — נסו שוב',
+    calDoneMsg: 'כויל! ההקלקות מכווננות לאצבע שלכם.', skip: 'דלג',
     pSlow: 'הילוך איטי!', pMega: 'מגה פיצוץ!', pShield: 'מגן פעיל!', pBeam: 'קרן ברזל!',
     slingShot: 'קלע ברזל!',
     disclaimer: 'משחק מעריצים להרמת מורל — לא קשור לגוף רשמי. באזעקה אמיתית פעלו לפי הנחיות פיקוד העורף. שמרו על עצמכם ❤️',
@@ -656,7 +680,7 @@ function spawnRocket(type, x, y, child){
 function spawnPower(){
   const kinds = ['slow', 'mega', 'shield', 'beam'];
   const k = kinds[Math.floor(Math.random() * kinds.length)];
-  G.pows.push({ k, x: W * (0.12 + Math.random() * 0.76), y: -30, vy: 42, t: 0,
+  G.pows.push({ k, x: W * (0.18 + Math.random() * 0.64), y: -30, vy: 42, t: 0,
     ic: { slow: '⏱️', mega: '💥', shield: '🛡️', beam: '⚡' }[k] });
 }
 
@@ -667,7 +691,7 @@ function spawnPower(){
 const ptrs = new Map();
 cv.addEventListener('pointerdown', e => {
   if (screen !== 'play' || !G || G.over) return;
-  const x = e.clientX, y = e.clientY;
+  const x = e.clientX + save.cal.x, y = e.clientY + save.cal.y;
   // collect power-up? (instant, consumes the gesture)
   for (let i = G.pows.length - 1; i >= 0; i--){
     const p = G.pows[i];
@@ -683,15 +707,16 @@ window.addEventListener('pointerup', e => {
   const s = ptrs.get(e.pointerId);
   ptrs.delete(e.pointerId);
   if (!s || screen !== 'play' || !G || G.over) return;
-  const dx = e.clientX - s.x, dy = e.clientY - s.y;
+  const ux = e.clientX + save.cal.x, uy = e.clientY + save.cal.y;
+  const dx = ux - s.x, dy = uy - s.y;
   const dist = Math.hypot(dx, dy);
   const dur = Math.max((performance.now() - s.t) / 1000, 0.05);
   if (dist > 26 && dur < 0.6){
     // fling: project the aim point ahead along the swipe, scaled by fling speed
     const lead = Math.min(320, (dist / dur) * 0.18);
-    fireAt(e.clientX + dx / dist * lead, e.clientY + dy / dist * lead, 1.25);
+    fireAt(ux + dx / dist * lead, uy + dy / dist * lead, 1.25);
   } else {
-    fireAt(e.clientX, e.clientY, 1);
+    fireAt(ux, uy, 1);
   }
 });
 window.addEventListener('pointercancel', e => ptrs.delete(e.pointerId));
@@ -699,24 +724,32 @@ window.addEventListener('pointercancel', e => ptrs.delete(e.pointerId));
 /* predict where a nearby rocket will be when the interceptor arrives */
 function aimAssist(x, y){
   const lx = W / 2, ly = GROUND + 4, sp = interSpeed(), ts = G.timeScale;
-  let best = null, bd = 110;                     // snap radius in px
+  // rockets already claimed by an in-flight interceptor yield to fresh threats,
+  // so a burst of taps spreads across the barrage instead of doubling up
+  const locked = new Set();
+  for (const m of G.inters) if (m.lock) locked.add(m.lock);
+  let best = null, bd = 110, any = null, ad = 110;   // snap radius in px
   for (const r of G.rockets){
     let px = r.x, py = r.y;
     for (let k = 0; k < 2; k++){                 // two refinement passes
       const t = Math.hypot(px - lx, py - ly) / sp;
       px = r.x + r.vx * ts * t; py = r.y + r.vy * ts * t;
     }
-    const d = Math.hypot(px - x, py - y);
-    if (d < bd){ bd = d; best = { x: px, y: py }; }
+    // players aim at where the rocket IS; the shot must land where it WILL be —
+    // snap if either is in range, then target the predicted point
+    const d = Math.min(Math.hypot(px - x, py - y), Math.hypot(r.x - x, r.y - y));
+    if (d < ad){ ad = d; any = { x: px, y: py, r }; }
+    if (d < bd && !locked.has(r)){ bd = d; best = { x: px, y: py, r }; }
   }
-  return best;
+  return best || any;
 }
 /* every tap is accepted: fire now if a tube is free, otherwise queue —
    the shot leaves the instant one frees up. No input is ever swallowed. */
 function fireAt(x, y, boost){
   G.pending.push({ x, y, boost });
-  if (G.pending.length > 4) G.pending.shift();
+  if (G.pending.length > 8) G.pending.shift();
   sfx.launch(); buzz(8);
+  processPending(0);                       // launch immediately if a tube is free
 }
 function processPending(dt){
   G.fireCD -= dt;
@@ -727,7 +760,7 @@ function processPending(dt){
     const lx = W / 2, ly = GROUND + 4;
     const sp = interSpeed() * s.boost;
     const d = Math.hypot(tx - lx, ty - ly) || 1;
-    G.inters.push({ x: lx, y: ly, tx, ty,
+    G.inters.push({ x: lx, y: ly, tx, ty, lock: aim.r || null,
       vx: (tx - lx) / d * sp, vy: (ty - ly) / d * sp, trail: [] });
     G.fireCD = 0.11;
   }
@@ -835,7 +868,7 @@ function update(dt){
     let vx = r.vx;
     if (r.type === 3) vx += Math.sin(r.t) * 90;   // zigzag
     r.x += vx * sdt; r.y += r.vy * sdt;
-    r.x = Math.max(W * 0.06, Math.min(W * 0.94, r.x));   // never drift into the margins
+    r.x = Math.max(W * 0.15, Math.min(W * 0.85, r.x));   // hard rule: never inside the 15% side margins
     r.trail.push({ x: r.x, y: r.y });
     if (r.trail.length > 14) r.trail.shift();
     // splitter splits
@@ -923,6 +956,7 @@ function update(dt){
   for (let i = G.pows.length - 1; i >= 0; i--){
     const p = G.pows[i];
     p.t += sdt; p.y += p.vy * sdt; p.x += Math.sin(p.t * 2) * 12 * sdt;
+    p.x = Math.max(W * 0.15, Math.min(W * 0.85, p.x));
     if (p.y > GROUND - 10) G.pows.splice(i, 1);
   }
 
@@ -1218,20 +1252,22 @@ function drawEntities(){
 /* ---------- main loop ---------- */
 function loop(ts){
   requestAnimationFrame(loop);
-  const dt = Math.min(0.05, (ts - lastFrame) / 1000 || 0.016);
+  // clamp dt to a sane positive range — protects against timestamp jumps
+  // (tab restore, clock changes) freezing cooldowns or rewinding physics
+  const dt = Math.min(0.05, Math.max(0.0005, (ts - lastFrame) / 1000)) || 0.016;
   lastFrame = ts;
   if (screen === 'play') update(dt);
   draw();
 }
 
 /* ---------- screens / flow ---------- */
-const SCREENS = ['scrMenu','scrHow','scrIntro','scrPause','scrEnd','scrOver','scrWin'];
+const SCREENS = ['scrMenu','scrHow','scrCal','scrIntro','scrPause','scrEnd','scrOver','scrWin'];
 function show(name){
   for (const s of SCREENS) $(s).classList.remove('show');
   $('hud').style.display = 'none';
   if (name === 'play'){ $('hud').style.display = 'flex'; }
   else if (name) $(name).classList.add('show');
-  screen = ({ scrMenu:'menu', scrHow:'how', scrIntro:'intro', scrPause:'pause',
+  screen = ({ scrMenu:'menu', scrHow:'how', scrCal:'cal', scrIntro:'intro', scrPause:'pause',
               scrEnd:'end', scrOver:'over', scrWin:'win' })[name] || 'play';
 }
 
@@ -1326,6 +1362,7 @@ function applyLang(){
     howTitle: '[data-i18n="howTitle"]', how1: '[data-i18n="how1"]', how2: '[data-i18n="how2"]',
     how3: '[data-i18n="how3"]', how4: '[data-i18n="how4"]', how5: '[data-i18n="how5"]',
     paused: '[data-i18n="paused"]', overTitle: '[data-i18n="overTitle"]',
+    calTitle: '[data-i18n="calTitle"]',
     winTitle: '[data-i18n="winTitle"]', winSub: '[data-i18n="winSub"]'
   };
   for (const k in map){
@@ -1334,6 +1371,8 @@ function applyLang(){
   }
   $('btnPlay').textContent = t('play');
   $('btnHow').textContent = t('howBtn');
+  $('btnCal').textContent = '🎯 ' + t('calTitle');
+  $('btnCalSkip').textContent = t('skip');
   $('btnHowBack').textContent = t('back');
   $('btnStart').textContent = t('start');
   $('btnResume').textContent = t('resume');
@@ -1347,8 +1386,77 @@ function applyLang(){
   $('menuBest').textContent = save.best > 0 ? (t('bestW') + ': ' + save.best + ' · 🪙 ' + save.coins) : '';
 }
 
+/* ---------- touch calibration ----------
+   3 guided taps measure the player's systematic touch offset (thumbs
+   consistently land below/beside what the eye targets); a 4th step teaches
+   the fling. The averaged offset corrects every future game tap. */
+const CALPOS = [[0.30, 0.32], [0.70, 0.28], [0.50, 0.50], [0.50, 0.36]];
+let calState = null, calDown = null;
+function startCal(after){
+  calState = { step: 0, offs: [], after: after || 'menu' };
+  show('scrCal');
+  calPlace();
+}
+function calPlace(){
+  const p = CALPOS[calState.step], el = $('calTarget');
+  el.style.display = 'block';
+  el.style.left = (p[0] * W - 32) + 'px';
+  el.style.top = (p[1] * H - 32) + 'px';
+  $('calMsg').textContent = calState.step < 3 ? t('calTapMsg') : t('calFlingMsg');
+  $('calStep').textContent = (calState.step + 1) + ' / 4';
+}
+function calRoute(after){
+  if (after === 'play') gotoIntro(Math.min(save.unlocked, LEVELS.length - 1));
+  else { applyLang(); show('scrMenu'); }
+}
+function calFinish(){
+  let ax = 0, ay = 0;
+  for (const o of calState.offs){ ax += o.dx; ay += o.dy; }
+  ax /= calState.offs.length; ay /= calState.offs.length;
+  const clamp = v => Math.max(-48, Math.min(48, Math.round(-v)));
+  save.cal = { x: clamp(ax), y: clamp(ay), done: true };
+  persist();
+  $('calTarget').style.display = 'none';
+  $('calMsg').textContent = t('calDoneMsg');
+  $('calStep').textContent = '✓';
+  sfx.power(); buzz(30);
+  const after = calState.after; calState = null;
+  setTimeout(() => calRoute(after), 1100);
+}
+$('scrCal').addEventListener('pointerdown', e => {
+  if (calState) calDown = { x: e.clientX, y: e.clientY };
+});
+$('scrCal').addEventListener('pointerup', e => {
+  if (!calState || !calDown) return;
+  const p = CALPOS[calState.step];
+  const cxp = p[0] * W, cyp = p[1] * H;
+  const moved = Math.hypot(e.clientX - calDown.x, e.clientY - calDown.y);
+  if (calState.step < 3){
+    if (moved > 24){ calDown = null; return; }              // that was a swipe, not a tap
+    const dx = calDown.x - cxp, dy = calDown.y - cyp;
+    if (Math.hypot(dx, dy) > 140){ $('calMsg').textContent = t('calCloser'); calDown = null; return; }
+    calState.offs.push({ dx, dy });
+    calState.step++; sfx.click(); buzz(10);
+    calPlace();
+  } else {
+    if (moved < 30){ $('calMsg').textContent = t('calFlingMsg'); calDown = null; return; }
+    calFinish();
+  }
+  calDown = null;
+});
+$('btnCalSkip').onclick = () => {
+  save.cal = { x: 0, y: 0, done: true }; persist();
+  const after = calState ? calState.after : 'menu'; calState = null;
+  calRoute(after);
+};
+
 /* ---------- wire buttons ---------- */
-$('btnPlay').onclick = () => { ac(); sfx.click(); gotoIntro(Math.min(save.unlocked, LEVELS.length - 1)); };
+$('btnPlay').onclick = () => {
+  ac(); sfx.click();
+  if (!save.cal.done) startCal('play');           // first run: calibrate, then play
+  else gotoIntro(Math.min(save.unlocked, LEVELS.length - 1));
+};
+$('btnCal').onclick = () => { ac(); sfx.click(); startCal('menu'); };
 $('btnHow').onclick = () => { sfx.click(); show('scrHow'); };
 $('btnHowBack').onclick = () => { sfx.click(); show('scrMenu'); };
 $('btnStart').onclick = () => { ac(); sfx.click(); startLevel(); };
