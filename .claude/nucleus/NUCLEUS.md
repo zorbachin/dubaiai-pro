@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 12:48 UTC · code
+DIRECTION SHIFT (Zorba): MAMAD DASH should become a STANDALONE game — siren runner is the viral core; Tel Aviv exploration demoted to secondary/'a place to play'. Iron Dome + MAMAD DASH = the two viral candidates IF made perfect and dead-simple to play. SEPARATE parked idea: multiplayer Tel Aviv lifestyle game — chat, create worlds, interact ('trying to make it' sim). Echoes QA panel finding: dash is the tense set-piece, hustle layer runs dry. Meanwhile shipped PR #74: dash difficulty now ramps with countdown (calm start, frantic finish) + stumble death-spiral fix + freeze guard.
+
 ### 2026-06-10 12:28 UTC · code
 DNS BROKEN: dubaiai.pro resolves to 44.227.76.166 / 44.227.65.245 (registrar parking IPs, likely GoDaddy) instead of GitHub Pages (185.199.108-111.153). Entire site down incl. /mamadio/ — Pages deploys are green, files on main; fix is at the DNS provider: apex A records to the four 185.199.x.153 IPs. Nucleus 'Live at dubaiai.pro' claim is currently false. github.io fallback also dead-ends (301s to the broken custom domain via CNAME).
 
@@ -162,31 +165,34 @@ Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin pr
 
 ### 2026-06-02 04:06 UTC · chat
 Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-posted/scheduled by Buffer or any tool (Meta API rule). FB stays a MANUAL post by Zorba. Buffer handles the rest: IG (Business), LinkedIn, TikTok. Connecting Buffer via Zapier for scheduling those.
-
-### 2026-06-02 04:03 UTC · chat
-PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:31 UTC
+- **When:** 2026-06-10 12:48 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 9c58dfa chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **Last commit:** 717477a MAMAD DASH: ramp difficulty with the countdown — 2 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-9c58dfa chore: refresh nucleus live state [skip ci] (2 minutes ago)
-902816b chore: refresh nucleus live state [skip ci] (2 minutes ago)
-97107fb chore: refresh nucleus live state [skip ci] (4 minutes ago)
-2a46fa0 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-9aba855 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+717477a MAMAD DASH: ramp difficulty with the countdown (2 minutes ago)
+f9e5159 chore: refresh nucleus live state [skip ci] (18 minutes ago)
+9c58dfa chore: refresh nucleus live state [skip ci] (20 minutes ago)
+902816b chore: refresh nucleus live state [skip ci] (20 minutes ago)
+97107fb chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
