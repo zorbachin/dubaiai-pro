@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 18:19 UTC · code
+DECISION (Zorba): build the absurd death cam with savta shaking her head (growth panel's TikTok-punchline rec) — freeze-zoom on death, ragdoll runner, judging savta, rotating one-liner captions. Also: analytics not wired anywhere yet (marketing MCP has only Meta Ads connected, no GA) — recommending GoatCounter for play counts.
+
 ### 2026-06-10 15:46 UTC · code
 STANDING RULE (Zorba): every time a game/site update is pushed, ALWAYS include the playable test link in the reply — no asking. Current MAMAD DASH test link: https://raw.githack.com/zorbachin/dubaiai-pro/claude/mamad-dash-location-0mmse2/mamaddash/index.html (until PR #74 merges + Porkbun DNS fixed, then dubaiai.pro/mamaddash/).
 
@@ -162,31 +165,34 @@ SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@
 
 ### 2026-06-02 05:23 UTC · chat
 SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $200/mo — TOP tier, NOT $100. Flat-rate, can't 'exceed' in $, only hit rate limits. He runs whole OS on it → KEEP, it's the engine. ChatGPT $20 + Gemini $20 worth it. AI-model spend (~$240) is his MOST productive spend, don't trim. (2) AutoGLM = $100/mo billed by Z.ai (autoglm@z.ai) — CAN'T CANCEL, shady. PRIORITY CUT. Drafted cancellation+refund-demand email in Gmail; fallback = Stripe/card chargeback. (3) GoHighLevel ~$100/mo — rebuildable on existing free stack (Netlify forms + Gmail + Google Cal/Cal.com + sheet/Airtable CRM); only SMS-at-scale (Twilio) is harder & he's not using it → CUT, Claude rebuilds the lead→CRM→follow-up flow. (4) Runway — KEEP but right-size: pause between production sprints, resub only in months he batches hero videos (made the BYB 'Transformers' video). (5) Etsy/OrganizedOrionDesign → keep ONLY as low-touch: Zorba ~1hr/wk builds assets, Claude markets/optimizes, else cut. Add as venture. (6) Vybewear (Isaac@vybewear.com) = CLIENT/friend for LAI/BYB (forwarded GTAA tournament leads) — track as customer, revenue-relevant. TRUE BLEED = AutoGLM $100 + GHL $100 = ~$200/mo.
-
-### 2026-06-02 05:13 UTC · chat
-SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM (already tried to cancel, charged anyway — RESOLVE), Runway AI (premium video, redundant — CUT), TopView (cheap video), OpusClip/opus.pro (clipping — keep for MM), AutoGLM (GLM sub — likely redundant w/ Claude, review), ElevenLabs (voice — right-size), X Premium, Etsy Plus $10 (live shop OrganizedOrionDesign jewelry), Anthropic/Claude (core). NOT paying → HeyGen, Higgsfield, Manus (don't start any; brand is self-shot). Recoverable ~$155-235/mo. SURFACED ventures not in ventures.md: Etsy shop OrganizedOrionDesign + Vybe/vybewear. Ambo call booked today 11:30 EST (Meet: meet.google.com/wfd-zwvt-ies) — need Sam & Jack emails to invite. North Star set to $1M.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:15 UTC
+- **When:** 2026-06-10 18:24 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 7102fd2 chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** a80bad0 Death cam: savta judges you + near-miss death screen + tap-to-restart — 29 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-7102fd2 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-2979fed chore: refresh nucleus live state [skip ci] (3 minutes ago)
-e60aee7 chore: refresh nucleus live state [skip ci] (2 hours ago)
-a7276cd chore: refresh nucleus live state [skip ci] (2 hours ago)
-e751b5f chore: refresh nucleus live state [skip ci] (3 hours ago)
+a80bad0 Death cam: savta judges you + near-miss death screen + tap-to-restart (29 seconds ago)
+546a6a2 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+7102fd2 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+2979fed chore: refresh nucleus live state [skip ci] (12 minutes ago)
+e60aee7 chore: refresh nucleus live state [skip ci] (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
