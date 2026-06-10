@@ -490,18 +490,18 @@ function renderBackdrop(){
       b.stroke();
     }
   }
-  function goldDome(x, r){                          // jerusalem gold dome
-    rect(x - r * 0.9, GROUND - r * 2.1, r * 1.8, r * 2.1, NEAR);
+  function goldDome(x, r, baseY){                   // jerusalem gold dome
+    rect(x - r * 0.9, baseY - r * 2.1, r * 1.8, r * 2.1, NEAR);
     b.fillStyle = '#d9a93a';
-    b.beginPath(); b.arc(x, GROUND - r * 2.1, r, Math.PI, 0); b.fill();
-    poly([[x - 2, GROUND - r * 3.1], [x + 2, GROUND - r * 3.1], [x, GROUND - r * 3.6]], '#d9a93a');
+    b.beginPath(); b.arc(x, baseY - r * 2.1, r, Math.PI, 0); b.fill();
+    poly([[x - 2, baseY - r * 3.1], [x + 2, baseY - r * 3.1], [x, baseY - r * 3.6]], '#d9a93a');
   }
-  function oldWall(h){                              // crenellated old-city wall
-    rect(0, GROUND - h, W, h, NEAR);
+  function oldWall(y, h){                           // crenellated old-city wall
+    rect(0, y - h, W, h, NEAR);
     b.fillStyle = NEAR;
-    for (let x = 6; x < W; x += 24) b.fillRect(x, GROUND - h - 7, 13, 7);
+    for (let x = 6; x < W; x += 24) b.fillRect(x, y - h - 7, 13, 7);
     b.fillStyle = '#0d1a3c';
-    b.beginPath(); b.arc(W * 0.3, GROUND, h * 0.55, Math.PI, 0); b.fill();  // gate arch
+    b.beginPath(); b.arc(W * 0.3, y, h * 0.55, Math.PI, 0); b.fill();  // gate arch
   }
 
   switch (G.L.scene){
@@ -571,16 +571,18 @@ function renderBackdrop(){
       blocks(NEAR, 10, 30, 12, 49);
       lights(16, 51);
       break;
-    case 'jerusalem':    // hills, old-city wall, gold dome, towers
+    case 'jerusalem': {  // hills, elevated old-city wall + gold dome on the ridge
       ridge(FAR, T + topoH * 0.38, topoH * 0.32, 0.007);
       ridge(MID, T + topoH * 0.62, topoH * 0.26, 0.010);
-      oldWall(26);
-      goldDome(W * 0.5, 17);
-      rect(W * 0.63, GROUND - 52, 9, 52, NEAR);                                 // bell tower
-      poly([[W * 0.63, GROUND - 52], [W * 0.672, GROUND - 52], [W * 0.651, GROUND - 64]], NEAR);
+      const ridgeY = GROUND - topoH * 0.46;          // above the foreground buildings
+      oldWall(ridgeY, 20);
+      goldDome(W * 0.5, 20, ridgeY);
+      rect(W * 0.66, ridgeY - 48, 9, 48, NEAR);                                 // bell tower
+      poly([[W * 0.66, ridgeY - 48], [W * 0.702, ridgeY - 48], [W * 0.681, ridgeY - 60]], NEAR);
       cypress(W * 0.2, 30, NEAR); cypress(W * 0.25, 24, NEAR); cypress(W * 0.8, 28, NEAR);
       lights(14, 55);
       break;
+    }
     case 'haifa': {      // mount carmel slope + gardens lights + port
       poly([[0, GROUND + 2], [0, T - 8], [W * 0.5, T + topoH * 0.3],
             [W * 0.72, GROUND + 2]], FAR);
