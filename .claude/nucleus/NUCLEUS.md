@@ -171,22 +171,28 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 11:47 UTC
+- **When:** 2026-06-10 12:02 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 0f5a35d chore: refresh nucleus live state [skip ci] — 40 seconds ago
+- **Last commit:** 02583b4 chore: refresh nucleus live state [skip ci] — 14 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 ```
 
 **Recent commits:**
 ```
-0f5a35d chore: refresh nucleus live state [skip ci] (40 seconds ago)
-36b668f chore: refresh nucleus live state [skip ci] (7 minutes ago)
-7980927 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+02583b4 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+0f5a35d chore: refresh nucleus live state [skip ci] (15 minutes ago)
+36b668f chore: refresh nucleus live state [skip ci] (21 minutes ago)
+7980927 chore: refresh nucleus live state [skip ci] (21 minutes ago)
 273622a Add Mamadio — Tel Aviv hustle game with MAMAD DASH siren runner (#71) (2 hours ago)
-fbf2155 chore: refresh nucleus live state [skip ci] (8 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
