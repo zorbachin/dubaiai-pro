@@ -185,26 +185,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 18:25 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 90a933c chore: refresh nucleus live state [skip ci] — 5 minutes ago
+- **Last commit:** 43ed5f5 chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-90a933c chore: refresh nucleus live state [skip ci] (5 minutes ago)
+43ed5f5 chore: refresh nucleus live state [skip ci] (19 seconds ago)
+90a933c chore: refresh nucleus live state [skip ci] (6 minutes ago)
 69fc778 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-6f7aa6d Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (6 minutes ago)
-1634e77 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-ed91283 v13: difficulty select, intra-level ramp, bonus rounds, active Iron Sling volley (7 minutes ago)
+6f7aa6d Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (7 minutes ago)
+1634e77 chore: refresh nucleus live state [skip ci] (7 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
