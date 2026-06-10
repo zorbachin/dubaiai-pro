@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 09:47 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 7d95eaf chore: refresh nucleus live state [skip ci] — 10 minutes ago
+- **Last commit:** 7f49504 chore: refresh nucleus live state [skip ci] — 14 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+7f49504 chore: refresh nucleus live state [skip ci] (14 seconds ago)
 7d95eaf chore: refresh nucleus live state [skip ci] (10 minutes ago)
-fb194a7 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+fb194a7 chore: refresh nucleus live state [skip ci] (11 minutes ago)
 e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts (11 minutes ago)
 345bc58 chore: refresh nucleus live state [skip ci] (19 minutes ago)
-531dc35 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
