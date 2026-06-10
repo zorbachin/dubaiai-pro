@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 10:07 UTC
 - **Branch:** `claude/mamadio-game-design-v9mr1w`
-- **Last commit:** 515cf69 Add MAMAD DASH master build prompt — standalone runner spin-off spec — 51 seconds ago
+- **Last commit:** 9533a27 chore: refresh nucleus live state [skip ci] — 20 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-515cf69 Add MAMAD DASH master build prompt — standalone runner spin-off spec (51 seconds ago)
+9533a27 chore: refresh nucleus live state [skip ci] (20 seconds ago)
+515cf69 Add MAMAD DASH master build prompt — standalone runner spin-off spec (71 seconds ago)
 6b5cb2f chore: refresh nucleus live state [skip ci] (4 minutes ago)
-b10c2b6 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+b10c2b6 chore: refresh nucleus live state [skip ci] (5 minutes ago)
 f1fbf51 chore: refresh nucleus live state [skip ci] (19 minutes ago)
-d687bbc chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
