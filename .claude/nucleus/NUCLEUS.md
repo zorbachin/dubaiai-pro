@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 09:37 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts — 18 seconds ago
+- **Last commit:** fb194a7 chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts (18 seconds ago)
+fb194a7 chore: refresh nucleus live state [skip ci] (19 seconds ago)
+e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts (37 seconds ago)
 345bc58 chore: refresh nucleus live state [skip ci] (9 minutes ago)
 531dc35 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-84ea280 Update nucleus: Iron Dome v1 shipped (PR #70) (10 minutes ago)
-9ea9199 Add Iron Dome arcade game at /irondome/ (11 minutes ago)
+84ea280 Update nucleus: Iron Dome v1 shipped (PR #70) (11 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
