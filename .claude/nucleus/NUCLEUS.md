@@ -195,7 +195,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 18:56 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** d5a1cd2 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 58 seconds ago
+- **Last commit:** fa3306c chore: refresh nucleus live state [skip ci] — 39 seconds ago
 
 **Working tree:**
 ```
@@ -204,11 +204,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-d5a1cd2 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (58 seconds ago)
-e0b3a2c chore: refresh nucleus live state [skip ci] (70 seconds ago)
-5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (2 minutes ago)
+fa3306c chore: refresh nucleus live state [skip ci] (39 seconds ago)
+d5a1cd2 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (2 minutes ago)
+e0b3a2c chore: refresh nucleus live state [skip ci] (2 minutes ago)
+5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (3 minutes ago)
 2c72477 chore: refresh nucleus live state [skip ci] (17 minutes ago)
-aff1a2e chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
