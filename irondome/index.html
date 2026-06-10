@@ -237,7 +237,7 @@ const T = {
     upSpeed: 'Faster Tamir', upSpeedD: 'Interceptors fly faster',
     upLaunch: 'Extra Launcher', upLaunchD: '+1 interceptor in the air',
     upSling: 'Iron Sling', upSlingD: 'Auto-intercepts leakers (per level)',
-    waveOf: 'Rockets', comboX: 'COMBO x',
+    waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE SKY TO INTERCEPT!',
     pSlow: 'SLOW-MO!', pMega: 'MEGA BLAST!', pShield: 'SHIELD UP!', pBeam: 'IRON BEAM!',
     slingShot: 'IRON SLING!',
     disclaimer: 'A fan-made morale game — not affiliated with any official body. In a real alert, follow Home Front Command instructions. Stay safe ❤️',
@@ -276,7 +276,7 @@ const T = {
     upSpeed: 'תמיר מהיר', upSpeedD: 'המיירטים טסים מהר יותר',
     upLaunch: 'משגר נוסף', upLaunchD: 'מיירט נוסף באוויר בו־זמנית',
     upSling: 'קלע ברזל', upSlingD: 'יירוט אוטומטי של מסתננות (לכל שלב)',
-    waveOf: 'רקטות', comboX: 'קומבו ×',
+    waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 הקליקו על השמיים כדי ליירט!',
     pSlow: 'הילוך איטי!', pMega: 'מגה פיצוץ!', pShield: 'מגן פעיל!', pBeam: 'קרן ברזל!',
     slingShot: 'קלע ברזל!',
     disclaimer: 'משחק מעריצים להרמת מורל — לא קשור לגוף רשמי. באזעקה אמיתית פעלו לפי הנחיות פיקוד העורף. שמרו על עצמכם ❤️',
@@ -299,18 +299,18 @@ function t(k){ return T[save.lang][k]; }
 
 /* ---------- level definitions ---------- */
 /* count: rockets in level · gap: base seconds between spawns · speed: multiplier
-   weights: [normal, fast, heavy, zigzag, splitter] · landmark for skyline flavor */
+   weights: [normal, fast, heavy, zigzag, splitter] · scene picks the city backdrop */
 const LEVELS = [
-  { count: 10, gap: 2.0, speed: 0.80, weights:[1.0,0,0,0,0],          accent:'#ffb46b', landmark:null    },
-  { count: 14, gap: 1.8, speed: 0.90, weights:[0.8,0.2,0,0,0],       accent:'#7fd8ff', landmark:null    },
-  { count: 16, gap: 1.7, speed: 0.95, weights:[0.6,0.2,0.2,0,0],     accent:'#9aa8ff', landmark:'crane' },
-  { count: 20, gap: 1.5, speed: 1.00, weights:[0.5,0.3,0.2,0,0],     accent:'#ffd166', landmark:null    },
-  { count: 22, gap: 1.4, speed: 1.05, weights:[0.4,0.3,0.15,0.15,0], accent:'#ff9eb3', landmark:null    },
-  { count: 26, gap: 1.3, speed: 1.10, weights:[0.35,0.25,0.15,0.1,0.15], accent:'#3ee6ff', landmark:'tower' },
-  { count: 28, gap: 1.2, speed: 1.20, weights:[0.3,0.35,0.1,0.1,0.15],  accent:'#8affc1', landmark:null  },
-  { count: 32, gap: 1.1, speed: 1.20, weights:[0.3,0.25,0.2,0.1,0.15],  accent:'#ffe08a', landmark:'dome' },
-  { count: 36, gap: 1.0, speed: 1.30, weights:[0.25,0.3,0.2,0.1,0.15],  accent:'#9fd0ff', landmark:'crane' },
-  { count: 42, gap: 0.9, speed: 1.40, weights:[0.2,0.3,0.2,0.15,0.15],  accent:'#ffb46b', landmark:'palm' }
+  { count: 10, gap: 2.0, speed: 0.80, weights:[1.0,0,0,0,0],          accent:'#ffb46b', scene:'sderot'    },
+  { count: 14, gap: 1.8, speed: 0.90, weights:[0.8,0.2,0,0,0],       accent:'#7fd8ff', scene:'ashkelon'  },
+  { count: 16, gap: 1.7, speed: 0.95, weights:[0.6,0.2,0.2,0,0],     accent:'#9aa8ff', scene:'ashdod'    },
+  { count: 20, gap: 1.5, speed: 1.00, weights:[0.5,0.3,0.2,0,0],     accent:'#ffd166', scene:'beersheva' },
+  { count: 22, gap: 1.4, speed: 1.05, weights:[0.4,0.3,0.15,0.15,0], accent:'#ff9eb3', scene:'rishon'    },
+  { count: 26, gap: 1.3, speed: 1.10, weights:[0.35,0.25,0.15,0.1,0.15], accent:'#3ee6ff', scene:'telaviv' },
+  { count: 28, gap: 1.2, speed: 1.20, weights:[0.3,0.35,0.1,0.1,0.15],  accent:'#8affc1', scene:'netanya' },
+  { count: 32, gap: 1.1, speed: 1.20, weights:[0.3,0.25,0.2,0.1,0.15],  accent:'#ffe08a', scene:'jerusalem' },
+  { count: 36, gap: 1.0, speed: 1.30, weights:[0.25,0.3,0.2,0.1,0.15],  accent:'#9fd0ff', scene:'haifa'   },
+  { count: 42, gap: 0.9, speed: 1.40, weights:[0.2,0.3,0.2,0.15,0.15],  accent:'#ffb46b', scene:'eilat'   }
 ];
 
 /* ---------- upgrades ---------- */
@@ -329,10 +329,12 @@ function resize(){
   W = window.innerWidth; H = window.innerHeight;
   cv.width = W * DPR; cv.height = H * DPR;
   cx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  GROUND = H - Math.max(54, H * 0.085);
-  if (G) buildSkyline();
+  GROUND = H - Math.max(70, H * 0.12);
+  if (G){ buildSkyline(); renderBackdrop(); }
 }
 window.addEventListener('resize', resize);
+if (window.visualViewport) window.visualViewport.addEventListener('resize', resize);
+window.addEventListener('orientationchange', () => setTimeout(resize, 120));
 
 /* ---------- audio (synth, no assets) ---------- */
 let AC = null;
@@ -378,9 +380,9 @@ function newGame(levelIdx){
   const L = LEVELS[levelIdx];
   G = {
     L, levelIdx,
-    rockets: [], inters: [], booms: [], parts: [], pows: [], floats: [],
+    rockets: [], inters: [], booms: [], parts: [], pows: [], floats: [], warns: [],
     spawned: 0, resolved: 0, killed: 0,
-    spawnT: 1.2, powT: 6 + Math.random()*5,
+    spawnT: 0.6, powT: 6 + Math.random()*5,
     score: 0, combo: 0, comboT: 0,
     buildings: [], shake: 0,
     timeScale: 1, slowT: 0, megaT: 0, shieldT: 0,
@@ -389,6 +391,7 @@ function newGame(levelIdx){
     beamFx: 0
   };
   buildSkyline();
+  renderBackdrop();
 }
 
 function buildSkyline(){
@@ -409,8 +412,211 @@ function buildSkyline(){
   G.buildings = arr;
 }
 
+/* ---------- city backdrop: per-level skyline & topography ----------
+   Rendered once per level/resize into an offscreen canvas, then blitted
+   each frame — keeps the scenery rich without costing mobile framerate. */
+const BD = document.createElement('canvas');
+function hexA(h, a){
+  return 'rgba(' + parseInt(h.slice(1,3),16) + ',' + parseInt(h.slice(3,5),16) + ',' +
+         parseInt(h.slice(5,7),16) + ',' + a + ')';
+}
+function renderBackdrop(){
+  if (!G || !W || !H) return;
+  BD.width = W * DPR; BD.height = H * DPR;
+  const b = BD.getContext('2d');
+  b.setTransform(DPR, 0, 0, DPR, 0, 0);
+  const acc = G.L.accent;
+  const FAR = '#0d1a3c', MID = '#152652', NEAR = '#1d3066';
+  const topoH = Math.min(H * 0.24, 230);   // scenery band height above the ground line
+  const T = GROUND - topoH;
+  const rnd = i => Math.abs(Math.sin((G.levelIdx + 2) * 39.7 + i * 17.31));
+
+  const poly = (pts, col) => {
+    b.fillStyle = col; b.beginPath(); b.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 1; i < pts.length; i++) b.lineTo(pts[i][0], pts[i][1]);
+    b.closePath(); b.fill();
+  };
+  const rect = (x, y, w, h, col) => { b.fillStyle = col; b.fillRect(x, y, w, h); };
+  function ridge(col, yb, amp, f){                 // rolling hills / dunes
+    b.fillStyle = col; b.beginPath(); b.moveTo(0, GROUND + 2);
+    for (let x = 0; x <= W; x += 6)
+      b.lineTo(x, yb - (Math.sin(x * f) * 0.6 + Math.sin(x * f * 2.7 + 2) * 0.4) * amp);
+    b.lineTo(W, GROUND + 2); b.closePath(); b.fill();
+  }
+  function peaks(col, yb, amp, s){                 // jagged desert mountains
+    b.fillStyle = col; b.beginPath(); b.moveTo(0, GROUND + 2);
+    const n = 9;
+    for (let i = 0; i <= n; i++)
+      b.lineTo(W * i / n, yb - (i % 2 ? 0.45 + rnd(i + s) * 0.55 : 0.05 + rnd(i + s + 30) * 0.2) * amp);
+    b.lineTo(W, GROUND + 2); b.closePath(); b.fill();
+  }
+  function sea(y0){                                 // mediterranean / red sea band
+    const g = b.createLinearGradient(0, y0, 0, GROUND);
+    g.addColorStop(0, 'rgba(62,230,255,0.22)'); g.addColorStop(1, 'rgba(62,230,255,0.03)');
+    b.fillStyle = g; b.fillRect(0, y0, W, GROUND - y0);
+    b.strokeStyle = 'rgba(62,230,255,0.35)'; b.lineWidth = 1;
+    b.beginPath(); b.moveTo(0, y0); b.lineTo(W, y0); b.stroke();
+  }
+  function blocks(col, hMin, hMax, n, s){           // generic skyline strip
+    for (let i = 0; i < n; i++){
+      const w = W / n, h = hMin + rnd(i + s) * (hMax - hMin);
+      rect(i * w + w * 0.08, GROUND - h, w * 0.84, h, col);
+    }
+  }
+  function lights(n, s){                            // sprinkle of lit windows
+    b.fillStyle = acc; b.globalAlpha = 0.55;
+    for (let i = 0; i < n; i++)
+      b.fillRect(rnd(i + s) * W, GROUND - 8 - rnd(i + s + 99) * topoH * 0.45, 2.5, 2.5);
+    b.globalAlpha = 1;
+  }
+  function crane(x, h, col){                        // port crane
+    rect(x, GROUND - h, 5, h, col);
+    rect(x - h * 0.45, GROUND - h, h * 0.8, 4, col);
+    rect(x - h * 0.32, GROUND - h + 4, 2, h * 0.3, col);
+  }
+  function waterTower(x, h, col){
+    rect(x - 2, GROUND - h, 4, h, col);
+    b.fillStyle = col;
+    b.beginPath(); b.ellipse(x, GROUND - h, 13, 9, 0, 0, 6.29); b.fill();
+  }
+  function cypress(x, h, col){ poly([[x, GROUND - h], [x + 4, GROUND], [x - 4, GROUND]], col); }
+  function palm(x, h, col){
+    rect(x - 2, GROUND - h, 4, h, col);
+    b.strokeStyle = col; b.lineWidth = 3; b.lineCap = 'round';
+    for (let a = 0; a < 5; a++){
+      const dx = Math.cos(a * 1.25 + 0.4);
+      b.beginPath(); b.moveTo(x, GROUND - h);
+      b.quadraticCurveTo(x + dx * 16, GROUND - h - 12, x + dx * 30, GROUND - h + 4);
+      b.stroke();
+    }
+  }
+  function goldDome(x, r){                          // jerusalem gold dome
+    rect(x - r * 0.9, GROUND - r * 2.1, r * 1.8, r * 2.1, NEAR);
+    b.fillStyle = '#d9a93a';
+    b.beginPath(); b.arc(x, GROUND - r * 2.1, r, Math.PI, 0); b.fill();
+    poly([[x - 2, GROUND - r * 3.1], [x + 2, GROUND - r * 3.1], [x, GROUND - r * 3.6]], '#d9a93a');
+  }
+  function oldWall(h){                              // crenellated old-city wall
+    rect(0, GROUND - h, W, h, NEAR);
+    b.fillStyle = NEAR;
+    for (let x = 6; x < W; x += 24) b.fillRect(x, GROUND - h - 7, 13, 7);
+    b.fillStyle = '#0d1a3c';
+    b.beginPath(); b.arc(W * 0.3, GROUND, h * 0.55, Math.PI, 0); b.fill();  // gate arch
+  }
+
+  switch (G.L.scene){
+    case 'sderot':       // low western-negev town: dunes, water tower, cypress
+      ridge(FAR, T + topoH * 0.45, topoH * 0.30, 0.008);
+      ridge(MID, T + topoH * 0.72, topoH * 0.22, 0.013);
+      blocks(NEAR, 10, 30, 14, 3);
+      waterTower(W * 0.2, topoH * 0.8, NEAR);
+      cypress(W * 0.55, 28, NEAR); cypress(W * 0.61, 22, NEAR); cypress(W * 0.86, 26, NEAR);
+      lights(14, 5);
+      break;
+    case 'ashkelon':     // coast: sea, marina masts, beach hotels
+      sea(T + topoH * 0.35);
+      blocks(MID, 18, 60, 11, 7);
+      for (let i = 0; i < 4; i++) rect(W * (0.14 + i * 0.05), GROUND - 30 - i * 5, 2, 30 + i * 5, NEAR);
+      blocks(NEAR, 10, 32, 16, 11);
+      lights(18, 8);
+      break;
+    case 'ashdod':       // port city: cranes + container stacks
+      sea(T + topoH * 0.3);
+      blocks(MID, 20, 55, 10, 13);
+      crane(W * 0.72, topoH * 0.7, NEAR);
+      crane(W * 0.84, topoH * 0.62, NEAR);
+      crane(W * 0.93, topoH * 0.55, NEAR);
+      for (let i = 0; i < 8; i++)
+        rect(W * 0.66 + (i % 4) * 16, GROUND - 10 - Math.floor(i / 4) * 9, 14, 8, NEAR);
+      blocks(NEAR, 10, 28, 14, 17);
+      lights(16, 19);
+      break;
+    case 'beersheva':    // negev capital: dunes + one tall tower
+      ridge(FAR, T + topoH * 0.4, topoH * 0.35, 0.006);
+      ridge(MID, T + topoH * 0.7, topoH * 0.25, 0.011);
+      rect(W * 0.7, GROUND - topoH * 0.85, W * 0.045, topoH * 0.85, NEAR);
+      blocks(NEAR, 10, 34, 13, 23);
+      cypress(W * 0.3, 24, NEAR); cypress(W * 0.35, 18, NEAR);
+      lights(15, 25);
+      break;
+    case 'rishon':       // dense suburb rows on gentle hills
+      ridge(FAR, T + topoH * 0.5, topoH * 0.25, 0.009);
+      blocks(MID, 24, 62, 10, 29);
+      blocks(NEAR, 12, 36, 16, 31);
+      waterTower(W * 0.85, topoH * 0.6, NEAR);
+      lights(20, 33);
+      break;
+    case 'telaviv': {    // the big city: sea + dense towers, azrieli trio
+      sea(T + topoH * 0.25);
+      blocks(MID, 35, topoH * 0.8, 12, 37);
+      const bw = W * 0.052, bx = W * 0.40, bh = topoH * 0.95;
+      rect(bx, GROUND - bh * 0.92, bw, bh * 0.92, NEAR);                       // square
+      rect(bx + bw * 1.35, GROUND - bh, bw, bh, NEAR);                          // round
+      b.fillStyle = NEAR;
+      b.beginPath(); b.arc(bx + bw * 1.85, GROUND - bh, bw / 2, Math.PI, 0); b.fill();
+      poly([[bx + bw * 2.7, GROUND], [bx + bw * 3.7, GROUND],                   // triangle
+            [bx + bw * 3.2, GROUND - bh * 0.85]], NEAR);
+      rect(bx + bw * 1.55, GROUND - bh - 22, 2.5, 22, NEAR);                    // antenna
+      blocks(NEAR, 14, 40, 18, 41);
+      lights(26, 43);
+      break;
+    }
+    case 'netanya':      // cliff over the beach, hotel slabs on top
+      sea(T + topoH * 0.45);
+      poly([[0, GROUND + 2], [0, T + topoH * 0.42], [W * 0.42, T + topoH * 0.5],
+            [W * 0.52, GROUND + 2]], MID);
+      for (let i = 0; i < 5; i++)
+        rect(W * (0.04 + i * 0.08), T + topoH * 0.46 - 26 - rnd(i + 47) * 18,
+             W * 0.06, 26 + rnd(i + 47) * 18, NEAR);
+      blocks(NEAR, 10, 30, 12, 49);
+      lights(16, 51);
+      break;
+    case 'jerusalem':    // hills, old-city wall, gold dome, towers
+      ridge(FAR, T + topoH * 0.38, topoH * 0.32, 0.007);
+      ridge(MID, T + topoH * 0.62, topoH * 0.26, 0.010);
+      oldWall(26);
+      goldDome(W * 0.5, 17);
+      rect(W * 0.63, GROUND - 52, 9, 52, NEAR);                                 // bell tower
+      poly([[W * 0.63, GROUND - 52], [W * 0.672, GROUND - 52], [W * 0.651, GROUND - 64]], NEAR);
+      cypress(W * 0.2, 30, NEAR); cypress(W * 0.25, 24, NEAR); cypress(W * 0.8, 28, NEAR);
+      lights(14, 55);
+      break;
+    case 'haifa': {      // mount carmel slope + gardens lights + port
+      poly([[0, GROUND + 2], [0, T - 8], [W * 0.5, T + topoH * 0.3],
+            [W * 0.72, GROUND + 2]], FAR);
+      poly([[0, GROUND + 2], [0, T + topoH * 0.3], [W * 0.4, T + topoH * 0.55],
+            [W * 0.6, GROUND + 2]], MID);
+      b.fillStyle = '#d9a93a'; b.globalAlpha = 0.85;                            // gardens cascade
+      for (let i = 0; i < 9; i++)
+        b.fillRect(W * (0.10 + i * 0.022), T + topoH * (0.18 + i * 0.085), 3, 3);
+      b.globalAlpha = 1;
+      sea(T + topoH * 0.6);
+      crane(W * 0.8, topoH * 0.55, NEAR);
+      crane(W * 0.91, topoH * 0.48, NEAR);
+      blocks(NEAR, 8, 26, 12, 59);
+      lights(14, 61);
+      break;
+    }
+    case 'eilat':        // red mountains, the gulf, palms + sail hotels
+      peaks(FAR, T + topoH * 0.35, topoH * 0.55, 63);
+      peaks(MID, T + topoH * 0.6, topoH * 0.4, 67);
+      sea(T + topoH * 0.68);
+      poly([[W * 0.6, GROUND], [W * 0.74, GROUND], [W * 0.63, GROUND - topoH * 0.5]], NEAR);  // sail hotel
+      blocks(NEAR, 10, 30, 12, 69);
+      palm(W * 0.16, 34, NEAR); palm(W * 0.86, 30, NEAR);
+      lights(14, 71);
+      break;
+  }
+
+  // soft city-glow rising from the skyline
+  const glow = b.createLinearGradient(0, T - 40, 0, GROUND);
+  glow.addColorStop(0, 'rgba(0,0,0,0)');
+  glow.addColorStop(1, hexA(acc, 0.10));
+  b.fillStyle = glow; b.fillRect(0, T - 40, W, GROUND - T + 40);
+}
+
 /* interceptor params with upgrades */
-function blastR(){ return (46 + save.up.blast * 13) * (G && G.megaT > 0 ? 1.7 : 1); }
+function blastR(){ return (54 + save.up.blast * 15) * (G && G.megaT > 0 ? 1.7 : 1); }
 function interSpeed(){ return 520 + save.up.speed * 140; }
 function maxInters(){ return 2 + save.up.launchers; }
 
@@ -425,11 +631,11 @@ function pickType(){
 function spawnRocket(type, x, y, child){
   const sp = G.L.speed;
   const def = [
-    { v: 65,  size: 13, hp: 1, col: '#ff5d73', pts: 10 },
-    { v: 120, size: 9,  hp: 1, col: '#ffd166', pts: 25 },
-    { v: 45,  size: 20, hp: 2, col: '#ff8c42', pts: 40 },
-    { v: 80,  size: 11, hp: 1, col: '#c792ff', pts: 30 },
-    { v: 55,  size: 16, hp: 1, col: '#5dffa8', pts: 35 }
+    { v: 65,  size: 16, hp: 1, col: '#ff5d73', pts: 10 },
+    { v: 120, size: 12, hp: 1, col: '#ffd166', pts: 25 },
+    { v: 45,  size: 24, hp: 2, col: '#ff8c42', pts: 40 },
+    { v: 80,  size: 14, hp: 1, col: '#c792ff', pts: 30 },
+    { v: 55,  size: 19, hp: 1, col: '#5dffa8', pts: 35 }
   ][type];
   const sx = x !== undefined ? x : W * (0.08 + Math.random() * 0.84);
   const tx = W * (0.15 + Math.random() * 0.7);
@@ -458,7 +664,7 @@ cv.addEventListener('pointerdown', e => {
   // collect power-up?
   for (let i = G.pows.length - 1; i >= 0; i--){
     const p = G.pows[i];
-    if (Math.hypot(p.x - x, p.y - y) < 42){
+    if (Math.hypot(p.x - x, p.y - y) < 48){
       G.pows.splice(i, 1); applyPower(p.k); return;
     }
   }
@@ -486,8 +692,8 @@ function applyPower(k){
   }
 }
 
-function addFloat(x, y, txt, col, sz){
-  G.floats.push({ x, y, txt, col, sz: sz || 14, t: 0 });
+function addFloat(x, y, txt, col, sz, life){
+  G.floats.push({ x, y, txt, col, sz: sz || 14, life: life || 1.1, t: 0 });
 }
 
 /* ---------- kill / scoring ---------- */
@@ -513,6 +719,21 @@ function burst(x, y, col, n){
   }
 }
 
+/* ground impacts explode into falafel balls 🧆 — they arc, bounce and roll */
+function falafelBurst(x, n){
+  const shades = ['#c08b3f', '#a9762f', '#8f6228', '#d19c4e'];
+  for (let i = 0; i < n; i++){
+    const a = -Math.PI / 2 + (Math.random() - 0.5) * 1.8;
+    const v = 120 + Math.random() * 220;
+    G.parts.push({
+      f: true, x: x + (Math.random() - 0.5) * 14, y: GROUND - 6,
+      vx: Math.cos(a) * v * 0.6, vy: Math.sin(a) * v,
+      r: 3.5 + Math.random() * 3.5, col: shades[i % shades.length],
+      spin: Math.random() * 6.28, t: 0, life: 1.3 + Math.random() * 0.5
+    });
+  }
+}
+
 /* ---------- update ---------- */
 function update(dt){
   if (!G || G.over) return;
@@ -526,17 +747,23 @@ function update(dt){
 
   const ts = G.timeScale, sdt = dt * ts;
 
-  // spawn rockets
+  // spawn rockets (with a short incoming warning first)
+  const queueWarn = () => G.warns.push({ x: W * (0.08 + Math.random() * 0.84), type: pickType(), t: 0.7 });
   if (G.spawned < G.L.count){
     G.spawnT -= sdt;
     if (G.spawnT <= 0){
-      spawnRocket(pickType()); G.spawned++;
+      queueWarn(); G.spawned++;
       // late-level mini barrages
       if (G.levelIdx >= 3 && Math.random() < 0.18 && G.spawned < G.L.count){
-        spawnRocket(pickType()); G.spawned++;
+        queueWarn(); G.spawned++;
       }
       G.spawnT = G.L.gap * (0.7 + Math.random() * 0.6);
     }
+  }
+  for (let i = G.warns.length - 1; i >= 0; i--){
+    const w = G.warns[i];
+    w.t -= sdt;
+    if (w.t <= 0){ G.warns.splice(i, 1); spawnRocket(w.type, w.x); }
   }
   // spawn powerups
   G.powT -= sdt;
@@ -582,9 +809,11 @@ function update(dt){
         hit.alive = false;
         G.shake = 14; sfx.hitCity(); buzz([30, 40, 60]);
         burst(r.x, GROUND - 10, '#ff8c42', 30);
+        falafelBurst(r.x, 12);
         if (!G.buildings.some(b => b.alive)){ endLevel(false); return; }
       } else {
         burst(r.x, GROUND, '#8da3cc', 8); noise(0.15, 0.1);
+        falafelBurst(r.x, 7);
         G.shake = Math.max(G.shake, 4);
       }
       G.combo = 0;
@@ -631,17 +860,24 @@ function update(dt){
   // particles & floats
   for (let i = G.parts.length - 1; i >= 0; i--){
     const p = G.parts[i];
-    p.t += dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 200 * dt;
+    p.t += dt; p.x += p.vx * dt; p.y += p.vy * dt;
+    p.vy += (p.f ? 700 : 200) * dt;
+    if (p.f){
+      p.spin += dt * 8;
+      if (p.y > GROUND - p.r && p.vy > 0){          // bounce off the ground
+        p.y = GROUND - p.r; p.vy *= -0.45; p.vx *= 0.7;
+      }
+    }
     if (p.t > p.life) G.parts.splice(i, 1);
   }
   for (let i = G.floats.length - 1; i >= 0; i--){
     const f = G.floats[i];
     f.t += dt; f.y -= 30 * dt;
-    if (f.t > 1.1) G.floats.splice(i, 1);
+    if (f.t > f.life) G.floats.splice(i, 1);
   }
 
   // level complete?
-  if (G.spawned >= G.L.count && G.rockets.length === 0 && !G.over){
+  if (G.spawned >= G.L.count && G.rockets.length === 0 && G.warns.length === 0 && !G.over){
     G.doneT += dt;
     if (G.doneT > 0.8) endLevel(true);
   }
@@ -672,6 +908,7 @@ function draw(){
   cx.globalAlpha = 1;
 
   if (G){
+    cx.drawImage(BD, 0, 0, W, H);
     drawCity();
     drawShield();
     drawEntities();
@@ -690,7 +927,7 @@ function drawCity(){
   // buildings
   for (const b of G.buildings){
     if (b.alive){
-      cx.fillStyle = '#1a2c5c';
+      cx.fillStyle = '#23386f';
       cx.fillRect(b.x, GROUND - b.h, b.w, b.h);
       cx.fillStyle = acc; cx.globalAlpha = 0.85;
       // windows
@@ -709,27 +946,6 @@ function drawCity(){
       cx.lineTo(b.x + b.w * 0.5, GROUND - 6);
       cx.lineTo(b.x + b.w * 0.8, GROUND - 14);
       cx.lineTo(b.x + b.w, GROUND);
-      cx.fill();
-    }
-  }
-
-  // landmark silhouettes
-  cx.fillStyle = 'rgba(26,44,92,0.9)';
-  const lm = G.L.landmark, mx = W * 0.5;
-  if (lm === 'dome'){
-    cx.beginPath(); cx.arc(mx, GROUND - 26, 26, Math.PI, 0); cx.fill();
-    cx.fillRect(mx - 30, GROUND - 26, 60, 26);
-  } else if (lm === 'tower'){
-    cx.fillRect(mx - 7, GROUND - Math.min(150, H * 0.2), 14, Math.min(150, H * 0.2));
-    cx.fillRect(mx - 16, GROUND - Math.min(150, H * 0.2) * 0.65, 32, 8);
-  } else if (lm === 'crane'){
-    cx.fillRect(W * 0.82, GROUND - 90, 6, 90);
-    cx.fillRect(W * 0.82 - 40, GROUND - 90, 80, 5);
-  } else if (lm === 'palm'){
-    cx.fillRect(W * 0.12, GROUND - 46, 6, 46);
-    for (let a = 0; a < 5; a++){
-      cx.beginPath();
-      cx.ellipse(W * 0.12 + 3, GROUND - 48, 22, 6, (a / 5) * Math.PI - Math.PI / 2 + 0.3, 0, Math.PI);
       cx.fill();
     }
   }
@@ -783,31 +999,61 @@ function drawEntities(){
     cx.globalAlpha = 1;
   }
 
-  // rocket trails + bodies
-  for (const r of G.rockets){
-    cx.strokeStyle = r.col; cx.lineWidth = 2; cx.globalAlpha = 0.5;
+  // incoming warnings (pulsing chevrons at the top edge)
+  for (const w of G.warns){
+    const pulse = 0.45 + 0.55 * Math.abs(Math.sin(performance.now() / 110));
+    cx.globalAlpha = pulse;
+    cx.shadowColor = '#ff5d73'; cx.shadowBlur = 12;
+    cx.fillStyle = '#ff5d73';
     cx.beginPath();
+    cx.moveTo(w.x, 30); cx.lineTo(w.x - 11, 12); cx.lineTo(w.x + 11, 12);
+    cx.closePath(); cx.fill();
+    cx.shadowBlur = 0; cx.globalAlpha = 1;
+  }
+
+  // rockets: smoke trail, body with nose cone + fins, flickering exhaust
+  for (const r of G.rockets){
+    const s = r.size;
     for (let i = 0; i < r.trail.length; i++){
-      const p = r.trail[i];
-      i ? cx.lineTo(p.x, p.y) : cx.moveTo(p.x, p.y);
+      const p = r.trail[i], k = i / r.trail.length;
+      cx.globalAlpha = 0.04 + k * 0.16;
+      cx.fillStyle = '#aeb9d6';
+      cx.beginPath(); cx.arc(p.x, p.y, s * (0.7 - k * 0.45), 0, 6.29); cx.fill();
     }
-    cx.stroke(); cx.globalAlpha = 1;
-    // glow
-    cx.shadowColor = r.col; cx.shadowBlur = 14;
-    cx.fillStyle = r.col;
+    cx.globalAlpha = 1;
     const a = Math.atan2(r.vy, r.type === 3 ? r.vx + Math.sin(r.t) * 90 : r.vx);
     cx.save(); cx.translate(r.x, r.y); cx.rotate(a + Math.PI / 2);
+    // exhaust flame (flickers)
+    const fl = s * (0.9 + Math.random() * 0.6);
+    cx.fillStyle = '#ff9d3c'; cx.globalAlpha = 0.9;
     cx.beginPath();
-    cx.moveTo(0, -r.size);
-    cx.lineTo(r.size * 0.55, r.size * 0.7);
-    cx.lineTo(0, r.size * 0.35);
-    cx.lineTo(-r.size * 0.55, r.size * 0.7);
+    cx.moveTo(-s * 0.28, s * 0.62); cx.lineTo(s * 0.28, s * 0.62); cx.lineTo(0, s * 0.62 + fl);
     cx.closePath(); cx.fill();
-    cx.restore();
+    cx.fillStyle = '#ffe79a';
+    cx.beginPath();
+    cx.moveTo(-s * 0.13, s * 0.62); cx.lineTo(s * 0.13, s * 0.62); cx.lineTo(0, s * 0.62 + fl * 0.55);
+    cx.closePath(); cx.fill();
+    cx.globalAlpha = 1;
+    // body + glow
+    cx.shadowColor = r.col; cx.shadowBlur = 16;
+    cx.fillStyle = r.col;
+    cx.fillRect(-s * 0.32, -s * 0.35, s * 0.64, s);   // fuselage
+    cx.beginPath();                                    // nose cone
+    cx.moveTo(-s * 0.32, -s * 0.35); cx.lineTo(s * 0.32, -s * 0.35); cx.lineTo(0, -s);
+    cx.closePath(); cx.fill();
+    cx.beginPath();                                    // fins
+    cx.moveTo(-s * 0.32, s * 0.3); cx.lineTo(-s * 0.62, s * 0.75); cx.lineTo(-s * 0.32, s * 0.65);
+    cx.moveTo(s * 0.32, s * 0.3); cx.lineTo(s * 0.62, s * 0.75); cx.lineTo(s * 0.32, s * 0.65);
+    cx.closePath(); cx.fill();
     cx.shadowBlur = 0;
+    cx.fillStyle = 'rgba(255,255,255,0.85)';           // glint on the tip
+    cx.beginPath(); cx.arc(0, -s * 0.78, s * 0.13, 0, 6.29); cx.fill();
+    cx.fillStyle = 'rgba(255,255,255,0.25)';           // body highlight stripe
+    cx.fillRect(-s * 0.32, -s * 0.35, s * 0.16, s);
+    cx.restore();
     if (r.type === 2 && r.hp > 1){   // heavy armor ring
-      cx.strokeStyle = '#fff'; cx.globalAlpha = 0.6;
-      cx.beginPath(); cx.arc(r.x, r.y, r.size + 4, 0, 6.29); cx.stroke();
+      cx.strokeStyle = '#fff'; cx.globalAlpha = 0.6; cx.lineWidth = 2;
+      cx.beginPath(); cx.arc(r.x, r.y, s + 5, 0, 6.29); cx.stroke();
       cx.globalAlpha = 1;
     }
   }
@@ -844,11 +1090,23 @@ function drawEntities(){
     cx.globalAlpha = 1;
   }
 
-  // particles
+  // particles (sparks + falafel balls)
   for (const p of G.parts){
-    cx.globalAlpha = 1 - p.t / p.life;
-    cx.fillStyle = p.col;
-    cx.fillRect(p.x - 2, p.y - 2, 4, 4);
+    cx.globalAlpha = Math.min(1, (1 - p.t / p.life) * 1.4);
+    if (p.f){
+      cx.fillStyle = p.col;
+      cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 6.29); cx.fill();
+      cx.fillStyle = 'rgba(70,48,18,0.8)';           // crispy speckles
+      cx.beginPath();
+      cx.arc(p.x + Math.cos(p.spin) * p.r * 0.4, p.y + Math.sin(p.spin) * p.r * 0.4, p.r * 0.22, 0, 6.29);
+      cx.arc(p.x - Math.cos(p.spin * 1.7) * p.r * 0.35, p.y - Math.sin(p.spin * 1.7) * p.r * 0.35, p.r * 0.18, 0, 6.29);
+      cx.fill();
+      cx.fillStyle = 'rgba(120,220,120,0.6)';        // parsley fleck
+      cx.fillRect(p.x + Math.sin(p.spin) * p.r * 0.3, p.y - p.r * 0.3, 1.6, 1.6);
+    } else {
+      cx.fillStyle = p.col;
+      cx.fillRect(p.x - 2, p.y - 2, 4, 4);
+    }
   }
   cx.globalAlpha = 1;
 
@@ -870,7 +1128,7 @@ function drawEntities(){
 
   // floats
   for (const f of G.floats){
-    cx.globalAlpha = 1 - f.t / 1.1;
+    cx.globalAlpha = 1 - f.t / f.life;
     cx.fillStyle = f.col;
     cx.font = '700 ' + f.sz + 'px "Courier New", monospace';
     cx.shadowColor = f.col; cx.shadowBlur = 10;
@@ -911,6 +1169,7 @@ function gotoIntro(idx){
 function startLevel(){
   newGame(curLevel);
   show('play');
+  if (curLevel === 0) addFloat(W / 2, H * 0.32, t('tapHint'), '#ffd166', 17, 3);
 }
 
 function endLevel(won){
