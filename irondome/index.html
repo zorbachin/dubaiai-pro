@@ -1307,6 +1307,7 @@ function startLevel(){
   newGame(curLevel);
   show('play');
   if (curLevel === 0) addFloat(W / 2, H * 0.32, t('tapHint'), '#ffd166', 17, 3);
+  if (!trackedPlay){ trackedPlay = true; track('play'); }     // one per session
 }
 
 function endLevel(won){
@@ -1489,7 +1490,7 @@ $('btnResume').onclick = () => { sfx.click(); show('play'); };
 $('btnQuit').onclick = () => { sfx.click(); applyLang(); show('scrMenu'); };
 $('btnNext').onclick = () => {
   sfx.click();
-  if (curLevel + 1 >= LEVELS.length) show('scrWin');
+  if (curLevel + 1 >= LEVELS.length){ track('won'); show('scrWin'); }
   else gotoIntro(curLevel + 1);
 };
 $('btnRetry').onclick = () => { sfx.click(); gotoIntro(curLevel); };
@@ -1519,6 +1520,26 @@ $('btnSound').textContent = save.sound ? '🔊' : '🔇';
 $('btnSound').classList.toggle('on', save.sound);
 applyLang();
 requestAnimationFrame(loop);
+
+/* ---------- analytics (GoatCounter: free, cookieless, fails silently) ----------
+   Dashboard: https://irondome.goatcounter.com — counts visits, plays,
+   wins, and PWA installs. No personal data, no cookies, no consent needed. */
+function track(event){
+  try{
+    if (location.protocol === 'file:' || location.hostname === 'localhost') return;
+    const img = new Image(1, 1);
+    img.src = 'https://irondome.goatcounter.com/count?' +
+      'p=' + encodeURIComponent(event ? '/' + event : location.pathname) +
+      (event ? '&e=true' : '') +
+      '&r=' + encodeURIComponent(document.referrer) +
+      '&rnd=' + Date.now();
+  }catch(e){}
+}
+track();                                                      // visit
+let trackedPlay = false;
+window.addEventListener('appinstalled', () => track('pwa-install'));   // "download"
+if (window.matchMedia && matchMedia('(display-mode: standalone)').matches)
+  track('app-open');                                          // opened from home screen
 
 /* ---------- PWA ---------- */
 if ('serviceWorker' in navigator)
