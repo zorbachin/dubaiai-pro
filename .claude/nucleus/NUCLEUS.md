@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 15:14 UTC · code
+Iron Dome v11 built: QA round 2 applied (sim-validated loseable difficulty, <4s first kill, hit-stop/pitch-ladder juice, best-gap cliffhanger death, dynamic music) + Zorba's asks (adaptive heat = skill-coupled escalation; Houthi whimper/Hezbollah thud/IRGC boom + sarcastic quips; one-tap Share with clipboard fallback) + all iPhone P0/P1 fixes (Dynamic Island chevrons, zoom translate, iOS audio recovery, SW hang guard). Leaderboard = needs backend, deferred; share button is the zero-backend social layer.
+
 ### 2026-06-10 14:56 UTC · code
 Iron Dome v10 MERGED (PR #76): visual-viewport canvas (fixes iOS-zoom hiding the city below fold), playfield 15-85% closed at spawn-time too, procedural hypnotic music loop, version badge on menu, SW network-first navigations (self-healing stale caches). QA round 2 running: 2 agents (10M-downloads addiction expert + iPhone-format engineer). KEY HYPOTHESIS for Zorba's reports: he's likely on a stale SW cache (old dubaiai.pro PWA can never self-update — domain dead); badge will prove which build he runs.
 
@@ -166,20 +169,15 @@ CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 q
 
 ### 2026-06-02 09:36 UTC · chat
 NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
-
-### 2026-06-02 09:19 UTC · chat
-PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product structure: COVER -> ADHD ONE-PAGER (whole system at a glance, 1 page) -> DEEP WALKTHROUGH (numbered steps, easy-to-follow) -> each step has a copy-paste PROMPT box with CLICKABLE 'Run in ChatGPT/Claude' links that auto-fill (chatgpt.com/?q= and claude.ai/new?q= URL-encoded) -> bonus prompt pack -> Work-With-Me CTA. Engine upgraded (bin/etsybuild.py: onepager/step/prompt blocks). Flagship #01 rebuilt as the exemplar/template (6KB->22KB). AWAITING format approval, then batch all 20 to this template + reprice bundle to $60.
-
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 14:57 UTC
+- **When:** 2026-06-10 15:14 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 02ac41d chore: refresh nucleus live state [skip ci] — 23 seconds ago
+- **Last commit:** ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes — 12 seconds ago
 
 **Working tree:**
 ```
@@ -188,11 +186,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-02ac41d chore: refresh nucleus live state [skip ci] (23 seconds ago)
-71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (3 minutes ago)
-7b72772 Mobile hardening: visual-viewport canvas, hard playfield clamp, music, version badge (4 minutes ago)
-89bfac1 chore: refresh nucleus live state [skip ci] (85 minutes ago)
-3c7c3f7 chore: refresh nucleus live state [skip ci] (86 minutes ago)
+ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (12 seconds ago)
+ac68fa5 chore: refresh nucleus live state [skip ci] (17 minutes ago)
+02ac41d chore: refresh nucleus live state [skip ci] (17 minutes ago)
+71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (20 minutes ago)
+7b72772 Mobile hardening: visual-viewport canvas, hard playfield clamp, music, version badge (21 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
