@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 10:14 UTC · code
+ROOT CAUSE found: dubaiai.pro DNS points to pixie.porkbun.com (Porkbun URL-forwarding/parking, 44.227.76.166/.65.245) instead of GitHub Pages IPs (185.199.108-111.153) — whole site fails with ERR_SSL_PROTOCOL_ERROR. Fix: in Porkbun DNS replace apex records with the 4 GitHub Pages A records + www CNAME to zorbachin.github.io, then Enforce HTTPS in repo Settings→Pages. Open loop: user to update Porkbun DNS.
+
 ### 2026-06-10 10:11 UTC · code
 Standing preference: ALWAYS end replies with the relevant test/use link (one-tap access) whenever there's something to open — game URLs, PRs, docs. User is often on mobile; no link = friction.
 
@@ -162,31 +165,34 @@ Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin pr
 
 ### 2026-06-02 04:06 UTC · chat
 Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-posted/scheduled by Buffer or any tool (Meta API rule). FB stays a MANUAL post by Zorba. Buffer handles the rest: IG (Business), LinkedIn, TikTok. Connecting Buffer via Zapier for scheduling those.
-
-### 2026-06-02 04:03 UTC · chat
-PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 10:11 UTC
+- **When:** 2026-06-10 10:14 UTC
 - **Branch:** `claude/mamadio-game-design-v9mr1w`
-- **Last commit:** 58dadb5 chore: refresh nucleus live state [skip ci] — 21 seconds ago
+- **Last commit:** adc1efe chore: refresh nucleus live state [skip ci] — 3 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-58dadb5 chore: refresh nucleus live state [skip ci] (21 seconds ago)
-7c8b75c chore: refresh nucleus live state [skip ci] (41 seconds ago)
-0a43028 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-9533a27 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-515cf69 Add MAMAD DASH master build prompt — standalone runner spin-off spec (5 minutes ago)
+adc1efe chore: refresh nucleus live state [skip ci] (3 minutes ago)
+58dadb5 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+7c8b75c chore: refresh nucleus live state [skip ci] (4 minutes ago)
+0a43028 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+9533a27 chore: refresh nucleus live state [skip ci] (7 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
