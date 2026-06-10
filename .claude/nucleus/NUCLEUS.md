@@ -171,28 +171,22 @@ PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 19:20 UTC
+- **When:** 2026-06-10 19:21 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 3106d19 Make MAMAD DASH domain-portable + launch promo pack — 2 minutes ago
+- **Last commit:** 75214f1 chore: refresh nucleus live state [skip ci] — 20 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 34 ++++++++++++++++++++--------------
- 1 file changed, 20 insertions(+), 14 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+75214f1 chore: refresh nucleus live state [skip ci] (20 seconds ago)
 3106d19 Make MAMAD DASH domain-portable + launch promo pack (2 minutes ago)
 6dcc658 Overnight build: challenge card share loop, daily siren, revive, perf (5 minutes ago)
 f8cfe5c chore: refresh nucleus live state [skip ci] (25 minutes ago)
 75caadc chore: refresh nucleus live state [skip ci] (25 minutes ago)
-5217a45 Iteration 1 feel patch: zero-latency input, hit-stop, celebration fixes (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
