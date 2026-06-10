@@ -175,9 +175,9 @@ NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 15:16 UTC
+- **When:** 2026-06-10 15:17 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 78 seconds ago
+- **Last commit:** 50c8bdc chore: refresh nucleus live state [skip ci] — 48 seconds ago
 
 **Working tree:**
 ```
@@ -186,11 +186,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (78 seconds ago)
-59ebd05 chore: refresh nucleus live state [skip ci] (78 seconds ago)
-ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (2 minutes ago)
-ac68fa5 chore: refresh nucleus live state [skip ci] (19 minutes ago)
-02ac41d chore: refresh nucleus live state [skip ci] (20 minutes ago)
+50c8bdc chore: refresh nucleus live state [skip ci] (48 seconds ago)
+a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (2 minutes ago)
+59ebd05 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (3 minutes ago)
+ac68fa5 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
