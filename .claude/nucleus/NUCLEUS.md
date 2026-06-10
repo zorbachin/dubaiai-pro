@@ -46,6 +46,8 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 18:12 UTC · code
+Iron Dome v12: Israeli voice pack per Zorba ('more branded, sabra sarcasm, yell at Knesset') — rotating sarcastic level-clear headlines, anonymous-MK reaction quotes (fictional/anonymous = playful not political), escalating Hebrew combo shouts, power-up attitude lines, family-style game-over teasing. DURABLE BRAND RULE: Iron Dome voice = sabra sarcasm, hummus/savta/Knesset-committee humor, bilingual, never name real politicians.
 ### 2026-06-10 15:14 UTC · code
 Iron Dome v11 built: QA round 2 applied (sim-validated loseable difficulty, <4s first kill, hit-stop/pitch-ladder juice, best-gap cliffhanger death, dynamic music) + Zorba's asks (adaptive heat = skill-coupled escalation; Houthi whimper/Hezbollah thud/IRGC boom + sarcastic quips; one-tap Share with clipboard fallback) + all iPhone P0/P1 fixes (Dynamic Island chevrons, zoom translate, iOS audio recovery, SW hang guard). Leaderboard = needs backend, deferred; share button is the zero-backend social layer.
 
@@ -167,6 +169,8 @@ NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (bui
 ### 2026-06-02 09:45 UTC · chat
 CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 quote cards (built) + COPY.md (FB/IG/LI/X captions + newsletter draft + demo recording brief + hero-video spec). One message: 'deals die in the follow-up gap — this closes it.' WAITING ON: Zorba records the basic demo (drop in Drive) -> Claude cuts the website hero video + queues everything. COMMAND CENTER #1 DONE: nucleus serve exposes /command.json (per-venture board+brain) for the existing localhost widget to sync; / now renders a per-venture dashboard.
 
+
+
 ### 2026-06-02 09:36 UTC · chat
 NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
 <!-- HANDOFFS:END -->
@@ -175,6 +179,10 @@ NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-10 18:12 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** 54dd188 v12: Israeli voice pack — sabra sarcasm woven through every touchpoint — 1 second ago
+
 - **When:** 2026-06-10 15:14 UTC
 
 - **When:** 2026-06-10 14:45 UTC
@@ -194,6 +202,12 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
+54dd188 v12: Israeli voice pack — sabra sarcasm woven through every touchpoint (1 second ago)
+0011b2d chore: refresh nucleus live state [skip ci] (3 hours ago)
+50c8bdc chore: refresh nucleus live state [skip ci] (3 hours ago)
+a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (3 hours ago)
+59ebd05 chore: refresh nucleus live state [skip ci] (3 hours ago)
+
 ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (12 seconds ago)
 ac68fa5 chore: refresh nucleus live state [skip ci] (17 minutes ago)
 02ac41d chore: refresh nucleus live state [skip ci] (17 minutes ago)

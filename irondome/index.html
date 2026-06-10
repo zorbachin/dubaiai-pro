@@ -191,7 +191,9 @@
 <div id="scrEnd" class="screen">
   <div class="stars" id="endStars"></div>
   <div id="endTitle" style="font-size:22px;font-weight:800;color:var(--ink)"></div>
+  <div id="endQuip" style="font-size:15px;color:var(--gold);font-weight:600"></div>
   <div class="stat" id="endStats"></div>
+  <div id="mkQuote" style="font-size:12px;color:var(--dim);font-style:italic;max-width:380px;line-height:1.5"></div>
   <div id="coins"></div>
   <div id="shop"></div>
   <div class="btnrow">
@@ -234,7 +236,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v11';
+const GAME_VERSION = 'v12';
 console.log('Iron Dome ' + GAME_VERSION);
 
 /* ---------- persistence ---------- */
@@ -259,7 +261,7 @@ function persist(){ localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }
 const T = {
   en: {
     title: 'IRON DOME', dir: 'ltr',
-    tagline: 'Rockets are falling — tap them out of the sky before they reach the city. Quick rounds, works offline.',
+    tagline: 'Rockets fall. You tap. The hummus waits. Quick rounds — works in the shelter with zero signal.',
     play: '▶ PLAY', howBtn: 'HOW TO PLAY', back: 'BACK',
     howTitle: 'HOW TO PLAY',
     how1: 'Rockets fall from the sky. Big ones are slow, small ones are fast — some split or swerve.',
@@ -281,6 +283,27 @@ const T = {
     upSling: 'Iron Sling', upSlingD: 'Auto-intercepts leakers (per level)',
     waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE ROCKETS!', direct: 'DIRECT HIT!',
     share: '📤 Share', shared: '✓ Copied!',
+    lvlDone: [
+      '{c} sleeps soundly tonight. You\'re welcome.',
+      'Not a scratch. Okay… one scratch.',
+      'The mayor of {c} is naming a falafel after you.',
+      'Hummus break. You\'ve earned it.',
+      'The Knesset is forming a committee to take credit.',
+      'Savta called. She\'s ALMOST impressed.'
+    ],
+    mkQuotes: [
+      '📣 “We were just about to handle that ourselves.” — an anonymous MK',
+      '📣 “This proves our policy is working.” — every party, simultaneously',
+      '📣 “A committee has been established to study your thumb.” — the Knesset',
+      '📣 “We demand a recount of your score.” — the opposition'
+    ],
+    overLines: [
+      'Nu, really?! Again?',
+      'The neighbors\' kid got further. Just saying.',
+      'Even Waze said “recalculating…”'
+    ],
+    comboShouts: ['Sababa!', 'Walla!', 'Achla!', 'ESH! 🔥', 'CHAVAL AL HAZMAN!!'],
+    powLines: { slow: 'Rega rega rega…', mega: 'B\'katana.', shield: 'Relax, we have insurance.', beam: 'Dai, nu.' },
     shareTxt: '🛡 I scored {s} defending {c} in Iron Dome — think you can beat me?',
     quips: {
       houthi: ['meep…', 'back to the sea 🌊', 'oof.'],
@@ -310,7 +333,7 @@ const T = {
   },
   he: {
     title: 'כיפת ברזל', dir: 'rtl',
-    tagline: 'רקטות נופלות מהשמיים — לחצו עליהן לפני שהן מגיעות לעיר. סבבים קצרים, עובד גם בלי אינטרנט.',
+    tagline: 'רקטות נופלות. אתם לוחצים. החומוס מחכה. סבבים קצרים — עובד במקלט גם בלי קליטה.',
     play: '▶ שחקו', howBtn: 'איך משחקים', back: 'חזרה',
     howTitle: 'איך משחקים',
     how1: 'רקטות נופלות מהשמיים. הגדולות איטיות, הקטנות מהירות — חלקן מתפצלות או מתפתלות.',
@@ -332,6 +355,27 @@ const T = {
     upSling: 'קלע ברזל', upSlingD: 'יירוט אוטומטי של מסתננות (לכל שלב)',
     waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 לחצו על הרקטות!', direct: 'פגיעה ישירה!',
     share: '📤 שתפו', shared: '✓ הועתק!',
+    lvlDone: [
+      '{c} ישנה בשקט הלילה. על לא דבר.',
+      'בלי שריטה. טוב… שריטה אחת.',
+      'ראש העיר של {c} קורא פלאפל על שמך.',
+      'הפסקת חומוס. הרווחתם.',
+      'הכנסת מקימה ועדה כדי לקחת קרדיט.',
+      'סבתא התקשרה. היא כמעט מרוצה.'
+    ],
+    mkQuotes: [
+      '📣 "בדיוק התכוונו לטפל בזה בעצמנו." — ח״כ אנונימי',
+      '📣 "זה מוכיח שהמדיניות שלנו עובדת." — כל המפלגות בו־זמנית',
+      '📣 "הוקמה ועדה לחקר האגודל שלך." — הכנסת',
+      '📣 "אנחנו דורשים ספירה חוזרת של הניקוד." — האופוזיציה'
+    ],
+    overLines: [
+      'נו באמת?! עוד פעם?',
+      'הילד של השכנים הגיע רחוק יותר. סתם אומרים.',
+      'אפילו הוויז אמר "מחשב מסלול מחדש…"'
+    ],
+    comboShouts: ['סבבה!', 'וואלה!', 'אחלה!', 'אש! 🔥', 'חבל על הזמן!!'],
+    powLines: { slow: 'רגע רגע רגע…', mega: 'בקטנה.', shield: 'רגוע, יש ביטוח.', beam: 'די, נו.' },
     shareTxt: '🛡 עשיתי {s} נקודות בהגנה על {c} בכיפת ברזל — מנסים לעבור אותי?',
     quips: {
       houthi: ['מיפ…', 'חזרה לים 🌊', 'אוף.'],
@@ -361,6 +405,7 @@ const T = {
   }
 };
 function t(k){ return T[save.lang][k]; }
+function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
 
 /* ---------- level definitions ---------- */
 /* count: rockets in level · gap: base seconds between spawns · speed: multiplier
@@ -875,6 +920,7 @@ function applyPower(k){
   sfx.power(); buzz(30);
   const msg = { slow: 'pSlow', mega: 'pMega', shield: 'pShield', beam: 'pBeam' }[k];
   addFloat(W / 2, H * 0.3, t(msg), '#ffd166', 22);
+  addFloat(W / 2, H * 0.3 + 34, t('powLines')[k], '#8da3cc', 14, 1.8);
   if (k === 'slow') G.slowT = 4.5;
   if (k === 'mega') G.megaT = 8;
   if (k === 'shield') G.shieldT = 6;
@@ -898,7 +944,8 @@ function killRocket(r, silent){
   G.score += pts;
   addFloat(r.x, r.y, '+' + pts, '#3ee6ff', 15);
   if (G.combo >= 3 && G.combo % 3 === 0){
-    addFloat(W / 2, H * 0.22, t('comboX') + Math.floor(mult * 10) / 10, '#ffd166', 20);
+    const sh = t('comboShouts')[Math.min(4, Math.floor(G.combo / 3) - 1)];
+    addFloat(W / 2, H * 0.22, sh + ' ×' + Math.floor(mult * 10) / 10, '#ffd166', 21);
     sfx.combo(Math.floor(G.combo / 3));
     G.beamFx = Math.max(G.beamFx, 0.12);          // milestone flash
   }
@@ -1447,7 +1494,7 @@ function endLevel(won){
     save.coins += consolation;
     persist();
     $('overScore').textContent = G.score;
-    $('overStats').textContent = t('overStats').replace('{n}', G.killed) +
+    $('overStats').textContent = pick(t('overLines')) + ' ' + t('overStats').replace('{n}', G.killed) +
       (G.endless ? ' · 🚨 ' + Math.floor(G.endlessT) + 's' : '');
     const gapD = prevBest - G.score;
     $('overGap').textContent = gapD > 0
@@ -1468,6 +1515,8 @@ function endLevel(won){
 
   $('endStars').textContent = '★'.repeat(st) + '☆'.repeat(3 - st);
   $('endTitle').textContent = t('cleared') + ' — ' + t('levels')[curLevel];
+  $('endQuip').textContent = pick(t('lvlDone')).replace('{c}', t('levels')[curLevel]);
+  $('mkQuote').textContent = pick(t('mkQuotes'));
   $('endStats').innerHTML =
     t('intercepted') + ': <b>' + G.killed + '/' + total + '</b> · ' +
     t('saved') + ': <b>' + alive + '/' + G.buildings.length + '</b><br>' +
