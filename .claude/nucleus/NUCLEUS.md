@@ -177,28 +177,22 @@ PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 14:56 UTC
+- **When:** 2026-06-10 14:57 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 2 minutes ago
+- **Last commit:** 02ac41d chore: refresh nucleus live state [skip ci] — 23 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 91 +++++-----------------------------------------
- 1 file changed, 10 insertions(+), 81 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (2 minutes ago)
-7b72772 Mobile hardening: visual-viewport canvas, hard playfield clamp, music, version badge (3 minutes ago)
-89bfac1 chore: refresh nucleus live state [skip ci] (84 minutes ago)
-3c7c3f7 chore: refresh nucleus live state [skip ci] (85 minutes ago)
-1f29f55 Iron Dome: direct-hit tapping — no auto-aim, hypnotic rhythm (#75) (86 minutes ago)
+02ac41d chore: refresh nucleus live state [skip ci] (23 seconds ago)
+71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (3 minutes ago)
+7b72772 Mobile hardening: visual-viewport canvas, hard playfield clamp, music, version badge (4 minutes ago)
+89bfac1 chore: refresh nucleus live state [skip ci] (85 minutes ago)
+3c7c3f7 chore: refresh nucleus live state [skip ci] (86 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
