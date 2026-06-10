@@ -171,28 +171,22 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 11:31 UTC
+- **When:** 2026-06-10 11:32 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 93fe228 Add touch calibration mode, enforce 15% margins, fix input drops — 19 seconds ago
+- **Last commit:** 7cce0e9 chore: refresh nucleus live state [skip ci] — 14 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (19 seconds ago)
+7cce0e9 chore: refresh nucleus live state [skip ci] (14 seconds ago)
+93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (33 seconds ago)
 956e4f5 chore: refresh nucleus live state [skip ci] (55 minutes ago)
-652d6d3 chore: refresh nucleus live state [skip ci] (55 minutes ago)
+652d6d3 chore: refresh nucleus live state [skip ci] (56 minutes ago)
 b225a77 Function-first overhaul: every tap fires, chains, visible city + falafel (56 minutes ago)
-ca167ed chore: refresh nucleus live state [skip ci] (66 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
