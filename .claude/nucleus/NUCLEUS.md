@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 10:11 UTC · code
+Standing preference: ALWAYS end replies with the relevant test/use link (one-tap access) whenever there's something to open — game URLs, PRs, docs. User is often on mobile; no link = friction.
+
 ### 2026-06-10 10:06 UTC · code
 Decision: MAMAD DASH spins out as its own standalone game. Master build prompt written (mamadio/MAMAD-DASH-MASTER-PROMPT.md) — endless runner, checkpoints, power-ups, Daily Dash seeded mode, share loop. Also: statically.io mirror shows raw source (no good); dubaiai.pro TLS issue on user's phone still unconfirmed — fix is re-saving custom domain in GitHub Pages settings.
 
@@ -162,31 +165,34 @@ Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-po
 
 ### 2026-06-02 04:03 UTC · chat
 PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
-
-### 2026-06-02 03:58 UTC · chat
-BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 10:10 UTC
+- **When:** 2026-06-10 10:11 UTC
 - **Branch:** `claude/mamadio-game-design-v9mr1w`
-- **Last commit:** 0a43028 chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** 7c8b75c chore: refresh nucleus live state [skip ci] — 20 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-0a43028 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+7c8b75c chore: refresh nucleus live state [skip ci] (20 seconds ago)
+0a43028 chore: refresh nucleus live state [skip ci] (4 minutes ago)
 9533a27 chore: refresh nucleus live state [skip ci] (4 minutes ago)
 515cf69 Add MAMAD DASH master build prompt — standalone runner spin-off spec (5 minutes ago)
 6b5cb2f chore: refresh nucleus live state [skip ci] (8 minutes ago)
-b10c2b6 chore: refresh nucleus live state [skip ci] (8 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
