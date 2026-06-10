@@ -20,8 +20,11 @@ convention as the rest of the repo. Playable at `dubaiai.pro/mamadio/` once on
    mamad door. **Jump** (↑/Space/tap top) over street obstacles — old
    ladies, shopping carts, dogs, sunbeds — and **duck** (↓/S/hold bottom)
    under flying debris — pigeons, kites, matkot balls, the occasional
-   airborne savta. Each hit stumbles you, kills your speed and knocks you
-   back; the obstacle sets are themed per neighborhood.
+   airborne savta. The dash starts calm and ramps with the countdown:
+   run speed climbs 250→500 and obstacles spawn denser (and more
+   airborne) as the timer nears 0, so the last seconds are the frantic
+   ones. Each hit stumbles you and knocks you back; the obstacle sets
+   are themed per neighborhood.
    - Reach the door → 💥 boom outside, Iron Dome intercepts,
      **calm-under-fire bonus** (grows with your streak).
    - Timer runs out mid-dash → caught outside, the shockwave knocks
