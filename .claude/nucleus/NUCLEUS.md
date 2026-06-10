@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 15:20 UTC · code
+MAMAD DASH polish pass shipped (Zorba feedback: 'addictive but waves feel same, no power-ups, siren too constant'): 4 cycling hood themes w/ distinct skies+obstacle sets+wave banner (beach/florentin/old north/night), 3 power-ups (star/magnet/+3s), siren wail now last-3s-only with chirp at wave start. All verified headless, zero errors, pushed to PR #74.
+
 ### 2026-06-10 15:01 UTC · code
 VALIDATED: Zorba played MAMAD DASH on his real phone via the raw.githack branch link (repo is public, link works) and loves the bright look — sent a screenshot of wave 2, red countdown 3, confetti, 55 shekels mid-run: 'This is a great image.' Bright Fortnite-esque direction is confirmed working on real hardware.
 
@@ -162,31 +165,34 @@ SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM
 
 ### 2026-06-02 05:10 UTC · chat
 OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APPROVE. Stop handing Zorba task lists for himself; execute, then surface for approval. NORTH STAR NUMBER = $1,000,000 (get the portfolio to a million). CADENCE: sync with the CEO daily. ACTIVE: schedule call with Sam & Jack at Ambo (byb-ambassador / Ambassador program) for 11:30 EST today (2026-06-02).
-
-### 2026-06-02 05:06 UTC · chat
-BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. (1) PodSupps (podsupps.com) → run autonomously, Claude starts marketing it + drives signups/logins. (2) For other ventures, Claude is the guide — tell him what to do. (3) SPEND AUDIT: monitor wasted spend — still need Manus? Etsy? right-size ElevenLabs? pay for HeyGen? cheapest effective video tool (Higgsfield vs Topview)? (4) Build CORPORATE AGENTIC STRUCTURE: who runs which workstream, cost, investment needed. (5) Send him prompts/nudges when lagging — 'your job is 24/7'. KEY INSIGHT to apply: his brand is REAL/self-shot (calisthenics) → expensive AI-video/avatar tools may be redundant.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 15:12 UTC
+- **When:** 2026-06-10 15:21 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** e4b03f9 chore: refresh nucleus live state [skip ci] — 31 seconds ago
+- **Last commit:** 7c6b606 MAMAD DASH polish: hood themes, power-ups, siren only in last 3s — 38 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-e4b03f9 chore: refresh nucleus live state [skip ci] (31 seconds ago)
-a6587b4 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-228eaa0 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-59162d2 chore: refresh nucleus live state [skip ci] (20 minutes ago)
-78c82ab chore: refresh nucleus live state [skip ci] (20 minutes ago)
+7c6b606 MAMAD DASH polish: hood themes, power-ups, siren only in last 3s (38 seconds ago)
+c8efc82 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+e4b03f9 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+a6587b4 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+228eaa0 chore: refresh nucleus live state [skip ci] (19 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
