@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 15:01 UTC · code
+VALIDATED: Zorba played MAMAD DASH on his real phone via the raw.githack branch link (repo is public, link works) and loves the bright look — sent a screenshot of wave 2, red countdown 3, confetti, 55 shekels mid-run: 'This is a great image.' Bright Fortnite-esque direction is confirmed working on real hardware.
+
 ### 2026-06-10 13:23 UTC · code
 MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream skyline) + arcade juice (pop-text, coin glow/spin, landing squash, speed lines, countdown punch, confetti, PERFECT RUN bonus). Zorba steering: addictive + bright first, complexity later — master dash mode before adding anything. Full suite re-verified, pushed to PR #74.
 
@@ -162,31 +165,34 @@ OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APP
 
 ### 2026-06-02 05:06 UTC · chat
 BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. (1) PodSupps (podsupps.com) → run autonomously, Claude starts marketing it + drives signups/logins. (2) For other ventures, Claude is the guide — tell him what to do. (3) SPEND AUDIT: monitor wasted spend — still need Manus? Etsy? right-size ElevenLabs? pay for HeyGen? cheapest effective video tool (Higgsfield vs Topview)? (4) Build CORPORATE AGENTIC STRUCTURE: who runs which workstream, cost, investment needed. (5) Send him prompts/nudges when lagging — 'your job is 24/7'. KEY INSIGHT to apply: his brand is REAL/self-shot (calisthenics) → expensive AI-video/avatar tools may be redundant.
-
-### 2026-06-02 04:50 UTC · chat
-🎉 BIG WIN 2026-06-02: calisthenics video published LIVE to Facebook, Instagram (Reel, zorb_ai), and LinkedIn. X uncertain (Buffer timed out mid-86MB-upload — verify manually). Posting block broken. SUSTAINABLE CADENCE in .claude/os/content/posting-cadence.md: batch 1 pillar video/Sun → Claude atomizes + queues all platforms in Buffer → user approves + posts FB manually. Floor 3/wk; FB 3-5x, IG 4-5x, LI 3x, X 5x, TikTok 3x, newsletter 1x.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 14:51 UTC
+- **When:** 2026-06-10 15:01 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 78c82ab chore: refresh nucleus live state [skip ci] — 19 seconds ago
+- **Last commit:** 59162d2 chore: refresh nucleus live state [skip ci] — 10 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-78c82ab chore: refresh nucleus live state [skip ci] (19 seconds ago)
-5af043b chore: refresh nucleus live state [skip ci] (87 minutes ago)
-ff4df84 chore: refresh nucleus live state [skip ci] (87 minutes ago)
-1cfe4a6 MAMAD DASH: bright Fortnite-style palette + arcade juice (88 minutes ago)
-f76219e chore: refresh nucleus live state [skip ci] (2 hours ago)
+59162d2 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+78c82ab chore: refresh nucleus live state [skip ci] (10 minutes ago)
+5af043b chore: refresh nucleus live state [skip ci] (2 hours ago)
+ff4df84 chore: refresh nucleus live state [skip ci] (2 hours ago)
+1cfe4a6 MAMAD DASH: bright Fortnite-style palette + arcade juice (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
