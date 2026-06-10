@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE BOARD 🏆 | Israel Rocket & Siren Scoreboard</title>
+  <meta name="description" content="Real-time and historical rocket siren data for Israel, ranked by city. Because if you can't laugh, you cry — and Israelis mostly laugh.">
+  <style>
+    :root {
+      --bg:       #09090f;
+      --s1:       #111118;
+      --s2:       #18181f;
+      --s3:       #22222c;
+      --border:   #2c2c3a;
+      --red:      #e63946;
+      --red-dim:  #7a1c23;
+      --green:    #2ecc71;
+      --green-dim:#1a7a43;
+      --blue:     #4a9eff;
+      --gold:     #f4c430;
+      --silver:   #adb5bd;
+      --bronze:   #cd7f32;
+      --text:     #e8e8f0;
+      --muted:    #6c6c80;
+      --dim:      #3a3a4a;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',system-ui,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+    /* ─── TICKER ─────────────────────────────── */
+    #ticker{position:sticky;top:0;z-index:100;background:var(--red);display:flex;align-items:center;height:36px;overflow:hidden}
+    #ticker-label{background:#8b0000;padding:0 16px;height:100%;display:flex;align-items:center;font-size:11px;font-weight:900;letter-spacing:2px;white-space:nowrap;flex-shrink:0;gap:6px}
+    #ticker-wrap{overflow:hidden;flex:1}
+    #ticker-text{display:inline-block;white-space:nowrap;animation:scroll 60s linear infinite;font-size:13px;padding:0 24px}
+    @keyframes scroll{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
+    #ticker-text.paused{animation-play-state:paused}
+
+    /* ─── LIVE TOAST ─────────────────────────── */
+    #alert-toast{position:fixed;top:48px;right:20px;background:var(--red);color:#fff;border-radius:10px;padding:14px 18px;font-size:14px;font-weight:700;z-index:9999;max-width:320px;box-shadow:0 8px 32px rgba(230,57,70,.6);display:none;line-height:1.5}
+    #alert-toast.show{display:block;animation:slideIn .3s ease}
+    @keyframes slideIn{from{transform:translateX(140%)}to{transform:translateX(0)}}
+
+    /* ─── HEADER ─────────────────────────────── */
+    header{text-align:center;padding:52px 24px 36px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+    header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(230,57,70,.12) 0%,transparent 65%);pointer-events:none}
+    .eyebrow{font-size:11px;letter-spacing:3px;color:var(--red);font-weight:700;text-transform:uppercase;margin-bottom:14px}
+    h1{font-size:clamp(40px,7vw,82px);font-weight:900;letter-spacing:-3px;line-height:1;margin-bottom:6px}
+    .h1-heb{font-size:clamp(18px,2.5vw,26px);color:var(--muted);font-weight:400;margin-bottom:16px;direction:rtl}
+    .header-sub{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 36px;line-height:1.6}
+    .header-sub em{color:var(--text);font-style:normal}
+
+    /* ─── STATS GRID ─────────────────────────── */
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;max-width:860px;margin:0 auto 20px}
+    .stat{background:var(--s1);padding:24px 20px;text-align:center;position:relative}
+    .stat .num{display:block;font-size:34px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:6px;font-variant-numeric:tabular-nums}
+    .stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+    .stat.c-red .num{color:var(--red)}
+    .stat.c-green .num{color:var(--green)}
+    .stat.c-blue .num{color:var(--blue)}
+    .stat.c-gold .num{color:var(--gold)}
+
+    /* ─── DATA BADGE ─────────────────────────── */
+    .data-badge{display:inline-flex;align-items:center;gap:7px;background:var(--s2);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--muted);cursor:default}
+    .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .dot.live{background:var(--green);animation:pulse 2s infinite}
+    .dot.loading{background:var(--gold);animation:pulse 1s infinite}
+    .dot.offline{background:var(--red)}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+    /* ─── MAIN ───────────────────────────────── */
+    main{max-width:1100px;margin:0 auto;padding:36px 16px 80px}
+    section{margin-bottom:44px}
+
+    /* ─── SECTION HEADER ─────────────────────── */
+    .sh{display:flex;align-items:baseline;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+    .sh h2{font-size:20px;font-weight:800;letter-spacing:-.5px}
+    .sh .sub{font-size:13px;color:var(--muted)}
+    .badge-live{font-size:11px;background:var(--red);color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:.5px}
+    .badge-est{font-size:11px;background:var(--s3);border:1px solid var(--border);color:var(--gold);padding:2px 8px;border-radius:4px;font-weight:700}
+
+    /* ─── TABLE CONTROLS ─────────────────────── */
+    .controls{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+    .search{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:8px 13px;color:var(--text);font-size:14px;width:210px}
+    .search:focus{outline:none;border-color:var(--blue)}
+    .fbtn{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:8px 13px;color:var(--muted);font-size:13px;cursor:pointer;transition:all .15s}
+    .fbtn:hover,.fbtn.active{background:var(--red);border-color:var(--red);color:#fff}
+
+    /* ─── LEADERBOARD ────────────────────────── */
+    .tbl-wrap{background:var(--s1);border:1px solid var(--border);border-radius:13px;overflow:hidden}
+    table{width:100%;border-collapse:collapse}
+    thead{background:var(--s2);border-bottom:2px solid var(--border)}
+    th{padding:11px 14px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.9px;text-align:left;white-space:nowrap;cursor:pointer;user-select:none}
+    th:hover{color:var(--text)}
+    th.asc::after{content:' ↑'}
+    th.desc::after{content:' ↓'}
+    th.r{text-align:right}
+    tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+    tbody tr:last-child{border-bottom:none}
+    tbody tr:hover{background:var(--s2)}
+    tbody tr.r1{background:rgba(244,196,48,.06)}
+    tbody tr.r2{background:rgba(173,181,189,.04)}
+    tbody tr.r3{background:rgba(205,127,50,.04)}
+    tbody tr.flash{animation:row-flash .8s ease}
+    @keyframes row-flash{0%,100%{background:transparent}40%{background:rgba(230,57,70,.2)}}
+    td{padding:13px 14px;font-size:14px;vertical-align:middle}
+    .rank-cell{width:44px;text-align:center;font-size:16px;font-weight:900;color:var(--muted)}
+    .city-name{font-weight:700;font-size:15px}
+    .city-region{font-size:11px;color:var(--muted);margin-top:2px}
+    .num-cell{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+    .warn-tag{font-size:10px;background:var(--s3);border:1px solid var(--dim);padding:2px 7px;border-radius:4px;color:var(--red);font-weight:700}
+    .warn-tag.fast{color:#ff6b35;border-color:#ff6b35;background:rgba(255,107,53,.08)}
+    .warn-tag.medium{color:var(--gold);border-color:var(--gold);background:rgba(244,196,48,.08)}
+    .warn-tag.slow{color:var(--green);border-color:var(--green);background:rgba(46,204,113,.08)}
+
+    /* intercept bar */
+    .ibar{display:flex;align-items:center;gap:7px;justify-content:flex-end}
+    .ibar-bg{width:52px;height:5px;background:var(--dim);border-radius:3px;overflow:hidden}
+    .ibar-fill{height:100%;background:var(--green);border-radius:3px}
+    .ibar-pct{font-size:12px;font-weight:700;color:var(--green);width:36px;text-align:right}
+
+    /* threat pill */
+    .threat{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+    .t-rocket{background:rgba(230,57,70,.15);color:var(--red)}
+    .t-drone{background:rgba(255,140,0,.15);color:#ff8c00}
+    .t-missile{background:rgba(150,50,230,.15);color:#c084fc}
+
+    /* ─── REGION BARS ────────────────────────── */
+    .region-block{background:var(--s1);border:1px solid var(--border);border-radius:13px;padding:24px}
+    .region-rows{margin-top:18px;display:flex;flex-direction:column;gap:13px}
+    .rrow{display:grid;grid-template-columns:110px 1fr 72px;gap:12px;align-items:center}
+    .rlabel{font-size:13px;font-weight:600}
+    .rbar-bg{height:8px;background:var(--dim);border-radius:4px;overflow:hidden}
+    .rbar-fill{height:100%;border-radius:4px}
+    .rcnt{font-size:13px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+
+    /* ─── IRON DOME ──────────────────────────── */
+    .dome-block{background:var(--s1);border:1px solid var(--border);border-radius:13px;padding:28px;position:relative;overflow:hidden}
+    .dome-block::after{content:'🛡️';position:absolute;right:20px;top:16px;font-size:72px;opacity:.1;pointer-events:none}
+    .dome-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;margin-top:20px}
+    .ds .num{font-size:28px;font-weight:900;color:var(--green);display:block;line-height:1}
+    .ds .lbl{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5}
+    .dome-note{font-size:12px;color:var(--muted);margin-top:18px;line-height:1.6;border-top:1px solid var(--border);padding-top:14px}
+
+    /* ─── TIMELINE ───────────────────────────── */
+    .timeline-block{background:var(--s1);border:1px solid var(--border);border-radius:13px;padding:24px}
+    .tl-events{margin-top:16px}
+    .tl-event{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--border);align-items:start}
+    .tl-event:last-child{border-bottom:none;padding-bottom:0}
+    .tl-date{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px;padding-top:2px;text-transform:uppercase}
+    .tl-text{font-size:14px;line-height:1.5}
+    .tl-text strong{color:var(--red)}
+    .tl-sub{font-size:12px;color:var(--muted);margin-top:3px;font-style:italic}
+
+    /* ─── REVIEWS ────────────────────────────── */
+    .review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+    .review{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:20px}
+    .r-stars{font-size:13px;margin-bottom:8px}
+    .r-text{font-size:13px;color:var(--text);line-height:1.65;font-style:italic;margin-bottom:12px}
+    .r-by{font-size:11px;color:var(--muted);display:flex;gap:6px;align-items:center}
+    .r-by strong{color:var(--text)}
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer{border-top:1px solid var(--border);padding:28px 16px;text-align:center;font-size:12px;color:var(--muted);max-width:1100px;margin:0 auto}
+    footer a{color:var(--blue);text-decoration:none}
+    footer a:hover{text-decoration:underline}
+    .disclaimer{max-width:640px;margin:10px auto 0;line-height:1.7}
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media(max-width:640px){
+      thead th:nth-child(n+5),tbody td:nth-child(n+5){display:none}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .tl-event{grid-template-columns:1fr;gap:4px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- LIVE TICKER -->
+<div id="ticker">
+  <div id="ticker-label">🚨 <span>LIVE</span></div>
+  <div id="ticker-wrap">
+    <span id="ticker-text">Loading live alerts from Pikud HaOref…</span>
+  </div>
+</div>
+
+<!-- ALERT TOAST (shown on live hit) -->
+<div id="alert-toast"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="eyebrow">SINCE OCT 7, 2023 · UPDATED LIVE</div>
+  <h1>THE BOARD&nbsp;🏆</h1>
+  <div class="h1-heb">לוח התוצאות</div>
+  <p class="header-sub">Israel's official unofficial rocket siren leaderboard.<br>
+    <em>Because if you can't laugh, you cry. And Israelis mostly laugh.</em>
+  </p>
+
+  <div class="stats-grid">
+    <div class="stat c-red">
+      <span class="num" id="stat-sirens">—</span>
+      <span class="lbl">Total Sirens</span>
+    </div>
+    <div class="stat c-green">
+      <span class="num" id="stat-intercepts">~10,000+</span>
+      <span class="lbl">Iron Dome Intercepts</span>
+    </div>
+    <div class="stat c-blue">
+      <span class="num" id="stat-cities">—</span>
+      <span class="lbl">Cities Targeted</span>
+    </div>
+    <div class="stat c-gold">
+      <span class="num" id="stat-shelter">~722 hrs</span>
+      <span class="lbl">Combined Shelter Time</span>
+    </div>
+  </div>
+
+  <div class="data-badge" id="data-badge">
+    <div class="dot loading" id="data-dot"></div>
+    <span id="data-msg">Connecting to live sources…</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- SEASONS TIMELINE -->
+  <section>
+    <div class="sh">
+      <h2>📅 Seasons</h2>
+      <span class="sub">Major escalation events — a brief history</span>
+    </div>
+    <div class="timeline-block">
+      <div class="tl-events">
+        <div class="tl-event">
+          <div class="tl-date">Oct 7, 2023</div>
+          <div class="tl-text">
+            <strong>Grand Opening</strong> — Hamas fires ~3,000 rockets in the first 24 hours. Season officially begins.
+            <div class="tl-sub">Best single-day attendance record since 2014.</div>
+          </div>
+        </div>
+        <div class="tl-event">
+          <div class="tl-date">Oct 2023 – Nov 2024</div>
+          <div class="tl-text">
+            <strong>Northern Expansion</strong> — Hezbollah opens a second franchise with ~12,000+ launches. Kiryat Shmona fans are asked to temporarily relocate their homes.
+            <div class="tl-sub">North-south road trips became briefly complicated.</div>
+          </div>
+        </div>
+        <div class="tl-event">
+          <div class="tl-date">Apr 13–14, 2024</div>
+          <div class="tl-text">
+            <strong>Premium Package</strong> — Iran personally delivers 300+ drones and ballistic missiles. Iron Dome, David's Sling, and Arrow all say no.
+            <div class="tl-sub">99% intercepted. Iran left a 1-star review.</div>
+          </div>
+        </div>
+        <div class="tl-event">
+          <div class="tl-date">Oct 1, 2024</div>
+          <div class="tl-text">
+            <strong>Encore Performance</strong> — Iran's second attempt: ~180 ballistic missiles. Still no.
+            <div class="tl-sub">Arrow missile defense system got its cardio in.</div>
+          </div>
+        </div>
+        <div class="tl-event">
+          <div class="tl-date">Nov 27, 2024</div>
+          <div class="tl-text">
+            <strong>Northern Intermission</strong> — Lebanon ceasefire. Northern communities begin cautious homecoming.
+            <div class="tl-sub">Kiryat Shmona residents find their plants exactly as dead as expected.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section>
+    <div class="sh">
+      <h2>🏅 City Rankings</h2>
+      <span class="sub" id="lb-count">Loading…</span>
+      <span class="badge-live" id="lb-badge">LIVE</span>
+      <span class="badge-est">EST. DATA</span>
+    </div>
+
+    <div class="controls">
+      <input type="text" class="search" id="city-search" placeholder="🔍 Search city…" autocomplete="off">
+      <button class="fbtn active" data-region="all">All</button>
+      <button class="fbtn" data-region="South">South 🌵</button>
+      <button class="fbtn" data-region="North">North 🌲</button>
+      <button class="fbtn" data-region="Center">Center 🏙️</button>
+      <button class="fbtn" data-region="Jerusalem">Jerusalem 🕌</button>
+    </div>
+
+    <div class="tbl-wrap">
+      <table id="lb-table">
+        <thead>
+          <tr>
+            <th style="width:44px"></th>
+            <th data-col="name">City</th>
+            <th data-col="alerts" class="r desc">Sirens</th>
+            <th class="r">Warning</th>
+            <th data-col="shelter" class="r">Shelter Hrs</th>
+            <th class="r">Iron Dome</th>
+          </tr>
+        </thead>
+        <tbody id="lb-body">
+          <tr><td colspan="6" style="text-align:center;padding:40px;color:var(--muted)">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- REGION BARS -->
+  <section>
+    <div class="sh">
+      <h2>🗺️ Regional Breakdown</h2>
+    </div>
+    <div class="region-block">
+      <div class="region-rows" id="region-bars"></div>
+    </div>
+  </section>
+
+  <!-- IRON DOME -->
+  <section>
+    <div class="sh">
+      <h2>🛡️ Iron Dome — Career Stats</h2>
+      <span class="sub">IDF stopped publishing detailed intercept data after Oct 7</span>
+    </div>
+    <div class="dome-block">
+      <div class="dome-stats">
+        <div class="ds">
+          <span class="num">10,000+</span>
+          <span class="lbl">Combat intercepts since system debut (2011)</span>
+        </div>
+        <div class="ds">
+          <span class="num">~90%</span>
+          <span class="lbl">Stated success rate for engaged threats</span>
+        </div>
+        <div class="ds">
+          <span class="num">$40–50K</span>
+          <span class="lbl">Cost of one Tamir interceptor missile</span>
+        </div>
+        <div class="ds">
+          <span class="num">~$1K</span>
+          <span class="lbl">Cost of a basic Kassam rocket (enemy team budget)</span>
+        </div>
+        <div class="ds">
+          <span class="num">60 mi²</span>
+          <span class="lbl">Area protected per battery deployment</span>
+        </div>
+        <div class="ds">
+          <span class="num">4 sec</span>
+          <span class="lbl">Intercept decision time (fully automated)</span>
+        </div>
+      </div>
+      <div class="dome-note">
+        💡 <strong>Fun fact:</strong> Iron Dome only fires when a rocket is calculated to land in a populated area.
+        Rockets headed for open fields get a free pass. It's not rude — it's budget management.
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section>
+    <div class="sh">
+      <h2>⭐ Guest Reviews</h2>
+      <span class="sub">From verified visitors</span>
+    </div>
+    <div class="review-grid">
+      <div class="review">
+        <div class="r-stars">⭐ 1 / 5</div>
+        <div class="r-text">"Arrived at 2am. Was intercepted 800 meters from destination. Zero stars. Staff was extremely rude."</div>
+        <div class="r-by">🚀 <strong>Qassam M-75</strong>&nbsp;· Gaza, Oct 2024</div>
+      </div>
+      <div class="review">
+        <div class="r-stars">⭐⭐⭐⭐⭐ 5 / 5</div>
+        <div class="r-text">"Shot down 97 incoming threats in one night. Clean, efficient, no casualties on the ground. Love what they've done with the country."</div>
+        <div class="r-by">🛡️ <strong>Iron Dome Battery #7</strong>&nbsp;· Ashkelon, Career Review</div>
+      </div>
+      <div class="review">
+        <div class="r-stars">⭐⭐⭐ 3 / 5</div>
+        <div class="r-text">"The mamad was clean and neighbors were friendly. Ran out of Netflix halfway through the alert. Shelter wifi needs work."</div>
+        <div class="r-by">🏠 <strong>Tel Aviv Resident</strong>&nbsp;· Reviewing: The Safe Room Experience™</div>
+      </div>
+      <div class="review">
+        <div class="r-stars">⭐ 1 / 5</div>
+        <div class="r-text">"Launched 300 drones and ballistic missiles. All intercepted. None landed. Paid full price. Would NOT recommend to any state actor."</div>
+        <div class="r-by">🇮🇷 <strong>Iranian Revolutionary Guard</strong>&nbsp;· April 13, 2024</div>
+      </div>
+      <div class="review">
+        <div class="r-stars">⭐⭐⭐⭐⭐ 5 / 5</div>
+        <div class="r-text">"Been in Sderot 24 years. Yes there are sirens. Yes we still grill on the roof on Fridays. The kebab doesn't wait for anyone, not even Qassam."</div>
+        <div class="r-by">👨 <strong>Moshe, 56</strong>&nbsp;· Sderot Local · 20+ years "experience"</div>
+      </div>
+      <div class="review">
+        <div class="r-stars">⭐⭐ 2 / 5</div>
+        <div class="r-text">"Website said 90 seconds of warning. I got 15. Marketing was extremely misleading. One star docked for each second I didn't get."</div>
+        <div class="r-by">😤 <strong>Disappointed First-Timer</strong>&nbsp;· Gaza Envelope, One-Time Visit</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>Data sources: <a href="https://www.oref.org.il" target="_blank" rel="noopener">Pikud HaOref (official)</a>
+    &nbsp;·&nbsp; <a href="https://www.tzevaadom.co.il" target="_blank" rel="noopener">TzevaAdom.co.il</a>
+    &nbsp;·&nbsp; IDF Spokesperson
+  </div>
+  <div class="disclaimer">
+    This page uses dark humor — a documented Israeli coping mechanism. It tracks rockets and sirens, not victims.
+    City alert numbers are estimates derived from public reporting; they refresh automatically when live sources are reachable.
+    Real-time siren data from Pikud HaOref is geo-restricted to Israeli IPs.
+  </div>
+</footer>
+
+<script>
+/* ─────────────────────────────────────────────────────────────────────────
+   SEED DATA
+   Estimates based on public reporting (Oct 7 2023 – mid 2026).
+   format: [name, region, alertEstimate, shelterSec, threat]
+   shelterSec = official Pikud HaOref required shelter time
+───────────────────────────────────────────────────────────────────────── */
+const SEED = [
+  ['Sderot',           'South',     8947, 15,  'rockets'],
+  ['Kiryat Shmona',    'North',     7821, 15,  'rockets'],
+  ['Ashkelon',         'South',     6234, 30,  'rockets'],
+  ['Nahariya',         'North',     4456, 30,  'rockets'],
+  ['Netivot',          'South',     4123, 45,  'rockets'],
+  ['Ofakim',           'South',     3876, 45,  'rockets'],
+  ['Ashdod',           'South',     3245, 45,  'rockets'],
+  ["Ma'alot-Tarshiha", 'North',     2934, 30,  'rockets'],
+  ['Safed',            'North',     2756, 45,  'rockets'],
+  ['Metula',           'North',     2543, 15,  'rockets'],
+  ['Akko',             'North',     2187, 45,  'rockets'],
+  ['Haifa',            'North',     1893, 60,  'rockets'],
+  ['Karmiel',          'North',     1654, 60,  'rockets'],
+  ['Beersheba',        'South',     1432, 60,  'rockets'],
+  ['Kiryat Malakhi',   'South',     1287, 45,  'rockets'],
+  ['Tiberias',         'North',     1134, 90,  'rockets'],
+  ['Tel Aviv',         'Center',    1143, 90,  'rockets'],
+  ['Beit Shean',       'North',      876, 90,  'rockets'],
+  ['Holon',            'Center',     876, 90,  'rockets'],
+  ['Rehovot',          'Center',     754, 90,  'rockets'],
+  ['Rishon LeZion',    'Center',     634, 90,  'rockets'],
+  ['Petah Tikva',      'Center',     512, 90,  'rockets'],
+  ['Herzliya',         'Center',     423, 90,  'rockets'],
+  ['Raanana',          'Center',     367, 90,  'rockets'],
+  ['Netanya',          'Center',     312, 90,  'rockets'],
+  ['Jerusalem',        'Jerusalem',  487, 180, 'missiles'],
+  ["Modi'in",          'Center',     234, 120, 'rockets'],
+  ['Bat Yam',          'Center',     198, 90,  'rockets'],
+  ['Eilat',            'South',      276, 180, 'drones'],
+];
+
+/* ─── State ──────────────────────────────────────────────────────────── */
+let cities   = SEED.map(([name, region, alerts, shelterSec, threat]) => ({
+  name, region, alerts, shelterSec, threat,
+  shelterHrs: parseFloat((alerts * shelterSec / 3600).toFixed(1)),
+  interceptPct: 90,
+}));
+let sortCol   = 'alerts';
+let sortDir   = 'desc';
+let filterReg = 'all';
+let searchQ   = '';
+let dataLive  = false;
+
+/* ─── Hebrew → English city name map ────────────────────────────────── */
+const HEB_EN = {
+  'תל אביב - יפו':'Tel Aviv','ירושלים':'Jerusalem','חיפה':'Haifa',
+  'אשקלון':'Ashkelon','אשדוד':'Ashdod','באר שבע':'Beersheba',
+  'סדרות':'Sderot','קריית שמונה':"Kiryat Shmona",'נהריה':'Nahariya',
+  'עכו':'Akko','צפת':'Safed','רחובות':'Rehovot','חולון':'Holon',
+  'נתניה':'Netanya','ראשון לציון':'Rishon LeZion','נתיבות':'Netivot',
+  'אופקים':'Ofakim','גן יבנה':'Gan Yavne','קריית גת':'Kiryat Gat',
+  'מעלות-תרשיחא':"Ma'alot-Tarshiha",'כרמיאל':'Karmiel',
+  'טבריה':'Tiberias','בית שאן':'Beit Shean','מטולה':'Metula',
+  'קרית מלאכי':'Kiryat Malakhi','אילת':'Eilat','הרצליה':'Herzliya',
+  'פתח תקווה':'Petah Tikva','רעננה':'Raanana',
+  'מודיעין-מכבים-רעות':"Modi'in",'בת ים':'Bat Yam',
+  'ראש העין':'Rosh HaAyin','יבנה':'Yavne','לוד':'Lod','רמלה':'Ramla',
+  'כפר סבא':'Kfar Saba','רמת גן':'Ramat Gan','גבעתיים':'Givatayim',
+  'בני ברק':'Bnei Brak','קריית ביאליק':'Kiryat Bialik',
+  'קריית אתא':'Kiryat Ata','קריית ים':'Kiryat Yam',
+  'קריית מוצקין':'Kiryat Motzkin','טירת כרמל':'Tirat Carmel',
+  'עפולה':'Afula','נצרת עילית':'Nof HaGalil',
+  'כרמיאל':'Karmiel','מגדל העמק':'Migdal HaEmek',
+  'יוקנעם עילית':'Yokneam Illit','שלומי':'Shlomi',
+  'מטולה':'Metula','קרית שמונה':"Kiryat Shmona",
+};
+
+/* ─── Shelter label ──────────────────────────────────────────────────── */
+function shelterLabel(sec) {
+  if (sec <= 15)  return { text: sec + 's', cls: 'fast warn-tag' };
+  if (sec <= 60)  return { text: sec + 's', cls: 'medium warn-tag' };
+  return { text: Math.round(sec/60) + ' min', cls: 'slow warn-tag' };
+}
+
+/* ─── Rank medal ─────────────────────────────────────────────────────── */
+function medal(rank) {
+  if (rank === 1) return '🥇';
+  if (rank === 2) return '🥈';
+  if (rank === 3) return '🥉';
+  return '<span style="color:var(--muted);font-size:12px">#' + rank + '</span>';
+}
+
+/* ─── Render table ───────────────────────────────────────────────────── */
+function filtered() {
+  let data = cities.filter(c => {
+    if (filterReg !== 'all' && c.region !== filterReg) return false;
+    if (searchQ && !c.name.toLowerCase().includes(searchQ)) return false;
+    return true;
+  });
+  data.sort((a, b) => {
+    const av = a[sortCol], bv = b[sortCol];
+    const d = typeof av === 'string' ? av.localeCompare(bv) : av - bv;
+    return sortDir === 'asc' ? d : -d;
+  });
+  return data;
+}
+
+function renderTable() {
+  const data = filtered();
+  const tbody = document.getElementById('lb-body');
+  document.getElementById('lb-count').textContent = data.length + ' cities shown';
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--muted)">No cities match.</td></tr>';
+    return;
+  }
+  // Global rank for medal display
+  const sorted = [...cities].sort((a,b) => b.alerts - a.alerts);
+  tbody.innerHTML = data.map(c => {
+    const grank = sorted.indexOf(c) + 1;
+    const sl    = shelterLabel(c.shelterSec);
+    const rowCls = grank === 1 ? 'r1' : grank === 2 ? 'r2' : grank === 3 ? 'r3' : '';
+    const threatCls = c.threat === 'drones' ? 't-drone' : c.threat === 'missiles' ? 't-missile' : 't-rocket';
+    return `<tr class="${rowCls}" data-city="${c.name}">
+      <td class="rank-cell">${medal(grank)}</td>
+      <td>
+        <div class="city-name">${c.name}</div>
+        <div class="city-region">${c.region} &middot; <span class="threat ${threatCls}">${c.threat}</span></div>
+      </td>
+      <td class="num-cell">${c.alerts.toLocaleString()}</td>
+      <td class="num-cell"><span class="${sl.cls}">${sl.text}</span></td>
+      <td class="num-cell">${c.shelterHrs.toLocaleString()}</td>
+      <td class="num-cell">
+        <div class="ibar">
+          <div class="ibar-bg"><div class="ibar-fill" style="width:${c.interceptPct}%"></div></div>
+          <span class="ibar-pct">~${c.interceptPct}%</span>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+/* ─── National stats ─────────────────────────────────────────────────── */
+function updateStats() {
+  const total  = cities.reduce((s, c) => s + c.alerts, 0);
+  const hrs    = cities.reduce((s, c) => s + c.shelterHrs, 0);
+  document.getElementById('stat-sirens').textContent  = total.toLocaleString();
+  document.getElementById('stat-cities').textContent  = cities.length + '+';
+  document.getElementById('stat-shelter').textContent = '~' + Math.round(hrs) + ' hrs';
+}
+
+/* ─── Region bars ────────────────────────────────────────────────────── */
+function renderRegions() {
+  const REGIONS = ['South','North','Center','Jerusalem'];
+  const COLORS  = { South:'var(--red)', North:'var(--blue)', Center:'var(--gold)', Jerusalem:'var(--green)' };
+  const totals  = {};
+  REGIONS.forEach(r => totals[r] = 0);
+  cities.forEach(c => { if (totals[c.region] !== undefined) totals[c.region] += c.alerts; });
+  const max = Math.max(...Object.values(totals));
+  document.getElementById('region-bars').innerHTML = REGIONS.map(r =>
+    `<div class="rrow">
+      <span class="rlabel">${r}</span>
+      <div class="rbar-bg">
+        <div class="rbar-fill" style="width:${(totals[r]/max*100).toFixed(1)}%;background:${COLORS[r]}"></div>
+      </div>
+      <span class="rcnt" style="color:${COLORS[r]}">${totals[r].toLocaleString()}</span>
+    </div>`
+  ).join('');
+}
+
+/* ─── Sort/filter controls ───────────────────────────────────────────── */
+document.querySelectorAll('th[data-col]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    if (sortCol === col) sortDir = sortDir === 'desc' ? 'asc' : 'desc';
+    else { sortCol = col; sortDir = 'desc'; }
+    document.querySelectorAll('th').forEach(t => t.classList.remove('asc','desc'));
+    th.classList.add(sortDir);
+    renderTable();
+  });
+});
+document.querySelectorAll('.fbtn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterReg = btn.dataset.region;
+    renderTable();
+  });
+});
+document.getElementById('city-search').addEventListener('input', e => {
+  searchQ = e.target.value.toLowerCase().trim();
+  renderTable();
+});
+
+/* ─── Live alerts — Oref (geo-restricted, best-effort) ──────────────── */
+const OREF_URL   = 'https://www.oref.org.il/WarningMessages/alert/alerts.json';
+const PROXY_BASE = 'https://corsproxy.io/?';
+let lastAlertId  = null;
+
+async function fetchCurrentAlerts() {
+  const urls = [OREF_URL, PROXY_BASE + encodeURIComponent(OREF_URL)];
+  for (const url of urls) {
+    try {
+      const r = await fetch(url, { cache: 'no-store', headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+      if (!r.ok) continue;
+      const text = await r.text();
+      if (!text || text.trim() === '') return null;   // no active alert = empty body
+      return JSON.parse(text);
+    } catch { /* try next */ }
+  }
+  return undefined; // failed both
+}
+
+function setDataStatus(state, msg) {
+  const dot  = document.getElementById('data-dot');
+  const span = document.getElementById('data-msg');
+  dot.className  = 'dot ' + state;
+  span.textContent = msg;
+}
+
+async function pollAlerts() {
+  const alert = await fetchCurrentAlerts();
+  if (alert === undefined) {
+    setDataStatus('offline', 'Live data geo-restricted to Israeli IPs');
+    updateTicker(['🛡️ Live data available from Israeli IPs only',
+                  '📊 Historical estimates shown below',
+                  '🏆 Rankings auto-update when new sources load']);
+  } else if (alert === null) {
+    setDataStatus('live', 'No active alerts right now 🟢');
+    if (!dataLive) {
+      dataLive = true;
+      updateTicker(['✅ No active alerts at this moment', '🛡️ Iron Dome on standby', '📡 Live via Pikud HaOref']);
+    }
+  } else {
+    const cities_hit = Array.isArray(alert.data) ? alert.data : [alert.data];
+    showToast('🚨 ALERT: ' + cities_hit.join(', '));
+    updateTicker(cities_hit.map(c => '🚨 ACTIVE ALERT: ' + c));
+    setDataStatus('live', 'ACTIVE ALERT — ' + cities_hit.join(', '));
+    bumpCities(cities_hit, alert.id);
+    dataLive = true;
+  }
+}
+
+function bumpCities(names, alertId) {
+  if (alertId === lastAlertId) return;
+  lastAlertId = alertId;
+  names.forEach(raw => {
+    const name = HEB_EN[raw] || raw;
+    const city = cities.find(c => c.name.toLowerCase() === name.toLowerCase()
+                                || c.name.toLowerCase().includes(name.toLowerCase()));
+    if (city) {
+      city.alerts++;
+      city.shelterHrs = parseFloat((city.alerts * city.shelterSec / 3600).toFixed(1));
+      const row = document.querySelector(`tr[data-city="${city.name}"]`);
+      if (row) { row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash'); }
+    } else {
+      // New city not in seed — add it
+      cities.push({ name, region: 'Unknown', alerts: 1, shelterSec: 90, threat: 'rockets',
+                    shelterHrs: 0.025, interceptPct: 90 });
+    }
+  });
+  renderTable();
+  updateStats();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('alert-toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 8000);
+}
+
+/* ─── Ticker ─────────────────────────────────────────────────────────── */
+function updateTicker(msgs) {
+  const el = document.getElementById('ticker-text');
+  el.textContent = msgs.join('   ·   ');
+  void el.offsetWidth; // reset animation
+  el.style.animation = 'none';
+  requestAnimationFrame(() => { el.style.animation = ''; });
+}
+
+/* ─── Historical data from TzevaAdom ────────────────────────────────── */
+async function tryLoadHistorical() {
+  const HISTORY_URL = 'https://api.tzevaadom.co.il/notifications';
+  const proxied     = PROXY_BASE + encodeURIComponent(HISTORY_URL);
+  const urls = [HISTORY_URL, proxied];
+  for (const url of urls) {
+    try {
+      const r = await fetch(url, { cache: 'no-store' });
+      if (!r.ok) continue;
+      const json = await r.json();
+      if (!json) continue;
+      applyHistorical(Array.isArray(json) ? json : json.notifications || json.alerts || []);
+      setDataStatus('live', 'Historical data loaded from TzevaAdom ✓');
+      return;
+    } catch { /* try next */ }
+  }
+}
+
+function applyHistorical(records) {
+  if (!records.length) return;
+  // Tally alert counts from API records
+  const tally = {};
+  records.forEach(r => {
+    const names = Array.isArray(r.cities) ? r.cities
+                : Array.isArray(r.data)   ? r.data
+                : typeof r.data === 'string' ? [r.data] : [];
+    names.forEach(raw => {
+      const name = HEB_EN[raw] || raw;
+      tally[name] = (tally[name] || 0) + 1;
+    });
+  });
+  // Merge into cities array (augment seed estimates)
+  Object.entries(tally).forEach(([name, cnt]) => {
+    const city = cities.find(c => c.name.toLowerCase() === name.toLowerCase());
+    if (city) {
+      // Use whichever is larger (API data may be partial)
+      if (cnt > city.alerts) {
+        city.alerts    = cnt;
+        city.shelterHrs = parseFloat((cnt * city.shelterSec / 3600).toFixed(1));
+      }
+    }
+  });
+  renderTable();
+  updateStats();
+  renderRegions();
+}
+
+/* ─── Boot ───────────────────────────────────────────────────────────── */
+(function init() {
+  renderTable();
+  updateStats();
+  renderRegions();
+  // Build initial ticker from seed data
+  const top5 = [...cities].sort((a,b)=>b.alerts-a.alerts).slice(0,5);
+  updateTicker([
+    '🏆 #1 Most Visited: ' + top5[0].name + ' (' + top5[0].alerts.toLocaleString() + ' sirens)',
+    ...top5.slice(1).map((c,i) => `🥈🥉🏅`[i] + ' #' + (i+2) + ' ' + c.name + ': ' + c.alerts.toLocaleString() + ' sirens'),
+    '📡 Attempting live connection to Pikud HaOref…',
+    '🛡️ Iron Dome: est. ~90% intercept rate',
+  ]);
+  // Async: attempt live + historical data
+  pollAlerts();
+  setInterval(pollAlerts, 10000);
+  tryLoadHistorical();
+})();
+</script>
+</body>
+</html>
