@@ -171,9 +171,9 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 09:26 UTC
+- **When:** 2026-06-10 09:27 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 9ea9199 Add Iron Dome arcade game at /irondome/ — 55 seconds ago
+- **Last commit:** 84ea280 Update nucleus: Iron Dome v1 shipped (PR #70) — 21 seconds ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-9ea9199 Add Iron Dome arcade game at /irondome/ (55 seconds ago)
+84ea280 Update nucleus: Iron Dome v1 shipped (PR #70) (21 seconds ago)
+9ea9199 Add Iron Dome arcade game at /irondome/ (85 seconds ago)
 fbf2155 chore: refresh nucleus live state [skip ci] (8 days ago)
 c55a864 chore: refresh nucleus live state [skip ci] (8 days ago)
 c5726ff chore: refresh nucleus live state [skip ci] (8 days ago)
-cb7f9c7 chore: refresh nucleus live state [skip ci] (8 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
