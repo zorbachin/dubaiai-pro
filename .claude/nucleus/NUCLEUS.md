@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 10:36 UTC · code
+Iron Dome v4 'function is everything' overhaul: found root cause of 'function stops' = silent 2-interceptor cap (research: MC Recharged uses unlimited ammo + cooldown) → shot queue that never swallows taps; chain-reaction kills; spawn/land bounds inside city; cityscape brightened 2x + true bottom third; falafels enlarged w/ glow. Verified via rendered screenshots. 17/17 tests.
+
 ### 2026-06-10 10:25 UTC · code
 Iron Dome input overhaul per user feedback ('tap accuracy off, add fling'): aim assist (taps snap to predicted intercept point), proximity-fuze detonation, fling/swipe gesture with speed-scaled lead. Verified by new automated checks (direct tap kills, fling kills) — 17/17.
 
@@ -162,31 +165,34 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 
 ### 2026-06-02 04:43 UTC · chat
 🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
-
-### 2026-06-02 04:31 UTC · chat
-Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 10:25 UTC
+- **When:** 2026-06-10 10:36 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 5102302 chore: refresh nucleus live state [skip ci] — 13 seconds ago
+- **Last commit:** b225a77 Function-first overhaul: every tap fires, chains, visible city + falafel — 23 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-5102302 chore: refresh nucleus live state [skip ci] (13 seconds ago)
-1ae0169 Fix tap accuracy: aim assist + proximity fuze + fling gesture (26 seconds ago)
-76be0ff chore: refresh nucleus live state [skip ci] (16 minutes ago)
-d3f2ef1 chore: refresh nucleus live state [skip ci] (17 minutes ago)
-e2b6652 Lift Jerusalem dome and old-city wall above the foreground skyline (17 minutes ago)
+b225a77 Function-first overhaul: every tap fires, chains, visible city + falafel (23 seconds ago)
+ca167ed chore: refresh nucleus live state [skip ci] (10 minutes ago)
+5102302 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+1ae0169 Fix tap accuracy: aim assist + proximity fuze + fling gesture (11 minutes ago)
+76be0ff chore: refresh nucleus live state [skip ci] (27 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
