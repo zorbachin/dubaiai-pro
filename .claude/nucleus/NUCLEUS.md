@@ -171,9 +171,9 @@ SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:29 UTC
+- **When:** 2026-06-10 18:30 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 3a1cd7a chore: refresh nucleus live state [skip ci] — 17 seconds ago
+- **Last commit:** b17f3ae chore: refresh nucleus live state [skip ci] — 48 seconds ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-3a1cd7a chore: refresh nucleus live state [skip ci] (17 seconds ago)
-8199bf8 chore: refresh nucleus live state [skip ci] (68 seconds ago)
-65cb0ea chore: refresh nucleus live state [skip ci] (5 minutes ago)
-b576c56 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-a80bad0 Death cam: savta judges you + near-miss death screen + tap-to-restart (6 minutes ago)
+b17f3ae chore: refresh nucleus live state [skip ci] (48 seconds ago)
+3a1cd7a chore: refresh nucleus live state [skip ci] (65 seconds ago)
+8199bf8 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+65cb0ea chore: refresh nucleus live state [skip ci] (6 minutes ago)
+b576c56 chore: refresh nucleus live state [skip ci] (6 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
