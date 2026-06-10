@@ -67,6 +67,9 @@ Durable preference: every Iron Dome (and similar) update message must end with t
 ### 2026-06-10 09:37 UTC · code
 Iron Dome v2 pushed to PR #70: mobile visibility overhaul (bigger glowing rockets w/ nose cone + flame + smoke trail, incoming-warning chevrons), per-city skyline/topography backdrops in bottom third (all 10 cities), falafel-ball ground impacts per user request. Smoke test 16/16.
 
+### 2026-06-10 09:35 UTC · code
+Built MAMADIO — Tel Aviv hustle game, companion to Iron Dome. Single-file canvas game at mamadio/index.html (3 levels: Gordon Beach/Florentin/Old North; 3 characters: Chabadnik/Shop Owner/Influencer; shekel economy from unemployment money; random Home Front Command sirens force a run to the mamad). Draft PR #71 open on claude/mamadio-game-design-v9mr1w; needs a browser playtest before merge. Will be live at dubaiai.pro/mamadio/ once merged.
+
 ### 2026-06-10 09:26 UTC · code
 Iron Dome game v1 shipped: PR #70 (draft) on claude/iron-dome-game-zi3dtt. Full game at irondome/index.html — 10 city levels, 5 rocket types, 4 power-ups, 4 persistent upgrades incl. Iron Sling, HE/EN+RTL, offline PWA, synth audio. jsdom smoke test 15/15, no CI on repo. Open loop: needs a real phone test before merge; user wants alternative visual styles later.
 
@@ -165,6 +168,29 @@ OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APP
 
 ### 2026-06-02 05:06 UTC · chat
 BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. (1) PodSupps (podsupps.com) → run autonomously, Claude starts marketing it + drives signups/logins. (2) For other ventures, Claude is the guide — tell him what to do. (3) SPEND AUDIT: monitor wasted spend — still need Manus? Etsy? right-size ElevenLabs? pay for HeyGen? cheapest effective video tool (Higgsfield vs Topview)? (4) Build CORPORATE AGENTIC STRUCTURE: who runs which workstream, cost, investment needed. (5) Send him prompts/nudges when lagging — 'your job is 24/7'. KEY INSIGHT to apply: his brand is REAL/self-shot (calisthenics) → expensive AI-video/avatar tools may be redundant.
+### 2026-06-02 04:50 UTC · chat
+🎉 BIG WIN 2026-06-02: calisthenics video published LIVE to Facebook, Instagram (Reel, zorb_ai), and LinkedIn. X uncertain (Buffer timed out mid-86MB-upload — verify manually). Posting block broken. SUSTAINABLE CADENCE in .claude/os/content/posting-cadence.md: batch 1 pillar video/Sun → Claude atomizes + queues all platforms in Buffer → user approves + posts FB manually. Floor 3/wk; FB 3-5x, IG 4-5x, LI 3x, X 5x, TikTok 3x, newsletter 1x.
+
+### 2026-06-02 04:43 UTC · chat
+🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
+
+### 2026-06-02 04:31 UTC · chat
+Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
+
+### 2026-06-02 04:06 UTC · chat
+Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-posted/scheduled by Buffer or any tool (Meta API rule). FB stays a MANUAL post by Zorba. Buffer handles the rest: IG (Business), LinkedIn, TikTok. Connecting Buffer via Zapier for scheduling those.
+
+### 2026-06-02 04:03 UTC · chat
+PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
+
+### 2026-06-02 03:58 UTC · chat
+BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
+
+### 2026-06-02 03:56 UTC · chat
+ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calisthenics park (working out, corny/human vibe) delivering the core pitch. Transcript on file. On-message: 'every business owner has something they don't wanna do… AI answers your call, schedules, email in your voice, inventory tracked… I'm not here to sell you on AI, I'm here to buy back your time… so you have more time to work out.' Calisthenics setting ties to the time-back close. POSTABLE TODAY. File local on his Mac (~/Movies/Zorba Explainer(5)) — not in container.
+
+### 2026-06-02 03:46 UTC · chat
+User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real clock for standups/cadence/day-planning.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
