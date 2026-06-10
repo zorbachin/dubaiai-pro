@@ -171,9 +171,9 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:09 UTC
+- **When:** 2026-06-10 12:12 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** cdee404 chore: refresh nucleus live state [skip ci] — 7 minutes ago
+- **Last commit:** db69604 chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-cdee404 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-e67bb19 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-02583b4 chore: refresh nucleus live state [skip ci] (22 minutes ago)
-0f5a35d chore: refresh nucleus live state [skip ci] (23 minutes ago)
-36b668f chore: refresh nucleus live state [skip ci] (29 minutes ago)
+db69604 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+cdee404 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+e67bb19 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+02583b4 chore: refresh nucleus live state [skip ci] (24 minutes ago)
+0f5a35d chore: refresh nucleus live state [skip ci] (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
