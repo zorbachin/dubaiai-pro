@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 09:26 UTC · code
+Iron Dome game v1 shipped: PR #70 (draft) on claude/iron-dome-game-zi3dtt. Full game at irondome/index.html — 10 city levels, 5 rocket types, 4 power-ups, 4 persistent upgrades incl. Iron Sling, HE/EN+RTL, offline PWA, synth audio. jsdom smoke test 15/15, no CI on repo. Open loop: needs a real phone test before merge; user wants alternative visual styles later.
+
 ### 2026-06-10 09:18 UTC · code
 Iron Dome game greenlit: tap-to-intercept arcade game at dubaiai.pro/irondome/. Decisions: Hebrew+English toggle (HE default), style between retro and modern (neon arcade, user wants multiple styles eventually), offline-first installable PWA for shelter play, levels = Israeli cities, power-ups + upgrades (Iron Sling/David's Sling, Iron Beam). Branch claude/iron-dome-game-zi3dtt
 
@@ -162,37 +165,28 @@ BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them
 
 ### 2026-06-02 03:56 UTC · chat
 ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calisthenics park (working out, corny/human vibe) delivering the core pitch. Transcript on file. On-message: 'every business owner has something they don't wanna do… AI answers your call, schedules, email in your voice, inventory tracked… I'm not here to sell you on AI, I'm here to buy back your time… so you have more time to work out.' Calisthenics setting ties to the time-back close. POSTABLE TODAY. File local on his Mac (~/Movies/Zorba Explainer(5)) — not in container.
-
-### 2026-06-02 03:46 UTC · chat
-User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real clock for standups/cadence/day-planning.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 09:18 UTC
+- **When:** 2026-06-10 09:26 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** fbf2155 chore: refresh nucleus live state [skip ci] — 8 days ago
+- **Last commit:** 9ea9199 Add Iron Dome arcade game at /irondome/ — 55 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+9ea9199 Add Iron Dome arcade game at /irondome/ (55 seconds ago)
 fbf2155 chore: refresh nucleus live state [skip ci] (8 days ago)
 c55a864 chore: refresh nucleus live state [skip ci] (8 days ago)
 c5726ff chore: refresh nucleus live state [skip ci] (8 days ago)
 cb7f9c7 chore: refresh nucleus live state [skip ci] (8 days ago)
-ef4cd2c chore: refresh nucleus live state [skip ci] (8 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
