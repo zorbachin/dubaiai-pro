@@ -171,22 +171,28 @@ User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 09:36 UTC
-- **Branch:** `claude/mamadio-game-design-v9mr1w`
-- **Last commit:** 5b056cd chore: refresh nucleus live state [skip ci] — 26 seconds ago
+- **When:** 2026-06-10 11:40 UTC
+- **Branch:** `claude/mamad-dash-location-0mmse2`
+- **Last commit:** 273622a Add Mamadio — Tel Aviv hustle game with MAMAD DASH siren runner (#71) — 2 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 ```
 
 **Recent commits:**
 ```
-5b056cd chore: refresh nucleus live state [skip ci] (26 seconds ago)
-100fdc3 Add Mamadio — Tel Aviv hustle game, companion to Iron Dome (2 minutes ago)
+273622a Add Mamadio — Tel Aviv hustle game with MAMAD DASH siren runner (#71) (2 hours ago)
 fbf2155 chore: refresh nucleus live state [skip ci] (8 days ago)
 c55a864 chore: refresh nucleus live state [skip ci] (8 days ago)
 c5726ff chore: refresh nucleus live state [skip ci] (8 days ago)
+cb7f9c7 chore: refresh nucleus live state [skip ci] (8 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
