@@ -175,26 +175,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 13:06 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 7d7eac0 chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **Last commit:** 7440fdd chore: refresh nucleus live state [skip ci] — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+7440fdd chore: refresh nucleus live state [skip ci] (21 seconds ago)
 7d7eac0 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-1e4e045 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-18321c0 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (3 minutes ago)
+1e4e045 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+18321c0 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (4 minutes ago)
 fffab77 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-57dc825 Temporarily unbind dubaiai.pro custom domain (5 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
