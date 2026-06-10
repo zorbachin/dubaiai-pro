@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 18:24 UTC · code
+NEW EXPLICIT GOAL from Zorba: get Iron Dome to 10,000 USERS as fast as possible (stable, fun, viral). Convened brutal 10M-cohort panel #3: growth/virality (funnel, OG tags, WhatsApp K-factor, 7-day distribution plan), retention (FTUE, day-2 hook, difficulty honesty), release-stability (v13 torture: saves v1->v13, bonus/sling state machines, GO/NO-GO verdict), game-feel (miss experience, bonus fiesta, sling payoff, sound mix). All running on v13.
+
 ### 2026-06-10 18:17 UTC · code
 Iron Dome v13: difficulty select (Easy/Normal/Commando w/ point multipliers), intra-level ramp (starts easy, +35% by level end), bonus falafel-rush rounds after L3/6/9 (double points, no risk), Iron Sling now an ACTIVE volley button (pops 4 lowest rockets, charges per level), crates more frequent + first-crate hint. All per Zorba's Tetris/DrMario feedback. E2E verified.
 ### 2026-06-10 18:12 UTC · code
@@ -174,31 +177,34 @@ CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 q
 
 
 
-
-### 2026-06-02 09:36 UTC · chat
-NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:19 UTC
+- **When:** 2026-06-10 18:25 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 69fc778 chore: refresh nucleus live state [skip ci] — 37 seconds ago
+- **Last commit:** 90a933c chore: refresh nucleus live state [skip ci] — 5 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-69fc778 chore: refresh nucleus live state [skip ci] (37 seconds ago)
-6f7aa6d Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (67 seconds ago)
-1634e77 chore: refresh nucleus live state [skip ci] (68 seconds ago)
-ed91283 v13: difficulty select, intra-level ramp, bonus rounds, active Iron Sling volley (2 minutes ago)
-1807ced chore: refresh nucleus live state [skip ci] (5 minutes ago)
+90a933c chore: refresh nucleus live state [skip ci] (5 minutes ago)
+69fc778 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+6f7aa6d Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (6 minutes ago)
+1634e77 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+ed91283 v13: difficulty select, intra-level ramp, bonus rounds, active Iron Sling volley (7 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
