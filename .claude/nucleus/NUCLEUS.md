@@ -171,9 +171,9 @@ BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:23 UTC
+- **When:** 2026-06-10 12:26 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 9aba855 chore: refresh nucleus live state [skip ci] — 17 seconds ago
+- **Last commit:** 2a46fa0 chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-9aba855 chore: refresh nucleus live state [skip ci] (17 seconds ago)
-c37d3b9 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-cdd4ee5 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-ca4c52d chore: refresh nucleus live state [skip ci] (9 minutes ago)
-2c4da4d chore: refresh nucleus live state [skip ci] (11 minutes ago)
+2a46fa0 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+9aba855 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+c37d3b9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+cdd4ee5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+ca4c52d chore: refresh nucleus live state [skip ci] (13 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
