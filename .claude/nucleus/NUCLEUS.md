@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 13:23 UTC · code
+MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream skyline) + arcade juice (pop-text, coin glow/spin, landing squash, speed lines, countdown punch, confetti, PERFECT RUN bonus). Zorba steering: addictive + bright first, complexity later — master dash mode before adding anything. Full suite re-verified, pushed to PR #74.
+
 ### 2026-06-10 13:08 UTC · code
 BUILT: MAMAD DASH standalone shippable mobile game at mamaddash/index.html (single-file, 453 lines). Tap=jump/swipe-down=duck, instant start, endless escalating siren waves, coins+streak bonuses, share button, localStorage best, all P0 mobile QA fixes baked in (on-canvas countdown, telegraph rings, error-contained loop). Verified headless on phone viewport: 3 waves cleared, death/share/restart/persist all pass, zero errors. On PR #74 (title/body updated to cover all 3 changes). Goes live at dubaiai.pro/mamaddash/ after merge + Porkbun DNS fix.
 
@@ -162,31 +165,34 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 
 ### 2026-06-02 04:50 UTC · chat
 🎉 BIG WIN 2026-06-02: calisthenics video published LIVE to Facebook, Instagram (Reel, zorb_ai), and LinkedIn. X uncertain (Buffer timed out mid-86MB-upload — verify manually). Posting block broken. SUSTAINABLE CADENCE in .claude/os/content/posting-cadence.md: batch 1 pillar video/Sun → Claude atomizes + queues all platforms in Buffer → user approves + posts FB manually. Floor 3/wk; FB 3-5x, IG 4-5x, LI 3x, X 5x, TikTok 3x, newsletter 1x.
-
-### 2026-06-02 04:43 UTC · chat
-🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 13:17 UTC
+- **When:** 2026-06-10 13:24 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 4dfe52d Runner faces his direction of travel, films it on his phone — 20 seconds ago
+- **Last commit:** 1cfe4a6 MAMAD DASH: bright Fortnite-style palette + arcade juice — 31 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-4dfe52d Runner faces his direction of travel, films it on his phone (20 seconds ago)
-172afb7 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-3a1f1e0 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-4cf423a chore: refresh nucleus live state [skip ci] (8 minutes ago)
-421b674 Add MAMAD DASH standalone — shippable mobile siren runner (9 minutes ago)
+1cfe4a6 MAMAD DASH: bright Fortnite-style palette + arcade juice (31 seconds ago)
+f76219e chore: refresh nucleus live state [skip ci] (7 minutes ago)
+4dfe52d Runner faces his direction of travel, films it on his phone (8 minutes ago)
+172afb7 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+3a1f1e0 chore: refresh nucleus live state [skip ci] (15 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
