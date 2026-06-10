@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 10:25 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 1ae0169 Fix tap accuracy: aim assist + proximity fuze + fling gesture — 13 seconds ago
+- **Last commit:** 5102302 chore: refresh nucleus live state [skip ci] — 13 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-1ae0169 Fix tap accuracy: aim assist + proximity fuze + fling gesture (13 seconds ago)
+5102302 chore: refresh nucleus live state [skip ci] (13 seconds ago)
+1ae0169 Fix tap accuracy: aim assist + proximity fuze + fling gesture (26 seconds ago)
 76be0ff chore: refresh nucleus live state [skip ci] (16 minutes ago)
-d3f2ef1 chore: refresh nucleus live state [skip ci] (16 minutes ago)
+d3f2ef1 chore: refresh nucleus live state [skip ci] (17 minutes ago)
 e2b6652 Lift Jerusalem dome and old-city wall above the foreground skyline (17 minutes ago)
-bb3676a chore: refresh nucleus live state [skip ci] (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
