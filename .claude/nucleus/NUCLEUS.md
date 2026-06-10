@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 11:31 UTC · code
+Iron Dome v4: touch calibration mode (guided tap/swipe, measures thumb offset, applied to all input), hard 15% margin guarantee w/ automated barrage test, fixed silent input drops (queue drop-oldest bug = the 'function stops' complaint), instant launch, target dedup, monotonic-clock guard. 25/25 tests x3.
+
 ### 2026-06-10 10:36 UTC · code
 Iron Dome v4 'function is everything' overhaul: found root cause of 'function stops' = silent 2-interceptor cap (research: MC Recharged uses unlimited ammo + cooldown) → shot queue that never swallows taps; chain-reaction kills; spawn/land bounds inside city; cityscape brightened 2x + true bottom third; falafels enlarged w/ glow. Verified via rendered screenshots. 17/17 tests.
 
@@ -162,31 +165,34 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 
 ### 2026-06-02 04:50 UTC · chat
 🎉 BIG WIN 2026-06-02: calisthenics video published LIVE to Facebook, Instagram (Reel, zorb_ai), and LinkedIn. X uncertain (Buffer timed out mid-86MB-upload — verify manually). Posting block broken. SUSTAINABLE CADENCE in .claude/os/content/posting-cadence.md: batch 1 pillar video/Sun → Claude atomizes + queues all platforms in Buffer → user approves + posts FB manually. Floor 3/wk; FB 3-5x, IG 4-5x, LI 3x, X 5x, TikTok 3x, newsletter 1x.
-
-### 2026-06-02 04:43 UTC · chat
-🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 10:36 UTC
+- **When:** 2026-06-10 11:31 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 652d6d3 chore: refresh nucleus live state [skip ci] — 17 seconds ago
+- **Last commit:** 93fe228 Add touch calibration mode, enforce 15% margins, fix input drops — 19 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-652d6d3 chore: refresh nucleus live state [skip ci] (17 seconds ago)
-b225a77 Function-first overhaul: every tap fires, chains, visible city + falafel (40 seconds ago)
-ca167ed chore: refresh nucleus live state [skip ci] (11 minutes ago)
-5102302 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-1ae0169 Fix tap accuracy: aim assist + proximity fuze + fling gesture (11 minutes ago)
+93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (19 seconds ago)
+956e4f5 chore: refresh nucleus live state [skip ci] (55 minutes ago)
+652d6d3 chore: refresh nucleus live state [skip ci] (55 minutes ago)
+b225a77 Function-first overhaul: every tap fires, chains, visible city + falafel (56 minutes ago)
+ca167ed chore: refresh nucleus live state [skip ci] (66 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
