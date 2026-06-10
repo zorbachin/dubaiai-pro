@@ -46,6 +46,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 19:19 UTC · code
+Overnight progress: It2+It3 shipped (challenge card image share + ?beat= rematch loop, Today's Siren daily seed, revive-once, difficulty re-tighten, perf sprite caches), og.png + PROMO.md (all-channel launch copy + morning checklist) committed. Game made DOMAIN-PORTABLE per Zorba's zorbot.io directive — share links self-configure to any host. zorbot.io = Railway app (www CNAME 0uded1nb.up.railway.app), NOT GitHub Pages: deploying there needs the zorbot repo added to a session (add-repo tool unavailable tonight, GitHub MCP token also expired). Umbrella-site rec: itch.io page as instant no-DNS public home + CrazyGames/Poki submissions later. QA sign-off agent running.
+
+### 2026-06-10 19:02 UTC · code
+OVERNIGHT DIRECTIVE (Zorba): work through the night with advisor panels to get MAMAD DASH to optimum virality + rock-solid stability + social features; promo materials ready by morning. Executing: It2 Challenge Card share loop, It3 difficulty/revive, perf hardening, QA sign-off, promo pack (key art, channel copy, screenshots, launch checklist). Morning blockers for Zorba: Porkbun DNS records, merge PR #74, optional mamaddash.com domain + GoatCounter account.
+
 ### 2026-06-10 18:55 UTC · code
 Iteration 1 (feel patch) SHIPPED to PR #74: touchstart jump (-100ms latency), landing buffer, fast-fall, hit-stop, camera dip+speed zoom, coin fly+combo pitch, star smash-through, celebration trio fixed (confetti above overlay, cleared on wave start, door flash wired), ghost invuln, ragdoll floor, audio bus+heartbeat pulse. All assertions green. Next per roadmap: It2 Challenge Card + og:image + analytics (awaiting GoatCounter/GA account from Zorba), It3 difficulty+revive+daily. Art prompts handed to Zorba for ChatGPT.
 
@@ -159,34 +165,34 @@ NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / 
 
 ### 2026-06-02 09:19 UTC · chat
 PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product structure: COVER -> ADHD ONE-PAGER (whole system at a glance, 1 page) -> DEEP WALKTHROUGH (numbered steps, easy-to-follow) -> each step has a copy-paste PROMPT box with CLICKABLE 'Run in ChatGPT/Claude' links that auto-fill (chatgpt.com/?q= and claude.ai/new?q= URL-encoded) -> bonus prompt pack -> Work-With-Me CTA. Engine upgraded (bin/etsybuild.py: onepager/step/prompt blocks). Flagship #01 rebuilt as the exemplar/template (6KB->22KB). AWAITING format approval, then batch all 20 to this template + reprice bundle to $60.
-
-### 2026-06-02 09:06 UTC · chat
-ETSY PUBLISH KIT COMPLETE: 20 thumbnails (etsy-shop/thumbs/*.png, 2000x2000 branded) + LISTINGS.md (SEO title/13 tags/price/description for all 20) + 20 PDFs (each w/ Work-With-Me page). Prices: Lite $9, Kit $17, Flagship $24, Bundle $59. CONSTRAINT: Etsy is NOT API-listable from here (not on Zapier; digital file+image upload must be done in Etsy UI). So final publish = Zorba pastes title/tags/desc + uploads thumb (image 1) + PDF (digital file), ~2 min each. LAUNCH SHELF recommendation: Bundle + Beat the Posting Block + Audit Subscriptions + 50 Tasks + ADHD Planner first, then drip 2-3/week as marketing beats.
-
-### 2026-06-02 05:46 UTC · chat
-ALL 20 Etsy products BUILT (etsy-shop/*.pdf) via upgraded engine: each now has page numbers + a branded 'Work With Me / Go Deeper' CTA closing page (contact: letaidoit.pro + @zorb_ai DM) so every sale is a potential consulting lead. ETSY GOAL = $3,000+/month for OrganizedOrionDesign. NEW STRUCTURE (all ventures): each gets a RESEARCH sub-agent running a standing brief — study who's winning, reverse-engineer why, filter through Zorba's real approach/skills (honest/self-shot/buy-back-time/anti-hype), recommend 1-3 moves at weekly review. Doc: .claude/os/research-briefs.md. Default product CTA contact = letaidoit.pro + @zorb_ai (confirm if you want a booking link/email added).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:56 UTC
+- **When:** 2026-06-10 19:20 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 75caadc chore: refresh nucleus live state [skip ci] — 18 seconds ago
+- **Last commit:** 3106d19 Make MAMAD DASH domain-portable + launch promo pack — 2 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 34 ++++++++++++++++++++--------------
+ 1 file changed, 20 insertions(+), 14 deletions(-)
 ```
 
 **Recent commits:**
 ```
-75caadc chore: refresh nucleus live state [skip ci] (18 seconds ago)
-5217a45 Iteration 1 feel patch: zero-latency input, hit-stop, celebration fixes (38 seconds ago)
-35bb0e5 chore: refresh nucleus live state [skip ci] (26 minutes ago)
-b17f3ae chore: refresh nucleus live state [skip ci] (27 minutes ago)
-3a1cd7a chore: refresh nucleus live state [skip ci] (27 minutes ago)
+3106d19 Make MAMAD DASH domain-portable + launch promo pack (2 minutes ago)
+6dcc658 Overnight build: challenge card share loop, daily siren, revive, perf (5 minutes ago)
+f8cfe5c chore: refresh nucleus live state [skip ci] (25 minutes ago)
+75caadc chore: refresh nucleus live state [skip ci] (25 minutes ago)
+5217a45 Iteration 1 feel patch: zero-latency input, hit-stop, celebration fixes (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
