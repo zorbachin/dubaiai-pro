@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 15:46 UTC · code
+STANDING RULE (Zorba): every time a game/site update is pushed, ALWAYS include the playable test link in the reply — no asking. Current MAMAD DASH test link: https://raw.githack.com/zorbachin/dubaiai-pro/claude/mamad-dash-location-0mmse2/mamaddash/index.html (until PR #74 merges + Porkbun DNS fixed, then dubaiai.pro/mamaddash/).
+
 ### 2026-06-10 15:20 UTC · code
 MAMAD DASH polish pass shipped (Zorba feedback: 'addictive but waves feel same, no power-ups, siren too constant'): 4 cycling hood themes w/ distinct skies+obstacle sets+wave banner (beach/florentin/old north/night), 3 power-ups (star/magnet/+3s), siren wail now last-3s-only with chirp at wave start. All verified headless, zero errors, pushed to PR #74.
 
@@ -162,31 +165,34 @@ SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $20
 
 ### 2026-06-02 05:13 UTC · chat
 SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM (already tried to cancel, charged anyway — RESOLVE), Runway AI (premium video, redundant — CUT), TopView (cheap video), OpusClip/opus.pro (clipping — keep for MM), AutoGLM (GLM sub — likely redundant w/ Claude, review), ElevenLabs (voice — right-size), X Premium, Etsy Plus $10 (live shop OrganizedOrionDesign jewelry), Anthropic/Claude (core). NOT paying → HeyGen, Higgsfield, Manus (don't start any; brand is self-shot). Recoverable ~$155-235/mo. SURFACED ventures not in ventures.md: Etsy shop OrganizedOrionDesign + Vybe/vybewear. Ambo call booked today 11:30 EST (Meet: meet.google.com/wfd-zwvt-ies) — need Sam & Jack emails to invite. North Star set to $1M.
-
-### 2026-06-02 05:10 UTC · chat
-OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APPROVE. Stop handing Zorba task lists for himself; execute, then surface for approval. NORTH STAR NUMBER = $1,000,000 (get the portfolio to a million). CADENCE: sync with the CEO daily. ACTIVE: schedule call with Sam & Jack at Ambo (byb-ambassador / Ambassador program) for 11:30 EST today (2026-06-02).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 15:21 UTC
+- **When:** 2026-06-10 15:46 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** c801b56 chore: refresh nucleus live state [skip ci] — 27 seconds ago
+- **Last commit:** e751b5f chore: refresh nucleus live state [skip ci] — 25 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-c801b56 chore: refresh nucleus live state [skip ci] (27 seconds ago)
-7c6b606 MAMAD DASH polish: hood themes, power-ups, siren only in last 3s (65 seconds ago)
-c8efc82 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-e4b03f9 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-a6587b4 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+e751b5f chore: refresh nucleus live state [skip ci] (25 minutes ago)
+c801b56 chore: refresh nucleus live state [skip ci] (26 minutes ago)
+7c6b606 MAMAD DASH polish: hood themes, power-ups, siren only in last 3s (26 minutes ago)
+c8efc82 chore: refresh nucleus live state [skip ci] (35 minutes ago)
+e4b03f9 chore: refresh nucleus live state [skip ci] (35 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
