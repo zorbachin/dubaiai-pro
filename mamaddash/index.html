@@ -9,6 +9,11 @@
 <meta property="og:title" content="MAMAD DASH — outrun the siren">
 <meta property="og:description" content="The siren is live. Jump the savtas, duck the doves, stack shekels, reach the mamad. How many sirens can you survive?">
 <meta property="og:url" content="https://dubaiai.pro/mamaddash/">
+<meta property="og:image" content="https://dubaiai.pro/mamaddash/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dubaiai.pro/mamaddash/og.png">
 <title>MAMAD DASH 🚨</title>
 <style>
   :root{ --navy:#0b0e1a; --gold:#ffd166; --teal:#7ee8c7; --red:#ff5d5d; }
@@ -53,7 +58,7 @@
 
 <div class="panel" id="title">
   <div class="logo">MAMAD DASH</div>
-  <div class="tag">🚨 The siren is live. Jump the savtas, duck the doves, stack shekels — and reach the mamad before the boom.</div>
+  <div class="tag" id="titleTag">🚨 The siren is live. Jump the savtas, duck the doves, stack shekels — and reach the mamad before the boom.</div>
   <div class="controls"><span><b>TAP</b> jump</span><span><b>SWIPE ↓</b> duck</span></div>
   <div class="big">TAP TO RUN ▶</div>
   <div class="best" id="titleBest"></div>
@@ -67,8 +72,10 @@
   <div class="stat">💸 Shekels stacked: <b id="dCoins">0₪</b></div>
   <div class="stat">🏃 Distance: <b id="dDist">0m</b></div>
   <div class="best" id="dBest"></div>
+  <div class="best" id="dChal" style="color:#ffd166;"></div>
+  <button class="btn hidden" id="reviveBtn">🪙 CONTINUE −100₪</button>
   <button class="btn" id="againBtn">RUN AGAIN ▶</button>
-  <button class="btn ghost" id="shareBtn">📤 SHARE SCORE</button>
+  <button class="btn ghost" id="shareBtn">📤 CHALLENGE A FRIEND</button>
 </div>
 
 <script>
@@ -82,6 +89,8 @@ const $=id=>document.getElementById(id);
 const clamp=(v,a,b)=>v<a?a:v>b?b:v;
 const rand=(a,b)=>a+Math.random()*(b-a);
 const irand=(a,b)=>Math.floor(rand(a,b+1));
+let userActed=false;
+const buzz=p=>{try{userActed&&navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
 
 /* ---------------- sound (WebAudio, built on first gesture) ---------------- */
 const Sound={
@@ -130,18 +139,50 @@ $('mute').addEventListener('click',e=>{ e.stopPropagation();
 
 /* ---------------- canvas ---------------- */
 const cv=$('cv'),cx=cv.getContext('2d');
-let W=0,H=0,DPR=1,groundY=0;
+let W=0,H=0,DPR=1,groundY=0,clearCaches=()=>{};
 function resize(){
   DPR=Math.min(2,window.devicePixelRatio||1);
   W=window.innerWidth;H=window.innerHeight;
   cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);
   cx.lineJoin='round';                     // text outlines: no miter spikes
   groundY=Math.round(H*.74);
+  clearCaches();
 }
 window.addEventListener('resize',resize);resize();
 
-function drawEmoji(e,x,y,s){ cx.font=s+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
-  cx.textAlign='center';cx.textBaseline='middle';cx.fillText(e,x,y); }
+/* sprite caches — emoji glyph rasterization and gradients are the two
+   biggest per-frame costs on low-end phones; render each once. */
+const EMO=new Map(), GLOWS=new Map();
+function drawEmoji(e,x,y,s){
+  const k=e+'|'+(s|0);
+  let c=EMO.get(k);
+  if(!c){
+    c=document.createElement('canvas');
+    const pad=Math.ceil(s*1.5);
+    c.width=Math.ceil(pad*DPR);c.height=Math.ceil(pad*DPR);c._w=pad;
+    const g=c.getContext('2d');g.scale(DPR,DPR);
+    g.font=s+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+    g.textAlign='center';g.textBaseline='middle';
+    g.fillText(e,pad/2,pad/2);
+    EMO.set(k,c);
+  }
+  cx.drawImage(c,x-c._w/2,y-c._w/2,c._w,c._w);
+}
+function glow(col,size){             // pre-rendered radial glow sprite
+  const k=col+'|'+size;
+  let c=GLOWS.get(k);
+  if(!c){
+    c=document.createElement('canvas');c.width=c.height=size*2;
+    const g=c.getContext('2d');
+    const r=g.createRadialGradient(size,size,size*.12,size,size,size);
+    r.addColorStop(0,col);r.addColorStop(1,'rgba(0,0,0,0)');
+    g.fillStyle=r;g.fillRect(0,0,size*2,size*2);
+    GLOWS.set(k,c);
+  }
+  return c;
+}
+const STRIPS=new Map(), SKYG=new Map();
+clearCaches=()=>{EMO.clear();GLOWS.clear();STRIPS.clear();SKYG.clear();};
 
 /* ---------------- waves: every siren is a different hood ----------------
    ground = JUMP (gold ring) · air = DUCK (teal ring). No emoji in both
@@ -174,6 +215,7 @@ const G={
   hits:0, stumble:0, invuln:0, shieldFlash:0,
   star:0, magnet:0, banner:null, sirenOn:false,
   jbuf:0, freeze:0, nextPulse:0, combo:0, lastCoin:-9, starHits:0,
+  daily:null, revived:false,
   insideT:0, tutorial:!localStorage.getItem('md_best'),
   rockets:[], pops:[], confetti:[], fly:[],
 };
@@ -184,13 +226,20 @@ function burstConfetti(n){
     vx:rand(-40,40),vy:rand(150,330),rot:rand(0,6),vr:rand(-6,6),
     col:POP_COLS[i%POP_COLS.length],s:rand(5,10)});
 }
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);
+  t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+let WR=Math.random;                            // world randomness — seedable for dailies
+const wrand=(a,b)=>a+WR()*(b-a), wirand=(a,b)=>Math.floor(wrand(a,b+1));
 function waveCfg(n){            // n = 1-based wave number
+  const v1=Math.min(700,470+(n-1)*26);         // …frantic finish keeps climbing
   return {
-    goal: 2800+(n-1)*450,
-    v0:   240+(n-1)*14,                       // calm start…
-    v1:   Math.min(640,470+(n-1)*26),         // …frantic finish
-    obGap:[Math.max(200,330-(n-1)*9), Math.max(290,520-(n-1)*14)],
+    goal: Math.min(5200,2800+(n-1)*450),       // waves stop lengthening, keep speeding
+    v0:   Math.min(v1-90,240+(n-1)*14),        // calm start (never inverts past v1)
+    v1,
+    obGap:[Math.max(195,330-(n-1)*9), Math.max(285,520-(n-1)*14)],
     airP: Math.min(.5,.2+(n-1)*.035),
+    pairP:n>=8?Math.min(.3,.08+(n-8)*.03):0,   // post-8: double-obstacle combos
+    slack:Math.min(.84,.76+Math.max(0,n-8)*.012), // post-8: the clock stops forgiving
   };
 }
 function startWave(){
@@ -203,10 +252,11 @@ function startWave(){
   G.nextPulse=G.t+1.2;
   G.player.y=0; G.player.vy=0; G.player.duckT=0;
   G.banner={t:0,txt:`📍 ${THEME().name}`,sub:`SIREN #${G.wave}`};
-  // budget: clean run uses ~76% of the clock
-  const avg=(c.v0+c.v1)/2; G.total=(c.goal/avg)/.76; G.deadline=G.t+G.total;
+  // budget: clean run uses ~76% of the clock early, ~84% late
+  const avg=(c.v0+c.v1)/2; G.total=(c.goal/avg)/c.slack; G.deadline=G.t+G.total;
+  WR=G.daily?mulberry32(G.daily*2654435761+G.wave*97):Math.random;
   G.state='run'; Sound.alert();             // chirp now — the wail waits for the last 3s
-  if(navigator.vibrate) navigator.vibrate([90,60,90]);
+  buzz([90,60,90]);
 }
 function enterMamad(){
   Sound.sirenStop(); Sound.door();
@@ -215,7 +265,7 @@ function enterMamad(){
   if(G.perfect){ G.coins+=15; G.insideT=2; }
   burstConfetti(G.perfect?70:36);
   G.rockets.push({x:rand(W*.15,W*.5),y:H*.55,t:0});   // iron dome intercept show
-  setTimeout(()=>{ Sound.boom(); flash(.55); shake(); if(navigator.vibrate) navigator.vibrate(160); },650);
+  setTimeout(()=>{ Sound.boom(); flash(.55); shake(); buzz(160); },650);
   if(G.tutorial){ G.tutorial=false; }
 }
 /* ---------------- death cam: savta judges you ---------------- */
@@ -225,7 +275,7 @@ const DEATH_LINES=['NU, BAALI…','Your savta made it. You didn\'t.',
   'Bituach Leumi cannot help you now.'];
 function die(){
   Sound.sirenStop(); Sound.boom(); flash(.85); shake();
-  if(navigator.vibrate) navigator.vibrate([60,40,220]);
+  buzz([60,40,220]);
   G.state='deathcam'; G.deathT=0;
   G.obs=G.obs.filter(o=>Math.abs(o.x-PLAYER_X())>240);   // no photobombing savtas
   G.deathLine=DEATH_LINES[irand(0,DEATH_LINES.length-1)];
@@ -246,9 +296,20 @@ function showDeathPanel(){
   $('dBest').textContent=isBest?'🏆 NEW BEST!':
     (nb.sirens>0&&nb.sirens-sirens<=1&&sirens>0)?`SO CLOSE — best is ${nb.sirens} sirens. One more run.`:
     `Best: ${nb.sirens} sirens · ${nb.coins}₪`;
+  if(G.daily){
+    const k='md_daily_'+G.daily, prev=+(localStorage.getItem(k)||0);
+    if(sirens>prev) localStorage.setItem(k,sirens);
+    $('dChal').textContent=`📅 Daily #${G.daily} — your best today: ${Math.max(prev,sirens)} sirens`;
+  } else if(CHAL){
+    $('dChal').textContent=sirens>CHAL.beat?`🏆 CHALLENGE BEATEN — ${sirens} vs their ${CHAL.beat}. Send it back 🤌`:
+      sirens===CHAL.beat?`🤝 TIED at ${sirens}. Unacceptable. Again.`:
+      `Their ${CHAL.beat} still stands. Rematch?`;
+  } else $('dChal').textContent='';
+  $('reviveBtn').classList.toggle('hidden',G.revived||G.coins<100);
   $('dead').classList.remove('hidden');
 }
-function resetRun(){ G.wave=0;G.dist=0;G.coins=0;startWave(); }
+function resetRun(daily){ G.wave=0;G.dist=0;G.coins=0;G.revived=false;
+  G.daily=daily||null;startWave(); }
 function flash(o){ const f=$('flash');f.style.transition='none';f.style.opacity=o;
   requestAnimationFrame(()=>{f.style.transition='opacity .5s';f.style.opacity=0;}); }
 function shake(){ const w=$('wrap');w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake'); }
@@ -264,10 +325,12 @@ function duck(){ const p=G.player;
   if(p.y>0){ p.vy=-980; p.duckT=.6; Sound.duck(); }   // mid-air: slam down into a duck
   else { p.duckT=.55; Sound.duck(); } }
 function primary(){          // any tap: start / jump / skip cam / restart
-  if(G.state==='title'){ Sound.init(); $('title').classList.add('hidden'); resetRun(); }
+  userActed=true;
+  if(G.state==='title'){ Sound.init(); $('title').classList.add('hidden');
+    resetRun(WANT_DAILY?dayNum():null); }
   else if(G.state==='run') jump();
   else if(G.state==='deathcam'&&G.deathT>.8) showDeathPanel();
-  else if(G.state==='dead'&&G.t-G.deadAt>.45){ $('dead').classList.add('hidden'); resetRun(); }
+  else if(G.state==='dead'&&G.t-G.deadAt>.45){ $('dead').classList.add('hidden'); resetRun(G.daily); }
 }
 /* jump fires on touch DOWN (zero perceived latency). A tap that turns out
    to be a swipe-down self-heals: duck() slams an airborne player straight
@@ -296,13 +359,87 @@ window.addEventListener('keydown',e=>{
   if(k===' '||k==='arrowup'||k==='w'){ e.preventDefault(); primary(); }
   if(k==='arrowdown'||k==='s'){ e.preventDefault(); if(G.state==='run') duck(); }
 });
-$('againBtn').addEventListener('click',()=>{ $('dead').classList.add('hidden'); resetRun(); });
+$('againBtn').addEventListener('click',()=>{ $('dead').classList.add('hidden'); resetRun(G.daily); });
+$('reviveBtn').addEventListener('click',()=>{
+  if(G.revived||G.coins<100||G.state!=='dead') return;
+  G.revived=true; G.coins-=100;
+  $('dead').classList.add('hidden');
+  G.state='run'; G.sirenOn=false; G.invuln=1.5;
+  const need=(G.goal-G.prog)/Math.max(1,G.speed);
+  G.total=Math.max(4.5,need*1.2+1); G.deadline=G.t+G.total;
+  Sound.alert();
+  pop(PLAYER_X(),groundY-120,'THE BOOM MISSED. RUN! 🏃','#7ee8c7',true);
+});
+
+/* ---------------- challenge card share loop ---------------- */
+const QS=new URLSearchParams(location.search);
+const CHAL=QS.get('beat')!==null?{beat:parseInt(QS.get('beat'))||0,c:parseInt(QS.get('c'))||0}:null;
+const WANT_DAILY=QS.get('daily')!==null;
+const dayNum=()=>Math.floor(Date.now()/864e5)-20580;   // daily # counts from launch era
+if(CHAL){
+  $('titleTag').innerHTML=`👊 Someone survived <b style="color:#ffd166">${CHAL.beat} siren${CHAL.beat===1?'':'s'}</b> and stacked ${CHAL.c}₪.<br>Think you can do better?`;
+  $('title').querySelector('.big').textContent='ACCEPT THE CHALLENGE ▶';
+} else if(WANT_DAILY){
+  $('titleTag').innerHTML=`📅 <b style="color:#ffd166">Today's Siren #${dayNum()}</b> — the exact same gauntlet for everyone, once a day. Settle it.`;
+}
+function renderCard(s,coins,hood,line){
+  const c=document.createElement('canvas');c.width=1080;c.height=1350;
+  const x=c.getContext('2d');x.lineJoin='round';
+  const T=THEME();
+  const sky=x.createLinearGradient(0,0,0,1000);
+  sky.addColorStop(0,T.sky[0]);sky.addColorStop(.6,T.sky[1]);sky.addColorStop(1,T.sky[2]);
+  x.fillStyle=sky;x.fillRect(0,0,1080,1000);
+  x.fillStyle=T.far;
+  for(let i=0;i<9;i++){const bh=140+Math.abs(Math.sin(i*73.7))*200;x.fillRect(i*130-20,1000-bh,110,bh);}
+  x.fillStyle=T.near;
+  for(let i=0;i<8;i++){const bh=90+Math.abs(Math.sin(i*127.3))*180;x.fillRect(i*140+8,1000-bh,124,bh);}
+  x.fillStyle=T.street;x.fillRect(0,1000,1080,350);
+  const em=(e,ex,ey,es)=>{x.font=es+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+    x.textAlign='center';x.textBaseline='middle';x.fillText(e,ex,ey);};
+  em('🚨',540,170,150);
+  em('👵',760,930,150); em('🤌',660,830,72);
+  x.save();x.translate(330,930);x.scale(-1,1);x.rotate(.5);em('🏃',0,0,150);x.restore();
+  const txt=(str,fy,fs,fill,maxW)=>{
+    x.font=`900 ${fs}px sans-serif`;
+    const w=x.measureText(str).width; if(maxW&&w>maxW) x.font=`900 ${Math.floor(fs*maxW/w)}px sans-serif`;
+    x.textAlign='center';x.textBaseline='middle';
+    x.lineWidth=fs*.16;x.strokeStyle='rgba(15,20,40,.9)';
+    x.strokeText(str,540,fy);x.fillStyle=fill;x.fillText(str,540,fy);
+  };
+  txt('CAUGHT OUTSIDE',360,108,'#ffd166',1000);
+  txt(`🚨 ${s} SIREN${s===1?'':'S'} · 💸 ${coins}₪`,490,72,'#fff',980);
+  txt(`📍 ${hood}`,580,54,'#ffe1e1',900);
+  if(line) txt(`"${line}"`,680,44,'#aef0dc',980);
+  x.fillStyle='rgba(13,17,32,.88)';x.fillRect(0,1120,1080,230);
+  txt(`CAN YOU BEAT ${s}?`,1198,64,'#7ee8c7',960);
+  txt('dubaiai.pro/mamaddash',1288,56,'#ffd166',960);
+  return c;
+}
 $('shareBtn').addEventListener('click',async()=>{
   const s=G.wave-1;
-  const txt=`🚨 I survived ${s} siren${s===1?'':'s'} and stacked ${G.coins}₪ in MAMAD DASH — beat me: https://dubaiai.pro/mamaddash/`;
-  try{ if(navigator.share) await navigator.share({text:txt});
-    else{ await navigator.clipboard.writeText(txt); $('shareBtn').textContent='✅ COPIED';
-      setTimeout(()=>$('shareBtn').textContent='📤 SHARE SCORE',1600); } }catch(e){}
+  const link=G.daily?`https://dubaiai.pro/mamaddash/?daily=1`
+    :`https://dubaiai.pro/mamaddash/?beat=${s}&c=${G.coins}`;
+  let txt;
+  if(G.daily) txt=`📅 MAMAD DASH Daily #${G.daily} — ${s} siren${s===1?'':'s'} · ${G.coins}₪. Same gauntlet for everyone, once a day: ${link}`;
+  else if(CHAL&&s>CHAL.beat) txt=`🤌 You said ${CHAL.beat}. I survived ${s} sirens and stacked ${G.coins}₪. Your move: ${link}`;
+  else if(CHAL) txt=`They got ${CHAL.beat}, I got ${s}. This isn't over: ${link}`;
+  else txt=`🚨 I survived ${s} siren${s===1?'':'s'} and stacked ${G.coins}₪ in MAMAD DASH — beat me: ${link}`;
+  try{
+    let shared=false;
+    try{
+      const card=renderCard(s,G.coins,THEME().name,G.deathLine||'');
+      const blob=await new Promise(r=>card.toBlob(r,'image/png'));
+      if(blob&&navigator.canShare&&window.File){
+        const file=new File([blob],'mamaddash.png',{type:'image/png'});
+        if(navigator.canShare({files:[file]})){ await navigator.share({files:[file],text:txt}); shared=true; }
+      }
+    }catch(e){}
+    if(!shared){
+      if(navigator.share) await navigator.share({text:txt});
+      else{ await navigator.clipboard.writeText(txt); $('shareBtn').textContent='✅ COPIED';
+        setTimeout(()=>$('shareBtn').textContent='📤 CHALLENGE A FRIEND',1600); }
+    }
+  }catch(e){}
 });
 
 /* ---------------- update ---------------- */
@@ -333,7 +470,7 @@ function update(dt){
   if(G.magnet>0) G.magnet-=dt;
   // the wail only for the final 3 seconds
   if(left<=3&&!G.sirenOn){ G.sirenOn=true; Sound.sirenStart();
-    if(navigator.vibrate) navigator.vibrate([60,40,60,40,60]); }
+    buzz([60,40,60,40,60]); }
   if(left>3&&G.sirenOn){ G.sirenOn=false; Sound.sirenStop(); }   // ⌛ pushed it back
   // player physics (fast-fall after apex: snappy, same jump height)
   const wasAir=p.y>0;
@@ -356,24 +493,29 @@ function update(dt){
   G.prog+=v*dt; G.dist+=v*dt;
   // spawn obstacles by distance (runway stays clear before the door)
   if(G.goal-G.prog>700&&G.prog>=G.nextOb){
-    const air=Math.random()<c.airP+(u*.12);
+    const air=WR()<c.airP+(u*.12);
     const T=THEME(), set=air?T.air:T.ground;
-    G.obs.push({x:W+90,air,emoji:set[irand(0,set.length-1)],
+    G.obs.push({x:W+90,air,emoji:set[wirand(0,set.length-1)],
       label:G.tutorial&&G.obs.length<2?(air?'SWIPE ↓':'TAP!'):null});
-    G.nextOb=G.prog+Math.max(c.obGap[0],rand(c.obGap[0],c.obGap[1])*(1-.4*u));
+    // post-wave-8 combos: a second, opposite-type obstacle right behind
+    if(c.pairP&&WR()<c.pairP){
+      const set2=air?T.ground:T.air;
+      G.obs.push({x:W+240,air:!air,emoji:set2[wirand(0,set2.length-1)],label:null});
+    }
+    G.nextOb=G.prog+Math.max(c.obGap[0],wrand(c.obGap[0],c.obGap[1])*(1-.4*u));
   }
   // one power-up per wave: ⭐ untouchable · 🧲 coin magnet · ⌛ +3s
   if(G.nextPow>0&&G.prog>=G.nextPow){
     G.nextPow=-1;
-    const kind=['star','magnet','time'][irand(0,2)];
-    G.pows.push({x:W+90,y:groundY-66-irand(0,1)*52,kind,
+    const kind=['star','magnet','time'][wirand(0,2)];
+    G.pows.push({x:W+90,y:groundY-66-wirand(0,1)*52,kind,
       emoji:{star:'⭐',magnet:'🧲',time:'⌛'}[kind]});
   }
   // coins: small arcs between obstacles
   if(G.goal-G.prog>500&&G.prog>=G.nextCoin){
-    const lift=Math.random()<.5?0:64;
+    const lift=WR()<.5?0:64;
     for(let i=0;i<3;i++) G.picks.push({x:W+90+i*46,y:groundY-34-lift-(lift?Math.sin(i/2*Math.PI)*16:0)});
-    G.nextCoin=G.prog+rand(520,900);
+    G.nextCoin=G.prog+wrand(520,900);
   }
   for(const o of G.obs) o.x-=v*dt;
   for(const k of G.picks) k.x-=v*dt;
@@ -389,7 +531,7 @@ function update(dt){
   // power-up pickup
   for(const w of G.pows){
     if(Math.abs(w.x-px)<34&&Math.abs((groundY-p.y-30)-w.y)<52){
-      w.x=-999; Sound.power(); if(navigator.vibrate) navigator.vibrate(60);
+      w.x=-999; Sound.power(); buzz(60);
       if(w.kind==='star'){ G.star=3; pop(px,groundY-110,'⭐ UNTOUCHABLE!','#ffd166',true); }
       else if(w.kind==='magnet'){ G.magnet=7; pop(px,groundY-110,'🧲 COIN MAGNET!','#8ad2ff',true); }
       else { G.deadline+=3; pop(px,groundY-110,'⌛ +3 SECONDS!','#7ee8c7',true); }
@@ -408,9 +550,10 @@ function update(dt){
     if(Math.abs(o.x-px)>30) continue;
     const hit=o.air?(!ducking&&p.y<52):(p.y<44);
     if(hit){
-      G.hits++; G.stumble=.5; G.invuln=.9; G.prog=Math.max(0,G.prog-150);
+      G.hits++; G.stumble=.5; G.invuln=.9;
+      G.prog=Math.max(0,G.prog-Math.min(260,140+G.wave*6));  // hits hurt more, later
       G.freeze=.07;                        // hit-stop: the impact has weight
-      o.x=-999; Sound.hit(); shake(); if(navigator.vibrate) navigator.vibrate(110);
+      o.x=-999; Sound.hit(); shake(); buzz(110);
       pop(px,groundY-90,'OOF! 💢','#ff5d5d',true);
       break;
     }
@@ -445,10 +588,12 @@ function draw(){
     cx.save();cx.translate(px,groundY-40);cx.scale(z,z);cx.translate(-px,-(groundY-40)+dip);
     cam=true;
   }
-  // sky: every hood has its own light
+  // sky: every hood has its own light (gradient cached per theme)
   const T=THEME();
-  const sky=cx.createLinearGradient(0,0,0,groundY);
-  sky.addColorStop(0,T.sky[0]);sky.addColorStop(.6,T.sky[1]);sky.addColorStop(1,T.sky[2]);
+  let sky=SKYG.get(T.name);
+  if(!sky){ sky=cx.createLinearGradient(0,0,0,groundY);
+    sky.addColorStop(0,T.sky[0]);sky.addColorStop(.6,T.sky[1]);sky.addColorStop(1,T.sky[2]);
+    SKYG.set(T.name,sky); }
   cx.fillStyle=sky;cx.fillRect(0,0,W,groundY);
   // alert vignette pulses as the boom nears
   if(G.state==='run'&&u>.62){
@@ -465,19 +610,15 @@ function draw(){
     }
     cx.globalAlpha=1;
   } else {
-    const sun=cx.createRadialGradient(W*.82,H*.11,8,W*.82,H*.11,90);
-    sun.addColorStop(0,'rgba(255,235,150,.95)');sun.addColorStop(1,'rgba(255,235,150,0)');
-    cx.fillStyle=sun;cx.fillRect(W*.82-90,H*.11-90,180,180);
+    cx.drawImage(glow('rgba(255,235,150,.95)',90),W*.82-90,H*.11-90);
     drawEmoji('☀️',W*.82,H*.11,40);
     for(let i=0;i<5;i++){
       const cxp=((i*263.7+G.t*(8+i*3))%(W+160))-80, cyp=(.06+(i*.09)%.3)*H;
       drawEmoji('☁️',cxp,cyp,34+(i%3)*14);
     }
   }
-  cx.fillStyle=T.far;
-  skyline(G.dist*.12,Math.max(90,groundY*.3),.55,T.win);
-  cx.fillStyle=T.near;
-  skyline(G.dist*.28+400,Math.max(58,groundY*.2),T.night?1.6:.78,T.win);
+  skyline(G.dist*.12,Math.max(90,groundY*.3),.55,T.win,T.far);
+  skyline(G.dist*.28+400,Math.max(58,groundY*.2),T.night?1.6:.78,T.win,T.near);
   // street
   cx.fillStyle=T.street;cx.fillRect(0,groundY,W,H-groundY);
   cx.fillStyle='rgba(0,0,0,.22)';cx.fillRect(0,groundY,W,6);
@@ -489,18 +630,14 @@ function draw(){
   if(doorX<W+120) door(doorX);
   // coins: gold glow + spin
   for(const k of G.picks){
-    const g=cx.createRadialGradient(k.x,k.y,2,k.x,k.y,22);
-    g.addColorStop(0,'rgba(255,220,90,.55)');g.addColorStop(1,'rgba(255,220,90,0)');
-    cx.fillStyle=g;cx.fillRect(k.x-22,k.y-22,44,44);
+    cx.drawImage(glow('rgba(255,220,90,.55)',22),k.x-22,k.y-22);
     cx.save();cx.translate(k.x,k.y);cx.scale(Math.abs(Math.sin(G.t*5+k.x*.02))*.7+.3,1);
     drawEmoji('🪙',0,0,26);cx.restore();
   }
   // power-ups: pulsing white ring, gentle bob
   for(const w of G.pows){
     const by2=w.y+Math.sin(G.t*3+w.x*.01)*6;
-    const pg=cx.createRadialGradient(w.x,by2,4,w.x,by2,30);
-    pg.addColorStop(0,'rgba(255,255,255,.6)');pg.addColorStop(1,'rgba(255,255,255,0)');
-    cx.fillStyle=pg;cx.fillRect(w.x-30,by2-30,60,60);
+    cx.drawImage(glow('rgba(255,255,255,.6)',30),w.x-30,by2-30);
     cx.strokeStyle=`rgba(255,255,255,${.5+.4*Math.sin(G.t*6)})`;cx.lineWidth=3;
     cx.beginPath();cx.arc(w.x,by2,26,0,7);cx.stroke();
     drawEmoji(w.emoji,w.x,by2,34);
@@ -524,10 +661,10 @@ function draw(){
   cx.beginPath();cx.ellipse(px,groundY+8,sw,6,0,0,7);cx.fill();
   // ⭐ star aura: golden, sparkling, untouchable
   if(G.star>0){
-    const ay=groundY-p.y-30, ag=cx.createRadialGradient(px,ay,6,px,ay,46);
-    ag.addColorStop(0,`rgba(255,220,90,${.55*Math.min(1,G.star)})`);
-    ag.addColorStop(1,'rgba(255,220,90,0)');
-    cx.fillStyle=ag;cx.fillRect(px-46,ay-46,92,92);
+    const ay=groundY-p.y-30;
+    cx.globalAlpha=Math.min(1,G.star);
+    cx.drawImage(glow('rgba(255,220,90,.55)',46),px-46,ay-46);
+    cx.globalAlpha=1;
     drawEmoji('✨',px+Math.sin(G.t*9)*30,ay-Math.abs(Math.cos(G.t*7))*34,16);
   }
   if(dc){
@@ -610,18 +747,30 @@ function draw(){
   // teal flash as the mamad door slams behind you
   if(G.shieldFlash>0){ cx.fillStyle=`rgba(126,232,199,${.45*G.shieldFlash})`;cx.fillRect(0,0,W,H); }
 }
-function skyline(off,hMax,shade,winCol){
-  const sp=170,first=Math.floor(off/sp)-1;
-  for(let i=first;i*sp-off<W+sp;i++){
-    const seed=Math.abs(Math.sin(i*127.3));
-    const bh=40+seed*hMax, bw=90+((i%3)*30);
-    cx.fillRect(i*sp-off,groundY-bh,bw,bh);
-    cx.save();cx.fillStyle=`${winCol||'rgba(38,166,200,'}${.4*shade})`;
-    for(let wY=groundY-bh+10;wY<groundY-12;wY+=18)
-      for(let wX=i*sp-off+8;wX<i*sp-off+bw-10;wX+=22)
-        if(Math.abs(Math.sin(wX*wY))>.72) cx.fillRect(wX,wY,7,9);
-    cx.restore();
+function skyline(off,hMax,shade,winCol,fill){
+  // pre-rendered periodic strip (8 buildings), tiled — kills the per-frame
+  // windows double-loop that janked low-end phones
+  const sp=170, period=sp*8;
+  const key=fill+'|'+winCol+'|'+Math.round(hMax)+'|'+shade;
+  let st=STRIPS.get(key);
+  if(!st){
+    st=document.createElement('canvas');
+    st.width=period; st.height=Math.ceil(hMax+50);
+    const g=st.getContext('2d');
+    for(let i=0;i<8;i++){
+      const seed=Math.abs(Math.sin(i*127.3));
+      const bh=40+seed*hMax, bw=90+((i%3)*30);
+      g.fillStyle=fill;
+      g.fillRect(i*sp,st.height-bh,bw,bh);
+      g.fillStyle=`${winCol}${.4*shade})`;
+      for(let wY=st.height-bh+10;wY<st.height-12;wY+=18)
+        for(let wX=i*sp+8;wX<i*sp+bw-10;wX+=22)
+          if(Math.abs(Math.sin(wX*wY))>.72) g.fillRect(wX,wY,7,9);
+    }
+    STRIPS.set(key,st);
   }
+  let x=-(off%period); if(x>0) x-=period;
+  for(;x<W;x+=period) cx.drawImage(st,x,groundY-st.height);
 }
 function door(x){
   cx.fillStyle='#0f8a72';cx.fillRect(x-8,groundY-118,86,118);
