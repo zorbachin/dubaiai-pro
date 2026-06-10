@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MAMADIO — Hustle Tel Aviv Between the Sirens</title>
+<style>
+  :root{
+    --red:#e63946; --gold:#f4a261; --teal:#2a9d8f; --ink:#10141f;
+    --paper:#fffbe9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);
+    font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--paper);
+    user-select:none;-webkit-user-select:none;touch-action:none;}
+  #game{position:absolute;inset:0;width:100%;height:100%;display:block;}
+
+  /* ---------- HUD ---------- */
+  #hud{position:absolute;top:0;left:0;right:0;display:none;justify-content:space-between;
+    align-items:flex-start;padding:10px 14px;pointer-events:none;z-index:5;}
+  .pill{background:rgba(16,20,31,.82);border:1px solid rgba(255,255,255,.18);
+    border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px;
+    display:flex;gap:8px;align-items:center;backdrop-filter:blur(4px);}
+  #shekels{color:#ffd166;font-size:18px;}
+  #hudRight{display:flex;flex-direction:column;gap:6px;align-items:flex-end;}
+  #questHint{position:absolute;bottom:110px;left:50%;transform:translateX(-50%);
+    background:rgba(16,20,31,.85);border:1px solid rgba(255,255,255,.25);border-radius:12px;
+    padding:8px 16px;font-size:15px;display:none;z-index:5;text-align:center;max-width:90vw;}
+  #toast{position:absolute;top:64px;left:50%;transform:translateX(-50%);
+    background:rgba(42,157,143,.95);border-radius:12px;padding:8px 18px;font-weight:700;
+    font-size:16px;display:none;z-index:8;text-align:center;max-width:90vw;
+    box-shadow:0 4px 20px rgba(0,0,0,.4);}
+
+  /* ---------- siren banner ---------- */
+  #alertBanner{position:absolute;top:0;left:0;right:0;display:none;z-index:9;
+    background:var(--red);color:#fff;text-align:center;padding:10px 8px;
+    font-weight:900;font-size:17px;letter-spacing:.5px;
+    animation:flash .5s steps(2) infinite;}
+  @keyframes flash{50%{background:#a4161a;}}
+  #alertBanner small{display:block;font-weight:600;font-size:13px;opacity:.95;}
+
+  /* ---------- overlays ---------- */
+  .screen{position:absolute;inset:0;display:none;z-index:20;overflow-y:auto;
+    background:radial-gradient(ellipse at 50% 0%,#1d2438 0%,var(--ink) 70%);
+    text-align:center;padding:28px 18px 48px;}
+  .screen.show{display:block;}
+  h1.logo{font-size:clamp(44px,11vw,84px);font-weight:900;letter-spacing:2px;
+    background:linear-gradient(180deg,#ffd166,#e76f51);-webkit-background-clip:text;
+    background-clip:text;color:transparent;line-height:1;}
+  .tag{color:#cdd6e8;font-size:clamp(14px,3.4vw,18px);margin:10px 0 4px;}
+  .sub{color:#8b95ab;font-size:13px;max-width:560px;margin:6px auto 0;}
+  .cards{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:26px auto;}
+  .card{width:200px;background:#1b2233;border:2px solid #303a52;border-radius:16px;
+    padding:18px 14px;cursor:pointer;transition:transform .15s,border-color .15s;}
+  .card:hover{transform:translateY(-4px);border-color:var(--gold);}
+  .card.locked{opacity:.45;cursor:not-allowed;}
+  .card .big{font-size:52px;line-height:1.1;}
+  .card h3{margin:8px 0 4px;font-size:17px;color:#ffd166;}
+  .card p{font-size:12.5px;color:#aab4c8;line-height:1.45;}
+  .card .perk{margin-top:8px;font-size:11.5px;color:#7ee8c7;font-weight:700;}
+  .btn{display:inline-block;margin-top:18px;background:linear-gradient(180deg,#ffd166,#e9a23b);
+    color:#241a05;font-weight:900;font-size:18px;border:none;border-radius:999px;
+    padding:14px 38px;cursor:pointer;box-shadow:0 6px 18px rgba(233,162,59,.35);}
+  .btn:active{transform:scale(.97);}
+  .btn.ghost{background:transparent;color:#cdd6e8;border:1px solid #46506b;box-shadow:none;
+    font-size:14px;padding:10px 24px;}
+
+  /* ---------- minigame dialog ---------- */
+  #mini{position:absolute;inset:0;display:none;z-index:30;background:rgba(10,13,22,.78);
+    backdrop-filter:blur(3px);}
+  #mini .box{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:min(440px,92vw);background:#1b2233;border:2px solid #46506b;border-radius:18px;
+    padding:22px 20px;text-align:center;}
+  #mini h2{color:#ffd166;font-size:20px;margin-bottom:6px;}
+  #mini .desc{color:#aab4c8;font-size:14px;margin-bottom:14px;line-height:1.5;}
+  #barWrap{height:34px;background:#0e1320;border-radius:10px;position:relative;
+    overflow:hidden;display:none;margin-bottom:14px;}
+  #barZone{position:absolute;top:0;bottom:0;background:rgba(42,157,143,.6);}
+  #barCur{position:absolute;top:0;bottom:0;width:6px;background:#ffd166;border-radius:3px;}
+  #mashWrap{display:none;margin-bottom:14px;}
+  #mashFill{height:26px;background:linear-gradient(90deg,#2a9d8f,#7ee8c7);width:0%;
+    border-radius:10px;transition:width .08s;}
+  #mashTrack{background:#0e1320;border-radius:10px;overflow:hidden;}
+  #choiceWrap{display:none;flex-direction:column;gap:10px;margin-bottom:6px;}
+  .choiceBtn{background:#242e47;border:1px solid #46506b;color:#e9eef9;border-radius:12px;
+    padding:12px;font-size:14.5px;cursor:pointer;text-align:left;line-height:1.4;}
+  .choiceBtn:hover{border-color:var(--gold);}
+  #miniStatus{color:#7ee8c7;font-weight:700;font-size:15px;min-height:22px;margin-bottom:8px;}
+  #miniAction{width:100%;font-size:17px;margin-top:4px;}
+
+  /* ---------- touch controls ---------- */
+  #stick{position:absolute;bottom:26px;left:26px;width:120px;height:120px;border-radius:50%;
+    background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.18);display:none;z-index:6;}
+  #knob{position:absolute;left:35px;top:35px;width:50px;height:50px;border-radius:50%;
+    background:rgba(255,255,255,.28);}
+  #actBtn{position:absolute;bottom:40px;right:30px;width:88px;height:88px;border-radius:50%;
+    background:rgba(255,209,102,.92);color:#241a05;font-weight:900;font-size:15px;border:none;
+    display:none;z-index:6;box-shadow:0 4px 16px rgba(0,0,0,.45);}
+
+  #shakeWrap.shake{animation:shk .35s linear;}
+  @keyframes shk{0%,100%{transform:translate(0)}20%{transform:translate(-10px,6px)}
+    40%{transform:translate(9px,-7px)}60%{transform:translate(-7px,-4px)}80%{transform:translate(6px,5px)}}
+
+  #endStats{margin:18px auto;max-width:380px;text-align:left;background:#1b2233;
+    border:1px solid #303a52;border-radius:14px;padding:16px 20px;font-size:15px;line-height:2;}
+  .muted{color:#8b95ab;font-size:12px;margin-top:14px;}
+  a{color:#7ee8c7;}
+</style>
+</head>
+<body>
+<div id="shakeWrap">
+  <canvas id="game"></canvas>
+</div>
+
+<div id="hud">
+  <div class="pill"><span>💸</span><span id="shekels">0₪</span></div>
+  <div id="hudRight">
+    <div class="pill" id="dayPill">🌞 <span id="dayTime">4:00</span></div>
+    <div class="pill" id="sirenPill" style="display:none;color:#ff8a8a">🚨 <span id="sirenTime"></span></div>
+    <div class="pill" id="fxPill" style="display:none;color:#7ee8c7"><span id="fxText"></span></div>
+  </div>
+</div>
+
+<div id="alertBanner">🚨 צבע אדום — RED ALERT — HOME FRONT COMMAND 🚨
+  <small>Get to the nearest MAMAD / MIKLAT — follow the arrow!</small></div>
+<div id="questHint"></div>
+<div id="toast"></div>
+
+<!-- ============ START ============ -->
+<div class="screen show" id="scrStart">
+  <h1 class="logo">MAMADIO</h1>
+  <div class="tag">The official companion game to <b>Iron Dome</b> 🛡️</div>
+  <div class="sub">Tel Aviv. You're unemployed, the Bituach Leumi money just landed, and the
+    city is full of food deals, side hustles and questionable characters. Stack as many
+    shekels as you can — but when Home Front Command sounds the alarm, <b>drop everything
+    and run to the mamad</b>.</div>
+  <button class="btn" onclick="UI.toChar()">PLAY ▶</button>
+  <div class="muted">Move: WASD / arrows / left stick &nbsp;·&nbsp; Interact: E / SPACE / yellow button</div>
+</div>
+
+<!-- ============ CHARACTER ============ -->
+<div class="screen" id="scrChar">
+  <h1 class="logo" style="font-size:38px;">CHOOSE YOUR HUSTLER</h1>
+  <div class="cards" id="charCards"></div>
+  <button class="btn ghost" onclick="UI.show('scrStart')">← back</button>
+</div>
+
+<!-- ============ LEVEL ============ -->
+<div class="screen" id="scrLevel">
+  <h1 class="logo" style="font-size:38px;">PICK YOUR HOOD</h1>
+  <div class="cards" id="levelCards"></div>
+  <button class="btn ghost" onclick="UI.show('scrChar')">← back</button>
+</div>
+
+<!-- ============ END ============ -->
+<div class="screen" id="scrEnd">
+  <h1 class="logo" style="font-size:40px;" id="endTitle">DAY OVER</h1>
+  <div class="tag" id="endTag"></div>
+  <div id="endStats"></div>
+  <button class="btn" onclick="UI.toLevel()">PLAY AGAIN ▶</button>
+  <button class="btn ghost" onclick="UI.show('scrStart')">main menu</button>
+</div>
+
+<!-- ============ MINIGAME ============ -->
+<div id="mini"><div class="box">
+  <h2 id="miniTitle"></h2>
+  <div class="desc" id="miniDesc"></div>
+  <div id="barWrap"><div id="barZone"></div><div id="barCur"></div></div>
+  <div id="mashWrap"><div id="mashTrack"><div id="mashFill"></div></div></div>
+  <div id="choiceWrap"></div>
+  <div id="miniStatus"></div>
+  <button class="btn" id="miniAction">GO</button>
+</div></div>
+
+<div id="stick"><div id="knob"></div></div>
+<button id="actBtn">E</button>
+
+<script>
+'use strict';
+/* =====================================================================
+   MAMADIO — hustle Tel Aviv between the sirens.
+   Companion game to Iron Dome. Single file, no build step.
+   ===================================================================== */
+
+const $ = id => document.getElementById(id);
+const rand = (a,b) => a + Math.random()*(b-a);
+const irand = (a,b) => Math.floor(rand(a,b+1));
+const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+const dist = (a,b) => Math.hypot(a.x-b.x, a.y-b.y);
+
+/* ---------------------- characters ---------------------- */
+const CHARACTERS = {
+  chabad: {
+    name:'Mendy the Chabadnik', emoji:'🧔‍♂️', hat:'🎩',
+    blurb:'Roams the city with a tefillin bag and infinite optimism. Every passerby is a customer for a mitzvah.',
+    perk:'PERK: can offer tefillin to ANY pedestrian for donations. Calm under fire (+4s siren grace).',
+    speed:1.0, foodDiscount:0, sirenGrace:4, haggleEdge:0,
+  },
+  shop: {
+    name:'Kobi the Shop Owner', emoji:'🧔🏽', hat:'🧢',
+    blurb:'Closed the shop "temporarily" in 2023. Knows every supplier, every trick, every cousin with a deal.',
+    perk:'PERK: 30% off all food & scooters, and a serious edge when haggling.',
+    speed:1.0, foodDiscount:.3, sirenGrace:0, haggleEdge:1,
+  },
+  influencer: {
+    name:'Noa the Influencer', emoji:'💁‍♀️', hat:'🕶️',
+    blurb:'180k followers, 0 shekels. Everything is content — even the run to the miklat (especially the run to the miklat).',
+    perk:'PERK: selfie spots pay double, scooters are faster, +10% payout on every quest (sponsored).',
+    speed:1.08, foodDiscount:0, sirenGrace:0, haggleEdge:0,
+  },
+};
+
+/* ---------------------- levels ---------------------- */
+/* world is 1800x1300; zones are decorative rects, props are emoji set-dressing */
+const LEVELS = {
+  beach: {
+    name:'Gordon Beach', emoji:'🏖️', unlock:0,
+    blurb:'Sand, matkot snipers, overpriced sunbeds. Sirens echo off the sea.',
+    ground:'#e8d5a3',
+    zones:[
+      {x:0,y:0,w:520,h:1300,c:'#3aa7c9'},            // sea
+      {x:520,y:0,w:90,h:1300,c:'#bfe6f2'},           // surf
+      {x:1500,y:0,w:300,h:1300,c:'#9a9aa5'},         // promenade
+    ],
+    props:[
+      ['⛱️',760,180],['⛱️',900,420],['⛱️',700,700],['⛱️',880,980],['🌴',1460,120],
+      ['🌴',1470,520],['🌴',1460,900],['🌴',1470,1200],['🚿',1380,300],['🛟',600,560],
+      ['⛵',200,250],['🚤',150,800],['🌊',300,500],['🌊',250,1050],['🐕',1100,1100],
+      ['🏄',590,300],['🪁',1000,150],
+    ],
+    shelters:[
+      {x:1560,y:160,w:130,h:90,label:'Miklat 12'},
+      {x:1560,y:640,w:130,h:90,label:'Hotel Mamad'},
+      {x:1560,y:1100,w:130,h:90,label:'Miklat 9'},
+    ],
+    stalls:[
+      {x:1280,y:240,emoji:'🥤',name:'Limonana Stand',cost:25,boost:'Brain-freeze speed +25% for 25s'},
+      {x:1180,y:760,emoji:'🌽',name:'Hot Corn Guy',cost:15,boost:'Corn power +20% for 20s'},
+      {x:1320,y:1040,emoji:'🍦',name:'Artik Cart',cost:20,boost:'Sugar rush +25% for 22s'},
+    ],
+    quests:[
+      {x:840,y:560,emoji:'🏐',type:'timing',name:'Beach Volleyball',
+       desc:'Keep the rally alive! Hit when the cursor is in the green zone — 5 clean hits.',
+       hits:5, speed:1.0, pay:[120,180], fail:'You ate sand. The bros are disappointed.'},
+      {x:700,y:900,emoji:'🏓',type:'timing',name:'Matkot Hustle',
+       desc:'A matkot shark bets you can\'t return 5 of his smashes. Cursor in the zone!',
+       hits:5, speed:1.35, pay:[150,220], fail:'THWACK. Right in the ego.'},
+      {x:1340,y:480,emoji:'🧔🏻‍♂️',type:'haggle',name:'Sunbed Mafioso',
+       desc:'80₪ for a sunbed?! Talk him down. Stake your shekels — win and double them.',
+       stake:.25, fail:'He calls his cousin. The price goes UP.'},
+      {x:1100,y:300,emoji:'🤳',type:'selfie',name:'Sunset Selfie Spot',
+       desc:'Golden hour content. Snap exactly when the cursor hits the zone — 3 perfect frames.',
+       hits:3, speed:1.15, pay:[100,160], fail:'Blurry. The algorithm shows no mercy.'},
+    ],
+    npcCount:9,
+  },
+  florentin: {
+    name:'Florentin', emoji:'🎨', unlock:800,
+    blurb:'Graffiti, hummus, carpenters, DJs. The shuk hustle is real.',
+    ground:'#8d8d96',
+    zones:[
+      {x:0,y:0,w:1800,h:120,c:'#6e6e78'},
+      {x:0,y:560,w:1800,h:120,c:'#6e6e78'},
+      {x:0,y:1120,w:1800,h:120,c:'#6e6e78'},
+      {x:260,y:0,w:110,h:1300,c:'#6e6e78'},
+      {x:840,y:0,w:110,h:1300,c:'#6e6e78'},
+      {x:1420,y:0,w:110,h:1300,c:'#6e6e78'},
+    ],
+    props:[
+      ['🏚️',180,300],['🏠',560,250],['🏢',1180,250],['🏚️',1650,300],['🎨',420,420],
+      ['🖼️',1000,420],['🛋️',640,820],['🪑',700,860],['🏍️',1240,700],['🐈',520,1000],
+      ['🪩',1600,820],['📦',300,700],['🌵',1100,1000],['🧱',1700,1000],['🛹',900,180],
+    ],
+    shelters:[
+      {x:120,y:180,w:120,h:90,label:'Miklat 4'},
+      {x:980,y:660,w:120,h:90,label:'Mamad (Avi\'s)'},
+      {x:1560,y:180,w:120,h:90,label:'Miklat 7'},
+      {x:520,y:1160,w:120,h:90,label:'Miklat 2'},
+    ],
+    stalls:[
+      {x:480,y:480,emoji:'🧆',name:'Hummus Abu Dubi',cost:30,boost:'Hummus coma… then +30% for 25s'},
+      {x:1240,y:480,emoji:'☕',name:'Cafelix',cost:18,boost:'Espresso +25% for 20s'},
+      {x:700,y:1060,emoji:'🥙',name:'Sabich Window',cost:22,boost:'Egg+amba +25% for 22s'},
+    ],
+    quests:[
+      {x:340,y:880,emoji:'🛒',type:'haggle',name:'Vintage Shop Owner',
+       desc:'A "vintage" lamp for 200₪. It\'s from IKEA. Haggle — stake shekels, win to double.',
+       stake:.3, fail:'"For you? Special price. 250." You\'ve been out-haggled.'},
+      {x:1120,y:880,emoji:'🎨',type:'mash',name:'Graffiti Commission',
+       desc:'A gallery pays for "authentic street energy". SHAKE that spray can — mash E/tap!',
+       goal:18, time:5, pay:[140,200], fail:'The can sputters. The wall stays beige.'},
+      {x:1660,y:480,emoji:'🎧',type:'timing',name:'Vinyl Flip',
+       desc:'Crate-digging. Grab the rare records when the cursor hits the zone — 4 finds.',
+       hits:4, speed:1.2, pay:[160,240], fail:'You bought 3 copies of a Eurovision compilation.'},
+      {x:620,y:300,emoji:'🐈',type:'mash',name:'Cat Rescue',
+       desc:'A street cat is stuck on a ledge and the whole street is watching. Mash to climb!',
+       goal:15, time:5, pay:[90,140], fail:'The cat rescued itself. Embarrassing.'},
+    ],
+    npcCount:11,
+  },
+  oldnorth: {
+    name:'The Old North', emoji:'🌳', unlock:1600,
+    blurb:'Boulevards, golden retrievers, 28₪ iced lattes. Old money, new sirens.',
+    ground:'#a9c3a0',
+    zones:[
+      {x:0,y:540,w:1800,h:160,c:'#7fae74'},          // boulevard
+      {x:0,y:0,w:1800,h:110,c:'#8d8d96'},
+      {x:0,y:1190,w:1800,h:110,c:'#8d8d96'},
+      {x:850,y:0,w:100,h:1300,c:'#8d8d96'},
+    ],
+    props:[
+      ['🌳',200,580],['🌳',520,620],['🌳',1100,580],['🌳',1500,620],['🏛️',300,260],
+      ['🏢',1300,260],['🏠',600,1000],['🏦',1600,1000],['🐕',700,640],['🐩',1250,660],
+      ['⛲',950,620],['🛴',400,900],['🥐',1500,180],['🚸',880,300],['🦮',300,1100],
+    ],
+    shelters:[
+      {x:140,y:160,w:120,h:90,label:'Miklat 21'},
+      {x:1560,y:480,w:120,h:90,label:'Bank Mamad'},
+      {x:380,y:1040,w:120,h:90,label:'Gan Miklat'},
+      {x:1300,y:1040,w:120,h:90,label:'Miklat 18'},
+    ],
+    stalls:[
+      {x:560,y:260,emoji:'🥐',name:'Boutique Bakery',cost:32,boost:'Croissant +25% for 25s'},
+      {x:1150,y:900,emoji:'🧃',name:'Cold-Press Juicery',cost:28,boost:'Celery?? +25% for 22s'},
+      {x:700,y:760,emoji:'☕',name:'Flat White Cart',cost:24,boost:'Oat milk +25% for 20s'},
+    ],
+    quests:[
+      {x:450,y:700,emoji:'🐕',type:'timing',name:'Dog-Walker Sub',
+       desc:'Walk 4 golden retrievers at once. Keep them in line — cursor in the zone, 5 times.',
+       hits:5, speed:1.25, pay:[180,260], fail:'They saw a cat. You saw the pavement.'},
+      {x:1350,y:380,emoji:'🏢',type:'haggle',name:'Landlord "Negotiation"',
+       desc:'He wants to raise rent 40%. Stake shekels and talk him down like a pro.',
+       stake:.35, fail:'"It\'s the market," he shrugs, from his yacht.'},
+      {x:950,y:1000,emoji:'🧘',type:'mash',name:'Pop-up Yoga Demo',
+       desc:'Lead a power-vinyasa for startup employees. Mash to hold the flow!',
+       goal:20, time:6, pay:[170,240], fail:'You pulled something. Namaste in bed.'},
+      {x:200,y:380,emoji:'🤳',type:'selfie',name:'Bauhaus Photo-Op',
+       desc:'UNESCO architecture + you. 3 perfect frames in the zone.',
+       hits:3, speed:1.3, pay:[150,210], fail:'A pigeon photobombed every shot.'},
+    ],
+    npcCount:10,
+  },
+};
+
+const NPC_EMOJI = ['🚶','🚶‍♀️','🧑‍🦱','👩‍🦰','🧓','👨‍🦲','🧑‍🎤','👩‍💼','🧔','👵'];
+const W = 1800, H = 1300;
+const DAY_SECONDS = 240;            // one in-game day
+const UNEMPLOYMENT = 500;           // Bituach Leumi drop at day start
+const SIREN_WINDOW = [45, 85];      // seconds between sirens
+const SIREN_TIME = 16;              // seconds to reach shelter
+const IMPACT_PENALTY = .4;          // lose 40% if caught outside
+const SCOOTER = {cost:20, mult:1.8, dur:25};
+
+/* ---------------------- audio (WebAudio, no assets) ---------------------- */
+const Sound = {
+  ctx:null, sirenNodes:null,
+  init(){ if(!this.ctx){ try{ this.ctx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(this.ctx&&this.ctx.state==='suspended') this.ctx.resume(); },
+  blip(freq=880, dur=.09, type='square', vol=.12){
+    if(!this.ctx) return;
+    const o=this.ctx.createOscillator(), g=this.ctx.createGain();
+    o.type=type; o.frequency.value=freq; g.gain.value=vol;
+    g.gain.exponentialRampToValueAtTime(.001,this.ctx.currentTime+dur);
+    o.connect(g).connect(this.ctx.destination); o.start(); o.stop(this.ctx.currentTime+dur);
+  },
+  coin(){ this.blip(988,.07); setTimeout(()=>this.blip(1319,.12),70); },
+  bad(){ this.blip(196,.25,'sawtooth',.15); },
+  boom(){
+    if(!this.ctx) return;
+    const len=this.ctx.sampleRate*.5, buf=this.ctx.createBuffer(1,len,this.ctx.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.2);
+    const s=this.ctx.createBufferSource(), g=this.ctx.createGain();
+    s.buffer=buf; g.gain.value=.5; s.connect(g).connect(this.ctx.destination); s.start();
+  },
+  sirenStart(){
+    if(!this.ctx||this.sirenNodes) return;
+    const o=this.ctx.createOscillator(), g=this.ctx.createGain(), lfo=this.ctx.createOscillator(), lg=this.ctx.createGain();
+    o.type='sine'; o.frequency.value=600;
+    lfo.type='sine'; lfo.frequency.value=.45; lg.gain.value=220;
+    lfo.connect(lg).connect(o.frequency);
+    g.gain.value=.08; o.connect(g).connect(this.ctx.destination);
+    o.start(); lfo.start();
+    this.sirenNodes={o,g,lfo};
+  },
+  sirenStop(){
+    if(this.sirenNodes){
+      const {o,g,lfo}=this.sirenNodes;
+      g.gain.exponentialRampToValueAtTime(.001,this.ctx.currentTime+.4);
+      setTimeout(()=>{try{o.stop();lfo.stop();}catch(e){}},450);
+      this.sirenNodes=null;
+    }
+  },
+};
+
+/* ---------------------- game state ---------------------- */
+const G = {
+  state:'menu',           // menu | play | minigame | end
+  char:null, level:null, lv:null,
+  shekels:0, earned:0, spent:0,
+  player:{x:0,y:0,vx:0,vy:0,r:18,face:1},
+  npcs:[], questsDone:{}, tefillinCooldown:0,
+  dayLeft:DAY_SECONDS, nextSiren:0,
+  siren:null,             // {deadline, resolved}
+  sirensSurvived:0, sirensCaught:0,
+  boost:{mult:1, until:0, label:''},
+  scooter:{until:0},
+  cam:{x:0,y:0}, t:0,
+  best: JSON.parse(localStorage.getItem('mamadio_best')||'{}'),
+};
+
+/* ---------------------- UI helpers ---------------------- */
+const UI = {
+  show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
+    if(id) $(id).classList.add('show'); },
+  toChar(){
+    Sound.init();
+    const wrap=$('charCards'); wrap.innerHTML='';
+    Object.entries(CHARACTERS).forEach(([key,c])=>{
+      const d=document.createElement('div'); d.className='card';
+      d.innerHTML=`<div class="big">${c.emoji}</div><h3>${c.name}</h3><p>${c.blurb}</p><div class="perk">${c.perk}</div>`;
+      d.onclick=()=>{ G.char=key; UI.toLevel(); };
+      wrap.appendChild(d);
+    });
+    UI.show('scrChar');
+  },
+  toLevel(){
+    if(!G.char){ UI.toChar(); return; }
+    const bestEver = Math.max(0,...Object.values(G.best).map(Number));
+    const wrap=$('levelCards'); wrap.innerHTML='';
+    Object.entries(LEVELS).forEach(([key,lv])=>{
+      const locked = bestEver < lv.unlock;
+      const d=document.createElement('div'); d.className='card'+(locked?' locked':'');
+      const best = G.best[key] ? `<div class="perk">BEST: ${G.best[key]}₪</div>` : '';
+      d.innerHTML=`<div class="big">${lv.emoji}</div><h3>${lv.name}</h3><p>${lv.blurb}</p>
+        ${locked?`<div class="perk" style="color:#ff8a8a">🔒 earn ${lv.unlock}₪ in one day to unlock</div>`:best}`;
+      if(!locked) d.onclick=()=>startDay(key);
+      wrap.appendChild(d);
+    });
+    UI.show('scrLevel');
+  },
+  toast(msg, ms=2200, bad=false){
+    const t=$('toast'); t.textContent=msg;
+    t.style.background = bad ? 'rgba(230,57,70,.95)' : 'rgba(42,157,143,.95)';
+    t.style.display='block';
+    clearTimeout(t._t); t._t=setTimeout(()=>t.style.display='none',ms);
+  },
+};
+
+function fmtTime(s){ s=Math.max(0,Math.ceil(s)); return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; }
+
+/* ---------------------- day setup ---------------------- */
+function startDay(levelKey){
+  G.level=levelKey; G.lv=LEVELS[levelKey];
+  G.shekels=UNEMPLOYMENT; G.earned=0; G.spent=0;
+  G.questsDone={}; G.tefillinCooldown=0;
+  G.dayLeft=DAY_SECONDS;
+  G.nextSiren=rand(...SIREN_WINDOW);
+  G.siren=null; G.sirensSurvived=0; G.sirensCaught=0;
+  G.boost={mult:1,until:0,label:''}; G.scooter={until:0};
+  G.player.x=W/2; G.player.y=H/2;
+  G.npcs=[];
+  for(let i=0;i<G.lv.npcCount;i++){
+    G.npcs.push({
+      x:rand(150,W-150), y:rand(150,H-150),
+      emoji:NPC_EMOJI[i%NPC_EMOJI.length],
+      a:rand(0,Math.PI*2), spd:rand(20,45), turn:rand(1,4), tefillin:false,
+    });
+  }
+  UI.show(null);
+  $('hud').style.display='flex';
+  if(isTouch){ $('stick').style.display='block'; $('actBtn').style.display='block'; }
+  UI.toast(`💸 ${UNEMPLOYMENT}₪ unemployment landed. Go hustle, ${CHARACTERS[G.char].name.split(' ')[0]}!`, 3000);
+  G.state='play';
+}
+
+function endDay(reasonTitle, tag){
+  G.state='end';
+  Sound.sirenStop();
+  $('hud').style.display='none';
+  $('alertBanner').style.display='none';
+  $('questHint').style.display='none';
+  $('stick').style.display='none'; $('actBtn').style.display='none';
+  const total=G.shekels;
+  const prevBest=G.best[G.level]||0;
+  if(total>prevBest){ G.best[G.level]=total; localStorage.setItem('mamadio_best',JSON.stringify(G.best)); }
+  $('endTitle').textContent=reasonTitle;
+  $('endTag').textContent=tag;
+  const newBest = total>prevBest ? ' 🏆 NEW BEST!' : '';
+  $('endStats').innerHTML=
+    `💰 Final shekels: <b style="color:#ffd166">${total}₪</b>${newBest}<br>`+
+    `📈 Earned hustling: ${G.earned}₪ &nbsp;·&nbsp; 🛍️ Spent: ${G.spent}₪<br>`+
+    `🚨 Sirens survived: ${G.sirensSurvived} &nbsp;·&nbsp; 💥 Caught outside: ${G.sirensCaught}<br>`+
+    `🛡️ ${G.sirensCaught===0&&G.sirensSurvived>0?'PERFECT MAMAD RECORD — Home Front Command salutes you.':'Tip: learn your miklat locations BEFORE the boom.'}`;
+  UI.show('scrEnd');
+}
+
+/* ---------------------- input ---------------------- */
+const keys={};
+let isTouch=false;
+addEventListener('keydown',e=>{
+  keys[e.key.toLowerCase()]=true;
+  if(Mini.active&&(e.key===' '||e.key==='e'||e.key==='E')){ e.preventDefault(); Mini.press(); }
+  else if((e.key==='e'||e.key==='E'||e.key===' ')&&G.state==='play'){ e.preventDefault(); tryInteract(); }
+});
+addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
+
+const stick={dx:0,dy:0,id:null};
+const stickEl=$('stick'), knob=$('knob');
+function stickMove(t){
+  const r=stickEl.getBoundingClientRect();
+  let dx=t.clientX-(r.left+60), dy=t.clientY-(r.top+60);
+  const d=Math.hypot(dx,dy), max=44;
+  if(d>max){dx=dx/d*max; dy=dy/d*max;}
+  knob.style.left=(35+dx)+'px'; knob.style.top=(35+dy)+'px';
+  stick.dx=dx/max; stick.dy=dy/max;
+}
+addEventListener('touchstart',e=>{
+  isTouch=true; Sound.init();
+  if(G.state==='play'){ $('stick').style.display='block'; $('actBtn').style.display='block'; }
+  for(const t of e.changedTouches){
+    if(t.clientX<innerWidth/2 && stick.id===null){ stick.id=t.identifier; stickMove(t); }
+  }
+},{passive:false});
+addEventListener('touchmove',e=>{
+  for(const t of e.changedTouches) if(t.identifier===stick.id) stickMove(t);
+  e.preventDefault();
+},{passive:false});
+addEventListener('touchend',e=>{
+  for(const t of e.changedTouches) if(t.identifier===stick.id){
+    stick.id=null; stick.dx=0; stick.dy=0; knob.style.left='35px'; knob.style.top='35px';
+  }
+});
+$('actBtn').addEventListener('touchstart',e=>{
+  e.preventDefault(); e.stopPropagation();
+  if(G.state==='play') tryInteract(); else if(Mini.active) Mini.press();
+},{passive:false});
+$('actBtn').addEventListener('click',e=>{
+  if(G.state==='play') tryInteract(); else if(Mini.active) Mini.press();
+});
+
+/* ---------------------- interactions ---------------------- */
+function nearestInteractable(){
+  const p=G.player; let best=null, bd=70;
+  for(const q of G.lv.quests){
+    if(G.questsDone[q.name]) continue;
+    const d=dist(p,q); if(d<bd){bd=d;best={kind:'quest',obj:q};}
+  }
+  for(const s of G.lv.stalls){
+    const d=dist(p,s); if(d<bd){bd=d;best={kind:'stall',obj:s};}
+  }
+  // scooter prop pickup (any 🛴 prop)
+  for(const pr of G.lv.props){
+    if(pr[0]!=='🛴') continue;
+    const d=dist(p,{x:pr[1],y:pr[2]}); if(d<bd){bd=d;best={kind:'scooter',obj:{x:pr[1],y:pr[2]}};}
+  }
+  if(G.char==='chabad' && G.tefillinCooldown<=0){
+    for(const n of G.npcs){
+      if(n.tefillin) continue;
+      const d=dist(p,n); if(d<bd){bd=d;best={kind:'tefillin',obj:n};}
+    }
+  }
+  return best;
+}
+
+function tryInteract(){
+  if(G.state!=='play'||G.siren) return;
+  const it=nearestInteractable();
+  if(!it) return;
+  Sound.init();
+  if(it.kind==='stall'){
+    const c=Math.round(it.obj.cost*(1-CHARACTERS[G.char].foodDiscount));
+    if(G.shekels<c){ UI.toast(`Need ${c}₪ for ${it.obj.name} 😬`,2000,true); Sound.bad(); return; }
+    G.shekels-=c; G.spent+=c;
+    G.boost={mult:1.25,until:G.t+24,label:it.obj.emoji+' boost'};
+    Sound.coin(); UI.toast(`${it.obj.emoji} ${it.obj.boost} (−${c}₪)`);
+  } else if(it.kind==='scooter'){
+    const c=Math.round(SCOOTER.cost*(1-CHARACTERS[G.char].foodDiscount));
+    if(G.shekels<c){ UI.toast(`Lime wants ${c}₪ 😤`,2000,true); Sound.bad(); return; }
+    G.shekels-=c; G.spent+=c;
+    const mult = G.char==='influencer' ? SCOOTER.mult+.2 : SCOOTER.mult;
+    G.scooter={until:G.t+SCOOTER.dur, mult};
+    Sound.coin(); UI.toast(`🛴 Lime unlocked! ${Math.round(mult*100)}% speed for ${SCOOTER.dur}s (−${c}₪)`);
+  } else if(it.kind==='tefillin'){
+    Mini.start({type:'mash',name:'Tefillin Time!',emoji:'📿',
+      desc:'"Excuse me — are you Jewish?" Wrap the straps before they politely escape. MASH!',
+      goal:14,time:5,pay:[60,150],fail:'"Maybe next time," they say, already 50 meters away.',
+      _tefillinTarget:it.obj});
+  } else if(it.kind==='quest'){
+    Mini.start(it.obj);
+  }
+}
+
+/* ---------------------- minigame engine ---------------------- */
+const Mini = {
+  active:false, q:null, mode:null,
+  // timing
+  cur:0, dir:1, zone:[0,0], hits:0, misses:0, speed:1, running:false,
+  // mash
+  mash:0, mashEnd:0,
+  // haggle
+  round:0, wins:0,
+  raf:null, stake:0,
+
+  start(q){
+    this.active=true; this.q=q; this.mode=q.type;
+    G.state='minigame';
+    $('mini').style.display='block';
+    $('miniTitle').textContent=(q.emoji||'🎯')+' '+q.name;
+    $('miniDesc').textContent=q.desc;
+    $('miniStatus').textContent='';
+    $('barWrap').style.display='none';
+    $('mashWrap').style.display='none';
+    $('choiceWrap').style.display='none';
+    const act=$('miniAction');
+    act.style.display='inline-block';
+    act.onclick=()=>this.press();
+
+    if(this.mode==='timing'||this.mode==='selfie'){
+      $('barWrap').style.display='block';
+      this.hits=0; this.misses=0; this.running=false;
+      this.speed=q.speed||1;
+      act.textContent='START';
+      this.newZone();
+      this.cur=0; this.dir=1;
+      this.renderBar();
+    } else if(this.mode==='mash'){
+      $('mashWrap').style.display='block';
+      this.mash=0; this.running=false;
+      $('mashFill').style.width='0%';
+      act.textContent='START MASHING';
+    } else if(this.mode==='haggle'){
+      this.stake=Math.max(20,Math.round(G.shekels*q.stake));
+      if(G.shekels<20){ this.close(); UI.toast('You need at least 20₪ to haggle.',2200,true); return; }
+      $('miniDesc').textContent=q.desc+` (Stake: ${this.stake}₪ — win 2 of 3 rounds to DOUBLE it.)`;
+      this.round=0; this.wins=0;
+      act.style.display='none';
+      this.haggleRound();
+    }
+  },
+
+  /* ---- timing bar ---- */
+  newZone(){
+    const w=rand(.16,.24);
+    const s=rand(.15,.8-w);
+    this.zone=[s,s+w];
+  },
+  renderBar(){
+    $('barZone').style.left=(this.zone[0]*100)+'%';
+    $('barZone').style.width=((this.zone[1]-this.zone[0])*100)+'%';
+    $('barCur').style.left=`calc(${this.cur*100}% - 3px)`;
+  },
+  tick(){
+    if(!this.active) return;
+    if((this.mode==='timing'||this.mode==='selfie')&&this.running){
+      this.cur+=this.dir*.013*this.speed;
+      if(this.cur>=1){this.cur=1;this.dir=-1;}
+      if(this.cur<=0){this.cur=0;this.dir=1;}
+      this.renderBar();
+    }
+    if(this.mode==='mash'&&this.running){
+      this.mash=Math.max(0,this.mash-.045);          // decay
+      $('mashFill').style.width=clamp(this.mash/this.q.goal*100,0,100)+'%';
+      const left=this.mashEnd-performance.now();
+      $('miniStatus').textContent=`${Math.max(0,(left/1000)).toFixed(1)}s — ${Math.floor(this.mash)}/${this.q.goal}`;
+      if(this.mash>=this.q.goal) this.finish(true);
+      else if(left<=0) this.finish(false);
+    }
+    this.raf=requestAnimationFrame(()=>this.tick());
+  },
+  press(){
+    if(!this.active) return;
+    if(this.mode==='timing'||this.mode==='selfie'){
+      if(!this.running){
+        this.running=true; $('miniAction').textContent=this.mode==='selfie'?'📸 SNAP':'🏐 HIT';
+        cancelAnimationFrame(this.raf); this.tick(); return;
+      }
+      const need=this.q.hits;
+      if(this.cur>=this.zone[0]&&this.cur<=this.zone[1]){
+        this.hits++; Sound.blip(1175,.07);
+        $('miniStatus').textContent=`✅ ${this.hits}/${need}`;
+        this.newZone(); this.speed*=1.07;
+        if(this.hits>=need) this.finish(true);
+      } else {
+        this.misses++; Sound.bad();
+        $('miniStatus').textContent=`❌ miss ${this.misses}/2`;
+        if(this.misses>=2) this.finish(false);
+      }
+    } else if(this.mode==='mash'){
+      if(!this.running){
+        this.running=true; this.mash=0; this.mashEnd=performance.now()+this.q.time*1000;
+        $('miniAction').textContent='MASH! 🔥';
+        cancelAnimationFrame(this.raf); this.tick(); return;
+      }
+      this.mash++; Sound.blip(660+this.mash*18,.04);
+    }
+  },
+
+  /* ---- haggle ---- */
+  haggleRound(){
+    this.round++;
+    const moods=[
+      {hint:'He sighs about how slow business is…', best:1},
+      {hint:'He brags this item is "one of a kind, motek"…', best:2},
+      {hint:'He glances at his watch — closing time soon…', best:0},
+    ];
+    const mood=moods[irand(0,2)];
+    const opts=[
+      '⏰ "It\'s almost closing — last offer, take it or leave it."',
+      '😢 "Business is rough for everyone, achi. Help me help you."',
+      '🧐 "One of a kind? I saw three on Yad2 this morning."',
+    ];
+    $('miniStatus').innerHTML=`Round ${this.round}/3 — wins: ${this.wins} <br><i style="color:#aab4c8">${mood.hint}</i>`;
+    const wrap=$('choiceWrap'); wrap.style.display='flex'; wrap.innerHTML='';
+    opts.forEach((o,i)=>{
+      const b=document.createElement('button'); b.className='choiceBtn'; b.textContent=o;
+      b.onclick=()=>{
+        let win = i===mood.best;
+        if(!win && CHARACTERS[G.char].haggleEdge && Math.random()<.45) win=true; // Kobi knows the script
+        if(win){ this.wins++; Sound.coin(); } else Sound.bad();
+        UI.toast(win?'He wavers… 😏':'He crosses his arms. 😤',1100,!win);
+        if(this.round>=3||this.wins>=2||((this.round-this.wins)>=2)) this.finish(this.wins>=2);
+        else this.haggleRound();
+      };
+      wrap.appendChild(b);
+    });
+  },
+
+  finish(win){
+    cancelAnimationFrame(this.raf);
+    const q=this.q;
+    let msg;
+    if(this.mode==='haggle'){
+      if(win){ G.shekels+=this.stake; G.earned+=this.stake;
+        msg=`🤝 DEAL! Your ${this.stake}₪ stake is DOUBLED (+${this.stake}₪)`; Sound.coin(); }
+      else { G.shekels=Math.max(0,G.shekels-this.stake); G.spent+=this.stake;
+        msg=`💸 ${q.fail} (−${this.stake}₪)`; Sound.bad(); }
+    } else {
+      if(win){
+        let pay=irand(q.pay[0],q.pay[1]);
+        if(this.mode==='selfie'&&G.char==='influencer') pay*=2;
+        if(G.char==='influencer') pay=Math.round(pay*1.1);
+        if(q._tefillinTarget&&G.char==='chabad') pay=Math.round(pay*2);
+        G.shekels+=pay; G.earned+=pay;
+        msg=`🎉 +${pay}₪!`; Sound.coin();
+        if(q._tefillinTarget){ q._tefillinTarget.tefillin=true; q._tefillinTarget.emoji='🙆'; }
+      } else { msg=`😬 ${q.fail}`; Sound.bad(); }
+    }
+    if(q._tefillinTarget) G.tefillinCooldown=8;
+    else if(win||this.mode!=='haggle') G.questsDone[q.name]=true;   // haggle loss can be retried
+    this.close();
+    UI.toast(msg,2800,!win);
+  },
+  close(){
+    cancelAnimationFrame(this.raf);
+    this.active=false; $('mini').style.display='none';
+    if(G.state==='minigame') G.state='play';
+  },
+};
+
+/* ---------------------- sirens ---------------------- */
+function inShelter(){
+  const p=G.player;
+  return G.lv.shelters.find(s=>p.x>s.x-6&&p.x<s.x+s.w+6&&p.y>s.y-6&&p.y<s.y+s.h+6);
+}
+function startSiren(){
+  if(Mini.active){ Mini.close(); UI.toast('🚨 Deal interrupted — RUN!',1800,true); }
+  const grace=CHARACTERS[G.char].sirenGrace||0;
+  G.siren={deadline:G.t+SIREN_TIME+grace, resolved:false, boomAt:null};
+  Sound.sirenStart();
+  $('alertBanner').style.display='block';
+  $('sirenPill').style.display='flex';
+  if(navigator.vibrate) navigator.vibrate([200,100,200]);
+}
+function resolveSiren(safe){
+  G.siren.resolved=true;
+  G.siren.boomAt=G.t+1.2;
+  Sound.sirenStop();
+  setTimeout(()=>{ Sound.boom(); $('shakeWrap').classList.add('shake');
+    setTimeout(()=>$('shakeWrap').classList.remove('shake'),400); },1100);
+  if(safe){
+    G.sirensSurvived++;
+    const bonus=40+G.sirensSurvived*10;
+    setTimeout(()=>{ G.shekels+=bonus; G.earned+=bonus;
+      UI.toast(`🛡️ Iron Dome got it. Calm-under-fire bonus +${bonus}₪. Back to the hustle!`,3000); Sound.coin(); },1600);
+  } else {
+    G.sirensCaught++;
+    const loss=Math.round(G.shekels*IMPACT_PENALTY);
+    setTimeout(()=>{ G.shekels-=loss; G.spent+=loss;
+      UI.toast(`💥 Caught outside! Shockwave knocked ${loss}₪ out of your pocket. GET TO THE MAMAD NEXT TIME.`,3500,true); },1600);
+  }
+  setTimeout(()=>{
+    $('alertBanner').style.display='none';
+    $('sirenPill').style.display='none';
+    G.siren=null;
+    G.nextSiren=rand(...SIREN_WINDOW);
+  },2600);
+}
+
+/* ---------------------- update ---------------------- */
+let last=performance.now();
+function update(dt){
+  if(G.state!=='play'&&G.state!=='minigame') return;
+  G.t+=dt;
+
+  if(G.state==='play'){
+    // movement
+    let dx=0,dy=0;
+    if(keys['arrowleft']||keys['a'])dx-=1;
+    if(keys['arrowright']||keys['d'])dx+=1;
+    if(keys['arrowup']||keys['w'])dy-=1;
+    if(keys['arrowdown']||keys['s'])dy+=1;
+    dx+=stick.dx; dy+=stick.dy;
+    const m=Math.hypot(dx,dy);
+    if(m>1){dx/=m;dy/=m;}
+    let spd=190*CHARACTERS[G.char].speed;
+    if(G.boost.until>G.t) spd*=G.boost.mult;
+    if(G.scooter.until>G.t) spd*=G.scooter.mult;
+    if(G.siren&&!G.siren.resolved) spd*=1.12;      // adrenaline
+    const p=G.player;
+    p.x=clamp(p.x+dx*spd*dt,30,W-30);
+    p.y=clamp(p.y+dy*spd*dt,30,H-30);
+    if(dx) p.face=dx>0?1:-1;
+
+    // day clock — sirens pause the clock (fair’s fair)
+    if(!G.siren){
+      G.dayLeft-=dt;
+      G.nextSiren-=dt;
+      if(G.dayLeft<=0){ endDay('DAY OVER 🌅', `${G.lv.name} closed for the night.`); return; }
+      if(G.nextSiren<=0) startSiren();
+    }
+    if(G.tefillinCooldown>0) G.tefillinCooldown-=dt;
+
+    // siren resolution
+    if(G.siren&&!G.siren.resolved){
+      const left=G.siren.deadline-G.t;
+      $('sirenTime').textContent=`MAMAD! ${Math.ceil(left)}s`;
+      if(inShelter()) resolveSiren(true);
+      else if(left<=0) resolveSiren(false);
+    }
+
+    // NPCs wander
+    for(const n of G.npcs){
+      n.turn-=dt;
+      if(n.turn<=0){ n.a=rand(0,Math.PI*2); n.turn=rand(1.5,4); }
+      if(G.siren&&!G.siren.resolved){
+        // they panic toward nearest shelter
+        let ns=G.lv.shelters[0], bd=1e9;
+        for(const s of G.lv.shelters){const d=Math.hypot(n.x-(s.x+s.w/2),n.y-(s.y+s.h/2)); if(d<bd){bd=d;ns=s;}}
+        n.a=Math.atan2((ns.y+ns.h/2)-n.y,(ns.x+ns.w/2)-n.x);
+        n.x+=Math.cos(n.a)*120*dt; n.y+=Math.sin(n.a)*120*dt;
+      } else {
+        n.x+=Math.cos(n.a)*n.spd*dt; n.y+=Math.sin(n.a)*n.spd*dt;
+      }
+      n.x=clamp(n.x,40,W-40); n.y=clamp(n.y,40,H-40);
+    }
+
+    // interaction hint
+    const it=nearestInteractable();
+    const hint=$('questHint');
+    if(it&&!G.siren){
+      const label = it.kind==='stall' ? `${it.obj.emoji} ${it.obj.name} — ${Math.round(it.obj.cost*(1-CHARACTERS[G.char].foodDiscount))}₪ deal`
+        : it.kind==='scooter' ? `🛴 Lime scooter — ${Math.round(SCOOTER.cost*(1-CHARACTERS[G.char].foodDiscount))}₪`
+        : it.kind==='tefillin' ? `📿 Offer tefillin to this nice person`
+        : `${it.obj.emoji} ${it.obj.name}`;
+      hint.innerHTML=`${label} &nbsp;<b style="color:#ffd166">[E]</b>`;
+      hint.style.display='block';
+    } else hint.style.display='none';
+  }
+
+  // HUD
+  $('shekels').textContent=G.shekels+'₪';
+  $('dayTime').textContent=fmtTime(G.dayLeft);
+  if(G.boost.until>G.t||G.scooter.until>G.t){
+    const parts=[];
+    if(G.scooter.until>G.t) parts.push(`🛴 ${Math.ceil(G.scooter.until-G.t)}s`);
+    if(G.boost.until>G.t) parts.push(`⚡ ${Math.ceil(G.boost.until-G.t)}s`);
+    $('fxText').textContent=parts.join(' · ');
+    $('fxPill').style.display='flex';
+  } else $('fxPill').style.display='none';
+
+  // camera
+  const cv=$('game');
+  G.cam.x=clamp(G.player.x-cv.width/2,0,W-cv.width);
+  G.cam.y=clamp(G.player.y-cv.height/2,0,H-cv.height);
+}
+
+/* ---------------------- render ---------------------- */
+const cv=$('game'), cx=cv.getContext('2d');
+function resize(){ cv.width=innerWidth; cv.height=innerHeight; }
+addEventListener('resize',resize); resize();
+
+function drawEmoji(e,x,y,size=34){
+  cx.font=`${size}px serif`;
+  cx.textAlign='center'; cx.textBaseline='middle';
+  cx.fillText(e,x,y);
+}
+
+function render(){
+  if(G.state!=='play'&&G.state!=='minigame'){ requestAnimationFrame(loop); return; }
+  const ox=-G.cam.x, oy=-G.cam.y;
+  // ground
+  cx.fillStyle=G.lv.ground; cx.fillRect(0,0,cv.width,cv.height);
+  for(const z of G.lv.zones){ cx.fillStyle=z.c; cx.fillRect(z.x+ox,z.y+oy,z.w,z.h); }
+  // border vignette
+  cx.strokeStyle='rgba(0,0,0,.25)'; cx.lineWidth=8;
+  cx.strokeRect(ox+4,oy+4,W-8,H-8);
+
+  // shelters
+  for(const s of G.lv.shelters){
+    const urgent=G.siren&&!G.siren.resolved;
+    cx.fillStyle=urgent?'#2a9d8f':'#37415c';
+    cx.fillRect(s.x+ox,s.y+oy,s.w,s.h);
+    cx.strokeStyle=urgent?'#7ee8c7':'#5b6788'; cx.lineWidth=3;
+    cx.strokeRect(s.x+ox,s.y+oy,s.w,s.h);
+    drawEmoji('🛡️',s.x+s.w/2+ox,s.y+s.h/2+oy-8,30);
+    cx.fillStyle='#fff'; cx.font='bold 12px sans-serif'; cx.textAlign='center';
+    cx.fillText(s.label,s.x+s.w/2+ox,s.y+s.h+oy-10);
+    if(urgent){ // pulsing beacon
+      const r=10+6*Math.sin(G.t*6);
+      cx.beginPath(); cx.arc(s.x+s.w/2+ox,s.y+oy-14,r,0,7);
+      cx.fillStyle='rgba(126,232,199,.5)'; cx.fill();
+    }
+  }
+
+  // props
+  for(const p of G.lv.props) drawEmoji(p[0],p[1]+ox,p[2]+oy,36);
+
+  // stalls & quests
+  for(const s of G.lv.stalls){
+    drawEmoji('🛖',s.x+ox,s.y+oy-6,44); drawEmoji(s.emoji,s.x+ox,s.y+oy-34,26);
+  }
+  for(const q of G.lv.quests){
+    if(G.questsDone[q.name]){ drawEmoji('✅',q.x+ox,q.y+oy,26); continue; }
+    drawEmoji(q.emoji,q.x+ox,q.y+oy,38);
+    const bob=4*Math.sin(G.t*3+q.x);
+    drawEmoji('❗',q.x+ox,q.y+oy-34+bob,20);
+  }
+
+  // npcs
+  for(const n of G.npcs) drawEmoji(n.emoji,n.x+ox,n.y+oy,32);
+
+  // player
+  const p=G.player;
+  cx.save();
+  cx.translate(p.x+ox,p.y+oy);
+  if(p.face<0) cx.scale(-1,1);
+  const ride=G.scooter.until>G.t;
+  if(ride) drawEmoji('🛴',0,12,30);
+  drawEmoji(CHARACTERS[G.char].emoji,0,ride?-8:0,38);
+  cx.restore();
+  drawEmoji(CHARACTERS[G.char].hat,p.x+ox,p.y+oy-26,16);
+
+  // siren arrow to nearest shelter
+  if(G.siren&&!G.siren.resolved){
+    let ns=null,bd=1e9;
+    for(const s of G.lv.shelters){
+      const d=Math.hypot(p.x-(s.x+s.w/2),p.y-(s.y+s.h/2));
+      if(d<bd){bd=d;ns=s;}
+    }
+    if(ns){
+      const a=Math.atan2((ns.y+ns.h/2)-p.y,(ns.x+ns.w/2)-p.x);
+      cx.save();
+      cx.translate(p.x+ox,p.y+oy); cx.rotate(a);
+      cx.fillStyle='#ff5a5a';
+      cx.beginPath(); cx.moveTo(60,0); cx.lineTo(38,-14); cx.lineTo(38,14); cx.closePath(); cx.fill();
+      cx.restore();
+    }
+    // red wash
+    cx.fillStyle=`rgba(230,57,70,${.12+.08*Math.sin(G.t*8)})`;
+    cx.fillRect(0,0,cv.width,cv.height);
+  }
+  // boom flash
+  if(G.siren&&G.siren.resolved&&G.siren.boomAt&&G.t>G.siren.boomAt&&G.t<G.siren.boomAt+.35){
+    cx.fillStyle='rgba(255,255,255,.6)'; cx.fillRect(0,0,cv.width,cv.height);
+  }
+  requestAnimationFrame(loop);
+}
+
+function loop(){
+  const now=performance.now();
+  const dt=Math.min(.05,(now-last)/1000);
+  last=now;
+  update(dt);
+  render();
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
