@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 12:05 UTC · code
+Analytics added to Iron Dome (PR #73 draft): GoatCounter cookieless tracking — visits, plays/session, wins, PWA installs. ACTION FOR ZORBA: claim site code 'irondome' at goatcounter.com (1 min) -> dashboard irondome.goatcounter.com. QA panel: 4 specialist agents (functionality/ease/fun/visual design) testing in background.
+
 ### 2026-06-10 11:47 UTC · code
 PR #70 MERGED — Iron Dome is LIVE at https://dubaiai.pro/irondome/ (user approved merge after htmlpreview diagnosis). v6 includes self-improving calibration. Update the durable test-link preference: use the LIVE link from now on. Note: parallel session shipped MAMADIO companion game (PR #71, mamadio/) — merged main into our branch resolving nucleus conflicts as union.
 
@@ -162,31 +165,34 @@ SENT (Zapier Gmail now connected for sending): AutoGLM cancel+refund -> autoglm@
 
 ### 2026-06-02 05:23 UTC · chat
 SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $200/mo — TOP tier, NOT $100. Flat-rate, can't 'exceed' in $, only hit rate limits. He runs whole OS on it → KEEP, it's the engine. ChatGPT $20 + Gemini $20 worth it. AI-model spend (~$240) is his MOST productive spend, don't trim. (2) AutoGLM = $100/mo billed by Z.ai (autoglm@z.ai) — CAN'T CANCEL, shady. PRIORITY CUT. Drafted cancellation+refund-demand email in Gmail; fallback = Stripe/card chargeback. (3) GoHighLevel ~$100/mo — rebuildable on existing free stack (Netlify forms + Gmail + Google Cal/Cal.com + sheet/Airtable CRM); only SMS-at-scale (Twilio) is harder & he's not using it → CUT, Claude rebuilds the lead→CRM→follow-up flow. (4) Runway — KEEP but right-size: pause between production sprints, resub only in months he batches hero videos (made the BYB 'Transformers' video). (5) Etsy/OrganizedOrionDesign → keep ONLY as low-touch: Zorba ~1hr/wk builds assets, Claude markets/optimizes, else cut. Add as venture. (6) Vybewear (Isaac@vybewear.com) = CLIENT/friend for LAI/BYB (forwarded GTAA tournament leads) — track as customer, revenue-relevant. TRUE BLEED = AutoGLM $100 + GHL $100 = ~$200/mo.
-
-### 2026-06-02 05:13 UTC · chat
-SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM (already tried to cancel, charged anyway — RESOLVE), Runway AI (premium video, redundant — CUT), TopView (cheap video), OpusClip/opus.pro (clipping — keep for MM), AutoGLM (GLM sub — likely redundant w/ Claude, review), ElevenLabs (voice — right-size), X Premium, Etsy Plus $10 (live shop OrganizedOrionDesign jewelry), Anthropic/Claude (core). NOT paying → HeyGen, Higgsfield, Manus (don't start any; brand is self-shot). Recoverable ~$155-235/mo. SURFACED ventures not in ventures.md: Etsy shop OrganizedOrionDesign + Vybe/vybewear. Ambo call booked today 11:30 EST (Meet: meet.google.com/wfd-zwvt-ies) — need Sam & Jack emails to invite. North Star set to $1M.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 11:48 UTC
+- **When:** 2026-06-10 12:05 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e06f4f0 chore: refresh nucleus live state [skip ci] — 23 seconds ago
+- **Last commit:** fd72bbf Add cookieless play/install analytics (GoatCounter) — 52 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-e06f4f0 chore: refresh nucleus live state [skip ci] (23 seconds ago)
-b693b53 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (2 minutes ago)
-f049995 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-e7a755e Self-improving calibration + scale-proof touch mapping (5 minutes ago)
-a7b9cf5 chore: refresh nucleus live state [skip ci] (16 minutes ago)
+fd72bbf Add cookieless play/install analytics (GoatCounter) (52 seconds ago)
+980c55c chore: refresh nucleus live state [skip ci] (17 minutes ago)
+e06f4f0 chore: refresh nucleus live state [skip ci] (18 minutes ago)
+b693b53 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (19 minutes ago)
+f049995 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
