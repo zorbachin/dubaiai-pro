@@ -171,28 +171,22 @@ SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 11:47 UTC
+- **When:** 2026-06-10 11:48 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** b693b53 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 68 seconds ago
+- **Last commit:** e06f4f0 chore: refresh nucleus live state [skip ci] — 23 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 54 ++++++++++------------------------------------
- 1 file changed, 11 insertions(+), 43 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-b693b53 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (68 seconds ago)
+e06f4f0 chore: refresh nucleus live state [skip ci] (23 seconds ago)
+b693b53 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (2 minutes ago)
 f049995 chore: refresh nucleus live state [skip ci] (2 minutes ago)
 e7a755e Self-improving calibration + scale-proof touch mapping (5 minutes ago)
 a7b9cf5 chore: refresh nucleus live state [skip ci] (16 minutes ago)
-7cce0e9 chore: refresh nucleus live state [skip ci] (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
