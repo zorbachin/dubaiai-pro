@@ -171,22 +171,28 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 09:48 UTC
+- **When:** 2026-06-10 10:03 UTC
 - **Branch:** `claude/mamadio-game-design-v9mr1w`
-- **Last commit:** d687bbc chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** f1fbf51 chore: refresh nucleus live state [skip ci] — 15 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-d687bbc chore: refresh nucleus live state [skip ci] (3 minutes ago)
-e2f3b3f chore: refresh nucleus live state [skip ci] (4 minutes ago)
-fc7a611 Siren now triggers the MAMAD DASH: temple-run sequence + mobile polish (6 minutes ago)
-1efd641 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-5b056cd chore: refresh nucleus live state [skip ci] (13 minutes ago)
+f1fbf51 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+d687bbc chore: refresh nucleus live state [skip ci] (18 minutes ago)
+e2f3b3f chore: refresh nucleus live state [skip ci] (19 minutes ago)
+fc7a611 Siren now triggers the MAMAD DASH: temple-run sequence + mobile polish (20 minutes ago)
+1efd641 chore: refresh nucleus live state [skip ci] (27 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
