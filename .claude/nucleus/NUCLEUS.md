@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 10:09 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e2b6652 Lift Jerusalem dome and old-city wall above the foreground skyline — 25 seconds ago
+- **Last commit:** d3f2ef1 chore: refresh nucleus live state [skip ci] — 18 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-e2b6652 Lift Jerusalem dome and old-city wall above the foreground skyline (25 seconds ago)
+d3f2ef1 chore: refresh nucleus live state [skip ci] (18 seconds ago)
+e2b6652 Lift Jerusalem dome and old-city wall above the foreground skyline (43 seconds ago)
 bb3676a chore: refresh nucleus live state [skip ci] (9 minutes ago)
 d0c531a chore: refresh nucleus live state [skip ci] (9 minutes ago)
-61961bd chore: refresh nucleus live state [skip ci] (21 minutes ago)
-7f49504 chore: refresh nucleus live state [skip ci] (22 minutes ago)
+61961bd chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
