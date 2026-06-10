@@ -171,28 +171,22 @@ NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 19:45 UTC
+- **When:** 2026-06-10 19:46 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 8685b81 Release QA fixes: true daily determinism + sign-off punch list — 34 seconds ago
+- **Last commit:** 299f417 chore: refresh nucleus live state [skip ci] — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-8685b81 Release QA fixes: true daily determinism + sign-off punch list (34 seconds ago)
+299f417 chore: refresh nucleus live state [skip ci] (21 seconds ago)
+8685b81 Release QA fixes: true daily determinism + sign-off punch list (55 seconds ago)
 ee26188 chore: refresh nucleus live state [skip ci] (25 minutes ago)
 75214f1 chore: refresh nucleus live state [skip ci] (25 minutes ago)
 3106d19 Make MAMAD DASH domain-portable + launch promo pack (27 minutes ago)
-6dcc658 Overnight build: challenge card share loop, daily siren, revive, perf (30 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
