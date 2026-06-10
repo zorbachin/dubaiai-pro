@@ -171,28 +171,22 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 15:01 UTC
+- **When:** 2026-06-10 15:02 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 59162d2 chore: refresh nucleus live state [skip ci] — 10 minutes ago
+- **Last commit:** 228eaa0 chore: refresh nucleus live state [skip ci] — 26 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+228eaa0 chore: refresh nucleus live state [skip ci] (26 seconds ago)
 59162d2 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-78c82ab chore: refresh nucleus live state [skip ci] (10 minutes ago)
+78c82ab chore: refresh nucleus live state [skip ci] (11 minutes ago)
 5af043b chore: refresh nucleus live state [skip ci] (2 hours ago)
 ff4df84 chore: refresh nucleus live state [skip ci] (2 hours ago)
-1cfe4a6 MAMAD DASH: bright Fortnite-style palette + arcade juice (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
