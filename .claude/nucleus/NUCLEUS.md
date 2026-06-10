@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 10:14 UTC
 - **Branch:** `claude/mamadio-game-design-v9mr1w`
-- **Last commit:** adc1efe chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** ac54cba chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+ac54cba chore: refresh nucleus live state [skip ci] (19 seconds ago)
 adc1efe chore: refresh nucleus live state [skip ci] (3 minutes ago)
-58dadb5 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+58dadb5 chore: refresh nucleus live state [skip ci] (4 minutes ago)
 7c8b75c chore: refresh nucleus live state [skip ci] (4 minutes ago)
 0a43028 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-9533a27 chore: refresh nucleus live state [skip ci] (7 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
