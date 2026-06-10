@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 11:47 UTC · code
+PR #70 MERGED — Iron Dome is LIVE at https://dubaiai.pro/irondome/ (user approved merge after htmlpreview diagnosis). v6 includes self-improving calibration. Update the durable test-link preference: use the LIVE link from now on. Note: parallel session shipped MAMADIO companion game (PR #71, mamadio/) — merged main into our branch resolving nucleus conflicts as union.
+
 ### 2026-06-10 11:43 UTC · code
 Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.github.io strips meta viewport -> iOS lays out at 980px, city below fold, broken touch geometry. NOT a game bug. Added self-improving calibration (in-play EMA on tap residuals, converges ~12 taps, tested) + rect-based scale-proof touch mapping. Better preview host: raw.githack.com (serves HTML intact). Real fix = merge PR #70 to go live on dubaiai.pro/irondome/. 26/26 tests.
 
@@ -162,44 +165,15 @@ SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $20
 
 ### 2026-06-02 05:13 UTC · chat
 SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM (already tried to cancel, charged anyway — RESOLVE), Runway AI (premium video, redundant — CUT), TopView (cheap video), OpusClip/opus.pro (clipping — keep for MM), AutoGLM (GLM sub — likely redundant w/ Claude, review), ElevenLabs (voice — right-size), X Premium, Etsy Plus $10 (live shop OrganizedOrionDesign jewelry), Anthropic/Claude (core). NOT paying → HeyGen, Higgsfield, Manus (don't start any; brand is self-shot). Recoverable ~$155-235/mo. SURFACED ventures not in ventures.md: Etsy shop OrganizedOrionDesign + Vybe/vybewear. Ambo call booked today 11:30 EST (Meet: meet.google.com/wfd-zwvt-ies) — need Sam & Jack emails to invite. North Star set to $1M.
-
-### 2026-06-02 05:10 UTC · chat
-OPERATING MODEL (durable): Claude's job = DO THE WORK. Zorba's job = GUIDE + APPROVE. Stop handing Zorba task lists for himself; execute, then surface for approval. NORTH STAR NUMBER = $1,000,000 (get the portfolio to a million). CADENCE: sync with the CEO daily. ACTIVE: schedule call with Sam & Jack at Ambo (byb-ambassador / Ambassador program) for 11:30 EST today (2026-06-02).
-
-### 2026-06-02 05:06 UTC · chat
-BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. (1) PodSupps (podsupps.com) → run autonomously, Claude starts marketing it + drives signups/logins. (2) For other ventures, Claude is the guide — tell him what to do. (3) SPEND AUDIT: monitor wasted spend — still need Manus? Etsy? right-size ElevenLabs? pay for HeyGen? cheapest effective video tool (Higgsfield vs Topview)? (4) Build CORPORATE AGENTIC STRUCTURE: who runs which workstream, cost, investment needed. (5) Send him prompts/nudges when lagging — 'your job is 24/7'. KEY INSIGHT to apply: his brand is REAL/self-shot (calisthenics) → expensive AI-video/avatar tools may be redundant.
-### 2026-06-02 04:50 UTC · chat
-🎉 BIG WIN 2026-06-02: calisthenics video published LIVE to Facebook, Instagram (Reel, zorb_ai), and LinkedIn. X uncertain (Buffer timed out mid-86MB-upload — verify manually). Posting block broken. SUSTAINABLE CADENCE in .claude/os/content/posting-cadence.md: batch 1 pillar video/Sun → Claude atomizes + queues all platforms in Buffer → user approves + posts FB manually. Floor 3/wk; FB 3-5x, IG 4-5x, LI 3x, X 5x, TikTok 3x, newsletter 1x.
-
-### 2026-06-02 04:43 UTC · chat
-🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
-
-### 2026-06-02 04:31 UTC · chat
-Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
-
-### 2026-06-02 04:06 UTC · chat
-Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-posted/scheduled by Buffer or any tool (Meta API rule). FB stays a MANUAL post by Zorba. Buffer handles the rest: IG (Business), LinkedIn, TikTok. Connecting Buffer via Zapier for scheduling those.
-
-### 2026-06-02 04:03 UTC · chat
-PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
-
-### 2026-06-02 03:58 UTC · chat
-BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
-
-### 2026-06-02 03:56 UTC · chat
-ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calisthenics park (working out, corny/human vibe) delivering the core pitch. Transcript on file. On-message: 'every business owner has something they don't wanna do… AI answers your call, schedules, email in your voice, inventory tracked… I'm not here to sell you on AI, I'm here to buy back your time… so you have more time to work out.' Calisthenics setting ties to the time-back close. POSTABLE TODAY. File local on his Mac (~/Movies/Zorba Explainer(5)) — not in container.
-
-### 2026-06-02 03:46 UTC · chat
-User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real clock for standups/cadence/day-planning.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 11:43 UTC
+- **When:** 2026-06-10 11:47 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e7a755e Self-improving calibration + scale-proof touch mapping — 1 second ago
+- **Last commit:** b693b53 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 68 seconds ago
 
 **Working tree:**
 ```
@@ -208,17 +182,17 @@ M .claude/nucleus/NUCLEUS.md
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+.claude/nucleus/NUCLEUS.md | 54 ++++++++++------------------------------------
+ 1 file changed, 11 insertions(+), 43 deletions(-)
 ```
 
 **Recent commits:**
 ```
-e7a755e Self-improving calibration + scale-proof touch mapping (1 second ago)
-a7b9cf5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-7cce0e9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (12 minutes ago)
-956e4f5 chore: refresh nucleus live state [skip ci] (66 minutes ago)
+b693b53 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (68 seconds ago)
+f049995 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+e7a755e Self-improving calibration + scale-proof touch mapping (5 minutes ago)
+a7b9cf5 chore: refresh nucleus live state [skip ci] (16 minutes ago)
+7cce0e9 chore: refresh nucleus live state [skip ci] (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
