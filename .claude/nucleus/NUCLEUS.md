@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 18:12 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** e60aee7 chore: refresh nucleus live state [skip ci] — 2 hours ago
+- **Last commit:** 2979fed chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
- 1 file changed, 14 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+2979fed chore: refresh nucleus live state [skip ci] (19 seconds ago)
 e60aee7 chore: refresh nucleus live state [skip ci] (2 hours ago)
 a7276cd chore: refresh nucleus live state [skip ci] (2 hours ago)
 e751b5f chore: refresh nucleus live state [skip ci] (3 hours ago)
 c801b56 chore: refresh nucleus live state [skip ci] (3 hours ago)
-7c6b606 MAMAD DASH polish: hood themes, power-ups, siren only in last 3s (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
