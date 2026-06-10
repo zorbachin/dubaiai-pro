@@ -146,6 +146,7 @@
   </div>
   <div class="stat" id="menuBest"></div>
   <p class="note" data-i18n="disclaimer"></p>
+  <div id="verTag" style="position:absolute;top:calc(env(safe-area-inset-top,0px) + 8px);inset-inline-start:12px;font-size:10px;color:var(--dim);opacity:.6;letter-spacing:1px"></div>
 </div>
 
 <!-- ===== HOW TO ===== -->
@@ -229,6 +230,8 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
+const GAME_VERSION = 'v10';
+console.log('Iron Dome ' + GAME_VERSION);
 
 /* ---------- persistence ---------- */
 const SAVE_KEY = 'irondome.save.v1';
@@ -368,7 +371,14 @@ const cv = $('game'), cx = cv.getContext('2d');
 let W = 0, H = 0, DPR = 1, GROUND = 0;
 function resize(){
   DPR = Math.min(window.devicePixelRatio || 1, 2);
-  W = window.innerWidth; H = window.innerHeight;
+  // track the VISUAL viewport (what the eye actually sees), not the layout
+  // viewport — with any iOS zoom the two differ and the city slides below
+  // the fold. Explicit CSS size pins the canvas to the visible area.
+  const vv = window.visualViewport;
+  W = Math.round(vv ? vv.width : window.innerWidth);
+  H = Math.round(vv ? vv.height : window.innerHeight);
+  cv.style.width = W + 'px';
+  cv.style.height = H + 'px';
   cv.width = W * DPR; cv.height = H * DPR;
   cx.setTransform(DPR, 0, 0, DPR, 0, 0);
   GROUND = H - Math.max(70, H * 0.12);
@@ -410,6 +420,29 @@ const sfx = {
   click(){ tone(700, 500, 0.05, 'square', 0.05); }
 };
 function buzz(ms){ if (navigator.vibrate) try{ navigator.vibrate(ms); }catch(e){} }
+
+/* ---------- music: procedural hypnotic loop (no assets, works offline) ----------
+   A soft step-sequencer: pulsing bass + kick + sparse minor-pentatonic arps
+   over a 4-chord cycle. Runs only during play; respects the mute toggle. */
+let musId = null, musStep = 0;
+const MUS_CHORDS = [0, 0, 3, -2];                  // i · i · III · VII (minor feel)
+const MUS_PENT = [0, 3, 5, 7, 10, 12];
+function musicStart(){
+  if (musId) return;
+  musId = setInterval(() => {
+    if (!save.sound || screen !== 'play' || document.hidden) return;
+    const root = 110 * Math.pow(2, MUS_CHORDS[Math.floor(musStep / 8) % 4] / 12);
+    const s = musStep % 8;
+    if (s % 2 === 0) tone(root / 2, root / 2, 0.20, 'triangle', 0.06);     // bass pulse
+    if (s === 0){ noise(0.05, 0.08); tone(72, 38, 0.12, 'sine', 0.10); }   // kick
+    if (s === 4) noise(0.025, 0.04);                                        // hat
+    if (Math.random() < 0.45)                                               // sparse arp
+      tone(root * 2 * Math.pow(2, MUS_PENT[Math.floor(Math.random() * 6)] / 12),
+           root * 2, 0.16, 'square', 0.02);
+    musStep++;
+  }, 220);
+}
+function musicStop(){ if (musId){ clearInterval(musId); musId = null; } }
 
 /* ---------- game state ---------- */
 let G = null;             // live level state
@@ -697,7 +730,10 @@ function spawnRocket(type, x, y, child){
     { v: 80,  size: 14, hp: 1, col: '#c792ff', pts: 30 },
     { v: 55,  size: 19, hp: 1, col: '#5dffa8', pts: 35 }
   ][type];
-  const sx = x !== undefined ? x : W * (0.16 + Math.random() * 0.68);
+  // hard playfield rule: NOTHING spawns or flies outside 15–85% of the
+  // visible width — every rocket must be fully on-screen and tappable
+  const sx = Math.max(W * 0.15, Math.min(W * 0.85,
+    x !== undefined ? x : W * (0.16 + Math.random() * 0.68)));
   const tx = W * (0.18 + Math.random() * 0.64);   // always lands over the city strip
   const sy = y !== undefined ? y : -30;
   const ang = Math.atan2(GROUND - sy, tx - sx);
@@ -1309,8 +1345,8 @@ const SCREENS = ['scrMenu','scrHow','scrCal','scrIntro','scrPause','scrEnd','scr
 function show(name){
   for (const s of SCREENS) $(s).classList.remove('show');
   $('hud').style.display = 'none';
-  if (name === 'play'){ $('hud').style.display = 'flex'; }
-  else if (name) $(name).classList.add('show');
+  if (name === 'play'){ $('hud').style.display = 'flex'; musicStart(); }
+  else { if (name) $(name).classList.add('show'); musicStop(); }
   screen = ({ scrMenu:'menu', scrHow:'how', scrCal:'cal', scrIntro:'intro', scrPause:'pause',
               scrEnd:'end', scrOver:'over', scrWin:'win' })[name] || 'play';
 }
@@ -1564,6 +1600,7 @@ document.addEventListener('visibilitychange', () => {
 for (let i = 0; i < 70; i++)
   stars.push({ x: Math.random(), y: Math.random(), s: Math.random() < 0.8 ? 1 : 2, tw: Math.random() * 6.28 });
 resize();
+$('verTag').textContent = '🛡 ' + GAME_VERSION;
 syncSound();
 applyLang();
 requestAnimationFrame(loop);

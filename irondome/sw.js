@@ -1,5 +1,5 @@
 /* Iron Dome — offline-first service worker */
-const CACHE = 'irondome-v9';
+const CACHE = 'irondome-v10';
 const ASSETS = [
   './',
   './index.html',
@@ -24,6 +24,7 @@ self.addEventListener('activate', e => {
    refresh the cache in the background when online. */
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  const isNav = e.request.mode === 'navigate' || e.request.destination === 'document';
   e.respondWith(
     caches.match(e.request).then(cached => {
       const fresh = fetch(e.request)
@@ -35,7 +36,9 @@ self.addEventListener('fetch', e => {
           return res;
         })
         .catch(() => cached);
-      return cached || fresh;
+      // pages: network-first (always newest build when online, cache offline);
+      // assets: cache-first for instant loads
+      return isNav ? fresh.then(r => r || cached) : (cached || fresh);
     })
   );
 });
