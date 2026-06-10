@@ -48,7 +48,6 @@ surface. This is the message-in-a-bottle between sessions._
 <!-- HANDOFFS:START -->
 ### 2026-06-10 18:12 UTC · code
 Iron Dome v12: Israeli voice pack per Zorba ('more branded, sabra sarcasm, yell at Knesset') — rotating sarcastic level-clear headlines, anonymous-MK reaction quotes (fictional/anonymous = playful not political), escalating Hebrew combo shouts, power-up attitude lines, family-style game-over teasing. DURABLE BRAND RULE: Iron Dome voice = sabra sarcasm, hummus/savta/Knesset-committee humor, bilingual, never name real politicians.
-
 ### 2026-06-10 15:14 UTC · code
 Iron Dome v11 built: QA round 2 applied (sim-validated loseable difficulty, <4s first kill, hit-stop/pitch-ladder juice, best-gap cliffhanger death, dynamic music) + Zorba's asks (adaptive heat = skill-coupled escalation; Houthi whimper/Hezbollah thud/IRGC boom + sarcastic quips; one-tap Share with clipboard fallback) + all iPhone P0/P1 fixes (Dynamic Island chevrons, zoom translate, iOS audio recovery, SW hang guard). Leaderboard = needs backend, deferred; share button is the zero-backend social layer.
 
@@ -169,6 +168,11 @@ NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (bui
 
 ### 2026-06-02 09:45 UTC · chat
 CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 quote cards (built) + COPY.md (FB/IG/LI/X captions + newsletter draft + demo recording brief + hero-video spec). One message: 'deals die in the follow-up gap — this closes it.' WAITING ON: Zorba records the basic demo (drop in Drive) -> Claude cuts the website hero video + queues everything. COMMAND CENTER #1 DONE: nucleus serve exposes /command.json (per-venture board+brain) for the existing localhost widget to sync; / now renders a per-venture dashboard.
+
+
+
+### 2026-06-02 09:36 UTC · chat
+NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
@@ -178,6 +182,18 @@ _Refreshed automatically after each turn — do not edit by hand._
 - **When:** 2026-06-10 18:12 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
 - **Last commit:** 54dd188 v12: Israeli voice pack — sabra sarcasm woven through every touchpoint — 1 second ago
+
+- **When:** 2026-06-10 15:14 UTC
+
+- **When:** 2026-06-10 14:45 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** 89bfac1 chore: refresh nucleus live state [skip ci] — 73 minutes ago
+
+- **When:** 2026-06-10 13:29 UTC
+
+- **When:** 2026-06-10 13:00 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes — 12 seconds ago
 
 **Working tree:**
 ```
@@ -191,6 +207,36 @@ _Refreshed automatically after each turn — do not edit by hand._
 50c8bdc chore: refresh nucleus live state [skip ci] (3 hours ago)
 a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (3 hours ago)
 59ebd05 chore: refresh nucleus live state [skip ci] (3 hours ago)
+
+ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (12 seconds ago)
+ac68fa5 chore: refresh nucleus live state [skip ci] (17 minutes ago)
+02ac41d chore: refresh nucleus live state [skip ci] (17 minutes ago)
+71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (20 minutes ago)
+7b72772 Mobile hardening: visual-viewport canvas, hard playfield clamp, music, version badge (21 minutes ago)
+
+89bfac1 chore: refresh nucleus live state [skip ci] (73 minutes ago)
+3c7c3f7 chore: refresh nucleus live state [skip ci] (74 minutes ago)
+a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (75 minutes ago)
+13d5682 chore: refresh nucleus live state [skip ci] (75 minutes ago)
+817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (76 minutes ago)
+
+817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (1 second ago)
+1b9fd79 chore: refresh nucleus live state [skip ci] (23 minutes ago)
+7440fdd chore: refresh nucleus live state [skip ci] (23 minutes ago)
+7d7eac0 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+1e4e045 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+
+d41df29 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+b4bdca7 chore: refresh nucleus live state [skip ci] (32 minutes ago)
+5c4b64b chore: refresh nucleus live state [skip ci] (36 minutes ago)
+76817f9 chore: refresh nucleus live state [skip ci] (37 minutes ago)
+8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish (37 minutes ago)
+
+e7a755e Self-improving calibration + scale-proof touch mapping (1 second ago)
+a7b9cf5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+7cce0e9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (12 minutes ago)
+956e4f5 chore: refresh nucleus live state [skip ci] (66 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
