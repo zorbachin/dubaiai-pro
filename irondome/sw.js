@@ -1,5 +1,5 @@
 /* Iron Dome — offline-first service worker */
-const CACHE = 'irondome-v14';
+const CACHE = 'irondome-v15';
 const ASSETS = [
   './',
   './index.html',
@@ -32,10 +32,11 @@ self.addEventListener('fetch', e => {
           if (res && res.ok && new URL(e.request.url).origin === location.origin) {
             const clone = res.clone();
             caches.open(CACHE).then(c => c.put(e.request, clone));
+            return res;
           }
-          return res;
+          return cached || res;          // never serve a 500 over a healthy cache
         })
-        .catch(() => cached);
+        .catch(() => cached || Response.error());
       // pages: network-first with a hang guard; assets: cache-first
       if (!isNav) return cached || fresh;
       if (!cached) return fresh;
