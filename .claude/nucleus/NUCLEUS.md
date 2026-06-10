@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 12:02 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 02583b4 chore: refresh nucleus live state [skip ci] — 14 minutes ago
+- **Last commit:** e67bb19 chore: refresh nucleus live state [skip ci] — 29 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-02583b4 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+e67bb19 chore: refresh nucleus live state [skip ci] (29 seconds ago)
+02583b4 chore: refresh nucleus live state [skip ci] (15 minutes ago)
 0f5a35d chore: refresh nucleus live state [skip ci] (15 minutes ago)
 36b668f chore: refresh nucleus live state [skip ci] (21 minutes ago)
-7980927 chore: refresh nucleus live state [skip ci] (21 minutes ago)
-273622a Add Mamadio — Tel Aviv hustle game with MAMAD DASH siren runner (#71) (2 hours ago)
+7980927 chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
