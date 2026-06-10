@@ -220,15 +220,9 @@ User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 13:29 UTC
-
-- **When:** 2026-06-10 13:00 UTC
+- **When:** 2026-06-10 13:31 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** d41df29 chore: refresh nucleus live state [skip ci] — 7 minutes ago
-
-- **When:** 2026-06-10 11:43 UTC
-- **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm — 1 second ago
+- **Last commit:** a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 40 seconds ago
 
 **Working tree:**
 ```
@@ -237,23 +231,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (1 second ago)
-1b9fd79 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-7440fdd chore: refresh nucleus live state [skip ci] (23 minutes ago)
-7d7eac0 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-1e4e045 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-
-d41df29 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-b4bdca7 chore: refresh nucleus live state [skip ci] (32 minutes ago)
-5c4b64b chore: refresh nucleus live state [skip ci] (36 minutes ago)
-76817f9 chore: refresh nucleus live state [skip ci] (37 minutes ago)
-8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish (37 minutes ago)
-
-e7a755e Self-improving calibration + scale-proof touch mapping (1 second ago)
-a7b9cf5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-7cce0e9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (12 minutes ago)
-956e4f5 chore: refresh nucleus live state [skip ci] (66 minutes ago)
+a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (40 seconds ago)
+13d5682 chore: refresh nucleus live state [skip ci] (75 seconds ago)
+817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (2 minutes ago)
+1b9fd79 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+7440fdd chore: refresh nucleus live state [skip ci] (25 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
