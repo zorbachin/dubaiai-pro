@@ -175,17 +175,9 @@ NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 15:14 UTC
-
-- **When:** 2026-06-10 14:45 UTC
+- **When:** 2026-06-10 15:16 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 89bfac1 chore: refresh nucleus live state [skip ci] — 73 minutes ago
-
-- **When:** 2026-06-10 13:29 UTC
-
-- **When:** 2026-06-10 13:00 UTC
-- **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes — 12 seconds ago
+- **Last commit:** a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 78 seconds ago
 
 **Working tree:**
 ```
@@ -194,35 +186,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (12 seconds ago)
-ac68fa5 chore: refresh nucleus live state [skip ci] (17 minutes ago)
-02ac41d chore: refresh nucleus live state [skip ci] (17 minutes ago)
-71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (20 minutes ago)
-7b72772 Mobile hardening: visual-viewport canvas, hard playfield clamp, music, version badge (21 minutes ago)
-
-89bfac1 chore: refresh nucleus live state [skip ci] (73 minutes ago)
-3c7c3f7 chore: refresh nucleus live state [skip ci] (74 minutes ago)
-a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (75 minutes ago)
-13d5682 chore: refresh nucleus live state [skip ci] (75 minutes ago)
-817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (76 minutes ago)
-
-817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (1 second ago)
-1b9fd79 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-7440fdd chore: refresh nucleus live state [skip ci] (23 minutes ago)
-7d7eac0 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-1e4e045 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-
-d41df29 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-b4bdca7 chore: refresh nucleus live state [skip ci] (32 minutes ago)
-5c4b64b chore: refresh nucleus live state [skip ci] (36 minutes ago)
-76817f9 chore: refresh nucleus live state [skip ci] (37 minutes ago)
-8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish (37 minutes ago)
-
-e7a755e Self-improving calibration + scale-proof touch mapping (1 second ago)
-a7b9cf5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-7cce0e9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (12 minutes ago)
-956e4f5 chore: refresh nucleus live state [skip ci] (66 minutes ago)
+a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (78 seconds ago)
+59ebd05 chore: refresh nucleus live state [skip ci] (78 seconds ago)
+ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (2 minutes ago)
+ac68fa5 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+02ac41d chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
