@@ -171,22 +171,28 @@ Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Gre
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-08 20:28 UTC
+- **When:** 2026-06-10 08:47 UTC
 - **Branch:** `claude/israel-sirens-scoreboard-lh2jbw`
-- **Last commit:** a1cf627 chore: refresh nucleus live state [skip ci] — 9 seconds ago
+- **Last commit:** 2c79197 chore: refresh nucleus live state [skip ci] — 2 days ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-a1cf627 chore: refresh nucleus live state [skip ci] (9 seconds ago)
-9d95aef Add Israel siren scoreboard (scoreboard.html) (54 seconds ago)
-fbf2155 chore: refresh nucleus live state [skip ci] (6 days ago)
-c55a864 chore: refresh nucleus live state [skip ci] (6 days ago)
-c5726ff chore: refresh nucleus live state [skip ci] (6 days ago)
+2c79197 chore: refresh nucleus live state [skip ci] (2 days ago)
+a1cf627 chore: refresh nucleus live state [skip ci] (2 days ago)
+9d95aef Add Israel siren scoreboard (scoreboard.html) (2 days ago)
+fbf2155 chore: refresh nucleus live state [skip ci] (8 days ago)
+c55a864 chore: refresh nucleus live state [skip ci] (8 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
