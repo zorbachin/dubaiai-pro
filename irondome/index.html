@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a1226">
+<meta name="description" content="Iron Dome — a light arcade game. Tap the rockets before they land. Works offline.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>כיפת ברזל · Iron Dome</title>
+<style>
+  :root{
+    --bg:#0a1226; --panel:#101b38; --panel2:#16244a;
+    --cyan:#3ee6ff; --gold:#ffd166; --red:#ff5d73; --green:#5dffa8;
+    --ink:#eaf2ff; --dim:#8da3cc;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Heebo",Arial,sans-serif;
+    touch-action:manipulation; user-select:none; -webkit-user-select:none;
+  }
+  #game{position:fixed;inset:0;display:block;touch-action:none}
+
+  /* ---------- HUD ---------- */
+  #hud{
+    position:fixed;top:0;left:0;right:0;display:none;justify-content:space-between;
+    align-items:flex-start;padding:calc(env(safe-area-inset-top,0px) + 10px) 12px 0;
+    pointer-events:none;z-index:5;
+  }
+  .hudbox{
+    background:rgba(10,18,38,.65);border:1px solid rgba(62,230,255,.25);
+    border-radius:12px;padding:6px 12px;backdrop-filter:blur(4px);
+  }
+  #hudScore{font-family:"Courier New",monospace;font-weight:700;font-size:20px;color:var(--cyan);
+    text-shadow:0 0 12px rgba(62,230,255,.7);letter-spacing:1px}
+  #hudCombo{font-size:12px;color:var(--gold);font-weight:700;min-height:14px}
+  #hudLevel{font-size:12px;color:var(--dim);text-align:center}
+  #hudWave{font-size:13px;color:var(--ink);font-weight:600;text-align:center}
+  #btnPause{pointer-events:auto;background:rgba(10,18,38,.65);border:1px solid rgba(62,230,255,.25);
+    color:var(--ink);border-radius:12px;font-size:18px;padding:7px 14px;cursor:pointer}
+
+  /* ---------- Overlay screens ---------- */
+  .screen{
+    position:fixed;inset:0;display:none;flex-direction:column;align-items:center;
+    justify-content:center;gap:14px;z-index:10;padding:24px;text-align:center;
+    background:radial-gradient(ellipse at 50% 30%,rgba(22,36,74,.92),rgba(10,18,38,.97));
+  }
+  .screen.show{display:flex}
+  h1{
+    font-family:"Courier New",monospace;font-weight:700;font-size:clamp(26px,7vw,44px);
+    letter-spacing:2px;color:var(--cyan);text-shadow:0 0 18px rgba(62,230,255,.8),0 0 60px rgba(62,230,255,.35);
+  }
+  h1 small{display:block;font-size:.45em;color:var(--gold);letter-spacing:6px;margin-top:6px;
+    text-shadow:0 0 14px rgba(255,209,102,.6)}
+  .sub{color:var(--dim);font-size:14px;max-width:420px;line-height:1.5}
+  .btn{
+    background:linear-gradient(180deg,#1d3a7a,#142a5c);color:var(--ink);
+    border:1px solid rgba(62,230,255,.5);border-radius:14px;font-size:18px;font-weight:700;
+    padding:14px 38px;cursor:pointer;letter-spacing:1px;min-width:220px;
+    box-shadow:0 0 18px rgba(62,230,255,.25), inset 0 1px 0 rgba(255,255,255,.12);
+    transition:transform .08s;
+  }
+  .btn:active{transform:scale(.96)}
+  .btn.primary{background:linear-gradient(180deg,#0fb3cf,#0b7e98);border-color:var(--cyan);
+    box-shadow:0 0 26px rgba(62,230,255,.55)}
+  .btn.small{font-size:14px;padding:9px 18px;min-width:0}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .pill{background:var(--panel2);border:1px solid rgba(141,163,204,.35);color:var(--dim);
+    border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer}
+  .pill.on{color:var(--ink);border-color:var(--cyan);box-shadow:0 0 10px rgba(62,230,255,.3)}
+  .stat{font-family:"Courier New",monospace;font-size:16px;color:var(--ink)}
+  .stat b{color:var(--gold)}
+  .stars{font-size:34px;letter-spacing:8px;color:var(--gold);text-shadow:0 0 16px rgba(255,209,102,.7)}
+  .bigscore{font-family:"Courier New",monospace;font-size:34px;color:var(--cyan);
+    text-shadow:0 0 16px rgba(62,230,255,.7)}
+  #levelTitle{color:var(--gold);font-size:22px;font-weight:800;letter-spacing:1px}
+  .note{font-size:11px;color:var(--dim);opacity:.8;max-width:380px;line-height:1.5;
+    position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);left:0;right:0;margin:auto}
+
+  /* ---------- Upgrades ---------- */
+  #shop{display:flex;flex-direction:column;gap:8px;width:min(92vw,420px)}
+  .up{
+    display:flex;align-items:center;gap:10px;background:var(--panel);
+    border:1px solid rgba(62,230,255,.2);border-radius:12px;padding:10px 12px;text-align:start;
+  }
+  .up .ic{font-size:24px;width:34px;text-align:center}
+  .up .nm{font-weight:700;font-size:14px}
+  .up .ds{font-size:11px;color:var(--dim)}
+  .up .tiers{font-size:11px;color:var(--cyan);letter-spacing:2px}
+  .up .info{flex:1;min-width:0}
+  .up button{
+    background:#1d3a7a;border:1px solid rgba(255,209,102,.6);color:var(--gold);
+    border-radius:10px;padding:8px 12px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;
+  }
+  .up button:disabled{opacity:.35;border-color:var(--dim);color:var(--dim)}
+  #coins{font-family:"Courier New",monospace;color:var(--gold);font-size:18px;font-weight:700;
+    text-shadow:0 0 10px rgba(255,209,102,.5)}
+
+  /* how to play */
+  .howrow{display:flex;align-items:center;gap:12px;background:var(--panel);border-radius:12px;
+    padding:8px 14px;width:min(92vw,400px);text-align:start}
+  .howrow .e{font-size:24px}
+  .howrow .t{font-size:13px;color:var(--ink);line-height:1.4}
+</style>
+</head>
+<body>
+
+<canvas id="game"></canvas>
+
+<div id="hud">
+  <div class="hudbox">
+    <div id="hudScore">0</div>
+    <div id="hudCombo"></div>
+  </div>
+  <div class="hudbox">
+    <div id="hudWave"></div>
+    <div id="hudLevel"></div>
+  </div>
+  <button id="btnPause">⏸</button>
+</div>
+
+<!-- ===== MENU ===== -->
+<div id="scrMenu" class="screen show">
+  <h1 data-i18n="title">כיפת ברזל<small>IRON DOME</small></h1>
+  <p class="sub" data-i18n="tagline"></p>
+  <button class="btn primary" id="btnPlay"></button>
+  <button class="btn" id="btnHow"></button>
+  <div class="btnrow">
+    <button class="pill" id="btnLang">EN</button>
+    <button class="pill on" id="btnSound">🔊</button>
+  </div>
+  <div class="stat" id="menuBest"></div>
+  <p class="note" data-i18n="disclaimer"></p>
+</div>
+
+<!-- ===== HOW TO ===== -->
+<div id="scrHow" class="screen">
+  <h1 style="font-size:24px" data-i18n="howTitle"></h1>
+  <div class="howrow"><span class="e">🚀</span><span class="t" data-i18n="how1"></span></div>
+  <div class="howrow"><span class="e">👆</span><span class="t" data-i18n="how2"></span></div>
+  <div class="howrow"><span class="e">🎁</span><span class="t" data-i18n="how3"></span></div>
+  <div class="howrow"><span class="e">🏙️</span><span class="t" data-i18n="how4"></span></div>
+  <div class="howrow"><span class="e">⭐</span><span class="t" data-i18n="how5"></span></div>
+  <button class="btn primary" id="btnHowBack"></button>
+</div>
+
+<!-- ===== LEVEL INTRO ===== -->
+<div id="scrIntro" class="screen">
+  <div id="hudLevelIntro" class="sub"></div>
+  <div id="levelTitle"></div>
+  <div class="sub" id="levelHint"></div>
+  <button class="btn primary" id="btnStart"></button>
+</div>
+
+<!-- ===== PAUSE ===== -->
+<div id="scrPause" class="screen">
+  <h1 style="font-size:26px" data-i18n="paused"></h1>
+  <button class="btn primary" id="btnResume"></button>
+  <button class="btn" id="btnQuit"></button>
+</div>
+
+<!-- ===== LEVEL END / SHOP ===== -->
+<div id="scrEnd" class="screen">
+  <div class="stars" id="endStars"></div>
+  <div id="endTitle" style="font-size:22px;font-weight:800;color:var(--ink)"></div>
+  <div class="stat" id="endStats"></div>
+  <div id="coins"></div>
+  <div id="shop"></div>
+  <div class="btnrow">
+    <button class="btn primary" id="btnNext"></button>
+    <button class="btn small" id="btnRetry"></button>
+    <button class="btn small" id="btnMenu1"></button>
+  </div>
+</div>
+
+<!-- ===== GAME OVER ===== -->
+<div id="scrOver" class="screen">
+  <h1 style="font-size:26px;color:var(--red);text-shadow:0 0 18px rgba(255,93,115,.7)" data-i18n="overTitle"></h1>
+  <div class="bigscore" id="overScore"></div>
+  <div class="sub" id="overStats"></div>
+  <div class="btnrow">
+    <button class="btn primary" id="btnRetry2"></button>
+    <button class="btn" id="btnMenu2"></button>
+  </div>
+</div>
+
+<!-- ===== VICTORY ===== -->
+<div id="scrWin" class="screen">
+  <h1 style="font-size:28px;color:var(--gold);text-shadow:0 0 20px rgba(255,209,102,.8)" data-i18n="winTitle"></h1>
+  <p class="sub" data-i18n="winSub"></p>
+  <div class="bigscore" id="winScore"></div>
+  <button class="btn primary" id="btnMenu3"></button>
+</div>
+
+<script>
+'use strict';
+/* =========================================================
+   IRON DOME — light arcade interceptor game
+   Single-file, offline-first PWA. No external assets.
+   ========================================================= */
+
+const $ = id => document.getElementById(id);
+
+/* ---------- persistence ---------- */
+const SAVE_KEY = 'irondome.save.v1';
+const save = Object.assign({
+  lang: 'he', sound: true, coins: 0, best: 0, unlocked: 0,
+  up: { blast: 0, speed: 0, launchers: 0, sling: 0 }
+}, JSON.parse(localStorage.getItem(SAVE_KEY) || '{}'));
+function persist(){ localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }
+
+/* ---------- i18n ---------- */
+const T = {
+  en: {
+    title: 'IRON DOME', dir: 'ltr',
+    tagline: 'Rockets are falling — tap them out of the sky before they reach the city. Quick rounds, works offline.',
+    play: '▶ PLAY', howBtn: 'HOW TO PLAY', back: 'BACK',
+    howTitle: 'HOW TO PLAY',
+    how1: 'Rockets fall from the sky. Big ones are slow, small ones are fast — some split or swerve.',
+    how2: 'Tap anywhere to fire an interceptor there. Its blast takes out every rocket in range. Lead your shots!',
+    how3: 'Tap falling crates 🎁 to grab power-ups: slow-motion, mega blasts, a shield dome, and the laser beam.',
+    how4: 'Every rocket that lands destroys a building. Lose all buildings and the round is over.',
+    how5: 'Earn ⭐ and coins to buy upgrades — bigger blasts, faster missiles, extra launchers and the Iron Sling.',
+    level: 'LEVEL', start: 'DEFEND', paused: 'PAUSED', resume: 'RESUME', quit: 'MAIN MENU',
+    next: 'NEXT LEVEL ▶', retry: 'RETRY', menu: 'MENU',
+    cleared: 'AREA DEFENDED!', failedLv: 'The city took too many hits…',
+    intercepted: 'Intercepted', saved: 'Buildings saved', scoreW: 'Score', bestW: 'Best',
+    coinsW: 'Coins', maxed: 'MAX', buy: 'Upgrade',
+    overTitle: 'CITY DOWN', overStats: 'You intercepted {n} rockets. The dome never sleeps — try again!',
+    winTitle: '🏆 ALL CLEAR!', winSub: 'You defended every city, from Sderot to Eilat. Total protection.',
+    upBlast: 'Bigger Blast', upBlastD: 'Wider interception radius',
+    upSpeed: 'Faster Tamir', upSpeedD: 'Interceptors fly faster',
+    upLaunch: 'Extra Launcher', upLaunchD: '+1 interceptor in the air',
+    upSling: 'Iron Sling', upSlingD: 'Auto-intercepts leakers (per level)',
+    waveOf: 'Rockets', comboX: 'COMBO x',
+    pSlow: 'SLOW-MO!', pMega: 'MEGA BLAST!', pShield: 'SHIELD UP!', pBeam: 'IRON BEAM!',
+    slingShot: 'IRON SLING!',
+    disclaimer: 'A fan-made morale game — not affiliated with any official body. In a real alert, follow Home Front Command instructions. Stay safe ❤️',
+    levels: ['Sderot','Ashkelon','Ashdod','Beer Sheva','Rishon LeZion','Tel Aviv','Netanya','Jerusalem','Haifa','Eilat'],
+    hints: [
+      'Where it all begins. Easy skies — warm up your tapping finger.',
+      'Faster rockets join in. Tap slightly ahead of them.',
+      'Heavy rockets take a direct, close blast.',
+      'The desert sky gets busy. Watch the edges.',
+      'Swerving rockets! They zigzag on the way down.',
+      'The big city. Splitters break into two — pop them high!',
+      'Coastal winds: everything moves quicker here.',
+      'Defend the old stone city. Mixed barrages incoming.',
+      'Port under fire — heavy + fast combos. Use power-ups.',
+      'The final stand in the south. Everything at once. 💪'
+    ]
+  },
+  he: {
+    title: 'כיפת ברזל', dir: 'rtl',
+    tagline: 'רקטות נופלות מהשמיים — תקליקו עליהן לפני שהן מגיעות לעיר. סבבים קצרים, עובד גם בלי אינטרנט.',
+    play: '▶ שחקו', howBtn: 'איך משחקים', back: 'חזרה',
+    howTitle: 'איך משחקים',
+    how1: 'רקטות נופלות מהשמיים. הגדולות איטיות, הקטנות מהירות — חלקן מתפצלות או מתפתלות.',
+    how2: 'הקליקו בכל מקום כדי לשגר מיירט לשם. הפיצוץ מפיל כל רקטה בטווח. קחו מקדם!',
+    how3: 'הקליקו על ארגזים נופלים 🎁 לאסוף כוחות: הילוך איטי, פיצוץ ענק, כיפת מגן וקרן לייזר.',
+    how4: 'כל רקטה שנוחתת הורסת בניין. נגמרו הבניינים — נגמר הסיבוב.',
+    how5: 'אספו ⭐ ומטבעות לשדרוגים — פיצוץ גדול יותר, טילים מהירים, משגר נוסף וקלע ברזל.',
+    level: 'שלב', start: 'להגן!', paused: 'הפסקה', resume: 'המשך', quit: 'תפריט ראשי',
+    next: 'לשלב הבא ◀', retry: 'נסו שוב', menu: 'תפריט',
+    cleared: 'האזור הוגן!', failedLv: 'העיר ספגה יותר מדי פגיעות…',
+    intercepted: 'יירוטים', saved: 'בניינים שניצלו', scoreW: 'ניקוד', bestW: 'שיא',
+    coinsW: 'מטבעות', maxed: 'מקסימום', buy: 'שדרוג',
+    overTitle: 'העיר נפלה', overStats: 'יירטתם {n} רקטות. הכיפה לא ישנה — נסו שוב!',
+    winTitle: '🏆 הכל נקי!', winSub: 'הגנתם על כל הערים, משדרות ועד אילת. הגנה מושלמת.',
+    upBlast: 'פיצוץ גדול יותר', upBlastD: 'רדיוס יירוט רחב יותר',
+    upSpeed: 'תמיר מהיר', upSpeedD: 'המיירטים טסים מהר יותר',
+    upLaunch: 'משגר נוסף', upLaunchD: 'מיירט נוסף באוויר בו־זמנית',
+    upSling: 'קלע ברזל', upSlingD: 'יירוט אוטומטי של מסתננות (לכל שלב)',
+    waveOf: 'רקטות', comboX: 'קומבו ×',
+    pSlow: 'הילוך איטי!', pMega: 'מגה פיצוץ!', pShield: 'מגן פעיל!', pBeam: 'קרן ברזל!',
+    slingShot: 'קלע ברזל!',
+    disclaimer: 'משחק מעריצים להרמת מורל — לא קשור לגוף רשמי. באזעקה אמיתית פעלו לפי הנחיות פיקוד העורף. שמרו על עצמכם ❤️',
+    levels: ['שדרות','אשקלון','אשדוד','באר שבע','ראשון לציון','תל אביב','נתניה','ירושלים','חיפה','אילת'],
+    hints: [
+      'כאן הכל מתחיל. שמיים רגועים — תחממו את האצבע.',
+      'רקטות מהירות מצטרפות. הקליקו קצת לפניהן.',
+      'רקטות כבדות צריכות פיצוץ קרוב וישיר.',
+      'שמי המדבר מתמלאים. שימו לב לקצוות.',
+      'רקטות מתפתלות! הן עושות זיגזג בדרך למטה.',
+      'העיר הגדולה. מתפצלות נשברות לשתיים — תפסו אותן גבוה!',
+      'רוחות חוף: הכל זז מהר יותר כאן.',
+      'מגינים על עיר האבן. מטחים מעורבים בדרך.',
+      'הנמל תחת אש — כבדות ומהירות יחד. השתמשו בכוחות.',
+      'המעמד האחרון בדרום. הכל בבת אחת. 💪'
+    ]
+  }
+};
+function t(k){ return T[save.lang][k]; }
+
+/* ---------- level definitions ---------- */
+/* count: rockets in level · gap: base seconds between spawns · speed: multiplier
+   weights: [normal, fast, heavy, zigzag, splitter] · landmark for skyline flavor */
+const LEVELS = [
+  { count: 10, gap: 2.0, speed: 0.80, weights:[1.0,0,0,0,0],          accent:'#ffb46b', landmark:null    },
+  { count: 14, gap: 1.8, speed: 0.90, weights:[0.8,0.2,0,0,0],       accent:'#7fd8ff', landmark:null    },
+  { count: 16, gap: 1.7, speed: 0.95, weights:[0.6,0.2,0.2,0,0],     accent:'#9aa8ff', landmark:'crane' },
+  { count: 20, gap: 1.5, speed: 1.00, weights:[0.5,0.3,0.2,0,0],     accent:'#ffd166', landmark:null    },
+  { count: 22, gap: 1.4, speed: 1.05, weights:[0.4,0.3,0.15,0.15,0], accent:'#ff9eb3', landmark:null    },
+  { count: 26, gap: 1.3, speed: 1.10, weights:[0.35,0.25,0.15,0.1,0.15], accent:'#3ee6ff', landmark:'tower' },
+  { count: 28, gap: 1.2, speed: 1.20, weights:[0.3,0.35,0.1,0.1,0.15],  accent:'#8affc1', landmark:null  },
+  { count: 32, gap: 1.1, speed: 1.20, weights:[0.3,0.25,0.2,0.1,0.15],  accent:'#ffe08a', landmark:'dome' },
+  { count: 36, gap: 1.0, speed: 1.30, weights:[0.25,0.3,0.2,0.1,0.15],  accent:'#9fd0ff', landmark:'crane' },
+  { count: 42, gap: 0.9, speed: 1.40, weights:[0.2,0.3,0.2,0.15,0.15],  accent:'#ffb46b', landmark:'palm' }
+];
+
+/* ---------- upgrades ---------- */
+const UPGRADES = [
+  { key:'blast',     ic:'💥', max:3, cost:[150, 400, 900],  nm:'upBlast',  ds:'upBlastD'  },
+  { key:'speed',     ic:'🚀', max:3, cost:[120, 350, 800],  nm:'upSpeed',  ds:'upSpeedD'  },
+  { key:'launchers', ic:'🗼', max:2, cost:[300, 1000],      nm:'upLaunch', ds:'upLaunchD' },
+  { key:'sling',     ic:'🪨', max:3, cost:[250, 600, 1200], nm:'upSling',  ds:'upSlingD'  }
+];
+
+/* ---------- canvas ---------- */
+const cv = $('game'), cx = cv.getContext('2d');
+let W = 0, H = 0, DPR = 1, GROUND = 0;
+function resize(){
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  W = window.innerWidth; H = window.innerHeight;
+  cv.width = W * DPR; cv.height = H * DPR;
+  cx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  GROUND = H - Math.max(54, H * 0.085);
+  if (G) buildSkyline();
+}
+window.addEventListener('resize', resize);
+
+/* ---------- audio (synth, no assets) ---------- */
+let AC = null;
+function ac(){ if(!AC) AC = new (window.AudioContext||window.webkitAudioContext)(); if(AC.state==='suspended') AC.resume(); return AC; }
+function tone(f0, f1, dur, type, vol, when){
+  if (!save.sound) return;
+  try{
+    const a = ac(), o = a.createOscillator(), g = a.createGain(), t0 = a.currentTime + (when||0);
+    o.type = type; o.frequency.setValueAtTime(f0, t0);
+    o.frequency.exponentialRampToValueAtTime(Math.max(1,f1), t0+dur);
+    g.gain.setValueAtTime(vol, t0); g.gain.exponentialRampToValueAtTime(0.0001, t0+dur);
+    o.connect(g).connect(a.destination); o.start(t0); o.stop(t0+dur+0.02);
+  }catch(e){}
+}
+function noise(dur, vol){
+  if (!save.sound) return;
+  try{
+    const a = ac(), n = Math.floor(a.sampleRate*dur), buf = a.createBuffer(1,n,a.sampleRate), d = buf.getChannelData(0);
+    for(let i=0;i<n;i++) d[i] = (Math.random()*2-1)*(1-i/n);
+    const s = a.createBufferSource(), g = a.createGain();
+    s.buffer = buf; g.gain.value = vol; s.connect(g).connect(a.destination); s.start();
+  }catch(e){}
+}
+const sfx = {
+  launch(){ tone(900, 300, 0.18, 'sawtooth', 0.05); },
+  boom(){ noise(0.25, 0.20); tone(160, 40, 0.3, 'triangle', 0.25); },
+  hitCity(){ noise(0.4, 0.3); tone(90, 28, 0.5, 'sawtooth', 0.3); },
+  power(){ tone(500, 1000, 0.12, 'square', 0.08); tone(750, 1500, 0.12, 'square', 0.08, 0.08); },
+  combo(n){ tone(400+80*n, 400+80*n, 0.08, 'square', 0.06); },
+  beam(){ tone(2000, 200, 0.6, 'sawtooth', 0.12); },
+  click(){ tone(700, 500, 0.05, 'square', 0.05); }
+};
+function buzz(ms){ if (navigator.vibrate) try{ navigator.vibrate(ms); }catch(e){} }
+
+/* ---------- game state ---------- */
+let G = null;             // live level state
+let screen = 'menu';      // menu | how | intro | play | pause | end | over | win
+let curLevel = 0;
+let stars = [];           // background starfield
+let lastFrame = 0;
+
+function newGame(levelIdx){
+  const L = LEVELS[levelIdx];
+  G = {
+    L, levelIdx,
+    rockets: [], inters: [], booms: [], parts: [], pows: [], floats: [],
+    spawned: 0, resolved: 0, killed: 0,
+    spawnT: 1.2, powT: 6 + Math.random()*5,
+    score: 0, combo: 0, comboT: 0,
+    buildings: [], shake: 0,
+    timeScale: 1, slowT: 0, megaT: 0, shieldT: 0,
+    sling: save.up.sling,           // auto-intercept charges this level
+    over: false, won: false, doneT: 0,
+    beamFx: 0
+  };
+  buildSkyline();
+}
+
+function buildSkyline(){
+  if (!G) return;
+  const prev = G.buildings;
+  const n = 7, bw = W / (n + 2);
+  const arr = [];
+  // deterministic-ish heights per level
+  for (let i = 0; i < n; i++){
+    const r = Math.abs(Math.sin((G.levelIdx + 1) * 37.7 + i * 12.3));
+    arr.push({
+      x: bw * (i + 1) + bw * 0.08, w: bw * 0.84,
+      h: 36 + r * Math.min(80, H * 0.10),
+      alive: prev[i] ? prev[i].alive : true,
+      win: 2 + Math.floor(r * 3)
+    });
+  }
+  G.buildings = arr;
+}
+
+/* interceptor params with upgrades */
+function blastR(){ return (46 + save.up.blast * 13) * (G && G.megaT > 0 ? 1.7 : 1); }
+function interSpeed(){ return 520 + save.up.speed * 140; }
+function maxInters(){ return 2 + save.up.launchers; }
+
+/* ---------- spawning ---------- */
+function pickType(){
+  const w = G.L.weights, r = Math.random();
+  let acc = 0;
+  for (let i = 0; i < w.length; i++){ acc += w[i]; if (r < acc) return i; }
+  return 0;
+}
+/* type: 0 normal · 1 fast · 2 heavy · 3 zigzag · 4 splitter */
+function spawnRocket(type, x, y, child){
+  const sp = G.L.speed;
+  const def = [
+    { v: 65,  size: 13, hp: 1, col: '#ff5d73', pts: 10 },
+    { v: 120, size: 9,  hp: 1, col: '#ffd166', pts: 25 },
+    { v: 45,  size: 20, hp: 2, col: '#ff8c42', pts: 40 },
+    { v: 80,  size: 11, hp: 1, col: '#c792ff', pts: 30 },
+    { v: 55,  size: 16, hp: 1, col: '#5dffa8', pts: 35 }
+  ][type];
+  const sx = x !== undefined ? x : W * (0.08 + Math.random() * 0.84);
+  const tx = W * (0.15 + Math.random() * 0.7);
+  const sy = y !== undefined ? y : -30;
+  const ang = Math.atan2(GROUND - sy, tx - sx);
+  const v = def.v * sp * (0.9 + Math.random() * 0.25);
+  G.rockets.push({
+    type, x: sx, y: sy,
+    vx: Math.cos(ang) * v, vy: Math.sin(ang) * v,
+    size: def.size, hp: def.hp, col: def.col, pts: def.pts,
+    t: Math.random() * 6.28, trail: [], child: !!child,
+    split: type === 4 ? (GROUND * (0.3 + Math.random() * 0.25)) : -1
+  });
+}
+function spawnPower(){
+  const kinds = ['slow', 'mega', 'shield', 'beam'];
+  const k = kinds[Math.floor(Math.random() * kinds.length)];
+  G.pows.push({ k, x: W * (0.12 + Math.random() * 0.76), y: -30, vy: 42, t: 0,
+    ic: { slow: '⏱️', mega: '💥', shield: '🛡️', beam: '⚡' }[k] });
+}
+
+/* ---------- input ---------- */
+cv.addEventListener('pointerdown', e => {
+  if (screen !== 'play' || !G || G.over) return;
+  const x = e.clientX, y = e.clientY;
+  // collect power-up?
+  for (let i = G.pows.length - 1; i >= 0; i--){
+    const p = G.pows[i];
+    if (Math.hypot(p.x - x, p.y - y) < 42){
+      G.pows.splice(i, 1); applyPower(p.k); return;
+    }
+  }
+  // fire interceptor
+  if (G.inters.length >= maxInters()){ sfx.click(); return; }
+  const ly = GROUND + 4;
+  const lx = W / 2;
+  const d = Math.hypot(x - lx, y - ly) || 1;
+  G.inters.push({ x: lx, y: ly, tx: x, ty: Math.min(y, GROUND - 10),
+    vx: (x - lx) / d * interSpeed(), vy: (Math.min(y, GROUND - 10) - ly) / d * interSpeed(), trail: [] });
+  sfx.launch(); buzz(8);
+});
+
+function applyPower(k){
+  sfx.power(); buzz(30);
+  const msg = { slow: 'pSlow', mega: 'pMega', shield: 'pShield', beam: 'pBeam' }[k];
+  addFloat(W / 2, H * 0.3, t(msg), '#ffd166', 22);
+  if (k === 'slow') G.slowT = 4.5;
+  if (k === 'mega') G.megaT = 8;
+  if (k === 'shield') G.shieldT = 6;
+  if (k === 'beam'){
+    G.beamFx = 0.5; sfx.beam();
+    for (const r of G.rockets) killRocket(r, true);
+    G.rockets.length = 0;
+  }
+}
+
+function addFloat(x, y, txt, col, sz){
+  G.floats.push({ x, y, txt, col, sz: sz || 14, t: 0 });
+}
+
+/* ---------- kill / scoring ---------- */
+function killRocket(r, silent){
+  G.killed++; G.resolved++;
+  G.combo++; G.comboT = 2.2;
+  const mult = 1 + Math.min(4, Math.floor(G.combo / 3)) * 0.5;
+  const pts = Math.round(r.pts * mult);
+  G.score += pts;
+  addFloat(r.x, r.y, '+' + pts, '#3ee6ff', 15);
+  if (G.combo >= 3 && G.combo % 3 === 0){
+    addFloat(W / 2, H * 0.22, t('comboX') + Math.floor(mult * 10) / 10, '#ffd166', 20);
+    sfx.combo(Math.floor(G.combo / 3));
+  }
+  burst(r.x, r.y, r.col, 14);
+  if (!silent){ sfx.boom(); buzz(15); }
+}
+
+function burst(x, y, col, n){
+  for (let i = 0; i < n; i++){
+    const a = Math.random() * 6.28, v = 40 + Math.random() * 160;
+    G.parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, col, t: 0, life: 0.5 + Math.random() * 0.5 });
+  }
+}
+
+/* ---------- update ---------- */
+function update(dt){
+  if (!G || G.over) return;
+  // power timers
+  if (G.slowT > 0){ G.slowT -= dt; G.timeScale = 0.45; } else G.timeScale = 1;
+  if (G.megaT > 0) G.megaT -= dt;
+  if (G.shieldT > 0) G.shieldT -= dt;
+  if (G.beamFx > 0) G.beamFx -= dt;
+  if (G.comboT > 0){ G.comboT -= dt; if (G.comboT <= 0) G.combo = 0; }
+  if (G.shake > 0) G.shake = Math.max(0, G.shake - dt * 30);
+
+  const ts = G.timeScale, sdt = dt * ts;
+
+  // spawn rockets
+  if (G.spawned < G.L.count){
+    G.spawnT -= sdt;
+    if (G.spawnT <= 0){
+      spawnRocket(pickType()); G.spawned++;
+      // late-level mini barrages
+      if (G.levelIdx >= 3 && Math.random() < 0.18 && G.spawned < G.L.count){
+        spawnRocket(pickType()); G.spawned++;
+      }
+      G.spawnT = G.L.gap * (0.7 + Math.random() * 0.6);
+    }
+  }
+  // spawn powerups
+  G.powT -= sdt;
+  if (G.powT <= 0){ spawnPower(); G.powT = 9 + Math.random() * 8; }
+
+  // rockets
+  for (let i = G.rockets.length - 1; i >= 0; i--){
+    const r = G.rockets[i];
+    r.t += sdt * 6;
+    let vx = r.vx;
+    if (r.type === 3) vx += Math.sin(r.t) * 90;   // zigzag
+    r.x += vx * sdt; r.y += r.vy * sdt;
+    r.trail.push({ x: r.x, y: r.y });
+    if (r.trail.length > 14) r.trail.shift();
+    // splitter splits
+    if (r.split > 0 && r.y > r.split){
+      G.rockets.splice(i, 1);
+      G.resolved++;            // parent resolved (children added to count)
+      G.L && (G.spawned += 1); // one extra child counts toward total seen
+      spawnRocket(1, r.x - 8, r.y, true);
+      spawnRocket(1, r.x + 8, r.y, true);
+      burst(r.x, r.y, r.col, 8);
+      continue;
+    }
+    // shield catch
+    if (G.shieldT > 0 && r.y > GROUND - H * 0.22){
+      G.rockets.splice(i, 1); killRocket(r); continue;
+    }
+    // iron sling auto-intercept of leakers
+    if (G.sling > 0 && r.y > GROUND - 70){
+      G.sling--;
+      addFloat(r.x, r.y - 20, t('slingShot'), '#5dffa8', 16);
+      G.rockets.splice(i, 1); killRocket(r); continue;
+    }
+    // ground / building impact
+    if (r.y >= GROUND){
+      G.rockets.splice(i, 1); G.resolved++;
+      let hit = null;
+      for (const b of G.buildings){
+        if (b.alive && r.x > b.x - 6 && r.x < b.x + b.w + 6){ hit = b; break; }
+      }
+      if (hit){
+        hit.alive = false;
+        G.shake = 14; sfx.hitCity(); buzz([30, 40, 60]);
+        burst(r.x, GROUND - 10, '#ff8c42', 30);
+        if (!G.buildings.some(b => b.alive)){ endLevel(false); return; }
+      } else {
+        burst(r.x, GROUND, '#8da3cc', 8); noise(0.15, 0.1);
+        G.shake = Math.max(G.shake, 4);
+      }
+      G.combo = 0;
+    }
+  }
+
+  // interceptors
+  for (let i = G.inters.length - 1; i >= 0; i--){
+    const m = G.inters[i];
+    m.x += m.vx * dt; m.y += m.vy * dt;   // interceptors ignore slow-mo: feels powerful
+    m.trail.push({ x: m.x, y: m.y });
+    if (m.trail.length > 10) m.trail.shift();
+    const reach = (m.vx * (m.tx - m.x) + m.vy * (m.ty - m.y)) <= 0;
+    if (reach || m.y < -20){
+      G.inters.splice(i, 1);
+      G.booms.push({ x: m.tx, y: m.ty, r: 6, maxR: blastR(), t: 0 });
+      sfx.boom();
+    }
+  }
+
+  // explosions
+  for (let i = G.booms.length - 1; i >= 0; i--){
+    const b = G.booms[i];
+    b.t += dt; b.r = b.maxR * Math.min(1, b.t / 0.18);
+    // kill rockets in radius
+    for (let j = G.rockets.length - 1; j >= 0; j--){
+      const r = G.rockets[j];
+      if (Math.hypot(r.x - b.x, r.y - b.y) < b.r + r.size){
+        r.hp--;
+        if (r.hp <= 0){ G.rockets.splice(j, 1); killRocket(r); }
+        else { burst(r.x, r.y, '#ffffff', 6); r.vy *= 0.85; }
+      }
+    }
+    if (b.t > 0.45) G.booms.splice(i, 1);
+  }
+
+  // power-ups falling
+  for (let i = G.pows.length - 1; i >= 0; i--){
+    const p = G.pows[i];
+    p.t += sdt; p.y += p.vy * sdt; p.x += Math.sin(p.t * 2) * 12 * sdt;
+    if (p.y > GROUND - 10) G.pows.splice(i, 1);
+  }
+
+  // particles & floats
+  for (let i = G.parts.length - 1; i >= 0; i--){
+    const p = G.parts[i];
+    p.t += dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 200 * dt;
+    if (p.t > p.life) G.parts.splice(i, 1);
+  }
+  for (let i = G.floats.length - 1; i >= 0; i--){
+    const f = G.floats[i];
+    f.t += dt; f.y -= 30 * dt;
+    if (f.t > 1.1) G.floats.splice(i, 1);
+  }
+
+  // level complete?
+  if (G.spawned >= G.L.count && G.rockets.length === 0 && !G.over){
+    G.doneT += dt;
+    if (G.doneT > 0.8) endLevel(true);
+  }
+
+  // HUD
+  $('hudScore').textContent = G.score;
+  $('hudCombo').textContent = G.combo >= 3 ? (t('comboX') + (1 + Math.min(4, Math.floor(G.combo / 3)) * 0.5)) : '';
+  $('hudWave').textContent = Math.min(G.spawned, G.L.count) + '/' + G.L.count + ' ' + t('waveOf');
+  $('hudLevel').textContent = t('level') + ' ' + (G.levelIdx + 1) + ' · ' + t('levels')[G.levelIdx];
+}
+
+/* ---------- drawing ---------- */
+function draw(){
+  cx.save();
+  if (G && G.shake > 0) cx.translate((Math.random() - 0.5) * G.shake, (Math.random() - 0.5) * G.shake);
+
+  // sky
+  const grad = cx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, '#060b18'); grad.addColorStop(0.65, '#0c1630'); grad.addColorStop(1, '#14224a');
+  cx.fillStyle = grad; cx.fillRect(-20, -20, W + 40, H + 40);
+
+  // stars
+  cx.fillStyle = 'rgba(234,242,255,0.7)';
+  for (const s of stars){
+    cx.globalAlpha = 0.3 + 0.5 * Math.abs(Math.sin(s.tw + performance.now() / 900));
+    cx.fillRect(s.x * W, s.y * H * 0.7, s.s, s.s);
+  }
+  cx.globalAlpha = 1;
+
+  if (G){
+    drawCity();
+    drawShield();
+    drawEntities();
+  }
+  cx.restore();
+}
+
+function drawCity(){
+  const acc = G.L.accent;
+  // ground
+  cx.fillStyle = '#0a1226';
+  cx.fillRect(-20, GROUND, W + 40, H - GROUND + 20);
+  cx.strokeStyle = 'rgba(62,230,255,0.35)'; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(0, GROUND); cx.lineTo(W, GROUND); cx.stroke();
+
+  // buildings
+  for (const b of G.buildings){
+    if (b.alive){
+      cx.fillStyle = '#1a2c5c';
+      cx.fillRect(b.x, GROUND - b.h, b.w, b.h);
+      cx.fillStyle = acc; cx.globalAlpha = 0.85;
+      // windows
+      const rows = Math.floor(b.h / 16), cols = b.win;
+      for (let r = 0; r < rows; r++)
+        for (let c = 0; c < cols; c++)
+          if ((r * 7 + c * 3 + b.win) % 3 !== 0)
+            cx.fillRect(b.x + 5 + c * (b.w - 10) / cols, GROUND - b.h + 6 + r * 16, 4, 6);
+      cx.globalAlpha = 1;
+    } else {
+      // rubble
+      cx.fillStyle = '#26314f';
+      cx.beginPath();
+      cx.moveTo(b.x, GROUND);
+      cx.lineTo(b.x + b.w * 0.2, GROUND - 12);
+      cx.lineTo(b.x + b.w * 0.5, GROUND - 6);
+      cx.lineTo(b.x + b.w * 0.8, GROUND - 14);
+      cx.lineTo(b.x + b.w, GROUND);
+      cx.fill();
+    }
+  }
+
+  // landmark silhouettes
+  cx.fillStyle = 'rgba(26,44,92,0.9)';
+  const lm = G.L.landmark, mx = W * 0.5;
+  if (lm === 'dome'){
+    cx.beginPath(); cx.arc(mx, GROUND - 26, 26, Math.PI, 0); cx.fill();
+    cx.fillRect(mx - 30, GROUND - 26, 60, 26);
+  } else if (lm === 'tower'){
+    cx.fillRect(mx - 7, GROUND - Math.min(150, H * 0.2), 14, Math.min(150, H * 0.2));
+    cx.fillRect(mx - 16, GROUND - Math.min(150, H * 0.2) * 0.65, 32, 8);
+  } else if (lm === 'crane'){
+    cx.fillRect(W * 0.82, GROUND - 90, 6, 90);
+    cx.fillRect(W * 0.82 - 40, GROUND - 90, 80, 5);
+  } else if (lm === 'palm'){
+    cx.fillRect(W * 0.12, GROUND - 46, 6, 46);
+    for (let a = 0; a < 5; a++){
+      cx.beginPath();
+      cx.ellipse(W * 0.12 + 3, GROUND - 48, 22, 6, (a / 5) * Math.PI - Math.PI / 2 + 0.3, 0, Math.PI);
+      cx.fill();
+    }
+  }
+
+  // launcher battery
+  const lx = W / 2;
+  cx.fillStyle = '#22417f';
+  cx.beginPath();
+  cx.moveTo(lx - 22, GROUND); cx.lineTo(lx - 12, GROUND - 22);
+  cx.lineTo(lx + 12, GROUND - 22); cx.lineTo(lx + 22, GROUND); cx.fill();
+  cx.fillStyle = '#3ee6ff';
+  cx.fillRect(lx - 3, GROUND - 34, 6, 14);
+  cx.globalAlpha = 0.35;
+  cx.beginPath(); cx.arc(lx, GROUND - 20, 30, Math.PI, 0); cx.strokeStyle = '#3ee6ff'; cx.stroke();
+  cx.globalAlpha = 1;
+
+  // ammo pips (available interceptors)
+  const free = maxInters() - G.inters.length;
+  for (let i = 0; i < maxInters(); i++){
+    cx.fillStyle = i < free ? '#3ee6ff' : 'rgba(141,163,204,0.3)';
+    cx.beginPath(); cx.arc(lx - (maxInters() - 1) * 7 + i * 14, GROUND + 14, 4, 0, 6.29); cx.fill();
+  }
+  // sling charges
+  for (let i = 0; i < G.sling; i++){
+    cx.fillStyle = '#5dffa8';
+    cx.beginPath(); cx.arc(20 + i * 16, GROUND + 14, 4, 0, 6.29); cx.fill();
+  }
+}
+
+function drawShield(){
+  if (G.shieldT <= 0) return;
+  const a = Math.min(1, G.shieldT);
+  cx.globalAlpha = 0.18 * a + 0.06 * Math.sin(performance.now() / 120);
+  cx.fillStyle = '#3ee6ff';
+  cx.beginPath();
+  cx.ellipse(W / 2, GROUND, W * 0.52, H * 0.24, 0, Math.PI, 0);
+  cx.fill();
+  cx.globalAlpha = 0.7 * a;
+  cx.strokeStyle = '#3ee6ff'; cx.lineWidth = 2;
+  cx.beginPath();
+  cx.ellipse(W / 2, GROUND, W * 0.52, H * 0.24, 0, Math.PI, 0);
+  cx.stroke();
+  cx.globalAlpha = 1;
+}
+
+function drawEntities(){
+  // beam flash
+  if (G.beamFx > 0){
+    cx.globalAlpha = G.beamFx * 1.6;
+    cx.fillStyle = '#fff'; cx.fillRect(0, 0, W, H);
+    cx.globalAlpha = 1;
+  }
+
+  // rocket trails + bodies
+  for (const r of G.rockets){
+    cx.strokeStyle = r.col; cx.lineWidth = 2; cx.globalAlpha = 0.5;
+    cx.beginPath();
+    for (let i = 0; i < r.trail.length; i++){
+      const p = r.trail[i];
+      i ? cx.lineTo(p.x, p.y) : cx.moveTo(p.x, p.y);
+    }
+    cx.stroke(); cx.globalAlpha = 1;
+    // glow
+    cx.shadowColor = r.col; cx.shadowBlur = 14;
+    cx.fillStyle = r.col;
+    const a = Math.atan2(r.vy, r.type === 3 ? r.vx + Math.sin(r.t) * 90 : r.vx);
+    cx.save(); cx.translate(r.x, r.y); cx.rotate(a + Math.PI / 2);
+    cx.beginPath();
+    cx.moveTo(0, -r.size);
+    cx.lineTo(r.size * 0.55, r.size * 0.7);
+    cx.lineTo(0, r.size * 0.35);
+    cx.lineTo(-r.size * 0.55, r.size * 0.7);
+    cx.closePath(); cx.fill();
+    cx.restore();
+    cx.shadowBlur = 0;
+    if (r.type === 2 && r.hp > 1){   // heavy armor ring
+      cx.strokeStyle = '#fff'; cx.globalAlpha = 0.6;
+      cx.beginPath(); cx.arc(r.x, r.y, r.size + 4, 0, 6.29); cx.stroke();
+      cx.globalAlpha = 1;
+    }
+  }
+
+  // interceptors
+  for (const m of G.inters){
+    cx.strokeStyle = '#3ee6ff'; cx.lineWidth = 2.5; cx.globalAlpha = 0.7;
+    cx.beginPath();
+    for (let i = 0; i < m.trail.length; i++){
+      const p = m.trail[i];
+      i ? cx.lineTo(p.x, p.y) : cx.moveTo(p.x, p.y);
+    }
+    cx.stroke(); cx.globalAlpha = 1;
+    cx.shadowColor = '#3ee6ff'; cx.shadowBlur = 16;
+    cx.fillStyle = '#eaffff';
+    cx.beginPath(); cx.arc(m.x, m.y, 4.5, 0, 6.29); cx.fill();
+    cx.shadowBlur = 0;
+    // target marker
+    cx.strokeStyle = 'rgba(62,230,255,0.5)'; cx.lineWidth = 1.5;
+    const rr = 10 + 4 * Math.sin(performance.now() / 100);
+    cx.beginPath(); cx.arc(m.tx, m.ty, rr, 0, 6.29); cx.stroke();
+  }
+
+  // explosions
+  for (const b of G.booms){
+    const k = b.t / 0.45;
+    cx.globalAlpha = 1 - k;
+    cx.fillStyle = '#fff';
+    cx.beginPath(); cx.arc(b.x, b.y, b.r * 0.45, 0, 6.29); cx.fill();
+    cx.strokeStyle = '#3ee6ff'; cx.lineWidth = 3;
+    cx.beginPath(); cx.arc(b.x, b.y, b.r, 0, 6.29); cx.stroke();
+    cx.strokeStyle = '#ffd166'; cx.lineWidth = 1.5; cx.globalAlpha = (1 - k) * 0.7;
+    cx.beginPath(); cx.arc(b.x, b.y, b.r * 0.75, 0, 6.29); cx.stroke();
+    cx.globalAlpha = 1;
+  }
+
+  // particles
+  for (const p of G.parts){
+    cx.globalAlpha = 1 - p.t / p.life;
+    cx.fillStyle = p.col;
+    cx.fillRect(p.x - 2, p.y - 2, 4, 4);
+  }
+  cx.globalAlpha = 1;
+
+  // power-ups
+  cx.textAlign = 'center'; cx.textBaseline = 'middle';
+  for (const p of G.pows){
+    // parachute
+    cx.strokeStyle = 'rgba(234,242,255,0.8)'; cx.lineWidth = 1.5;
+    cx.beginPath(); cx.arc(p.x, p.y - 22, 16, Math.PI, 0); cx.stroke();
+    cx.beginPath();
+    cx.moveTo(p.x - 16, p.y - 22); cx.lineTo(p.x, p.y - 4);
+    cx.moveTo(p.x + 16, p.y - 22); cx.lineTo(p.x, p.y - 4);
+    cx.stroke();
+    cx.shadowColor = '#ffd166'; cx.shadowBlur = 14;
+    cx.font = '26px serif';
+    cx.fillText(p.ic, p.x, p.y + 8);
+    cx.shadowBlur = 0;
+  }
+
+  // floats
+  for (const f of G.floats){
+    cx.globalAlpha = 1 - f.t / 1.1;
+    cx.fillStyle = f.col;
+    cx.font = '700 ' + f.sz + 'px "Courier New", monospace';
+    cx.shadowColor = f.col; cx.shadowBlur = 10;
+    cx.fillText(f.txt, f.x, f.y);
+    cx.shadowBlur = 0;
+  }
+  cx.globalAlpha = 1;
+}
+
+/* ---------- main loop ---------- */
+function loop(ts){
+  requestAnimationFrame(loop);
+  const dt = Math.min(0.05, (ts - lastFrame) / 1000 || 0.016);
+  lastFrame = ts;
+  if (screen === 'play') update(dt);
+  draw();
+}
+
+/* ---------- screens / flow ---------- */
+const SCREENS = ['scrMenu','scrHow','scrIntro','scrPause','scrEnd','scrOver','scrWin'];
+function show(name){
+  for (const s of SCREENS) $(s).classList.remove('show');
+  $('hud').style.display = 'none';
+  if (name === 'play'){ $('hud').style.display = 'flex'; }
+  else if (name) $(name).classList.add('show');
+  screen = ({ scrMenu:'menu', scrHow:'how', scrIntro:'intro', scrPause:'pause',
+              scrEnd:'end', scrOver:'over', scrWin:'win' })[name] || 'play';
+}
+
+function gotoIntro(idx){
+  curLevel = idx;
+  $('hudLevelIntro').textContent = t('level') + ' ' + (idx + 1) + ' / ' + LEVELS.length;
+  $('levelTitle').textContent = '📍 ' + t('levels')[idx];
+  $('levelHint').textContent = t('hints')[idx];
+  show('scrIntro');
+}
+
+function startLevel(){
+  newGame(curLevel);
+  show('play');
+}
+
+function endLevel(won){
+  G.over = true; G.won = won;
+  const total = G.spawned;
+  const pct = total ? G.killed / total : 0;
+  const alive = G.buildings.filter(b => b.alive).length;
+
+  if (!won){
+    save.best = Math.max(save.best, G.score);
+    save.coins += Math.round(G.score * 0.5);
+    persist();
+    $('overScore').textContent = G.score;
+    $('overStats').textContent = t('overStats').replace('{n}', G.killed);
+    show('scrOver');
+    return;
+  }
+
+  const st = pct >= 0.9 && alive === G.buildings.length ? 3 : pct >= 0.75 ? 2 : 1;
+  const coinGain = G.score + alive * 50;
+  save.coins += coinGain;
+  save.best = Math.max(save.best, G.score);
+  save.unlocked = Math.max(save.unlocked, curLevel + 1);
+  persist();
+
+  $('endStars').textContent = '★'.repeat(st) + '☆'.repeat(3 - st);
+  $('endTitle').textContent = t('cleared') + ' — ' + t('levels')[curLevel];
+  $('endStats').innerHTML =
+    t('intercepted') + ': <b>' + G.killed + '/' + total + '</b> · ' +
+    t('saved') + ': <b>' + alive + '/' + G.buildings.length + '</b><br>' +
+    t('scoreW') + ': <b>' + G.score + '</b> (+' + coinGain + ' 🪙)';
+  renderShop();
+  if (curLevel + 1 >= LEVELS.length){
+    $('btnNext').textContent = '🏆';
+    $('winScore').textContent = t('scoreW') + ': ' + G.score + ' · ' + t('bestW') + ': ' + save.best;
+  } else {
+    $('btnNext').textContent = t('next');
+  }
+  show('scrEnd');
+}
+
+function renderShop(){
+  $('coins').textContent = '🪙 ' + save.coins + ' ' + t('coinsW');
+  const shop = $('shop');
+  shop.innerHTML = '';
+  for (const u of UPGRADES){
+    const lvl = save.up[u.key];
+    const row = document.createElement('div');
+    row.className = 'up';
+    const cost = lvl < u.max ? u.cost[lvl] : null;
+    row.innerHTML =
+      '<div class="ic">' + u.ic + '</div>' +
+      '<div class="info"><div class="nm">' + t(u.nm) + '</div>' +
+      '<div class="ds">' + t(u.ds) + '</div>' +
+      '<div class="tiers">' + '◆'.repeat(lvl) + '◇'.repeat(u.max - lvl) + '</div></div>' +
+      '<button ' + (cost === null || cost > save.coins ? 'disabled' : '') + '>' +
+      (cost === null ? t('maxed') : '🪙 ' + cost) + '</button>';
+    row.querySelector('button').onclick = () => {
+      if (cost !== null && save.coins >= cost){
+        save.coins -= cost; save.up[u.key]++; persist(); sfx.power(); renderShop();
+      }
+    };
+    shop.appendChild(row);
+  }
+}
+
+/* ---------- language & settings ---------- */
+function applyLang(){
+  const L = T[save.lang];
+  document.documentElement.lang = save.lang;
+  document.documentElement.dir = L.dir;
+  $('btnLang').textContent = save.lang === 'he' ? 'EN' : 'עב';
+  document.querySelector('#scrMenu h1').innerHTML =
+    save.lang === 'he' ? 'כיפת ברזל<small>IRON DOME</small>' : 'IRON DOME<small>כיפת ברזל</small>';
+  const map = {
+    tagline: '.sub[data-i18n="tagline"]', disclaimer: '[data-i18n="disclaimer"]',
+    howTitle: '[data-i18n="howTitle"]', how1: '[data-i18n="how1"]', how2: '[data-i18n="how2"]',
+    how3: '[data-i18n="how3"]', how4: '[data-i18n="how4"]', how5: '[data-i18n="how5"]',
+    paused: '[data-i18n="paused"]', overTitle: '[data-i18n="overTitle"]',
+    winTitle: '[data-i18n="winTitle"]', winSub: '[data-i18n="winSub"]'
+  };
+  for (const k in map){
+    const el = document.querySelector(map[k]);
+    if (el) el.textContent = t(k);
+  }
+  $('btnPlay').textContent = t('play');
+  $('btnHow').textContent = t('howBtn');
+  $('btnHowBack').textContent = t('back');
+  $('btnStart').textContent = t('start');
+  $('btnResume').textContent = t('resume');
+  $('btnQuit').textContent = t('quit');
+  $('btnNext').textContent = t('next');
+  $('btnRetry').textContent = t('retry');
+  $('btnRetry2').textContent = t('retry');
+  $('btnMenu1').textContent = t('menu');
+  $('btnMenu2').textContent = t('menu');
+  $('btnMenu3').textContent = t('menu');
+  $('menuBest').textContent = save.best > 0 ? (t('bestW') + ': ' + save.best + ' · 🪙 ' + save.coins) : '';
+}
+
+/* ---------- wire buttons ---------- */
+$('btnPlay').onclick = () => { ac(); sfx.click(); gotoIntro(Math.min(save.unlocked, LEVELS.length - 1)); };
+$('btnHow').onclick = () => { sfx.click(); show('scrHow'); };
+$('btnHowBack').onclick = () => { sfx.click(); show('scrMenu'); };
+$('btnStart').onclick = () => { ac(); sfx.click(); startLevel(); };
+$('btnPause').onclick = () => { sfx.click(); show('scrPause'); };
+$('btnResume').onclick = () => { sfx.click(); show('play'); };
+$('btnQuit').onclick = () => { sfx.click(); applyLang(); show('scrMenu'); };
+$('btnNext').onclick = () => {
+  sfx.click();
+  if (curLevel + 1 >= LEVELS.length) show('scrWin');
+  else gotoIntro(curLevel + 1);
+};
+$('btnRetry').onclick = () => { sfx.click(); gotoIntro(curLevel); };
+$('btnRetry2').onclick = () => { sfx.click(); gotoIntro(curLevel); };
+$('btnMenu1').onclick = $('btnMenu2').onclick = $('btnMenu3').onclick =
+  () => { sfx.click(); applyLang(); show('scrMenu'); };
+$('btnLang').onclick = () => {
+  save.lang = save.lang === 'he' ? 'en' : 'he'; persist(); applyLang(); sfx.click();
+};
+$('btnSound').onclick = () => {
+  save.sound = !save.sound; persist();
+  $('btnSound').textContent = save.sound ? '🔊' : '🔇';
+  $('btnSound').classList.toggle('on', save.sound);
+  if (save.sound) sfx.click();
+};
+
+/* auto-pause when tab hidden */
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && screen === 'play') show('scrPause');
+});
+
+/* ---------- boot ---------- */
+for (let i = 0; i < 70; i++)
+  stars.push({ x: Math.random(), y: Math.random(), s: Math.random() < 0.8 ? 1 : 2, tw: Math.random() * 6.28 });
+resize();
+$('btnSound').textContent = save.sound ? '🔊' : '🔇';
+$('btnSound').classList.toggle('on', save.sound);
+applyLang();
+requestAnimationFrame(loop);
+
+/* ---------- PWA ---------- */
+if ('serviceWorker' in navigator)
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+</script>
+</body>
+</html>

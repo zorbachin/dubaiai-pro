@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 09:18 UTC · code
+Iron Dome game greenlit: tap-to-intercept arcade game at dubaiai.pro/irondome/. Decisions: Hebrew+English toggle (HE default), style between retro and modern (neon arcade, user wants multiple styles eventually), offline-first installable PWA for shelter play, levels = Israeli cities, power-ups + upgrades (Iron Sling/David's Sling, Iron Beam). Branch claude/iron-dome-game-zi3dtt
+
 ### 2026-06-02 17:26 UTC · chat
 SSA EMAILS STATUS: NOT sent (Claude has no recipient list + sending in Zorba's name to real people needs his nod). Drafts exist: .claude/os/customers/challenge-emails.md (5-day 'Get Your Weekend Back' challenge sequence) + outreach-scripts.md. BLOCKERS: (1) challenge emails need CHALLENGE SIGNUPS to send to (challenge not launched yet). (2) 'new clients' + 'send to more' = Claude needs WHO (names/emails) to personalize. DURABLE RULE: DON'T BE GENERIC — outreach must be personalized/researched per person (1 specific line up top), never template blasts. Warm leads on file: Isaac/vybewear, GTAA tournament leads (Phil Immordino/gtaaweb.org), Jack@Ambo. NEXT: Zorba names the new clients -> Claude writes a specific message per person + sends via Gmail.
 
@@ -162,31 +165,34 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 
 ### 2026-06-02 03:46 UTC · chat
 User is based in Tel Aviv (works via VPN). Treat Tel Aviv local time as the real clock for standups/cadence/day-planning.
-
-### 2026-06-02 03:33 UTC · code
-Built cardgen3 (v3 brand): College Navy #002244 + gold glasses hero + Action Green #69BE28 accent + cream serif. 3 variants. This is the Seahawks-palette synthesis per user direction. Still need real site screenshots to exact-match gold shade/fonts (env is bot-blocked: WebFetch 403 everywhere, Netlify MCP 502).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-02 17:27 UTC
-- **Branch:** `main`
-- **Last commit:** c55a864 chore: refresh nucleus live state [skip ci] — 15 seconds ago
+- **When:** 2026-06-10 09:18 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** fbf2155 chore: refresh nucleus live state [skip ci] — 8 days ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-c55a864 chore: refresh nucleus live state [skip ci] (15 seconds ago)
-c5726ff chore: refresh nucleus live state [skip ci] (20 minutes ago)
-cb7f9c7 chore: refresh nucleus live state [skip ci] (21 minutes ago)
-ef4cd2c chore: refresh nucleus live state [skip ci] (60 minutes ago)
-db7c7e3 Aspirational family framing + durable privacy rule (#65) (61 minutes ago)
+fbf2155 chore: refresh nucleus live state [skip ci] (8 days ago)
+c55a864 chore: refresh nucleus live state [skip ci] (8 days ago)
+c5726ff chore: refresh nucleus live state [skip ci] (8 days ago)
+cb7f9c7 chore: refresh nucleus live state [skip ci] (8 days ago)
+ef4cd2c chore: refresh nucleus live state [skip ci] (8 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
