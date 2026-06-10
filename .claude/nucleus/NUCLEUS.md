@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 13:08 UTC · code
+BUILT: MAMAD DASH standalone shippable mobile game at mamaddash/index.html (single-file, 453 lines). Tap=jump/swipe-down=duck, instant start, endless escalating siren waves, coins+streak bonuses, share button, localStorage best, all P0 mobile QA fixes baked in (on-canvas countdown, telegraph rings, error-contained loop). Verified headless on phone viewport: 3 waves cleared, death/share/restart/persist all pass, zero errors. On PR #74 (title/body updated to cover all 3 changes). Goes live at dubaiai.pro/mamaddash/ after merge + Porkbun DNS fix.
+
 ### 2026-06-10 12:54 UTC · code
 Fixed the volleyball 'I'm timing it right and it misses' bug Zorba hit live: mini-game cursor was frame-based (2x speed on 120Hz phones, hit window < touch latency). Now time-based + 100ms input-latency grace. Pushed to PR #74. QA finding M2 closed.
 
@@ -162,31 +165,34 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 
 ### 2026-06-02 04:43 UTC · chat
 🎉 PUBLISHED: Zorba posted the calisthenics AI explainer video to Facebook (personal profile, his #1 platform) — first published win, posting block broken. WORKING PATTERN for video→Buffer: upload to Drive, share 'anyone w/ link', attach via https://drive.usercontent.google.com/download?id=FILEID&export=download (the uc?export=download form FAILS; usercontent form WORKS for <100MB). 3 video drafts now staged in Buffer w/ video attached: LinkedIn, X (Quickquotables), IG (zorb_ai, set as Reel).
-
-### 2026-06-02 04:31 UTC · chat
-Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:55 UTC
+- **When:** 2026-06-10 13:09 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 00a4505 chore: refresh nucleus live state [skip ci] — 17 seconds ago
+- **Last commit:** 421b674 Add MAMAD DASH standalone — shippable mobile siren runner — 63 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-00a4505 chore: refresh nucleus live state [skip ci] (17 seconds ago)
-90d0e57 Fix timing mini-games: time-based cursor + touch-latency grace (32 seconds ago)
-f5a33e0 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-9c8b353 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-717477a MAMAD DASH: ramp difficulty with the countdown (8 minutes ago)
+421b674 Add MAMAD DASH standalone — shippable mobile siren runner (63 seconds ago)
+1090185 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+00a4505 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+90d0e57 Fix timing mini-games: time-based cursor + touch-latency grace (14 minutes ago)
+f5a33e0 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
