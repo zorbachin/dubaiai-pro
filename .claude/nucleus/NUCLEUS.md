@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 19:00 UTC · code
+Iron Dome launch promo pack complete at /tmp/PROMO-PACK.md: WhatsApp (4 msgs incl. parents + alert-night protocol), Telegram admin DM + channel post, Reddit x2, press pitches HE/EN, X posts, meme-page DM, 20s clip script, crisis one-liners, seeding checklist. URL on own line everywhere for domain swap. No em-dashes in personal copy.
+
 ### 2026-06-10 18:53 UTC · code
 Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was DEAD for everyone - D1 one-liner; 2 soft-lock paths closed), DAILY ALERT shipped (date-seeded, streaks, deterministic-verified), commando actually hard + loss thresholds + 50% win gate, per-mode bests, death beat + fanfares + whiff feel + bonus fiesta + sling sweep. Panel verdict: core loop tortured clean (saves/concurrency/soak all green).
 
@@ -174,28 +177,15 @@ ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back 
 NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three Two-Minute Time-Savers' (one WORK, one LIFE, one HEALTH; quick/fun; each a copy-paste prompt). Issue 001 written (content-assets/newsletter/ISSUE-001.md): feature 'Buy Back Your Time' + the 3 time-savers (kill the email thread / plan the night out / fridge->meal + 12-min calisthenics workout). Opt-in INVITE drafted (content-assets/newsletter/INVITE.md) — personal invites + warm leads + content-engine growth, NEVER import-and-blast. Masthead billing updated to feature the time-savers segment.
 
 
-
-### 2026-06-02 10:59 UTC · chat
-NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (built: content-assets/newsletter/dispatch-no-001.png via bin/cinema_news.py). Aged paper, double frame, 'proudly presents', dramatic serif billing, marquee bar, 'printed for a select readership'. NO LIST YET + DO NOT spam his contacts (kills deliverability + relationships). PLAN: use a real ESP (Substack or Beehiiv free) for compliance/unsubscribe; SEED via personal opt-in invites (Claude drafts) to people he knows + warm leads (post-repliers, clients like vybewear, video commenters); grow as a byproduct of the content engine (every post -> 'join the Dispatch'). Cadence: monthly/biweekly 'issue' = an event, quality over frequency. Positioning: 'a select readership', worth-their-time storytelling.
-
-### 2026-06-02 09:45 UTC · chat
-CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 quote cards (built) + COPY.md (FB/IG/LI/X captions + newsletter draft + demo recording brief + hero-video spec). One message: 'deals die in the follow-up gap — this closes it.' WAITING ON: Zorba records the basic demo (drop in Drive) -> Claude cuts the website hero video + queues everything. COMMAND CENTER #1 DONE: nucleus serve exposes /command.json (per-venture board+brain) for the existing localhost widget to sync; / now renders a per-venture dashboard.
-
-
-
-
-
-### 2026-06-02 09:36 UTC · chat
-NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:56 UTC
+- **When:** 2026-06-10 19:00 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** fa3306c chore: refresh nucleus live state [skip ci] — 39 seconds ago
+- **Last commit:** 510087a chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
@@ -204,11 +194,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-fa3306c chore: refresh nucleus live state [skip ci] (39 seconds ago)
-d5a1cd2 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (2 minutes ago)
-e0b3a2c chore: refresh nucleus live state [skip ci] (2 minutes ago)
-5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (3 minutes ago)
-2c72477 chore: refresh nucleus live state [skip ci] (17 minutes ago)
+510087a chore: refresh nucleus live state [skip ci] (4 minutes ago)
+fa3306c chore: refresh nucleus live state [skip ci] (5 minutes ago)
+d5a1cd2 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (6 minutes ago)
+e0b3a2c chore: refresh nucleus live state [skip ci] (6 minutes ago)
+5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (7 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
