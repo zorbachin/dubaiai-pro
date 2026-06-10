@@ -189,26 +189,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 19:09 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 57 seconds ago
+- **Last commit:** 5c97328 chore: refresh nucleus live state [skip ci] — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 77 ++++++----------------------------------------
- 1 file changed, 10 insertions(+), 67 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (57 seconds ago)
+5c97328 chore: refresh nucleus live state [skip ci] (21 seconds ago)
+5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (78 seconds ago)
 009da8e Iron Dome launch promo pack: copy + cards + screenshots (2 minutes ago)
 510087a chore: refresh nucleus live state [skip ci] (13 minutes ago)
-fa3306c chore: refresh nucleus live state [skip ci] (13 minutes ago)
-0bacfb1 Iron Dome v15: panel batch — stability GO, Daily Alert, real difficulty, feel polish (#80) (14 minutes ago)
+fa3306c chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
