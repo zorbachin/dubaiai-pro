@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 09:47 UTC · code
+Durable preference: every Iron Dome (and similar) update message must end with the test/preview link — user tests on phone immediately. Preview while PR #70 unmerged: https://htmlpreview.github.io/?https://github.com/zorbachin/dubaiai-pro/blob/claude/iron-dome-game-zi3dtt/irondome/index.html (live link after merge: dubaiai.pro/irondome/)
+
 ### 2026-06-10 09:37 UTC · code
 Iron Dome v2 pushed to PR #70: mobile visibility overhaul (bigger glowing rockets w/ nose cone + flame + smoke trail, incoming-warning chevrons), per-city skyline/topography backdrops in bottom third (all 10 cities), falafel-ball ground impacts per user request. Smoke test 16/16.
 
@@ -162,31 +165,34 @@ Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-po
 
 ### 2026-06-02 04:03 UTC · chat
 PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then Instagram, then LinkedIn. He WANTS to build up LinkedIn, IG, and TikTok (growth targets). So: post to Facebook FIRST for engagement/leads, and cross-post to IG/LI/TikTok as the build-up play. Newsletter should link to the posted video (flywheel).
-
-### 2026-06-02 03:58 UTC · chat
-BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 09:37 UTC
+- **When:** 2026-06-10 09:47 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** fb194a7 chore: refresh nucleus live state [skip ci] — 19 seconds ago
+- **Last commit:** 7d95eaf chore: refresh nucleus live state [skip ci] — 10 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-fb194a7 chore: refresh nucleus live state [skip ci] (19 seconds ago)
-e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts (37 seconds ago)
-345bc58 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-531dc35 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-84ea280 Update nucleus: Iron Dome v1 shipped (PR #70) (11 minutes ago)
+7d95eaf chore: refresh nucleus live state [skip ci] (10 minutes ago)
+fb194a7 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts (11 minutes ago)
+345bc58 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+531dc35 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
