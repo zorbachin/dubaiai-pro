@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 10:36 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** b225a77 Function-first overhaul: every tap fires, chains, visible city + falafel — 23 seconds ago
+- **Last commit:** 652d6d3 chore: refresh nucleus live state [skip ci] — 17 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-b225a77 Function-first overhaul: every tap fires, chains, visible city + falafel (23 seconds ago)
-ca167ed chore: refresh nucleus live state [skip ci] (10 minutes ago)
+652d6d3 chore: refresh nucleus live state [skip ci] (17 seconds ago)
+b225a77 Function-first overhaul: every tap fires, chains, visible city + falafel (40 seconds ago)
+ca167ed chore: refresh nucleus live state [skip ci] (11 minutes ago)
 5102302 chore: refresh nucleus live state [skip ci] (11 minutes ago)
 1ae0169 Fix tap accuracy: aim assist + proximity fuze + fling gesture (11 minutes ago)
-76be0ff chore: refresh nucleus live state [skip ci] (27 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
