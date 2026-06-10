@@ -171,22 +171,28 @@ SPEND AUDIT (from real Gmail receipts, 30d): PAYING → GoHighLevel ~$100/mo CRM
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 15:47 UTC
+- **When:** 2026-06-10 18:12 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** a7276cd chore: refresh nucleus live state [skip ci] — 18 seconds ago
+- **Last commit:** e60aee7 chore: refresh nucleus live state [skip ci] — 2 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-a7276cd chore: refresh nucleus live state [skip ci] (18 seconds ago)
-e751b5f chore: refresh nucleus live state [skip ci] (26 minutes ago)
-c801b56 chore: refresh nucleus live state [skip ci] (26 minutes ago)
-7c6b606 MAMAD DASH polish: hood themes, power-ups, siren only in last 3s (27 minutes ago)
-c8efc82 chore: refresh nucleus live state [skip ci] (35 minutes ago)
+e60aee7 chore: refresh nucleus live state [skip ci] (2 hours ago)
+a7276cd chore: refresh nucleus live state [skip ci] (2 hours ago)
+e751b5f chore: refresh nucleus live state [skip ci] (3 hours ago)
+c801b56 chore: refresh nucleus live state [skip ci] (3 hours ago)
+7c6b606 MAMAD DASH polish: hood themes, power-ups, siren only in last 3s (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
