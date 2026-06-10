@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>MAMADIO — Hustle Tel Aviv Between the Sirens</title>
 <style>
   :root{
@@ -17,13 +17,16 @@
 
   /* ---------- HUD ---------- */
   #hud{position:absolute;top:0;left:0;right:0;display:none;justify-content:space-between;
-    align-items:flex-start;padding:10px 14px;pointer-events:none;z-index:5;}
+    align-items:flex-start;z-index:5;pointer-events:none;
+    padding:calc(10px + env(safe-area-inset-top)) calc(14px + env(safe-area-inset-right))
+            10px calc(14px + env(safe-area-inset-left));}
   .pill{background:rgba(16,20,31,.82);border:1px solid rgba(255,255,255,.18);
     border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px;
     display:flex;gap:8px;align-items:center;backdrop-filter:blur(4px);}
   #shekels{color:#ffd166;font-size:18px;}
   #hudRight{display:flex;flex-direction:column;gap:6px;align-items:flex-end;}
-  #questHint{position:absolute;bottom:110px;left:50%;transform:translateX(-50%);
+  #questHint{position:absolute;bottom:calc(110px + env(safe-area-inset-bottom));
+    left:50%;transform:translateX(-50%);
     background:rgba(16,20,31,.85);border:1px solid rgba(255,255,255,.25);border-radius:12px;
     padding:8px 16px;font-size:15px;display:none;z-index:5;text-align:center;max-width:90vw;}
   #toast{position:absolute;top:64px;left:50%;transform:translateX(-50%);
@@ -33,7 +36,8 @@
 
   /* ---------- siren banner ---------- */
   #alertBanner{position:absolute;top:0;left:0;right:0;display:none;z-index:9;
-    background:var(--red);color:#fff;text-align:center;padding:10px 8px;
+    background:var(--red);color:#fff;text-align:center;
+    padding:calc(10px + env(safe-area-inset-top)) 8px 10px;
     font-weight:900;font-size:17px;letter-spacing:.5px;
     animation:flash .5s steps(2) infinite;}
   @keyframes flash{50%{background:#a4161a;}}
@@ -42,7 +46,9 @@
   /* ---------- overlays ---------- */
   .screen{position:absolute;inset:0;display:none;z-index:20;overflow-y:auto;
     background:radial-gradient(ellipse at 50% 0%,#1d2438 0%,var(--ink) 70%);
-    text-align:center;padding:28px 18px 48px;}
+    text-align:center;
+    padding:calc(28px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right))
+            calc(48px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left));}
   .screen.show{display:block;}
   h1.logo{font-size:clamp(44px,11vw,84px);font-weight:900;letter-spacing:2px;
     background:linear-gradient(180deg,#ffd166,#e76f51);-webkit-background-clip:text;
@@ -89,17 +95,28 @@
   #miniAction{width:100%;font-size:17px;margin-top:4px;}
 
   /* ---------- touch controls ---------- */
-  #stick{position:absolute;bottom:26px;left:26px;width:120px;height:120px;border-radius:50%;
+  #stick{position:absolute;bottom:calc(26px + env(safe-area-inset-bottom));
+    left:calc(26px + env(safe-area-inset-left));width:120px;height:120px;border-radius:50%;
     background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.18);display:none;z-index:6;}
   #knob{position:absolute;left:35px;top:35px;width:50px;height:50px;border-radius:50%;
     background:rgba(255,255,255,.28);}
-  #actBtn{position:absolute;bottom:40px;right:30px;width:88px;height:88px;border-radius:50%;
+  #actBtn{position:absolute;bottom:calc(40px + env(safe-area-inset-bottom));
+    right:calc(30px + env(safe-area-inset-right));width:88px;height:88px;border-radius:50%;
     background:rgba(255,209,102,.92);color:#241a05;font-weight:900;font-size:15px;border:none;
     display:none;z-index:6;box-shadow:0 4px 16px rgba(0,0,0,.45);}
 
   #shakeWrap.shake{animation:shk .35s linear;}
   @keyframes shk{0%,100%{transform:translate(0)}20%{transform:translate(-10px,6px)}
     40%{transform:translate(9px,-7px)}60%{transform:translate(-7px,-4px)}80%{transform:translate(6px,5px)}}
+
+  @media (max-width:520px){
+    .card{width:min(86vw,320px);}
+    .pill{font-size:13px;padding:5px 11px;}
+    #shekels{font-size:16px;}
+    h1.logo{font-size:clamp(38px,13vw,64px);}
+    #alertBanner{font-size:15px;}
+    #questHint{font-size:13.5px;padding:7px 12px;}
+  }
 
   #endStats{margin:18px auto;max-width:380px;text-align:left;background:#1b2233;
     border:1px solid #303a52;border-radius:14px;padding:16px 20px;font-size:15px;line-height:2;}
@@ -122,7 +139,7 @@
 </div>
 
 <div id="alertBanner">🚨 צבע אדום — RED ALERT — HOME FRONT COMMAND 🚨
-  <small>Get to the nearest MAMAD / MIKLAT — follow the arrow!</small></div>
+  <small>RUN to the MAMAD — jump the obstacles, duck the flying stuff!</small></div>
 <div id="questHint"></div>
 <div id="toast"></div>
 
@@ -498,9 +515,15 @@ function endDay(reasonTitle, tag){
 const keys={};
 let isTouch=false;
 addEventListener('keydown',e=>{
-  keys[e.key.toLowerCase()]=true;
-  if(Mini.active&&(e.key===' '||e.key==='e'||e.key==='E')){ e.preventDefault(); Mini.press(); }
-  else if((e.key==='e'||e.key==='E'||e.key===' ')&&G.state==='play'){ e.preventDefault(); tryInteract(); }
+  const k=e.key.toLowerCase();
+  keys[k]=true;
+  if(G.state==='runner'){
+    if(k==='arrowup'||k==='w'||k===' '){ e.preventDefault(); Runner.jump(); }
+    if(k==='arrowdown'||k==='s') e.preventDefault();
+    return;
+  }
+  if(Mini.active&&(k===' '||k==='e')){ e.preventDefault(); Mini.press(); }
+  else if((k==='e'||k===' ')&&G.state==='play'){ e.preventDefault(); tryInteract(); }
 });
 addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
 
@@ -516,6 +539,13 @@ function stickMove(t){
 }
 addEventListener('touchstart',e=>{
   isTouch=true; Sound.init();
+  if(G.state==='runner'){
+    for(const t of e.changedTouches){
+      if(t.clientY<innerHeight*.55) Runner.jump();
+      else Runner.duckIds.add(t.identifier);
+    }
+    e.preventDefault(); return;
+  }
   if(G.state==='play'){ $('stick').style.display='block'; $('actBtn').style.display='block'; }
   for(const t of e.changedTouches){
     if(t.clientX<innerWidth/2 && stick.id===null){ stick.id=t.identifier; stickMove(t); }
@@ -526,8 +556,11 @@ addEventListener('touchmove',e=>{
   e.preventDefault();
 },{passive:false});
 addEventListener('touchend',e=>{
-  for(const t of e.changedTouches) if(t.identifier===stick.id){
-    stick.id=null; stick.dx=0; stick.dy=0; knob.style.left='35px'; knob.style.top='35px';
+  for(const t of e.changedTouches){
+    Runner.duckIds.delete(t.identifier);
+    if(t.identifier===stick.id){
+      stick.id=null; stick.dx=0; stick.dy=0; knob.style.left='35px'; knob.style.top='35px';
+    }
   }
 });
 $('actBtn').addEventListener('touchstart',e=>{
@@ -757,11 +790,87 @@ const Mini = {
   },
 };
 
-/* ---------------------- sirens ---------------------- */
-function inShelter(){
-  const p=G.player;
-  return G.lv.shelters.find(s=>p.x>s.x-6&&p.x<s.x+s.w+6&&p.y>s.y-6&&p.y<s.y+s.h+6);
-}
+/* ---------------------- sirens: the MAMAD DASH ----------------------
+   When the alarm sounds the world flips into a temple-run sequence:
+   auto-run toward the shelter, JUMP the street stuff, DUCK the flying
+   stuff, reach the mamad door before the timer. */
+const RUNNER_SETS={
+  beach:     {ground:['👵','⛱️','🐕','🦀','🛟'], air:['🏐','🪁','🕊️','👵']},
+  florentin: {ground:['👵','🛒','🐈','📦','🛹'], air:['🕊️','🍾','🛸','👵']},
+  oldnorth:  {ground:['👵','🐩','🛴','🪴','🐕'], air:['🕊️','☂️','🥐','👵']},
+};
+const Runner={
+  active:false, prog:0, goal:4400, baseSpeed:330, speed:330,
+  y:0, vy:0, ducking:false, duckIds:new Set(),
+  obs:[], spawnIn:1.2, hits:0, stumble:0, invuln:0, startT:0,
+  start(){
+    this.active=true; this.prog=0; this.speed=this.baseSpeed;
+    this.y=0; this.vy=0; this.ducking=false; this.duckIds.clear();
+    this.obs=[]; this.spawnIn=1.2; this.hits=0; this.stumble=0; this.invuln=0;
+    this.startT=G.t;
+    G.state='runner';
+    $('stick').style.display='none'; $('actBtn').style.display='none';
+    $('questHint').style.display='none';
+  },
+  jump(){ if(this.active&&this.y<=0&&this.stumble<=0){ this.vy=640; Sound.blip(740,.08); } },
+  update(dt){
+    const left=G.siren.deadline-G.t;
+    $('sirenTime').textContent=`MAMAD! ${Math.ceil(Math.max(0,left))}s`;
+    this.ducking = this.y<=0 && (keys['arrowdown']||keys['s']||this.duckIds.size>0);
+    // physics (y = height above ground)
+    this.y+=this.vy*dt;
+    if(this.y>0) this.vy-=1900*dt;
+    else { this.y=0; this.vy=Math.max(0,this.vy); }
+    // speed builds, stumbles cut it
+    if(this.stumble>0) this.stumble-=dt;
+    else this.speed=Math.min(this.speed+16*dt,470);
+    const v=this.stumble>0 ? this.speed*.45 : this.speed;
+    this.prog+=v*dt;
+    if(this.invuln>0) this.invuln-=dt;
+    // spawn obstacles (clear runway before the door)
+    if(this.goal-this.prog>900){
+      this.spawnIn-=dt;
+      if(this.spawnIn<=0){
+        const air=Math.random()<.42;
+        const set=RUNNER_SETS[G.level];
+        this.obs.push({x:VW+80, air, emoji:(air?set.air:set.ground)[irand(0,3)], wob:rand(0,6)});
+        this.spawnIn=rand(.55,1.05)*(this.baseSpeed/this.speed);
+      }
+    }
+    for(const o of this.obs) o.x-=v*dt;
+    this.obs=this.obs.filter(o=>o.x>-80);
+    // collisions: ground stuff needs a jump, flying stuff needs a duck
+    if(this.invuln<=0) for(const o of this.obs){
+      if(Math.abs(o.x-130)>34) continue;
+      const hit = o.air ? !this.ducking : this.y<42;
+      if(hit){
+        this.hits++; this.stumble=.55; this.invuln=.9;
+        this.speed=this.baseSpeed; this.prog=Math.max(0,this.prog-180);
+        Sound.bad(); if(navigator.vibrate) navigator.vibrate(120);
+        $('shakeWrap').classList.add('shake');
+        setTimeout(()=>$('shakeWrap').classList.remove('shake'),350);
+        break;
+      }
+    }
+    if(this.prog>=this.goal){ this.end(true); return; }
+    if(left<=0){ this.end(false); return; }
+  },
+  end(win){
+    this.active=false;
+    G.state='play';
+    if(isTouch){ $('stick').style.display='block'; $('actBtn').style.display='block'; }
+    if(win){
+      let ns=null,bd=1e9;
+      for(const s of G.lv.shelters){
+        const d=Math.hypot(G.player.x-(s.x+s.w/2),G.player.y-(s.y+s.h/2));
+        if(d<bd){bd=d;ns=s;}
+      }
+      if(ns){ G.player.x=ns.x+ns.w/2; G.player.y=ns.y+ns.h/2; }
+    }
+    resolveSiren(win);
+  },
+};
+
 function startSiren(){
   if(Mini.active){ Mini.close(); UI.toast('🚨 Deal interrupted — RUN!',1800,true); }
   const grace=CHARACTERS[G.char].sirenGrace||0;
@@ -770,6 +879,7 @@ function startSiren(){
   $('alertBanner').style.display='block';
   $('sirenPill').style.display='flex';
   if(navigator.vibrate) navigator.vibrate([200,100,200]);
+  Runner.start();
 }
 function resolveSiren(safe){
   G.siren.resolved=true;
@@ -799,10 +909,12 @@ function resolveSiren(safe){
 /* ---------------------- update ---------------------- */
 let last=performance.now();
 function update(dt){
-  if(G.state!=='play'&&G.state!=='minigame') return;
+  if(G.state!=='play'&&G.state!=='minigame'&&G.state!=='runner') return;
   G.t+=dt;
 
-  if(G.state==='play'){
+  if(G.state==='runner'){
+    Runner.update(dt);
+  } else if(G.state==='play'){
     // movement
     let dx=0,dy=0;
     if(keys['arrowleft']||keys['a'])dx-=1;
@@ -815,7 +927,6 @@ function update(dt){
     let spd=190*CHARACTERS[G.char].speed;
     if(G.boost.until>G.t) spd*=G.boost.mult;
     if(G.scooter.until>G.t) spd*=G.scooter.mult;
-    if(G.siren&&!G.siren.resolved) spd*=1.12;      // adrenaline
     const p=G.player;
     p.x=clamp(p.x+dx*spd*dt,30,W-30);
     p.y=clamp(p.y+dy*spd*dt,30,H-30);
@@ -830,27 +941,11 @@ function update(dt){
     }
     if(G.tefillinCooldown>0) G.tefillinCooldown-=dt;
 
-    // siren resolution
-    if(G.siren&&!G.siren.resolved){
-      const left=G.siren.deadline-G.t;
-      $('sirenTime').textContent=`MAMAD! ${Math.ceil(left)}s`;
-      if(inShelter()) resolveSiren(true);
-      else if(left<=0) resolveSiren(false);
-    }
-
     // NPCs wander
     for(const n of G.npcs){
       n.turn-=dt;
       if(n.turn<=0){ n.a=rand(0,Math.PI*2); n.turn=rand(1.5,4); }
-      if(G.siren&&!G.siren.resolved){
-        // they panic toward nearest shelter
-        let ns=G.lv.shelters[0], bd=1e9;
-        for(const s of G.lv.shelters){const d=Math.hypot(n.x-(s.x+s.w/2),n.y-(s.y+s.h/2)); if(d<bd){bd=d;ns=s;}}
-        n.a=Math.atan2((ns.y+ns.h/2)-n.y,(ns.x+ns.w/2)-n.x);
-        n.x+=Math.cos(n.a)*120*dt; n.y+=Math.sin(n.a)*120*dt;
-      } else {
-        n.x+=Math.cos(n.a)*n.spd*dt; n.y+=Math.sin(n.a)*n.spd*dt;
-      }
+      n.x+=Math.cos(n.a)*n.spd*dt; n.y+=Math.sin(n.a)*n.spd*dt;
       n.x=clamp(n.x,40,W-40); n.y=clamp(n.y,40,H-40);
     }
 
@@ -878,15 +973,21 @@ function update(dt){
     $('fxPill').style.display='flex';
   } else $('fxPill').style.display='none';
 
-  // camera
-  const cv=$('game');
-  G.cam.x=clamp(G.player.x-cv.width/2,0,W-cv.width);
-  G.cam.y=clamp(G.player.y-cv.height/2,0,H-cv.height);
+  // camera (center the world if the screen is bigger than the map)
+  G.cam.x = VW>=W ? (W-VW)/2 : clamp(G.player.x-VW/2,0,W-VW);
+  G.cam.y = VH>=H ? (H-VH)/2 : clamp(G.player.y-VH/2,0,H-VH);
 }
 
 /* ---------------------- render ---------------------- */
 const cv=$('game'), cx=cv.getContext('2d');
-function resize(){ cv.width=innerWidth; cv.height=innerHeight; }
+let VW=innerWidth, VH=innerHeight;
+function resize(){
+  const dpr=Math.min(devicePixelRatio||1,2);
+  VW=innerWidth; VH=innerHeight;
+  cv.width=Math.round(VW*dpr); cv.height=Math.round(VH*dpr);
+  cv.style.width=VW+'px'; cv.style.height=VH+'px';
+  cx.setTransform(dpr,0,0,dpr,0,0);
+}
 addEventListener('resize',resize); resize();
 
 function drawEmoji(e,x,y,size=34){
@@ -895,11 +996,65 @@ function drawEmoji(e,x,y,size=34){
   cx.fillText(e,x,y);
 }
 
+function drawRunner(){
+  const groundY=VH-110;
+  // sky with red alert wash
+  cx.fillStyle='#150d1c'; cx.fillRect(0,0,VW,VH);
+  cx.fillStyle=`rgba(230,57,70,${.10+.07*Math.sin(G.t*9)})`; cx.fillRect(0,0,VW,VH);
+  // parallax buildings
+  cx.fillStyle='#221a31';
+  const sp=240, poff=Runner.prog*.4, first=Math.floor(poff/sp)-1;
+  for(let i=first;i<first+Math.ceil(VW/sp)+3;i++){
+    const h=110+((i*7919)%97)/97*170;
+    cx.fillRect(i*sp-poff,groundY-h,150,h);
+  }
+  // street
+  cx.fillStyle='#2b2436'; cx.fillRect(0,groundY,VW,VH-groundY);
+  cx.fillStyle='rgba(255,255,255,.25)';
+  for(let x=-(Runner.prog%90);x<VW;x+=90) cx.fillRect(x,groundY+46,44,4);
+  // the mamad door
+  const doorX=130+(Runner.goal-Runner.prog);
+  if(doorX<VW+90){
+    cx.fillStyle='#2a9d8f'; cx.fillRect(doorX-36,groundY-120,92,120);
+    cx.strokeStyle='#7ee8c7'; cx.lineWidth=4; cx.strokeRect(doorX-36,groundY-120,92,120);
+    drawEmoji('🛡️',doorX+10,groundY-72,40);
+    cx.fillStyle='#fff'; cx.font='bold 13px sans-serif'; cx.textAlign='center';
+    cx.fillText('MAMAD',doorX+10,groundY-14);
+  }
+  // obstacles: ground = jump, flying = duck
+  for(const o of Runner.obs){
+    if(o.air) drawEmoji(o.emoji,o.x,groundY-62+Math.sin(G.t*5+o.wob)*7,42);
+    else drawEmoji(o.emoji,o.x,groundY-20,42);
+  }
+  // player (blinks while invulnerable after a hit)
+  if(!(Runner.invuln>0&&Math.floor(G.t*12)%2===0)){
+    cx.save(); cx.translate(130,groundY-Runner.y);
+    if(Runner.stumble>0) cx.rotate(-.5);
+    if(Runner.ducking){ cx.scale(1.15,.62); drawEmoji(CHARACTERS[G.char].emoji,0,-13,40); }
+    else drawEmoji(CHARACTERS[G.char].emoji,0,-22+(Runner.y<=0?Math.sin(G.t*16)*2.5:0),40);
+    cx.restore();
+  }
+  // progress bar to the shelter
+  const frac=clamp(Runner.prog/Runner.goal,0,1);
+  const bx=VW*.12, bw=VW*.76, by=Math.max(86,VH*.13);
+  cx.fillStyle='rgba(16,20,31,.7)'; cx.fillRect(bx-12,by-18,bw+34,36);
+  cx.fillStyle='#37415c'; cx.fillRect(bx,by-4,bw,8);
+  cx.fillStyle='#7ee8c7'; cx.fillRect(bx,by-4,bw*frac,8);
+  drawEmoji('🛡️',bx+bw+10,by,22);
+  drawEmoji('🏃',bx+bw*frac,by-2,22);
+  if(G.t-Runner.startT<2.8){
+    cx.fillStyle='#ffd166'; cx.font='bold 15px sans-serif'; cx.textAlign='center';
+    cx.fillText(isTouch?'TAP TOP = JUMP · HOLD BOTTOM = DUCK':'↑ / SPACE = JUMP · ↓ = DUCK',VW/2,by+42);
+  }
+}
+
 function render(){
+  if(G.state==='runner'){ drawRunner(); requestAnimationFrame(loop); return; }
   if(G.state!=='play'&&G.state!=='minigame'){ requestAnimationFrame(loop); return; }
   const ox=-G.cam.x, oy=-G.cam.y;
   // ground
-  cx.fillStyle=G.lv.ground; cx.fillRect(0,0,cv.width,cv.height);
+  cx.fillStyle='#10141f'; cx.fillRect(0,0,VW,VH);
+  cx.fillStyle=G.lv.ground; cx.fillRect(ox,oy,W,H);
   for(const z of G.lv.zones){ cx.fillStyle=z.c; cx.fillRect(z.x+ox,z.y+oy,z.w,z.h); }
   // border vignette
   cx.strokeStyle='rgba(0,0,0,.25)'; cx.lineWidth=8;
@@ -950,28 +1105,9 @@ function render(){
   cx.restore();
   drawEmoji(CHARACTERS[G.char].hat,p.x+ox,p.y+oy-26,16);
 
-  // siren arrow to nearest shelter
-  if(G.siren&&!G.siren.resolved){
-    let ns=null,bd=1e9;
-    for(const s of G.lv.shelters){
-      const d=Math.hypot(p.x-(s.x+s.w/2),p.y-(s.y+s.h/2));
-      if(d<bd){bd=d;ns=s;}
-    }
-    if(ns){
-      const a=Math.atan2((ns.y+ns.h/2)-p.y,(ns.x+ns.w/2)-p.x);
-      cx.save();
-      cx.translate(p.x+ox,p.y+oy); cx.rotate(a);
-      cx.fillStyle='#ff5a5a';
-      cx.beginPath(); cx.moveTo(60,0); cx.lineTo(38,-14); cx.lineTo(38,14); cx.closePath(); cx.fill();
-      cx.restore();
-    }
-    // red wash
-    cx.fillStyle=`rgba(230,57,70,${.12+.08*Math.sin(G.t*8)})`;
-    cx.fillRect(0,0,cv.width,cv.height);
-  }
   // boom flash
   if(G.siren&&G.siren.resolved&&G.siren.boomAt&&G.t>G.siren.boomAt&&G.t<G.siren.boomAt+.35){
-    cx.fillStyle='rgba(255,255,255,.6)'; cx.fillRect(0,0,cv.width,cv.height);
+    cx.fillStyle='rgba(255,255,255,.6)'; cx.fillRect(0,0,VW,VH);
   }
   requestAnimationFrame(loop);
 }

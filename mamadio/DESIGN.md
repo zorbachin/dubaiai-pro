@@ -14,13 +14,18 @@ convention as the rest of the repo. Playable at `dubaiai.pro/mamadio/` once on
 2. Roam the neighborhood doing silly quests, grabbing food deals (speed
    boosts) and renting Lime scooters to move faster.
 3. At a random moment (every ~45–85s), **Home Front Command sounds the
-   siren** — red banner, rising WebAudio wail, phone vibration. You have
-   **16 seconds** to reach the nearest mamad/miklat (a red arrow points the
-   way; NPCs panic-run too).
-   - Make it → 💥 boom outside, Iron Dome intercepts, **calm-under-fire bonus**
-     (grows with your streak).
-   - Caught outside → shockwave knocks **40% of your shekels** out of your
-     pocket.
+   siren** — red banner, rising WebAudio wail, phone vibration — and the
+   world flips into the **MAMAD DASH**: a Temple-Run-style side-scroller.
+   You auto-run toward the shelter and have **16 seconds** to reach the
+   mamad door. **Jump** (↑/Space/tap top) over street obstacles — old
+   ladies, shopping carts, dogs, sunbeds — and **duck** (↓/S/hold bottom)
+   under flying debris — pigeons, kites, matkot balls, the occasional
+   airborne savta. Each hit stumbles you, kills your speed and knocks you
+   back; the obstacle sets are themed per neighborhood.
+   - Reach the door → 💥 boom outside, Iron Dome intercepts,
+     **calm-under-fire bonus** (grows with your streak).
+   - Timer runs out mid-dash → caught outside, the shockwave knocks
+     **40% of your shekels** out of your pocket.
 4. The day lasts 4 minutes (clock pauses during sirens). Final shekel count is
    your score; best scores persist in localStorage and unlock the next hood.
 
