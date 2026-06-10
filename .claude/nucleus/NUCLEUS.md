@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 12:05 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** fd72bbf Add cookieless play/install analytics (GoatCounter) — 52 seconds ago
+- **Last commit:** efaaf05 chore: refresh nucleus live state [skip ci] — 15 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-fd72bbf Add cookieless play/install analytics (GoatCounter) (52 seconds ago)
-980c55c chore: refresh nucleus live state [skip ci] (17 minutes ago)
+efaaf05 chore: refresh nucleus live state [skip ci] (15 seconds ago)
+fd72bbf Add cookieless play/install analytics (GoatCounter) (68 seconds ago)
+980c55c chore: refresh nucleus live state [skip ci] (18 minutes ago)
 e06f4f0 chore: refresh nucleus live state [skip ci] (18 minutes ago)
 b693b53 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (19 minutes ago)
-f049995 chore: refresh nucleus live state [skip ci] (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
