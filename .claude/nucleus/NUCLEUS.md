@@ -171,9 +171,9 @@ ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calistheni
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 09:45 UTC
+- **When:** 2026-06-10 09:48 UTC
 - **Branch:** `claude/mamadio-game-design-v9mr1w`
-- **Last commit:** e2f3b3f chore: refresh nucleus live state [skip ci] — 71 seconds ago
+- **Last commit:** d687bbc chore: refresh nucleus live state [skip ci] — 3 minutes ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-e2f3b3f chore: refresh nucleus live state [skip ci] (71 seconds ago)
-fc7a611 Siren now triggers the MAMAD DASH: temple-run sequence + mobile polish (3 minutes ago)
-1efd641 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-5b056cd chore: refresh nucleus live state [skip ci] (10 minutes ago)
-100fdc3 Add Mamadio — Tel Aviv hustle game, companion to Iron Dome (11 minutes ago)
+d687bbc chore: refresh nucleus live state [skip ci] (3 minutes ago)
+e2f3b3f chore: refresh nucleus live state [skip ci] (4 minutes ago)
+fc7a611 Siren now triggers the MAMAD DASH: temple-run sequence + mobile polish (6 minutes ago)
+1efd641 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+5b056cd chore: refresh nucleus live state [skip ci] (13 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
