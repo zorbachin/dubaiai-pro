@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 12:54 UTC · code
+Fixed the volleyball 'I'm timing it right and it misses' bug Zorba hit live: mini-game cursor was frame-based (2x speed on 120Hz phones, hit window < touch latency). Now time-based + 100ms input-latency grace. Pushed to PR #74. QA finding M2 closed.
+
 ### 2026-06-10 12:48 UTC · code
 DIRECTION SHIFT (Zorba): MAMAD DASH should become a STANDALONE game — siren runner is the viral core; Tel Aviv exploration demoted to secondary/'a place to play'. Iron Dome + MAMAD DASH = the two viral candidates IF made perfect and dead-simple to play. SEPARATE parked idea: multiplayer Tel Aviv lifestyle game — chat, create worlds, interact ('trying to make it' sim). Echoes QA panel finding: dash is the tense set-piece, hustle layer runs dry. Meanwhile shipped PR #74: dash difficulty now ramps with countdown (calm start, frantic finish) + stumble death-spiral fix + freeze guard.
 
@@ -162,31 +165,34 @@ BIG MANDATE (2026-06-02): User wants the full portfolio running like a company. 
 
 ### 2026-06-02 04:31 UTC · chat
 Buffer connected (org 'My Organization'). Channels: LinkedIn (zachary-grashin profile), Instagram (zorb_ai), X (Quickquotables — DIFFERENT brand, do not use for LetAIDoIt). TikTok NOT connected. LINKEDIN DRAFT for calisthenics video created in Buffer (text-only OK). IG can't be pre-loaded — Buffer/IG requires media and the video is local on Zorba's Mac; he must create IG post in Buffer by uploading the clip + pasting caption. FB = manual (personal profile).
-
-### 2026-06-02 04:06 UTC · chat
-Facebook = PERSONAL PROFILE (his most responsive platform) — cannot be auto-posted/scheduled by Buffer or any tool (Meta API rule). FB stays a MANUAL post by Zorba. Buffer handles the rest: IG (Business), LinkedIn, TikTok. Connecting Buffer via Zapier for scheduling those.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:49 UTC
+- **When:** 2026-06-10 12:55 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 9c8b353 chore: refresh nucleus live state [skip ci] — 17 seconds ago
+- **Last commit:** 90d0e57 Fix timing mini-games: time-based cursor + touch-latency grace — 15 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-9c8b353 chore: refresh nucleus live state [skip ci] (17 seconds ago)
-717477a MAMAD DASH: ramp difficulty with the countdown (2 minutes ago)
-f9e5159 chore: refresh nucleus live state [skip ci] (18 minutes ago)
-9c58dfa chore: refresh nucleus live state [skip ci] (20 minutes ago)
-902816b chore: refresh nucleus live state [skip ci] (20 minutes ago)
+90d0e57 Fix timing mini-games: time-based cursor + touch-latency grace (15 seconds ago)
+f5a33e0 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+9c8b353 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+717477a MAMAD DASH: ramp difficulty with the countdown (8 minutes ago)
+f9e5159 chore: refresh nucleus live state [skip ci] (24 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
