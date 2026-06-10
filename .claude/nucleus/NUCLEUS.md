@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 19:09 UTC · code
+OVERNIGHT SHIFT COMPLETE: promo pack merged (PR #81, content-assets/irondome-promo/) — full bilingual launch copy (WhatsApp x4, Telegram DM+post, Reddit x2, press HE+EN, X, meme pages, 20s clip script, crisis one-liners, seeding checklist) + visual cards (story/square/meme/share) + v15 screenshots. ChatGPT image prompts EMAILED to Zorba for the elite art pass (6 prompts, no-text rule, palette locked). MORNING PLAN: Zorba does domain + GoatCounter + ChatGPT images -> Claude swaps URL in one pass (it's on its own line everywhere), composites Hebrew typography on new art, re-ships -> seeding begins per checklist.
+
 ### 2026-06-10 19:00 UTC · code
 Iron Dome launch promo pack complete at /tmp/PROMO-PACK.md: WhatsApp (4 msgs incl. parents + alert-night protocol), Telegram admin DM + channel post, Reddit x2, press pitches HE/EN, X posts, meme-page DM, 20s clip script, crisis one-liners, seeding checklist. URL on own line everywhere for domain swap. No em-dashes in personal copy.
 ### 2026-06-10 18:53 UTC · code
@@ -178,88 +181,34 @@ NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three 
 
 
 
-
-### 2026-06-02 10:59 UTC · chat
-NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (built: content-assets/newsletter/dispatch-no-001.png via bin/cinema_news.py). Aged paper, double frame, 'proudly presents', dramatic serif billing, marquee bar, 'printed for a select readership'. NO LIST YET + DO NOT spam his contacts (kills deliverability + relationships). PLAN: use a real ESP (Substack or Beehiiv free) for compliance/unsubscribe; SEED via personal opt-in invites (Claude drafts) to people he knows + warm leads (post-repliers, clients like vybewear, video commenters); grow as a byproduct of the content engine (every post -> 'join the Dispatch'). Cadence: monthly/biweekly 'issue' = an event, quality over frequency. Positioning: 'a select readership', worth-their-time storytelling.
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 19:00 UTC
-
-- **When:** 2026-06-10 18:53 UTC
+- **When:** 2026-06-10 19:09 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish — 1 second ago
-
-- **When:** 2026-06-10 18:17 UTC
-
-- **When:** 2026-06-10 18:12 UTC
-- **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 510087a chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **Last commit:** 5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 57 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 77 ++++++----------------------------------------
+ 1 file changed, 10 insertions(+), 67 deletions(-)
 ```
 
 **Recent commits:**
 ```
-510087a chore: refresh nucleus live state [skip ci] (4 minutes ago)
-fa3306c chore: refresh nucleus live state [skip ci] (5 minutes ago)
-d5a1cd2 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (6 minutes ago)
-e0b3a2c chore: refresh nucleus live state [skip ci] (6 minutes ago)
-5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (7 minutes ago)
-
-5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (1 second ago)
-2c72477 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-aff1a2e chore: refresh nucleus live state [skip ci] (20 minutes ago)
-b2b5be8 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-3fc13b7 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-
-ed91283 v13: difficulty select, intra-level ramp, bonus rounds, active Iron Sling volley (1 second ago)
-1807ced chore: refresh nucleus live state [skip ci] (4 minutes ago)
-e965ff0 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-3b19110 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (5 minutes ago)
-79f7776 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-
-54dd188 v12: Israeli voice pack — sabra sarcasm woven through every touchpoint (1 second ago)
-0011b2d chore: refresh nucleus live state [skip ci] (3 hours ago)
-50c8bdc chore: refresh nucleus live state [skip ci] (3 hours ago)
-a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (3 hours ago)
-59ebd05 chore: refresh nucleus live state [skip ci] (3 hours ago)
-
-ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (12 seconds ago)
-ac68fa5 chore: refresh nucleus live state [skip ci] (17 minutes ago)
-02ac41d chore: refresh nucleus live state [skip ci] (17 minutes ago)
-71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (20 minutes ago)
-7b72772 Mobile hardening: visual-viewport canvas, hard playfield clamp, music, version badge (21 minutes ago)
-
-89bfac1 chore: refresh nucleus live state [skip ci] (73 minutes ago)
-3c7c3f7 chore: refresh nucleus live state [skip ci] (74 minutes ago)
-a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (75 minutes ago)
-13d5682 chore: refresh nucleus live state [skip ci] (75 minutes ago)
-817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (76 minutes ago)
-
-817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (1 second ago)
-1b9fd79 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-7440fdd chore: refresh nucleus live state [skip ci] (23 minutes ago)
-7d7eac0 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-1e4e045 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-
-d41df29 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-b4bdca7 chore: refresh nucleus live state [skip ci] (32 minutes ago)
-5c4b64b chore: refresh nucleus live state [skip ci] (36 minutes ago)
-76817f9 chore: refresh nucleus live state [skip ci] (37 minutes ago)
-8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish (37 minutes ago)
-
-e7a755e Self-improving calibration + scale-proof touch mapping (1 second ago)
-a7b9cf5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-7cce0e9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (12 minutes ago)
-956e4f5 chore: refresh nucleus live state [skip ci] (66 minutes ago)
+5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (57 seconds ago)
+009da8e Iron Dome launch promo pack: copy + cards + screenshots (2 minutes ago)
+510087a chore: refresh nucleus live state [skip ci] (13 minutes ago)
+fa3306c chore: refresh nucleus live state [skip ci] (13 minutes ago)
+0bacfb1 Iron Dome v15: panel batch — stability GO, Daily Alert, real difficulty, feel polish (#80) (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
