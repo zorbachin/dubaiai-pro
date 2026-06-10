@@ -171,9 +171,9 @@ SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $20
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:24 UTC
+- **When:** 2026-06-10 18:28 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** b576c56 chore: refresh nucleus live state [skip ci] — 16 seconds ago
+- **Last commit:** 65cb0ea chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-b576c56 chore: refresh nucleus live state [skip ci] (16 seconds ago)
-a80bad0 Death cam: savta judges you + near-miss death screen + tap-to-restart (45 seconds ago)
-546a6a2 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-7102fd2 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-2979fed chore: refresh nucleus live state [skip ci] (12 minutes ago)
+65cb0ea chore: refresh nucleus live state [skip ci] (4 minutes ago)
+b576c56 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+a80bad0 Death cam: savta judges you + near-miss death screen + tap-to-restart (4 minutes ago)
+546a6a2 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+7102fd2 chore: refresh nucleus live state [skip ci] (15 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
