@@ -85,36 +85,40 @@ const irand=(a,b)=>Math.floor(rand(a,b+1));
 
 /* ---------------- sound (WebAudio, built on first gesture) ---------------- */
 const Sound={
-  ctx:null, on:localStorage.getItem('md_mute')!=='1', sirenNodes:null,
-  init(){ if(!this.ctx){ try{ this.ctx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
+  ctx:null, bus:null, on:localStorage.getItem('md_mute')!=='1', sirenNodes:null,
+  init(){ if(!this.ctx){ try{ this.ctx=new (window.AudioContext||window.webkitAudioContext)();
+      this.bus=this.ctx.createDynamicsCompressor(); this.bus.connect(this.ctx.destination);
+    }catch(e){} }
     if(this.ctx&&this.ctx.state==='suspended') this.ctx.resume(); },
-  beep(f,d,type='square',g=.05,slide=0){
+  beep(f,d,type='square',g=.05,slide=0,when=0){
     if(!this.on||!this.ctx) return;
-    const o=this.ctx.createOscillator(),v=this.ctx.createGain(),t=this.ctx.currentTime;
+    const o=this.ctx.createOscillator(),v=this.ctx.createGain(),t=this.ctx.currentTime+when;
     o.type=type;o.frequency.setValueAtTime(f,t);
     if(slide) o.frequency.exponentialRampToValueAtTime(Math.max(40,f+slide),t+d);
     v.gain.setValueAtTime(g,t);v.gain.exponentialRampToValueAtTime(.0001,t+d);
-    o.connect(v).connect(this.ctx.destination);o.start(t);o.stop(t+d);
+    o.connect(v).connect(this.bus||this.ctx.destination);o.start(t);o.stop(t+d);
   },
   jump(){this.beep(620,.1,'square',.04,300);},
   duck(){this.beep(300,.09,'square',.035,-120);},
-  coin(){this.beep(1318,.06,'square',.04);setTimeout(()=>this.beep(1760,.09,'square',.04),55);},
-  power(){this.beep(880,.08,'square',.05);setTimeout(()=>this.beep(1175,.08,'square',.05),70);
-    setTimeout(()=>this.beep(1568,.14,'square',.05),140);},
-  alert(){this.beep(932,.14,'square',.05);setTimeout(()=>this.beep(932,.14,'square',.05),200);},
+  door(){this.beep(523,.1,'square',.05);this.beep(784,.16,'square',.05,0,.09);},
+  coin(n=0){ const m=Math.pow(2,Math.min(n,12)/12);              // combo climbs the scale
+    this.beep(1318*m,.06,'square',.04);this.beep(1760*m,.09,'square',.04,0,.055);},
+  power(){this.beep(880,.08,'square',.05);this.beep(1175,.08,'square',.05,0,.07);
+    this.beep(1568,.14,'square',.05,0,.14);},
+  alert(){this.beep(932,.14,'square',.05);this.beep(932,.14,'square',.05,0,.2);},
+  pulse(u){this.beep(85+u*40,.09,'square',.016+.014*u);},        // heartbeat under the run
   hit(){this.beep(140,.22,'sawtooth',.08,-60);},
-  door(){this.beep(523,.1,'square',.05);setTimeout(()=>this.beep(784,.16,'square',.05),90);},
   boom(){if(!this.on||!this.ctx)return;
     const b=this.ctx.createBuffer(1,this.ctx.sampleRate*.5,this.ctx.sampleRate),d=b.getChannelData(0);
     for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,2.2);
     const s=this.ctx.createBufferSource(),v=this.ctx.createGain();s.buffer=b;
-    v.gain.value=.22;s.connect(v).connect(this.ctx.destination);s.start();},
+    v.gain.value=.22;s.connect(v).connect(this.bus||this.ctx.destination);s.start();},
   sirenStart(){
     if(!this.on||!this.ctx||this.sirenNodes) return;
     const o=this.ctx.createOscillator(),v=this.ctx.createGain(),l=this.ctx.createOscillator(),lg=this.ctx.createGain();
     o.type='triangle';o.frequency.value=660;l.frequency.value=.55;lg.gain.value=160;
     l.connect(lg).connect(o.frequency);v.gain.value=.035;
-    o.connect(v).connect(this.ctx.destination);o.start();l.start();
+    o.connect(v).connect(this.bus||this.ctx.destination);o.start();l.start();
     this.sirenNodes={o,l,v};
   },
   sirenStop(){ if(this.sirenNodes){ try{this.sirenNodes.o.stop();this.sirenNodes.l.stop();}catch(e){} this.sirenNodes=null; } },
@@ -169,14 +173,15 @@ const G={
   obs:[], picks:[], pows:[], nextOb:0, nextCoin:0, nextPow:-1,
   hits:0, stumble:0, invuln:0, shieldFlash:0,
   star:0, magnet:0, banner:null, sirenOn:false,
+  jbuf:0, freeze:0, nextPulse:0, combo:0, lastCoin:-9, starHits:0,
   insideT:0, tutorial:!localStorage.getItem('md_best'),
-  rockets:[], pops:[], confetti:[],
+  rockets:[], pops:[], confetti:[], fly:[],
 };
 const POP_COLS=['#ffd166','#7ee8c7','#ff8ad4','#8ad2ff'];
 function pop(x,y,txt,col,big){ G.pops.push({x,y,txt,col:col||'#ffd166',t:0,big:!!big}); }
 function burstConfetti(n){
   for(let i=0;i<n;i++) G.confetti.push({x:rand(0,W),y:rand(-H*.2,H*.3),
-    vx:rand(-40,40),vy:rand(60,220),rot:rand(0,6),vr:rand(-6,6),
+    vx:rand(-40,40),vy:rand(150,330),rot:rand(0,6),vr:rand(-6,6),
     col:POP_COLS[i%POP_COLS.length],s:rand(5,10)});
 }
 function waveCfg(n){            // n = 1-based wave number
@@ -194,6 +199,8 @@ function startWave(){
   G.nextOb=G.tutorial?420:520; G.nextCoin=750;
   G.nextPow=c.goal*rand(.3,.55);            // one power-up per wave, mid-run
   G.hits=0; G.stumble=0; G.invuln=0; G.star=0; G.magnet=0; G.sirenOn=false;
+  G.jbuf=0; G.combo=0; G.starHits=0; G.confetti.length=0; G.fly.length=0;
+  G.nextPulse=G.t+1.2;
   G.player.y=0; G.player.vy=0; G.player.duckT=0;
   G.banner={t:0,txt:`📍 ${THEME().name}`,sub:`SIREN #${G.wave}`};
   // budget: clean run uses ~76% of the clock
@@ -220,6 +227,7 @@ function die(){
   Sound.sirenStop(); Sound.boom(); flash(.85); shake();
   if(navigator.vibrate) navigator.vibrate([60,40,220]);
   G.state='deathcam'; G.deathT=0;
+  G.obs=G.obs.filter(o=>Math.abs(o.x-PLAYER_X())>240);   // no photobombing savtas
   G.deathLine=DEATH_LINES[irand(0,DEATH_LINES.length-1)];
   G.ragdoll={x:PLAYER_X(),y:groundY-G.player.y-30,vx:150,vy:-460,rot:0};
   setTimeout(showDeathPanel,2300);
@@ -247,7 +255,10 @@ function shake(){ const w=$('wrap');w.classList.remove('shake');void w.offsetWid
 
 /* ---------------- input: tap = jump · swipe down = duck ---------------- */
 function jump(){ const p=G.player;
-  if(G.state==='run'&&p.y<=0&&G.stumble<=0){ p.vy=720; p.duckT=0; Sound.jump(); } }
+  if(G.state!=='run') return;
+  if(p.y<=0&&G.stumble<=0){ p.vy=720; p.duckT=0; Sound.jump(); }
+  else if(p.y>0) G.jbuf=.12;     // buffer a tap landing within 120ms — never eat it
+}
 function duck(){ const p=G.player;
   if(G.state!=='run') return;
   if(p.y>0){ p.vy=-980; p.duckT=.6; Sound.duck(); }   // mid-air: slam down into a duck
@@ -258,24 +269,28 @@ function primary(){          // any tap: start / jump / skip cam / restart
   else if(G.state==='deathcam'&&G.deathT>.8) showDeathPanel();
   else if(G.state==='dead'&&G.t-G.deadAt>.45){ $('dead').classList.add('hidden'); resetRun(); }
 }
-let touchY0=null,touchT0=0,swiped=false;
+/* jump fires on touch DOWN (zero perceived latency). A tap that turns out
+   to be a swipe-down self-heals: duck() slams an airborne player straight
+   into the crouch, which reads as one intentional move. */
+let touchY0=null,swiped=false;
 window.addEventListener('touchstart',e=>{
   if(e.target.closest('button')) return;
   e.preventDefault();
-  touchY0=e.touches[0].clientY; touchT0=performance.now(); swiped=false;
+  touchY0=e.touches[0].clientY; swiped=false;
+  primary();
 },{passive:false});
 window.addEventListener('touchmove',e=>{
   if(touchY0===null||swiped) return;
   const dy=e.touches[0].clientY-touchY0;
-  if(dy>26){ swiped=true; if(G.state==='run') duck(); else primary(); }
-  else if(dy<-26){ swiped=true; primary(); }
+  if(dy>26){ swiped=true; if(G.state==='run') duck(); }
 },{passive:false});
-window.addEventListener('touchend',e=>{
+window.addEventListener('touchend',()=>{ touchY0=null; },{passive:false});
+window.addEventListener('mousedown',e=>{
   if(e.target.closest('button')) return;
-  if(!swiped && performance.now()-touchT0<350) primary();
-  touchY0=null;
-},{passive:false});
-window.addEventListener('mousedown',e=>{ if(!e.target.closest('button')) primary(); });
+  if(e.button===2){ if(G.state==='run') duck(); return; }
+  primary();
+});
+window.addEventListener('contextmenu',e=>{ e.preventDefault(); });
 window.addEventListener('keydown',e=>{
   const k=e.key.toLowerCase();
   if(k===' '||k==='arrowup'||k==='w'){ e.preventDefault(); primary(); }
@@ -295,6 +310,7 @@ function update(dt){
   G.t+=dt;
   for(const q of G.pops) q.t+=dt;
   G.pops=G.pops.filter(q=>q.t<1);
+  if(G.shieldFlash>0) G.shieldFlash-=dt*1.6;
   for(const f of G.confetti){ f.x+=f.vx*dt; f.y+=f.vy*dt; f.rot+=f.vr*dt; }
   G.confetti=G.confetti.filter(f=>f.y<H+20);
   if(G.state==='inside'){
@@ -305,6 +321,7 @@ function update(dt){
   if(G.state==='deathcam'){
     G.deathT+=dt; const r=G.ragdoll;
     r.vy+=1100*dt; r.x+=r.vx*dt; r.y+=r.vy*dt; r.rot+=8*dt;
+    if(r.y>groundY-12){ r.y=groundY-12; r.vy*=-.4; r.vx*=.6; }  // comedy bounce, not a void
     return;
   }
   if(G.state!=='run') return;
@@ -318,13 +335,19 @@ function update(dt){
   if(left<=3&&!G.sirenOn){ G.sirenOn=true; Sound.sirenStart();
     if(navigator.vibrate) navigator.vibrate([60,40,60,40,60]); }
   if(left>3&&G.sirenOn){ G.sirenOn=false; Sound.sirenStop(); }   // ⌛ pushed it back
-  // player physics
+  // player physics (fast-fall after apex: snappy, same jump height)
   const wasAir=p.y>0;
   p.y+=p.vy*dt;
-  if(p.y>0) p.vy-=2050*dt; else {p.y=0;p.vy=Math.max(0,p.vy);}
-  if(wasAir&&p.y<=0) p.land=.16;          // landing squash
+  if(p.y>0) p.vy-=2050*dt*(p.vy<0?1.6:1); else {p.y=0;p.vy=Math.max(0,p.vy);}
+  if(G.jbuf>0) G.jbuf-=dt;
+  if(wasAir&&p.y<=0){
+    if(G.jbuf>0&&G.stumble<=0){ G.jbuf=0; p.vy=720; Sound.jump(); }  // buffered jump
+    else p.land=.16;                       // landing squash
+  }
   if(p.land>0) p.land-=dt;
   if(p.duckT>0) p.duckT-=dt;
+  // heartbeat pulse builds with urgency
+  if(G.t>=G.nextPulse){ Sound.pulse(u); G.nextPulse=G.t+(.62-.4*u); }
   if(G.stumble>0) G.stumble-=dt;
   if(G.invuln>0) G.invuln-=dt;
   // speed ramps with the countdown
@@ -372,12 +395,21 @@ function update(dt){
       else { G.deadline+=3; pop(px,groundY-110,'⌛ +3 SECONDS!','#7ee8c7',true); }
     }
   }
+  // ⭐ smash-through: plow obstacles with a rising fanfare
+  if(G.star>0) for(const o of G.obs){
+    if(Math.abs(o.x-px)<42){
+      o.x=-999; G.starHits=(G.starHits||0)+1;
+      pop(px+20,groundY-100,'SMASH! 💥',POP_COLS[G.starHits%4]);
+      Sound.beep(660*Math.pow(2,Math.min(G.starHits,8)/12),.08,'square',.05);
+    }
+  }
   // collisions (⭐ makes you untouchable)
-  if(G.invuln<=0&&G.star<=0) for(const o of G.obs){
+  else if(G.invuln<=0) for(const o of G.obs){
     if(Math.abs(o.x-px)>30) continue;
     const hit=o.air?(!ducking&&p.y<52):(p.y<44);
     if(hit){
       G.hits++; G.stumble=.5; G.invuln=.9; G.prog=Math.max(0,G.prog-150);
+      G.freeze=.07;                        // hit-stop: the impact has weight
       o.x=-999; Sound.hit(); shake(); if(navigator.vibrate) navigator.vibrate(110);
       pop(px,groundY-90,'OOF! 💢','#ff5d5d',true);
       break;
@@ -385,10 +417,15 @@ function update(dt){
   }
   for(const k of G.picks){
     if(Math.abs(k.x-px)<30&&Math.abs((groundY-p.y-30)-k.y)<44){
-      k.x=-999; G.coins+=5; Sound.coin();
-      pop(px+rand(-8,8),groundY-p.y-88,'+5₪',POP_COLS[irand(0,3)]);
+      G.fly.push({x:k.x,y:k.y,t:0});                 // coin flies to the counter
+      k.x=-999; G.coins+=5;
+      G.combo=(G.t-G.lastCoin<1)?G.combo+1:0; G.lastCoin=G.t;
+      Sound.coin(G.combo);
+      pop(px+rand(-8,8),groundY-p.y-88,G.combo>0?`+5₪ ×${G.combo+1}`:'+5₪',POP_COLS[G.combo%4]);
     }
   }
+  for(const f of G.fly) f.t+=dt*3.2;
+  G.fly=G.fly.filter(f=>f.t<1);
   if(G.prog>=G.goal){ G.coins+=20+G.wave*5; enterMamad(); return; }
   if(left<=0){ die(); return; }
 }
@@ -399,9 +436,14 @@ function draw(){
   const left=G.state==='run'?Math.max(0,G.deadline-G.t):0;
   const u=G.state==='run'?clamp(1-left/G.total,0,1):0;
   const dc=G.state==='deathcam';
+  let cam=false;
   if(dc){ // slow punch-in on the scene of the crime
     const z=1+.35*Math.min(1,G.deathT*2.2);
     cx.save();cx.translate(px,groundY-40);cx.scale(z,z);cx.translate(-px,-(groundY-40));
+  } else if(G.state==='run'){ // speed zoom + landing camera dip
+    const z=1+.05*u, dip=p.land>0?p.land*80:0;
+    cx.save();cx.translate(px,groundY-40);cx.scale(z,z);cx.translate(-px,-(groundY-40)+dip);
+    cam=true;
   }
   // sky: every hood has its own light
   const T=THEME();
@@ -498,19 +540,21 @@ function draw(){
     cx.scale(-1,1);drawEmoji('👵',0,0,52);cx.restore();
     if(G.deathT>.7) drawEmoji('🤌',sx-38,groundY-58,22);
   }
-  else if(!(G.invuln>0&&Math.floor(G.t*14)%2===0)){
+  else {
+    if(G.invuln>0&&Math.floor(G.t*14)%2===0) cx.globalAlpha=.35;  // ghost, never vanish
     cx.save();cx.translate(px,groundY-p.y-30);
     cx.scale(-1,1);                 // 🏃 faces left natively — mirror to run right
     if(G.stumble>0) cx.rotate(-.45);
     if(p.land>0) cx.scale(1+p.land*1.6,1-p.land*1.9);   // landing squash
     if(p.duckT>0&&p.y<=0){ cx.scale(1.18,.6); }
-    else if(p.y<=0&&G.state==='run') cx.translate(0,Math.sin(G.t*17)*2.5);
+    else if(p.y>0) cx.rotate(p.vy>0?.16:-.13);          // tilt up rising, down falling
+    else if(G.state==='run') cx.translate(0,Math.sin(G.t*17)*2.5);
     drawEmoji('🏃',0,0,46);
     // phone held out in front, filming the whole thing (mirrored space: front = -x)
     cx.save();cx.translate(-27,-6);cx.rotate(.3);drawEmoji('📱',0,0,17);
     cx.fillStyle=Math.floor(G.t*3)%2?'#ff3b3b':'#ff8a8a';
     cx.beginPath();cx.arc(-1,-11,2.6,0,7);cx.fill();cx.restore();
-    cx.restore();
+    cx.restore();cx.globalAlpha=1;
   }
   // dust at heels
   if(G.state==='run'&&p.y<=0) drawEmoji('💨',px-30,groundY-12,15+u*7);
@@ -531,11 +575,6 @@ function draw(){
     cx.fillStyle=q.col;cx.fillText(q.txt,q.x,q.y-rise);
     cx.globalAlpha=1;
   }
-  // confetti
-  for(const f of G.confetti){
-    cx.save();cx.translate(f.x,f.y);cx.rotate(f.rot);
-    cx.fillStyle=f.col;cx.fillRect(-f.s/2,-f.s/2,f.s,f.s*.6);cx.restore();
-  }
   if(dc){
     cx.restore();   // end punch-in; caption in screen space
     if(G.deathT>.45){
@@ -555,9 +594,21 @@ function draw(){
       cx.restore();cx.globalAlpha=1;
     }
   }
-  else hud(left,u);
+  else { if(cam) cx.restore(); hud(left,u); }
   // inside-the-mamad beat
   if(G.state==='inside') insideScene();
+  // coins flying to the counter (screen space, above everything below)
+  for(const f of G.fly){
+    const e=f.t*f.t*(3-2*f.t), ty=Math.max(30,H*.028+26)+48;
+    drawEmoji('🪙',f.x+(46-f.x)*e,f.y+(ty-f.y)*e,26-12*e);
+  }
+  // celebration confetti — on top of the overlay, where it belongs
+  for(const f of G.confetti){
+    cx.save();cx.translate(f.x,f.y);cx.rotate(f.rot);
+    cx.fillStyle=f.col;cx.fillRect(-f.s/2,-f.s/2,f.s,f.s*.6);cx.restore();
+  }
+  // teal flash as the mamad door slams behind you
+  if(G.shieldFlash>0){ cx.fillStyle=`rgba(126,232,199,${.45*G.shieldFlash})`;cx.fillRect(0,0,W,H); }
 }
 function skyline(off,hMax,shade,winCol){
   const sp=170,first=Math.floor(off/sp)-1;
@@ -666,7 +717,8 @@ function insideScene(){
 let lastT=performance.now();
 function loop(now){
   requestAnimationFrame(loop);
-  const dt=Math.min(.05,(now-lastT)/1000);lastT=now;
+  let dt=Math.min(.05,(now-lastT)/1000);lastT=now;
+  if(G.freeze>0){ G.freeze-=dt; dt=0; }    // hit-stop freeze-frame
   try{ update(dt); draw(); }catch(err){ console.error(err); }
 }
 $('titleBest').textContent=G.best.sirens?`Best: ${G.best.sirens} sirens · ${G.best.coins}₪`:'';
