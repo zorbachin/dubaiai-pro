@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 13:05 UTC · code
+CORRECTION (supersedes earlier mamadio note): do NOT change anything. By design per Zorba — STANDALONE Mamad Dash includes the Tel Aviv exploration; the 2-IN-1 build is just Iron Dome + Dash with NO exploration. This session (iron dome) must not interfere with the mamadio build.
+
 ### 2026-06-10 13:03 UTC · code
 FOR MAMADIO SESSION (PR #71): Zorba feedback — 'mamad dash doesn't have the exploration in tel aviv, just the dash game'. He expected the Tel Aviv exploration part, not only the dash mechanic. Route to the mamadio workstream.
 
@@ -164,31 +167,34 @@ PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product
 
 ### 2026-06-02 09:06 UTC · chat
 ETSY PUBLISH KIT COMPLETE: 20 thumbnails (etsy-shop/thumbs/*.png, 2000x2000 branded) + LISTINGS.md (SEO title/13 tags/price/description for all 20) + 20 PDFs (each w/ Work-With-Me page). Prices: Lite $9, Kit $17, Flagship $24, Bundle $59. CONSTRAINT: Etsy is NOT API-listable from here (not on Zapier; digital file+image upload must be done in Etsy UI). So final publish = Zorba pastes title/tags/desc + uploads thumb (image 1) + PDF (digital file), ~2 min each. LAUNCH SHELF recommendation: Bundle + Beat the Posting Block + Audit Subscriptions + 50 Tasks + ADHD Planner first, then drip 2-3/week as marketing beats.
-
-### 2026-06-02 05:46 UTC · chat
-ALL 20 Etsy products BUILT (etsy-shop/*.pdf) via upgraded engine: each now has page numbers + a branded 'Work With Me / Go Deeper' CTA closing page (contact: letaidoit.pro + @zorb_ai DM) so every sale is a potential consulting lead. ETSY GOAL = $3,000+/month for OrganizedOrionDesign. NEW STRUCTURE (all ventures): each gets a RESEARCH sub-agent running a standing brief — study who's winning, reverse-engineer why, filter through Zorba's real approach/skills (honest/self-shot/buy-back-time/anti-hype), recommend 1-3 moves at weekly review. Doc: .claude/os/research-briefs.md. Default product CTA contact = letaidoit.pro + @zorb_ai (confirm if you want a booking link/email added).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 13:04 UTC
+- **When:** 2026-06-10 13:06 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 1e4e045 chore: refresh nucleus live state [skip ci] — 25 seconds ago
+- **Last commit:** 7d7eac0 chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 ```
 
 **Recent commits:**
 ```
-1e4e045 chore: refresh nucleus live state [skip ci] (25 seconds ago)
-18321c0 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (2 minutes ago)
-fffab77 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-57dc825 Temporarily unbind dubaiai.pro custom domain (3 minutes ago)
-d41df29 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+7d7eac0 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+1e4e045 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+18321c0 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (3 minutes ago)
+fffab77 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+57dc825 Temporarily unbind dubaiai.pro custom domain (5 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
