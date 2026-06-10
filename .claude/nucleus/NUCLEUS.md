@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 19:45 UTC · code
+QA SIGN-OFF complete → SHIP. All 5 punch-list items fixed incl. the daily-determinism blocker (independent seeded RNG streams per spawn system — interleave-proof; verified across skill levels). Perf: vsync-locked 60fps, p95 16.7ms. Soak: 9 waves + 10 restart cycles clean. MAMAD DASH is promo-ready; morning checklist in mamaddash/PROMO.md.
+
 ### 2026-06-10 19:19 UTC · code
 Overnight progress: It2+It3 shipped (challenge card image share + ?beat= rematch loop, Today's Siren daily seed, revive-once, difficulty re-tighten, perf sprite caches), og.png + PROMO.md (all-channel launch copy + morning checklist) committed. Game made DOMAIN-PORTABLE per Zorba's zorbot.io directive — share links self-configure to any host. zorbot.io = Railway app (www CNAME 0uded1nb.up.railway.app), NOT GitHub Pages: deploying there needs the zorbot repo added to a session (add-repo tool unavailable tonight, GitHub MCP token also expired). Umbrella-site rec: itch.io page as instant no-DNS public home + CrazyGames/Poki submissions later. QA sign-off agent running.
 
@@ -162,31 +165,34 @@ CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 q
 
 ### 2026-06-02 09:36 UTC · chat
 NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / Instant Proposals) — show how it works (he records a basic walkthrough), then cut a HERO VIDEO for the website. Plus carousels + supporting content. Claude to map the full push. WORKFLOW PAIN (important, recurring): doing everything in ONE chat thread makes it hard to separate ideas / jump between projects — THIS is why he wants the BRAIN in a WIDGET/COMMAND CENTER (separate surface per project), not one giant thread. Nucleus already has 'bin/nucleus serve' web bridge + widget — candidate to wire up as the per-project command center. Reconcile with ROLE.md anti-splinter rule (home is Claude) — the widget earns its keep IF it cleanly separates projects.
-
-### 2026-06-02 09:19 UTC · chat
-PRODUCT DEPTH UPGRADE (per Zorba: too sparse, worth $1000 sell $60). New product structure: COVER -> ADHD ONE-PAGER (whole system at a glance, 1 page) -> DEEP WALKTHROUGH (numbered steps, easy-to-follow) -> each step has a copy-paste PROMPT box with CLICKABLE 'Run in ChatGPT/Claude' links that auto-fill (chatgpt.com/?q= and claude.ai/new?q= URL-encoded) -> bonus prompt pack -> Work-With-Me CTA. Engine upgraded (bin/etsybuild.py: onepager/step/prompt blocks). Flagship #01 rebuilt as the exemplar/template (6KB->22KB). AWAITING format approval, then batch all 20 to this template + reprice bundle to $60.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 19:21 UTC
+- **When:** 2026-06-10 19:45 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 75214f1 chore: refresh nucleus live state [skip ci] — 20 seconds ago
+- **Last commit:** 8685b81 Release QA fixes: true daily determinism + sign-off punch list — 34 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-75214f1 chore: refresh nucleus live state [skip ci] (20 seconds ago)
-3106d19 Make MAMAD DASH domain-portable + launch promo pack (2 minutes ago)
-6dcc658 Overnight build: challenge card share loop, daily siren, revive, perf (5 minutes ago)
-f8cfe5c chore: refresh nucleus live state [skip ci] (25 minutes ago)
-75caadc chore: refresh nucleus live state [skip ci] (25 minutes ago)
+8685b81 Release QA fixes: true daily determinism + sign-off punch list (34 seconds ago)
+ee26188 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+75214f1 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+3106d19 Make MAMAD DASH domain-portable + launch promo pack (27 minutes ago)
+6dcc658 Overnight build: challenge card share loop, daily siren, revive, perf (30 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
