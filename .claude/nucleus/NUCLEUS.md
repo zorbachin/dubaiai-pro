@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 18:29 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 8199bf8 chore: refresh nucleus live state [skip ci] — 51 seconds ago
+- **Last commit:** 3a1cd7a chore: refresh nucleus live state [skip ci] — 17 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-8199bf8 chore: refresh nucleus live state [skip ci] (51 seconds ago)
+3a1cd7a chore: refresh nucleus live state [skip ci] (17 seconds ago)
+8199bf8 chore: refresh nucleus live state [skip ci] (68 seconds ago)
 65cb0ea chore: refresh nucleus live state [skip ci] (5 minutes ago)
 b576c56 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-a80bad0 Death cam: savta judges you + near-miss death screen + tap-to-restart (5 minutes ago)
-546a6a2 chore: refresh nucleus live state [skip ci] (13 minutes ago)
+a80bad0 Death cam: savta judges you + near-miss death screen + tap-to-restart (6 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
