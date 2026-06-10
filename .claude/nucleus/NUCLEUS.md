@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 14:51 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 5af043b chore: refresh nucleus live state [skip ci] — 87 minutes ago
+- **Last commit:** 78c82ab chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+78c82ab chore: refresh nucleus live state [skip ci] (19 seconds ago)
 5af043b chore: refresh nucleus live state [skip ci] (87 minutes ago)
 ff4df84 chore: refresh nucleus live state [skip ci] (87 minutes ago)
 1cfe4a6 MAMAD DASH: bright Fortnite-style palette + arcade juice (88 minutes ago)
 f76219e chore: refresh nucleus live state [skip ci] (2 hours ago)
-4dfe52d Runner faces his direction of travel, films it on his phone (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
