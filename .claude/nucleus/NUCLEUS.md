@@ -171,9 +171,9 @@ SPEND DECISIONS (real amounts confirmed from receipts): (1) Claude = Max 20x $20
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 12:07 UTC
+- **When:** 2026-06-10 12:10 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 13dcb86 chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **Last commit:** d4bd6d8 chore: refresh nucleus live state [skip ci] — 3 minutes ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-13dcb86 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-efaaf05 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-fd72bbf Add cookieless play/install analytics (GoatCounter) (3 minutes ago)
-980c55c chore: refresh nucleus live state [skip ci] (19 minutes ago)
-e06f4f0 chore: refresh nucleus live state [skip ci] (20 minutes ago)
+d4bd6d8 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+13dcb86 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+efaaf05 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+fd72bbf Add cookieless play/install analytics (GoatCounter) (6 minutes ago)
+980c55c chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
