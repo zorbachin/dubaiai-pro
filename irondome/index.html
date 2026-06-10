@@ -4,7 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0a1226">
-<meta name="description" content="Iron Dome — a light arcade game. Tap the rockets before they land. Works offline.">
+<meta name="description" content="כיפת ברזל — המשחק. לחצו על הרקטות לפני שהן נופלות. עובד בממ״ד בלי קליטה. Iron Dome — the game. Free, offline-ready.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="כיפת ברזל — המשחק | Iron Dome">
+<meta property="og:description" content="לחצו על הרקטות לפני שהן נופלות. עובד בממ״ד בלי קליטה. חינם, בלי הורדה — שניה ואתם משחקים.">
+<meta property="og:url" content="https://zorbachin.github.io/dubaiai-pro/irondome/">
+<meta property="og:image" content="https://zorbachin.github.io/dubaiai-pro/irondome/share-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="כיפת ברזל — Iron Dome">
+<meta name="twitter:image" content="https://zorbachin.github.io/dubaiai-pro/irondome/share-card.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
@@ -147,6 +158,7 @@
     <button class="pill" id="btnLang">EN</button>
     <button class="pill on" id="btnSound">🔊</button>
   </div>
+  <div id="challenge" style="display:none;background:var(--panel2);border:1px solid rgba(255,209,102,.5);border-radius:12px;padding:10px 18px;font-size:14px;color:var(--gold);font-weight:700;max-width:90vw"></div>
   <div class="stat" id="menuBest"></div>
   <p class="note" data-i18n="disclaimer"></p>
   <div id="verTag" style="position:absolute;top:calc(env(safe-area-inset-top,0px) + 8px);inset-inline-start:12px;font-size:10px;color:var(--dim);opacity:.6;letter-spacing:1px"></div>
@@ -220,6 +232,7 @@
     <button class="btn small" id="btnShare2"></button>
     <button class="btn" id="btnMenu2"></button>
   </div>
+  <div style="font-size:10px;color:var(--dim);opacity:.7;letter-spacing:.5px">zorbachin.github.io/dubaiai-pro/irondome</div>
 </div>
 
 <!-- ===== VICTORY ===== -->
@@ -239,7 +252,9 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v13';
+const GAME_VERSION = 'v14';
+const INBOUND = new URLSearchParams(location.search);
+const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
 
 /* ---------- persistence ---------- */
@@ -288,7 +303,8 @@ const T = {
     diffN: { easy: 'Easy', normal: 'Normal', commando: 'Commando' },
     upSling: 'Iron Sling', upSlingD: 'Volley button 🪨: +1 charge per level',
     waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE ROCKETS!', direct: 'DIRECT HIT!',
-    share: '📤 Share', shared: '✓ Copied!',
+    share: '🥊 Challenge a friend', shared: '✓ Copied!',
+    challengeTxt: '🥊 Your friend scored {s} defending {c} — beat them!',
     lvlDone: [
       '{c} sleeps soundly tonight. You\'re welcome.',
       'Not a scratch. Okay… one scratch.',
@@ -363,7 +379,8 @@ const T = {
     diffN: { easy: 'קל', normal: 'רגיל', commando: 'קומנדו' },
     upSling: 'קלע ברזל', upSlingD: 'כפתור מטח 🪨: מטען נוסף לכל שלב',
     waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 לחצו על הרקטות!', direct: 'פגיעה ישירה!',
-    share: '📤 שתפו', shared: '✓ הועתק!',
+    share: '🥊 אתגרו חבר', shared: '✓ הועתק!',
+    challengeTxt: '🥊 חבר שלכם עשה {s} נקודות בהגנה על {c} — תנצחו!',
     lvlDone: [
       '{c} ישנה בשקט הלילה. על לא דבר.',
       'בלי שריטה. טוב… שריטה אחת.',
@@ -1510,8 +1527,13 @@ function startLevel(){
 let bonusDue = false;
 function endLevel(won){
   G.over = true; G.won = won;
+  track((won ? 'clear-' : 'fail-') + (G.endless ? 'ra' : G.bonus ? 'bonus' : 'lv' + (G.levelIdx + 1)));
+  const tot = Math.max(1, G.spawned);
+  const gN = Math.round(Math.min(10, G.killed / tot * 10));
   lastRun = { score: G.score,
-              city: G.endless ? t('endlessName') : t('levels')[G.levelIdx] };
+              city: G.endless ? t('endlessName') : t('levels')[G.levelIdx],
+              grid: G.endless ? ('🚨 ' + Math.floor(G.endlessT) + 's') :
+                    ('🟩'.repeat(gN) + '🟥'.repeat(10 - gN) + ' ' + G.killed + '/' + tot) };
   const total = G.spawned;
   const pct = total ? G.killed / total : 0;
   const alive = G.buildings.filter(b => b.alive).length;
@@ -1526,9 +1548,11 @@ function endLevel(won){
     $('overStats').textContent = pick(t('overLines')) + ' ' + t('overStats').replace('{n}', G.killed) +
       (G.endless ? ' · 🚨 ' + Math.floor(G.endlessT) + 's' : '');
     const gapD = prevBest - G.score;
+    const isBest = G.score > prevBest && G.score > 0;   // first-ever best counts too
     $('overGap').textContent = gapD > 0
       ? t('soClose').replace('{d}', gapD)
-      : (G.score > 0 && prevBest > 0 ? t('newBest') : '');
+      : (isBest ? t('newBest') : '');
+    $('btnShare2').className = isBest ? 'btn primary' : 'btn small';   // peak moment = loud CTA
     renderShop($('shopOver'), $('coinsOver'));     // the stuck player needs the shop MOST
     show('scrOver');
     return;
@@ -1725,21 +1749,23 @@ function slingVolley(){
 }
 $('btnSling').onclick = () => slingVolley();
 
-/* one-tap bragging: Web Share API with clipboard fallback */
-let lastRun = { score: 0, city: '' };
+/* one-tap bragging: native share sheet, WhatsApp deep-link fallback.
+   Shared links carry ?ref + the score so recipients get a challenge banner
+   and we can finally measure K-factor. */
+let lastRun = { score: 0, city: '', grid: '' };
 function shareScore(btn){
   const txt = t('shareTxt').replace('{s}', lastRun.score)
-                           .replace('{c}', lastRun.city || t('levels')[0]);
-  const url = 'https://zorbachin.github.io/dubaiai-pro/irondome/';
-  track('share');
+                           .replace('{c}', lastRun.city || t('levels')[0]) +
+              (lastRun.grid ? '\n' + lastRun.grid : '');
+  const url = 'https://zorbachin.github.io/dubaiai-pro/irondome/?ref=share&b=' +
+              lastRun.score + '&c=' + encodeURIComponent(lastRun.city);
   if (navigator.share){
-    navigator.share({ text: txt, url }).catch(() => {});
-  } else if (navigator.clipboard){
-    navigator.clipboard.writeText(txt + ' ' + url).then(() => {
-      const old = btn.textContent;
-      btn.textContent = t('shared');
-      setTimeout(() => btn.textContent = old, 1500);
-    }).catch(() => {});
+    navigator.share({ text: txt, url })
+      .then(() => track('share'))               // count completions, not clicks
+      .catch(() => {});
+  } else {
+    track('share');
+    window.open('https://wa.me/?text=' + encodeURIComponent(txt + ' ' + url), '_blank');
   }
 }
 $('btnShare1').onclick = e => shareScore(e.target);
@@ -1819,6 +1845,14 @@ for (let i = 0; i < 70; i++)
   stars.push({ x: Math.random(), y: Math.random(), s: Math.random() < 0.8 ? 1 : 2, tw: Math.random() * 6.28 });
 resize();
 $('verTag').textContent = '🛡 ' + GAME_VERSION;
+{ // incoming challenge link? show the gauntlet
+  const cb = parseInt(INBOUND.get('b'), 10), cc = INBOUND.get('c');
+  if (cb > 0){
+    $('challenge').style.display = '';
+    $('challenge').textContent = t('challengeTxt').replace('{s}', cb).replace('{c}', cc || '');
+    track('challenged');
+  }
+}
 syncSound();
 applyLang();
 requestAnimationFrame(loop);
@@ -1833,7 +1867,7 @@ function track(event){
     img.src = 'https://irondome.goatcounter.com/count?' +
       'p=' + encodeURIComponent(event ? '/' + event : location.pathname) +
       (event ? '&e=true' : '') +
-      '&r=' + encodeURIComponent(document.referrer) +
+      '&r=' + encodeURIComponent(REF ? 'share:' + REF : document.referrer) +
       '&rnd=' + Date.now();
   }catch(e){}
 }
