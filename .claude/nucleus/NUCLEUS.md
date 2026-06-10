@@ -171,28 +171,22 @@ ALL 20 Etsy products BUILT (etsy-shop/*.pdf) via upgraded engine: each now has p
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:55 UTC
+- **When:** 2026-06-10 18:56 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 5217a45 Iteration 1 feel patch: zero-latency input, hit-stop, celebration fixes — 20 seconds ago
+- **Last commit:** 75caadc chore: refresh nucleus live state [skip ci] — 18 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-5217a45 Iteration 1 feel patch: zero-latency input, hit-stop, celebration fixes (20 seconds ago)
+75caadc chore: refresh nucleus live state [skip ci] (18 seconds ago)
+5217a45 Iteration 1 feel patch: zero-latency input, hit-stop, celebration fixes (38 seconds ago)
 35bb0e5 chore: refresh nucleus live state [skip ci] (26 minutes ago)
-b17f3ae chore: refresh nucleus live state [skip ci] (26 minutes ago)
+b17f3ae chore: refresh nucleus live state [skip ci] (27 minutes ago)
 3a1cd7a chore: refresh nucleus live state [skip ci] (27 minutes ago)
-8199bf8 chore: refresh nucleus live state [skip ci] (28 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
