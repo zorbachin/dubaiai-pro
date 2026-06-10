@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 13:09 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 421b674 Add MAMAD DASH standalone — shippable mobile siren runner — 63 seconds ago
+- **Last commit:** 4cf423a chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-421b674 Add MAMAD DASH standalone — shippable mobile siren runner (63 seconds ago)
+4cf423a chore: refresh nucleus live state [skip ci] (19 seconds ago)
+421b674 Add MAMAD DASH standalone — shippable mobile siren runner (82 seconds ago)
 1090185 chore: refresh nucleus live state [skip ci] (14 minutes ago)
 00a4505 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-90d0e57 Fix timing mini-games: time-based cursor + touch-latency grace (14 minutes ago)
-f5a33e0 chore: refresh nucleus live state [skip ci] (20 minutes ago)
+90d0e57 Fix timing mini-games: time-based cursor + touch-latency grace (15 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
