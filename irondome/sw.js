@@ -1,5 +1,5 @@
 /* Iron Dome — offline-first service worker */
-const CACHE = 'irondome-v10';
+const CACHE = 'irondome-v11';
 const ASSETS = [
   './',
   './index.html',
@@ -20,8 +20,8 @@ self.addEventListener('activate', e => {
   );
 });
 
-/* Cache-first so the game opens instantly with zero signal;
-   refresh the cache in the background when online. */
+/* Navigations: network-first with a 3s cache race (newest build when online,
+   instant cache when the network hangs). Assets: cache-first. */
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const isNav = e.request.mode === 'navigate' || e.request.destination === 'document';
@@ -36,9 +36,11 @@ self.addEventListener('fetch', e => {
           return res;
         })
         .catch(() => cached);
-      // pages: network-first (always newest build when online, cache offline);
-      // assets: cache-first for instant loads
-      return isNav ? fresh.then(r => r || cached) : (cached || fresh);
+      // pages: network-first with a hang guard; assets: cache-first
+      if (!isNav) return cached || fresh;
+      if (!cached) return fresh;
+      const hangGuard = new Promise(res => setTimeout(() => res(cached), 3000));
+      return Promise.race([fresh.then(r => r || cached), hangGuard]);
     })
   );
 });
