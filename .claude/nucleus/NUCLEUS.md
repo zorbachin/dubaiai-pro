@@ -173,28 +173,22 @@ ALL 20 Etsy products BUILT (etsy-shop/*.pdf) via upgraded engine: each now has p
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 13:03 UTC
+- **When:** 2026-06-10 13:04 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 18321c0 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 73 seconds ago
+- **Last commit:** 1e4e045 chore: refresh nucleus live state [skip ci] — 25 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 74 ++++++++++------------------------------------
- 1 file changed, 15 insertions(+), 59 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-18321c0 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (73 seconds ago)
+1e4e045 chore: refresh nucleus live state [skip ci] (25 seconds ago)
+18321c0 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (2 minutes ago)
 fffab77 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-57dc825 Temporarily unbind dubaiai.pro custom domain (2 minutes ago)
+57dc825 Temporarily unbind dubaiai.pro custom domain (3 minutes ago)
 d41df29 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-b4bdca7 chore: refresh nucleus live state [skip ci] (36 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
