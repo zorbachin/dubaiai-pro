@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 18:30 UTC · code
+Iron Dome v14 (growth Day-1 from brutal panel): OG/Twitter cards + share-card.png, ?ref attribution (K-factor measurable), challenge links w/ beat-this banner, wa.me fallback, NEW BEST first-run bug fixed + primary CTA at peak, emoji result grid, per-level funnel events. STILL BLOCKING (Zorba-only): claim irondome.goatcounter.com, buy domain (~$10, kipa.lol / irondome.lol style), WhatsApp-test the preview card. 3 more panel reports pending.
+
 ### 2026-06-10 18:24 UTC · code
 NEW EXPLICIT GOAL from Zorba: get Iron Dome to 10,000 USERS as fast as possible (stable, fun, viral). Convened brutal 10M-cohort panel #3: growth/virality (funnel, OG tags, WhatsApp K-factor, 7-day distribution plan), retention (FTUE, day-2 hook, difficulty honesty), release-stability (v13 torture: saves v1->v13, bonus/sling state machines, GO/NO-GO verdict), game-feel (miss experience, bonus fiesta, sling payoff, sound mix). All running on v13.
 
@@ -170,35 +173,34 @@ NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three 
 
 ### 2026-06-02 10:59 UTC · chat
 NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (built: content-assets/newsletter/dispatch-no-001.png via bin/cinema_news.py). Aged paper, double frame, 'proudly presents', dramatic serif billing, marquee bar, 'printed for a select readership'. NO LIST YET + DO NOT spam his contacts (kills deliverability + relationships). PLAN: use a real ESP (Substack or Beehiiv free) for compliance/unsubscribe; SEED via personal opt-in invites (Claude drafts) to people he knows + warm leads (post-repliers, clients like vybewear, video commenters); grow as a byproduct of the content engine (every post -> 'join the Dispatch'). Cadence: monthly/biweekly 'issue' = an event, quality over frequency. Positioning: 'a select readership', worth-their-time storytelling.
-
-### 2026-06-02 09:45 UTC · chat
-CLOSING-TOOL PUSH prepped (content-assets/closing-tool/): 6-slide carousel + 3 quote cards (built) + COPY.md (FB/IG/LI/X captions + newsletter draft + demo recording brief + hero-video spec). One message: 'deals die in the follow-up gap — this closes it.' WAITING ON: Zorba records the basic demo (drop in Drive) -> Claude cuts the website hero video + queues everything. COMMAND CENTER #1 DONE: nucleus serve exposes /command.json (per-venture board+brain) for the existing localhost widget to sync; / now renders a per-venture dashboard.
-
-
-
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:25 UTC
+- **When:** 2026-06-10 18:30 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 43ed5f5 chore: refresh nucleus live state [skip ci] — 19 seconds ago
+- **Last commit:** 3e35a89 v14: growth funnel Day-1 — share cards, K-factor attribution, challenge loop — 21 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 24 ++++++++++--------------
+ 1 file changed, 10 insertions(+), 14 deletions(-)
 ```
 
 **Recent commits:**
 ```
-43ed5f5 chore: refresh nucleus live state [skip ci] (19 seconds ago)
-90a933c chore: refresh nucleus live state [skip ci] (6 minutes ago)
-69fc778 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-6f7aa6d Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (7 minutes ago)
-1634e77 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+3e35a89 v14: growth funnel Day-1 — share cards, K-factor attribution, challenge loop (21 seconds ago)
+8d8eeff chore: refresh nucleus live state [skip ci] (6 minutes ago)
+43ed5f5 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+90a933c chore: refresh nucleus live state [skip ci] (11 minutes ago)
+69fc778 chore: refresh nucleus live state [skip ci] (12 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
