@@ -179,9 +179,9 @@ NEXT CONTENT PILLAR (Zorba's idea): DEMO of the CLOSING TOOL (foxy-close-tool / 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 18:13 UTC
+- **When:** 2026-06-10 18:14 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 3b19110 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 41 seconds ago
+- **Last commit:** e965ff0 chore: refresh nucleus live state [skip ci] — 44 seconds ago
 
 **Working tree:**
 ```
@@ -190,11 +190,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-3b19110 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (41 seconds ago)
-79f7776 chore: refresh nucleus live state [skip ci] (41 seconds ago)
-54dd188 v12: Israeli voice pack — sabra sarcasm woven through every touchpoint (83 seconds ago)
+e965ff0 chore: refresh nucleus live state [skip ci] (44 seconds ago)
+3b19110 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (85 seconds ago)
+79f7776 chore: refresh nucleus live state [skip ci] (85 seconds ago)
+54dd188 v12: Israeli voice pack — sabra sarcasm woven through every touchpoint (2 minutes ago)
 0011b2d chore: refresh nucleus live state [skip ci] (3 hours ago)
-50c8bdc chore: refresh nucleus live state [skip ci] (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
