@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-10 12:16 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** ca4c52d chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **Last commit:** cdd4ee5 chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+cdd4ee5 chore: refresh nucleus live state [skip ci] (19 seconds ago)
 ca4c52d chore: refresh nucleus live state [skip ci] (2 minutes ago)
 2c4da4d chore: refresh nucleus live state [skip ci] (4 minutes ago)
 db69604 chore: refresh nucleus live state [skip ci] (6 minutes ago)
 cdee404 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-e67bb19 chore: refresh nucleus live state [skip ci] (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
