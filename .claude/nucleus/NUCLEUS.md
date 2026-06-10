@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-10 09:37 UTC · code
+Iron Dome v2 pushed to PR #70: mobile visibility overhaul (bigger glowing rockets w/ nose cone + flame + smoke trail, incoming-warning chevrons), per-city skyline/topography backdrops in bottom third (all 10 cities), falafel-ball ground impacts per user request. Smoke test 16/16.
+
 ### 2026-06-10 09:26 UTC · code
 Iron Dome game v1 shipped: PR #70 (draft) on claude/iron-dome-game-zi3dtt. Full game at irondome/index.html — 10 city levels, 5 rocket types, 4 power-ups, 4 persistent upgrades incl. Iron Sling, HE/EN+RTL, offline PWA, synth audio. jsdom smoke test 15/15, no CI on repo. Open loop: needs a real phone test before merge; user wants alternative visual styles later.
 
@@ -162,31 +165,34 @@ PLATFORM PRIORITY: Facebook is Zorba's most fertile/responsive platform, then In
 
 ### 2026-06-02 03:58 UTC · chat
 BRAND CONFIRMED: the golden glasses are Zorba's REAL signature — he wears them in his actual video footage (calisthenics explainer). The card system we built around gold glasses isn't invented, it's authentic to him. Bonus: his burned-in caption style uses a green keyword highlight ~= the Action Green (#69BE28) we picked for v3. Brand is already cohesive across his real content. The glasses are THE mark — lean into it everywhere.
-
-### 2026-06-02 03:56 UTC · chat
-ASSET: Zorba has a real shot video — 'Zorba Explainer(5)', him at a calisthenics park (working out, corny/human vibe) delivering the core pitch. Transcript on file. On-message: 'every business owner has something they don't wanna do… AI answers your call, schedules, email in your voice, inventory tracked… I'm not here to sell you on AI, I'm here to buy back your time… so you have more time to work out.' Calisthenics setting ties to the time-back close. POSTABLE TODAY. File local on his Mac (~/Movies/Zorba Explainer(5)) — not in container.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 09:28 UTC
+- **When:** 2026-06-10 09:37 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 531dc35 chore: refresh nucleus live state [skip ci] — 72 seconds ago
+- **Last commit:** e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts — 18 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-531dc35 chore: refresh nucleus live state [skip ci] (72 seconds ago)
-84ea280 Update nucleus: Iron Dome v1 shipped (PR #70) (2 minutes ago)
-9ea9199 Add Iron Dome arcade game at /irondome/ (3 minutes ago)
-fbf2155 chore: refresh nucleus live state [skip ci] (8 days ago)
-c55a864 chore: refresh nucleus live state [skip ci] (8 days ago)
+e9d4ef5 Mobile visibility overhaul + per-city skylines + falafel impacts (18 seconds ago)
+345bc58 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+531dc35 chore: refresh nucleus live state [skip ci] (10 minutes ago)
+84ea280 Update nucleus: Iron Dome v1 shipped (PR #70) (10 minutes ago)
+9ea9199 Add Iron Dome arcade game at /irondome/ (11 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
