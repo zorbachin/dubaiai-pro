@@ -120,6 +120,8 @@
 
 <canvas id="game"></canvas>
 
+<button id="btnSling" style="position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);inset-inline-start:12px;z-index:6;display:none;background:rgba(10,18,38,.75);border:1px solid rgba(93,255,168,.55);color:#5dffa8;border-radius:14px;font-size:16px;font-weight:700;padding:10px 16px;min-height:44px;cursor:pointer;box-shadow:0 0 12px rgba(93,255,168,.3)">🪨 ×1</button>
+
 <div id="hud">
   <div class="hudbox">
     <div id="hudScore">0</div>
@@ -140,6 +142,7 @@
   <button class="btn" id="btnEndless" style="display:none;border-color:rgba(255,93,115,.6);box-shadow:0 0 18px rgba(255,93,115,.3)"></button>
   <button class="btn" id="btnHow"></button>
   <div class="btnrow">
+    <button class="pill" id="btnDiff">⚖️</button>
     <button class="pill" id="btnCal">🎯</button>
     <button class="pill" id="btnLang">EN</button>
     <button class="pill on" id="btnSound">🔊</button>
@@ -236,7 +239,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v12';
+const GAME_VERSION = 'v13';
 console.log('Iron Dome ' + GAME_VERSION);
 
 /* ---------- persistence ---------- */
@@ -244,7 +247,7 @@ const SAVE_KEY = 'irondome.save.v1';
 let _stored = {};
 try { _stored = JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') || {}; } catch (e) {}  // corrupt save must never brick boot
 const save = Object.assign({
-  lang: 'he', sound: true, coins: 0, best: 0, unlocked: 0,
+  lang: 'he', sound: true, coins: 0, best: 0, unlocked: 0, diff: 'normal',
   cal: { x: 0, y: 0, done: false },
   up: { blast: 0, speed: 0, launchers: 0, sling: 0 }
 }, _stored);
@@ -280,7 +283,10 @@ const T = {
     upBlast: 'Bigger Blast', upBlastD: 'Bigger tap hitbox & chain blasts',
     upSpeed: 'Quick Fuse', upSpeedD: 'Longer combo window',
     upLaunch: 'City Armor', upLaunchD: 'Buildings survive +1 hit',
-    upSling: 'Iron Sling', upSlingD: 'Auto-intercepts leakers (per level)',
+    bonusTitle: '🎁 BONUS ROUND!', bonusHint: 'Nothing gets hit — pop EVERYTHING! Double points!',
+    bonusDone: '🎁 BONUS COMPLETE!', crateHint: '🎁 Tap the falling crate!',
+    diffN: { easy: 'Easy', normal: 'Normal', commando: 'Commando' },
+    upSling: 'Iron Sling', upSlingD: 'Volley button 🪨: +1 charge per level',
     waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE ROCKETS!', direct: 'DIRECT HIT!',
     share: '📤 Share', shared: '✓ Copied!',
     lvlDone: [
@@ -352,7 +358,10 @@ const T = {
     upBlast: 'פיצוץ גדול יותר', upBlastD: 'אזור פגיעה גדול יותר ופיצוצי שרשרת',
     upSpeed: 'פתיל מהיר', upSpeedD: 'חלון קומבו ארוך יותר',
     upLaunch: 'שריון לעיר', upLaunchD: 'בניינים סופגים פגיעה נוספת',
-    upSling: 'קלע ברזל', upSlingD: 'יירוט אוטומטי של מסתננות (לכל שלב)',
+    bonusTitle: '🎁 סיבוב בונוס!', bonusHint: 'שום דבר לא נפגע — פוצצו הכל! נקודות כפולות!',
+    bonusDone: '🎁 הבונוס הושלם!', crateHint: '🎁 לחצו על הארגז שנופל!',
+    diffN: { easy: 'קל', normal: 'רגיל', commando: 'קומנדו' },
+    upSling: 'קלע ברזל', upSlingD: 'כפתור מטח 🪨: מטען נוסף לכל שלב',
     waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 לחצו על הרקטות!', direct: 'פגיעה ישירה!',
     share: '📤 שתפו', shared: '✓ הועתק!',
     lvlDone: [
@@ -406,6 +415,14 @@ const T = {
 };
 function t(k){ return T[save.lang][k]; }
 function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+/* Tetris-style difficulty: harder = faster + tighter + pays more */
+const DIFFS = {
+  easy:     { sp: 0.85, gap: 1.20, pts: 0.8, ic: '🐢' },
+  normal:   { sp: 1.00, gap: 1.00, pts: 1.0, ic: '⚖️' },
+  commando: { sp: 1.30, gap: 0.78, pts: 1.5, ic: '🪖' }
+};
+const DIFF_ORDER = ['easy', 'normal', 'commando'];
+function diff(){ return DIFFS[save.diff] || DIFFS.normal; }
 
 /* ---------- level definitions ---------- */
 /* count: rockets in level · gap: base seconds between spawns · speed: multiplier
@@ -529,24 +546,28 @@ let curLevel = 0;
 let stars = [];           // background starfield
 let lastFrame = 0;
 
-function newGame(levelIdx, endless){
+function newGame(levelIdx, endless, bonus){
   // Red Alert: unlocked after the campaign — an open-ended barrage that ramps
   // every 20s until the city falls. The 'best' score finally has a real chase.
-  const L = endless
+  const L = bonus
+    ? { count: 30, gap: 0.35, speed: 1.35,
+        weights: [0.5, 0.5, 0, 0, 0], accent: '#ffd166',
+        scene: LEVELS[levelIdx].scene }
+    : endless
     ? { count: Infinity, gap: 1.0, speed: 1.25,
         weights: [0.35, 0.25, 0.15, 0.1, 0.15],
         accent: '#ff8a8a',
         scene: LEVELS[Math.floor(Math.random() * LEVELS.length)].scene }
     : LEVELS[levelIdx];
   G = {
-    L, levelIdx, endless: !!endless, endlessT: 0, nextRamp: 20,
+    L, levelIdx, endless: !!endless, bonus: !!bonus, endlessT: 0, nextRamp: 20,
     rockets: [], inters: [], booms: [], parts: [], pows: [], floats: [], warns: [],
     spawned: 0, resolved: 0, killed: 0,
-    spawnT: 0.15, powT: 6 + Math.random()*5,
+    spawnT: 0.15, powT: 5 + Math.random()*3,
     score: 0, combo: 0, comboT: 0,
     buildings: [], shake: 0,
     timeScale: 1, slowT: 0, megaT: 0, shieldT: 0,
-    sling: save.up.sling,           // auto-intercept charges this level
+    sling: 1 + save.up.sling,       // volley charges this level (the 🪨 button)
     over: false, won: false, doneT: 0, hitStop: 0, heat: 0,
     beamFx: 0
   };
@@ -818,7 +839,9 @@ function spawnRocket(type, x, y, child){
   // normalize to screen height so a tablet isn't 75% easier than a small phone;
   // tight speed variance keeps the falling rhythm hypnotic, not chaotic
   const heatV = 1 + Math.min(0.30, (G.heat || 0) * 0.008);   // your skill speeds them up
-  const v = def.v * sp * heatV * (0.95 + Math.random() * 0.12) * Math.min(1.3, Math.max(0.8, H / 844));
+  const prog = G.L.count === Infinity ? 0 : G.spawned / G.L.count;   // and the level itself accelerates
+  const v = def.v * sp * diff().sp * heatV * (1 + prog * 0.35) *
+            (0.95 + Math.random() * 0.12) * Math.min(1.3, Math.max(0.8, H / 844));
   G.rockets.push({
     type, x: sx, y: sy,
     vx: Math.cos(ang) * v, vy: Math.sin(ang) * v,
@@ -827,7 +850,12 @@ function spawnRocket(type, x, y, child){
     split: type === 4 ? (GROUND * (0.3 + Math.random() * 0.25)) : -1
   });
 }
+let crateHinted = false;
 function spawnPower(){
+  if (!crateHinted){
+    crateHinted = true;
+    addFloat(W / 2, H * 0.22, t('crateHint'), '#ffd166', 16, 2.5);
+  }
   // beam is the strongest crate — weight it rarest
   const roll = Math.random();
   const k = roll < 0.3 ? 'slow' : roll < 0.6 ? 'mega' : roll < 0.85 ? 'shield' : 'beam';
@@ -940,7 +968,7 @@ function killRocket(r, silent){
   G.killed++; G.resolved++; G.heat++;
   G.combo++; G.comboT = comboWindow();
   const mult = 1 + Math.min(4, Math.floor(G.combo / 3)) * 0.5;
-  const pts = Math.round(r.pts * mult);
+  const pts = Math.round(r.pts * mult * diff().pts * (G.bonus ? 2 : 1));
   G.score += pts;
   addFloat(r.x, r.y, '+' + pts, '#3ee6ff', 15);
   if (G.combo >= 3 && G.combo % 3 === 0){
@@ -1027,7 +1055,9 @@ function update(dt){
       }
       // adaptive heat: every kill heats the barrage up to 35% faster; leaks cool it
       const heatF = Math.max(0.65, 1 - G.heat * 0.012);
-      G.spawnT = G.L.gap * heatF * (0.85 + Math.random() * 0.3);   // steady cadence = hypnotic
+      // intra-level ramp: each level starts gentle and tightens ~30% by its end
+      const prog = G.L.count === Infinity ? 0 : G.spawned / G.L.count;
+      G.spawnT = G.L.gap * diff().gap * (1 - prog * 0.3) * heatF * (0.85 + Math.random() * 0.3);
     }
     // never leave the sky empty mid-level: the rhythm must not break
     if (!G.rockets.length && !G.warns.length) G.spawnT = Math.min(G.spawnT, 0.25);
@@ -1039,7 +1069,7 @@ function update(dt){
   }
   // spawn powerups
   G.powT -= sdt;
-  if (G.powT <= 0){ spawnPower(); G.powT = 9 + Math.random() * 8; }
+  if (G.powT <= 0){ spawnPower(); G.powT = 7 + Math.random() * 6; }
 
   // rockets
   for (let i = G.rockets.length - 1; i >= 0; i--){
@@ -1065,15 +1095,13 @@ function update(dt){
     if (G.shieldT > 0 && r.y > GROUND - H * 0.22){
       G.rockets.splice(i, 1); killRocket(r); continue;
     }
-    // iron sling auto-intercept of leakers
-    if (G.sling > 0 && r.y > GROUND - 70){
-      G.sling--;
-      addFloat(r.x, r.y - 20, t('slingShot'), '#5dffa8', 16);
-      G.rockets.splice(i, 1); killRocket(r); continue;
-    }
     // ground / building impact
     if (r.y >= GROUND){
       G.rockets.splice(i, 1); G.resolved++;
+      if (G.bonus){   // bonus round: nothing gets hurt — pure tapping joy
+        burst(r.x, GROUND, '#8da3cc', 6);
+        continue;
+      }
       let hit = null;
       for (const b of G.buildings){
         if (b.alive && r.x > b.x - 6 && r.x < b.x + b.w + 6){ hit = b; break; }
@@ -1154,6 +1182,11 @@ function update(dt){
     G.doneT += dt;
     if (G.doneT > 0.8) endLevel(true);
   }
+
+  // sling button live state
+  const sb = $('btnSling');
+  sb.textContent = '🪨 ×' + G.sling;
+  sb.style.opacity = G.sling > 0 ? '1' : '.35';
 
   // HUD (score punches on change)
   const scEl = $('hudScore');
@@ -1252,11 +1285,6 @@ function drawCity(){
   cx.globalAlpha = 1;
 
   // (no ammo pips: every tap fires instantly in the direct-hit model)
-  // sling charges
-  for (let i = 0; i < G.sling; i++){
-    cx.fillStyle = '#5dffa8';
-    cx.beginPath(); cx.arc(20 + i * 16, GROUND + 14, 4, 0, 6.29); cx.fill();
-  }
 }
 
 function drawShield(){
@@ -1453,8 +1481,8 @@ const SCREENS = ['scrMenu','scrHow','scrCal','scrIntro','scrPause','scrEnd','scr
 function show(name){
   for (const s of SCREENS) $(s).classList.remove('show');
   $('hud').style.display = 'none';
-  if (name === 'play'){ $('hud').style.display = 'flex'; musicStart(); }
-  else { if (name) $(name).classList.add('show'); musicStop(); }
+  if (name === 'play'){ $('hud').style.display = 'flex'; $('btnSling').style.display = ''; musicStart(); }
+  else { if (name) $(name).classList.add('show'); $('btnSling').style.display = 'none'; musicStop(); }
   screen = ({ scrMenu:'menu', scrHow:'how', scrCal:'cal', scrIntro:'intro', scrPause:'pause',
               scrEnd:'end', scrOver:'over', scrWin:'win' })[name] || 'play';
 }
@@ -1479,6 +1507,7 @@ function startLevel(){
   if (!trackedPlay){ trackedPlay = true; track('play'); }     // one per session
 }
 
+let bonusDue = false;
 function endLevel(won){
   G.over = true; G.won = won;
   lastRun = { score: G.score,
@@ -1505,12 +1534,26 @@ function endLevel(won){
     return;
   }
 
+  if (G.bonus){    // bonus rounds always 'win': bank double-point haul, no unlock changes
+    const bGain = Math.round(G.score * 0.5);
+    save.coins += bGain; save.best = Math.max(save.best, G.score); persist();
+    $('endStars').textContent = '🎁🎁🎁';
+    $('endTitle').textContent = t('bonusDone');
+    $('endQuip').textContent = pick(t('lvlDone')).replace('{c}', t('levels')[curLevel]);
+    $('mkQuote').textContent = pick(t('mkQuotes'));
+    $('endStats').innerHTML = t('scoreW') + ': <b>' + G.score + '</b> (+' + bGain + ' 🪙)';
+    renderShop();
+    $('btnNext').textContent = t('next');
+    show('scrEnd');
+    return;
+  }
   const st = pct >= 0.9 && alive === G.buildings.length ? 3 : pct >= 0.75 ? 2 : 1;
   const replay = save.unlocked > curLevel;          // re-clearing an old level pays a quarter
   const coinGain = Math.round((G.score + alive * 20) * (replay ? 0.25 : 1) * 0.4);
   save.coins += coinGain;
   save.best = Math.max(save.best, G.score);
   save.unlocked = Math.max(save.unlocked, curLevel + 1);
+  if ([2, 5, 8].includes(curLevel)) bonusDue = true;   // falafel rush after L3/L6/L9
   persist();
 
   $('endStars').textContent = '★'.repeat(st) + '☆'.repeat(3 - st);
@@ -1582,6 +1625,7 @@ function applyLang(){
   $('btnPlay').textContent = t('play');
   $('btnHow').textContent = t('howBtn');
   $('btnCal').textContent = '🎯 ' + t('calTitle');
+  $('btnDiff').textContent = diff().ic + ' ' + t('diffN')[save.diff];
   $('btnCalSkip').textContent = t('skip');
   $('btnEndless').textContent = t('endless');
   $('btnEndless').style.display = save.unlocked >= LEVELS.length ? '' : 'none';
@@ -1663,6 +1707,24 @@ $('btnCalSkip').onclick = () => {
   calRoute(after);
 };
 
+/* the Iron Sling: one tap volleys the 4 lowest rockets out of the sky */
+function slingVolley(){
+  if (!G || G.over || screen !== 'play' || G.sling <= 0 || !G.rockets.length){ sfx.click(); return; }
+  G.sling--;
+  const targets = [...G.rockets].sort((a, b) => b.y - a.y).slice(0, 4);
+  for (const r of targets){
+    const i = G.rockets.indexOf(r);
+    if (i < 0) continue;
+    G.rockets.splice(i, 1);
+    G.inters.push({ x1: W / 2, y1: GROUND - 20, x2: r.x, y2: r.y, t: 0 });
+    G.booms.push({ x: r.x, y: r.y, r: 4, maxR: r.size * 3.2, t: 0, vis: true });
+    killRocket(r);
+  }
+  addFloat(W / 2, H * 0.35, t('slingShot'), '#5dffa8', 20);
+  sfx.power(); buzz([20, 30, 20]);
+}
+$('btnSling').onclick = () => slingVolley();
+
 /* one-tap bragging: Web Share API with clipboard fallback */
 let lastRun = { score: 0, city: '' };
 function shareScore(btn){
@@ -1696,6 +1758,11 @@ $('btnEndless').onclick = () => {
   startLevel();
 };
 $('btnCal').onclick = () => { ac(); sfx.click(); startCal('menu'); };
+$('btnDiff').onclick = () => {
+  const i = DIFF_ORDER.indexOf(save.diff);
+  save.diff = DIFF_ORDER[(i + 1) % 3];
+  persist(); sfx.click(); applyLang();
+};
 $('btnHow').onclick = () => { sfx.click(); show('scrHow'); };
 $('btnHowBack').onclick = () => { sfx.click(); show('scrMenu'); };
 $('btnStart').onclick = () => { clearTimeout(introTO); ac(); sfx.click(); startLevel(); };
@@ -1712,6 +1779,14 @@ $('btnQuit').onclick = () => {
 };
 $('btnNext').onclick = () => {
   sfx.click();
+  if (bonusDue){
+    bonusDue = false;
+    newGame(curLevel, false, true);
+    show('play');
+    addFloat(W / 2, H * 0.3, t('bonusTitle'), '#ffd166', 22, 2.5);
+    addFloat(W / 2, H * 0.3 + 36, t('bonusHint'), '#8da3cc', 14, 3);
+    return;
+  }
   if (curLevel + 1 >= LEVELS.length){ track('won'); show('scrWin'); }
   else gotoIntro(curLevel + 1);
 };
