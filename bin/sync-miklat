@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Sync the canonical game(s) into the deployable MIKLAT package.
+# Copies everything except promo/docs, then applies the two package deltas:
+# domain flip + GoatCounter tag. Run after any game change.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+rm -rf miklat/mamaddash
+cp -r mamaddash miklat/mamaddash
+rm -f miklat/mamaddash/PROMO.md miklat/mamaddash/ART-INDEX.md
+python3 - <<'PY'
+src=open('mamaddash/index.html').read()
+src=src.replace('https://dubaiai.pro/mamaddash/','https://miklatgames.fun/mamaddash/')
+src=src.replace('</body>','<script data-goatcounter="https://miklatgames.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>\n</body>')
+open('miklat/mamaddash/index.html','w').write(src)
+print('miklat/mamaddash synced (domain + analytics applied)')
+PY
