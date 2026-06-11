@@ -189,26 +189,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 03:22 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** b7a0e4d chore: refresh nucleus live state [skip ci] — 3 minutes ago
+- **Last commit:** 642e41e chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 22 ++++++++++------------
- 1 file changed, 10 insertions(+), 12 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-b7a0e4d chore: refresh nucleus live state [skip ci] (3 minutes ago)
+642e41e chore: refresh nucleus live state [skip ci] (19 seconds ago)
+b7a0e4d chore: refresh nucleus live state [skip ci] (4 minutes ago)
 346c95c chore: refresh nucleus live state [skip ci] (8 minutes ago)
 8896876 chore: refresh nucleus live state [skip ci] (8 minutes ago)
 6fa0ba8 Merge origin/main into branch (keep v16 assets) (9 minutes ago)
-605f956 v16: the key art enters the game — menu background + honeycomb brand dome (10 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
