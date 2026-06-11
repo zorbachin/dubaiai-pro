@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 08:40 UTC · code
+Cowork deploy master prompt v2 delivered (current state: all merged, miklat/ on main is the package; 7 steps: repo, push package, Pages, Porkbun DNS both domains, GoatCounter 'miklatgames', Iron Dome check in zorbasphere, full verification + nucleus handoff from cowork). Awaiting 'live' from Zorba for final verification pass.
+
 ### 2026-06-11 08:14 UTC · code
 LAUNCH WALKTHROUGH delivered to Zorba (6 steps, ~12 min): create miklatgames repo → new claude.ai/code session w/ both repos + deploy one-liner (package = dubaiai-pro:miklat/) → Pages main/root + custom domain → Porkbun 4 A records + www CNAME → GoatCounter code 'miklatgames' → say 'keys turned' for end-to-end verification. After that every merge auto-deploys to miklatgames.fun in ~60s.
 
@@ -174,18 +177,15 @@ MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimo
 MAMADIO headless playtest passed: full flow (title→char→level→play→forced siren→MAMAD DASH runner with jump) renders and runs with zero console errors via Playwright/Chromium. Screenshots delivered to Zorba. Open loop 'browser playtest before merge' effectively closed pending Zorba's hands-on check at dubaiai.pro/mamadio/.
 ### 2026-06-11 03:22 UTC · code
 Direction shift: game world goes FULL ART. Zorba wants in-game levels to look like the marketing (his screenshot showed the procedural flat-vector vs the rich pixel art). Image pack #3 emailed: 10 per-city level backgrounds (9:16, SKY RULE: upper 60% near-empty navy so rockets stay readable, bottom 20% clear for gameplay buildings, honeycomb dome baked in) + optional Red Alert bg. Integration plan on arrival: art = backdrop layer per level, restyle foreground tappable buildings pixel-chunky, ~150-200KB/img, SW-cached, game stays <2.5MB offline-capable. Pack #2 (icon/portrait/badge/victory) also still pending.
-
-### 2026-06-11 03:14 UTC · code
-v16 MERGED (PR #84): key art now IN the game, not just promo — retro art = menu background (SW-precached), honeycomb dome arc drawn into live gameplay sky over every city (render-verified). Clarified for Zorba: promo art vs game art were separate; now unified. Game visuals remain procedural (per-city scenes, rockets) with the art as menu+brand-dome layer.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 08:39 UTC
+- **When:** 2026-06-11 08:40 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 960f7c7 chore: refresh nucleus live state [skip ci] — 25 minutes ago
+- **Last commit:** 7b0551f chore: refresh nucleus live state [skip ci] — 31 seconds ago
 
 **Working tree:**
 ```
@@ -200,11 +200,11 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+7b0551f chore: refresh nucleus live state [skip ci] (31 seconds ago)
 960f7c7 chore: refresh nucleus live state [skip ci] (25 minutes ago)
 1429637 chore: refresh nucleus live state [skip ci] (26 minutes ago)
-6a300aa chore: refresh nucleus live state [skip ci] (39 minutes ago)
-086f7f1 chore: refresh nucleus live state [skip ci] (44 minutes ago)
-5d49baa chore: refresh nucleus live state [skip ci] (44 minutes ago)
+6a300aa chore: refresh nucleus live state [skip ci] (40 minutes ago)
+086f7f1 chore: refresh nucleus live state [skip ci] (45 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
