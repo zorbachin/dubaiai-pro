@@ -190,28 +190,22 @@ Analytics added to Iron Dome (PR #73 draft): GoatCounter cookieless tracking —
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 05:54 UTC
+- **When:** 2026-06-11 05:55 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 662e4ba chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **Last commit:** 8f2c61f chore: refresh nucleus live state [skip ci] — 30 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 102 +++++----------------------------------------
- 1 file changed, 10 insertions(+), 92 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+8f2c61f chore: refresh nucleus live state [skip ci] (30 seconds ago)
 662e4ba chore: refresh nucleus live state [skip ci] (4 minutes ago)
-0265043 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+0265043 chore: refresh nucleus live state [skip ci] (5 minutes ago)
 eed1714 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (5 minutes ago)
-98eee2a chore: refresh nucleus live state [skip ci] (6 minutes ago)
-49df04d MIKLAT GAMES master design prompt (permanent copy) (7 minutes ago)
+98eee2a chore: refresh nucleus live state [skip ci] (7 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
