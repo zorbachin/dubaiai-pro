@@ -144,10 +144,15 @@ $('mute').addEventListener('click',e=>{ e.stopPropagation();
 
 /* ---------------- canvas ---------------- */
 const cv=$('cv'),cx=cv.getContext('2d');
-let W=0,H=0,DPR=1,groundY=0,clearCaches=()=>{};
+let W=0,H=0,DPR=1,groundY=0,SAFE_TOP=0,clearCaches=()=>{};
+// probe env(safe-area-inset-top) so the HUD clears the notch in standalone mode
+const saProbe=document.createElement('div');
+saProbe.style.cssText='position:fixed;top:0;left:0;width:1px;height:env(safe-area-inset-top,0px);visibility:hidden;pointer-events:none;';
+document.body.appendChild(saProbe);
 function resize(){
   DPR=Math.min(2,window.devicePixelRatio||1);
   W=window.innerWidth;H=window.innerHeight;
+  SAFE_TOP=saProbe.offsetHeight||0;
   cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);
   cx.lineJoin='round';                     // text outlines: no miter spikes
   groundY=Math.round(H*.74);
@@ -190,7 +195,7 @@ const STRIPS=new Map(), SKYG=new Map();
 clearCaches=()=>{EMO.clear();GLOWS.clear();STRIPS.clear();SKYG.clear();};
 /* hand-drawn sprites — graceful fallback to emoji while loading / if absent */
 const ART={};
-for(const n of ['run1','run2','jump','duck','tumble','savta-judge','savta-nu','savta-cart',
+for(const n of ['run1','run2','jump','duck','tumble','savta-nu','savta-cart',
   'door','pow-star','pow-magnet','pow-time']){
   const i=new Image(); i.src='art/'+n+'.png'; ART[n]=i;
 }
@@ -283,7 +288,7 @@ function startWave(){
     G.powKind=irand(0,2); G.powLift=irand(0,1);
     G.nextPow=c.goal*rand(.3,.55);          // one power-up per wave, mid-run
   }
-  G.hits=0; G.stumble=0; G.invuln=0; G.star=0; G.magnet=0; G.sirenOn=false;
+  G.hits=0; G.stumble=0; G.invuln=0; G.star=0; G.magnet=0; G.sirenOn=false; G.freeze=0;
   G.jbuf=0; G.combo=0; G.starHits=0; G.confetti.length=0; G.fly.length=0;
   G.nextPulse=G.t+1.2;
   G.player.y=0; G.player.vy=0; G.player.duckT=0;
@@ -655,14 +660,35 @@ function draw(){
     skyline(G.dist*.12,Math.max(90,groundY*.3),.55,T.win,T.far);
     skyline(G.dist*.28+400,Math.max(58,groundY*.2),T.night?1.6:.78,T.win,T.near);
   }
-  // alert vignette pulses as the boom nears (over the scenery)
+  // alert vignette pulses as the boom nears (over the scenery; floor raised
+  // so it actually reads on the bright painted skies)
   if(G.state==='run'&&u>.62){
-    cx.fillStyle=`rgba(255,60,60,${(.1+.16*Math.abs(Math.sin(G.t*6)))*(u-.55)})`;
+    cx.fillStyle=`rgba(255,60,60,${(.1+.16*Math.abs(Math.sin(G.t*6)))*(u-.3)})`;
     cx.fillRect(0,0,W,H);
   }
-  // street
-  cx.fillStyle=T.street;cx.fillRect(0,groundY,W,H-groundY);
-  cx.fillStyle='rgba(0,0,0,.22)';cx.fillRect(0,groundY,W,6);
+  // street: tinted from the painted road when bg art is up (cohesion fix)
+  let stc=T.street;
+  if(bga){
+    let sc=SKYG.get('st-'+T.name);
+    if(sc===undefined){
+      try{
+        const c1=document.createElement('canvas');c1.width=1;c1.height=1;
+        const g1=c1.getContext('2d');
+        g1.drawImage(bga,0,bga.naturalHeight-5,bga.naturalWidth,4,0,0,1,1);
+        const dd=g1.getImageData(0,0,1,1).data;
+        sc=`rgb(${Math.max(0,dd[0]-14)},${Math.max(0,dd[1]-14)},${Math.max(0,dd[2]-12)})`;
+      }catch(e){ sc=null; }       // file:// canvas taint → keep theme constant
+      SKYG.set('st-'+T.name,sc);
+    }
+    if(sc) stc=sc;
+  }
+  cx.fillStyle=stc;cx.fillRect(0,groundY,W,H-groundY);
+  // curb shadow instead of a hard seam
+  let curb=SKYG.get('curb');
+  if(!curb){ curb=cx.createLinearGradient(0,groundY,0,groundY+16);
+    curb.addColorStop(0,'rgba(0,0,0,.34)');curb.addColorStop(1,'rgba(0,0,0,0)');
+    SKYG.set('curb',curb); }
+  cx.fillStyle=curb;cx.fillRect(0,groundY,W,16);
   cx.fillStyle='rgba(255,255,255,.55)';
   for(let x=-((G.dist*1)%80);x<W;x+=80) cx.fillRect(x,groundY+Math.round((H-groundY)*.42),36,4);
   if(G.state==='title'){ titleScene(); return; }
@@ -672,6 +698,8 @@ function draw(){
   // coins: gold glow + spin
   for(const k of G.picks){
     cx.drawImage(glow('rgba(255,220,90,.55)',22),k.x-22,k.y-22);
+    cx.strokeStyle='rgba(15,20,40,.55)';cx.lineWidth=2;     // dark rim: coins read on warm bgs
+    cx.beginPath();cx.arc(k.x,k.y,14,0,7);cx.stroke();
     cx.save();cx.translate(k.x,k.y);cx.scale(Math.abs(Math.sin(G.t*5+k.x*.02))*.7+.3,1);
     drawEmoji('🪙',0,0,26);cx.restore();
   }
@@ -735,7 +763,7 @@ function draw(){
     if(G.stumble>0) cx.rotate(.4);
     if(p.land>0) cx.scale(1+p.land*1.2,1-p.land*1.4);   // landing squash
     const duckPose=p.duckT>0&&p.y<=0;
-    if(artOk('run1')&&artOk('jump')&&artOk('duck')){
+    if(artOk('run1')&&artOk('run2')&&artOk('jump')&&artOk('duck')){
       if(p.y>0){ cx.rotate(p.vy>0?-.1:.08); drawArt('jump',0,2,60); }
       else if(duckPose){ cx.translate(0,8); drawArt('duck',0,2,44); }
       else { if(G.state==='run') cx.translate(0,Math.sin(G.t*17)*2);
@@ -796,7 +824,7 @@ function draw(){
   if(G.state==='inside') insideScene();
   // coins flying to the counter (screen space, above everything below)
   for(const f of G.fly){
-    const e=f.t*f.t*(3-2*f.t), ty=Math.max(30,H*.028+26)+48;
+    const e=f.t*f.t*(3-2*f.t), ty=(Math.max(30,H*.028+26)+SAFE_TOP)+48;
     drawEmoji('🪙',f.x+(46-f.x)*e,f.y+(ty-f.y)*e,26-12*e);
   }
   // celebration confetti — on top of the overlay, where it belongs
@@ -857,16 +885,16 @@ function hud(left,u){
     cx.font=`900 ${size}px sans-serif`;
     cx.textAlign='center';cx.textBaseline='top';
     cx.lineWidth=8;cx.strokeStyle='rgba(15,20,40,.85)';
-    cx.strokeText(Math.ceil(left),W/2,Math.max(14,H*.05));
-    cx.fillStyle=warn?(Math.floor(G.t*5)%2?'#ff5d5d':'#ffe1e1'):'#fff';
-    cx.fillText(Math.ceil(left),W/2,Math.max(14,H*.05));
+    cx.strokeText(Math.ceil(left),W/2,(Math.max(14,H*.05)+SAFE_TOP));
+    cx.fillStyle=warn?(Math.floor(G.t*5)%2?'#ff3b3b':'#fff'):'#fff';
+    cx.fillText(Math.ceil(left),W/2,(Math.max(14,H*.05)+SAFE_TOP));
     cx.font='800 13px sans-serif';
-    cx.lineWidth=4;cx.strokeText('TO THE MAMAD',W/2,Math.max(14,H*.05)+size+2);
+    cx.lineWidth=4;cx.strokeText('TO THE MAMAD',W/2,(Math.max(14,H*.05)+SAFE_TOP)+size+2);
     cx.fillStyle='#fff';
-    cx.fillText('TO THE MAMAD',W/2,Math.max(14,H*.05)+size+2);
+    cx.fillText('TO THE MAMAD',W/2,(Math.max(14,H*.05)+SAFE_TOP)+size+2);
   }
   // progress bar to the door
-  const bw=Math.min(W*.72,420),bx=(W-bw)/2,by=Math.max(8,H*.028);
+  const bw=Math.min(W*.72,420),bx=(W-bw)/2,by=(Math.max(8,H*.028)+SAFE_TOP);
   cx.fillStyle='rgba(13,17,32,.6)';r(bx-4,by-4,bw+8,16,8);
   cx.fillStyle='#46506b';r(bx,by,bw,8,4);
   if(u>.62) cx.fillStyle='#ff5d5d';
@@ -880,7 +908,7 @@ function hud(left,u){
   drawEmoji('🏃',0,0,16);cx.restore();
   // wave + coins pills (+ active power)
   cx.font='800 15px sans-serif';cx.textAlign='left';cx.textBaseline='middle';
-  const py=Math.max(30,H*.028+26);
+  const py=(Math.max(30,H*.028+26)+SAFE_TOP);
   pill(12,py,`🚨 ${G.wave}`,'#ffb4b4');
   pill(12,py+34,`💸 ${G.coins}₪`,'#ffd166');
   if(G.star>0) pill(12,py+68,`⭐ ${G.star.toFixed(1)}s`,'#ffd166');
@@ -919,7 +947,8 @@ function titleScene(){
   door(W*.72);
 }
 function insideScene(){
-  cx.fillStyle='rgba(8,10,18,.78)';cx.fillRect(0,0,W,H);
+  cx.fillStyle='rgba(8,10,18,.85)';cx.fillRect(0,0,W,H);
+  if(artOk('door')){ cx.globalAlpha=.35; drawArt('door',W/2,H*.4,H*.4); cx.globalAlpha=1; }
   for(const rk of G.rockets){
     const t=rk.t;
     if(t<.65){ drawEmoji('🚀',rk.x+t*240,rk.y-t*180,30); drawEmoji('☄️',W*.9-t*340,H*.08+t*260,26); }
