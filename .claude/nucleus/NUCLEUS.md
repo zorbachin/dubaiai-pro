@@ -183,26 +183,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 07:34 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 731b88c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 — 48 seconds ago
+- **Last commit:** db9a28e chore: refresh nucleus live state [skip ci] — 22 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 194 +++------------------------------------------
- 1 file changed, 10 insertions(+), 184 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-731b88c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (48 seconds ago)
-212a2b2 chore: nucleus snapshot [skip ci] (48 seconds ago)
+db9a28e chore: refresh nucleus live state [skip ci] (22 seconds ago)
+731b88c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (70 seconds ago)
+212a2b2 chore: nucleus snapshot [skip ci] (70 seconds ago)
 614c468 Playtest batch: pause + key, home, hit costs, scooter, difficulty (2 minutes ago)
 4328125 v19: the Miklat Wallet — shared shekel economy + paid CONTINUE (#94) (2 minutes ago)
-43cccff Miklat wallet: shared cross-game points contract v1 (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
