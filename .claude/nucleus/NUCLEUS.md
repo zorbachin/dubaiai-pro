@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 20:38 UTC · code
+SOCIAL LAYER architected + research-validated (miklatgames .claude/os/SOCIAL.md): VS = 3 rungs (URL-duels zero-backend ship-first -> snapshot ghost racing w/ 36h forfeit -> WebRTC gated at 500 duels/wk); HaLuach opt-in board via Cloudflare Worker (code shipped api/haluach-worker.js, KV launch -> D1 at 500/day, $5/mo at full scale, TLV PoP <50ms); companion = Chavruta duo-streak (Duolingo evidence +22% daily completion), Bayit wallet, Motzash hot-seat. NEW GAME: BALAGAN = daily Israeli-culture duel for the group chat (balagan/WORLD.md) — awaiting Zorba stage-1 gate + naming approvals (Shem/HaLuach/Chavruta/Motzash) + Cloudflare account when HaLuach ships
+
 ### 2026-06-11 20:15 UTC · chat
 Naval framework set captured (.claude/os/frameworks/naval-prompts.md) AND executed on Zorba's real data (naval-execution.md). Verdicts: specific-knowledge niche = 'AI-operated micro-ventures at game-speed, the machine is the product'; top model = THE MIKLAT OS kit (score 14: package nucleus+agentbus+coursegen as template+course, the arcade is the playable proof); leverage finding = no labor problem, UNPLUGGED leverage (built-to-5 assets never connected to distribution); 24mo equity gap ~$23K from games alone if conversions happen this week
 
@@ -188,31 +191,28 @@ QA SIGN-OFF complete → SHIP. All 5 punch-list items fixed incl. the daily-dete
 
 ### 2026-06-10 19:19 UTC · code
 Overnight progress: It2+It3 shipped (challenge card image share + ?beat= rematch loop, Today's Siren daily seed, revive-once, difficulty re-tighten, perf sprite caches), og.png + PROMO.md (all-channel launch copy + morning checklist) committed. Game made DOMAIN-PORTABLE per Zorba's zorbot.io directive — share links self-configure to any host. zorbot.io = Railway app (www CNAME 0uded1nb.up.railway.app), NOT GitHub Pages: deploying there needs the zorbot repo added to a session (add-repo tool unavailable tonight, GitHub MCP token also expired). Umbrella-site rec: itch.io page as instant no-DNS public home + CrazyGames/Poki submissions later. QA sign-off agent running.
-
-### 2026-06-10 19:02 UTC · code
-OVERNIGHT DIRECTIVE (Zorba): work through the night with advisor panels to get MAMAD DASH to optimum virality + rock-solid stability + social features; promo materials ready by morning. Executing: It2 Challenge Card share loop, It3 difficulty/revive, perf hardening, QA sign-off, promo pack (key art, channel copy, screenshots, launch checklist). Morning blockers for Zorba: Porkbun DNS records, merge PR #74, optional mamaddash.com domain + GoatCounter account.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 20:15 UTC
+- **When:** 2026-06-11 20:38 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 0034727 nucleus: night shift complete — panels, fixes, war room, campus, morning brief — 23 minutes ago
+- **Last commit:** e9f45ee Naval frameworks: captured + executed against the nucleus and 30-day audit — 23 minutes ago
 
 **Working tree:**
 ```
-?? .claude/os/frameworks/
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-0034727 nucleus: night shift complete — panels, fixes, war room, campus, morning brief (23 minutes ago)
-b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing (31 minutes ago)
-1d9f072 ZORBA CAMPUS: 5 personalized courses from the 30-day audit + campus hub + audit summary (32 minutes ago)
-3168692 coursegen: Academy course factory — course JSON in, self-contained XP-engine HTML out (43 minutes ago)
-e533bdb nucleus: night shift — academy shipped, factory pipeline codified + backfilled (86 minutes ago)
+e9f45ee Naval frameworks: captured + executed against the nucleus and 30-day audit (23 minutes ago)
+0034727 nucleus: night shift complete — panels, fixes, war room, campus, morning brief (46 minutes ago)
+b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing (54 minutes ago)
+1d9f072 ZORBA CAMPUS: 5 personalized courses from the 30-day audit + campus hub + audit summary (55 minutes ago)
+3168692 coursegen: Academy course factory — course JSON in, self-contained XP-engine HTML out (66 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
