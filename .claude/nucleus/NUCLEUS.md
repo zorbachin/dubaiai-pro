@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 13:34 UTC · code
+MIGRATION PLAN (execute automatically when a session includes the miklatgames repo): 1) Overwrite miklatgames repo root with dubaiai-pro:main miklat/ contents (carries all fix-rounds #102-#106) — push to its main → Pages deploys → live site current. 2) Make miklatgames the CANONICAL game workstream: write a game-specific CLAUDE.md into it (chief-of-staff role, single-file convention, color language red=avoid/green=grab, music sequences model, QA-bot verification rule, board cadence), move PROMO.md + DESIGN-PROMPT.md there. 3) From then on: edit games DIRECTLY in miklatgames, merge to its main = live in ~60s, NO sync step, no miklat/ staging. 4) Cleanup PR in dubaiai-pro removing mamaddash/, miklat/, promo/ folders (keep mamadio companion? ask Zorba) — dubaiai-pro returns to consultancy-only. 5) Verify live: miklatgames.fun plays latest build (pause buttons present = proof), challenge link forwards, og unfurls. Nucleus stays in dubaiai-pro: game sessions should select BOTH repos.
+
 ### 2026-06-11 13:32 UTC · code
 PR #106 merged: duck-only obstacles tuned to >=15% (flocks 2x/wave, 3x/marathon, 8-15% random) + red/green color language (RED ring = avoid, GREEN = grab; pause key rewritten). Verified at exactly 15% over live spawns. STILL GATED: all post-launch fixes (#102-#106) await the miklatgames repo in a session to reach the live site.
 
@@ -178,31 +181,34 @@ VALIDATED: Zorba played MAMAD DASH on his real phone via the raw.githack branch 
 
 ### 2026-06-10 13:23 UTC · code
 MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream skyline) + arcade juice (pop-text, coin glow/spin, landing squash, speed lines, countdown punch, confetti, PERFECT RUN bonus). Zorba steering: addictive + bright first, complexity later — master dash mode before adding anything. Full suite re-verified, pushed to PR #74.
-
-### 2026-06-10 13:08 UTC · code
-BUILT: MAMAD DASH standalone shippable mobile game at mamaddash/index.html (single-file, 453 lines). Tap=jump/swipe-down=duck, instant start, endless escalating siren waves, coins+streak bonuses, share button, localStorage best, all P0 mobile QA fixes baked in (on-canvas countdown, telegraph rings, error-contained loop). Verified headless on phone viewport: 3 waves cleared, death/share/restart/persist all pass, zero errors. On PR #74 (title/body updated to cover all 3 changes). Goes live at dubaiai.pro/mamaddash/ after merge + Porkbun DNS fix.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 13:33 UTC
+- **When:** 2026-06-11 13:35 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** ca3da4f chore: refresh nucleus live state [skip ci] — 31 seconds ago
+- **Last commit:** cc0011d chore: refresh nucleus live state [skip ci] — 76 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-ca3da4f chore: refresh nucleus live state [skip ci] (31 seconds ago)
-2007b66 Duck-only rate to 15%+ and red/green color language (2 minutes ago)
-1e1c6e7 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (6 minutes ago)
-d979ffe Inside-mamad text to top-left + repair conflict markers in main (7 minutes ago)
-5d484fb chore: refresh nucleus live state [skip ci] (28 minutes ago)
+cc0011d chore: refresh nucleus live state [skip ci] (76 seconds ago)
+ca3da4f chore: refresh nucleus live state [skip ci] (2 minutes ago)
+2007b66 Duck-only rate to 15%+ and red/green color language (3 minutes ago)
+1e1c6e7 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (7 minutes ago)
+d979ffe Inside-mamad text to top-left + repair conflict markers in main (8 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
