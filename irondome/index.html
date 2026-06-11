@@ -611,7 +611,12 @@ function musicTick(){
 }
 /* per-level soundtrack: real tracks where they exist, procedural synth
    everywhere else. More tracks drop in as one-line edits. */
-const LEVEL_TRACKS = { 0: 'level1.mp3' };
+/* three tracks score the whole game (per Zorba: reuse, no need for ten):
+   they rotate 1-2-3 across the campaign, the finale and Red Alert get the
+   hottest one, the Daily gets track 2, bonus keeps the synth fiesta */
+const LEVEL_TRACKS = ['level1.mp3', 'level2.mp3', 'level3.mp3']
+  .reduce((m, f, i) => { for (let l = i; l < 10; l += 3) m[l] = f; return m; }, {});
+LEVEL_TRACKS[9] = 'level3.mp3';
 let trackAudio = null, trackSrc = '';
 function playTrack(src){
   try{
@@ -627,7 +632,12 @@ function playTrack(src){
 }
 function stopTrack(){ try{ if (trackAudio) trackAudio.pause(); }catch(e){} }
 function musicStart(){
-  const f = (G && !G.endless && !G.bonus && !G.daily) ? LEVEL_TRACKS[G.levelIdx] : null;
+  let f = null;
+  if (G && !G.bonus){                       // bonus rounds keep the synth fiesta
+    if (G.endless) f = 'level3.mp3';        // Red Alert rides the hottest track
+    else if (G.daily) f = 'level2.mp3';
+    else f = LEVEL_TRACKS[G.levelIdx];
+  }
   if (f){ if (save.sound) playTrack(f); return; }
   if (!musTO) musicTick();
 }
