@@ -189,22 +189,28 @@ Art direction decided on ChatGPT image passes: RETRO pass -> share card (readabl
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 07:53 UTC
+- **When:** 2026-06-11 08:01 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 5dbb0c8 chore: refresh nucleus live state [skip ci] — 23 seconds ago
+- **Last commit:** f8880b1 chore: refresh nucleus live state [skip ci] — 8 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-5dbb0c8 chore: refresh nucleus live state [skip ci] (23 seconds ago)
-6b684c2 chore: refresh nucleus live state [skip ci] (58 seconds ago)
-947b465 Merge origin/main (ours: irondome, theirs: other teams) (2 minutes ago)
-9d532a7 v21: centered worlds + real falafel sprites on collision (2 minutes ago)
-bf028d0 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+f8880b1 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+5dbb0c8 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+6b684c2 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+947b465 Merge origin/main (ours: irondome, theirs: other teams) (9 minutes ago)
+9d532a7 v21: centered worlds + real falafel sprites on collision (10 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
