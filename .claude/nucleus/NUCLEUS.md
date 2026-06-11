@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 07:53 UTC · code
+v21 MERGED (PR #97): centered full-dome art worlds (5 scenes cycling 10 levels, in-game center-crop, band capped 40% H) + REAL falafel sprites cut from the art tumbling on collision (old painted balls erased). Game is now visually end-to-end Zorba's art: menu bg, level worlds, falafel, share cards. Remaining gates: DNS->flip, GoatCounter x2, shot-list approval, nice-to-have art files (icon/victory/badge).
+
 ### 2026-06-11 07:40 UTC · code
 v20 MERGED (PR #96): LEVELS NOW WEAR THE REAL ART — discovered 5 unprocessed full-res retro panoramas in session uploads; cut 10 per-city level worlds from them (bg1-bg10.jpg, dome baked in, clean playfield sky, pixel-crisp, lazy-loaded w/ procedural fallback). Also: caught+fixed conflict markers committed to game files during a squash-artifact merge (restored from clean commit, 23/23 tests). The '16 portrait images' ask is now MOOT for levels — only nice-to-haves remain (icon, victory art, daily badge as standalone files).
 ### 2026-06-11 07:32 UTC · code
@@ -180,14 +183,6 @@ Art direction decided on ChatGPT image passes: RETRO pass -> share card (readabl
 
 
 
-
-### 2026-06-10 19:09 UTC · code
-OVERNIGHT SHIFT COMPLETE: promo pack merged (PR #81, content-assets/irondome-promo/) — full bilingual launch copy (WhatsApp x4, Telegram DM+post, Reddit x2, press HE+EN, X, meme pages, 20s clip script, crisis one-liners, seeding checklist) + visual cards (story/square/meme/share) + v15 screenshots. ChatGPT image prompts EMAILED to Zorba for the elite art pass (6 prompts, no-text rule, palette locked). MORNING PLAN: Zorba does domain + GoatCounter + ChatGPT images -> Claude swaps URL in one pass (it's on its own line everywhere), composites Hebrew typography on new art, re-ships -> seeding begins per checklist.
-### 2026-06-10 19:00 UTC · code
-Iron Dome launch promo pack complete at /tmp/PROMO-PACK.md: WhatsApp (4 msgs incl. parents + alert-night protocol), Telegram admin DM + channel post, Reddit x2, press pitches HE/EN, X posts, meme-page DM, 20s clip script, crisis one-liners, seeding checklist. URL on own line everywhere for domain swap. No em-dashes in personal copy.
-### 2026-06-10 18:53 UTC · code
-Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was DEAD for everyone - D1 one-liner; 2 soft-lock paths closed), DAILY ALERT shipped (date-seeded, streaks, deterministic-verified), commando actually hard + loss thresholds + 50% win gate, per-mode bests, death beat + fanfares + whiff feel + bonus fiesta + sling sweep. Panel verdict: core loop tortured clean (saves/concurrency/soak all green).
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
@@ -196,20 +191,26 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 07:53 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 947b465 Merge origin/main (ours: irondome, theirs: other teams) — 45 seconds ago
+- **Last commit:** 6b684c2 chore: refresh nucleus live state [skip ci] — 35 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 19 +++++++------------
+ 1 file changed, 7 insertions(+), 12 deletions(-)
 ```
 
 **Recent commits:**
 ```
-947b465 Merge origin/main (ours: irondome, theirs: other teams) (45 seconds ago)
-9d532a7 v21: centered worlds + real falafel sprites on collision (79 seconds ago)
-bf028d0 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-20c55e4 chore: refresh nucleus live state [skip ci] (12 minutes ago)
-65e6b87 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+6b684c2 chore: refresh nucleus live state [skip ci] (35 seconds ago)
+947b465 Merge origin/main (ours: irondome, theirs: other teams) (80 seconds ago)
+9d532a7 v21: centered worlds + real falafel sprites on collision (2 minutes ago)
+bf028d0 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+20c55e4 chore: refresh nucleus live state [skip ci] (13 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
