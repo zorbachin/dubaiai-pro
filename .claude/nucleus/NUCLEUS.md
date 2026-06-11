@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 03:55 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 22a1828 chore: refresh nucleus live state [skip ci] — 12 minutes ago
+- **Last commit:** fc0c932 chore: refresh nucleus live state [skip ci] — 17 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+fc0c932 chore: refresh nucleus live state [skip ci] (17 seconds ago)
 22a1828 chore: refresh nucleus live state [skip ci] (12 minutes ago)
 11d4a56 chore: refresh nucleus live state [skip ci] (14 minutes ago)
 8b223d6 chore: refresh nucleus live state [skip ci] (15 minutes ago)
 f50ccf1 chore: refresh nucleus live state [skip ci] (15 minutes ago)
-dccef0a Full art pass: hand-painted hoods, door, power-ups, key art, icon (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
