@@ -183,26 +183,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 07:33 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 5d1b8e3 chore: refresh nucleus live state [skip ci] — 30 seconds ago
+- **Last commit:** d83a262 chore: refresh nucleus live state [skip ci] — 22 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 33 +++++++--------------------------
- 1 file changed, 7 insertions(+), 26 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-5d1b8e3 chore: refresh nucleus live state [skip ci] (30 seconds ago)
-a6ff8a7 Merge origin/main (keep v19 + mamad dash team's wallet adoption) (70 seconds ago)
+d83a262 chore: refresh nucleus live state [skip ci] (22 seconds ago)
+5d1b8e3 chore: refresh nucleus live state [skip ci] (52 seconds ago)
+a6ff8a7 Merge origin/main (keep v19 + mamad dash team's wallet adoption) (2 minutes ago)
 25f2dec Merge origin/main (keep v19) (2 minutes ago)
-14aec7b v19: the Miklat Wallet — shared shekels across games + CONTINUE mechanic (2 minutes ago)
-43cccff Miklat wallet: shared cross-game points contract v1 (15 minutes ago)
+14aec7b v19: the Miklat Wallet — shared shekels across games + CONTINUE mechanic (3 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
