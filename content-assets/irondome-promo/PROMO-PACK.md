@@ -6,7 +6,7 @@
 
 **URL (swap this one line everywhere when the custom domain goes live):**
 
-https://zorbachin.github.io/dubaiai-pro/irondome/
+https://miklatgames.fun/irondome/
 
 ---
 
@@ -18,7 +18,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > כיפת ברזל: מיירטים רקטות עם האצבע, עובד בממ"ד גם בלי קליטה. חינם, בלי פרסומות.
 > סבתא שלי אמרה שהיא כמעט מרוצה. זה הכי גבוה שיש.
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ### 1b. Family / friends group
 
@@ -27,7 +27,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > חינם, בלי הורדה, בלי פרסומות. פותחים בדפדפן ומשחקים.
 > מי ששובר את השיא שלי בתל אביב, חומוס עליי.
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ### 1c. Parents' group (kids in the shelter angle)
 
@@ -36,7 +36,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > פותחים פעם אחת בבית עם אינטרנט, ומאז זה עובד גם בלי.
 > שיהיה לילדים משהו ביד חוץ מהפחד 🧡
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ### 1d. "Alert-night protocol" — post in the hours AFTER an alert window
 
@@ -46,7 +46,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > למי שעוד יושב בממ"ד עם ילדים עם עיניים פתוחות: בניתי משחק קטן שעובד בלי קליטה. חינם, בלי פרסומות. שתי דקות צחוק במקום עוד מהדורה.
 > שמרו על עצמכם ❤️
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ---
 
@@ -56,7 +56,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 
 > היי, אני זורבה. בניתי לבד משחק דפדפן חינמי בשם "כיפת ברזל": מיירטים רקטות בלחיצה, עם אתגר יומי שזהה לכל המדינה ורצפים. הקלף המרכזי: עובד בלי קליטה בממ"ד, אז פותחים פעם אחת ויש מה לעשות בכל אזעקה. אם זה מתאים לערוץ, יש לי הודעה מוכנה להדבקה וקליפ של 20 שניות.
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ### 2b. Ready-to-post channel message (copy verbatim)
 
@@ -68,7 +68,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 >
 > נבנה בשביל מורל. באזעקה אמיתית, רק פיקוד העורף.
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ---
 
@@ -88,7 +88,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 >
 > I'm not a game studio, I'm a guy with a laptop, so I'd genuinely love feedback: is the humor landing? Is anything tone-deaf? Is level 6 (Tel Aviv, with the splitting rockets) too brutal?
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ### 3b. r/WebGames + r/playmygame (gamer framing)
 
@@ -109,7 +109,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 >
 > Free, no ads, no accounts. Plays best on a phone. Main thing I'm unsure about: the difficulty jump at levels 5-6. Be brutal.
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ---
 
@@ -130,7 +130,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > צילומי מסך וקליפ של 20 שניות מצורפים, אשמח לדבר.
 >
 > זורבה
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ### 4b. English — Times of Israel / JPost / NoCamels
 
@@ -147,7 +147,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > Screenshots + a 20s clip attached, happy to talk.
 >
 > Zorba
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ---
 
@@ -159,7 +159,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > מיירטים רקטות עם האצבע, מגינים על עשר ערים משדרות ועד אילת, והכנסת מקימה ועדה לקחת קרדיט.
 > עובד בממ"ד בלי קליטה. חינם, בלי פרסומות, בלי הורדה.
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ### 5a. Hebrew thread (3 tweets)
 
@@ -175,14 +175,14 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > חשוב לי: זה פרויקט מורל, לא קשור לשום גוף רשמי. באזעקה אמיתית פועלים רק לפי פיקוד העורף.
 > חינם, בלי פרסומות, עובד אופליין. תשברו לי את השיא:
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ### 5b. English single post
 
 > I built a free browser game where you tap rockets out of the sky over Israeli cities. It works offline, because it was made for kids in bomb shelters with zero signal.
 > Beat a level and the Knesset forms a committee to take credit. No ads, no download.
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ---
 
@@ -193,7 +193,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > אחי, יש לי משהו שהקהל שלך יאכל בכפית. בניתי משחק שנקרא כיפת ברזל: מיירטים רקטות עם האצבע, סבתא שופטת אותך, והכנסת מקימה ועדה על הניקוד שלך. עובד בממ"ד בלי קליטה, חינם, בלי פרסומות.
 > יש לי קליפ של 20 שניות מוכן לריפוסט עם קרדיט, רוצה?
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 ### 6b. Caption options for a gameplay clip repost
 
@@ -225,7 +225,7 @@ https://zorbachin.github.io/dubaiai-pro/irondome/
 > כיפת ברזל 🛡
 > חינם · בלי פרסומות · עובד אופליין
 >
-> https://zorbachin.github.io/dubaiai-pro/irondome/
+> https://miklatgames.fun/irondome/
 
 *Recording tips: queue the Mega Blast crate before beat 3 by saving a 🎁 pickup. If a run dies, the death screen quip ("נו באמת?! עוד פעם?") is a usable alternate beat 3.*
 

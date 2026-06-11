@@ -8,19 +8,19 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="כיפת ברזל — המשחק | Iron Dome">
 <meta property="og:description" content="לחצו על הרקטות לפני שהן נופלות. עובד בממ״ד בלי קליטה. חינם, בלי הורדה — שניה ואתם משחקים.">
-<meta property="og:url" content="https://zorbachin.github.io/dubaiai-pro/irondome/">
-<meta property="og:image" content="https://zorbachin.github.io/dubaiai-pro/irondome/share-card.jpg">
+<meta property="og:url" content="https://miklatgames.fun/irondome/">
+<meta property="og:image" content="https://miklatgames.fun/irondome/share-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="כיפת ברזל — Iron Dome">
-<meta name="twitter:image" content="https://zorbachin.github.io/dubaiai-pro/irondome/share-card.jpg">
+<meta name="twitter:image" content="https://miklatgames.fun/irondome/share-card.jpg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>כיפת ברזל · Iron Dome</title>
 <style>
   :root{
@@ -80,7 +80,15 @@
     background:linear-gradient(rgba(10,18,38,.55),rgba(10,18,38,.88) 55%,rgba(10,18,38,.97)),
                url(menu-bg.jpg) center top/cover no-repeat #0a1226;
   }
-  #scrMenu .btn{padding:12px 26px;min-width:240px;font-size:17px}
+  #scrMenu .btn{padding:11px 26px;min-width:250px;font-size:17px;line-height:1.25}
+  .btnsub{display:block;font-size:11px;font-weight:400;opacity:.78;letter-spacing:0}
+  .segrow{display:flex;gap:8px;justify-content:center}
+  .seg{
+    background:var(--panel2);border:1px solid rgba(141,163,204,.35);color:var(--dim);
+    border-radius:12px;padding:8px 14px;min-height:44px;min-width:76px;
+    font-size:13px;font-weight:700;cursor:pointer;line-height:1.2;
+  }
+  .seg.on{color:var(--ink);border-color:var(--gold);box-shadow:0 0 12px rgba(255,209,102,.35);background:#21345f}
   #scrMenu .pill{font-size:12px;padding:8px 14px}
   #menuBest{background:rgba(16,27,56,.7);border-radius:999px;padding:6px 16px;font-size:13px}
   .screen.show{display:flex}
@@ -173,9 +181,13 @@
   <button class="btn primary" id="btnPlay"></button>
   <button class="btn" id="btnDaily" style="border-color:rgba(255,209,102,.6);box-shadow:0 0 18px rgba(255,209,102,.3)"></button>
   <button class="btn" id="btnEndless" style="display:none;border-color:rgba(255,93,115,.6);box-shadow:0 0 18px rgba(255,93,115,.3)"></button>
-  <button class="btn" id="btnHow"></button>
+  <div class="segrow">
+    <button class="seg" id="segEasy"></button>
+    <button class="seg" id="segNormal"></button>
+    <button class="seg" id="segHard"></button>
+  </div>
   <div class="btnrow">
-    <button class="pill" id="btnDiff">⚖️</button>
+    <button class="pill" id="btnHow">❓</button>
     <button class="pill" id="btnCal">🎯</button>
     <button class="pill" id="btnLang">EN</button>
     <button class="pill on" id="btnSound">🔊</button>
@@ -259,7 +271,7 @@
     <button class="btn small" id="btnShare2"></button>
     <button class="btn" id="btnMenu2"></button>
   </div>
-  <div style="font-size:10px;color:var(--dim);opacity:.7;letter-spacing:.5px">zorbachin.github.io/dubaiai-pro/irondome</div>
+  <div style="font-size:10px;color:var(--dim);opacity:.7;letter-spacing:.5px">miklatgames.fun/irondome</div>
 </div>
 
 <!-- ===== VICTORY ===== -->
@@ -279,7 +291,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v21';
+const GAME_VERSION = 'v25';
 const INBOUND = new URLSearchParams(location.search);
 const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
@@ -350,7 +362,12 @@ const T = {
     upLaunch: 'City Armor', upLaunchD: 'Buildings survive +1 hit',
     bonusTitle: '🎁 BONUS ROUND!', bonusHint: 'Nothing gets hit — pop EVERYTHING! Double points!',
     bonusDone: '🎁 BONUS COMPLETE!', crateHint: '🎁 Tap the falling crate!',
-    diffN: { easy: 'Easy', normal: 'Normal', commando: 'Commando' },
+    diffN: { easy: '1 · Easy', normal: '2 · Medium', commando: '3 · Hard' },
+    diffSub: { easy: 'chill', normal: 'real', commando: 'savta mode' },
+    subPlay: 'the campaign · 10 cities, Sderot → Eilat',
+    subDaily: 'one try a day · same barrage for everyone',
+    subRA: 'endless survival · how long can you last?',
+    subRALock: 'finish 3 campaign cities to unlock',
     daily: 'DAILY ALERT', dailyDone: '📅 DAILY ALERT — DONE!',
     practiceNote: 'practice — today already counted', todayW: 'today',
     streakW: 'streak', raLocked: '🚨 RED ALERT — clear Ashdod to unlock', upgrades: 'Upgrades', hitsW: 'hits taken',
@@ -431,7 +448,12 @@ const T = {
     upLaunch: 'שריון לעיר', upLaunchD: 'בניינים סופגים פגיעה נוספת',
     bonusTitle: '🎁 סיבוב בונוס!', bonusHint: 'שום דבר לא נפגע — פוצצו הכל! נקודות כפולות!',
     bonusDone: '🎁 הבונוס הושלם!', crateHint: '🎁 לחצו על הארגז שנופל!',
-    diffN: { easy: 'קל', normal: 'רגיל', commando: 'קומנדו' },
+    diffN: { easy: '1 · קל', normal: '2 · בינוני', commando: '3 · קשה' },
+    diffSub: { easy: 'רגוע', normal: 'אמיתי', commando: 'מצב סבתא' },
+    subPlay: 'הקמפיין · 10 ערים, משדרות עד אילת',
+    subDaily: 'ניסיון אחד ביום · אותו מטח לכולם',
+    subRA: 'הישרדות אינסופית · כמה תחזיקו?',
+    subRALock: 'סיימו 3 ערים בקמפיין כדי לפתוח',
     daily: 'אזעקת היום', dailyDone: '📅 אזעקת היום — הושלם!',
     practiceNote: 'אימון — התוצאה של היום כבר נספרה', todayW: 'היום',
     streakW: 'רצף', raLocked: '🚨 צבע אדום — נפתח אחרי אשדוד', upgrades: 'שדרוגים', hitsW: 'פגיעות',
@@ -640,7 +662,7 @@ function musicTick(){
    hottest one, the Daily gets track 2, bonus keeps the synth fiesta */
 const LEVEL_TRACKS = ['level1.mp3', 'level2.mp3', 'level3.mp3']
   .reduce((m, f, i) => { for (let l = i; l < 10; l += 3) m[l] = f; return m; }, {});
-LEVEL_TRACKS[9] = 'level3.mp3';
+// strict cycle: 1,2,3,1,2,3,1,2,3,1 — every level has music, pattern never breaks
 let trackAudio = null, trackSrc = '';
 function playTrack(src){
   try{
@@ -748,7 +770,7 @@ function buildSkyline(){
     const r = Math.abs(Math.sin((G.levelIdx + 1) * 41.3 + ((i * 3 + G.levelIdx) % n) * 12.3));
     arr.push({
       x: bw * (i + 1) + bw * 0.08, w: bw * 0.84,
-      h: 48 + r * Math.min(105, H * 0.13),
+      h: 32 + r * Math.min(56, H * 0.07),   // low-rise: the art skyline behind stays visible
       alive: prev[i] ? prev[i].alive : true,
       hp: prev[i] ? prev[i].hp : 1 + save.up.launchers,   // 'City Armor' upgrade
       win: 2 + Math.floor(r * 3)
@@ -1483,7 +1505,8 @@ function update(dt){
     $('hudLevel').textContent = t('endlessName');
   } else {
     $('hudWave').textContent = Math.min(G.spawned, G.L.count) + '/' + G.L.count + ' ' + t('waveOf');
-    $('hudLevel').textContent = t('level') + ' ' + (G.levelIdx + 1) + ' · ' + t('levels')[G.levelIdx];
+    $('hudLevel').textContent = t('level') + ' ' + (G.levelIdx + 1) + ' · ' + t('levels')[G.levelIdx] +
+      ' · 🏙' + G.buildings.filter(b => b.alive).length;
   }
 }
 
@@ -1525,31 +1548,45 @@ function drawCity(){
   cx.strokeStyle = 'rgba(62,230,255,0.35)'; cx.lineWidth = 2;
   cx.beginPath(); cx.moveTo(0, GROUND); cx.lineTo(W, GROUND); cx.stroke();
 
-  // buildings
+  // NO drawn towers: the art city IS the city. Hit slots render damage only —
+  // fire, smoke and scorch over the artwork where rockets landed.
+  const Q = 4;
+  const tNow = performance.now();
   for (const b of G.buildings){
-    if (b.alive){
-      cx.fillStyle = '#3a5cae';
-      cx.fillRect(b.x, GROUND - b.h, b.w, b.h);
-      cx.fillStyle = '#16244a';
-      cx.fillRect(b.x, GROUND - b.h, b.w, 4);   // roof line for definition
-      cx.fillStyle = acc; cx.globalAlpha = 0.95;
-      // windows
-      const rows = Math.floor(b.h / 16), cols = b.win;
-      for (let r = 0; r < rows; r++)
-        for (let c = 0; c < cols; c++)
-          if ((r * 7 + c * 3 + b.win) % 3 !== 0)
-            cx.fillRect(b.x + 5 + c * (b.w - 10) / cols, GROUND - b.h + 6 + r * 16, 4, 6);
+    const cxm = b.x + b.w / 2;
+    const maxHp = 1 + save.up.launchers;
+    if (b.alive && b.hp < maxHp){
+      // wounded slot: a thin smoke wisp rising from the art skyline
+      cx.fillStyle = 'rgba(140,150,180,0.35)';
+      for (let i = 0; i < 4; i++){
+        const ph = (tNow / 900 + i * 0.7 + cxm) % 1;
+        cx.globalAlpha = 0.30 * (1 - ph);
+        cx.fillRect(cxm + Math.sin(ph * 6 + i) * 8 - Q, GROUND - 30 - ph * 90, Q * 2, Q * 2);
+      }
       cx.globalAlpha = 1;
-    } else {
-      // rubble
-      cx.fillStyle = '#26314f';
-      cx.beginPath();
-      cx.moveTo(b.x, GROUND);
-      cx.lineTo(b.x + b.w * 0.2, GROUND - 12);
-      cx.lineTo(b.x + b.w * 0.5, GROUND - 6);
-      cx.lineTo(b.x + b.w * 0.8, GROUND - 14);
-      cx.lineTo(b.x + b.w, GROUND);
-      cx.fill();
+    } else if (!b.alive){
+      // destroyed slot: scorch, embers and animated pixel fire on the artwork
+      cx.fillStyle = 'rgba(8,10,20,0.55)';
+      cx.fillRect(b.x, GROUND - Q * 4, b.w, Q * 4);
+      for (let i = 0; i < 5; i++){
+        const fx = b.x + Q + ((i * 53) % Math.max(Q, b.w - Q * 2));
+        const flick = Math.abs(Math.sin(tNow / 110 + i * 1.9 + cxm));
+        cx.fillStyle = i % 2 ? '#ff9d3c' : '#ff5d3c';
+        cx.globalAlpha = 0.55 + 0.45 * flick;
+        cx.fillRect(fx, GROUND - Q * 3 - flick * Q * 4, Q, Q * (1 + flick * 2));
+      }
+      cx.globalAlpha = 0.5;
+      cx.fillStyle = '#ffd166';
+      cx.fillRect(cxm - Q, GROUND - Q * 2, Q, Q);              // ember core
+      cx.globalAlpha = 1;
+      // rising smoke column
+      cx.fillStyle = 'rgba(120,128,158,0.30)';
+      for (let i = 0; i < 5; i++){
+        const ph = (tNow / 1100 + i * 0.55 + cxm) % 1;
+        cx.globalAlpha = 0.35 * (1 - ph);
+        cx.fillRect(cxm + Math.sin(ph * 5 + i * 2) * 12 - Q, GROUND - 36 - ph * 130, Q * 2, Q * 2);
+      }
+      cx.globalAlpha = 1;
     }
   }
 
@@ -1980,18 +2017,25 @@ function applyLang(){
     const el = document.querySelector(map[k]);
     if (el) el.textContent = t(k);
   }
-  $('btnPlay').textContent = t('play');
-  $('btnHow').textContent = t('howBtn');
+  $('btnPlay').innerHTML = t('play') + '<span class="btnsub">' + t('subPlay') + '</span>';
+  $('btnHow').textContent = '❓';
+  $('btnHow').title = t('howBtn');
   $('btnCal').textContent = '🎯 ' + t('calTitle');
-  $('btnDiff').textContent = diff().ic + ' ' + t('diffN')[save.diff];
   $('btnCalSkip').textContent = t('skip');
   const raOpen = save.unlocked >= 3;
-  $('btnEndless').textContent = raOpen ? t('endless') : t('raLocked');
+  $('btnEndless').innerHTML = (raOpen ? t('endless') : t('raLocked')) +
+    '<span class="btnsub">' + (raOpen ? t('subRA') : t('subRALock')) + '</span>';
   $('btnEndless').style.display = '';
   $('btnEndless').style.opacity = raOpen ? '1' : '.45';
-  $('btnDaily').textContent = '📅 ' + t('daily') +
-    (save.daily && save.daily.date === new Date().toISOString().slice(0, 10)
-      ? ' ✓' + save.daily.score + (save.daily.streak > 1 ? ' 🔥×' + save.daily.streak : '') : '');
+  const dDone = save.daily && save.daily.date === new Date().toISOString().slice(0, 10);
+  $('btnDaily').innerHTML = '📅 ' + t('daily') +
+    (dDone ? ' ✓' + save.daily.score + (save.daily.streak > 1 ? ' 🔥×' + save.daily.streak : '') : '') +
+    '<span class="btnsub">' + t('subDaily') + '</span>';
+  const segs = { easy: 'segEasy', normal: 'segNormal', commando: 'segHard' };
+  for (const [k, id] of Object.entries(segs)){
+    $(id).innerHTML = t('diffN')[k] + '<span class="btnsub">' + t('diffSub')[k] + '</span>';
+    $(id).classList.toggle('on', save.diff === k);
+  }
   $('btnHowBack').textContent = t('back');
   $('btnStart').textContent = t('start');
   $('btnResume').textContent = t('resume');
@@ -2102,7 +2146,7 @@ function shareScore(btn){
   const txt = t('shareTxt').replace('{s}', lastRun.score)
                            .replace('{c}', lastRun.city || t('levels')[0]) +
               (lastRun.grid ? '\n' + lastRun.grid : '');
-  const url = 'https://zorbachin.github.io/dubaiai-pro/irondome/?ref=share&b=' +
+  const url = 'https://miklatgames.fun/irondome/?ref=share&b=' +
               lastRun.score + '&c=' + encodeURIComponent(lastRun.city);
   if (navigator.share){
     navigator.share({ text: txt, url })
@@ -2137,11 +2181,8 @@ $('btnEndless').onclick = () => {
   startLevel();
 };
 $('btnCal').onclick = () => { ac(); sfx.click(); startCal('menu'); };
-$('btnDiff').onclick = () => {
-  const i = DIFF_ORDER.indexOf(save.diff);
-  save.diff = DIFF_ORDER[(i + 1) % 3];
-  persist(); sfx.click(); applyLang();
-};
+for (const [k, id] of [['easy', 'segEasy'], ['normal', 'segNormal'], ['commando', 'segHard']])
+  $(id).onclick = () => { save.diff = k; persist(); sfx.click(); applyLang(); };
 $('btnHow').onclick = () => { sfx.click(); show('scrHow'); };
 $('btnHowBack').onclick = () => { sfx.click(); show('scrMenu'); };
 $('btnStart').onclick = () => { clearTimeout(introTO); ac(); sfx.click(); startLevel(); };
@@ -2201,6 +2242,7 @@ for (let i = 0; i < 70; i++)
   stars.push({ x: Math.random(), y: Math.random(), s: Math.random() < 0.8 ? 1 : 2, tw: Math.random() * 6.28 });
 resize();
 $('verTag').textContent = '🛡 ' + GAME_VERSION;
+for (let i = 0; i < 10; i++) levelBg(i);   // warm all worlds while the menu shows
 { // incoming challenge link? show the gauntlet
   const cb = parseInt(INBOUND.get('b'), 10), cc = INBOUND.get('c');
   if (cb > 0){

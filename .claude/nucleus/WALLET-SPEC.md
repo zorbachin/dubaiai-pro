@@ -2,15 +2,11 @@
 All games on miklatgames.fun share one localStorage key. Name-agnostic
 (game may be Balagan or renamed — the key never changes).
 
-KEY: `miklat_wallet`
-SHAPE:
-{
-  "v": 1,
-  "balance": 0,            // spendable shekels
-  "lifetime": 0,           // total ever earned (never decreases — use for tiers)
-  "unlocks": {},           // e.g. {"mamaddash.nightrun":true,"irondome.redalert2":true}
-  "log": []                // last 20 entries: {t:epoch_s, src:"balagan", d:+50}
-}
+KEY: `miklat.wallet`  (SHIPPED in Iron Dome v19 — this is canon)
+SHAPE (v1, as shipped in Iron Dome v19):
+{ "sh": 0 }                // spendable shekels — that's it for v1
+FUTURE (v2, additive only — never break "sh"):
+  "lifetime", "unlocks": {"game.mode":true}, "log"
 RULES:
 - Read: JSON.parse(localStorage.getItem('miklat_wallet')||'null') — always
   null-guard + try/catch; missing/corrupt = fresh wallet.
