@@ -46,6 +46,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 06:30 UTC · code
+FOR CLAUDE DESIGN (artwork was missing there): full MAMAD DASH art index with public fetchable URLs now at mamaddash/ART-INDEX.md — base https://rawcdn.githack.com/zorbachin/dubaiai-pro/<main-sha>/mamaddash/ + art/ paths (sprites, 4 hood bgs, door, power-ups, keyart, hero, icon, og). Palette: navy #0b0e1a gold #ffd166 teal #7ee8c7 coral #ff5d5d cream #f4ecdd sky #37b6ff. Any surface: fetch by URL, don't regenerate the art.
+
+### 2026-06-11 06:29 UTC · code
+PROMO EDIT KIT COMPLETE: 4 generated keepers (alert / slide+leap combo per Zorba's reorder / full door entry / door closes) + composited beats per cut sheet. All URLs in PROMO.md. Audio rule: discard native clip audio (gibberish) — game siren is the score. Next: Zorba QCs slide-leap, then CapCut assembly per cut sheet + VO script. ~790 credits left.
+
 ### 2026-06-11 06:14 UTC · code
 PROMO SHOOT v1 COMPLETE: all 5 narrative shots rendered per 10M-club plan (alert/sprint/near-collision/dash-to-door/door-closes) + 2 earlier hero clips. URLs + QC bar in PROMO.md. ~110 credits used, ~850 left. Awaiting Zorba's eyeball QC (sandbox can't watch video); regen budget 3/clip then static fallback. Composited beats (leap whip, nu-shake, SHOE thunk, boom, title) are post-work in any editor per the cut sheet.
 
@@ -173,48 +179,13 @@ Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was 
 
 ### 2026-06-10 18:30 UTC · code
 Iron Dome v14 (growth Day-1 from brutal panel): OG/Twitter cards + share-card.png, ?ref attribution (K-factor measurable), challenge links w/ beat-this banner, wa.me fallback, NEW BEST first-run bug fixed + primary CTA at peak, emoji result grid, per-level funnel events. STILL BLOCKING (Zorba-only): claim irondome.goatcounter.com, buy domain (~$10, kipa.lol / irondome.lol style), WhatsApp-test the preview card. 3 more panel reports pending.
-
-### 2026-06-10 18:24 UTC · code
-NEW EXPLICIT GOAL from Zorba: get Iron Dome to 10,000 USERS as fast as possible (stable, fun, viral). Convened brutal 10M-cohort panel #3: growth/virality (funnel, OG tags, WhatsApp K-factor, 7-day distribution plan), retention (FTUE, day-2 hook, difficulty honesty), release-stability (v13 torture: saves v1->v13, bonus/sling state machines, GO/NO-GO verdict), game-feel (miss experience, bonus fiesta, sling payoff, sound mix). All running on v13.
-### 2026-06-10 18:17 UTC · code
-Iron Dome v13: difficulty select (Easy/Normal/Commando w/ point multipliers), intra-level ramp (starts easy, +35% by level end), bonus falafel-rush rounds after L3/6/9 (double points, no risk), Iron Sling now an ACTIVE volley button (pops 4 lowest rockets, charges per level), crates more frequent + first-crate hint. All per Zorba's Tetris/DrMario feedback. E2E verified.
-### 2026-06-10 18:12 UTC · code
-Iron Dome v12: Israeli voice pack per Zorba ('more branded, sabra sarcasm, yell at Knesset') — rotating sarcastic level-clear headlines, anonymous-MK reaction quotes (fictional/anonymous = playful not political), escalating Hebrew combo shouts, power-up attitude lines, family-style game-over teasing. DURABLE BRAND RULE: Iron Dome voice = sabra sarcasm, hummus/savta/Knesset-committee humor, bilingual, never name real politicians.
-### 2026-06-10 15:14 UTC · code
-Iron Dome v11 built: QA round 2 applied (sim-validated loseable difficulty, <4s first kill, hit-stop/pitch-ladder juice, best-gap cliffhanger death, dynamic music) + Zorba's asks (adaptive heat = skill-coupled escalation; Houthi whimper/Hezbollah thud/IRGC boom + sarcastic quips; one-tap Share with clipboard fallback) + all iPhone P0/P1 fixes (Dynamic Island chevrons, zoom translate, iOS audio recovery, SW hang guard). Leaderboard = needs backend, deferred; share button is the zero-backend social layer.
-
-### 2026-06-10 14:56 UTC · code
-Iron Dome v10 MERGED (PR #76): visual-viewport canvas (fixes iOS-zoom hiding the city below fold), playfield 15-85% closed at spawn-time too, procedural hypnotic music loop, version badge on menu, SW network-first navigations (self-healing stale caches). QA round 2 running: 2 agents (10M-downloads addiction expert + iPhone-format engineer). KEY HYPOTHESIS for Zorba's reports: he's likely on a stale SW cache (old dubaiai.pro PWA can never self-update — domain dead); badge will prove which build he runs.
-
-
-
-### 2026-06-10 13:29 UTC · code
-Iron Dome core-feel pivot per Zorba: direct-hit tapping (tap ON rocket, tip = DIRECT HIT bonus), removed ALL auto-aim/fling/queue, hypnotic steady spawn rhythm, upgrades repurposed (Quick Fuse/City Armor). This IS the shippable mobile loop. 27/27 tests x3.
-
-### 2026-06-10 13:05 UTC · code
-CORRECTION (supersedes earlier mamadio note): do NOT change anything. By design per Zorba — STANDALONE Mamad Dash includes the Tel Aviv exploration; the 2-IN-1 build is just Iron Dome + Dash with NO exploration. This session (iron dome) must not interfere with the mamadio build.
-
-### 2026-06-10 13:03 UTC · code
-FOR MAMADIO SESSION (PR #71): Zorba feedback — 'mamad dash doesn't have the exploration in tel aviv, just the dash game'. He expected the Tel Aviv exploration part, not only the dash mechanic. Route to the mamadio workstream.
-
-### 2026-06-10 13:03 UTC · code
-PR #73 MERGED per Zorba's 'merge': QA batch + analytics + Red Alert endless mode live. CRITICAL DNS ISSUE: dubaiai.pro points at Porkbun parking IPs (44.227.65.245/.76.166) not GitHub Pages -> SSL error, whole domain dead. CNAME removed from repo so site serves at https://zorbachin.github.io/dubaiai-pro/ until DNS fixed. TO RESTORE: fix Porkbun DNS (A @ -> 185.199.108-111.153, CNAME www -> zorbachin.github.io) then re-add CNAME file (content: dubaiai.pro). Zorba steering: arcade style confirmed, 'one shippable optimized mobile Iron Dome version'.
-### 2026-06-10 12:23 UTC · code
-QA panel (4 agents) delivered + all fixes shipped to PR #73 branch: game was UNLOSABLE (blind tapper cleared L10) -> fail state restored w/ sim-tuned assists; Red Alert endless mode added (retention); 3 save-robustness P1s fixed (corrupt save bricked boot); skyline-clone math bug (37.7≈12π); shelter UX (pause mute, shop on loss, kind game-over copy). 26/26 + endless e2e tests.
-
-### 2026-06-10 12:05 UTC · code
-Analytics added to Iron Dome (PR #73 draft): GoatCounter cookieless tracking — visits, plays/session, wins, PWA installs. ACTION FOR ZORBA: claim site code 'irondome' at goatcounter.com (1 min) -> dashboard irondome.goatcounter.com. QA panel: 4 specialist agents (functionality/ease/fun/visual design) testing in background.
-
-### 2026-06-10 11:47 UTC · code
-PR #70 MERGED — Iron Dome is LIVE at https://dubaiai.pro/irondome/ (user approved merge after htmlpreview diagnosis). v6 includes self-improving calibration. Update the durable test-link preference: use the LIVE link from now on. Note: parallel session shipped MAMADIO companion game (PR #71, mamadio/) — merged main into our branch resolving nucleus conflicts as union.
-### 2026-06-10 11:43 UTC · code
-Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.github.io strips meta viewport -> iOS lays out at 980px, city below fold, broken touch geometry. NOT a game bug. Added self-improving calibration (in-play EMA on tap residuals, converges ~12 taps, tested) + rect-based scale-proof touch mapping. Better preview host: raw.githack.com (serves HTML intact). Real fix = merge PR #70 to go live on dubaiai.pro/irondome/. 26/26 tests.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 06:30 UTC
 - **When:** 2026-06-11 06:15 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
 - **Last commit:** 1da9d33 Promo: generated takes v1 URLs + QC bar — 27 seconds ago
@@ -227,13 +198,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 - **When:** 2026-06-11 05:55 UTC
 - **When:** 2026-06-11 05:48 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 49df04d MIKLAT GAMES master design prompt (permanent copy) — 61 seconds ago
-- **When:** 2026-06-11 05:21 UTC
-- **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 11db039 chore: refresh nucleus live state [skip ci] — 69 seconds ago
+- **Last commit:** cb1e13f Art asset index: public URLs for all surfaces (Claude Design etc.) — 1 second ago
 
 **Working tree:**
 ```
+✓ clean — nothing uncommitted
 M .claude/nucleus/NUCLEUS.md
 ```
 
@@ -247,6 +216,11 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+cb1e13f Art asset index: public URLs for all surfaces (Claude Design etc.) (1 second ago)
+7cb666c chore: refresh nucleus live state [skip ci] (51 seconds ago)
+db2a387 Promo: final edit kit URLs post-QC (71 seconds ago)
+7c7a020 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+f951de1 chore: refresh nucleus live state [skip ci] (6 minutes ago)
 1da9d33 Promo: generated takes v1 URLs + QC bar (27 seconds ago)
 fa99097 chore: refresh nucleus live state [skip ci] (6 minutes ago)
 caf9111 Promo production: pre-composited 9:16 generation frames (5 shots) (10 minutes ago)

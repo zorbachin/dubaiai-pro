@@ -187,3 +187,14 @@ QC bar (per the 10M-club plan): watch each at 1x AND 0.25x — any extra/backwar
 limb, melting face, warping door edge, savta drift/duplication, or spontaneous
 text = thumbs-down → regenerate (max 3, then static fallback). Discard the
 clips' native audio in the edit; the game's siren is the score.
+<<<<<<< HEAD
+
+### ✅ FINAL EDIT KIT (post-QC keepers)
+1. Alert (4s): hf_20260611_060752_da9514ab...mp4 (table above)
+2. Slide-under-dove + leap-over-savta (6s): https://d8j0ntlcm91z4.cloudfront.net/user_3C0rlhNLQ6y6WKswf6tgXWP78Pv/hf_20260611_062353_726bf512-10da-47d9-9b4e-5adb32c90413.mp4 — pending Zorba QC
+3. Full door entry, vanishes inside (5s): https://d8j0ntlcm91z4.cloudfront.net/user_3C0rlhNLQ6y6WKswf6tgXWP78Pv/hf_20260611_061929_8c3c5da3-f8cd-4c5f-930f-e51868c5d2a7.mp4
+4. Door closes to sliver (4s): hf_20260611_060850_34e1ba01...mp4 (table above)
++ POST beats per cut sheet: 🤌 nu-shake still, SHOE thunk near-still, boom flash, title card.
+Audio rule confirmed by QC: discard ALL native clip audio (gibberish speech) — game siren + SFX only.
+=======
+>>>>>>> origin/main
