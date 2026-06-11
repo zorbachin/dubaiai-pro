@@ -76,7 +76,8 @@
   <div class="logo" style="font-size:clamp(30px,8vw,44px);">PAUSED</div>
   <div class="tag" style="margin-bottom:4px;">The siren waits for no one. But okay, breathe.</div>
   <div class="keyrow"><span class="ic"><span class="ring gold">👵</span></span><span><b style="color:var(--gold)">Gold ring</b> = TAP to <b>jump over</b> (street stuff)</span></div>
-  <div class="keyrow"><span class="ic"><span class="ring teal">🕊️</span></span><span><b style="color:var(--teal)">Teal ring</b> = SWIPE ↓ to <b>duck under</b> (flying stuff)</span></div>
+  <div class="keyrow"><span class="ic"><span class="ring teal">🕊️</span></span><span><b style="color:var(--teal)">Teal ring</b> = SWIPE ↓ to <b>duck under</b> (flying stuff — most are jumpable if you time it)</span></div>
+  <div class="keyrow"><span class="ic">🕊️🕊️🕊️</span><span>A <b>flock</b> (stacked, ⬇) = jumping will NOT clear it. <b style="color:var(--teal)">Duck only.</b></span></div>
   <div class="keyrow"><span class="ic">💥</span><span>Any hit: <b style="color:#ff8a8a">−10₪</b> + you stumble back</span></div>
   <div class="keyrow"><span class="ic">🪙</span><span>Coins = <b style="color:var(--gold)">+5₪</b> (combos climb)</span></div>
   <div class="keyrow"><span class="ic">🛴</span><span>Scooter = <b style="color:var(--teal)">hyper-speed</b>, one screen, smash-proof</span></div>
@@ -177,34 +178,27 @@ $('mute').addEventListener('click',e=>{ e.stopPropagation();
    song — reuse without repetition. */
 const Music={
   tracks:{}, el:null,
-  // Jericho Run = home screens · Temple Run Shalom = beach (+a later section
-  // reused for Florentin/Night per "cut them up") · Temple Dash = Old North
-  // AND every marathon "bonus round" (overrides the hood track)
-  HOOD_TRACK:{'GORDON BEACH':'level1','FLORENTIN':'level1b',
-              'THE OLD NORTH':'level3','NIGHT RUN':'level1b'},
+  // One driving track per run (no mid-run hopping): Temple Run Shalom carries
+  // normal waves continuously through door beats; Temple Dash seizes
+  // marathons; Jericho Run owns the menus. Death cam stays silent.
   init(){ if(this.tracks.title) return;        // built on first gesture (autoplay policy)
-    const mk=(file,seek)=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45;
-      if(seek) a.addEventListener('loadedmetadata',
-        ()=>{ if(a.duration) a.currentTime=a.duration*seek; },{once:true});
-      return a; };
-    this.tracks.title=mk('title.mp3',0);
-    this.tracks.level1=mk('level1.mp3',0);
-    this.tracks.level1b=mk('level1.mp3',.45); // same song, different section
-    this.tracks.level3=mk('level3.mp3',0);
+    const mk=file=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45; return a; };
+    this.tracks.title=mk('title.mp3');
+    this.tracks.level1=mk('level1.mp3');
+    this.tracks.level3=mk('level3.mp3');
   },
   update(){
     if(!this.tracks.title) return;
     let want;
     if(G.state==='title'||G.state==='dead') want='title';
-    else if(G.state==='deathcam') want=null;   // silence — let the savta land
-    else if(G.state==='paused') want=null;
+    else if(G.state==='deathcam'||G.state==='paused') want=null;
     else if(G.cfg&&G.cfg.marathon) want='level3';
-    else want=this.HOOD_TRACK[THEME().name];
+    else want='level1';
     for(const [n,a] of Object.entries(this.tracks)){
       const on=Sound.on&&n===want;
       a.volume=G.sirenOn?.16:.45;              // duck under the wail
       if(on&&a.paused) a.play().catch(()=>{});
-      else if(!on&&!a.paused) a.pause();       // resumes here next visit
+      else if(!on&&!a.paused) a.pause();       // resumes here next time
     }
     this.el=want?this.tracks[want]:null;
   },
@@ -376,7 +370,7 @@ function startWave(){
   G.prog=0; G.goal=c.goal; G.obs=[]; G.picks=[]; G.pows=[]; G.rockets=[];
   G.scoots=[]; G.scootDist=0; G.nextScoot=c.goal*wrandC(.3,.62);
   clearTimeout(G.deathTimer);
-  G.nextOb=(G.tutorial&&!G.daily)?420:520; G.nextCoin=750;   // dailies: identical spacing for everyone
+  G.nextOb=(G.tutorial&&!G.daily)?420:520; G.nextCoin=750; G.obCount=0;   // dailies: identical spacing for everyone
   if(G.daily){
     WRo=mulberry32(G.daily*2654435761+G.wave*97);
     WRc=mulberry32(G.daily*1779033703+G.wave*101);
@@ -654,9 +648,14 @@ function update(dt){
   G.prog+=v*dt; G.dist+=v*dt;
   // spawn obstacles by distance (runway stays clear before the door)
   if(G.goal-G.prog>700&&G.prog>=G.nextOb){
-    const air=WRo()<c.airP+(u*.12);
+    G.obCount++;
+    let air=WRo()<c.airP+(u*.12), must=false;
+    // the flock: a wall of flyers jumping can't clear — duck is the only way.
+    // Guaranteed once mid-wave (+ once more on marathons), rare extras (hard).
+    if(G.obCount===4||(c.marathon&&G.obCount===11)){ air=true; must=true; }
+    else if(air&&WRo()<(G.diff==='hard'?.12:.05)) must=true;
     const T=THEME(), set=air?T.air:T.ground;
-    G.obs.push({x:W+90,air,emoji:set[wirandO(0,set.length-1)],
+    G.obs.push({x:W+90,air,must,emoji:set[wirandO(0,set.length-1)],
       label:G.tutorial&&G.obs.length<2?(air?'SWIPE ↓':'TAP!'):null});
     // post-wave-8 combos: a second, opposite-type obstacle right behind
     if(c.pairP&&WRo()<c.pairP){
@@ -728,7 +727,7 @@ function update(dt){
   // collisions (⭐ makes you untouchable)
   else if(G.invuln<=0) for(const o of G.obs){
     if(Math.abs(o.x-px)>30) continue;
-    const hit=o.air?(!ducking&&p.y<52):(p.y<44);
+    const hit=o.air?(!ducking&&p.y<(o.must?118:52)):(p.y<44);  // flocks out-jump you
     if(hit){
       G.hits++; G.stumble=.5; G.invuln=.9;
       G.prog=Math.max(0,G.prog-Math.min(260,140+G.wave*6)*(c.marathon?1.25:1));  // hits hurt more, later
@@ -863,6 +862,18 @@ function draw(){
   // obstacles: shadow + colored telegraph ring (gold=jump, teal=duck)
   for(const o of G.obs){
     const oy=o.air?groundY-86:groundY-26;
+    if(o.must){
+      // the flock: a vertical wall of flyers — duck is the only way under
+      cx.fillStyle='rgba(0,0,0,.3)';
+      cx.beginPath();cx.ellipse(o.x,groundY+8,16,5,0,0,7);cx.fill();
+      cx.strokeStyle=`rgba(126,232,199,${.65+.3*Math.sin(G.t*6)})`;cx.lineWidth=3;
+      cx.beginPath();
+      if(cx.roundRect) cx.roundRect(o.x-32,oy-122,64,166,32); else cx.rect(o.x-32,oy-122,64,166);
+      cx.stroke();
+      for(let f2=0;f2<3;f2++) drawEmoji(o.emoji,o.x,oy-f2*46,38);
+      drawEmoji('⬇️',o.x,oy-142,20);
+      continue;
+    }
     cx.fillStyle='rgba(0,0,0,.3)';
     cx.beginPath();cx.ellipse(o.x,groundY+8,o.air?14:20,5,0,0,7);cx.fill();
     cx.strokeStyle=o.air?'rgba(126,232,199,.8)':'rgba(255,209,102,.8)';
