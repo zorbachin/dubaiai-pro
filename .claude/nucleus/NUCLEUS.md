@@ -185,9 +185,9 @@ Art direction decided on ChatGPT image passes: RETRO pass -> share card (readabl
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 07:40 UTC
+- **When:** 2026-06-11 07:47 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 65e6b87 chore: refresh nucleus live state [skip ci] — 24 seconds ago
+- **Last commit:** 20c55e4 chore: refresh nucleus live state [skip ci] — 6 minutes ago
 
 **Working tree:**
 ```
@@ -196,11 +196,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-65e6b87 chore: refresh nucleus live state [skip ci] (24 seconds ago)
-b4cce8d fix: restore clean v20 game files (conflict markers from squash-artifact merge) (77 seconds ago)
-e85b7f3 Merge origin/main (keep v20) (2 minutes ago)
-f9a4a70 v20: the levels finally LOOK like the art — 10 city worlds from the retro panoramas (2 minutes ago)
-d8a5fac MAMAD DASH: pause/key/home, hit costs, scooter, difficulty modes (#95) (7 minutes ago)
+20c55e4 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+65e6b87 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+b4cce8d fix: restore clean v20 game files (conflict markers from squash-artifact merge) (7 minutes ago)
+e85b7f3 Merge origin/main (keep v20) (8 minutes ago)
+f9a4a70 v20: the levels finally LOOK like the art — 10 city worlds from the retro panoramas (9 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
