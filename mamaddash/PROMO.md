@@ -171,3 +171,19 @@ Higgsfield library), plus 2-3 phone screen-recordings of actual gameplay
 | 25-30s | og card / title art + URL text overlay | "Free. No app. One thumb. Your excuse just expired." |
 
 Export 9:16 1080x1920 for TikTok/Reels/Shorts; the 16:9 clip doubles for X/YouTube.
+
+### 🎞️ GENERATED TAKES v1 (2026-06-11) — pending Zorba QC
+| Shot | URL |
+|---|---|
+| GEN-1 Alert (4s) | https://d8j0ntlcm91z4.cloudfront.net/user_3C0rlhNLQ6y6WKswf6tgXWP78Pv/hf_20260611_060752_da9514ab-8667-4399-9b4d-b43a4b31abdb.mp4 |
+| GEN-2 Sprint (5s) | https://d8j0ntlcm91z4.cloudfront.net/user_3C0rlhNLQ6y6WKswf6tgXWP78Pv/hf_20260611_060807_8ba199b2-3057-48e3-a56c-29b329227f83.mp4 |
+| GEN-3 Near-collision (4s) | https://d8j0ntlcm91z4.cloudfront.net/user_3C0rlhNLQ6y6WKswf6tgXWP78Pv/hf_20260611_060821_accbdf36-b454-4dd0-aa32-3d99db5d7edb.mp4 |
+| GEN-4 Dash to door (5s) | https://d8j0ntlcm91z4.cloudfront.net/user_3C0rlhNLQ6y6WKswf6tgXWP78Pv/hf_20260611_060838_f28813c5-a79f-43e6-bd71-35b0c691f1d9.mp4 |
+| GEN-5 Door closes (4s) | https://d8j0ntlcm91z4.cloudfront.net/user_3C0rlhNLQ6y6WKswf6tgXWP78Pv/hf_20260611_060850_34e1ba01-3816-42bb-a5d2-fc4e62215c27.mp4 |
+| Bonus: beach hero 16:9 (10s) | https://d8j0ntlcm91z4.cloudfront.net/user_3C0rlhNLQ6y6WKswf6tgXWP78Pv/hf_20260611_051016_abc659e9-29ca-4d5f-9a9f-792cfb77dfdc.mp4 |
+| Night keyart 9:16 (10s, earlier) | https://d8j0ntlcm91z4.cloudfront.net/user_3C0rlhNLQ6y6WKswf6tgXWP78Pv/hf_20260611_050950_a3bd2a87-f66a-492f-a7e8-b52d271b7fe0.mp4 |
+
+QC bar (per the 10M-club plan): watch each at 1x AND 0.25x — any extra/backwards
+limb, melting face, warping door edge, savta drift/duplication, or spontaneous
+text = thumbs-down → regenerate (max 3, then static fallback). Discard the
+clips' native audio in the edit; the game's siren is the score.

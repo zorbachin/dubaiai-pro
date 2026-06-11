@@ -46,6 +46,11 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 06:14 UTC · code
+PROMO SHOOT v1 COMPLETE: all 5 narrative shots rendered per 10M-club plan (alert/sprint/near-collision/dash-to-door/door-closes) + 2 earlier hero clips. URLs + QC bar in PROMO.md. ~110 credits used, ~850 left. Awaiting Zorba's eyeball QC (sandbox can't watch video); regen budget 3/clip then static fallback. Composited beats (leap whip, nu-shake, SHOE thunk, boom, title) are post-work in any editor per the cut sheet.
+
+### 2026-06-11 06:02 UTC · code
+SOUNDTRACK SHIPPED (PR #88 merged): Jericho Run=title/death panel, Temple Run Shalom=beach + 45%-offset section for Florentin/Night, Temple Dash=Old North + ALL marathons. Death cam silent. Note: 'level 2' upload was byte-dupe of level 1 — awaiting a distinct song. 10M-club production plan delivered for promo video: 5 generated clips + 4 composited beats, shoe gag = composited near-still + sound design (RED-rated for generation), every clip needs pre-composited start/end frames from sprites; QC bar = any artifact at 1x → regenerate, max 3 tries then static fallback. Next: build composite frames, run generations, Zorba eyeballs clips (sandbox can't watch video).
 ### 2026-06-11 06:13 UTC · code
 🎨 ART ASSET MANIFEST for any Claude surface (Design/Cowork): ALL Iron Dome art is in repo zorbachin/dubaiai-pro on main, publicly fetchable via https://raw.githubusercontent.com/zorbachin/dubaiai-pro/main/ + path. FULL-RES RETRO ORIGINALS (no text, master art): content-assets/irondome-promo/art/{retro-wide-clean.png (1672x941 hero), retro-press-hero.png (1717x916 maximal panorama), retro-square-panorama.png (1254sq), retro-falafel.png (1254sq), retro-wide-alt.png}. PRODUCTION CARDS (typography burned in): content-assets/irondome-promo/{share-card.jpg 1200x630, story-1080x1920.png, square-1080.png, meme-knesset-1080.png, press-hero-titled-1920x1080.png} + gameplay screenshots. IN-GAME: irondome/{share-card.jpg, menu-bg.jpg, icon-192/512.png}. NOTE: the 16 per-level world backgrounds DO NOT EXIST AS FILES anywhere — they were chat previews only; Zorba must upload them (re-download from ChatGPT) before any surface can use them.
 
@@ -210,6 +215,9 @@ Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.gi
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 06:15 UTC
+- **Branch:** `claude/mamad-dash-location-0mmse2`
+- **Last commit:** 1da9d33 Promo: generated takes v1 URLs + QC bar — 27 seconds ago
 - **When:** 2026-06-11 06:13 UTC
 
 - **When:** 2026-06-11 05:52 UTC
@@ -231,12 +239,19 @@ M .claude/nucleus/NUCLEUS.md
 
 **Uncommitted changes:**
 ```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 .claude/nucleus/NUCLEUS.md | 18 +++++++++---------
  1 file changed, 9 insertions(+), 9 deletions(-)
 ```
 
 **Recent commits:**
 ```
+1da9d33 Promo: generated takes v1 URLs + QC bar (27 seconds ago)
+fa99097 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+caf9111 Promo production: pre-composited 9:16 generation frames (5 shots) (10 minutes ago)
+01c19ab chore: refresh nucleus live state [skip ci] (13 minutes ago)
+d916205 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (14 minutes ago)
 11db039 chore: refresh nucleus live state [skip ci] (69 seconds ago)
 e0f8626 chore: refresh nucleus live state [skip ci] (6 minutes ago)
 e3fe306 chore: refresh nucleus live state [skip ci] (6 minutes ago)
