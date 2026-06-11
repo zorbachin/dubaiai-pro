@@ -654,7 +654,7 @@ const Mini = {
       this.speed=q.speed||1;
       act.textContent='START';
       this.newZone();
-      this.cur=0; this.dir=1;
+      this.cur=0; this.dir=1; this.trail=[];
       this.renderBar();
     } else if(this.mode==='mash'){
       $('mashWrap').style.display='block';
@@ -684,14 +684,19 @@ const Mini = {
   },
   tick(){
     if(!this.active) return;
+    // time-based, not frame-based — 120Hz screens must not run 2x faster
+    const now=performance.now();
+    const dt=Math.min(.05,(now-(this.lastT||now))/1000); this.lastT=now;
     if((this.mode==='timing'||this.mode==='selfie')&&this.running){
-      this.cur+=this.dir*.013*this.speed;
+      this.cur+=this.dir*.78*this.speed*dt;
       if(this.cur>=1){this.cur=1;this.dir=-1;}
       if(this.cur<=0){this.cur=0;this.dir=1;}
+      this.trail.push([now,this.cur]);
+      while(this.trail.length&&now-this.trail[0][0]>140) this.trail.shift();
       this.renderBar();
     }
     if(this.mode==='mash'&&this.running){
-      this.mash=Math.max(0,this.mash-.045);          // decay
+      this.mash=Math.max(0,this.mash-2.7*dt);        // decay
       $('mashFill').style.width=clamp(this.mash/this.q.goal*100,0,100)+'%';
       const left=this.mashEnd-performance.now();
       $('miniStatus').textContent=`${Math.max(0,(left/1000)).toFixed(1)}s — ${Math.floor(this.mash)}/${this.q.goal}`;
@@ -708,10 +713,14 @@ const Mini = {
         cancelAnimationFrame(this.raf); this.tick(); return;
       }
       const need=this.q.hits;
-      if(this.cur>=this.zone[0]&&this.cur<=this.zone[1]){
+      // judge against the last ~100ms of cursor travel, not just this frame —
+      // touch latency must not turn a visually-perfect tap into a miss
+      const inZone=c=>c>=this.zone[0]&&c<=this.zone[1];
+      const now=performance.now();
+      if(inZone(this.cur)||this.trail.some(s=>now-s[0]<=100&&inZone(s[1]))){
         this.hits++; Sound.blip(1175,.07);
         $('miniStatus').textContent=`✅ ${this.hits}/${need}`;
-        this.newZone(); this.speed*=1.07;
+        this.newZone(); this.speed*=1.07; this.trail=[];
         if(this.hits>=need) this.finish(true);
       } else {
         this.misses++; Sound.bad();
@@ -800,42 +809,43 @@ const RUNNER_SETS={
   oldnorth:  {ground:['👵','🐩','🛴','🪴','🐕'], air:['🕊️','☂️','🥐','👵']},
 };
 const Runner={
-  active:false, prog:0, goal:4400, baseSpeed:330, speed:330,
+  active:false, prog:0, goal:4400, baseSpeed:250, topSpeed:500, speed:250,
   y:0, vy:0, ducking:false, duckIds:new Set(),
-  obs:[], spawnIn:1.2, hits:0, stumble:0, invuln:0, startT:0,
+  obs:[], nextAt:520, total:16, hits:0, stumble:0, invuln:0, startT:0,
   start(){
     this.active=true; this.prog=0; this.speed=this.baseSpeed;
     this.y=0; this.vy=0; this.ducking=false; this.duckIds.clear();
-    this.obs=[]; this.spawnIn=1.2; this.hits=0; this.stumble=0; this.invuln=0;
-    this.startT=G.t;
+    this.obs=[]; this.nextAt=520; this.hits=0; this.stumble=0; this.invuln=0;
+    this.startT=G.t; this.total=Math.max(1,G.siren.deadline-G.t);
     G.state='runner';
     $('stick').style.display='none'; $('actBtn').style.display='none';
     $('questHint').style.display='none';
   },
   jump(){ if(this.active&&this.y<=0&&this.stumble<=0){ this.vy=640; Sound.blip(740,.08); } },
   update(dt){
+    if(!G.siren){ this.end(false); return; }
     const left=G.siren.deadline-G.t;
+    // urgency: 0 when the siren just hit, 1 as the countdown reaches 0
+    const u=clamp(1-left/this.total,0,1);
     $('sirenTime').textContent=`MAMAD! ${Math.ceil(Math.max(0,left))}s`;
     this.ducking = this.y<=0 && (keys['arrowdown']||keys['s']||this.duckIds.size>0);
     // physics (y = height above ground)
     this.y+=this.vy*dt;
     if(this.y>0) this.vy-=1900*dt;
     else { this.y=0; this.vy=Math.max(0,this.vy); }
-    // speed builds, stumbles cut it
+    // calm start, frantic finish: speed climbs with the countdown
     if(this.stumble>0) this.stumble-=dt;
-    else this.speed=Math.min(this.speed+16*dt,470);
+    this.speed=this.baseSpeed+(this.topSpeed-this.baseSpeed)*u;
     const v=this.stumble>0 ? this.speed*.45 : this.speed;
     this.prog+=v*dt;
     if(this.invuln>0) this.invuln-=dt;
-    // spawn obstacles (clear runway before the door)
-    if(this.goal-this.prog>900){
-      this.spawnIn-=dt;
-      if(this.spawnIn<=0){
-        const air=Math.random()<.42;
-        const set=RUNNER_SETS[G.level];
-        this.obs.push({x:VW+80, air, emoji:(air?set.air:set.ground)[irand(0,3)], wob:rand(0,6)});
-        this.spawnIn=rand(.55,1.05)*(this.baseSpeed/this.speed);
-      }
+    // spawn by distance run, denser + more airborne as urgency rises
+    // (clear runway before the door)
+    if(this.goal-this.prog>900 && this.prog>=this.nextAt){
+      const air=Math.random()<.22+.3*u;
+      const set=RUNNER_SETS[G.level];
+      this.obs.push({x:VW+80, air, emoji:(air?set.air:set.ground)[irand(0,3)], wob:rand(0,6)});
+      this.nextAt=this.prog+Math.max(215,rand(300,520)*(1-.45*u));
     }
     for(const o of this.obs) o.x-=v*dt;
     this.obs=this.obs.filter(o=>o.x>-80);
@@ -845,7 +855,7 @@ const Runner={
       const hit = o.air ? !this.ducking : this.y<42;
       if(hit){
         this.hits++; this.stumble=.55; this.invuln=.9;
-        this.speed=this.baseSpeed; this.prog=Math.max(0,this.prog-180);
+        this.prog=Math.max(0,this.prog-180);
         Sound.bad(); if(navigator.vibrate) navigator.vibrate(120);
         $('shakeWrap').classList.add('shake');
         setTimeout(()=>$('shakeWrap').classList.remove('shake'),350);
