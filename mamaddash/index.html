@@ -498,6 +498,8 @@ window.addEventListener('mousedown',e=>{
   primary();
 });
 window.addEventListener('contextmenu',e=>{ e.preventDefault(); });
+if ('serviceWorker' in navigator)
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 /* arcade link must not start a run: swallow the tap */
 try{ const ab=document.getElementById('arcadeBack');
   ['pointerdown','touchstart','mousedown','click'].forEach(ev=>ab.addEventListener(ev,e=>{ e.stopPropagation(); },true));
