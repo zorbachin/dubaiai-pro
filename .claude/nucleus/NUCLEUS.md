@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 03:53 UTC · code
+DESIGN STEER (Zorba): waves feel too short/quick — wants Temple Run flow: long continuous runs that 'really keep going', deaths that take time and investment to arrive, not 10-second chunks. Reconvening full board for all-aspects assessment of the post-art build before tuning.
+
 ### 2026-06-11 03:39 UTC · code
 FULL ART PASS COMPLETE: all 4 hand-painted hood backgrounds in-game with parallax, hand-drawn mamad door, power-up icon trio (crowned hummus!), runner v2 with duck-slide, title screen key art, new og.jpg (146KB WhatsApp-safe) + app icon. Regression green, zero errors. MAMAD DASH looks like a commercial game. Branch/PR #74 has everything; launch still gated on Porkbun DNS + merge.
 
@@ -162,31 +165,34 @@ VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-publ
 
 ### 2026-06-02 11:05 UTC · chat
 ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back engaged/broke/no job/sublet -> married -> baby coming -> WAR days after wedding -> obsessing over AI in the bomb shelter -> first call, second call -> finally got over the unease of POSTING. MISSION (clearer now): build a business to take back his own time AND give time back to others. NOT to make people AI-obsessed; he likes people who want to grow + use tools well; loves solving problems like he does ON SET. Building LIVE, exposed: 'follow me, make that first call/post yourself.' Voice: plain, confessional, anti-hype, sell the WHY (time/freedom). Masthead recut (title 'The First Call'). Kept Three Two-Minute Time-Savers as closing segment. Substack IS SET UP — ready to paste & publish. Updated voice-guide story assets (house/war now filled).
-
-### 2026-06-02 11:02 UTC · chat
-NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three Two-Minute Time-Savers' (one WORK, one LIFE, one HEALTH; quick/fun; each a copy-paste prompt). Issue 001 written (content-assets/newsletter/ISSUE-001.md): feature 'Buy Back Your Time' + the 3 time-savers (kill the email thread / plan the night out / fridge->meal + 12-min calisthenics workout). Opt-in INVITE drafted (content-assets/newsletter/INVITE.md) — personal invites + warm leads + content-engine growth, NEVER import-and-blast. Masthead billing updated to feature the time-savers segment.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 03:43 UTC
+- **When:** 2026-06-11 03:55 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 11d4a56 chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **Last commit:** 22a1828 chore: refresh nucleus live state [skip ci] — 12 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-11d4a56 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-8b223d6 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-f50ccf1 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-dccef0a Full art pass: hand-painted hoods, door, power-ups, key art, icon (4 minutes ago)
-f2d2d70 chore: refresh nucleus live state [skip ci] (39 minutes ago)
+22a1828 chore: refresh nucleus live state [skip ci] (12 minutes ago)
+11d4a56 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+8b223d6 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+f50ccf1 chore: refresh nucleus live state [skip ci] (15 minutes ago)
+dccef0a Full art pass: hand-painted hoods, door, power-ups, key art, icon (16 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
