@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 07:30 UTC · code
+MIKLAT WALLET CONTRACT (for Mamad Dash session + all future games): shared economy on localStorage key 'miklat.wallet', format {"sh": <int>}, currency ₪ shekels, lore = unemployment money (ביטוח לאומי). Rules: clamp >= 0, try/catch all access, spend = check-then-decrement. Iron Dome v19 implements it (migrated legacy coins, shop spends from it, CONTINUE mechanic costs max(300, 25% of wallet), once per run, never in Daily). Mamad Dash should earn INTO and spend FROM the same key - its 'shekels from unemployment' ARE this wallet.
+
 ### 2026-06-11 06:13 UTC · code
 🎨 ART ASSET MANIFEST for any Claude surface (Design/Cowork): ALL Iron Dome art is in repo zorbachin/dubaiai-pro on main, publicly fetchable via https://raw.githubusercontent.com/zorbachin/dubaiai-pro/main/ + path. FULL-RES RETRO ORIGINALS (no text, master art): content-assets/irondome-promo/art/{retro-wide-clean.png (1672x941 hero), retro-press-hero.png (1717x916 maximal panorama), retro-square-panorama.png (1254sq), retro-falafel.png (1254sq), retro-wide-alt.png}. PRODUCTION CARDS (typography burned in): content-assets/irondome-promo/{share-card.jpg 1200x630, story-1080x1920.png, square-1080.png, meme-knesset-1080.png, press-hero-titled-1920x1080.png} + gameplay screenshots. IN-GAME: irondome/{share-card.jpg, menu-bg.jpg, icon-192/512.png}. NOTE: the 16 per-level world backgrounds DO NOT EXIST AS FILES anywhere — they were chat previews only; Zorba must upload them (re-download from ChatGPT) before any surface can use them.
 
@@ -182,37 +185,15 @@ Iron Dome v11 built: QA round 2 applied (sim-validated loseable difficulty, <4s 
 Iron Dome v10 MERGED (PR #76): visual-viewport canvas (fixes iOS-zoom hiding the city below fold), playfield 15-85% closed at spawn-time too, procedural hypnotic music loop, version badge on menu, SW network-first navigations (self-healing stale caches). QA round 2 running: 2 agents (10M-downloads addiction expert + iPhone-format engineer). KEY HYPOTHESIS for Zorba's reports: he's likely on a stale SW cache (old dubaiai.pro PWA can never self-update — domain dead); badge will prove which build he runs.
 
 
-
-### 2026-06-10 13:29 UTC · code
-Iron Dome core-feel pivot per Zorba: direct-hit tapping (tap ON rocket, tip = DIRECT HIT bonus), removed ALL auto-aim/fling/queue, hypnotic steady spawn rhythm, upgrades repurposed (Quick Fuse/City Armor). This IS the shippable mobile loop. 27/27 tests x3.
-
-### 2026-06-10 13:05 UTC · code
-CORRECTION (supersedes earlier mamadio note): do NOT change anything. By design per Zorba — STANDALONE Mamad Dash includes the Tel Aviv exploration; the 2-IN-1 build is just Iron Dome + Dash with NO exploration. This session (iron dome) must not interfere with the mamadio build.
-
-### 2026-06-10 13:03 UTC · code
-FOR MAMADIO SESSION (PR #71): Zorba feedback — 'mamad dash doesn't have the exploration in tel aviv, just the dash game'. He expected the Tel Aviv exploration part, not only the dash mechanic. Route to the mamadio workstream.
-
-### 2026-06-10 13:03 UTC · code
-PR #73 MERGED per Zorba's 'merge': QA batch + analytics + Red Alert endless mode live. CRITICAL DNS ISSUE: dubaiai.pro points at Porkbun parking IPs (44.227.65.245/.76.166) not GitHub Pages -> SSL error, whole domain dead. CNAME removed from repo so site serves at https://zorbachin.github.io/dubaiai-pro/ until DNS fixed. TO RESTORE: fix Porkbun DNS (A @ -> 185.199.108-111.153, CNAME www -> zorbachin.github.io) then re-add CNAME file (content: dubaiai.pro). Zorba steering: arcade style confirmed, 'one shippable optimized mobile Iron Dome version'.
-### 2026-06-10 12:23 UTC · code
-QA panel (4 agents) delivered + all fixes shipped to PR #73 branch: game was UNLOSABLE (blind tapper cleared L10) -> fail state restored w/ sim-tuned assists; Red Alert endless mode added (retention); 3 save-robustness P1s fixed (corrupt save bricked boot); skyline-clone math bug (37.7≈12π); shelter UX (pause mute, shop on loss, kind game-over copy). 26/26 + endless e2e tests.
-
-### 2026-06-10 12:05 UTC · code
-Analytics added to Iron Dome (PR #73 draft): GoatCounter cookieless tracking — visits, plays/session, wins, PWA installs. ACTION FOR ZORBA: claim site code 'irondome' at goatcounter.com (1 min) -> dashboard irondome.goatcounter.com. QA panel: 4 specialist agents (functionality/ease/fun/visual design) testing in background.
-
-### 2026-06-10 11:47 UTC · code
-PR #70 MERGED — Iron Dome is LIVE at https://dubaiai.pro/irondome/ (user approved merge after htmlpreview diagnosis). v6 includes self-improving calibration. Update the durable test-link preference: use the LIVE link from now on. Note: parallel session shipped MAMADIO companion game (PR #71, mamadio/) — merged main into our branch resolving nucleus conflicts as union.
-### 2026-06-10 11:43 UTC · code
-Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.github.io strips meta viewport -> iOS lays out at 980px, city below fold, broken touch geometry. NOT a game bug. Added self-improving calibration (in-play EMA on tap residuals, converges ~12 taps, tested) + rect-based scale-proof touch mapping. Better preview host: raw.githack.com (serves HTML intact). Real fix = merge PR #70 to go live on dubaiai.pro/irondome/. 26/26 tests.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 07:27 UTC
+- **When:** 2026-06-11 07:30 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 82901b6 chore: refresh nucleus live state [skip ci] — 24 minutes ago
+- **Last commit:** 14aec7b v19: the Miklat Wallet — shared shekels across games + CONTINUE mechanic — 1 second ago
 
 **Working tree:**
 ```
@@ -221,11 +202,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-82901b6 chore: refresh nucleus live state [skip ci] (24 minutes ago)
-8142229 chore: refresh nucleus live state [skip ci] (24 minutes ago)
-2f8dc5f chore: refresh nucleus live state [skip ci] (51 minutes ago)
-36db328 chore: refresh nucleus live state [skip ci] (70 minutes ago)
-3ce5138 chore: refresh nucleus live state [skip ci] (72 minutes ago)
+14aec7b v19: the Miklat Wallet — shared shekels across games + CONTINUE mechanic (1 second ago)
+82901b6 chore: refresh nucleus live state [skip ci] (27 minutes ago)
+8142229 chore: refresh nucleus live state [skip ci] (27 minutes ago)
+2f8dc5f chore: refresh nucleus live state [skip ci] (54 minutes ago)
+36db328 chore: refresh nucleus live state [skip ci] (73 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
