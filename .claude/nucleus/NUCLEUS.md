@@ -191,26 +191,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 07:53 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 6b684c2 chore: refresh nucleus live state [skip ci] — 35 seconds ago
+- **Last commit:** 5dbb0c8 chore: refresh nucleus live state [skip ci] — 23 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 19 +++++++------------
- 1 file changed, 7 insertions(+), 12 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-6b684c2 chore: refresh nucleus live state [skip ci] (35 seconds ago)
-947b465 Merge origin/main (ours: irondome, theirs: other teams) (80 seconds ago)
+5dbb0c8 chore: refresh nucleus live state [skip ci] (23 seconds ago)
+6b684c2 chore: refresh nucleus live state [skip ci] (58 seconds ago)
+947b465 Merge origin/main (ours: irondome, theirs: other teams) (2 minutes ago)
 9d532a7 v21: centered worlds + real falafel sprites on collision (2 minutes ago)
 bf028d0 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-20c55e4 chore: refresh nucleus live state [skip ci] (13 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
