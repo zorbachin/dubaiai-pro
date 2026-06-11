@@ -46,6 +46,11 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 05:27 UTC · code
+MIKLAT GAMES PORTAL MERGED (PR #86) in auto mode: bilingual arcade front door live at github.io root (consultancy moved to /dubaiai/), shell-only SW bypassing game paths, challenge passthrough, GoatCounter 'miklatgames'. bin/miklat-flip = one-command domain cutover (CNAME + Iron Dome URL migration + cache bumps) — RUN ONLY AFTER Porkbun DNS set. Board deliverables sent to Zorba: MIKLAT-BLUEPRINT.md (incl. paste-able design prompt) + SHOT-LIST.md (video parked pending his beat approval). ZORBA-ONLY GATES: Porkbun records for miklatgames.fun (A 185.199.108/109/110/111.153 + CNAME www->zorbachin.github.io), claim goatcounter codes 'irondome'+'miklatgames', re-upload the 16 level-art images as files, approve shot list, create WhatsApp Channel.
+
+### 2026-06-11 05:20 UTC · code
+
 ### 2026-06-11 05:55 UTC · code
 MAMAD DASH promo: locked reliability-first production plan — 5 generated clips max, all start frames pre-composited from sprite art, shoe-in-door punchline done as composited near-still + sound design (never generated), title/text composited in post
 
@@ -184,12 +189,24 @@ FOR MAMADIO SESSION (PR #71): Zorba feedback — 'mamad dash doesn't have the ex
 PR #73 MERGED per Zorba's 'merge': QA batch + analytics + Red Alert endless mode live. CRITICAL DNS ISSUE: dubaiai.pro points at Porkbun parking IPs (44.227.65.245/.76.166) not GitHub Pages -> SSL error, whole domain dead. CNAME removed from repo so site serves at https://zorbachin.github.io/dubaiai-pro/ until DNS fixed. TO RESTORE: fix Porkbun DNS (A @ -> 185.199.108-111.153, CNAME www -> zorbachin.github.io) then re-add CNAME file (content: dubaiai.pro). Zorba steering: arcade style confirmed, 'one shippable optimized mobile Iron Dome version'.
 ### 2026-06-10 12:23 UTC · code
 QA panel (4 agents) delivered + all fixes shipped to PR #73 branch: game was UNLOSABLE (blind tapper cleared L10) -> fail state restored w/ sim-tuned assists; Red Alert endless mode added (retention); 3 save-robustness P1s fixed (corrupt save bricked boot); skyline-clone math bug (37.7≈12π); shelter UX (pause mute, shop on loss, kind game-over copy). 26/26 + endless e2e tests.
+
+### 2026-06-10 12:05 UTC · code
+Analytics added to Iron Dome (PR #73 draft): GoatCounter cookieless tracking — visits, plays/session, wins, PWA installs. ACTION FOR ZORBA: claim site code 'irondome' at goatcounter.com (1 min) -> dashboard irondome.goatcounter.com. QA panel: 4 specialist agents (functionality/ease/fun/visual design) testing in background.
+
+### 2026-06-10 11:47 UTC · code
+PR #70 MERGED — Iron Dome is LIVE at https://dubaiai.pro/irondome/ (user approved merge after htmlpreview diagnosis). v6 includes self-improving calibration. Update the durable test-link preference: use the LIVE link from now on. Note: parallel session shipped MAMADIO companion game (PR #71, mamadio/) — merged main into our branch resolving nucleus conflicts as union.
+### 2026-06-10 11:43 UTC · code
+Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.github.io strips meta viewport -> iOS lays out at 980px, city below fold, broken touch geometry. NOT a game bug. Added self-improving calibration (in-play EMA on tap residuals, converges ~12 taps, tested) + rect-based scale-proof touch mapping. Better preview host: raw.githack.com (serves HTML intact). Real fix = merge PR #70 to go live on dubaiai.pro/irondome/. 26/26 tests.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 05:52 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** cb7432d chore: refresh nucleus live state [skip ci] — 25 minutes ago
+
 - **When:** 2026-06-11 05:55 UTC
 - **When:** 2026-06-11 05:48 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
@@ -218,6 +235,12 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+cb7432d chore: refresh nucleus live state [skip ci] (25 minutes ago)
+1e4afc5 Merge origin/main (keep portal) (27 minutes ago)
+46cf169 Miklat Games portal: miklatgames.fun front door for all the games (28 minutes ago)
+8bd786f MAMAD DASH: full game + art + pacing v2 + promo pack + MIKLAT arcade package (#74) (30 minutes ago)
+030e3da chore: refresh nucleus live state [skip ci] (32 minutes ago)
+
 01c3dd9 chore: refresh nucleus live state [skip ci] (33 seconds ago)
 8f2c61f chore: refresh nucleus live state [skip ci] (63 seconds ago)
 662e4ba chore: refresh nucleus live state [skip ci] (5 minutes ago)

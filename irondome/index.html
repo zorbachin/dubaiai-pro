@@ -278,7 +278,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v17';
+const GAME_VERSION = 'v18';
 const INBOUND = new URLSearchParams(location.search);
 const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
@@ -609,8 +609,66 @@ function musicTick(){
   const next = Math.max(150, 220 - (G ? G.levelIdx * 5 + Math.min(12, G.combo) * 3 : 0)) / (G && G.bonus ? 2 : 1);
   musTO = setTimeout(musicTick, next);
 }
-function musicStart(){ if (!musTO) musicTick(); }
-function musicStop(){ if (musTO){ clearTimeout(musTO); musTO = null; } }
+/* per-level soundtrack: real tracks where they exist, procedural synth
+   everywhere else. More tracks drop in as one-line edits. */
+/* three tracks score the whole game (per Zorba: reuse, no need for ten):
+   they rotate 1-2-3 across the campaign, the finale and Red Alert get the
+   hottest one, the Daily gets track 2, bonus keeps the synth fiesta */
+const LEVEL_TRACKS = ['level1.mp3', 'level2.mp3', 'level3.mp3']
+  .reduce((m, f, i) => { for (let l = i; l < 10; l += 3) m[l] = f; return m; }, {});
+LEVEL_TRACKS[9] = 'level3.mp3';
+let trackAudio = null, trackSrc = '';
+function playTrack(src){
+  try{
+    if (trackSrc !== src){
+      stopTrack();
+      trackAudio = new Audio(src);
+      trackAudio.loop = true; trackAudio.volume = 0.5;
+      trackSrc = src;
+    }
+    const p = trackAudio.play();
+    if (p && p.catch) p.catch(() => {});
+  }catch(e){}
+}
+function stopTrack(){ try{ if (trackAudio) trackAudio.pause(); }catch(e){} }
+function musicStart(){
+  let f = null;
+  if (G && !G.bonus){                       // bonus rounds keep the synth fiesta
+    if (G.endless) f = 'level3.mp3';        // Red Alert rides the hottest track
+    else if (G.daily) f = 'level2.mp3';
+    else f = LEVEL_TRACKS[G.levelIdx];
+  }
+  if (f){ if (save.sound) playTrack(f); return; }
+  if (!musTO) musicTick();
+}
+function musicStop(){
+  if (musTO){ clearTimeout(musTO); musTO = null; }
+  stopTrack();
+}
+
+/* menu soundtrack (home_screen.mp3): loops on the menu, yields to the
+   gameplay synth in-game. iOS forbids autoplay — first tap unlocks it. */
+let menuMusic = null, menuMusicWanted = false;
+try{
+  menuMusic = new Audio('home_screen.mp3');
+  menuMusic.loop = true; menuMusic.volume = 0.55; menuMusic.preload = 'auto';
+}catch(e){}
+function menuMusicUpdate(){
+  if (!menuMusic) return;
+  const want = save.sound && screen === 'menu' && !document.hidden;
+  try{
+    if (want){
+      const p = menuMusic.play();
+      if (p && p.catch) p.catch(() => { menuMusicWanted = true; });
+    } else menuMusic.pause();
+  }catch(e){}
+}
+document.addEventListener('pointerdown', () => {
+  if (menuMusicWanted && save.sound && screen === 'menu'){
+    menuMusicWanted = false;
+    try{ const p = menuMusic.play(); if (p && p.catch) p.catch(() => {}); }catch(e){}
+  }
+});
 
 /* ---------- game state ---------- */
 let G = null;             // live level state
@@ -1646,6 +1704,7 @@ function show(name){
               scrEnd:'end', scrOver:'over', scrWin:'win' })[name] || 'play';
   if (name === 'play'){ $('hud').style.display = 'flex'; $('btnSling').style.display = ''; musicStart(); }
   else { if (name) $(name).classList.add('show'); $('btnSling').style.display = 'none'; musicStop(); }
+  menuMusicUpdate();
 }
 
 let introTO = null;
@@ -2043,6 +2102,7 @@ function syncSound(){
 }
 $('btnSound').onclick = $('btnSound2').onclick = () => {
   save.sound = !save.sound; persist(); syncSound();
+  menuMusicUpdate();
   if (save.sound) sfx.click();
 };
 
@@ -2050,6 +2110,7 @@ $('btnSound').onclick = $('btnSound2').onclick = () => {
 document.addEventListener('visibilitychange', () => {
   if (document.hidden && screen === 'play') show('scrPause');
   if (!document.hidden && AC) try{ AC.resume(); }catch(e){}   // iOS 'interrupted' recovery
+  menuMusicUpdate();
 });
 
 /* ---------- boot ---------- */
