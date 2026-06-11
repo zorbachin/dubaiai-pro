@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 19:52 UTC · code
+NIGHT SHIFT COMPLETE: (1) 10M panels x3 games — verdicts in each PANEL-VERDICT.md; 11 prescribed fixes applied+syntax-verified (incl. panel-caught tip-jar tap bug, ID save crash, SS restart race + 6s difficulty saturation). Ship calls: ID+SS itch today, MD ship, CrazyGames needs portal build. (2) War Room launch console at academy/war-room.html — all gates/links/prompt packs/pitch. (3) Zorba Campus: 5 courses from 30-day audit via new bin/coursegen. (4) Morning brief drafted in Gmail. (5) T020-T025 queued. Zorba's 2h: keys session -> art packs -> portals -> WhatsApp+press
+
 ### 2026-06-11 18:49 UTC · code
 Night shift delivered: (1) MIKLAT ACADEMY at miklatgames/academy/ — 7-level gamified 10M-download playbook, every number researched+sourced (8 fact sheets in .claude/os/research/). Core teachings: distribution>product (Wordle), own-domain ads beat portal revshare ~8x, Ko-fi 0% for tips, tribe support is quantified (+67% label effect, $1B bonds) but needs label/1-click/badge, WhatsApp=98% IL rail, JTA wire effect, 906 schools+850 Hillels pipe, Hanukkah blitz. (2) GAME-FACTORY.md 7-stage pipeline codified + full backfill: MD events, SS og, dormant tip jars all surfaces, press specs + WORLD.md for ID+MD. Zorba blockers: Ko-fi account, fresh Gemini key (new project), then portal submissions
 
@@ -188,18 +191,15 @@ OVERNIGHT DIRECTIVE (Zorba): work through the night with advisor panels to get M
 
 ### 2026-06-10 18:55 UTC · code
 Iteration 1 (feel patch) SHIPPED to PR #74: touchstart jump (-100ms latency), landing buffer, fast-fall, hit-stop, camera dip+speed zoom, coin fly+combo pitch, star smash-through, celebration trio fixed (confetti above overlay, cleared on wave start, door flash wired), ghost invuln, ragdoll floor, audio bus+heartbeat pulse. All assertions green. Next per roadmap: It2 Challenge Card + og:image + analytics (awaiting GoatCounter/GA account from Zorba), It3 difficulty+revive+daily. Art prompts handed to Zorba for ChatGPT.
-
-### 2026-06-10 18:28 UTC · code
-10M panel complete (retention/growth/feel). Verdict: core is real (60s sessions, 92-100% wave-1 survival, deaths cluster at the door) but 3 gaps to viral: (1) FEEL — jump fires on touchend costing ~100ms (the 'browser game vs game' gap), no hit-stop, celebration confetti bugged behind overlay; (2) GROWTH — share is naked text, no og:image, no challenge loop; Challenge Card (canvas image + ?beat= URL) is THE build; (3) RETENTION — mid-skill players are immortal (no skill ceiling), coins have no sink. Roadmap: It1 feel patch -> It2 challenge card+og:image+analytics -> It3 difficulty+revive+daily seed. Death cam already shipped mid-panel. Awaiting Zorba: GoatCounter account, mamaddash.com domain decision, art-pass go.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 18:49 UTC
+- **When:** 2026-06-11 19:52 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 7285b68 nucleus: overnight mandate — academy course + game factory pipeline audit — 17 minutes ago
+- **Last commit:** b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing — 8 minutes ago
 
 **Working tree:**
 ```
@@ -208,11 +208,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-7285b68 nucleus: overnight mandate — academy course + game factory pipeline audit (17 minutes ago)
-9dcf5a2 nucleus: gameplay-art pipeline milestone + Gemini key blocker (58 minutes ago)
-4169756 nucleus: Shuk Shopper world milestone — real-shuk districts (HaCarmel/Levinsky/Mahane Yehuda) (69 minutes ago)
-e0a4978 nucleus: capture image-gen tooling preference (free Gemini, batched) + Shuk Shopper press pack milestone (75 minutes ago)
-3d6f138 MG org: dedicated commercialization CEO to 10K users + full-time PM per game running its 10M advisor panel (89 minutes ago)
+b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing (8 minutes ago)
+1d9f072 ZORBA CAMPUS: 5 personalized courses from the 30-day audit + campus hub + audit summary (9 minutes ago)
+3168692 coursegen: Academy course factory — course JSON in, self-contained XP-engine HTML out (20 minutes ago)
+e533bdb nucleus: night shift — academy shipped, factory pipeline codified + backfilled (63 minutes ago)
+7285b68 nucleus: overnight mandate — academy course + game factory pipeline audit (80 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
