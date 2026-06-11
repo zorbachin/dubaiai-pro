@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 20:35 UTC · code
+DURABLE RULE per Zorba: ENGLISH-FIRST defaults across game + portal (v26 shipped overnight) — default lang en, og cards English-led w/ Hebrew second, portal auto-detect removed. Saved user preferences win. He's asleep; merged autonomously per standing auto-mode.
+
 ### 2026-06-11 09:53 UTC · code
 🚀 THE FLIP IS DONE (PR #101 merged): miklatgames.fun is THE address. CNAME committed, every burned-in URL migrated (og cards, share/challenge links, footer, promo pack, sibling docs), v25/SW v25 cache-bust. Old github.io links 301-redirect — nothing breaks. WhatsApp cache virgin on new domain. DURABLE: all future materials use miklatgames.fun. Remaining Zorba gates: GoatCounter claims (irondome + miklatgames), shot-list approval, WhatsApp preview test, then SEEDING per the 7-day plan.
 
@@ -176,24 +179,15 @@ DNS BROKEN: dubaiai.pro resolves to 44.227.76.166 / 44.227.65.245 (registrar par
 
 ### 2026-06-10 12:15 UTC · code
 MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimous SHIP WITH FIXES, zero JS errors, economy math verified exact. P0 fixes: mobile dash HUD hidden by alert banner; latent siren-null game-freeze; mini-games have no cancel. Big balance finds: Mendy 2.4x dominant, haggle deterministic, scooters dead content, quest income dries up with 80% of day left, runner stumble death-spiral. Top virality lever = end-screen share card. Full reports in /tmp/qa-func|qa-ux|qa-fun|qa-design.
-
-### 2026-06-10 11:47 UTC · code
-MAMADIO headless playtest passed: full flow (title→char→level→play→forced siren→MAMAD DASH runner with jump) renders and runs with zero console errors via Playwright/Chromium. Screenshots delivered to Zorba. Open loop 'browser playtest before merge' effectively closed pending Zorba's hands-on check at dubaiai.pro/mamadio/.
-### 2026-06-11 03:22 UTC · code
-Direction shift: game world goes FULL ART. Zorba wants in-game levels to look like the marketing (his screenshot showed the procedural flat-vector vs the rich pixel art). Image pack #3 emailed: 10 per-city level backgrounds (9:16, SKY RULE: upper 60% near-empty navy so rockets stay readable, bottom 20% clear for gameplay buildings, honeycomb dome baked in) + optional Red Alert bg. Integration plan on arrival: art = backdrop layer per level, restyle foreground tappable buildings pixel-chunky, ~150-200KB/img, SW-cached, game stays <2.5MB offline-capable. Pack #2 (icon/portrait/badge/victory) also still pending.
-
-
-
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 20:31 UTC
+- **When:** 2026-06-11 20:35 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 902605a chore: refresh nucleus live state [skip ci] — 11 hours ago
+- **Last commit:** 59d455b v26: English-first defaults — game and portal open in English — 1 second ago
 
 **Working tree:**
 ```
@@ -202,11 +196,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
+59d455b v26: English-first defaults — game and portal open in English (1 second ago)
 902605a chore: refresh nucleus live state [skip ci] (11 hours ago)
 3025d0d chore: refresh nucleus live state [skip ci] (11 hours ago)
 5d3b646 chore: refresh nucleus live state [skip ci] (11 hours ago)
 00a670e Merge origin/main (keep flip) (11 hours ago)
-766744f 🚀 THE FLIP: miklatgames.fun goes live (11 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
