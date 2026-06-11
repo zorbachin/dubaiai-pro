@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 03:22 UTC · code
+Direction shift: game world goes FULL ART. Zorba wants in-game levels to look like the marketing (his screenshot showed the procedural flat-vector vs the rich pixel art). Image pack #3 emailed: 10 per-city level backgrounds (9:16, SKY RULE: upper 60% near-empty navy so rockets stay readable, bottom 20% clear for gameplay buildings, honeycomb dome baked in) + optional Red Alert bg. Integration plan on arrival: art = backdrop layer per level, restyle foreground tappable buildings pixel-chunky, ~150-200KB/img, SW-cached, game stays <2.5MB offline-capable. Pack #2 (icon/portrait/badge/victory) also still pending.
+
 ### 2026-06-11 03:14 UTC · code
 v16 MERGED (PR #84): key art now IN the game, not just promo — retro art = menu background (SW-precached), honeycomb dome arc drawn into live gameplay sky over every city (render-verified). Clarified for Zorba: promo art vs game art were separate; now unified. Game visuals remain procedural (per-city scenes, rockets) with the art as menu+brand-dome layer.
 
@@ -178,33 +181,34 @@ ISSUE 001 = full real origin (Zorba's own words, polished, no em-dashes, cinemat
 
 ### 2026-06-02 11:28 UTC · chat
 ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more human (use commas/periods/parentheses). Durable voice rule. (2) Corrected timeline: OBSESSION came BEFORE the business. During the war his YouTube feed flipped (no news, only AI builds) -> got obsessed -> started PAYING for subscriptions to test them himself, figuring 'if it lands one job it's worth it.' Baby found out MIDWAY through the war while deep in AI, not knowing what to do -> that 'changed the math' -> first call -> second -> hardest part = posting. (3) Story rewritten present-tense/cinematic (in-the-moment, not safe past tense). (4) DROPPED the Three Time-Savers from the premiere — he 'didn't get the tips'; premiere = pure origin story. Segment returns later reworked. Masthead billing now teases story beats (The Feed That Went Quiet / Midway Through the War / The Mission, Made Plain).
-
-### 2026-06-02 11:07 UTC · chat
-VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-public timeline for Dispatch Issue 002 'How One Site Became a Whole Build'): (1) zorbot.io = his FIRST site, built to try and get work (the digital first call). (2) -> led to a PRODUCT 'bloop' on buildyourbot.io. (3) Riley + selfsellingai evolved from it. (4) a CLOSING TOOL (foxy-close-tool/Instant Proposals) became its own product. Through-line: same instinct each time — find where time leaks, build the fix; mission got clearer = take back your time, give time back to others. NEEDS FROM ZORBA: one-line confirm per beat + the asset to embed (video link + site URL/screenshot) — sites are bot-blocked so Claude can't pull them. Skeleton: content-assets/newsletter/ISSUE-002-chronology.md. NOTE: we 'started this' 2026-06-01 (OS + AUDIT.md + decision log).
-
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 03:19 UTC
+- **When:** 2026-06-11 03:22 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 346c95c chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **Last commit:** b7a0e4d chore: refresh nucleus live state [skip ci] — 3 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 22 ++++++++++------------
+ 1 file changed, 10 insertions(+), 12 deletions(-)
 ```
 
 **Recent commits:**
 ```
-346c95c chore: refresh nucleus live state [skip ci] (4 minutes ago)
-8896876 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-6fa0ba8 Merge origin/main into branch (keep v16 assets) (6 minutes ago)
-605f956 v16: the key art enters the game — menu background + honeycomb brand dome (6 minutes ago)
-75a047a chore: refresh nucleus live state [skip ci] (12 minutes ago)
+b7a0e4d chore: refresh nucleus live state [skip ci] (3 minutes ago)
+346c95c chore: refresh nucleus live state [skip ci] (8 minutes ago)
+8896876 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+6fa0ba8 Merge origin/main into branch (keep v16 assets) (9 minutes ago)
+605f956 v16: the key art enters the game — menu background + honeycomb brand dome (10 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
