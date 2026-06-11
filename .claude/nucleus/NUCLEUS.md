@@ -187,26 +187,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 07:40 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** b4cce8d fix: restore clean v20 game files (conflict markers from squash-artifact merge) — 53 seconds ago
+- **Last commit:** 65e6b87 chore: refresh nucleus live state [skip ci] — 24 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 199 +++------------------------------------------
- 1 file changed, 10 insertions(+), 189 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-b4cce8d fix: restore clean v20 game files (conflict markers from squash-artifact merge) (53 seconds ago)
-e85b7f3 Merge origin/main (keep v20) (84 seconds ago)
+65e6b87 chore: refresh nucleus live state [skip ci] (24 seconds ago)
+b4cce8d fix: restore clean v20 game files (conflict markers from squash-artifact merge) (77 seconds ago)
+e85b7f3 Merge origin/main (keep v20) (2 minutes ago)
 f9a4a70 v20: the levels finally LOOK like the art — 10 city worlds from the retro panoramas (2 minutes ago)
 d8a5fac MAMAD DASH: pause/key/home, hit costs, scooter, difficulty modes (#95) (7 minutes ago)
-968a18e chore: refresh nucleus live state [skip ci] (7 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
