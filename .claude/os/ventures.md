@@ -10,12 +10,24 @@ more inbound, more organization._
 
 ## Priority order (where focus goes first)
 1. **sellsellingai (SSA)** — 💰 the money maker. Top priority.
-2. **buildyourbot.io (BYB)** — strong branding + great site already; leverage it.
-3. **letaidoit (LAI)**
-4. **Minimovies (MM)**
-5. **buddy botz (BB)** — coming soon.
+2. **Miklat Games (MG)** — 🎮 live product, active monetization push.
+3. **buildyourbot.io (BYB)** — strong branding + great site already; leverage it.
+4. **letaidoit (LAI)**
+5. **Minimovies (MM)**
+6. **buddy botz (BB)** — coming soon.
 
 ---
+
+## Miklat Games — `mg` 🎮
+- **Status:** LIVE at miklatgames.fun — arcade shelf with Iron Dome + Mamad
+  Dash (both shippable), Balagan + Fabatollah coming-soon doors, offline PWA,
+  share/challenge loops built in. Own repo: `zorbachin/miklatgames`.
+- **Org:** Claude is **COO/CMO** (Zorba, 2026-06-11) — owns ops, marketing, and
+  monetization. `mg-ceo` → `mg-mktg`, `mg-research`, `mg-product`.
+- **Goal right now:** first revenue in 7 days; $500–1,000/mo by day 90 —
+  plan of record: `miklatgames:.claude/os/MONETIZATION.md`.
+- **Open:** tip jar + per-game analytics events, portal submissions
+  (itch.io / CrazyGames / Poki), weekly clip cadence via batch system.
 
 ## sellsellingai — `ssa` 💰
 - **Status:** money maker — primary focus.

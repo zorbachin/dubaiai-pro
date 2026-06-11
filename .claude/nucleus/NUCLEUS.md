@@ -23,8 +23,10 @@ _What we're ultimately building and why. Edit this by hand — it changes rarely
 ## 🎯 Active Threads
 _What's in flight right now. The 1–5 things a new session should care about._
 
-- [ ] Context Nucleus system is built (hooks + CLI + web bridge) — PR #10 open
-      on `claude/epic-einstein-jPNIL`, not yet merged to `main`.
+- [ ] **Miklat Games is the active venture** — own repo `zorbachin/miklatgames`,
+      live at miklatgames.fun (arcade shelf: Iron Dome first, Mamad Dash second,
+      Balagan + Fabatollah coming-soon doors, offline SW on all surfaces).
+- [ ] Miklat next-up: per-game GoatCounter event wiring (pageviews already live).
 - [ ] Wire the nucleus widget into the local app at http://localhost:3001/.
 - [ ] (add the next real landing-page task here)
 
@@ -40,6 +42,14 @@ _Choices already made, so no surface re-litigates them._
   contact.
 - **Contact:** `hello@dubaiai.pro`.
 - **PRIVACY (durable, important):** Zorba and Meytal's pregnancy is FRESH and PRIVATE. NEVER reference a baby / pregnancy / expecting in any public content. Keep all family framing aspirational only: "hoping to start a family."
+- **Mamad Dash = STANDALONE game** (Zorba, 2026-06-10): siren runner is the
+  viral core; Tel Aviv exploration demoted to secondary. Iron Dome + Mamad Dash
+  are THE two viral candidates if made perfect and dead-simple. Parked idea
+  (separate): multiplayer Tel Aviv lifestyle game ("trying to make it" sim).
+- **Claude = COO/CMO of Miklat Games** (Zorba, 2026-06-11): owns operations +
+  marketing + the monetization plan. Plan of record lives at
+  `miklatgames:.claude/os/MONETIZATION.md` — distribution-first (portals bring
+  their own players), revenue switches on in phases.
 
 ## 📥 Handoffs
 _Newest first. Written automatically by hooks and by `nucleus push` from any
