@@ -179,6 +179,7 @@ $('mute').addEventListener('click',e=>{ e.stopPropagation();
    song — reuse without repetition. */
 const Music={
   tracks:{}, el:null,
+<<<<<<< HEAD
   // Sequences of three: each 4-wave cycle keeps ONE song for its 3 normal
   // waves (rotating song per cycle), every marathon gets Temple Dash, menus
   // get Jericho Run. No mid-block hopping; death cam stays silent.
@@ -186,6 +187,13 @@ const Music={
   init(){ if(this.tracks.title) return;        // built on first gesture (autoplay policy)
     const mk=file=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45;
       a.preload='auto'; a.load(); return a; }; // iOS: buffer up-front so switches can't fail silent
+=======
+  // One driving track per run (no mid-run hopping): Temple Run Shalom carries
+  // normal waves continuously through door beats; Temple Dash seizes
+  // marathons; Jericho Run owns the menus. Death cam stays silent.
+  init(){ if(this.tracks.title) return;        // built on first gesture (autoplay policy)
+    const mk=file=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45; return a; };
+>>>>>>> origin/main
     this.tracks.title=mk('title.mp3');
     this.tracks.level1=mk('level1.mp3');
     this.tracks.level3=mk('level3.mp3');
@@ -196,7 +204,11 @@ const Music={
     if(G.state==='title'||G.state==='dead') want='title';
     else if(G.state==='deathcam'||G.state==='paused') want=null;
     else if(G.cfg&&G.cfg.marathon) want='level3';
+<<<<<<< HEAD
     else want=this.RUN_SEQ[Math.floor((G.wave-1)/4)%this.RUN_SEQ.length];
+=======
+    else want='level1';
+>>>>>>> origin/main
     for(const [n,a] of Object.entries(this.tracks)){
       const on=Sound.on&&n===want;
       a.volume=G.sirenOn?.16:.45;              // duck under the wail
