@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0a1226">
-<meta name="description" content="כיפת ברזל — המשחק. לחצו על הרקטות לפני שהן נופלות. עובד בממ״ד בלי קליטה. Iron Dome — the game. Free, offline-ready.">
+<meta name="description" content="Iron Dome — the game. Tap the rockets before they land. Free, no ads, works offline in the shelter. כיפת ברזל — המשחק.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="כיפת ברזל — המשחק | Iron Dome">
-<meta property="og:description" content="לחצו על הרקטות לפני שהן נופלות. עובד בממ״ד בלי קליטה. חינם, בלי הורדה — שניה ואתם משחקים.">
+<meta property="og:title" content="Iron Dome — the game | כיפת ברזל">
+<meta property="og:description" content="Tap the rockets before they land. Free, no app, works offline in the shelter. עובד בממ״ד בלי קליטה.">
 <meta property="og:url" content="https://miklatgames.fun/irondome/">
 <meta property="og:image" content="https://miklatgames.fun/irondome/share-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="he_IL">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="כיפת ברזל — Iron Dome">
+<meta name="twitter:title" content="Iron Dome — כיפת ברזל">
 <meta name="twitter:image" content="https://miklatgames.fun/irondome/share-card.jpg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>כיפת ברזל · Iron Dome</title>
+<title>Iron Dome · כיפת ברזל</title>
 <style>
   :root{
     --bg:#0a1226; --panel:#101b38; --panel2:#16244a;
@@ -291,7 +292,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v25';
+const GAME_VERSION = 'v26';
 const INBOUND = new URLSearchParams(location.search);
 const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
@@ -301,7 +302,7 @@ const SAVE_KEY = 'irondome.save.v1';
 let _stored = {};
 try { _stored = JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') || {}; } catch (e) {}  // corrupt save must never brick boot
 const save = Object.assign({
-  lang: 'he', sound: true, coins: 0, best: 0, unlocked: 0, diff: 'normal',
+  lang: 'en', sound: true, coins: 0, best: 0, unlocked: 0, diff: 'normal',   // English-first
   cal: { x: 0, y: 0, done: false },
   up: { blast: 0, speed: 0, launchers: 0, sling: 0 }
 }, _stored);
@@ -310,7 +311,7 @@ const save = Object.assign({
 save.up = Object.assign({ blast: 0, speed: 0, launchers: 0, sling: 0 }, save.up);
 for (const k in save.up) save.up[k] = Math.max(0, Math.min(k === 'launchers' ? 2 : 3, +save.up[k] || 0));
 if (!save.cal || typeof save.cal !== 'object') save.cal = { x: 0, y: 0, done: false };
-if (save.lang !== 'he' && save.lang !== 'en') save.lang = 'he';
+if (save.lang !== 'he' && save.lang !== 'en') save.lang = 'en';
 if (!['easy', 'normal', 'commando'].includes(save.diff)) save.diff = 'normal';
 save.cal.x = +save.cal.x || 0; save.cal.y = +save.cal.y || 0;
 save.coins = +save.coins || 0; save.best = +save.best || 0; save.unlocked = +save.unlocked || 0;

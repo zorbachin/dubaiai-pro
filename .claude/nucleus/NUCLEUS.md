@@ -191,9 +191,9 @@ Direction shift: game world goes FULL ART. Zorba wants in-game levels to look li
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 09:58 UTC
+- **When:** 2026-06-11 20:31 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 3025d0d chore: refresh nucleus live state [skip ci] — 4 minutes ago
+- **Last commit:** 902605a chore: refresh nucleus live state [skip ci] — 11 hours ago
 
 **Working tree:**
 ```
@@ -202,11 +202,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-3025d0d chore: refresh nucleus live state [skip ci] (4 minutes ago)
-5d3b646 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-00a670e Merge origin/main (keep flip) (6 minutes ago)
-766744f 🚀 THE FLIP: miklatgames.fun goes live (7 minutes ago)
-8c51bff Merge origin/main pre-flip (7 minutes ago)
+902605a chore: refresh nucleus live state [skip ci] (11 hours ago)
+3025d0d chore: refresh nucleus live state [skip ci] (11 hours ago)
+5d3b646 chore: refresh nucleus live state [skip ci] (11 hours ago)
+00a670e Merge origin/main (keep flip) (11 hours ago)
+766744f 🚀 THE FLIP: miklatgames.fun goes live (11 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
