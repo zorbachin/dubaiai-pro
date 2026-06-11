@@ -189,22 +189,28 @@ Iron Dome v4 'function is everything' overhaul: found root cause of 'function st
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 05:24 UTC
+- **When:** 2026-06-11 05:48 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 6a52339 chore: refresh nucleus live state [skip ci] — 29 seconds ago
+- **Last commit:** 49df04d MIKLAT GAMES master design prompt (permanent copy) — 61 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-6a52339 chore: refresh nucleus live state [skip ci] (29 seconds ago)
-04c0795 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (2 minutes ago)
-5b73325 chore: nucleus snapshot before main merge [skip ci] (2 minutes ago)
-4faab3e chore: refresh nucleus live state [skip ci] (5 minutes ago)
-649fe76 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+49df04d MIKLAT GAMES master design prompt (permanent copy) (61 seconds ago)
+2d07e7b chore: refresh nucleus live state [skip ci] (24 minutes ago)
+6a52339 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+04c0795 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (26 minutes ago)
+5b73325 chore: nucleus snapshot before main merge [skip ci] (27 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
