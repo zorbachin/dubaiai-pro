@@ -46,6 +46,8 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 07:32 UTC · code
+v19 MERGED (PR #94): Miklat Wallet live — shared ₪ economy ('Bituach Leumi fund') across Iron Dome + Mamad Dash (their session adopted WALLET-SPEC.md independently, both directions confirmed on main). CONTINUE mechanic live (max(300, 25% wallet), once/run, never Daily). Cross-game loop: earn in Mamad Dash -> survive Red Alert in Iron Dome. Remaining Zorba gates unchanged: DNS->flip, GoatCounter x2, 16 level images, shot-list approval.
 ### 2026-06-11 07:30 UTC · code
 MIKLAT WALLET CONTRACT (for Mamad Dash session + all future games): shared economy on localStorage key 'miklat.wallet', format {"sh": <int>}, currency ₪ shekels, lore = unemployment money (ביטוח לאומי). Rules: clamp >= 0, try/catch all access, spend = check-then-decrement. Iron Dome v19 implements it (migrated legacy coins, shop spends from it, CONTINUE mechanic costs max(300, 25% of wallet), once per run, never in Daily). Mamad Dash should earn INTO and spend FROM the same key - its 'shekels from unemployment' ARE this wallet.
 
@@ -173,6 +175,8 @@ Elite art pass MERGED (PR #82): retro pixel set composited into production — s
 ### 2026-06-11 02:53 UTC · code
 Art direction decided on ChatGPT image passes: RETRO pass -> share card (readable at thumbnail size, single clear story); FIRST pass panorama -> press hero (richness rewards full-size, tells the 10-cities story); icon/falafel-meme/story/daily-badge all approved as-is. BLOCKED on full-res originals from Zorba (uploads were ~300-600px chat-compressed; need ChatGPT downloads direct or via Drive). Then: typography overlay, icon regen 192/512, share-card + promo swap, WhatsApp-safe compression, one-pass re-ship.
 
+
+
 ### 2026-06-10 19:09 UTC · code
 OVERNIGHT SHIFT COMPLETE: promo pack merged (PR #81, content-assets/irondome-promo/) — full bilingual launch copy (WhatsApp x4, Telegram DM+post, Reddit x2, press HE+EN, X, meme pages, 20s clip script, crisis one-liners, seeding checklist) + visual cards (story/square/meme/share) + v15 screenshots. ChatGPT image prompts EMAILED to Zorba for the elite art pass (6 prompts, no-text rule, palette locked). MORNING PLAN: Zorba does domain + GoatCounter + ChatGPT images -> Claude swaps URL in one pass (it's on its own line everywhere), composites Hebrew typography on new art, re-ships -> seeding begins per checklist.
 ### 2026-06-10 19:00 UTC · code
@@ -200,6 +204,8 @@ Iron Dome v10 MERGED (PR #76): visual-viewport canvas (fixes iOS-zoom hiding the
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 07:33 UTC
+
 - **When:** 2026-06-11 07:24 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
 - **Last commit:** 2ba33a1 chore: refresh nucleus live state [skip ci] — 53 minutes ago
@@ -215,16 +221,13 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 - **When:** 2026-06-11 05:52 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** cb7432d chore: refresh nucleus live state [skip ci] — 25 minutes ago
-
-- **When:** 2026-06-11 05:55 UTC
-- **When:** 2026-06-11 05:48 UTC
-- **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** cb1e13f Art asset index: public URLs for all surfaces (Claude Design etc.) — 1 second ago
+- **Last commit:** d83a262 chore: refresh nucleus live state [skip ci] — 22 seconds ago
 
 **Working tree:**
 ```
 ✓ clean — nothing uncommitted
+
+
 
 
 M .claude/nucleus/NUCLEUS.md
@@ -240,6 +243,12 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+d83a262 chore: refresh nucleus live state [skip ci] (22 seconds ago)
+5d1b8e3 chore: refresh nucleus live state [skip ci] (52 seconds ago)
+a6ff8a7 Merge origin/main (keep v19 + mamad dash team's wallet adoption) (2 minutes ago)
+25f2dec Merge origin/main (keep v19) (2 minutes ago)
+14aec7b v19: the Miklat Wallet — shared shekels across games + CONTINUE mechanic (3 minutes ago)
+
 2ba33a1 chore: refresh nucleus live state [skip ci] (53 minutes ago)
 794c937 chore: refresh nucleus live state [skip ci] (53 minutes ago)
 907a315 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (53 minutes ago)
