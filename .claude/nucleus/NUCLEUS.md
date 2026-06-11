@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 12:54 UTC · code
+Live-play feedback round shipped (PR #103 merged): music = one driving track per run (no more per-wave hopping), THE FLOCK added (stacked duck-only air wall, guaranteed 1/wave + 2/marathon, jump stays reliable default elsewhere). End-screen misalign fix (#102) merged but STILL NOT LIVE — miklatgames repo needs re-sync from dubaiai-pro:miklat/ (Cowork one-liner or add repo to session). This is now the #1 friction: every fix is double-gated until the miklatgames repo is in-session.
+
 ### 2026-06-11 10:31 UTC · code
 🚀 MIKLATGAMES.FUN IS LIVE (confirmed via Zorba's screenshot — Cowork deployed). iOS canvas-desync bug (inside-mamad heading bleed) root-caused + fixed in PR #102 (self-healing per-frame dimension check, orientationchange double-resize, fit-to-width headings). GAP: live site serves from the miklatgames repo, which doesn't auto-sync from dubaiai-pro miklat/ — fix is merged on dubaiai-pro main but NOT yet live. Next session MUST include the miklatgames repo so code-session pushes deploy directly; until then Cowork re-syncs on request.
 
@@ -187,6 +190,9 @@ MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimo
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 12:54 UTC
+- **Branch:** `claude/mamad-dash-location-0mmse2`
+- **Last commit:** 4fe7a40 chore: refresh nucleus live state [skip ci] — 27 seconds ago
 - **When:** 2026-06-11 12:47 UTC
 - **When:** 2026-06-11 10:25 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
@@ -209,29 +215,15 @@ _Refreshed automatically after each turn — do not edit by hand._
 **Working tree:**
 ```
 ✓ clean — nothing uncommitted
-
-
-
-
-
-
-
-
-
-
-
-
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 22 ++++++++--------------
- 1 file changed, 8 insertions(+), 14 deletions(-)
 ```
 
 **Recent commits:**
 ```
+4fe7a40 chore: refresh nucleus live state [skip ci] (27 seconds ago)
+64ea910 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (2 minutes ago)
+e11203a chore: nucleus snapshot [skip ci] (2 minutes ago)
+5f07704 Music consistency + the flock: duck-only obstacles (2 minutes ago)
+78bb4bb Mamad Dash offline: service worker (shell+art precache, runtime music cache) — makes the zero-signal promise true (49 minutes ago)
 f052218 chore: refresh nucleus live state [skip ci] (2 hours ago)
 149f3b1 chore: refresh nucleus live state [skip ci] (2 hours ago)
 2e63f22 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (2 hours ago)
