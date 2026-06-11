@@ -171,9 +171,9 @@ NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 03:41 UTC
+- **When:** 2026-06-11 03:43 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 8b223d6 chore: refresh nucleus live state [skip ci] — 43 seconds ago
+- **Last commit:** 11d4a56 chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-8b223d6 chore: refresh nucleus live state [skip ci] (43 seconds ago)
-f50ccf1 chore: refresh nucleus live state [skip ci] (62 seconds ago)
-dccef0a Full art pass: hand-painted hoods, door, power-ups, key art, icon (2 minutes ago)
-f2d2d70 chore: refresh nucleus live state [skip ci] (37 minutes ago)
-b0ea754 chore: refresh nucleus live state [skip ci] (37 minutes ago)
+11d4a56 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+8b223d6 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+f50ccf1 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+dccef0a Full art pass: hand-painted hoods, door, power-ups, key art, icon (4 minutes ago)
+f2d2d70 chore: refresh nucleus live state [skip ci] (39 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
