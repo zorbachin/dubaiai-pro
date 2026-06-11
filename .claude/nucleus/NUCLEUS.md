@@ -183,9 +183,9 @@ v16 MERGED (PR #84): key art now IN the game, not just promo — retro art = men
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 08:14 UTC
+- **When:** 2026-06-11 08:39 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 1429637 chore: refresh nucleus live state [skip ci] — 40 seconds ago
+- **Last commit:** 960f7c7 chore: refresh nucleus live state [skip ci] — 25 minutes ago
 
 **Working tree:**
 ```
@@ -194,17 +194,17 @@ M .claude/nucleus/NUCLEUS.md
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 39 ++++++++-------------------------------
- 1 file changed, 8 insertions(+), 31 deletions(-)
+.claude/nucleus/NUCLEUS.md | 22 ++++++++--------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
 ```
 
 **Recent commits:**
 ```
-1429637 chore: refresh nucleus live state [skip ci] (40 seconds ago)
-6a300aa chore: refresh nucleus live state [skip ci] (14 minutes ago)
-086f7f1 chore: refresh nucleus live state [skip ci] (19 minutes ago)
-5d49baa chore: refresh nucleus live state [skip ci] (19 minutes ago)
-4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (20 minutes ago)
+960f7c7 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+1429637 chore: refresh nucleus live state [skip ci] (26 minutes ago)
+6a300aa chore: refresh nucleus live state [skip ci] (39 minutes ago)
+086f7f1 chore: refresh nucleus live state [skip ci] (44 minutes ago)
+5d49baa chore: refresh nucleus live state [skip ci] (44 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
