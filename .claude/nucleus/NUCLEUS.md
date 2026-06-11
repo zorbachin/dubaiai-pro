@@ -46,6 +46,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 03:22 UTC · code
+Direction shift: game world goes FULL ART. Zorba wants in-game levels to look like the marketing (his screenshot showed the procedural flat-vector vs the rich pixel art). Image pack #3 emailed: 10 per-city level backgrounds (9:16, SKY RULE: upper 60% near-empty navy so rockets stay readable, bottom 20% clear for gameplay buildings, honeycomb dome baked in) + optional Red Alert bg. Integration plan on arrival: art = backdrop layer per level, restyle foreground tappable buildings pixel-chunky, ~150-200KB/img, SW-cached, game stays <2.5MB offline-capable. Pack #2 (icon/portrait/badge/victory) also still pending.
+
+### 2026-06-11 03:14 UTC · code
+v16 MERGED (PR #84): key art now IN the game, not just promo — retro art = menu background (SW-precached), honeycomb dome arc drawn into live gameplay sky over every city (render-verified). Clarified for Zorba: promo art vs game art were separate; now unified. Game visuals remain procedural (per-city scenes, rockets) with the art as menu+brand-dome layer.
+
 ### 2026-06-11 03:02 UTC · code
 DURABLE BRAND RULE from Zorba: all Iron Dome promo assets bilingual BURNED IN — English leads (he expects more English-speaking players), Hebrew always prominent. All cards rebuilt: share-card.jpg (og image), story, square, press-hero titled variant. Merged next.
 
@@ -175,32 +181,14 @@ ISSUE 001 = full real origin (Zorba's own words, polished, no em-dashes, cinemat
 
 ### 2026-06-02 11:28 UTC · chat
 ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more human (use commas/periods/parentheses). Durable voice rule. (2) Corrected timeline: OBSESSION came BEFORE the business. During the war his YouTube feed flipped (no news, only AI builds) -> got obsessed -> started PAYING for subscriptions to test them himself, figuring 'if it lands one job it's worth it.' Baby found out MIDWAY through the war while deep in AI, not knowing what to do -> that 'changed the math' -> first call -> second -> hardest part = posting. (3) Story rewritten present-tense/cinematic (in-the-moment, not safe past tense). (4) DROPPED the Three Time-Savers from the premiere — he 'didn't get the tips'; premiere = pure origin story. Segment returns later reworked. Masthead billing now teases story beats (The Feed That Went Quiet / Midway Through the War / The Mission, Made Plain).
-
-### 2026-06-02 11:07 UTC · chat
-VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-public timeline for Dispatch Issue 002 'How One Site Became a Whole Build'): (1) zorbot.io = his FIRST site, built to try and get work (the digital first call). (2) -> led to a PRODUCT 'bloop' on buildyourbot.io. (3) Riley + selfsellingai evolved from it. (4) a CLOSING TOOL (foxy-close-tool/Instant Proposals) became its own product. Through-line: same instinct each time — find where time leaks, build the fix; mission got clearer = take back your time, give time back to others. NEEDS FROM ZORBA: one-line confirm per beat + the asset to embed (video link + site URL/screenshot) — sites are bot-blocked so Claude can't pull them. Skeleton: content-assets/newsletter/ISSUE-002-chronology.md. NOTE: we 'started this' 2026-06-01 (OS + AUDIT.md + decision log).
-
-
-
-### 2026-06-02 11:05 UTC · chat
-ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back engaged/broke/no job/sublet -> married -> baby coming -> WAR days after wedding -> obsessing over AI in the bomb shelter -> first call, second call -> finally got over the unease of POSTING. MISSION (clearer now): build a business to take back his own time AND give time back to others. NOT to make people AI-obsessed; he likes people who want to grow + use tools well; loves solving problems like he does ON SET. Building LIVE, exposed: 'follow me, make that first call/post yourself.' Voice: plain, confessional, anti-hype, sell the WHY (time/freedom). Masthead recut (title 'The First Call'). Kept Three Two-Minute Time-Savers as closing segment. Substack IS SET UP — ready to paste & publish. Updated voice-guide story assets (house/war now filled).
-
-
-
-### 2026-06-02 11:02 UTC · chat
-NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three Two-Minute Time-Savers' (one WORK, one LIFE, one HEALTH; quick/fun; each a copy-paste prompt). Issue 001 written (content-assets/newsletter/ISSUE-001.md): feature 'Buy Back Your Time' + the 3 time-savers (kill the email thread / plan the night out / fridge->meal + 12-min calisthenics workout). Opt-in INVITE drafted (content-assets/newsletter/INVITE.md) — personal invites + warm leads + content-engine growth, NEVER import-and-blast. Masthead billing updated to feature the time-savers segment.
-
-
-
-
-
-### 2026-06-02 10:59 UTC · chat
-NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (built: content-assets/newsletter/dispatch-no-001.png via bin/cinema_news.py). Aged paper, double frame, 'proudly presents', dramatic serif billing, marquee bar, 'printed for a select readership'. NO LIST YET + DO NOT spam his contacts (kills deliverability + relationships). PLAN: use a real ESP (Substack or Beehiiv free) for compliance/unsubscribe; SEED via personal opt-in invites (Claude drafts) to people he knows + warm leads (post-repliers, clients like vybewear, video commenters); grow as a byproduct of the content engine (every post -> 'join the Dispatch'). Cadence: monthly/biweekly 'issue' = an event, quality over frequency. Positioning: 'a select readership', worth-their-time storytelling.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 03:36 UTC
+
 - **When:** 2026-06-11 03:07 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
 - **Last commit:** e21363f chore: refresh nucleus live state [skip ci] — 3 minutes ago
@@ -209,13 +197,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 - **When:** 2026-06-11 02:53 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 6cda150 chore: refresh nucleus live state [skip ci] — 13 seconds ago
-
-- **When:** 2026-06-10 19:00 UTC
-
-- **When:** 2026-06-10 18:53 UTC
-- **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 514bde1 Bilingual burn-in across all promo assets — 2 seconds ago
+- **Last commit:** 6bc5d1e chore: refresh nucleus live state [skip ci] — 14 minutes ago
 
 **Working tree:**
 ```
@@ -224,6 +206,12 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
+6bc5d1e chore: refresh nucleus live state [skip ci] (14 minutes ago)
+642e41e chore: refresh nucleus live state [skip ci] (14 minutes ago)
+b7a0e4d chore: refresh nucleus live state [skip ci] (17 minutes ago)
+346c95c chore: refresh nucleus live state [skip ci] (22 minutes ago)
+8896876 chore: refresh nucleus live state [skip ci] (22 minutes ago)
+
 e21363f chore: refresh nucleus live state [skip ci] (3 minutes ago)
 e6f0078 Merge origin/main (post-#82 squash) into branch (3 minutes ago)
 46b0aef Merge origin/main into claude/iron-dome-game-zi3dtt (keep bilingual assets) (4 minutes ago)
