@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 05:20 UTC · code
+HANDOFF → Cowork: master deploy prompt delivered (merge PR #74, create+populate miklatgames repo from miklat/ package, Pages+CNAME, Porkbun DNS guided, Iron Dome port from wherever it lives in GitHub, full release verification, GoatCounter reminder code 'miklatgames'). Code session = build shop; Cowork = release manager. If Iron Dome isn't in GitHub, regenerate from nucleus context.
+
 ### 2026-06-11 05:18 UTC · code
 MIKLAT GAMES v1 packaged in dubaiai-pro/miklat/ (session can't create repos — 403). Arcade shelf + full MAMAD DASH port (canonical → miklatgames.fun) + GoatCounter code 'miklatgames' pre-wired + deploy runbook. Verified over HTTP. BLOCKERS FOR ZORBA: (1) create github.com/zorbachin/miklatgames + add to a session OR run the runbook push commands; (2) Porkbun DNS for miklatgames.fun (4 A records); (3) GoatCounter signup with code 'miklatgames'; (4) tell me where Iron Dome's source lives for its port.
 
@@ -162,18 +165,15 @@ CHANNEL SPLIT (strategic): TWO lanes. (A) SUBSTACK = 'The Dispatch' = STORY/INSI
 
 ### 2026-06-02 12:53 UTC · chat
 ISSUE 001 full entertainment pass (craft only, invented nothing): tighter comedic timing on the secret-filming caper, sharper 'IG vs reality' turn, leaner hardship montage, planted the AMAZON RING early as a wink, added a cinematic 'NEXT ISSUE' tease. RING SUBPLOT (next story): proposed with an Amazon ring -> they later MADE their own rings by hand with ALON MESIKA, on camera, became part of THE DOCUMENTARY. (There is a documentary about them — capture as asset.) Wedding PHOTOS exist (3 shared: crowd-under-spotlight hora, chuppah w/ green dress+kippot, first dance) but came inline in chat, NOT saved to repo — Zorba drags them into Substack at layout. Photo slots noted in ISSUE-001.md.
-
-### 2026-06-02 12:16 UTC · chat
-ISSUE 001 = full real origin (Zorba's own words, polished, no em-dashes, cinematic). KEY BIO FACTS (durable): Engaged at the Duomo, Milan, sunset, last night of a 6-wk budget trip; filmed it using a 'new iPhone mic to test' as alibi (tripod+mics+ring box in a bag). Moved to Israel ~1yr prior; laid off 2 days after booking ticket; company folded 6 wks later; six-figure cushion gone. Met Meytal within 6 wks (hours before a flight); rocket jammed her door -> she moved into his room; Yom Haatzmaut -> first sublet (extended 2x). Money came from 'angels', one who seemed to track his bank account. SUBPLOTS: a FILM in active development w/ investor signed; a TV series being pitched to big names (both months away). Wedding = global, Alaskan+Ethiopian+Israeli+American culture collision; war began 9 days later; has a mamad/safe room; 1st month of marriage in own place then spare room (mom's bed). THE HOUSE: family friends' beautiful home near Netanya (near mother-in-law) they can't live in = chance at dream home = the MISSION (support family, get the home, use AI). Passover: said AI makes him feel free (lets him bring ideas to life fast, like standup). Chronology woven in: zorbot.io -> chatbot on his ChatGPT history+his book on how to think -> 'that's a product' = bloop -> algorithm shifted to AI tool builds -> ~$1k + 1000+ hrs -> reaching out to businesses -> buildyourbot.io + selfsellingai.pro. Tone: warm, determined, grateful, anti-hype. Tied subplots: film/TV ('AI did not make me wait'), the angel (pay it forward), the house (building toward it in public).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 05:19 UTC
+- **When:** 2026-06-11 05:20 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 649fe76 chore: refresh nucleus live state [skip ci] — 19 seconds ago
+- **Last commit:** 4faab3e chore: refresh nucleus live state [skip ci] — 2 minutes ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-649fe76 chore: refresh nucleus live state [skip ci] (19 seconds ago)
-ed1e364 MIKLAT GAMES v1: complete deployable arcade package (54 seconds ago)
-08b8d5c chore: refresh nucleus live state [skip ci] (6 minutes ago)
-c1f650e chore: refresh nucleus live state [skip ci] (6 minutes ago)
-3eddd7c Promo video VO script + 30s cut sheet (8 minutes ago)
+4faab3e chore: refresh nucleus live state [skip ci] (2 minutes ago)
+649fe76 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+ed1e364 MIKLAT GAMES v1: complete deployable arcade package (3 minutes ago)
+08b8d5c chore: refresh nucleus live state [skip ci] (8 minutes ago)
+c1f650e chore: refresh nucleus live state [skip ci] (8 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
