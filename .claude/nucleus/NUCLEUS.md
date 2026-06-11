@@ -215,9 +215,9 @@ Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.gi
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 06:24 UTC
+- **When:** 2026-06-11 06:25 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 0e0c011 Promo: slide-then-leap frame pair (Zorba's re-ordered action) — 74 seconds ago
+- **Last commit:** f951de1 chore: refresh nucleus live state [skip ci] — 50 seconds ago
 
 **Working tree:**
 ```
@@ -226,11 +226,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-0e0c011 Promo: slide-then-leap frame pair (Zorba's re-ordered action) (74 seconds ago)
-929ebbb chore: refresh nucleus live state [skip ci] (4 minutes ago)
-143cc23 Promo regen frames per Zorba QC (obstacles, leap, full door entry) (7 minutes ago)
-044abae Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (8 minutes ago)
-4570c54 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+f951de1 chore: refresh nucleus live state [skip ci] (50 seconds ago)
+0e0c011 Promo: slide-then-leap frame pair (Zorba's re-ordered action) (2 minutes ago)
+929ebbb chore: refresh nucleus live state [skip ci] (5 minutes ago)
+143cc23 Promo regen frames per Zorba QC (obstacles, leap, full door entry) (8 minutes ago)
+044abae Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (9 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
