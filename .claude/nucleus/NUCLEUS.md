@@ -187,9 +187,9 @@ Direction shift: game world goes FULL ART. Zorba wants in-game levels to look li
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 09:43 UTC
+- **When:** 2026-06-11 09:50 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** ecf55ba chore: refresh nucleus live state [skip ci] — 29 seconds ago
+- **Last commit:** 5d626e7 chore: refresh nucleus live state [skip ci] — 7 minutes ago
 
 **Working tree:**
 ```
@@ -198,11 +198,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-ecf55ba chore: refresh nucleus live state [skip ci] (29 seconds ago)
-afe7895 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-92b3c54 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-0e7ddc5 Merge origin/main (ours: irondome) (25 minutes ago)
-6672690 v24 (part 2): the real 10 cities from Drive + the real app icon (25 minutes ago)
+5d626e7 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+ecf55ba chore: refresh nucleus live state [skip ci] (8 minutes ago)
+afe7895 chore: refresh nucleus live state [skip ci] (30 minutes ago)
+92b3c54 chore: refresh nucleus live state [skip ci] (30 minutes ago)
+0e7ddc5 Merge origin/main (ours: irondome) (32 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
