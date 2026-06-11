@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 07:32 UTC · code
+v19 MERGED (PR #94): Miklat Wallet live — shared ₪ economy ('Bituach Leumi fund') across Iron Dome + Mamad Dash (their session adopted WALLET-SPEC.md independently, both directions confirmed on main). CONTINUE mechanic live (max(300, 25% wallet), once/run, never Daily). Cross-game loop: earn in Mamad Dash -> survive Red Alert in Iron Dome. Remaining Zorba gates unchanged: DNS->flip, GoatCounter x2, 16 level images, shot-list approval.
+
 ### 2026-06-11 07:30 UTC · code
 MIKLAT WALLET CONTRACT (for Mamad Dash session + all future games): shared economy on localStorage key 'miklat.wallet', format {"sh": <int>}, currency ₪ shekels, lore = unemployment money (ביטוח לאומי). Rules: clamp >= 0, try/catch all access, spend = check-then-decrement. Iron Dome v19 implements it (migrated legacy coins, shop spends from it, CONTINUE mechanic costs max(300, 25% of wallet), once per run, never in Daily). Mamad Dash should earn INTO and spend FROM the same key - its 'shekels from unemployment' ARE this wallet.
 
@@ -172,50 +175,34 @@ DURABLE BRAND RULE from Zorba: all Iron Dome promo assets bilingual BURNED IN �
 Elite art pass MERGED (PR #82): retro pixel set composited into production — share-card.jpg 1200x630@170KB live as og:image (every WhatsApp link now shows the retro dome + Hebrew title card), story/square-falafel/press-hero rebuilt on the new art, originals archived in content-assets/irondome-promo/art/. DURABLE: retro pixel = the Iron Dome brand. Outstanding for launch: full-res app icon (Zorba re-downloads the minimal dome icon from ChatGPT), domain purchase, GoatCounter claim — then seeding per checklist.
 ### 2026-06-11 02:53 UTC · code
 Art direction decided on ChatGPT image passes: RETRO pass -> share card (readable at thumbnail size, single clear story); FIRST pass panorama -> press hero (richness rewards full-size, tells the 10-cities story); icon/falafel-meme/story/daily-badge all approved as-is. BLOCKED on full-res originals from Zorba (uploads were ~300-600px chat-compressed; need ChatGPT downloads direct or via Drive). Then: typography overlay, icon regen 192/512, share-card + promo swap, WhatsApp-safe compression, one-pass re-ship.
-
-### 2026-06-10 19:09 UTC · code
-OVERNIGHT SHIFT COMPLETE: promo pack merged (PR #81, content-assets/irondome-promo/) — full bilingual launch copy (WhatsApp x4, Telegram DM+post, Reddit x2, press HE+EN, X, meme pages, 20s clip script, crisis one-liners, seeding checklist) + visual cards (story/square/meme/share) + v15 screenshots. ChatGPT image prompts EMAILED to Zorba for the elite art pass (6 prompts, no-text rule, palette locked). MORNING PLAN: Zorba does domain + GoatCounter + ChatGPT images -> Claude swaps URL in one pass (it's on its own line everywhere), composites Hebrew typography on new art, re-ships -> seeding begins per checklist.
-### 2026-06-10 19:00 UTC · code
-Iron Dome launch promo pack complete at /tmp/PROMO-PACK.md: WhatsApp (4 msgs incl. parents + alert-night protocol), Telegram admin DM + channel post, Reddit x2, press pitches HE/EN, X posts, meme-page DM, 20s clip script, crisis one-liners, seeding checklist. URL on own line everywhere for domain swap. No em-dashes in personal copy.
-### 2026-06-10 18:53 UTC · code
-Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was DEAD for everyone - D1 one-liner; 2 soft-lock paths closed), DAILY ALERT shipped (date-seeded, streaks, deterministic-verified), commando actually hard + loss thresholds + 50% win gate, per-mode bests, death beat + fanfares + whiff feel + bonus fiesta + sling sweep. Panel verdict: core loop tortured clean (saves/concurrency/soak all green).
-
-### 2026-06-10 18:30 UTC · code
-Iron Dome v14 (growth Day-1 from brutal panel): OG/Twitter cards + share-card.png, ?ref attribution (K-factor measurable), challenge links w/ beat-this banner, wa.me fallback, NEW BEST first-run bug fixed + primary CTA at peak, emoji result grid, per-level funnel events. STILL BLOCKING (Zorba-only): claim irondome.goatcounter.com, buy domain (~$10, kipa.lol / irondome.lol style), WhatsApp-test the preview card. 3 more panel reports pending.
-
-### 2026-06-10 18:24 UTC · code
-NEW EXPLICIT GOAL from Zorba: get Iron Dome to 10,000 USERS as fast as possible (stable, fun, viral). Convened brutal 10M-cohort panel #3: growth/virality (funnel, OG tags, WhatsApp K-factor, 7-day distribution plan), retention (FTUE, day-2 hook, difficulty honesty), release-stability (v13 torture: saves v1->v13, bonus/sling state machines, GO/NO-GO verdict), game-feel (miss experience, bonus fiesta, sling payoff, sound mix). All running on v13.
-### 2026-06-10 18:17 UTC · code
-Iron Dome v13: difficulty select (Easy/Normal/Commando w/ point multipliers), intra-level ramp (starts easy, +35% by level end), bonus falafel-rush rounds after L3/6/9 (double points, no risk), Iron Sling now an ACTIVE volley button (pops 4 lowest rockets, charges per level), crates more frequent + first-crate hint. All per Zorba's Tetris/DrMario feedback. E2E verified.
-### 2026-06-10 18:12 UTC · code
-Iron Dome v12: Israeli voice pack per Zorba ('more branded, sabra sarcasm, yell at Knesset') — rotating sarcastic level-clear headlines, anonymous-MK reaction quotes (fictional/anonymous = playful not political), escalating Hebrew combo shouts, power-up attitude lines, family-style game-over teasing. DURABLE BRAND RULE: Iron Dome voice = sabra sarcasm, hummus/savta/Knesset-committee humor, bilingual, never name real politicians.
-### 2026-06-10 15:14 UTC · code
-Iron Dome v11 built: QA round 2 applied (sim-validated loseable difficulty, <4s first kill, hit-stop/pitch-ladder juice, best-gap cliffhanger death, dynamic music) + Zorba's asks (adaptive heat = skill-coupled escalation; Houthi whimper/Hezbollah thud/IRGC boom + sarcastic quips; one-tap Share with clipboard fallback) + all iPhone P0/P1 fixes (Dynamic Island chevrons, zoom translate, iOS audio recovery, SW hang guard). Leaderboard = needs backend, deferred; share button is the zero-backend social layer.
-
-### 2026-06-10 14:56 UTC · code
-Iron Dome v10 MERGED (PR #76): visual-viewport canvas (fixes iOS-zoom hiding the city below fold), playfield 15-85% closed at spawn-time too, procedural hypnotic music loop, version badge on menu, SW network-first navigations (self-healing stale caches). QA round 2 running: 2 agents (10M-downloads addiction expert + iPhone-format engineer). KEY HYPOTHESIS for Zorba's reports: he's likely on a stale SW cache (old dubaiai.pro PWA can never self-update — domain dead); badge will prove which build he runs.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 07:32 UTC
+- **When:** 2026-06-11 07:33 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** a6ff8a7 Merge origin/main (keep v19 + mamad dash team's wallet adoption) — 40 seconds ago
+- **Last commit:** 5d1b8e3 chore: refresh nucleus live state [skip ci] — 30 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 33 +++++++--------------------------
+ 1 file changed, 7 insertions(+), 26 deletions(-)
 ```
 
 **Recent commits:**
 ```
-a6ff8a7 Merge origin/main (keep v19 + mamad dash team's wallet adoption) (40 seconds ago)
-25f2dec Merge origin/main (keep v19) (82 seconds ago)
+5d1b8e3 chore: refresh nucleus live state [skip ci] (30 seconds ago)
+a6ff8a7 Merge origin/main (keep v19 + mamad dash team's wallet adoption) (70 seconds ago)
+25f2dec Merge origin/main (keep v19) (2 minutes ago)
 14aec7b v19: the Miklat Wallet — shared shekels across games + CONTINUE mechanic (2 minutes ago)
 43cccff Miklat wallet: shared cross-game points contract v1 (15 minutes ago)
-82901b6 chore: refresh nucleus live state [skip ci] (29 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
