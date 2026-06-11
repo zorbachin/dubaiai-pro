@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 08:14 UTC · code
+LAUNCH WALKTHROUGH delivered to Zorba (6 steps, ~12 min): create miklatgames repo → new claude.ai/code session w/ both repos + deploy one-liner (package = dubaiai-pro:miklat/) → Pages main/root + custom domain → Porkbun 4 A records + www CNAME → GoatCounter code 'miklatgames' → say 'keys turned' for end-to-end verification. After that every merge auto-deploys to miklatgames.fun in ~60s.
+
 ### 2026-06-11 07:54 UTC · code
 WORKSTREAM SYNC AUDIT: mamaddash canonical == miklat package (byte-verified modulo domain+analytics deltas); bin/sync-miklat script added so it can never drift. mamadio stable by design. OUT OF SYNC: Iron Dome (not ported — location unconfirmed, zorbasphere candidate, or regenerate); deploy keys still with Zorba (miklatgames repo, Porkbun DNS x2 domains, GoatCounter).
 
@@ -174,26 +177,6 @@ Direction shift: game world goes FULL ART. Zorba wants in-game levels to look li
 
 ### 2026-06-11 03:14 UTC · code
 v16 MERGED (PR #84): key art now IN the game, not just promo — retro art = menu background (SW-precached), honeycomb dome arc drawn into live gameplay sky over every city (render-verified). Clarified for Zorba: promo art vs game art were separate; now unified. Game visuals remain procedural (per-city scenes, rockets) with the art as menu+brand-dome layer.
-
-### 2026-06-11 03:02 UTC · code
-DURABLE BRAND RULE from Zorba: all Iron Dome promo assets bilingual BURNED IN — English leads (he expects more English-speaking players), Hebrew always prominent. All cards rebuilt: share-card.jpg (og image), story, square, press-hero titled variant. Merged next.
-
-### 2026-06-11 02:58 UTC · code
-Elite art pass MERGED (PR #82): retro pixel set composited into production — share-card.jpg 1200x630@170KB live as og:image (every WhatsApp link now shows the retro dome + Hebrew title card), story/square-falafel/press-hero rebuilt on the new art, originals archived in content-assets/irondome-promo/art/. DURABLE: retro pixel = the Iron Dome brand. Outstanding for launch: full-res app icon (Zorba re-downloads the minimal dome icon from ChatGPT), domain purchase, GoatCounter claim — then seeding per checklist.
-### 2026-06-11 02:53 UTC · code
-Art direction decided on ChatGPT image passes: RETRO pass -> share card (readable at thumbnail size, single clear story); FIRST pass panorama -> press hero (richness rewards full-size, tells the 10-cities story); icon/falafel-meme/story/daily-badge all approved as-is. BLOCKED on full-res originals from Zorba (uploads were ~300-600px chat-compressed; need ChatGPT downloads direct or via Drive). Then: typography overlay, icon regen 192/512, share-card + promo swap, WhatsApp-safe compression, one-pass re-ship.
-
-
-
-
-
-### 2026-06-10 19:09 UTC · code
-OVERNIGHT SHIFT COMPLETE: promo pack merged (PR #81, content-assets/irondome-promo/) — full bilingual launch copy (WhatsApp x4, Telegram DM+post, Reddit x2, press HE+EN, X, meme pages, 20s clip script, crisis one-liners, seeding checklist) + visual cards (story/square/meme/share) + v15 screenshots. ChatGPT image prompts EMAILED to Zorba for the elite art pass (6 prompts, no-text rule, palette locked). MORNING PLAN: Zorba does domain + GoatCounter + ChatGPT images -> Claude swaps URL in one pass (it's on its own line everywhere), composites Hebrew typography on new art, re-ships -> seeding begins per checklist.
-### 2026-06-10 19:00 UTC · code
-Iron Dome launch promo pack complete at /tmp/PROMO-PACK.md: WhatsApp (4 msgs incl. parents + alert-night protocol), Telegram admin DM + channel post, Reddit x2, press pitches HE/EN, X posts, meme-page DM, 20s clip script, crisis one-liners, seeding checklist. URL on own line everywhere for domain swap. No em-dashes in personal copy.
-### 2026-06-10 18:53 UTC · code
-Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was DEAD for everyone - D1 one-liner; 2 soft-lock paths closed), DAILY ALERT shipped (date-seeded, streaks, deterministic-verified), commando actually hard + loss thresholds + 50% win gate, per-mode bests, death beat + fanfares + whiff feel + bonus fiesta + sling sweep. Panel verdict: core loop tortured clean (saves/concurrency/soak all green).
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
@@ -202,7 +185,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 08:14 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 6a300aa chore: refresh nucleus live state [skip ci] — 13 minutes ago
+- **Last commit:** 1429637 chore: refresh nucleus live state [skip ci] — 40 seconds ago
 
 **Working tree:**
 ```
@@ -211,17 +194,17 @@ M .claude/nucleus/NUCLEUS.md
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+.claude/nucleus/NUCLEUS.md | 39 ++++++++-------------------------------
+ 1 file changed, 8 insertions(+), 31 deletions(-)
 ```
 
 **Recent commits:**
 ```
-6a300aa chore: refresh nucleus live state [skip ci] (13 minutes ago)
+1429637 chore: refresh nucleus live state [skip ci] (40 seconds ago)
+6a300aa chore: refresh nucleus live state [skip ci] (14 minutes ago)
 086f7f1 chore: refresh nucleus live state [skip ci] (19 minutes ago)
 5d49baa chore: refresh nucleus live state [skip ci] (19 minutes ago)
-4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (19 minutes ago)
-4cc998c chore: snapshot [skip ci] (19 minutes ago)
+4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
