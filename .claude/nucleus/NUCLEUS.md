@@ -200,9 +200,9 @@ Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 07:55 UTC
+- **When:** 2026-06-11 08:00 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 5d49baa chore: refresh nucleus live state [skip ci] — 10 seconds ago
+- **Last commit:** 086f7f1 chore: refresh nucleus live state [skip ci] — 5 minutes ago
 
 **Working tree:**
 ```
@@ -211,11 +211,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-5d49baa chore: refresh nucleus live state [skip ci] (10 seconds ago)
-4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (43 seconds ago)
-4cc998c chore: snapshot [skip ci] (44 seconds ago)
-7ed59b5 bin/sync-miklat: one-command game->arcade package sync (2 minutes ago)
-766b86e v21: centered art worlds + real falafel sprites on collision (#97) (3 minutes ago)
+086f7f1 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+5d49baa chore: refresh nucleus live state [skip ci] (5 minutes ago)
+4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (6 minutes ago)
+4cc998c chore: snapshot [skip ci] (6 minutes ago)
+7ed59b5 bin/sync-miklat: one-command game->arcade package sync (7 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
