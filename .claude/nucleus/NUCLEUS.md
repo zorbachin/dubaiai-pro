@@ -187,9 +187,9 @@ Iron Dome core-feel pivot per Zorba: direct-hit tapping (tap ON rocket, tip = DI
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 06:07 UTC
+- **When:** 2026-06-11 06:12 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e3fe306 chore: refresh nucleus live state [skip ci] — 25 seconds ago
+- **Last commit:** e0f8626 chore: refresh nucleus live state [skip ci] — 5 minutes ago
 
 **Working tree:**
 ```
@@ -198,11 +198,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-e3fe306 chore: refresh nucleus live state [skip ci] (25 seconds ago)
-e099799 Soundtrack rotation: three tracks score the whole game (82 seconds ago)
-98952a5 Merge origin/main (keep v18) (3 minutes ago)
-3ff608f v18: real soundtrack arrives — menu music + per-level track system (3 minutes ago)
-4308681 MAMAD DASH soundtrack: three-track music system (#88) (6 minutes ago)
+e0f8626 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+e3fe306 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+e099799 Soundtrack rotation: three tracks score the whole game (6 minutes ago)
+98952a5 Merge origin/main (keep v18) (7 minutes ago)
+3ff608f v18: real soundtrack arrives — menu music + per-level track system (8 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
