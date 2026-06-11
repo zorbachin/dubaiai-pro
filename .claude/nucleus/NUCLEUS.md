@@ -189,26 +189,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 12:54 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 64ea910 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 — 63 seconds ago
+- **Last commit:** 4fe7a40 chore: refresh nucleus live state [skip ci] — 27 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 225 ++-------------------------------------------
- 1 file changed, 10 insertions(+), 215 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-64ea910 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (63 seconds ago)
-e11203a chore: nucleus snapshot [skip ci] (63 seconds ago)
+4fe7a40 chore: refresh nucleus live state [skip ci] (27 seconds ago)
+64ea910 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (2 minutes ago)
+e11203a chore: nucleus snapshot [skip ci] (2 minutes ago)
 5f07704 Music consistency + the flock: duck-only obstacles (2 minutes ago)
-78bb4bb Mamad Dash offline: service worker (shell+art precache, runtime music cache) — makes the zero-signal promise true (48 minutes ago)
-91ddb45 Back-to-arcade links on both game home screens (tap-safe on Mamad Dash title) (2 hours ago)
+78bb4bb Mamad Dash offline: service worker (shell+art precache, runtime music cache) — makes the zero-signal promise true (49 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
