@@ -171,9 +171,9 @@ ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 04:03 UTC
+- **When:** 2026-06-11 04:07 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 0745dae chore: refresh nucleus live state [skip ci] — 23 seconds ago
+- **Last commit:** 9800f50 Installable web-app polish: manifest + iOS home-screen title — 19 seconds ago
 
 **Working tree:**
 ```
@@ -182,11 +182,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-0745dae chore: refresh nucleus live state [skip ci] (23 seconds ago)
-607c2e5 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-fc0c932 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-22a1828 chore: refresh nucleus live state [skip ci] (20 minutes ago)
-11d4a56 chore: refresh nucleus live state [skip ci] (22 minutes ago)
+9800f50 Installable web-app polish: manifest + iOS home-screen title (19 seconds ago)
+8a71dc1 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+0745dae chore: refresh nucleus live state [skip ci] (4 minutes ago)
+607c2e5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+fc0c932 chore: refresh nucleus live state [skip ci] (12 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
