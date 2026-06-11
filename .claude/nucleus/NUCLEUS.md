@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 20:15 UTC · chat
+Naval framework set captured (.claude/os/frameworks/naval-prompts.md) AND executed on Zorba's real data (naval-execution.md). Verdicts: specific-knowledge niche = 'AI-operated micro-ventures at game-speed, the machine is the product'; top model = THE MIKLAT OS kit (score 14: package nucleus+agentbus+coursegen as template+course, the arcade is the playable proof); leverage finding = no labor problem, UNPLUGGED leverage (built-to-5 assets never connected to distribution); 24mo equity gap ~$23K from games alone if conversions happen this week
+
 ### 2026-06-11 19:52 UTC · code
 NIGHT SHIFT COMPLETE: (1) 10M panels x3 games — verdicts in each PANEL-VERDICT.md; 11 prescribed fixes applied+syntax-verified (incl. panel-caught tip-jar tap bug, ID save crash, SS restart race + 6s difficulty saturation). Ship calls: ID+SS itch today, MD ship, CrazyGames needs portal build. (2) War Room launch console at academy/war-room.html — all gates/links/prompt packs/pitch. (3) Zorba Campus: 5 courses from 30-day audit via new bin/coursegen. (4) Morning brief drafted in Gmail. (5) T020-T025 queued. Zorba's 2h: keys session -> art packs -> portals -> WhatsApp+press
 
@@ -188,31 +191,28 @@ Overnight progress: It2+It3 shipped (challenge card image share + ?beat= rematch
 
 ### 2026-06-10 19:02 UTC · code
 OVERNIGHT DIRECTIVE (Zorba): work through the night with advisor panels to get MAMAD DASH to optimum virality + rock-solid stability + social features; promo materials ready by morning. Executing: It2 Challenge Card share loop, It3 difficulty/revive, perf hardening, QA sign-off, promo pack (key art, channel copy, screenshots, launch checklist). Morning blockers for Zorba: Porkbun DNS records, merge PR #74, optional mamaddash.com domain + GoatCounter account.
-
-### 2026-06-10 18:55 UTC · code
-Iteration 1 (feel patch) SHIPPED to PR #74: touchstart jump (-100ms latency), landing buffer, fast-fall, hit-stop, camera dip+speed zoom, coin fly+combo pitch, star smash-through, celebration trio fixed (confetti above overlay, cleared on wave start, door flash wired), ghost invuln, ragdoll floor, audio bus+heartbeat pulse. All assertions green. Next per roadmap: It2 Challenge Card + og:image + analytics (awaiting GoatCounter/GA account from Zorba), It3 difficulty+revive+daily. Art prompts handed to Zorba for ChatGPT.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 19:52 UTC
+- **When:** 2026-06-11 20:15 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing — 8 minutes ago
+- **Last commit:** 0034727 nucleus: night shift complete — panels, fixes, war room, campus, morning brief — 23 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+?? .claude/os/frameworks/
 ```
 
 **Recent commits:**
 ```
-b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing (8 minutes ago)
-1d9f072 ZORBA CAMPUS: 5 personalized courses from the 30-day audit + campus hub + audit summary (9 minutes ago)
-3168692 coursegen: Academy course factory — course JSON in, self-contained XP-engine HTML out (20 minutes ago)
-e533bdb nucleus: night shift — academy shipped, factory pipeline codified + backfilled (63 minutes ago)
-7285b68 nucleus: overnight mandate — academy course + game factory pipeline audit (80 minutes ago)
+0034727 nucleus: night shift complete — panels, fixes, war room, campus, morning brief (23 minutes ago)
+b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing (31 minutes ago)
+1d9f072 ZORBA CAMPUS: 5 personalized courses from the 30-day audit + campus hub + audit summary (32 minutes ago)
+3168692 coursegen: Academy course factory — course JSON in, self-contained XP-engine HTML out (43 minutes ago)
+e533bdb nucleus: night shift — academy shipped, factory pipeline codified + backfilled (86 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
