@@ -189,26 +189,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 13:33 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 2007b66 Duck-only rate to 15%+ and red/green color language — 70 seconds ago
+- **Last commit:** ca3da4f chore: refresh nucleus live state [skip ci] — 31 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 220 +++++----------------------------------------
- 1 file changed, 20 insertions(+), 200 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-2007b66 Duck-only rate to 15%+ and red/green color language (70 seconds ago)
+ca3da4f chore: refresh nucleus live state [skip ci] (31 seconds ago)
+2007b66 Duck-only rate to 15%+ and red/green color language (2 minutes ago)
 1e1c6e7 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (6 minutes ago)
 d979ffe Inside-mamad text to top-left + repair conflict markers in main (7 minutes ago)
-5d484fb chore: refresh nucleus live state [skip ci] (27 minutes ago)
-10cc83c chore: refresh nucleus live state [skip ci] (28 minutes ago)
+5d484fb chore: refresh nucleus live state [skip ci] (28 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
