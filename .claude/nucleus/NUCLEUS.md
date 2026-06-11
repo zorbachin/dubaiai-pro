@@ -187,28 +187,22 @@ DIRECTION SHIFT (Zorba): MAMAD DASH should become a STANDALONE game — siren ru
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 13:05 UTC
+- **When:** 2026-06-11 13:06 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** e7bc69c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 — 58 seconds ago
+- **Last commit:** 10cc83c chore: refresh nucleus live state [skip ci] — 26 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 217 +++------------------------------------------
- 1 file changed, 10 insertions(+), 207 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-e7bc69c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (58 seconds ago)
+10cc83c chore: refresh nucleus live state [skip ci] (26 seconds ago)
+e7bc69c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (84 seconds ago)
 8b863d0 Music in sequences of three + bulletproof inside-screen centering (2 minutes ago)
 34cb57f chore: refresh nucleus live state [skip ci] (11 minutes ago)
-4fe7a40 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-e0c0abf Music consistency + the flock (duck-only obstacles) (#103) (12 minutes ago)
+4fe7a40 chore: refresh nucleus live state [skip ci] (12 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
