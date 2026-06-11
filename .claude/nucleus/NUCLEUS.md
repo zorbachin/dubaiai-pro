@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 07:53 UTC · code
+v21 MERGED (PR #97): centered full-dome art worlds (5 scenes cycling 10 levels, in-game center-crop, band capped 40% H) + REAL falafel sprites cut from the art tumbling on collision (old painted balls erased). Game is now visually end-to-end Zorba's art: menu bg, level worlds, falafel, share cards. Remaining gates: DNS->flip, GoatCounter x2, shot-list approval, nice-to-have art files (icon/victory/badge).
+
 ### 2026-06-11 07:54 UTC · code
 WORKSTREAM SYNC AUDIT: mamaddash canonical == miklat package (byte-verified modulo domain+analytics deltas); bin/sync-miklat script added so it can never drift. mamadio stable by design. OUT OF SYNC: Iron Dome (not ported — location unconfirmed, zorbasphere candidate, or regenerate); deploy keys still with Zorba (miklatgames repo, Porkbun DNS x2 domains, GoatCounter).
 
@@ -187,6 +190,8 @@ Art direction decided on ChatGPT image passes: RETRO pass -> share card (readabl
 
 
 
+
+
 ### 2026-06-10 19:09 UTC · code
 OVERNIGHT SHIFT COMPLETE: promo pack merged (PR #81, content-assets/irondome-promo/) — full bilingual launch copy (WhatsApp x4, Telegram DM+post, Reddit x2, press HE+EN, X, meme pages, 20s clip script, crisis one-liners, seeding checklist) + visual cards (story/square/meme/share) + v15 screenshots. ChatGPT image prompts EMAILED to Zorba for the elite art pass (6 prompts, no-text rule, palette locked). MORNING PLAN: Zorba does domain + GoatCounter + ChatGPT images -> Claude swaps URL in one pass (it's on its own line everywhere), composites Hebrew typography on new art, re-ships -> seeding begins per checklist.
 ### 2026-06-10 19:00 UTC · code
@@ -200,6 +205,8 @@ Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 08:02 UTC
+
 - **When:** 2026-06-11 07:54 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
 - **Last commit:** 7ed59b5 bin/sync-miklat: one-command game->arcade package sync — 1 second ago
@@ -214,21 +221,13 @@ _Refreshed automatically after each turn — do not edit by hand._
 - **Last commit:** 2ba33a1 chore: refresh nucleus live state [skip ci] — 53 minutes ago
 - **When:** 2026-06-11 07:30 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 14aec7b v19: the Miklat Wallet — shared shekels across games + CONTINUE mechanic — 1 second ago
-
-- **When:** 2026-06-11 06:30 UTC
-- **When:** 2026-06-11 06:15 UTC
-- **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 1da9d33 Promo: generated takes v1 URLs + QC bar — 27 seconds ago
-- **When:** 2026-06-11 06:13 UTC
-
-- **When:** 2026-06-11 05:52 UTC
-- **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** d83a262 chore: refresh nucleus live state [skip ci] — 22 seconds ago
+- **Last commit:** df8624b chore: refresh nucleus live state [skip ci] — 31 seconds ago
 
 **Working tree:**
 ```
 ✓ clean — nothing uncommitted
+
+
 
 
 
@@ -248,6 +247,12 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+df8624b chore: refresh nucleus live state [skip ci] (31 seconds ago)
+f8880b1 chore: refresh nucleus live state [skip ci] (8 minutes ago)
+5dbb0c8 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+6b684c2 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+947b465 Merge origin/main (ours: irondome, theirs: other teams) (10 minutes ago)
+
 7ed59b5 bin/sync-miklat: one-command game->arcade package sync (1 second ago)
 8d13acf chore: refresh nucleus live state [skip ci] (2 minutes ago)
 9354dae chore: refresh nucleus live state [skip ci] (20 minutes ago)

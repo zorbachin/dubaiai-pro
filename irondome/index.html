@@ -279,7 +279,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v21';
+const GAME_VERSION = 'v23';
 const INBOUND = new URLSearchParams(location.search);
 const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
@@ -748,7 +748,7 @@ function buildSkyline(){
     const r = Math.abs(Math.sin((G.levelIdx + 1) * 41.3 + ((i * 3 + G.levelIdx) % n) * 12.3));
     arr.push({
       x: bw * (i + 1) + bw * 0.08, w: bw * 0.84,
-      h: 48 + r * Math.min(105, H * 0.13),
+      h: 32 + r * Math.min(56, H * 0.07),   // low-rise: the art skyline behind stays visible
       alive: prev[i] ? prev[i].alive : true,
       hp: prev[i] ? prev[i].hp : 1 + save.up.launchers,   // 'City Armor' upgrade
       win: 2 + Math.floor(r * 3)
@@ -1525,31 +1525,47 @@ function drawCity(){
   cx.strokeStyle = 'rgba(62,230,255,0.35)'; cx.lineWidth = 2;
   cx.beginPath(); cx.moveTo(0, GROUND); cx.lineTo(W, GROUND); cx.stroke();
 
-  // buildings
+  // buildings — chunky pixel art, matched to the world art (4px grid, hard edges)
+  const Q = 4, snap = v => Math.round(v / Q) * Q;
   for (const b of G.buildings){
+    const bx = snap(b.x), bw = snap(b.w), bh = snap(b.h);
     if (b.alive){
-      cx.fillStyle = '#3a5cae';
-      cx.fillRect(b.x, GROUND - b.h, b.w, b.h);
+      // body: two-tone with a shaded right column, like the art's towers
+      cx.fillStyle = '#1b2c58';
+      cx.fillRect(bx, GROUND - bh, bw, bh);
       cx.fillStyle = '#16244a';
-      cx.fillRect(b.x, GROUND - b.h, b.w, 4);   // roof line for definition
-      cx.fillStyle = acc; cx.globalAlpha = 0.95;
-      // windows
-      const rows = Math.floor(b.h / 16), cols = b.win;
+      cx.fillRect(bx + bw - Q * 2, GROUND - bh, Q * 2, bh);   // shade edge
+      cx.fillRect(bx, GROUND - bh, bw, Q);                    // roof slab
+      cx.fillStyle = '#0c1630';
+      cx.fillRect(bx + Q, GROUND - bh - Q, Q, Q);             // roof pixel detail
+      cx.fillRect(bx + bw - Q * 3, GROUND - bh - Q * 2, Q, Q * 2);  // antenna
+      // windows: crisp gold pixels on the grid, a few unlit, one cyan
+      const rows = Math.floor((bh - Q * 3) / (Q * 3)), cols = Math.max(2, Math.floor(bw / (Q * 3)));
       for (let r = 0; r < rows; r++)
-        for (let c = 0; c < cols; c++)
-          if ((r * 7 + c * 3 + b.win) % 3 !== 0)
-            cx.fillRect(b.x + 5 + c * (b.w - 10) / cols, GROUND - b.h + 6 + r * 16, 4, 6);
-      cx.globalAlpha = 1;
+        for (let c = 0; c < cols; c++){
+          const k = (r * 7 + c * 3 + b.win) % 7;
+          if (k === 0) continue;                              // dark window
+          cx.fillStyle = k === 5 ? '#6fe3ff' : '#ffd166';
+          cx.fillRect(bx + Q + c * Q * 3, GROUND - bh + Q * 2 + r * Q * 3, Q, Q);
+        }
+      // damaged (armor absorbed a hit): cracked pixels + smoke tint
+      if (b.hp !== undefined && b.hp < 1 + save.up.launchers){
+        cx.fillStyle = '#0c1630';
+        for (let i = 0; i < 6; i++)
+          cx.fillRect(bx + ((i * 37) % (bw - Q)), GROUND - bh + ((i * 53) % (bh - Q)), Q, Q);
+      }
     } else {
-      // rubble
+      // rubble: a stepped pixel mound with embers
+      cx.fillStyle = '#1a2747';
+      cx.fillRect(bx, GROUND - Q * 2, bw, Q * 2);
+      cx.fillRect(bx + Q, GROUND - Q * 4, bw - Q * 2, Q * 2);
+      cx.fillRect(bx + Q * 3, GROUND - Q * 5, bw - Q * 6, Q);
       cx.fillStyle = '#26314f';
-      cx.beginPath();
-      cx.moveTo(b.x, GROUND);
-      cx.lineTo(b.x + b.w * 0.2, GROUND - 12);
-      cx.lineTo(b.x + b.w * 0.5, GROUND - 6);
-      cx.lineTo(b.x + b.w * 0.8, GROUND - 14);
-      cx.lineTo(b.x + b.w, GROUND);
-      cx.fill();
+      cx.fillRect(bx + Q * 2, GROUND - Q * 3, Q * 2, Q);
+      cx.fillRect(bx + bw - Q * 4, GROUND - Q * 3, Q * 2, Q);
+      cx.fillStyle = '#ff8c42'; cx.globalAlpha = 0.5 + 0.4 * Math.abs(Math.sin(performance.now() / 300));
+      cx.fillRect(bx + Q * 3, GROUND - Q * 3, Q, Q);          // glowing ember
+      cx.globalAlpha = 1;
     }
   }
 
@@ -2201,6 +2217,7 @@ for (let i = 0; i < 70; i++)
   stars.push({ x: Math.random(), y: Math.random(), s: Math.random() < 0.8 ? 1 : 2, tw: Math.random() * 6.28 });
 resize();
 $('verTag').textContent = '🛡 ' + GAME_VERSION;
+for (let i = 0; i < 10; i++) levelBg(i);   // warm all worlds while the menu shows
 { // incoming challenge link? show the gauntlet
   const cb = parseInt(INBOUND.get('b'), 10), cc = INBOUND.get('c');
   if (cb > 0){

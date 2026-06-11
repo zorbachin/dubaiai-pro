@@ -1,5 +1,5 @@
 /* Iron Dome — offline-first service worker */
-const CACHE = 'irondome-v21';
+const CACHE = 'irondome-v23';
 const ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,15 @@ const ASSETS = [
   './icon-512.png',
   './menu-bg.jpg',
   './bg/bg1.jpg',
+  './bg/bg2.jpg',
+  './bg/bg3.jpg',
+  './bg/bg4.jpg',
+  './bg/bg5.jpg',
+  './bg/bg6.jpg',
+  './bg/bg7.jpg',
+  './bg/bg8.jpg',
+  './bg/bg9.jpg',
+  './bg/bg10.jpg',
   './bg/falafel1.png',
   './bg/falafel2.png',
   './bg/falafel3.png'
