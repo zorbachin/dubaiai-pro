@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 17:33 UTC · code
+Tooling preference: Higgsfield = waste of credits for image gen — use FREE Gemini instead, batched not one-by-one. Built bin/imagepack in miklatgames (reads <game>/press/prompts.json, batch-calls free Gemini API). Shuk Shopper press pack v1 generated (keyart/icon/poster/itch cover/banner)
+
 ### 2026-06-11 17:20 UTC · code
 MG org restructured: mg-ceo is now a dedicated Commercialization CEO (one job: marketing/distribution to the 10K-user goal); each game gets a full-time PM agent (irondome/mamaddash/shukshopper) managing that game's 10M advisor panel. Recorded in .claude/os/ventures.md
 
@@ -188,37 +191,28 @@ MAMAD DASH polish pass shipped (Zorba feedback: 'addictive but waves feel same, 
 
 ### 2026-06-10 15:01 UTC · code
 VALIDATED: Zorba played MAMAD DASH on his real phone via the raw.githack branch link (repo is public, link works) and loves the bright look — sent a screenshot of wave 2, red countdown 3, confetti, 55 shekels mid-run: 'This is a great image.' Bright Fortnite-esque direction is confirmed working on real hardware.
-
-### 2026-06-10 13:23 UTC · code
-MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream skyline) + arcade juice (pop-text, coin glow/spin, landing squash, speed lines, countdown punch, confetti, PERFECT RUN bonus). Zorba steering: addictive + bright first, complexity later — master dash mode before adding anything. Full suite re-verified, pushed to PR #74.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 17:20 UTC
+- **When:** 2026-06-11 17:33 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** fda68b3 nucleus: capture Shuk Shopper ship + monetization queue-jump note — 53 minutes ago
+- **Last commit:** 3d6f138 MG org: dedicated commercialization CEO to 10K users + full-time PM per game running its 10M advisor panel — 13 minutes ago
 
 **Working tree:**
 ```
-M .claude/os/ventures.md
-```
-
-**Uncommitted changes:**
-```
-.claude/os/ventures.md | 19 ++++++++++++++++---
- 1 file changed, 16 insertions(+), 3 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-fda68b3 nucleus: capture Shuk Shopper ship + monetization queue-jump note (53 minutes ago)
-af4f340 os: register Miklat Games venture (Claude as COO/CMO) + promote standalone-game decision to nucleus (63 minutes ago)
+3d6f138 MG org: dedicated commercialization CEO to 10K users + full-time PM per game running its 10M advisor panel (13 minutes ago)
+fda68b3 nucleus: capture Shuk Shopper ship + monetization queue-jump note (65 minutes ago)
+af4f340 os: register Miklat Games venture (Claude as COO/CMO) + promote standalone-game decision to nucleus (75 minutes ago)
 934bdd4 nucleus: capture Miklat Games workspace handoff (4 hours ago)
 195c4d4 Duck-only rate to 15%+ and red/green color language (#106) (4 hours ago)
-0a44e4a Inside-mamad text to top-left + repair conflict markers on main (#105) (4 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
