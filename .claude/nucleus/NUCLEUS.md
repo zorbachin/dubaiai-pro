@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 13:05 UTC · code
+Music sequences-of-three shipped (PR #104, Zorba's model: one song per 3-wave block rotating per cycle, Temple Dash on marathons) + iOS preload fix + insideScene transform hard-reset (final centering guarantee). REMINDER AT TOP OF NEXT SESSION: add miklatgames repo to session picker — 4 merged fix-rounds are waiting to deploy to the live site.
+
 ### 2026-06-11 12:54 UTC · code
 Live-play feedback round shipped (PR #103 merged): music = one driving track per run (no more per-wave hopping), THE FLOCK added (stacked duck-only air wall, guaranteed 1/wave + 2/marathon, jump stays reliable default elsewhere). End-screen misalign fix (#102) merged but STILL NOT LIVE — miklatgames repo needs re-sync from dubaiai-pro:miklat/ (Cowork one-liner or add repo to session). This is now the #1 friction: every fix is double-gated until the miklatgames repo is in-session.
 
@@ -178,39 +181,20 @@ Fixed the volleyball 'I'm timing it right and it misses' bug Zorba hit live: min
 
 ### 2026-06-10 12:48 UTC · code
 DIRECTION SHIFT (Zorba): MAMAD DASH should become a STANDALONE game — siren runner is the viral core; Tel Aviv exploration demoted to secondary/'a place to play'. Iron Dome + MAMAD DASH = the two viral candidates IF made perfect and dead-simple to play. SEPARATE parked idea: multiplayer Tel Aviv lifestyle game — chat, create worlds, interact ('trying to make it' sim). Echoes QA panel finding: dash is the tense set-piece, hustle layer runs dry. Meanwhile shipped PR #74: dash difficulty now ramps with countdown (calm start, frantic finish) + stumble death-spiral fix + freeze guard.
-
-### 2026-06-10 12:28 UTC · code
-DNS BROKEN: dubaiai.pro resolves to 44.227.76.166 / 44.227.65.245 (registrar parking IPs, likely GoDaddy) instead of GitHub Pages (185.199.108-111.153). Entire site down incl. /mamadio/ — Pages deploys are green, files on main; fix is at the DNS provider: apex A records to the four 185.199.x.153 IPs. Nucleus 'Live at dubaiai.pro' claim is currently false. github.io fallback also dead-ends (301s to the broken custom domain via CNAME).
-
-### 2026-06-10 12:15 UTC · code
-MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimous SHIP WITH FIXES, zero JS errors, economy math verified exact. P0 fixes: mobile dash HUD hidden by alert banner; latent siren-null game-freeze; mini-games have no cancel. Big balance finds: Mendy 2.4x dominant, haggle deterministic, scooters dead content, quest income dries up with 80% of day left, runner stumble death-spiral. Top virality lever = end-screen share card. Full reports in /tmp/qa-func|qa-ux|qa-fun|qa-design.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 13:06 UTC
 - **When:** 2026-06-11 12:54 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
 - **Last commit:** 4fe7a40 chore: refresh nucleus live state [skip ci] — 27 seconds ago
 - **When:** 2026-06-11 12:47 UTC
 - **When:** 2026-06-11 10:25 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** e975d26 chore: refresh nucleus live state [skip ci] — 2 hours ago
-
-**Working tree:**
-```
-- **When:** 2026-06-11 09:50 UTC
-
-- **When:** 2026-06-11 09:12 UTC
-- **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** f9bfbe6 v24 (part 1): strict music cycle, towers removed (damage on the art), menu redesign — 14 seconds ago
-
-- **When:** 2026-06-11 08:02 UTC
-
-- **When:** 2026-06-11 07:54 UTC
-- **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** f052218 chore: refresh nucleus live state [skip ci] — 2 hours ago
+- **Last commit:** 10cc83c chore: refresh nucleus live state [skip ci] — 26 seconds ago
 
 **Working tree:**
 ```
@@ -219,6 +203,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
+10cc83c chore: refresh nucleus live state [skip ci] (26 seconds ago)
+e7bc69c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (84 seconds ago)
+8b863d0 Music in sequences of three + bulletproof inside-screen centering (2 minutes ago)
+34cb57f chore: refresh nucleus live state [skip ci] (11 minutes ago)
+4fe7a40 chore: refresh nucleus live state [skip ci] (12 minutes ago)
 4fe7a40 chore: refresh nucleus live state [skip ci] (27 seconds ago)
 64ea910 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (2 minutes ago)
 e11203a chore: nucleus snapshot [skip ci] (2 minutes ago)

@@ -179,7 +179,6 @@ $('mute').addEventListener('click',e=>{ e.stopPropagation();
    song — reuse without repetition. */
 const Music={
   tracks:{}, el:null,
-<<<<<<< HEAD
   // Sequences of three: each 4-wave cycle keeps ONE song for its 3 normal
   // waves (rotating song per cycle), every marathon gets Temple Dash, menus
   // get Jericho Run. No mid-block hopping; death cam stays silent.
@@ -187,13 +186,6 @@ const Music={
   init(){ if(this.tracks.title) return;        // built on first gesture (autoplay policy)
     const mk=file=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45;
       a.preload='auto'; a.load(); return a; }; // iOS: buffer up-front so switches can't fail silent
-=======
-  // One driving track per run (no mid-run hopping): Temple Run Shalom carries
-  // normal waves continuously through door beats; Temple Dash seizes
-  // marathons; Jericho Run owns the menus. Death cam stays silent.
-  init(){ if(this.tracks.title) return;        // built on first gesture (autoplay policy)
-    const mk=file=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45; return a; };
->>>>>>> origin/main
     this.tracks.title=mk('title.mp3');
     this.tracks.level1=mk('level1.mp3');
     this.tracks.level3=mk('level3.mp3');
@@ -204,11 +196,7 @@ const Music={
     if(G.state==='title'||G.state==='dead') want='title';
     else if(G.state==='deathcam'||G.state==='paused') want=null;
     else if(G.cfg&&G.cfg.marathon) want='level3';
-<<<<<<< HEAD
     else want=this.RUN_SEQ[Math.floor((G.wave-1)/4)%this.RUN_SEQ.length];
-=======
-    else want='level1';
->>>>>>> origin/main
     for(const [n,a] of Object.entries(this.tracks)){
       const on=Sound.on&&n===want;
       a.volume=G.sirenOn?.16:.45;              // duck under the wail
@@ -1138,18 +1126,20 @@ function insideScene(){
     if(t<.65){ drawEmoji('🚀',rk.x+t*240,rk.y-t*180,30); drawEmoji('☄️',W*.9-t*340,H*.08+t*260,26); }
     else if(t<1.1) drawEmoji('💥',W*.62,H*.3,70+Math.sin(t*30)*8);
   }
+  // text block lives top-left, left-aligned — centering can't be a problem
   const fitTxt=(str,fs,wt)=>{cx.font=`${wt} ${fs}px sans-serif`;
     const tw=cx.measureText(str).width;
-    if(tw>W*.94) cx.font=`${wt} ${Math.floor(fs*W*.94/tw)}px sans-serif`;};
-  cx.textAlign='center';cx.textBaseline='middle';
-  cx.fillStyle='#7ee8c7';fitTxt('INSIDE THE MAMAD 🛡️',clamp(W*.07,26,40),900);
-  cx.fillText('INSIDE THE MAMAD 🛡️',W/2,H*.6);
+    if(tw>W-32) cx.font=`${wt} ${Math.floor(fs*(W-32)/tw)}px sans-serif`;};
+  cx.textAlign='left';cx.textBaseline='middle';
+  const tx=16; let ty=(Math.max(30,H*.028+26)+SAFE_TOP)+118;
   if(G.perfect){ cx.fillStyle='#ff8ad4';fitTxt('🎯 PERFECT RUN +15₪',22,900);
-    cx.fillText('🎯 PERFECT RUN +15₪',W/2,H*.6-44); }
+    cx.fillText('🎯 PERFECT RUN +15₪',tx,ty); ty+=36; }
+  cx.fillStyle='#7ee8c7';fitTxt('INSIDE THE MAMAD 🛡️',clamp(W*.07,26,36),900);
+  cx.fillText('INSIDE THE MAMAD 🛡️',tx,ty); ty+=42;
   const l1=`+${20+G.wave*5}₪ calm under fire · siren #${G.wave} survived`;
-  cx.fillStyle='#ffd166';fitTxt(l1,18,800);cx.fillText(l1,W/2,H*.6+44);
+  cx.fillStyle='#ffd166';fitTxt(l1,17,800);cx.fillText(l1,tx,ty); ty+=28;
   const l2='boom outside… Iron Dome has it. Next one is faster.';
-  cx.fillStyle='rgba(255,255,255,.6)';fitTxt(l2,14,600);cx.fillText(l2,W/2,H*.6+76);
+  cx.fillStyle='rgba(255,255,255,.6)';fitTxt(l2,13,600);cx.fillText(l2,tx,ty);
   cx.restore();
 }
 
