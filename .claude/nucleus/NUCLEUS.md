@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 04:24 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 4d1af05 Pacing v2: continuous flow - speed carryover, door beats, marathons — 22 seconds ago
+- **Last commit:** f671c04 chore: refresh nucleus live state [skip ci] — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-4d1af05 Pacing v2: continuous flow - speed carryover, door beats, marathons (22 seconds ago)
+f671c04 chore: refresh nucleus live state [skip ci] (21 seconds ago)
+4d1af05 Pacing v2: continuous flow - speed carryover, door beats, marathons (43 seconds ago)
 7ef3a02 chore: refresh nucleus live state [skip ci] (7 minutes ago)
 180f6c3 Board polish pass: cohesion, contrast, notch safety, QA one-liners (10 minutes ago)
-a40e3b7 chore: refresh nucleus live state [skip ci] (17 minutes ago)
-9800f50 Installable web-app polish: manifest + iOS home-screen title (18 minutes ago)
+a40e3b7 chore: refresh nucleus live state [skip ci] (18 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
