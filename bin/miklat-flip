@@ -9,6 +9,6 @@ sed -i 's|https://zorbachin.github.io/dubaiai-pro/irondome/|https://miklatgames.
 sed -i 's|zorbachin.github.io/dubaiai-pro/irondome|miklatgames.fun/irondome|g' irondome/index.html
 sed -i 's|https://zorbachin.github.io/dubaiai-pro/irondome/|https://miklatgames.fun/irondome/|g' content-assets/irondome-promo/PROMO-PACK.md
 # cache-bust so installed PWAs pull the new share URLs
-sed -i "s/irondome-v19/irondome-v19/" irondome/sw.js
-sed -i "s/const GAME_VERSION = 'v19';/const GAME_VERSION = 'v20';/" irondome/index.html
+sed -i "s/irondome-v24/irondome-v19/" irondome/sw.js
+sed -i "s/const GAME_VERSION = 'v24';/const GAME_VERSION = 'v25';/" irondome/index.html
 echo "Flipped. Commit, push, merge — miklatgames.fun goes fully live."

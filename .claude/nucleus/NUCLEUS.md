@@ -46,6 +46,8 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 09:19 UTC · code
+v24 MERGED (PR #100): the REAL per-city art from Zorba's Drive folder on all 10 levels (downloaded+classified 39 Drive files via MCP; all 10 cities matched, dome-centered, sky-rule; visually verified contact sheet), drawn towers REMOVED everywhere (damage = fire/smoke on the artwork, HUD city counter), strict 1-2-3 music cycle on every level (L10 wraps to song 1), menu redesigned (PLAY hero + mode subtitles + 3 difficulty mini-buttons + How-To demoted), REAL app icon from Drive replaces placeholder. Triple-check table ALL GREEN. Drive folder also contains Mamad Dash sprites/props batch (noted for their session).
 ### 2026-06-11 08:13 UTC · code
 v23 MERGED (PR #99): art worlds preload at boot + full SW precache (procedural flash eliminated — root cause of 'old levels' reports), falafel sprites re-cut clean (brown/green, no explosion-red), foreground tappable buildings now low-rise+darker so art cityscapes are the hero while keeping break-apart gameplay. Game is visually complete on Zorba's art end to end.
 ### 2026-06-11 07:53 UTC · code
@@ -179,6 +181,8 @@ Direction shift: game world goes FULL ART. Zorba wants in-game levels to look li
 
 
 
+
+
 ### 2026-06-11 03:14 UTC · code
 v16 MERGED (PR #84): key art now IN the game, not just promo — retro art = menu background (SW-precached), honeycomb dome arc drawn into live gameplay sky over every city (render-verified). Clarified for Zorba: promo art vs game art were separate; now unified. Game visuals remain procedural (per-city scenes, rockets) with the art as menu+brand-dome layer.
 
@@ -208,6 +212,8 @@ Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 09:50 UTC
+
 - **When:** 2026-06-11 09:12 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
 - **Last commit:** f9bfbe6 v24 (part 1): strict music cycle, towers removed (damage on the art), menu redesign — 14 seconds ago
@@ -219,20 +225,13 @@ _Refreshed automatically after each turn — do not edit by hand._
 - **Last commit:** 7ed59b5 bin/sync-miklat: one-command game->arcade package sync — 1 second ago
 - **When:** 2026-06-11 07:47 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 20c55e4 chore: refresh nucleus live state [skip ci] — 6 minutes ago
-
-- **When:** 2026-06-11 07:33 UTC
-
-- **When:** 2026-06-11 07:24 UTC
-- **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 2ba33a1 chore: refresh nucleus live state [skip ci] — 53 minutes ago
-- **When:** 2026-06-11 07:30 UTC
-- **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** df8624b chore: refresh nucleus live state [skip ci] — 31 seconds ago
+- **Last commit:** 5d626e7 chore: refresh nucleus live state [skip ci] — 7 minutes ago
 
 **Working tree:**
 ```
 ✓ clean — nothing uncommitted
+
+
 
 
 
@@ -256,6 +255,12 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+5d626e7 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+ecf55ba chore: refresh nucleus live state [skip ci] (8 minutes ago)
+afe7895 chore: refresh nucleus live state [skip ci] (30 minutes ago)
+92b3c54 chore: refresh nucleus live state [skip ci] (30 minutes ago)
+0e7ddc5 Merge origin/main (ours: irondome) (32 minutes ago)
+
 f9bfbe6 v24 (part 1): strict music cycle, towers removed (damage on the art), menu redesign (14 seconds ago)
 5d49d1f chore: refresh nucleus live state [skip ci] (58 minutes ago)
 6bafaff chore: refresh nucleus live state [skip ci] (58 minutes ago)
