@@ -201,7 +201,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 20:37 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 4c0dc24 Merge origin/main (keep v26, round 2) — 35 seconds ago
+- **Last commit:** 1e8117c chore: refresh nucleus live state [skip ci] — 16 seconds ago
 
 **Working tree:**
 ```
@@ -210,11 +210,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-4c0dc24 Merge origin/main (keep v26, round 2) (35 seconds ago)
-a2e85ca Merge origin/main (keep v26) (70 seconds ago)
+1e8117c chore: refresh nucleus live state [skip ci] (16 seconds ago)
+4c0dc24 Merge origin/main (keep v26, round 2) (51 seconds ago)
+a2e85ca Merge origin/main (keep v26) (86 seconds ago)
 59d455b v26: English-first defaults — game and portal open in English (2 minutes ago)
 195c4d4 Duck-only rate to 15%+ and red/green color language (#106) (7 hours ago)
-0a44e4a Inside-mamad text to top-left + repair conflict markers on main (#105) (7 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
