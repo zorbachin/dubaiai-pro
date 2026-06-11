@@ -88,6 +88,7 @@
 </div>
 
 <div class="panel" id="title">
+  <a id="arcadeBack" href="../" style="display:inline-block;margin-bottom:10px;font-size:12px;font-weight:800;letter-spacing:.1em;color:#7ee8c7;text-decoration:none;background:rgba(11,14,26,.6);border:1px solid rgba(126,232,199,.35);border-radius:999px;padding:6px 14px;">🚨 MIKLAT ARCADE</a>
   <div class="logo">MAMAD DASH</div>
   <div class="tag" id="titleTag">🚨 The siren is live. Jump the savtas, duck the doves, stack shekels — and reach the mamad before the boom.</div>
   <div class="controls"><span><b>TAP</b> jump</span><span><b>SWIPE ↓</b> duck</span></div>
@@ -491,6 +492,12 @@ window.addEventListener('mousedown',e=>{
   primary();
 });
 window.addEventListener('contextmenu',e=>{ e.preventDefault(); });
+if ('serviceWorker' in navigator)
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+/* arcade link must not start a run: swallow the tap */
+try{ const ab=document.getElementById('arcadeBack');
+  ['pointerdown','touchstart','mousedown','click'].forEach(ev=>ab.addEventListener(ev,e=>{ e.stopPropagation(); },true));
+}catch(e){}
 window.addEventListener('keydown',e=>{
   const k=e.key.toLowerCase();
   if(k===' '||k==='arrowup'||k==='w'){ e.preventDefault(); primary(); }
