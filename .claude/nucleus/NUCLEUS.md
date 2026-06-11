@@ -210,9 +210,9 @@ Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.gi
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 06:17 UTC
+- **When:** 2026-06-11 06:36 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 3ce5138 chore: refresh nucleus live state [skip ci] — 2 minutes ago
+- **Last commit:** 36db328 chore: refresh nucleus live state [skip ci] — 19 minutes ago
 
 **Working tree:**
 ```
@@ -221,11 +221,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-3ce5138 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-1e7c1be chore: refresh nucleus live state [skip ci] (2 minutes ago)
-5400597 Merge origin/main (keep nucleus) (3 minutes ago)
-5c652f6 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-11db039 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+36db328 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+3ce5138 chore: refresh nucleus live state [skip ci] (21 minutes ago)
+1e7c1be chore: refresh nucleus live state [skip ci] (21 minutes ago)
+5400597 Merge origin/main (keep nucleus) (22 minutes ago)
+5c652f6 chore: refresh nucleus live state [skip ci] (23 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
