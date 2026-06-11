@@ -201,9 +201,9 @@ NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (bui
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 03:04 UTC
+- **When:** 2026-06-11 03:07 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e6f0078 Merge origin/main (post-#82 squash) into branch — 46 seconds ago
+- **Last commit:** e21363f chore: refresh nucleus live state [skip ci] — 3 minutes ago
 
 **Working tree:**
 ```
@@ -212,11 +212,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-e6f0078 Merge origin/main (post-#82 squash) into branch (46 seconds ago)
-46b0aef Merge origin/main into claude/iron-dome-game-zi3dtt (keep bilingual assets) (81 seconds ago)
-514bde1 Bilingual burn-in across all promo assets (3 minutes ago)
-f2d8f25 chore: refresh nucleus live state [skip ci] (6 minutes ago)
-449f37b Elite art pass: retro pixel share card + full promo asset suite (#82) (7 minutes ago)
+e21363f chore: refresh nucleus live state [skip ci] (3 minutes ago)
+e6f0078 Merge origin/main (post-#82 squash) into branch (3 minutes ago)
+46b0aef Merge origin/main into claude/iron-dome-game-zi3dtt (keep bilingual assets) (4 minutes ago)
+514bde1 Bilingual burn-in across all promo assets (5 minutes ago)
+f2d8f25 chore: refresh nucleus live state [skip ci] (9 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
