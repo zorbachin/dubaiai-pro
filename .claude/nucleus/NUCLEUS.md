@@ -46,6 +46,8 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 08:13 UTC · code
+v23 MERGED (PR #99): art worlds preload at boot + full SW precache (procedural flash eliminated — root cause of 'old levels' reports), falafel sprites re-cut clean (brown/green, no explosion-red), foreground tappable buildings now low-rise+darker so art cityscapes are the hero while keeping break-apart gameplay. Game is visually complete on Zorba's art end to end.
 ### 2026-06-11 07:53 UTC · code
 v21 MERGED (PR #97): centered full-dome art worlds (5 scenes cycling 10 levels, in-game center-crop, band capped 40% H) + REAL falafel sprites cut from the art tumbling on collision (old painted balls erased). Game is now visually end-to-end Zorba's art: menu bg, level worlds, falafel, share cards. Remaining gates: DNS->flip, GoatCounter x2, shot-list approval, nice-to-have art files (icon/victory/badge).
 
@@ -175,6 +177,8 @@ MAMADIO headless playtest passed: full flow (title→char→level→play→force
 ### 2026-06-11 03:22 UTC · code
 Direction shift: game world goes FULL ART. Zorba wants in-game levels to look like the marketing (his screenshot showed the procedural flat-vector vs the rich pixel art). Image pack #3 emailed: 10 per-city level backgrounds (9:16, SKY RULE: upper 60% near-empty navy so rockets stay readable, bottom 20% clear for gameplay buildings, honeycomb dome baked in) + optional Red Alert bg. Integration plan on arrival: art = backdrop layer per level, restyle foreground tappable buildings pixel-chunky, ~150-200KB/img, SW-cached, game stays <2.5MB offline-capable. Pack #2 (icon/portrait/badge/victory) also still pending.
 
+
+
 ### 2026-06-11 03:14 UTC · code
 v16 MERGED (PR #84): key art now IN the game, not just promo — retro art = menu background (SW-precached), honeycomb dome arc drawn into live gameplay sky over every city (render-verified). Clarified for Zorba: promo art vs game art were separate; now unified. Game visuals remain procedural (per-city scenes, rockets) with the art as menu+brand-dome layer.
 
@@ -198,13 +202,16 @@ OVERNIGHT SHIFT COMPLETE: promo pack merged (PR #81, content-assets/irondome-pro
 Iron Dome launch promo pack complete at /tmp/PROMO-PACK.md: WhatsApp (4 msgs incl. parents + alert-night protocol), Telegram admin DM + channel post, Reddit x2, press pitches HE/EN, X posts, meme-page DM, 20s clip script, crisis one-liners, seeding checklist. URL on own line everywhere for domain swap. No em-dashes in personal copy.
 ### 2026-06-10 18:53 UTC · code
 Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was DEAD for everyone - D1 one-liner; 2 soft-lock paths closed), DAILY ALERT shipped (date-seeded, streaks, deterministic-verified), commando actually hard + loss thresholds + 50% win gate, per-mode bests, death beat + fanfares + whiff feel + bonus fiesta + sling sweep. Panel verdict: core loop tortured clean (saves/concurrency/soak all green).
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 09:12 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** f9bfbe6 v24 (part 1): strict music cycle, towers removed (damage on the art), menu redesign — 14 seconds ago
+
 - **When:** 2026-06-11 08:02 UTC
 
 - **When:** 2026-06-11 07:54 UTC
@@ -234,6 +241,8 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 
 
+
+
 M .claude/nucleus/NUCLEUS.md
 ```
 
@@ -247,6 +256,12 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+f9bfbe6 v24 (part 1): strict music cycle, towers removed (damage on the art), menu redesign (14 seconds ago)
+5d49d1f chore: refresh nucleus live state [skip ci] (58 minutes ago)
+6bafaff chore: refresh nucleus live state [skip ci] (58 minutes ago)
+0a9e9fd chore: refresh nucleus live state [skip ci] (59 minutes ago)
+25358b9 v23: real-falafel sprites (no red), foreground buildings recede behind the art (59 minutes ago)
+
 df8624b chore: refresh nucleus live state [skip ci] (31 seconds ago)
 f8880b1 chore: refresh nucleus live state [skip ci] (8 minutes ago)
 5dbb0c8 chore: refresh nucleus live state [skip ci] (9 minutes ago)

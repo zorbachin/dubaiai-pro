@@ -1,11 +1,12 @@
 /* Iron Dome — offline-first service worker */
-const CACHE = 'irondome-v23';
+const CACHE = 'irondome-v24';
 const ASSETS = [
   './',
   './index.html',
   './manifest.webmanifest',
   './icon-192.png',
   './icon-512.png',
+  './apple-touch-icon.png',
   './menu-bg.jpg',
   './bg/bg1.jpg',
   './bg/bg2.jpg',
