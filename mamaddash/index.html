@@ -58,8 +58,8 @@
   .keyrow{display:flex;align-items:center;gap:10px;margin-top:9px;font-size:14px;color:#cdd6e8;text-align:left;max-width:330px;}
   .keyrow .ic{flex:0 0 44px;text-align:center;font-size:20px;}
   .ring{display:inline-block;width:30px;height:30px;line-height:30px;border-radius:50%;font-size:16px;}
-  .ring.gold{border:2.5px solid rgba(255,209,102,.9);}
-  .ring.teal{border:2.5px solid rgba(126,232,199,.9);}
+  .ring.red{border:2.5px solid rgba(255,93,93,.9);}
+  .ring.green{border:2.5px solid rgba(110,230,140,.9);}
   .diffBtn{background:transparent;border:1px solid #46506b;border-radius:999px;color:#aab4c8;
     font-weight:700;font-size:13px;padding:7px 14px;margin:0 3px;cursor:pointer;}
   .diffBtn.sel{background:rgba(255,209,102,.15);border-color:var(--gold);color:var(--gold);}
@@ -75,8 +75,9 @@
 <div class="panel hidden" id="pausePanel">
   <div class="logo" style="font-size:clamp(30px,8vw,44px);">PAUSED</div>
   <div class="tag" style="margin-bottom:4px;">The siren waits for no one. But okay, breathe.</div>
-  <div class="keyrow"><span class="ic"><span class="ring gold">👵</span></span><span><b style="color:var(--gold)">Gold ring</b> = TAP to <b>jump over</b> (street stuff)</span></div>
-  <div class="keyrow"><span class="ic"><span class="ring teal">🕊️</span></span><span><b style="color:var(--teal)">Teal ring</b> = SWIPE ↓ to <b>duck under</b> (flying stuff)</span></div>
+  <div class="keyrow"><span class="ic"><span class="ring red">👵</span></span><span><b style="color:#ff8a8a">RED ring</b> = avoid it. On the street: TAP to <b>jump</b>. In the air: SWIPE ↓ to <b>duck</b> (most flyers are jumpable if you time it)</span></div>
+  <div class="keyrow"><span class="ic">🕊️🕊️🕊️</span><span>A <b>stacked flock</b> (⬇) = jumping will NOT clear it. <b>Duck only.</b></span></div>
+  <div class="keyrow"><span class="ic"><span class="ring green">⭐</span></span><span><b style="color:#6ee68c">GREEN ring</b> = grab it — power-ups, scooters, the good stuff</span></div>
   <div class="keyrow"><span class="ic">💥</span><span>Any hit: <b style="color:#ff8a8a">−10₪</b> + you stumble back</span></div>
   <div class="keyrow"><span class="ic">🪙</span><span>Coins = <b style="color:var(--gold)">+5₪</b> (combos climb)</span></div>
   <div class="keyrow"><span class="ic">🛴</span><span>Scooter = <b style="color:var(--teal)">hyper-speed</b>, one screen, smash-proof</span></div>
@@ -87,6 +88,7 @@
 </div>
 
 <div class="panel" id="title">
+  <a id="arcadeBack" href="../" style="display:inline-block;margin-bottom:10px;font-size:12px;font-weight:800;letter-spacing:.1em;color:#7ee8c7;text-decoration:none;background:rgba(11,14,26,.6);border:1px solid rgba(126,232,199,.35);border-radius:999px;padding:6px 14px;">🚨 MIKLAT ARCADE</a>
   <div class="logo">MAMAD DASH</div>
   <div class="tag" id="titleTag">🚨 The siren is live. Jump the savtas, duck the doves, stack shekels — and reach the mamad before the boom.</div>
   <div class="controls"><span><b>TAP</b> jump</span><span><b>SWIPE ↓</b> duck</span></div>
@@ -177,34 +179,29 @@ $('mute').addEventListener('click',e=>{ e.stopPropagation();
    song — reuse without repetition. */
 const Music={
   tracks:{}, el:null,
-  // Jericho Run = home screens · Temple Run Shalom = beach (+a later section
-  // reused for Florentin/Night per "cut them up") · Temple Dash = Old North
-  // AND every marathon "bonus round" (overrides the hood track)
-  HOOD_TRACK:{'GORDON BEACH':'level1','FLORENTIN':'level1b',
-              'THE OLD NORTH':'level3','NIGHT RUN':'level1b'},
+  // Sequences of three: each 4-wave cycle keeps ONE song for its 3 normal
+  // waves (rotating song per cycle), every marathon gets Temple Dash, menus
+  // get Jericho Run. No mid-block hopping; death cam stays silent.
+  RUN_SEQ:['level1','title','level3'],
   init(){ if(this.tracks.title) return;        // built on first gesture (autoplay policy)
-    const mk=(file,seek)=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45;
-      if(seek) a.addEventListener('loadedmetadata',
-        ()=>{ if(a.duration) a.currentTime=a.duration*seek; },{once:true});
-      return a; };
-    this.tracks.title=mk('title.mp3',0);
-    this.tracks.level1=mk('level1.mp3',0);
-    this.tracks.level1b=mk('level1.mp3',.45); // same song, different section
-    this.tracks.level3=mk('level3.mp3',0);
+    const mk=file=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45;
+      a.preload='auto'; a.load(); return a; }; // iOS: buffer up-front so switches can't fail silent
+    this.tracks.title=mk('title.mp3');
+    this.tracks.level1=mk('level1.mp3');
+    this.tracks.level3=mk('level3.mp3');
   },
   update(){
     if(!this.tracks.title) return;
     let want;
     if(G.state==='title'||G.state==='dead') want='title';
-    else if(G.state==='deathcam') want=null;   // silence — let the savta land
-    else if(G.state==='paused') want=null;
+    else if(G.state==='deathcam'||G.state==='paused') want=null;
     else if(G.cfg&&G.cfg.marathon) want='level3';
-    else want=this.HOOD_TRACK[THEME().name];
+    else want=this.RUN_SEQ[Math.floor((G.wave-1)/4)%this.RUN_SEQ.length];
     for(const [n,a] of Object.entries(this.tracks)){
       const on=Sound.on&&n===want;
       a.volume=G.sirenOn?.16:.45;              // duck under the wail
       if(on&&a.paused) a.play().catch(()=>{});
-      else if(!on&&!a.paused) a.pause();       // resumes here next visit
+      else if(!on&&!a.paused) a.pause();       // resumes here next time
     }
     this.el=want?this.tracks[want]:null;
   },
@@ -227,7 +224,9 @@ function resize(){
   groundY=Math.round(H*.74);
   clearCaches();
 }
-window.addEventListener('resize',resize);resize();
+window.addEventListener('resize',resize);
+window.addEventListener('orientationchange',()=>{resize();setTimeout(resize,350);}); // iOS settles late
+resize();
 
 /* sprite caches — emoji glyph rasterization and gradients are the two
    biggest per-frame costs on low-end phones; render each once. */
@@ -374,7 +373,7 @@ function startWave(){
   G.prog=0; G.goal=c.goal; G.obs=[]; G.picks=[]; G.pows=[]; G.rockets=[];
   G.scoots=[]; G.scootDist=0; G.nextScoot=c.goal*wrandC(.3,.62);
   clearTimeout(G.deathTimer);
-  G.nextOb=(G.tutorial&&!G.daily)?420:520; G.nextCoin=750;   // dailies: identical spacing for everyone
+  G.nextOb=(G.tutorial&&!G.daily)?420:520; G.nextCoin=750; G.obCount=0;   // dailies: identical spacing for everyone
   if(G.daily){
     WRo=mulberry32(G.daily*2654435761+G.wave*97);
     WRc=mulberry32(G.daily*1779033703+G.wave*101);
@@ -495,6 +494,12 @@ window.addEventListener('mousedown',e=>{
   primary();
 });
 window.addEventListener('contextmenu',e=>{ e.preventDefault(); });
+if ('serviceWorker' in navigator)
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+/* arcade link must not start a run: swallow the tap */
+try{ const ab=document.getElementById('arcadeBack');
+  ['pointerdown','touchstart','mousedown','click'].forEach(ev=>ab.addEventListener(ev,e=>{ e.stopPropagation(); },true));
+}catch(e){}
 window.addEventListener('keydown',e=>{
   const k=e.key.toLowerCase();
   if(k===' '||k==='arrowup'||k==='w'){ e.preventDefault(); primary(); }
@@ -652,9 +657,14 @@ function update(dt){
   G.prog+=v*dt; G.dist+=v*dt;
   // spawn obstacles by distance (runway stays clear before the door)
   if(G.goal-G.prog>700&&G.prog>=G.nextOb){
-    const air=WRo()<c.airP+(u*.12);
+    G.obCount++;
+    let air=WRo()<c.airP+(u*.12), must=false;
+    // the flock: a wall of flyers jumping can't clear — duck is the only way.
+    // Guaranteed once mid-wave (+ once more on marathons), rare extras (hard).
+    if(G.obCount===4||G.obCount===9||(c.marathon&&[14,19,24].includes(G.obCount))){ air=true; must=true; }
+    else if(air&&WRo()<(G.diff==='hard'?.15:.08)) must=true;   // ≥15% of the street is duck-only
     const T=THEME(), set=air?T.air:T.ground;
-    G.obs.push({x:W+90,air,emoji:set[wirandO(0,set.length-1)],
+    G.obs.push({x:W+90,air,must,emoji:set[wirandO(0,set.length-1)],
       label:G.tutorial&&G.obs.length<2?(air?'SWIPE ↓':'TAP!'):null});
     // post-wave-8 combos: a second, opposite-type obstacle right behind
     if(c.pairP&&WRo()<c.pairP){
@@ -726,7 +736,7 @@ function update(dt){
   // collisions (⭐ makes you untouchable)
   else if(G.invuln<=0) for(const o of G.obs){
     if(Math.abs(o.x-px)>30) continue;
-    const hit=o.air?(!ducking&&p.y<52):(p.y<44);
+    const hit=o.air?(!ducking&&p.y<(o.must?118:52)):(p.y<44);  // flocks out-jump you
     if(hit){
       G.hits++; G.stumble=.5; G.invuln=.9;
       G.prog=Math.max(0,G.prog-Math.min(260,140+G.wave*6)*(c.marathon?1.25:1));  // hits hurt more, later
@@ -845,25 +855,37 @@ function draw(){
   // power-ups: gentle bob; hand-drawn icons carry their own glow ring
   for(const w of G.pows){
     const by2=w.y+Math.sin(G.t*3+w.x*.01)*6;
-    cx.drawImage(glow('rgba(255,255,255,.6)',30),w.x-30,by2-30);
+    cx.drawImage(glow('rgba(110,230,140,.6)',30),w.x-30,by2-30);   // green = grab it
+    cx.strokeStyle=`rgba(110,230,140,${.6+.35*Math.sin(G.t*5)})`;cx.lineWidth=3;
+    cx.beginPath();cx.arc(w.x,by2,30,0,7);cx.stroke();
     if(artOk('pow-'+w.kind)) drawArt('pow-'+w.kind,w.x,by2,56);
-    else {
-      cx.strokeStyle=`rgba(255,255,255,${.5+.4*Math.sin(G.t*6)})`;cx.lineWidth=3;
-      cx.beginPath();cx.arc(w.x,by2,26,0,7);cx.stroke();
-      drawEmoji(w.emoji,w.x,by2,34);
-    }
+    else drawEmoji(w.emoji,w.x,by2,34);
   }
-  // 🛴 parked scooter pickup
+  // 🛴 parked scooter pickup (green = grab it)
   for(const s2 of G.scoots){
-    cx.drawImage(glow('rgba(126,232,199,.55)',26),s2.x-26,groundY-52);
+    cx.drawImage(glow('rgba(110,230,140,.55)',26),s2.x-26,groundY-52);
+    cx.strokeStyle=`rgba(110,230,140,${.6+.35*Math.sin(G.t*5)})`;cx.lineWidth=3;
+    cx.beginPath();cx.arc(s2.x,groundY-28,28,0,7);cx.stroke();
     drawEmoji('🛴',s2.x,groundY-28,42);
   }
   // obstacles: shadow + colored telegraph ring (gold=jump, teal=duck)
   for(const o of G.obs){
     const oy=o.air?groundY-86:groundY-26;
+    if(o.must){
+      // the flock: a vertical wall of flyers — duck is the only way under
+      cx.fillStyle='rgba(0,0,0,.3)';
+      cx.beginPath();cx.ellipse(o.x,groundY+8,16,5,0,0,7);cx.fill();
+      cx.strokeStyle=`rgba(255,93,93,${.65+.3*Math.sin(G.t*6)})`;cx.lineWidth=3;  // red = avoid
+      cx.beginPath();
+      if(cx.roundRect) cx.roundRect(o.x-32,oy-122,64,166,32); else cx.rect(o.x-32,oy-122,64,166);
+      cx.stroke();
+      for(let f2=0;f2<3;f2++) drawEmoji(o.emoji,o.x,oy-f2*46,38);
+      drawEmoji('⬇️',o.x,oy-142,20);
+      continue;
+    }
     cx.fillStyle='rgba(0,0,0,.3)';
     cx.beginPath();cx.ellipse(o.x,groundY+8,o.air?14:20,5,0,0,7);cx.fill();
-    cx.strokeStyle=o.air?'rgba(126,232,199,.8)':'rgba(255,209,102,.8)';
+    cx.strokeStyle='rgba(255,93,93,.8)';   // red ring = avoid; position tells you how
     cx.lineWidth=2.5;cx.beginPath();cx.arc(o.x,oy,30,0,7);cx.stroke();
     if(o.emoji==='👵'&&artOk('savta-cart')) drawArt('savta-cart',o.x,oy-8,58,true);
     else drawEmoji(o.emoji,o.x,oy,o.air?40:46);
@@ -1094,6 +1116,9 @@ function titleScene(){
   door(W*.72);
 }
 function insideScene(){
+  // full-screen overlay: hard-reset the transform so no camera/zoom leak can
+  // ever shift this scene off-center on any device
+  cx.save();cx.setTransform(DPR,0,0,DPR,0,0);
   cx.fillStyle='rgba(8,10,18,.85)';cx.fillRect(0,0,W,H);
   if(artOk('door')){ cx.globalAlpha=.35; drawArt('door',W/2,H*.4,H*.4); cx.globalAlpha=1; }
   for(const rk of G.rockets){
@@ -1101,23 +1126,30 @@ function insideScene(){
     if(t<.65){ drawEmoji('🚀',rk.x+t*240,rk.y-t*180,30); drawEmoji('☄️',W*.9-t*340,H*.08+t*260,26); }
     else if(t<1.1) drawEmoji('💥',W*.62,H*.3,70+Math.sin(t*30)*8);
   }
-  cx.fillStyle='#7ee8c7';cx.font=`900 ${clamp(W*.07,26,40)}px sans-serif`;cx.textAlign='center';cx.textBaseline='middle';
-  cx.fillText('INSIDE THE MAMAD 🛡️',W/2,H*.6);
-  if(G.perfect){ cx.fillStyle='#ff8ad4';cx.font='900 22px sans-serif';
-    cx.fillText('🎯 PERFECT RUN +15₪',W/2,H*.6-44); }
+  // text block lives top-left, left-aligned — centering can't be a problem
   const fitTxt=(str,fs,wt)=>{cx.font=`${wt} ${fs}px sans-serif`;
     const tw=cx.measureText(str).width;
-    if(tw>W*.94) cx.font=`${wt} ${Math.floor(fs*W*.94/tw)}px sans-serif`;};
+    if(tw>W-32) cx.font=`${wt} ${Math.floor(fs*(W-32)/tw)}px sans-serif`;};
+  cx.textAlign='left';cx.textBaseline='middle';
+  const tx=16; let ty=(Math.max(30,H*.028+26)+SAFE_TOP)+118;
+  if(G.perfect){ cx.fillStyle='#ff8ad4';fitTxt('🎯 PERFECT RUN +15₪',22,900);
+    cx.fillText('🎯 PERFECT RUN +15₪',tx,ty); ty+=36; }
+  cx.fillStyle='#7ee8c7';fitTxt('INSIDE THE MAMAD 🛡️',clamp(W*.07,26,36),900);
+  cx.fillText('INSIDE THE MAMAD 🛡️',tx,ty); ty+=42;
   const l1=`+${20+G.wave*5}₪ calm under fire · siren #${G.wave} survived`;
-  cx.fillStyle='#ffd166';fitTxt(l1,18,800);cx.fillText(l1,W/2,H*.6+44);
+  cx.fillStyle='#ffd166';fitTxt(l1,17,800);cx.fillText(l1,tx,ty); ty+=28;
   const l2='boom outside… Iron Dome has it. Next one is faster.';
-  cx.fillStyle='rgba(255,255,255,.6)';fitTxt(l2,14,600);cx.fillText(l2,W/2,H*.6+76);
+  cx.fillStyle='rgba(255,255,255,.6)';fitTxt(l2,13,600);cx.fillText(l2,tx,ty);
+  cx.restore();
 }
 
 /* ---------------- main loop (error-contained, never dies) ---------------- */
 let lastT=performance.now();
 function loop(now){
   requestAnimationFrame(loop);
+  // self-heal: iOS can report stale dimensions at resize-time; if the real
+  // viewport ever drifts from our canvas, fix it within one frame
+  if(window.innerWidth!==W||window.innerHeight!==H) resize();
   let dt=Math.min(.05,(now-lastT)/1000);lastT=now;
   if(G.freeze>0){ G.freeze-=dt; dt=0; }    // hit-stop freeze-frame
   try{ update(dt); draw(); }catch(err){ console.error(err); }
