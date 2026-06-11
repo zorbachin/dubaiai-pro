@@ -185,9 +185,9 @@ Iron Dome v14 (growth Day-1 from brutal panel): OG/Twitter cards + share-card.pn
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 06:32 UTC
+- **When:** 2026-06-11 07:24 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 794c937 chore: refresh nucleus live state [skip ci] — 13 seconds ago
+- **Last commit:** 2ba33a1 chore: refresh nucleus live state [skip ci] — 53 minutes ago
 
 **Working tree:**
 ```
@@ -196,11 +196,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-794c937 chore: refresh nucleus live state [skip ci] (13 seconds ago)
-907a315 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (46 seconds ago)
-10b5ed3 chore: nucleus snapshot [skip ci] (46 seconds ago)
-cb1e13f Art asset index: public URLs for all surfaces (Claude Design etc.) (2 minutes ago)
-7cb666c chore: refresh nucleus live state [skip ci] (2 minutes ago)
+2ba33a1 chore: refresh nucleus live state [skip ci] (53 minutes ago)
+794c937 chore: refresh nucleus live state [skip ci] (53 minutes ago)
+907a315 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (53 minutes ago)
+10b5ed3 chore: nucleus snapshot [skip ci] (53 minutes ago)
+cb1e13f Art asset index: public URLs for all surfaces (Claude Design etc.) (54 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
