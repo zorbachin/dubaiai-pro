@@ -183,32 +183,22 @@ Direction shift: game world goes FULL ART. Zorba wants in-game levels to look li
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 09:11 UTC
+- **When:** 2026-06-11 09:12 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 5d49d1f chore: refresh nucleus live state [skip ci] — 57 minutes ago
+- **Last commit:** f9bfbe6 v24 (part 1): strict music cycle, towers removed (damage on the art), menu redesign — 14 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
- M irondome/index.html
- M irondome/sw.js
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md |  14 ++---
- irondome/index.html        | 141 ++++++++++++++++++++++++++-------------------
- irondome/sw.js             |   2 +-
- 3 files changed, 91 insertions(+), 66 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-5d49d1f chore: refresh nucleus live state [skip ci] (57 minutes ago)
+f9bfbe6 v24 (part 1): strict music cycle, towers removed (damage on the art), menu redesign (14 seconds ago)
+5d49d1f chore: refresh nucleus live state [skip ci] (58 minutes ago)
 6bafaff chore: refresh nucleus live state [skip ci] (58 minutes ago)
-0a9e9fd chore: refresh nucleus live state [skip ci] (58 minutes ago)
+0a9e9fd chore: refresh nucleus live state [skip ci] (59 minutes ago)
 25358b9 v23: real-falafel sprites (no red), foreground buildings recede behind the art (59 minutes ago)
-6e79409 Merge origin/main (ours: irondome) (63 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
