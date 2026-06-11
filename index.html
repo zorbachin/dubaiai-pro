@@ -171,8 +171,7 @@ const GAMES = [
     cover: null, coverEmoji: '🏃💨', href: 'mamadio/', players: null, event: 'play-mamadio' }
 ];
 
-let lang = localStorage.getItem('miklat.lang') ||
-           ((navigator.language || '').startsWith('he') ? 'he' : 'en');
+let lang = localStorage.getItem('miklat.lang') || 'en';   // English-first; עב one tap away
 
 function track(event){
   try{
