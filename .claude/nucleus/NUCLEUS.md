@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 05:55 UTC · code
+MAMAD DASH promo: locked reliability-first production plan — 5 generated clips max, all start frames pre-composited from sprite art, shoe-in-door punchline done as composited near-still + sound design (never generated), title/text composited in post
+
 ### 2026-06-11 05:54 UTC · code
 PROMO VIDEO SHOT LIST (Zorba, canonical): alert on phone → runs → almost hits savta → jumps over her → she shakes fist → reaches mamad door → enters → door almost closes → savta's SHOE stops it → she enters → door closes → BOOM → title card MAMAD DASH. Priority: animations must work, no glitch, no AI slop. Sent to 10M club for shot-by-shot optimization before generating.
 
@@ -181,9 +184,6 @@ FOR MAMADIO SESSION (PR #71): Zorba feedback — 'mamad dash doesn't have the ex
 PR #73 MERGED per Zorba's 'merge': QA batch + analytics + Red Alert endless mode live. CRITICAL DNS ISSUE: dubaiai.pro points at Porkbun parking IPs (44.227.65.245/.76.166) not GitHub Pages -> SSL error, whole domain dead. CNAME removed from repo so site serves at https://zorbachin.github.io/dubaiai-pro/ until DNS fixed. TO RESTORE: fix Porkbun DNS (A @ -> 185.199.108-111.153, CNAME www -> zorbachin.github.io) then re-add CNAME file (content: dubaiai.pro). Zorba steering: arcade style confirmed, 'one shippable optimized mobile Iron Dome version'.
 ### 2026-06-10 12:23 UTC · code
 QA panel (4 agents) delivered + all fixes shipped to PR #73 branch: game was UNLOSABLE (blind tapper cleared L10) -> fail state restored w/ sim-tuned assists; Red Alert endless mode added (retention); 3 save-robustness P1s fixed (corrupt save bricked boot); skyline-clone math bug (37.7≈12π); shelter UX (pause mute, shop on loss, kind game-over copy). 26/26 + endless e2e tests.
-
-### 2026-06-10 12:05 UTC · code
-Analytics added to Iron Dome (PR #73 draft): GoatCounter cookieless tracking — visits, plays/session, wins, PWA installs. ACTION FOR ZORBA: claim site code 'irondome' at goatcounter.com (1 min) -> dashboard irondome.goatcounter.com. QA panel: 4 specialist agents (functionality/ease/fun/visual design) testing in background.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
@@ -192,7 +192,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 05:55 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 8f2c61f chore: refresh nucleus live state [skip ci] — 30 seconds ago
+- **Last commit:** 01c3dd9 chore: refresh nucleus live state [skip ci] — 33 seconds ago
 
 **Working tree:**
 ```
@@ -201,11 +201,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-8f2c61f chore: refresh nucleus live state [skip ci] (30 seconds ago)
-662e4ba chore: refresh nucleus live state [skip ci] (4 minutes ago)
+01c3dd9 chore: refresh nucleus live state [skip ci] (33 seconds ago)
+8f2c61f chore: refresh nucleus live state [skip ci] (63 seconds ago)
+662e4ba chore: refresh nucleus live state [skip ci] (5 minutes ago)
 0265043 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-eed1714 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (5 minutes ago)
-98eee2a chore: refresh nucleus live state [skip ci] (7 minutes ago)
+eed1714 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (6 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
