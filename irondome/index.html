@@ -279,7 +279,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v21';
+const GAME_VERSION = 'v22';
 const INBOUND = new URLSearchParams(location.search);
 const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
@@ -2201,6 +2201,7 @@ for (let i = 0; i < 70; i++)
   stars.push({ x: Math.random(), y: Math.random(), s: Math.random() < 0.8 ? 1 : 2, tw: Math.random() * 6.28 });
 resize();
 $('verTag').textContent = '🛡 ' + GAME_VERSION;
+for (let i = 0; i < 10; i++) levelBg(i);   // warm all worlds while the menu shows
 { // incoming challenge link? show the gauntlet
   const cb = parseInt(INBOUND.get('b'), 10), cc = INBOUND.get('c');
   if (cb > 0){
