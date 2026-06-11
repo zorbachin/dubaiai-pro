@@ -47,6 +47,14 @@ surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
 ### 2026-06-11 05:20 UTC · code
+MIKLAT PORTAL BLUEPRINT delivered at /tmp/MIKLAT-BLUEPRINT.md: (1) complete one-shot Claude design prompt for the miklatgames.fun portal (root index.html, Iron Dome visual system, EN-led/HE RTL, instant-play cards, PWA w/ SW that bypasses /irondome//mamadio/ scopes, GoatCounter code 'miklatgames', challenge param passthrough); (2) HOSTING DECISION = option A: point miklatgames.fun at THIS repo (Porkbun A 185.199.108-111.153 + AAAA + CNAME www->zorbachin.github.io, CNAME file 'miklatgames.fun'), consultancy moves to /dubaiai/ — games' paths survive, github.io 301s itself; (3) Iron Dome URL swap list: index.html lines 11/12/18/261/1963 + PROMO-PACK 17 occurrences + sw bump v18; (4) v1 scope: 2 cards + ghost card + WhatsApp Channel notify hook; OUT: accounts/leaderboards/comments. ZORBA-ONLY steps: Porkbun records (5 min) + claim GoatCounter 'miklatgames' + create WhatsApp Channel.
+
+### 2026-06-11 05:16 UTC · code
+MIKLATGAMES.FUN purchased on Porkbun (miklat = shelter — perfect umbrella brand) to house ALL games. Directives: (1) no promo video yet — shot list first; (2) board convened to ready Iron Dome + new portal site for the 10k push; (3) CHECK-IN FOR MAMAD DASH TEAM: Zorba wants Mamad Dash ready for the miklatgames.fun portal launch — status of PR #71 / standalone build? Portal will link all games; reply via nucleus with current state + what's needed. (4) 16 retro level-art images shown in chat but NOT saved as files — need re-upload to integrate reskin.
+
+### 2026-06-11 03:48 UTC · code
+v17 MERGED (PR #85): end screens redesigned per Zorba's screenshot — stat strip with HITS TAKEN (new cityHits counter) + intercepted + direct hits on every end screen, shop collapsed behind toggle, overlay screens can never overflow the frame (safe centering + scroll fallback), menu tightened. Awaiting Zorba's image packs #2 (icon/portrait/victory) and #3 (10 level worlds) for the beauty pass.
+
 HANDOFF → Cowork: master deploy prompt delivered (merge PR #74, create+populate miklatgames repo from miklat/ package, Pages+CNAME, Porkbun DNS guided, Iron Dome port from wherever it lives in GitHub, full release verification, GoatCounter reminder code 'miklatgames'). Code session = build shop; Cowork = release manager. If Iron Dome isn't in GitHub, regenerate from nucleus context.
 
 ### 2026-06-11 05:18 UTC · code
@@ -244,6 +252,8 @@ CHANNELS FINALIZED: (A) THE NEWSLETTER = 'The Build Log' (content-assets/newslet
 ### 2026-06-02 13:06 UTC · chat
 CHANNEL SPLIT (strategic): TWO lanes. (A) SUBSTACK = 'The Dispatch' = STORY/INSIGHT/building-in-public (origin story lives here, NOT time-saving). EXCLUSIVE perk: Substack subscribers get Zorba's ETSY products at a DISCOUNT (+ early access/behind-the-scenes). (B) THE NEWSLETTER = PRODUCTIVITY / time-saving AI tips (home for the 'Three Time-Savers' practical content). PHOTO/ASSET corrections for Issue 001: the DUOMO photos = ENGAGEMENT (proposal on knee w/ visible tripod 'alibi', kiss at lit facade, night selfie w/ RING on hand -> sets up Amazon-ring tease). The chuppah/crowd/first-dance photos = WEDDING. NISSIM BLACK (longtime friend+collaborator) performed a SURPRISE set at the WEDDING (crowd-under-spotlight = the performance photo); Meytal surprised too. Surprise WEDDING FILM (made morning of wedding, played live, youtu.be/pd3musK_Nbo) = seed of MINIMOVIES.io. Melinda BAT mitzvah film = another Minimovies example. Substack embeds YouTube natively (no compression needed).
 
+
+
 ### 2026-06-02 12:53 UTC · chat
 ISSUE 001 full entertainment pass (craft only, invented nothing): tighter comedic timing on the secret-filming caper, sharper 'IG vs reality' turn, leaner hardship montage, planted the AMAZON RING early as a wink, added a cinematic 'NEXT ISSUE' tease. RING SUBPLOT (next story): proposed with an Amazon ring -> they later MADE their own rings by hand with ALON MESIKA, on camera, became part of THE DOCUMENTARY. (There is a documentary about them — capture as asset.) Wedding PHOTOS exist (3 shared: crowd-under-spotlight hora, chuppah w/ green dress+kippot, first dance) but came inline in chat, NOT saved to repo — Zorba drags them into Substack at layout. Photo slots noted in ISSUE-001.md.
 
@@ -258,6 +268,10 @@ ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 05:21 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** 8e330d0 chore: refresh nucleus live state [skip ci] — 3 minutes ago
+
 - **When:** 2026-06-11 05:20 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
 - **Last commit:** 4faab3e chore: refresh nucleus live state [skip ci] — 2 minutes ago
@@ -275,11 +289,23 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
+8e330d0 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+24156f1 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+120167c chore: refresh nucleus live state [skip ci] (2 hours ago)
+2e29103 chore: refresh nucleus live state [skip ci] (2 hours ago)
+6e72135 chore: refresh nucleus live state [skip ci] (2 hours ago)
+
 4faab3e chore: refresh nucleus live state [skip ci] (2 minutes ago)
 649fe76 chore: refresh nucleus live state [skip ci] (2 minutes ago)
 ed1e364 MIKLAT GAMES v1: complete deployable arcade package (3 minutes ago)
