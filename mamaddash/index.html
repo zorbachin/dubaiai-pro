@@ -179,11 +179,13 @@ $('mute').addEventListener('click',e=>{ e.stopPropagation();
    song — reuse without repetition. */
 const Music={
   tracks:{}, el:null,
-  // One driving track per run (no mid-run hopping): Temple Run Shalom carries
-  // normal waves continuously through door beats; Temple Dash seizes
-  // marathons; Jericho Run owns the menus. Death cam stays silent.
+  // Sequences of three: each 4-wave cycle keeps ONE song for its 3 normal
+  // waves (rotating song per cycle), every marathon gets Temple Dash, menus
+  // get Jericho Run. No mid-block hopping; death cam stays silent.
+  RUN_SEQ:['level1','title','level3'],
   init(){ if(this.tracks.title) return;        // built on first gesture (autoplay policy)
-    const mk=file=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45; return a; };
+    const mk=file=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45;
+      a.preload='auto'; a.load(); return a; }; // iOS: buffer up-front so switches can't fail silent
     this.tracks.title=mk('title.mp3');
     this.tracks.level1=mk('level1.mp3');
     this.tracks.level3=mk('level3.mp3');
@@ -194,7 +196,7 @@ const Music={
     if(G.state==='title'||G.state==='dead') want='title';
     else if(G.state==='deathcam'||G.state==='paused') want=null;
     else if(G.cfg&&G.cfg.marathon) want='level3';
-    else want='level1';
+    else want=this.RUN_SEQ[Math.floor((G.wave-1)/4)%this.RUN_SEQ.length];
     for(const [n,a] of Object.entries(this.tracks)){
       const on=Sound.on&&n===want;
       a.volume=G.sirenOn?.16:.45;              // duck under the wail
@@ -1114,6 +1116,9 @@ function titleScene(){
   door(W*.72);
 }
 function insideScene(){
+  // full-screen overlay: hard-reset the transform so no camera/zoom leak can
+  // ever shift this scene off-center on any device
+  cx.save();cx.setTransform(DPR,0,0,DPR,0,0);
   cx.fillStyle='rgba(8,10,18,.85)';cx.fillRect(0,0,W,H);
   if(artOk('door')){ cx.globalAlpha=.35; drawArt('door',W/2,H*.4,H*.4); cx.globalAlpha=1; }
   for(const rk of G.rockets){
@@ -1133,6 +1138,7 @@ function insideScene(){
   cx.fillStyle='#ffd166';fitTxt(l1,18,800);cx.fillText(l1,W/2,H*.6+44);
   const l2='boom outside… Iron Dome has it. Next one is faster.';
   cx.fillStyle='rgba(255,255,255,.6)';fitTxt(l2,14,600);cx.fillText(l2,W/2,H*.6+76);
+  cx.restore();
 }
 
 /* ---------------- main loop (error-contained, never dies) ---------------- */
