@@ -191,28 +191,22 @@ Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.gi
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 05:27 UTC
+- **When:** 2026-06-11 05:52 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 1e4afc5 Merge origin/main (keep portal) — 80 seconds ago
+- **Last commit:** cb7432d chore: refresh nucleus live state [skip ci] — 25 minutes ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 203 +++------------------------------------------
- 1 file changed, 11 insertions(+), 192 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-1e4afc5 Merge origin/main (keep portal) (80 seconds ago)
-46cf169 Miklat Games portal: miklatgames.fun front door for all the games (2 minutes ago)
-8bd786f MAMAD DASH: full game + art + pacing v2 + promo pack + MIKLAT arcade package (#74) (5 minutes ago)
-030e3da chore: refresh nucleus live state [skip ci] (6 minutes ago)
-8e330d0 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+cb7432d chore: refresh nucleus live state [skip ci] (25 minutes ago)
+1e4afc5 Merge origin/main (keep portal) (27 minutes ago)
+46cf169 Miklat Games portal: miklatgames.fun front door for all the games (28 minutes ago)
+8bd786f MAMAD DASH: full game + art + pacing v2 + promo pack + MIKLAT arcade package (#74) (30 minutes ago)
+030e3da chore: refresh nucleus live state [skip ci] (32 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
