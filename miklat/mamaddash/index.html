@@ -227,7 +227,9 @@ function resize(){
   groundY=Math.round(H*.74);
   clearCaches();
 }
-window.addEventListener('resize',resize);resize();
+window.addEventListener('resize',resize);
+window.addEventListener('orientationchange',()=>{resize();setTimeout(resize,350);}); // iOS settles late
+resize();
 
 /* sprite caches — emoji glyph rasterization and gradients are the two
    biggest per-frame costs on low-end phones; render each once. */
@@ -1101,13 +1103,14 @@ function insideScene(){
     if(t<.65){ drawEmoji('🚀',rk.x+t*240,rk.y-t*180,30); drawEmoji('☄️',W*.9-t*340,H*.08+t*260,26); }
     else if(t<1.1) drawEmoji('💥',W*.62,H*.3,70+Math.sin(t*30)*8);
   }
-  cx.fillStyle='#7ee8c7';cx.font=`900 ${clamp(W*.07,26,40)}px sans-serif`;cx.textAlign='center';cx.textBaseline='middle';
-  cx.fillText('INSIDE THE MAMAD 🛡️',W/2,H*.6);
-  if(G.perfect){ cx.fillStyle='#ff8ad4';cx.font='900 22px sans-serif';
-    cx.fillText('🎯 PERFECT RUN +15₪',W/2,H*.6-44); }
   const fitTxt=(str,fs,wt)=>{cx.font=`${wt} ${fs}px sans-serif`;
     const tw=cx.measureText(str).width;
     if(tw>W*.94) cx.font=`${wt} ${Math.floor(fs*W*.94/tw)}px sans-serif`;};
+  cx.textAlign='center';cx.textBaseline='middle';
+  cx.fillStyle='#7ee8c7';fitTxt('INSIDE THE MAMAD 🛡️',clamp(W*.07,26,40),900);
+  cx.fillText('INSIDE THE MAMAD 🛡️',W/2,H*.6);
+  if(G.perfect){ cx.fillStyle='#ff8ad4';fitTxt('🎯 PERFECT RUN +15₪',22,900);
+    cx.fillText('🎯 PERFECT RUN +15₪',W/2,H*.6-44); }
   const l1=`+${20+G.wave*5}₪ calm under fire · siren #${G.wave} survived`;
   cx.fillStyle='#ffd166';fitTxt(l1,18,800);cx.fillText(l1,W/2,H*.6+44);
   const l2='boom outside… Iron Dome has it. Next one is faster.';
@@ -1118,6 +1121,9 @@ function insideScene(){
 let lastT=performance.now();
 function loop(now){
   requestAnimationFrame(loop);
+  // self-heal: iOS can report stale dimensions at resize-time; if the real
+  // viewport ever drifts from our canvas, fix it within one frame
+  if(window.innerWidth!==W||window.innerHeight!==H) resize();
   let dt=Math.min(.05,(now-lastT)/1000);lastT=now;
   if(G.freeze>0){ G.freeze-=dt; dt=0; }    // hit-stop freeze-frame
   try{ update(dt); draw(); }catch(err){ console.error(err); }
