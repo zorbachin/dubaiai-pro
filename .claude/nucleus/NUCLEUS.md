@@ -183,22 +183,32 @@ Direction shift: game world goes FULL ART. Zorba wants in-game levels to look li
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 08:14 UTC
+- **When:** 2026-06-11 09:11 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 6bafaff chore: refresh nucleus live state [skip ci] — 30 seconds ago
+- **Last commit:** 5d49d1f chore: refresh nucleus live state [skip ci] — 57 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M irondome/index.html
+ M irondome/sw.js
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md |  14 ++---
+ irondome/index.html        | 141 ++++++++++++++++++++++++++-------------------
+ irondome/sw.js             |   2 +-
+ 3 files changed, 91 insertions(+), 66 deletions(-)
 ```
 
 **Recent commits:**
 ```
-6bafaff chore: refresh nucleus live state [skip ci] (30 seconds ago)
-0a9e9fd chore: refresh nucleus live state [skip ci] (60 seconds ago)
-25358b9 v23: real-falafel sprites (no red), foreground buildings recede behind the art (2 minutes ago)
-6e79409 Merge origin/main (ours: irondome) (5 minutes ago)
-b142b31 v22: worlds preload at boot + full art precache — no procedural flash, ever (6 minutes ago)
+5d49d1f chore: refresh nucleus live state [skip ci] (57 minutes ago)
+6bafaff chore: refresh nucleus live state [skip ci] (58 minutes ago)
+0a9e9fd chore: refresh nucleus live state [skip ci] (58 minutes ago)
+25358b9 v23: real-falafel sprites (no red), foreground buildings recede behind the art (59 minutes ago)
+6e79409 Merge origin/main (ours: irondome) (63 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 

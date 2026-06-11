@@ -80,7 +80,15 @@
     background:linear-gradient(rgba(10,18,38,.55),rgba(10,18,38,.88) 55%,rgba(10,18,38,.97)),
                url(menu-bg.jpg) center top/cover no-repeat #0a1226;
   }
-  #scrMenu .btn{padding:12px 26px;min-width:240px;font-size:17px}
+  #scrMenu .btn{padding:11px 26px;min-width:250px;font-size:17px;line-height:1.25}
+  .btnsub{display:block;font-size:11px;font-weight:400;opacity:.78;letter-spacing:0}
+  .segrow{display:flex;gap:8px;justify-content:center}
+  .seg{
+    background:var(--panel2);border:1px solid rgba(141,163,204,.35);color:var(--dim);
+    border-radius:12px;padding:8px 14px;min-height:44px;min-width:76px;
+    font-size:13px;font-weight:700;cursor:pointer;line-height:1.2;
+  }
+  .seg.on{color:var(--ink);border-color:var(--gold);box-shadow:0 0 12px rgba(255,209,102,.35);background:#21345f}
   #scrMenu .pill{font-size:12px;padding:8px 14px}
   #menuBest{background:rgba(16,27,56,.7);border-radius:999px;padding:6px 16px;font-size:13px}
   .screen.show{display:flex}
@@ -173,9 +181,13 @@
   <button class="btn primary" id="btnPlay"></button>
   <button class="btn" id="btnDaily" style="border-color:rgba(255,209,102,.6);box-shadow:0 0 18px rgba(255,209,102,.3)"></button>
   <button class="btn" id="btnEndless" style="display:none;border-color:rgba(255,93,115,.6);box-shadow:0 0 18px rgba(255,93,115,.3)"></button>
-  <button class="btn" id="btnHow"></button>
+  <div class="segrow">
+    <button class="seg" id="segEasy"></button>
+    <button class="seg" id="segNormal"></button>
+    <button class="seg" id="segHard"></button>
+  </div>
   <div class="btnrow">
-    <button class="pill" id="btnDiff">⚖️</button>
+    <button class="pill" id="btnHow">❓</button>
     <button class="pill" id="btnCal">🎯</button>
     <button class="pill" id="btnLang">EN</button>
     <button class="pill on" id="btnSound">🔊</button>
@@ -279,7 +291,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v23';
+const GAME_VERSION = 'v24';
 const INBOUND = new URLSearchParams(location.search);
 const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
@@ -350,7 +362,12 @@ const T = {
     upLaunch: 'City Armor', upLaunchD: 'Buildings survive +1 hit',
     bonusTitle: '🎁 BONUS ROUND!', bonusHint: 'Nothing gets hit — pop EVERYTHING! Double points!',
     bonusDone: '🎁 BONUS COMPLETE!', crateHint: '🎁 Tap the falling crate!',
-    diffN: { easy: 'Easy', normal: 'Normal', commando: 'Commando' },
+    diffN: { easy: '1 · Easy', normal: '2 · Medium', commando: '3 · Hard' },
+    diffSub: { easy: 'chill', normal: 'real', commando: 'savta mode' },
+    subPlay: 'the campaign · 10 cities, Sderot → Eilat',
+    subDaily: 'one try a day · same barrage for everyone',
+    subRA: 'endless survival · how long can you last?',
+    subRALock: 'finish 3 campaign cities to unlock',
     daily: 'DAILY ALERT', dailyDone: '📅 DAILY ALERT — DONE!',
     practiceNote: 'practice — today already counted', todayW: 'today',
     streakW: 'streak', raLocked: '🚨 RED ALERT — clear Ashdod to unlock', upgrades: 'Upgrades', hitsW: 'hits taken',
@@ -431,7 +448,12 @@ const T = {
     upLaunch: 'שריון לעיר', upLaunchD: 'בניינים סופגים פגיעה נוספת',
     bonusTitle: '🎁 סיבוב בונוס!', bonusHint: 'שום דבר לא נפגע — פוצצו הכל! נקודות כפולות!',
     bonusDone: '🎁 הבונוס הושלם!', crateHint: '🎁 לחצו על הארגז שנופל!',
-    diffN: { easy: 'קל', normal: 'רגיל', commando: 'קומנדו' },
+    diffN: { easy: '1 · קל', normal: '2 · בינוני', commando: '3 · קשה' },
+    diffSub: { easy: 'רגוע', normal: 'אמיתי', commando: 'מצב סבתא' },
+    subPlay: 'הקמפיין · 10 ערים, משדרות עד אילת',
+    subDaily: 'ניסיון אחד ביום · אותו מטח לכולם',
+    subRA: 'הישרדות אינסופית · כמה תחזיקו?',
+    subRALock: 'סיימו 3 ערים בקמפיין כדי לפתוח',
     daily: 'אזעקת היום', dailyDone: '📅 אזעקת היום — הושלם!',
     practiceNote: 'אימון — התוצאה של היום כבר נספרה', todayW: 'היום',
     streakW: 'רצף', raLocked: '🚨 צבע אדום — נפתח אחרי אשדוד', upgrades: 'שדרוגים', hitsW: 'פגיעות',
@@ -640,7 +662,7 @@ function musicTick(){
    hottest one, the Daily gets track 2, bonus keeps the synth fiesta */
 const LEVEL_TRACKS = ['level1.mp3', 'level2.mp3', 'level3.mp3']
   .reduce((m, f, i) => { for (let l = i; l < 10; l += 3) m[l] = f; return m; }, {});
-LEVEL_TRACKS[9] = 'level3.mp3';
+// strict cycle: 1,2,3,1,2,3,1,2,3,1 — every level has music, pattern never breaks
 let trackAudio = null, trackSrc = '';
 function playTrack(src){
   try{
@@ -1483,7 +1505,8 @@ function update(dt){
     $('hudLevel').textContent = t('endlessName');
   } else {
     $('hudWave').textContent = Math.min(G.spawned, G.L.count) + '/' + G.L.count + ' ' + t('waveOf');
-    $('hudLevel').textContent = t('level') + ' ' + (G.levelIdx + 1) + ' · ' + t('levels')[G.levelIdx];
+    $('hudLevel').textContent = t('level') + ' ' + (G.levelIdx + 1) + ' · ' + t('levels')[G.levelIdx] +
+      ' · 🏙' + G.buildings.filter(b => b.alive).length;
   }
 }
 
@@ -1525,46 +1548,44 @@ function drawCity(){
   cx.strokeStyle = 'rgba(62,230,255,0.35)'; cx.lineWidth = 2;
   cx.beginPath(); cx.moveTo(0, GROUND); cx.lineTo(W, GROUND); cx.stroke();
 
-  // buildings — chunky pixel art, matched to the world art (4px grid, hard edges)
-  const Q = 4, snap = v => Math.round(v / Q) * Q;
+  // NO drawn towers: the art city IS the city. Hit slots render damage only —
+  // fire, smoke and scorch over the artwork where rockets landed.
+  const Q = 4;
+  const tNow = performance.now();
   for (const b of G.buildings){
-    const bx = snap(b.x), bw = snap(b.w), bh = snap(b.h);
-    if (b.alive){
-      // body: two-tone with a shaded right column, like the art's towers
-      cx.fillStyle = '#1b2c58';
-      cx.fillRect(bx, GROUND - bh, bw, bh);
-      cx.fillStyle = '#16244a';
-      cx.fillRect(bx + bw - Q * 2, GROUND - bh, Q * 2, bh);   // shade edge
-      cx.fillRect(bx, GROUND - bh, bw, Q);                    // roof slab
-      cx.fillStyle = '#0c1630';
-      cx.fillRect(bx + Q, GROUND - bh - Q, Q, Q);             // roof pixel detail
-      cx.fillRect(bx + bw - Q * 3, GROUND - bh - Q * 2, Q, Q * 2);  // antenna
-      // windows: crisp gold pixels on the grid, a few unlit, one cyan
-      const rows = Math.floor((bh - Q * 3) / (Q * 3)), cols = Math.max(2, Math.floor(bw / (Q * 3)));
-      for (let r = 0; r < rows; r++)
-        for (let c = 0; c < cols; c++){
-          const k = (r * 7 + c * 3 + b.win) % 7;
-          if (k === 0) continue;                              // dark window
-          cx.fillStyle = k === 5 ? '#6fe3ff' : '#ffd166';
-          cx.fillRect(bx + Q + c * Q * 3, GROUND - bh + Q * 2 + r * Q * 3, Q, Q);
-        }
-      // damaged (armor absorbed a hit): cracked pixels + smoke tint
-      if (b.hp !== undefined && b.hp < 1 + save.up.launchers){
-        cx.fillStyle = '#0c1630';
-        for (let i = 0; i < 6; i++)
-          cx.fillRect(bx + ((i * 37) % (bw - Q)), GROUND - bh + ((i * 53) % (bh - Q)), Q, Q);
+    const cxm = b.x + b.w / 2;
+    const maxHp = 1 + save.up.launchers;
+    if (b.alive && b.hp < maxHp){
+      // wounded slot: a thin smoke wisp rising from the art skyline
+      cx.fillStyle = 'rgba(140,150,180,0.35)';
+      for (let i = 0; i < 4; i++){
+        const ph = (tNow / 900 + i * 0.7 + cxm) % 1;
+        cx.globalAlpha = 0.30 * (1 - ph);
+        cx.fillRect(cxm + Math.sin(ph * 6 + i) * 8 - Q, GROUND - 30 - ph * 90, Q * 2, Q * 2);
       }
-    } else {
-      // rubble: a stepped pixel mound with embers
-      cx.fillStyle = '#1a2747';
-      cx.fillRect(bx, GROUND - Q * 2, bw, Q * 2);
-      cx.fillRect(bx + Q, GROUND - Q * 4, bw - Q * 2, Q * 2);
-      cx.fillRect(bx + Q * 3, GROUND - Q * 5, bw - Q * 6, Q);
-      cx.fillStyle = '#26314f';
-      cx.fillRect(bx + Q * 2, GROUND - Q * 3, Q * 2, Q);
-      cx.fillRect(bx + bw - Q * 4, GROUND - Q * 3, Q * 2, Q);
-      cx.fillStyle = '#ff8c42'; cx.globalAlpha = 0.5 + 0.4 * Math.abs(Math.sin(performance.now() / 300));
-      cx.fillRect(bx + Q * 3, GROUND - Q * 3, Q, Q);          // glowing ember
+      cx.globalAlpha = 1;
+    } else if (!b.alive){
+      // destroyed slot: scorch, embers and animated pixel fire on the artwork
+      cx.fillStyle = 'rgba(8,10,20,0.55)';
+      cx.fillRect(b.x, GROUND - Q * 4, b.w, Q * 4);
+      for (let i = 0; i < 5; i++){
+        const fx = b.x + Q + ((i * 53) % Math.max(Q, b.w - Q * 2));
+        const flick = Math.abs(Math.sin(tNow / 110 + i * 1.9 + cxm));
+        cx.fillStyle = i % 2 ? '#ff9d3c' : '#ff5d3c';
+        cx.globalAlpha = 0.55 + 0.45 * flick;
+        cx.fillRect(fx, GROUND - Q * 3 - flick * Q * 4, Q, Q * (1 + flick * 2));
+      }
+      cx.globalAlpha = 0.5;
+      cx.fillStyle = '#ffd166';
+      cx.fillRect(cxm - Q, GROUND - Q * 2, Q, Q);              // ember core
+      cx.globalAlpha = 1;
+      // rising smoke column
+      cx.fillStyle = 'rgba(120,128,158,0.30)';
+      for (let i = 0; i < 5; i++){
+        const ph = (tNow / 1100 + i * 0.55 + cxm) % 1;
+        cx.globalAlpha = 0.35 * (1 - ph);
+        cx.fillRect(cxm + Math.sin(ph * 5 + i * 2) * 12 - Q, GROUND - 36 - ph * 130, Q * 2, Q * 2);
+      }
       cx.globalAlpha = 1;
     }
   }
@@ -1996,18 +2017,25 @@ function applyLang(){
     const el = document.querySelector(map[k]);
     if (el) el.textContent = t(k);
   }
-  $('btnPlay').textContent = t('play');
-  $('btnHow').textContent = t('howBtn');
+  $('btnPlay').innerHTML = t('play') + '<span class="btnsub">' + t('subPlay') + '</span>';
+  $('btnHow').textContent = '❓';
+  $('btnHow').title = t('howBtn');
   $('btnCal').textContent = '🎯 ' + t('calTitle');
-  $('btnDiff').textContent = diff().ic + ' ' + t('diffN')[save.diff];
   $('btnCalSkip').textContent = t('skip');
   const raOpen = save.unlocked >= 3;
-  $('btnEndless').textContent = raOpen ? t('endless') : t('raLocked');
+  $('btnEndless').innerHTML = (raOpen ? t('endless') : t('raLocked')) +
+    '<span class="btnsub">' + (raOpen ? t('subRA') : t('subRALock')) + '</span>';
   $('btnEndless').style.display = '';
   $('btnEndless').style.opacity = raOpen ? '1' : '.45';
-  $('btnDaily').textContent = '📅 ' + t('daily') +
-    (save.daily && save.daily.date === new Date().toISOString().slice(0, 10)
-      ? ' ✓' + save.daily.score + (save.daily.streak > 1 ? ' 🔥×' + save.daily.streak : '') : '');
+  const dDone = save.daily && save.daily.date === new Date().toISOString().slice(0, 10);
+  $('btnDaily').innerHTML = '📅 ' + t('daily') +
+    (dDone ? ' ✓' + save.daily.score + (save.daily.streak > 1 ? ' 🔥×' + save.daily.streak : '') : '') +
+    '<span class="btnsub">' + t('subDaily') + '</span>';
+  const segs = { easy: 'segEasy', normal: 'segNormal', commando: 'segHard' };
+  for (const [k, id] of Object.entries(segs)){
+    $(id).innerHTML = t('diffN')[k] + '<span class="btnsub">' + t('diffSub')[k] + '</span>';
+    $(id).classList.toggle('on', save.diff === k);
+  }
   $('btnHowBack').textContent = t('back');
   $('btnStart').textContent = t('start');
   $('btnResume').textContent = t('resume');
@@ -2153,11 +2181,8 @@ $('btnEndless').onclick = () => {
   startLevel();
 };
 $('btnCal').onclick = () => { ac(); sfx.click(); startCal('menu'); };
-$('btnDiff').onclick = () => {
-  const i = DIFF_ORDER.indexOf(save.diff);
-  save.diff = DIFF_ORDER[(i + 1) % 3];
-  persist(); sfx.click(); applyLang();
-};
+for (const [k, id] of [['easy', 'segEasy'], ['normal', 'segNormal'], ['commando', 'segHard']])
+  $(id).onclick = () => { save.diff = k; persist(); sfx.click(); applyLang(); };
 $('btnHow').onclick = () => { sfx.click(); show('scrHow'); };
 $('btnHowBack').onclick = () => { sfx.click(); show('scrMenu'); };
 $('btnStart').onclick = () => { clearTimeout(introTO); ac(); sfx.click(); startLevel(); };
