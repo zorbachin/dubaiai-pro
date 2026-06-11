@@ -1,5 +1,5 @@
 {
-  "seq": 19,
+  "seq": 25,
   "tasks": [
     {
       "id": "T001",
@@ -365,6 +365,114 @@
           "at": "2026-06-02 05:46 UTC",
           "by": "you",
           "event": "created → ssa-research"
+        }
+      ]
+    },
+    {
+      "id": "T020",
+      "title": "KEYS SESSION (20 min, unblocks everything): Ko-fi account + Gemini key (NEW project) + itch.io account + CrazyGames dev account + merge miklatgames PR #4. War Room has every link: miklatgames.fun/academy/war-room.html",
+      "owner": "zorba",
+      "created_by": "claude",
+      "status": "open",
+      "need": "5 accounts/clicks, all pre-staged",
+      "result": "",
+      "created": "2026-06-11 19:44 UTC",
+      "updated": "2026-06-11 19:44 UTC",
+      "history": [
+        {
+          "at": "2026-06-11 19:44 UTC",
+          "by": "claude",
+          "event": "created → zorba"
+        }
+      ]
+    },
+    {
+      "id": "T021",
+      "title": "Run art packs once Gemini key lands: bin/imagepack irondome | mamaddash | shukshopper | shukshopper/assets — then commit generated art",
+      "owner": "mg-ceo",
+      "created_by": "claude",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-11 19:44 UTC",
+      "updated": "2026-06-11 19:44 UTC",
+      "history": [
+        {
+          "at": "2026-06-11 19:44 UTC",
+          "by": "claude",
+          "event": "created → mg-ceo"
+        }
+      ]
+    },
+    {
+      "id": "T022",
+      "title": "Portal submissions per panel verdicts: itch.io x3 today, CrazyGames top pick w/ SDK + 2mo exclusivity, Poki application. Verdicts: irondome/mamaddash/shukshopper PANEL-VERDICT.md",
+      "owner": "mg-ceo",
+      "created_by": "claude",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-11 19:44 UTC",
+      "updated": "2026-06-11 19:44 UTC",
+      "history": [
+        {
+          "at": "2026-06-11 19:44 UTC",
+          "by": "claude",
+          "event": "created → mg-ceo"
+        }
+      ]
+    },
+    {
+      "id": "T023",
+      "title": "Flip TIP_URL in 4 files when Zorba pastes Ko-fi URL (portal + 3 games), one commit",
+      "owner": "claude",
+      "created_by": "claude",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-11 19:44 UTC",
+      "updated": "2026-06-11 19:44 UTC",
+      "history": [
+        {
+          "at": "2026-06-11 19:44 UTC",
+          "by": "claude",
+          "event": "created → claude"
+        }
+      ]
+    },
+    {
+      "id": "T024",
+      "title": "Press pitch to JTA (tips@jta.org) + Times of Israel w/ promo video + press art — draft is in the War Room",
+      "owner": "mg-ceo",
+      "created_by": "claude",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-11 19:44 UTC",
+      "updated": "2026-06-11 19:44 UTC",
+      "history": [
+        {
+          "at": "2026-06-11 19:44 UTC",
+          "by": "claude",
+          "event": "created → mg-ceo"
+        }
+      ]
+    },
+    {
+      "id": "T025",
+      "title": "PUBLISHING (Zorba-only): WhatsApp x3 groups with the War Room paste text. Published = done",
+      "owner": "zorba",
+      "created_by": "claude",
+      "status": "open",
+      "need": "",
+      "result": "",
+      "created": "2026-06-11 19:44 UTC",
+      "updated": "2026-06-11 19:44 UTC",
+      "history": [
+        {
+          "at": "2026-06-11 19:44 UTC",
+          "by": "claude",
+          "event": "created → zorba"
         }
       ]
     }

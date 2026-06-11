@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1120"><title>AUTOMATION — Lights-Out Operations</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+<style>
+:root{--bg:#0d1120;--card:#161d33;--ink:#f2f4ff;--dim:#9aa3c7;--gold:#ffd166;--red:#ff5d73;--green:#7ee8c7;--cyan:#3ee6ff;--purple:#b99cff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,'Segoe UI',sans-serif;padding-bottom:90px}
+.wrap{max-width:680px;margin:0 auto;padding:18px 16px}
+header{position:sticky;top:0;z-index:9;background:rgba(13,17,32,.94);backdrop-filter:blur(8px);border-bottom:1px solid #232c4d}
+.hbar{max-width:680px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.hbar a{color:var(--dim);text-decoration:none;font-size:13px;white-space:nowrap}
+.xpwrap{flex:1}.xpbar{height:10px;background:#232c4d;border-radius:6px;overflow:hidden}
+.xpfill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));width:0%;transition:width .6s}
+.rank{font-size:12px;color:var(--gold);font-weight:700;margin-top:2px}
+h1{font-size:clamp(26px,7vw,40px);line-height:1.1;color:var(--gold);text-shadow:0 0 24px rgba(255,209,102,.35)}
+.sub{color:var(--dim);margin:8px 0 4px}
+.lvl{background:var(--card);border:1px solid #232c4d;border-radius:16px;margin:14px 0;overflow:hidden}
+.lvl-head{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
+.lvl-head .num{font-size:22px}.lvl-head .t{font-weight:800;flex:1}.lvl-head .mins{font-size:12px;color:var(--dim)}.lvl-head .state{font-size:18px}
+.lvl-body{display:none;padding:0 16px 16px;border-top:1px solid #232c4d}
+.lvl.open .lvl-body{display:block}.lvl.locked{opacity:.45}.lvl.locked .lvl-head{cursor:not-allowed}
+.card{background:#0f1528;border:1px solid #232c4d;border-radius:12px;padding:13px 14px;margin:12px 0}
+.card h3{font-size:14px;color:var(--cyan);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.card p{margin:6px 0;font-size:15px}.big{color:var(--gold);font-weight:800}
+.num-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.stat{background:#0f1528;border:1px solid #2a3458;border-radius:10px;padding:8px 12px;text-align:center;flex:1;min-width:120px}
+.stat b{display:block;font-size:18px;color:var(--gold)}.stat span{font-size:11.5px;color:var(--dim)}
+.quiz{border-left:3px solid var(--purple)}.quiz h3{color:var(--purple)}
+.opt{display:block;width:100%;text-align:left;background:#161d33;border:1px solid #2a3458;color:var(--ink);border-radius:10px;padding:10px 12px;margin:7px 0;font-size:14.5px;cursor:pointer}
+.opt:hover{border-color:var(--gold)}
+.opt.right{border-color:var(--green);background:rgba(126,232,199,.12)}
+.opt.wrong{border-color:var(--red);background:rgba(255,93,115,.12)}
+.explain{display:none;font-size:13.5px;color:var(--green);margin-top:8px}
+.mission{border-left:3px solid var(--gold)}.mission h3{color:var(--gold)}
+.mission label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;margin-top:8px}
+.mission input{width:20px;height:20px;margin-top:2px;accent-color:var(--gold)}
+.mxp{font-size:12px;color:var(--gold);font-weight:700}
+.donebtn{display:block;width:100%;background:linear-gradient(90deg,var(--gold),#ffb84d);color:#1a1405;font-weight:900;border:0;border-radius:12px;padding:13px;font-size:16px;margin-top:14px;cursor:pointer}
+.donebtn:disabled{opacity:.4;cursor:not-allowed}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th,td{border-bottom:1px solid #232c4d;padding:6px 6px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-size:11.5px;text-transform:uppercase}td b{color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--gold);color:#1a1405;font-weight:800;padding:10px 18px;border-radius:99px;transition:transform .3s;z-index:99}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.fin{display:none;text-align:center;padding:30px 16px}.fin h2{color:var(--gold);font-size:30px}
+ul{padding-left:20px}li{margin:4px 0;font-size:14.5px}
+.src{font-size:11px;color:#5e6890;margin-top:6px}
+</style></head><body>
+<header><div class="hbar">
+  <a href="index.html">🎓 CAMPUS</a>
+  <div class="xpwrap"><div class="xpbar"><div class="xpfill" id="xpfill"></div></div><div class="rank" id="rank"></div></div>
+  <span id="xptxt" style="font-size:13px;color:var(--gold);font-weight:800">0 XP</span>
+</div></header>
+<div class="wrap">
+  <h1>🤖 AUTOMATION — Lights-Out Operations</h1>
+  <p class="sub">Your OS is 78% built and 20% used. ~50 min to a machine that works while you sleep.</p>
+  <div id="levels"></div>
+  <div class="fin" id="fin"><h2>🤖 NIGHT SHIFT FOREMAN</h2><p>The machine runs without you. Check the board in the morning, not the work.</p></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+const LEVELS=[{"icon": "🗺️", "title": "LEVEL 0 · THE GAP", "mins": "5 min", "html": "<div class='card'><h3>Your audit, one line</h3><p>You built nucleus, agentbus, agentwatch, and a skills rack — and the 30-day audit shows <span class='big'>agentbus: 19 tasks, 1 done, all manual relay; agentwatch: never started once.</span> You own a factory and you're hand-carrying every part between stations.</p></div><div class='card'><h3>Why this is an ADHD tax, not a chore backlog</h3><p>Every manual relay is a <b>context switch</b>, and context switches are the most expensive thing in your day. Automation isn't about saving minutes — it's about protecting the <b>one focus thread</b> you get. The bar for this course: <span class='big'>one task auto-closes at 10pm while you sleep.</span></p></div>", "quiz": {"q": "What's the real cost of manually relaying agent tasks?", "opts": ["The minutes it takes", "The context switch that breaks your focus thread", "Server costs", "Nothing, it's fine"], "a": 1, "ex": "Minutes are cheap; refocusing after a switch costs you 15–25 minutes of momentum each time. The machine exists so your brain stays on ONE thing."}, "mission": {"id": "m0", "xp": 50, "txt": "Run `bin/agentbus board` (or ask Claude to). Look at the 18 open tasks with fresh eyes — this is your machine, idling."}}, {"icon": "📋", "title": "LEVEL 1 · THE BUS — triage the ledger", "mins": "10 min", "html": "<div class='card'><h3>How the bus is supposed to flow</h3><p><b>add → claim → done.</b> A task that sits unclaimed for 10 days isn't a task — it's guilt with a timestamp. Your ledger right now: T001–T005 (SSA launch) open since June 1, T006/T007 (record videos) open 10 days, T015–T019 (weekly research) never claimed.</p></div><div class='card'><h3>The triage rule: every open task gets one of three fates</h3><ul><li><b>KILL</b> — no longer true? Delete without ceremony.</li><li><b>DELEGATE</b> — an agent can do it? Route it (next levels make this automatic).</li><li><b>GATE</b> — only Zorba can do it? It goes to the Gate Queue (Level 3), never loose on the board.</li></ul><p>A clean board is not cosmetic — it's what makes the standup trustworthy.</p></div>", "quiz": {"q": "A task has sat open and unclaimed for 10 days. What is it?", "opts": ["A priority", "Guilt with a timestamp — triage it: kill, delegate, or gate", "Fine where it is", "Claude's fault"], "a": 1, "ex": "Stale tasks poison the board: once you stop trusting the ledger, you stop using the OS. Triage is maintenance on TRUST, not on tasks."}, "mission": {"id": "m1", "xp": 75, "txt": "Triage all 18 open tasks RIGHT NOW with Claude: each one gets kill / delegate / gate. Ten minutes, board clean."}}, {"icon": "🔁", "title": "LEVEL 2 · DEPLOY AGENTWATCH", "mins": "10 min", "html": "<div class='card'><h3>The loop you already own</h3><p><code>bin/agentwatch</code> watches the bus and auto-runs tasks routed to <b>free local agents</b> (ollama/hermes). Paid APIs and human-judgment work stay manual — that's the designed split. It has never been started. Today it starts.</p></div><div class='card'><h3>The deployment checklist</h3><ul><li>Start it (with a log file, so silence is diagnosable).</li><li>Route ONE low-stakes task to a local agent (e.g. ssa-research: 'list 5 competitor offers').</li><li>Verify the loop: claim appears → output lands → task closes → handoff in nucleus.</li></ul><p>One full cycle proves the machine; scaling is just more routing.</p></div>", "quiz": {"q": "Which work belongs on the auto-dispatch loop?", "opts": ["Everything", "Free local-agent work (research, drafts); paid + judgment stays manual", "Only Miklat tasks", "Nothing, too risky"], "a": 1, "ex": "That's your own designed split (ROLE.md): free/local auto-runs, paid + human-in-loop stays manual relay. The design was right — it was just never switched on."}, "mission": {"id": "m2", "xp": 100, "txt": "With Claude (next local session): start agentwatch with a log, route one research task to a local agent, and watch one full add→claim→done cycle. This is the course's keystone mission."}}, {"icon": "🚪", "title": "LEVEL 3 · THE GATE QUEUE — you are the slowest machine", "mins": "10 min", "html": "<div class='card'><h3>The pattern the audit caught</h3><p>DNS records. GoatCounter claims. The miklatgames repo. Ko-fi. The Gemini key. Every pipeline this month stalled at a <span class='big'>Zorba-only gate</span> — 5-minute actions that waited days because they arrived one at a time, mid-flow, when you were focused elsewhere.</p></div><div class='card'><h3>The fix: batch the gates</h3><ul><li><b>One Gate Queue</b> (a section in the nucleus, not scattered in handoffs).</li><li><b>One weekly 20-minute Keys Session</b> — you clear ALL gates in a batch, dopamine-style, checklist down.</li><li><b>Claude pre-stages everything</b>: exact URL, exact values, exact click path. You only execute.</li></ul><p>Right now there are 3 in the queue: Ko-fi account, fresh Gemini key (new project), portal accounts.</p></div>", "quiz": {"q": "Why did 5-minute gates stall pipelines for days?", "opts": ["They were hard", "They arrived one-at-a-time mid-focus instead of batched into one session", "Laziness", "Bad luck"], "a": 1, "ex": "Single interrupts lose to whatever you're focused on — every time, by design of your brain. Batching turns 5 interrupts into one 20-minute checklist session you can actually win."}, "mission": {"id": "m3", "xp": 100, "txt": "Do a Keys Session NOW: Ko-fi account → paste URL to Claude · Gemini key in a NEW project → paste · portal account emails. 20 minutes, three pipelines unblocked."}}, {"icon": "🏭", "title": "LEVEL 4 · WIRE THE MONEY TOOLS + BOSS", "mins": "12 min", "html": "<div class='card'><h3>Idle connections = blind spots</h3><p>Stripe, Google Analytics, and Meta Ads MCPs are available and unwired. Lead capture and email automation are drafted, not live. Rule of thumb: <b>a tool you can't see from the standup doesn't exist.</b> Wire them in the order money flows: lead capture → booking → payment → analytics.</p></div><div class='card'><h3>The nightly loop (your first real automation)</h3><p>One recurring job: every night a local agent compiles a brief (competitor moves, your funnel numbers, open gates) and pushes it to the nucleus. You wake up to a board that already knows the state of the world. That's the 10pm task auto-close — the course's proof of success.</p></div>", "quiz": null, "boss": [{"q": "The proof this course worked:", "opts": ["You read it all", "A task auto-closes at 10pm while you sleep", "More tasks on the board", "A new tool installed"], "a": 1}, {"q": "Stale tasks on the bus mainly destroy…", "opts": ["Disk space", "Your trust in the board (and then the whole OS)", "Nothing", "Agent morale"], "a": 1}, {"q": "Zorba-only gates should be…", "opts": ["Handled immediately as they appear", "Batched into one weekly pre-staged Keys Session", "Ignored", "Delegated to agents"], "a": 1}, {"q": "What runs on agentwatch?", "opts": ["Everything including payments", "Free local-agent work; paid + judgment stays manual", "Only games", "Email"], "a": 1}], "mission": {"id": "m4", "xp": 100, "txt": "Commission the nightly brief: tell Claude 'set up the nightly research brief on agentwatch' in your next local session. When the first one lands in the nucleus overnight — course complete, for real."}}];
+const RANKS=[[0, "🔌 Unplugged"], [120, "⚙️ Operator"], [280, "🔁 Loop Builder"], [450, "🤖 Night Shift Foreman"]];
+const STORE='academy-automation';
+const MAXXP=755;
+let S=JSON.parse(localStorage.getItem(STORE)||'{"xp":0,"quiz":{},"missions":{},"boss":{},"done":{}}');
+const save=()=>localStorage.setItem(STORE,JSON.stringify(S));
+const $=id=>document.getElementById(id);
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1900);}
+function gain(n){S.xp+=n;save();renderHud();toast('+'+n+' XP');}
+function renderHud(){
+  $('xpfill').style.width=Math.min(100,S.xp/MAXXP*100)+'%';
+  $('xptxt').textContent=S.xp+' XP';
+  let r=RANKS[0][1];for(const[t,n]of RANKS)if(S.xp>=t)r=n;
+  $('rank').textContent=r;
+}
+function levelDone(i){return !!S.done['l'+i];}
+function unlocked(i){return i===0||levelDone(i-1);}
+function bossLevel(){return LEVELS.findIndex(l=>l.boss);}
+function build(){
+  const root=$('levels');root.innerHTML='';
+  LEVELS.forEach((L,i)=>{
+    const el=document.createElement('div');
+    el.className='lvl'+(unlocked(i)?'':' locked');
+    let inner=`<div class="lvl-head" data-i="${i}"><span class="num">${L.icon}</span><span class="t">${L.title}</span><span class="mins">${L.mins}</span><span class="state">${levelDone(i)?'✅':unlocked(i)?'▶':'🔒'}</span></div><div class="lvl-body">${L.html}`;
+    if(L.quiz){
+      const done=S.quiz[i]!==undefined;
+      inner+=`<div class="card quiz"><h3>⚔️ Take the shot (+25 XP)</h3><p>${L.quiz.q}</p>`+
+        L.quiz.opts.map((o,j)=>`<button class="opt ${done?(j===L.quiz.a?'right':(S.quiz[i]===j?'wrong':'')):''}" data-l="${i}" data-j="${j}" ${done?'disabled':''}>${o}</button>`).join('')+
+        `<div class="explain" style="display:${done?'block':'none'}">${L.quiz.ex}</div></div>`;
+    }
+    if(L.boss){
+      inner+=`<div class="card quiz"><h3>👹 BOSS FIGHT — +20 XP each</h3>`;
+      L.boss.forEach((B,k)=>{
+        const done=S.boss[k]!==undefined;
+        inner+=`<p style="margin-top:12px"><b>${k+1}.</b> ${B.q}</p>`+
+          B.opts.map((o,j)=>`<button class="opt ${done?(j===B.a?'right':(S.boss[k]===j?'wrong':'')):''}" data-b="${k}" data-j="${j}" ${done?'disabled':''}>${o}</button>`).join('');
+      });
+      inner+=`</div>`;
+    }
+    if(L.mission){
+      const m=S.missions[L.mission.id];
+      inner+=`<div class="card mission"><h3>🎯 Mission <span class="mxp">+${L.mission.xp} XP</span></h3>
+      <label><input type="checkbox" data-m="${L.mission.id}" data-xp="${L.mission.xp}" data-l="${i}" ${m?'checked disabled':''}><span>${L.mission.txt}</span></label></div>`;
+    }
+    inner+=`<button class="donebtn" data-fin="${i}" ${levelDone(i)?'disabled':''}>${levelDone(i)?'LEVEL CLEAR ✅':'COMPLETE LEVEL ▶'}</button></div>`;
+    el.innerHTML=inner;root.appendChild(el);
+  });
+  $('fin').style.display=levelDone(LEVELS.length-1)?'block':'none';
+}
+document.addEventListener('click',e=>{
+  const h=e.target.closest('.lvl-head');
+  if(h){const i=+h.dataset.i;if(!unlocked(i)){toast('Clear the previous level first 🔒');return;}
+    h.parentElement.classList.toggle('open');return;}
+  const o=e.target.closest('.opt');
+  if(o&&!o.disabled){
+    if(o.dataset.l!==undefined){const i=+o.dataset.l,j=+o.dataset.j;S.quiz[i]=j;save();
+      if(j===LEVELS[i].quiz.a)gain(25);else toast('Not quite — read the green answer');
+      build();openLvl(i);return;}
+    if(o.dataset.b!==undefined){const k=+o.dataset.b,j=+o.dataset.j;S.boss[k]=j;save();
+      if(j===LEVELS[bossLevel()].boss[k].a)gain(20);else toast('Boss hit you back 💥');
+      build();openLvl(bossLevel());return;}
+  }
+  const m=e.target.closest('input[data-m]');
+  if(m&&m.checked){S.missions[m.dataset.m]=1;save();gain(+m.dataset.xp);build();openLvl(+m.dataset.l);return;}
+  const f=e.target.closest('[data-fin]');
+  if(f&&!f.disabled){const i=+f.dataset.fin;S.done['l'+i]=1;save();gain(30);
+    build();if(i<LEVELS.length-1)openLvl(i+1);}
+});
+function openLvl(i){const els=document.querySelectorAll('.lvl');if(els[i])els[i].classList.add('open');}
+build();renderHud();
+openLvl(Object.keys(S.done).length?Math.min(LEVELS.length-1,Object.keys(S.done).length):0);
+</script></body></html>

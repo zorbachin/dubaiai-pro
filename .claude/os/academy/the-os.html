@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1120"><title>THE OS — Run the Machine You Built</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<style>
+:root{--bg:#0d1120;--card:#161d33;--ink:#f2f4ff;--dim:#9aa3c7;--gold:#ffd166;--red:#ff5d73;--green:#7ee8c7;--cyan:#3ee6ff;--purple:#b99cff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,'Segoe UI',sans-serif;padding-bottom:90px}
+.wrap{max-width:680px;margin:0 auto;padding:18px 16px}
+header{position:sticky;top:0;z-index:9;background:rgba(13,17,32,.94);backdrop-filter:blur(8px);border-bottom:1px solid #232c4d}
+.hbar{max-width:680px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.hbar a{color:var(--dim);text-decoration:none;font-size:13px;white-space:nowrap}
+.xpwrap{flex:1}.xpbar{height:10px;background:#232c4d;border-radius:6px;overflow:hidden}
+.xpfill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));width:0%;transition:width .6s}
+.rank{font-size:12px;color:var(--gold);font-weight:700;margin-top:2px}
+h1{font-size:clamp(26px,7vw,40px);line-height:1.1;color:var(--gold);text-shadow:0 0 24px rgba(255,209,102,.35)}
+.sub{color:var(--dim);margin:8px 0 4px}
+.lvl{background:var(--card);border:1px solid #232c4d;border-radius:16px;margin:14px 0;overflow:hidden}
+.lvl-head{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
+.lvl-head .num{font-size:22px}.lvl-head .t{font-weight:800;flex:1}.lvl-head .mins{font-size:12px;color:var(--dim)}.lvl-head .state{font-size:18px}
+.lvl-body{display:none;padding:0 16px 16px;border-top:1px solid #232c4d}
+.lvl.open .lvl-body{display:block}.lvl.locked{opacity:.45}.lvl.locked .lvl-head{cursor:not-allowed}
+.card{background:#0f1528;border:1px solid #232c4d;border-radius:12px;padding:13px 14px;margin:12px 0}
+.card h3{font-size:14px;color:var(--cyan);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.card p{margin:6px 0;font-size:15px}.big{color:var(--gold);font-weight:800}
+.num-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.stat{background:#0f1528;border:1px solid #2a3458;border-radius:10px;padding:8px 12px;text-align:center;flex:1;min-width:120px}
+.stat b{display:block;font-size:18px;color:var(--gold)}.stat span{font-size:11.5px;color:var(--dim)}
+.quiz{border-left:3px solid var(--purple)}.quiz h3{color:var(--purple)}
+.opt{display:block;width:100%;text-align:left;background:#161d33;border:1px solid #2a3458;color:var(--ink);border-radius:10px;padding:10px 12px;margin:7px 0;font-size:14.5px;cursor:pointer}
+.opt:hover{border-color:var(--gold)}
+.opt.right{border-color:var(--green);background:rgba(126,232,199,.12)}
+.opt.wrong{border-color:var(--red);background:rgba(255,93,115,.12)}
+.explain{display:none;font-size:13.5px;color:var(--green);margin-top:8px}
+.mission{border-left:3px solid var(--gold)}.mission h3{color:var(--gold)}
+.mission label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;margin-top:8px}
+.mission input{width:20px;height:20px;margin-top:2px;accent-color:var(--gold)}
+.mxp{font-size:12px;color:var(--gold);font-weight:700}
+.donebtn{display:block;width:100%;background:linear-gradient(90deg,var(--gold),#ffb84d);color:#1a1405;font-weight:900;border:0;border-radius:12px;padding:13px;font-size:16px;margin-top:14px;cursor:pointer}
+.donebtn:disabled{opacity:.4;cursor:not-allowed}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th,td{border-bottom:1px solid #232c4d;padding:6px 6px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-size:11.5px;text-transform:uppercase}td b{color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--gold);color:#1a1405;font-weight:800;padding:10px 18px;border-radius:99px;transition:transform .3s;z-index:99}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.fin{display:none;text-align:center;padding:30px 16px}.fin h2{color:var(--gold);font-size:30px}
+ul{padding-left:20px}li{margin:4px 0;font-size:14.5px}
+.src{font-size:11px;color:#5e6890;margin-top:6px}
+</style></head><body>
+<header><div class="hbar">
+  <a href="index.html">🎓 CAMPUS</a>
+  <div class="xpwrap"><div class="xpbar"><div class="xpfill" id="xpfill"></div></div><div class="rank" id="rank"></div></div>
+  <span id="xptxt" style="font-size:13px;color:var(--gold);font-weight:800">0 XP</span>
+</div></header>
+<div class="wrap">
+  <h1>🧠 THE OS — Run the Machine You Built</h1>
+  <p class="sub">The system is 78% ready and the clock isn't ticking. ~45 min to make the OS a habit, not an artifact.</p>
+  <div id="levels"></div>
+  <div class="fin" id="fin"><h2>🧠 SYSTEMS OPERATOR</h2><p>The OS runs on rhythm now. Two weeks of standup + close-day and you'll never go back.</p></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+const LEVELS=[{"icon": "🗺️", "title": "LEVEL 0 · THE DIAGNOSIS", "mins": "5 min", "html": "<div class='card'><h3>You built a great OS and don't boot it</h3><p>The audit's inventory: nucleus ✅ working · standup/close-day/batch/repurpose skills <span class='big'>designed but not invoked in 30 days</span> · agentbus ledger trusted by no one (1/19 done). The failure mode isn't design — it's that <b>the clock never ticks</b>. An OS without a scheduler is files.</p></div><div class='card'><h3>What 'using the OS' actually means</h3><p>Three loops, that's all: <b>the day loop</b> (standup → work → close-day), <b>the week loop</b> (Sunday batch → all-week distribution), <b>the balance protocol</b> (what happens when a shiny idea lands mid-commitment). Habit beats architecture. This course installs the habits.</p></div>", "quiz": {"q": "The audit says the OS fails because…", "opts": ["Bad design", "The clock never ticks — skills exist but aren't daily habits", "Not enough tools", "Too many ventures"], "a": 1, "ex": "Every component exists and most work. What's missing is invocation: standup wasn't run, close-day wasn't run, batch never fired. Execution, not architecture."}, "mission": {"id": "m0", "xp": 50, "txt": "Run the standup RIGHT NOW (say 'standup' to Claude). Day loop, iteration one. That's the whole mission."}}, {"icon": "☀️", "title": "LEVEL 1 · THE DAY LOOP", "mins": "10 min", "html": "<div class='card'><h3>Morning: standup (5 min)</h3><p>Claude assembles it — you don't. One screen: yesterday's carryover, each active venture's top 1–3, ONE next action visible. Money Block first (Sales course). You approve or trade, then go.</p></div><div class='card'><h3>Evening: close-day (5 min)</h3><p>What shipped, what slipped <b>and why</b>, what carries. The why is the gold: it's where patterns (gates, posting stalls, scope creep) become visible instead of vibes. Close-day writes the carryover that makes tomorrow's standup honest.</p></div><div class='card'><h3>The streak IS the system</h3><p>Ten minutes a day total. The audit's proof-of-success: <span class='big'>standup + close-day daily for 2 weeks → measure commitment-match</span> (what you said vs. what shipped). The number will be embarrassing in week 1 and motivating in week 2.</p></div>", "quiz": {"q": "What's the most valuable part of close-day?", "opts": ["The checklist", "The WHY behind slipped items — that's where your patterns become visible", "Feeling productive", "Logging hours"], "a": 1, "ex": "Slippage-why is the diagnostic feed: 'waited on a gate', 'froze on posting', 'new idea ate the slot'. Two weeks of whys = your personal friction map, with receipts."}, "mission": {"id": "m1", "xp": 75, "txt": "Tonight, run close-day ('close out' to Claude). Then commit to the 14-day streak: both loops daily. The streak counter goes in the nucleus."}}, {"icon": "📅", "title": "LEVEL 2 · THE WEEK LOOP", "mins": "8 min", "html": "<div class='card'><h3>Create once, distribute all week</h3><p>The batch system (Sun/Mon 2–4h raw creation → 'repurpose' atomizes into clips/posts/emails → board queues the week) is built and was <b>never fired for SSA</b>. One batch session feeds five days of posting — it's the ADHD-correct shape: one deep session instead of daily blank pages.</p></div><div class='card'><h3>The board is the single pane</h3><p>'os-board' = command center: context, in-flight, done, agent roster. Trust rule from the Automation course applies: a clean board you check beats a perfect board you avoid.</p></div>", "quiz": {"q": "Why does batching beat daily content creation for you specifically?", "opts": ["It's trendy", "One deep session replaces five blank-page starts — blank pages are where ADHD stalls", "More volume", "Algorithms prefer it"], "a": 1, "ex": "The blank page is the highest-friction moment, and daily posting schedules five of them a week. Batch scheduling buys five posting days for ONE starting-cost."}, "mission": {"id": "m2", "xp": 75, "txt": "Book the 2-hour batch block on your real calendar (Sunday or Monday) and tell Claude the slot — the 'batch' skill runs it, SSA content is the agenda."}}, {"icon": "⚖️", "title": "LEVEL 3 · THE BALANCE PROTOCOL (priority, for real)", "mins": "10 min", "html": "<div class='card'><h3>The 52/2 problem</h3><p>Miklat took 52% of the month; the money-maker took 2%. Not because you chose that — because <b>shippable beats important when no protocol intervenes.</b> The balance protocol exists for exactly this; it just needs to actually fire.</p></div><div class='card'><h3>The 2-box rule, every standup</h3><ul><li><b>Box 1 — Money-maker:</b> SSA/BYB. Eats first (the Money Block). Non-negotiable.</li><li><b>Box 2 — Long bet:</b> Miklat (or whatever is hot). Gets the rest, guilt-free.</li></ul><p>When a new idea lands mid-week: <b>capture it (nucleus), state today's commitment, offer the trade explicitly.</b> Never a flat no — and never a silent yes that buries Box 1.</p></div><div class='card'><h3>Session separation</h3><p>Miklat lives in the miklatgames session; the portfolio lives in dubaiai-pro. Separate dopamine tracks — opening the right session IS the priority decision.</p></div>", "quiz": {"q": "A shiny new idea lands on Tuesday mid-commitment. The protocol says…", "opts": ["Do it now, ride the energy", "Flat no", "Capture it, state today's commitment, offer the explicit trade", "Hide it"], "a": 2, "ex": "Energy is real and worth honoring — through a TRADE, not a hijack. 'Captured. Today is committed to X. Want to swap X out, eyes open?' keeps both the spark and the spine."}, "mission": {"id": "m3", "xp": 75, "txt": "Declare this week's two boxes to Claude (Box 1: SSA first booking · Box 2: Miklat portal submissions — or your own). They anchor every standup this week."}}, {"icon": "✅", "title": "LEVEL 4 · DEFINITION OF DONE + BOSS", "mins": "10 min", "html": "<div class='card'><h3>One rule, applied everywhere</h3><p>You already coined it for content: <b>drafted ≠ done, published = done.</b> The audit shows the gap is portfolio-wide: site designed ≠ site live · video scripted ≠ video posted · email drafted ≠ email sent · fix merged ≠ fix deployed · agent built ≠ agent running. <span class='big'>Nothing counts until a stranger can touch it.</span></p></div><div class='card'><h3>Done-washing is the OS's silent killer</h3><p>Every 'basically done' item on the board inflates your sense of progress and deflates the trust the standup runs on. The close-day question is always: <b>can a stranger touch it? No → it carries, honestly.</b></p></div>", "quiz": null, "boss": [{"q": "The OS's actual missing piece was…", "opts": ["Better tools", "The daily clock: standup + close-day as habits", "More agents", "A new app"], "a": 1}, {"q": "The 2-box rule says…", "opts": ["Two tasks per day", "Money-maker eats first; long bet gets the rest guilt-free", "Two ventures max", "Work in 2-hour blocks"], "a": 1}, {"q": "'Done' means…", "opts": ["Merged", "Drafted", "A stranger can touch it", "You feel finished"], "a": 2}, {"q": "Mid-week shiny idea → the protocol response is…", "opts": ["Silent yes", "Flat no", "Capture + state commitment + explicit trade", "Schedule for next quarter"], "a": 2}, {"q": "The 2-week proof-of-success metric:", "opts": ["Tasks created", "Commitment-match: what you said vs. what shipped", "Hours logged", "XP earned"], "a": 1}], "mission": {"id": "m4", "xp": 100, "txt": "Sweep the board with Claude using the stranger-test: relabel everything 'basically done' to its true state. Then start the 14-day streak. Day 1 is today."}}];
+const RANKS=[[0, "📁 Architect (built it)"], [120, "⏰ Clock Starter"], [280, "⚖️ Balancer"], [450, "🧠 Systems Operator"]];
+const STORE='academy-the-os';
+const MAXXP=725;
+let S=JSON.parse(localStorage.getItem(STORE)||'{"xp":0,"quiz":{},"missions":{},"boss":{},"done":{}}');
+const save=()=>localStorage.setItem(STORE,JSON.stringify(S));
+const $=id=>document.getElementById(id);
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1900);}
+function gain(n){S.xp+=n;save();renderHud();toast('+'+n+' XP');}
+function renderHud(){
+  $('xpfill').style.width=Math.min(100,S.xp/MAXXP*100)+'%';
+  $('xptxt').textContent=S.xp+' XP';
+  let r=RANKS[0][1];for(const[t,n]of RANKS)if(S.xp>=t)r=n;
+  $('rank').textContent=r;
+}
+function levelDone(i){return !!S.done['l'+i];}
+function unlocked(i){return i===0||levelDone(i-1);}
+function bossLevel(){return LEVELS.findIndex(l=>l.boss);}
+function build(){
+  const root=$('levels');root.innerHTML='';
+  LEVELS.forEach((L,i)=>{
+    const el=document.createElement('div');
+    el.className='lvl'+(unlocked(i)?'':' locked');
+    let inner=`<div class="lvl-head" data-i="${i}"><span class="num">${L.icon}</span><span class="t">${L.title}</span><span class="mins">${L.mins}</span><span class="state">${levelDone(i)?'✅':unlocked(i)?'▶':'🔒'}</span></div><div class="lvl-body">${L.html}`;
+    if(L.quiz){
+      const done=S.quiz[i]!==undefined;
+      inner+=`<div class="card quiz"><h3>⚔️ Take the shot (+25 XP)</h3><p>${L.quiz.q}</p>`+
+        L.quiz.opts.map((o,j)=>`<button class="opt ${done?(j===L.quiz.a?'right':(S.quiz[i]===j?'wrong':'')):''}" data-l="${i}" data-j="${j}" ${done?'disabled':''}>${o}</button>`).join('')+
+        `<div class="explain" style="display:${done?'block':'none'}">${L.quiz.ex}</div></div>`;
+    }
+    if(L.boss){
+      inner+=`<div class="card quiz"><h3>👹 BOSS FIGHT — +20 XP each</h3>`;
+      L.boss.forEach((B,k)=>{
+        const done=S.boss[k]!==undefined;
+        inner+=`<p style="margin-top:12px"><b>${k+1}.</b> ${B.q}</p>`+
+          B.opts.map((o,j)=>`<button class="opt ${done?(j===B.a?'right':(S.boss[k]===j?'wrong':'')):''}" data-b="${k}" data-j="${j}" ${done?'disabled':''}>${o}</button>`).join('');
+      });
+      inner+=`</div>`;
+    }
+    if(L.mission){
+      const m=S.missions[L.mission.id];
+      inner+=`<div class="card mission"><h3>🎯 Mission <span class="mxp">+${L.mission.xp} XP</span></h3>
+      <label><input type="checkbox" data-m="${L.mission.id}" data-xp="${L.mission.xp}" data-l="${i}" ${m?'checked disabled':''}><span>${L.mission.txt}</span></label></div>`;
+    }
+    inner+=`<button class="donebtn" data-fin="${i}" ${levelDone(i)?'disabled':''}>${levelDone(i)?'LEVEL CLEAR ✅':'COMPLETE LEVEL ▶'}</button></div>`;
+    el.innerHTML=inner;root.appendChild(el);
+  });
+  $('fin').style.display=levelDone(LEVELS.length-1)?'block':'none';
+}
+document.addEventListener('click',e=>{
+  const h=e.target.closest('.lvl-head');
+  if(h){const i=+h.dataset.i;if(!unlocked(i)){toast('Clear the previous level first 🔒');return;}
+    h.parentElement.classList.toggle('open');return;}
+  const o=e.target.closest('.opt');
+  if(o&&!o.disabled){
+    if(o.dataset.l!==undefined){const i=+o.dataset.l,j=+o.dataset.j;S.quiz[i]=j;save();
+      if(j===LEVELS[i].quiz.a)gain(25);else toast('Not quite — read the green answer');
+      build();openLvl(i);return;}
+    if(o.dataset.b!==undefined){const k=+o.dataset.b,j=+o.dataset.j;S.boss[k]=j;save();
+      if(j===LEVELS[bossLevel()].boss[k].a)gain(20);else toast('Boss hit you back 💥');
+      build();openLvl(bossLevel());return;}
+  }
+  const m=e.target.closest('input[data-m]');
+  if(m&&m.checked){S.missions[m.dataset.m]=1;save();gain(+m.dataset.xp);build();openLvl(+m.dataset.l);return;}
+  const f=e.target.closest('[data-fin]');
+  if(f&&!f.disabled){const i=+f.dataset.fin;S.done['l'+i]=1;save();gain(30);
+    build();if(i<LEVELS.length-1)openLvl(i+1);}
+});
+function openLvl(i){const els=document.querySelectorAll('.lvl');if(els[i])els[i].classList.add('open');}
+build();renderHud();
+openLvl(Object.keys(S.done).length?Math.min(LEVELS.length-1,Object.keys(S.done).length):0);
+</script></body></html>

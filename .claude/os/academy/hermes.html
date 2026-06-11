@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1120"><title>HERMES & LOCAL AGENTS — Free Labor, Made Stable</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦙</text></svg>">
+<style>
+:root{--bg:#0d1120;--card:#161d33;--ink:#f2f4ff;--dim:#9aa3c7;--gold:#ffd166;--red:#ff5d73;--green:#7ee8c7;--cyan:#3ee6ff;--purple:#b99cff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,'Segoe UI',sans-serif;padding-bottom:90px}
+.wrap{max-width:680px;margin:0 auto;padding:18px 16px}
+header{position:sticky;top:0;z-index:9;background:rgba(13,17,32,.94);backdrop-filter:blur(8px);border-bottom:1px solid #232c4d}
+.hbar{max-width:680px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.hbar a{color:var(--dim);text-decoration:none;font-size:13px;white-space:nowrap}
+.xpwrap{flex:1}.xpbar{height:10px;background:#232c4d;border-radius:6px;overflow:hidden}
+.xpfill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));width:0%;transition:width .6s}
+.rank{font-size:12px;color:var(--gold);font-weight:700;margin-top:2px}
+h1{font-size:clamp(26px,7vw,40px);line-height:1.1;color:var(--gold);text-shadow:0 0 24px rgba(255,209,102,.35)}
+.sub{color:var(--dim);margin:8px 0 4px}
+.lvl{background:var(--card);border:1px solid #232c4d;border-radius:16px;margin:14px 0;overflow:hidden}
+.lvl-head{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
+.lvl-head .num{font-size:22px}.lvl-head .t{font-weight:800;flex:1}.lvl-head .mins{font-size:12px;color:var(--dim)}.lvl-head .state{font-size:18px}
+.lvl-body{display:none;padding:0 16px 16px;border-top:1px solid #232c4d}
+.lvl.open .lvl-body{display:block}.lvl.locked{opacity:.45}.lvl.locked .lvl-head{cursor:not-allowed}
+.card{background:#0f1528;border:1px solid #232c4d;border-radius:12px;padding:13px 14px;margin:12px 0}
+.card h3{font-size:14px;color:var(--cyan);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.card p{margin:6px 0;font-size:15px}.big{color:var(--gold);font-weight:800}
+.num-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.stat{background:#0f1528;border:1px solid #2a3458;border-radius:10px;padding:8px 12px;text-align:center;flex:1;min-width:120px}
+.stat b{display:block;font-size:18px;color:var(--gold)}.stat span{font-size:11.5px;color:var(--dim)}
+.quiz{border-left:3px solid var(--purple)}.quiz h3{color:var(--purple)}
+.opt{display:block;width:100%;text-align:left;background:#161d33;border:1px solid #2a3458;color:var(--ink);border-radius:10px;padding:10px 12px;margin:7px 0;font-size:14.5px;cursor:pointer}
+.opt:hover{border-color:var(--gold)}
+.opt.right{border-color:var(--green);background:rgba(126,232,199,.12)}
+.opt.wrong{border-color:var(--red);background:rgba(255,93,115,.12)}
+.explain{display:none;font-size:13.5px;color:var(--green);margin-top:8px}
+.mission{border-left:3px solid var(--gold)}.mission h3{color:var(--gold)}
+.mission label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;margin-top:8px}
+.mission input{width:20px;height:20px;margin-top:2px;accent-color:var(--gold)}
+.mxp{font-size:12px;color:var(--gold);font-weight:700}
+.donebtn{display:block;width:100%;background:linear-gradient(90deg,var(--gold),#ffb84d);color:#1a1405;font-weight:900;border:0;border-radius:12px;padding:13px;font-size:16px;margin-top:14px;cursor:pointer}
+.donebtn:disabled{opacity:.4;cursor:not-allowed}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th,td{border-bottom:1px solid #232c4d;padding:6px 6px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-size:11.5px;text-transform:uppercase}td b{color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--gold);color:#1a1405;font-weight:800;padding:10px 18px;border-radius:99px;transition:transform .3s;z-index:99}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.fin{display:none;text-align:center;padding:30px 16px}.fin h2{color:var(--gold);font-size:30px}
+ul{padding-left:20px}li{margin:4px 0;font-size:14.5px}
+.src{font-size:11px;color:#5e6890;margin-top:6px}
+</style></head><body>
+<header><div class="hbar">
+  <a href="index.html">🎓 CAMPUS</a>
+  <div class="xpwrap"><div class="xpbar"><div class="xpfill" id="xpfill"></div></div><div class="rank" id="rank"></div></div>
+  <span id="xptxt" style="font-size:13px;color:var(--gold);font-weight:800">0 XP</span>
+</div></header>
+<div class="wrap">
+  <h1>🦙 HERMES & LOCAL AGENTS — Free Labor, Made Stable</h1>
+  <p class="sub">A free 24/7 workforce is installed and idle. ~40 min to routing, stability, and your first auto-closed task.</p>
+  <div id="levels"></div>
+  <div class="fin" id="fin"><h2>🦙 STABLE MASTER</h2><p>Three tasks a week close themselves, zero API cost. The Sunday brief is waiting Monday morning.</p></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+const LEVELS=[{"icon": "🗺️", "title": "LEVEL 0 · WHAT YOU OWN", "mins": "5 min", "html": "<div class='card'><h3>The fleet, on paper</h3><p>hermes + ollama = <b>local models, $0 per token, no rate limits, private.</b> Your design (ROLE.md) routes them to free recurring work — research briefs, draft passes, competitor scans — via agentwatch, while paid/judgment work stays manual. The audit: <span class='big'>zero evidence any of it ever ran.</span> Latent capacity, fully installed.</p></div><div class='card'><h3>The honest tradeoff</h3><p>Local models are <b>worse per-task</b> than Claude and <b>infinitely cheaper per month</b>. The skill of this course is matching the work to the floor: high-volume, low-stakes, retryable tasks. Wrong matching is why people give up on local agents; right matching is free compounding labor.</p></div>", "quiz": {"q": "What work belongs on hermes/ollama?", "opts": ["Client-facing writing", "High-volume, low-stakes, retryable work (research scans, first drafts)", "Final decisions", "Payments"], "a": 1, "ex": "Local models earn their keep on volume where a 7/10 result is fine and a retry is free. Anything a stranger sees or money touches goes through Claude or you."}, "mission": {"id": "m0", "xp": 50, "txt": "Inventory check in your next local session: `ollama list` — write into the nucleus which models are actually installed and their sizes. Know your fleet."}}, {"icon": "🔀", "title": "LEVEL 1 · ROUTING", "mins": "10 min", "html": "<div class='card'><h3>Per-agent model routing</h3><p>The org chart already names the workers: ssa-research, byb-research, lai-research, mm-research (T015–T019, never claimed). Routing = each agent name maps to a model + a system prompt. Research agents → your strongest local model; bulk scans → the fastest one. The bus stays the single interface — agents differ only in who picks the task up.</p></div><div class='card'><h3>Voice training is a system prompt, not fine-tuning</h3><p>Your house style is already written down (ROLE.md: caveman-warm, one line, action-first). Paste it into the agent's system prompt with 2–3 example outputs. That's 90% of 'training hermes on your voice' — no GPUs harmed.</p></div>", "quiz": {"q": "How do you give hermes 'your voice'?", "opts": ["Fine-tune a model for weeks", "System prompt: your written style rules + 2–3 examples", "You can't", "Buy a bigger GPU"], "a": 1, "ex": "Style transfer for agent output is a prompt problem. ROLE.md already contains the style guide — it just needs to be wired into the agent definitions."}, "mission": {"id": "m1", "xp": 75, "txt": "With Claude in a local session: write the routing table (agent → model → system prompt w/ your style rules) for the 4 research agents. It lives in .claude/os/ next to ventures.md."}}, {"icon": "❤️‍🩹", "title": "LEVEL 2 · STABILITY — silence must be impossible", "mins": "10 min", "html": "<div class='card'><h3>The #1 local-agent failure isn't crashing — it's crashing QUIETLY</h3><p>A dead loop looks identical to an empty queue. Three rules make silence impossible:</p><ul><li><b>Heartbeat:</b> agentwatch logs a timestamped line every cycle; standup checks 'last heartbeat &lt; 1h' as a health light.</li><li><b>No lost work:</b> a task that fails goes BACK to the bus flagged ⚠️, never into the void. Check-then-claim, write-then-done.</li><li><b>Retry then escalate:</b> 2 local retries, then the task is flagged for Claude/you. Local agents never silently eat a task.</li></ul></div><div class='card'><h3>Crash policy</h3><p>Run agentwatch under a supervisor (even a while-true wrapper with backoff). It should survive a model OOM, an ollama restart, and your laptop sleeping — and say so in the log when it does.</p></div>", "quiz": {"q": "Why is a heartbeat log non-negotiable?", "opts": ["Logs are professional", "A dead loop is indistinguishable from an empty queue without one", "It speeds up models", "Disk is cheap"], "a": 1, "ex": "Silence-is-success systems rot invisibly — exactly how agentwatch sat unused for a month without anyone noticing. The standup health light ('heartbeat < 1h ✅') makes rot visible in one glance."}, "mission": {"id": "m2", "xp": 100, "txt": "Next local session: have Claude add heartbeat + failed-task-returns-to-bus + retry-then-escalate to agentwatch, then kill it mid-task and verify the task survives. Break it on purpose, once."}}, {"icon": "📬", "title": "LEVEL 3 · THE SUNDAY BRIEF + BOSS", "mins": "10 min", "html": "<div class='card'><h3>The flagship recurring job</h3><p>Every Sunday night, hermes runs the venture research sweep (the T015–T019 work that's never been claimed): competitor moves, content angles, one opportunity per venture — pushed into the nucleus as a handoff. <b>Monday's standup opens with intelligence you didn't have to gather.</b></p></div><div class='card'><h3>Proof of success (from the audit)</h3><p><span class='big'>3 auto-completed tasks per week, 0 silent errors, Sunday brief in the nucleus by Monday morning.</span> When that's true for two consecutive weeks, this course is done and your payroll grew by one tireless employee earning ₪0.</p></div>", "quiz": null, "boss": [{"q": "Right work for local agents:", "opts": ["Anything", "High-volume low-stakes retryable", "Client emails", "Final approvals"], "a": 1}, {"q": "A task fails on hermes. It should…", "opts": ["Disappear", "Return to the bus flagged ⚠️, retry ×2, then escalate", "Block the queue", "Email you"], "a": 1}, {"q": "The health check at standup is…", "opts": ["Reading full logs", "'Last heartbeat < 1h' — one glance", "Restarting everything", "Trust"], "a": 1}, {"q": "This course's proof of success:", "opts": ["Hermes installed", "3 auto-tasks/week, 0 silent errors, Sunday brief by Monday", "A bigger model", "More agents"], "a": 1}], "mission": {"id": "m3", "xp": 100, "txt": "Commission the Sunday brief: in your next local session tell Claude 'wire the Sunday research sweep to hermes via agentwatch.' First Monday it lands in the nucleus = graduation."}}];
+const RANKS=[[0, "💤 Idle Fleet"], [120, "🔀 Router"], [280, "❤️‍🩹 Stabilizer"], [420, "🦙 Stable Master"]];
+const STORE='academy-hermes';
+const MAXXP=600;
+let S=JSON.parse(localStorage.getItem(STORE)||'{"xp":0,"quiz":{},"missions":{},"boss":{},"done":{}}');
+const save=()=>localStorage.setItem(STORE,JSON.stringify(S));
+const $=id=>document.getElementById(id);
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1900);}
+function gain(n){S.xp+=n;save();renderHud();toast('+'+n+' XP');}
+function renderHud(){
+  $('xpfill').style.width=Math.min(100,S.xp/MAXXP*100)+'%';
+  $('xptxt').textContent=S.xp+' XP';
+  let r=RANKS[0][1];for(const[t,n]of RANKS)if(S.xp>=t)r=n;
+  $('rank').textContent=r;
+}
+function levelDone(i){return !!S.done['l'+i];}
+function unlocked(i){return i===0||levelDone(i-1);}
+function bossLevel(){return LEVELS.findIndex(l=>l.boss);}
+function build(){
+  const root=$('levels');root.innerHTML='';
+  LEVELS.forEach((L,i)=>{
+    const el=document.createElement('div');
+    el.className='lvl'+(unlocked(i)?'':' locked');
+    let inner=`<div class="lvl-head" data-i="${i}"><span class="num">${L.icon}</span><span class="t">${L.title}</span><span class="mins">${L.mins}</span><span class="state">${levelDone(i)?'✅':unlocked(i)?'▶':'🔒'}</span></div><div class="lvl-body">${L.html}`;
+    if(L.quiz){
+      const done=S.quiz[i]!==undefined;
+      inner+=`<div class="card quiz"><h3>⚔️ Take the shot (+25 XP)</h3><p>${L.quiz.q}</p>`+
+        L.quiz.opts.map((o,j)=>`<button class="opt ${done?(j===L.quiz.a?'right':(S.quiz[i]===j?'wrong':'')):''}" data-l="${i}" data-j="${j}" ${done?'disabled':''}>${o}</button>`).join('')+
+        `<div class="explain" style="display:${done?'block':'none'}">${L.quiz.ex}</div></div>`;
+    }
+    if(L.boss){
+      inner+=`<div class="card quiz"><h3>👹 BOSS FIGHT — +20 XP each</h3>`;
+      L.boss.forEach((B,k)=>{
+        const done=S.boss[k]!==undefined;
+        inner+=`<p style="margin-top:12px"><b>${k+1}.</b> ${B.q}</p>`+
+          B.opts.map((o,j)=>`<button class="opt ${done?(j===B.a?'right':(S.boss[k]===j?'wrong':'')):''}" data-b="${k}" data-j="${j}" ${done?'disabled':''}>${o}</button>`).join('');
+      });
+      inner+=`</div>`;
+    }
+    if(L.mission){
+      const m=S.missions[L.mission.id];
+      inner+=`<div class="card mission"><h3>🎯 Mission <span class="mxp">+${L.mission.xp} XP</span></h3>
+      <label><input type="checkbox" data-m="${L.mission.id}" data-xp="${L.mission.xp}" data-l="${i}" ${m?'checked disabled':''}><span>${L.mission.txt}</span></label></div>`;
+    }
+    inner+=`<button class="donebtn" data-fin="${i}" ${levelDone(i)?'disabled':''}>${levelDone(i)?'LEVEL CLEAR ✅':'COMPLETE LEVEL ▶'}</button></div>`;
+    el.innerHTML=inner;root.appendChild(el);
+  });
+  $('fin').style.display=levelDone(LEVELS.length-1)?'block':'none';
+}
+document.addEventListener('click',e=>{
+  const h=e.target.closest('.lvl-head');
+  if(h){const i=+h.dataset.i;if(!unlocked(i)){toast('Clear the previous level first 🔒');return;}
+    h.parentElement.classList.toggle('open');return;}
+  const o=e.target.closest('.opt');
+  if(o&&!o.disabled){
+    if(o.dataset.l!==undefined){const i=+o.dataset.l,j=+o.dataset.j;S.quiz[i]=j;save();
+      if(j===LEVELS[i].quiz.a)gain(25);else toast('Not quite — read the green answer');
+      build();openLvl(i);return;}
+    if(o.dataset.b!==undefined){const k=+o.dataset.b,j=+o.dataset.j;S.boss[k]=j;save();
+      if(j===LEVELS[bossLevel()].boss[k].a)gain(20);else toast('Boss hit you back 💥');
+      build();openLvl(bossLevel());return;}
+  }
+  const m=e.target.closest('input[data-m]');
+  if(m&&m.checked){S.missions[m.dataset.m]=1;save();gain(+m.dataset.xp);build();openLvl(+m.dataset.l);return;}
+  const f=e.target.closest('[data-fin]');
+  if(f&&!f.disabled){const i=+f.dataset.fin;S.done['l'+i]=1;save();gain(30);
+    build();if(i<LEVELS.length-1)openLvl(i+1);}
+});
+function openLvl(i){const els=document.querySelectorAll('.lvl');if(els[i])els[i].classList.add('open');}
+build();renderHud();
+openLvl(Object.keys(S.done).length?Math.min(LEVELS.length-1,Object.keys(S.done).length):0);
+</script></body></html>
