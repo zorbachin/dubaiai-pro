@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 05:12 UTC · code
+DECISION (Zorba): bought miklatgames.fun on Porkbun as the umbrella arcade for all games (solves growth panel's dubaiai.pro trust problem). Wants a Claude design prompt for a mobile-first arcade site built on 10M-club counsel. Brand insight: Miklat = shelter — 'the games you play in the shelter' is the moat. Promo clip 1 (9:16 night) rendered via Higgsfield kling3_0, clip 2 rendering; VO script + cut sheet committed in PROMO.md.
+
 ### 2026-06-11 04:24 UTC · code
 PACING V2 SHIPPED (board option C, full assessment cycle complete): speed carryover w/ 14% dip, 0.6s door beats (was 2s freeze), 30s marathon every 4th siren, goals up. Measured: 68s continuous blocks vs 11.5s loops, run share 86->97%. Board scores: QA SHIP (16.7ms, zero errors), Art B+ (from C+), all punch lists fixed same-session (street tint, contrast, notch-safe HUD, icon 106KB). Temple Run critique resolved while keeping deadline-death identity.
 
@@ -162,31 +165,34 @@ ISSUE 001 = full real origin (Zorba's own words, polished, no em-dashes, cinemat
 
 ### 2026-06-02 11:28 UTC · chat
 ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more human (use commas/periods/parentheses). Durable voice rule. (2) Corrected timeline: OBSESSION came BEFORE the business. During the war his YouTube feed flipped (no news, only AI builds) -> got obsessed -> started PAYING for subscriptions to test them himself, figuring 'if it lands one job it's worth it.' Baby found out MIDWAY through the war while deep in AI, not knowing what to do -> that 'changed the math' -> first call -> second -> hardest part = posting. (3) Story rewritten present-tense/cinematic (in-the-moment, not safe past tense). (4) DROPPED the Three Time-Savers from the premiere — he 'didn't get the tips'; premiere = pure origin story. Segment returns later reworked. Masthead billing now teases story beats (The Feed That Went Quiet / Midway Through the War / The Mission, Made Plain).
-
-### 2026-06-02 11:07 UTC · chat
-VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-public timeline for Dispatch Issue 002 'How One Site Became a Whole Build'): (1) zorbot.io = his FIRST site, built to try and get work (the digital first call). (2) -> led to a PRODUCT 'bloop' on buildyourbot.io. (3) Riley + selfsellingai evolved from it. (4) a CLOSING TOOL (foxy-close-tool/Instant Proposals) became its own product. Through-line: same instinct each time — find where time leaks, build the fix; mission got clearer = take back your time, give time back to others. NEEDS FROM ZORBA: one-line confirm per beat + the asset to embed (video link + site URL/screenshot) — sites are bot-blocked so Claude can't pull them. Skeleton: content-assets/newsletter/ISSUE-002-chronology.md. NOTE: we 'started this' 2026-06-01 (OS + AUDIT.md + decision log).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 04:24 UTC
+- **When:** 2026-06-11 05:12 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** f671c04 chore: refresh nucleus live state [skip ci] — 21 seconds ago
+- **Last commit:** 3eddd7c Promo video VO script + 30s cut sheet — 2 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 ```
 
 **Recent commits:**
 ```
-f671c04 chore: refresh nucleus live state [skip ci] (21 seconds ago)
-4d1af05 Pacing v2: continuous flow - speed carryover, door beats, marathons (43 seconds ago)
-7ef3a02 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-180f6c3 Board polish pass: cohesion, contrast, notch safety, QA one-liners (10 minutes ago)
-a40e3b7 chore: refresh nucleus live state [skip ci] (18 minutes ago)
+3eddd7c Promo video VO script + 30s cut sheet (2 minutes ago)
+f454fd4 Add textless hero art (promo/video source asset) (6 minutes ago)
+df3607c chore: refresh nucleus live state [skip ci] (48 minutes ago)
+f671c04 chore: refresh nucleus live state [skip ci] (48 minutes ago)
+4d1af05 Pacing v2: continuous flow - speed carryover, door beats, marathons (49 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
