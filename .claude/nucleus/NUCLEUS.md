@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 07:54 UTC · code
+WORKSTREAM SYNC AUDIT: mamaddash canonical == miklat package (byte-verified modulo domain+analytics deltas); bin/sync-miklat script added so it can never drift. mamadio stable by design. OUT OF SYNC: Iron Dome (not ported — location unconfirmed, zorbasphere candidate, or regenerate); deploy keys still with Zorba (miklatgames repo, Porkbun DNS x2 domains, GoatCounter).
+
 ### 2026-06-11 07:33 UTC · code
 PLAYTEST BATCH SHIPPED (PR #95 merged): pause button + PAUSED key screen (ring legend, costs, helpers), HOME button, hits cost -10 shekels, emoji ink-centered in telegraph rings, lime scooter helper (1.55x hyper-speed one screen, smash-proof), easy/medium/hard difficulty persisted (dailies pinned medium). All verified headless. The game now has its full v1 feature set.
 
@@ -170,39 +173,28 @@ v16 MERGED (PR #84): key art now IN the game, not just promo — retro art = men
 
 ### 2026-06-11 03:02 UTC · code
 DURABLE BRAND RULE from Zorba: all Iron Dome promo assets bilingual BURNED IN — English leads (he expects more English-speaking players), Hebrew always prominent. All cards rebuilt: share-card.jpg (og image), story, square, press-hero titled variant. Merged next.
-
-### 2026-06-11 02:58 UTC · code
-Elite art pass MERGED (PR #82): retro pixel set composited into production — share-card.jpg 1200x630@170KB live as og:image (every WhatsApp link now shows the retro dome + Hebrew title card), story/square-falafel/press-hero rebuilt on the new art, originals archived in content-assets/irondome-promo/art/. DURABLE: retro pixel = the Iron Dome brand. Outstanding for launch: full-res app icon (Zorba re-downloads the minimal dome icon from ChatGPT), domain purchase, GoatCounter claim — then seeding per checklist.
-### 2026-06-11 02:53 UTC · code
-Art direction decided on ChatGPT image passes: RETRO pass -> share card (readable at thumbnail size, single clear story); FIRST pass panorama -> press hero (richness rewards full-size, tells the 10-cities story); icon/falafel-meme/story/daily-badge all approved as-is. BLOCKED on full-res originals from Zorba (uploads were ~300-600px chat-compressed; need ChatGPT downloads direct or via Drive). Then: typography overlay, icon regen 192/512, share-card + promo swap, WhatsApp-safe compression, one-pass re-ship.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 07:52 UTC
+- **When:** 2026-06-11 07:54 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 9354dae chore: refresh nucleus live state [skip ci] — 18 minutes ago
+- **Last commit:** 7ed59b5 bin/sync-miklat: one-command game->arcade package sync — 1 second ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-9354dae chore: refresh nucleus live state [skip ci] (18 minutes ago)
-db9a28e chore: refresh nucleus live state [skip ci] (18 minutes ago)
-731b88c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (19 minutes ago)
-212a2b2 chore: nucleus snapshot [skip ci] (19 minutes ago)
-614c468 Playtest batch: pause + key, home, hit costs, scooter, difficulty (20 minutes ago)
+7ed59b5 bin/sync-miklat: one-command game->arcade package sync (1 second ago)
+8d13acf chore: refresh nucleus live state [skip ci] (2 minutes ago)
+9354dae chore: refresh nucleus live state [skip ci] (20 minutes ago)
+db9a28e chore: refresh nucleus live state [skip ci] (20 minutes ago)
+731b88c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (21 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
