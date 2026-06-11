@@ -1,0 +1,12 @@
+{
+  "name": "MIKLAT GAMES",
+  "short_name": "MIKLAT",
+  "description": "Games from the shelter. Free. No app. One thumb.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0b0e1a",
+  "theme_color": "#0b0e1a",
+  "icons": [
+    { "src": "mamaddash/art/icon.png", "sizes": "256x256", "type": "image/png" }
+  ]
+}

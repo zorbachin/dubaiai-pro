@@ -46,6 +46,77 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 05:20 UTC · code
+HANDOFF → Cowork: master deploy prompt delivered (merge PR #74, create+populate miklatgames repo from miklat/ package, Pages+CNAME, Porkbun DNS guided, Iron Dome port from wherever it lives in GitHub, full release verification, GoatCounter reminder code 'miklatgames'). Code session = build shop; Cowork = release manager. If Iron Dome isn't in GitHub, regenerate from nucleus context.
+
+### 2026-06-11 05:18 UTC · code
+MIKLAT GAMES v1 packaged in dubaiai-pro/miklat/ (session can't create repos — 403). Arcade shelf + full MAMAD DASH port (canonical → miklatgames.fun) + GoatCounter code 'miklatgames' pre-wired + deploy runbook. Verified over HTTP. BLOCKERS FOR ZORBA: (1) create github.com/zorbachin/miklatgames + add to a session OR run the runbook push commands; (2) Porkbun DNS for miklatgames.fun (4 A records); (3) GoatCounter signup with code 'miklatgames'; (4) tell me where Iron Dome's source lives for its port.
+
+### 2026-06-11 05:12 UTC · code
+DECISION (Zorba): bought miklatgames.fun on Porkbun as the umbrella arcade for all games (solves growth panel's dubaiai.pro trust problem). Wants a Claude design prompt for a mobile-first arcade site built on 10M-club counsel. Brand insight: Miklat = shelter — 'the games you play in the shelter' is the moat. Promo clip 1 (9:16 night) rendered via Higgsfield kling3_0, clip 2 rendering; VO script + cut sheet committed in PROMO.md.
+
+### 2026-06-11 04:24 UTC · code
+PACING V2 SHIPPED (board option C, full assessment cycle complete): speed carryover w/ 14% dip, 0.6s door beats (was 2s freeze), 30s marathon every 4th siren, goals up. Measured: 68s continuous blocks vs 11.5s loops, run share 86->97%. Board scores: QA SHIP (16.7ms, zero errors), Art B+ (from C+), all punch lists fixed same-session (street tint, contrast, notch-safe HUD, icon 106KB). Temple Run critique resolved while keeping deadline-death identity.
+
+### 2026-06-11 03:53 UTC · code
+DESIGN STEER (Zorba): waves feel too short/quick — wants Temple Run flow: long continuous runs that 'really keep going', deaths that take time and investment to arrive, not 10-second chunks. Reconvening full board for all-aspects assessment of the post-art build before tuning.
+
+### 2026-06-11 03:39 UTC · code
+FULL ART PASS COMPLETE: all 4 hand-painted hood backgrounds in-game with parallax, hand-drawn mamad door, power-up icon trio (crowned hummus!), runner v2 with duck-slide, title screen key art, new og.jpg (146KB WhatsApp-safe) + app icon. Regression green, zero errors. MAMAD DASH looks like a commercial game. Branch/PR #74 has everything; launch still gated on Porkbun DNS + merge.
+
+### 2026-06-11 03:03 UTC · code
+ART LANDED: Zorba's ChatGPT character sheets (runner 5 poses w/ beard+phone+REC, savta 3 poses) sliced and integrated — real run cycle, jump/duck poses, tumble ragdoll, hand-drawn savta in death cam + as cart obstacle. Emoji fallback kept. Looks like a real game now. Also sent Art Direction Kit v2 email (Iron Dome standard, 11 prompts w/ hex palette + exact dims) — backgrounds/door/key art/icons still to come from Zorba's ChatGPT session.
+
+### 2026-06-11 02:54 UTC · code
+STANDING QUALITY BAR (Zorba): art-prompt kits must match the Iron Dome standard — rules header (NO TEXT anywhere, AI mangles Hebrew; typography composited by Claude afterward), palette locked with exact hex codes + a 'stay strictly on palette' correction line, exact pixel dimensions/aspect ratio per asset, composition notes (where to leave calm space for overlays), style anchors, small-size readability notes. MAMAD DASH palette: sky #37b6ff, cream #f4ecdd, gold #ffd166, teal #7ee8c7, coral #ff5d5d, navy #0b0e1a.
+
+### 2026-06-10 19:45 UTC · code
+QA SIGN-OFF complete → SHIP. All 5 punch-list items fixed incl. the daily-determinism blocker (independent seeded RNG streams per spawn system — interleave-proof; verified across skill levels). Perf: vsync-locked 60fps, p95 16.7ms. Soak: 9 waves + 10 restart cycles clean. MAMAD DASH is promo-ready; morning checklist in mamaddash/PROMO.md.
+
+### 2026-06-10 19:19 UTC · code
+Overnight progress: It2+It3 shipped (challenge card image share + ?beat= rematch loop, Today's Siren daily seed, revive-once, difficulty re-tighten, perf sprite caches), og.png + PROMO.md (all-channel launch copy + morning checklist) committed. Game made DOMAIN-PORTABLE per Zorba's zorbot.io directive — share links self-configure to any host. zorbot.io = Railway app (www CNAME 0uded1nb.up.railway.app), NOT GitHub Pages: deploying there needs the zorbot repo added to a session (add-repo tool unavailable tonight, GitHub MCP token also expired). Umbrella-site rec: itch.io page as instant no-DNS public home + CrazyGames/Poki submissions later. QA sign-off agent running.
+
+### 2026-06-10 19:02 UTC · code
+OVERNIGHT DIRECTIVE (Zorba): work through the night with advisor panels to get MAMAD DASH to optimum virality + rock-solid stability + social features; promo materials ready by morning. Executing: It2 Challenge Card share loop, It3 difficulty/revive, perf hardening, QA sign-off, promo pack (key art, channel copy, screenshots, launch checklist). Morning blockers for Zorba: Porkbun DNS records, merge PR #74, optional mamaddash.com domain + GoatCounter account.
+
+### 2026-06-10 18:55 UTC · code
+Iteration 1 (feel patch) SHIPPED to PR #74: touchstart jump (-100ms latency), landing buffer, fast-fall, hit-stop, camera dip+speed zoom, coin fly+combo pitch, star smash-through, celebration trio fixed (confetti above overlay, cleared on wave start, door flash wired), ghost invuln, ragdoll floor, audio bus+heartbeat pulse. All assertions green. Next per roadmap: It2 Challenge Card + og:image + analytics (awaiting GoatCounter/GA account from Zorba), It3 difficulty+revive+daily. Art prompts handed to Zorba for ChatGPT.
+
+### 2026-06-10 18:28 UTC · code
+10M panel complete (retention/growth/feel). Verdict: core is real (60s sessions, 92-100% wave-1 survival, deaths cluster at the door) but 3 gaps to viral: (1) FEEL — jump fires on touchend costing ~100ms (the 'browser game vs game' gap), no hit-stop, celebration confetti bugged behind overlay; (2) GROWTH — share is naked text, no og:image, no challenge loop; Challenge Card (canvas image + ?beat= URL) is THE build; (3) RETENTION — mid-skill players are immortal (no skill ceiling), coins have no sink. Roadmap: It1 feel patch -> It2 challenge card+og:image+analytics -> It3 difficulty+revive+daily seed. Death cam already shipped mid-panel. Awaiting Zorba: GoatCounter account, mamaddash.com domain decision, art-pass go.
+
+### 2026-06-10 18:19 UTC · code
+DECISION (Zorba): build the absurd death cam with savta shaking her head (growth panel's TikTok-punchline rec) — freeze-zoom on death, ragdoll runner, judging savta, rotating one-liner captions. Also: analytics not wired anywhere yet (marketing MCP has only Meta Ads connected, no GA) — recommending GoatCounter for play counts.
+
+### 2026-06-10 15:46 UTC · code
+STANDING RULE (Zorba): every time a game/site update is pushed, ALWAYS include the playable test link in the reply — no asking. Current MAMAD DASH test link: https://raw.githack.com/zorbachin/dubaiai-pro/claude/mamad-dash-location-0mmse2/mamaddash/index.html (until PR #74 merges + Porkbun DNS fixed, then dubaiai.pro/mamaddash/).
+
+### 2026-06-10 15:20 UTC · code
+MAMAD DASH polish pass shipped (Zorba feedback: 'addictive but waves feel same, no power-ups, siren too constant'): 4 cycling hood themes w/ distinct skies+obstacle sets+wave banner (beach/florentin/old north/night), 3 power-ups (star/magnet/+3s), siren wail now last-3s-only with chirp at wave start. All verified headless, zero errors, pushed to PR #74.
+
+### 2026-06-10 15:01 UTC · code
+VALIDATED: Zorba played MAMAD DASH on his real phone via the raw.githack branch link (repo is public, link works) and loves the bright look — sent a screenshot of wave 2, red countdown 3, confetti, 55 shekels mid-run: 'This is a great image.' Bright Fortnite-esque direction is confirmed working on real hardware.
+
+### 2026-06-10 13:23 UTC · code
+MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream skyline) + arcade juice (pop-text, coin glow/spin, landing squash, speed lines, countdown punch, confetti, PERFECT RUN bonus). Zorba steering: addictive + bright first, complexity later — master dash mode before adding anything. Full suite re-verified, pushed to PR #74.
+
+### 2026-06-10 13:08 UTC · code
+BUILT: MAMAD DASH standalone shippable mobile game at mamaddash/index.html (single-file, 453 lines). Tap=jump/swipe-down=duck, instant start, endless escalating siren waves, coins+streak bonuses, share button, localStorage best, all P0 mobile QA fixes baked in (on-canvas countdown, telegraph rings, error-contained loop). Verified headless on phone viewport: 3 waves cleared, death/share/restart/persist all pass, zero errors. On PR #74 (title/body updated to cover all 3 changes). Goes live at dubaiai.pro/mamaddash/ after merge + Porkbun DNS fix.
+
+### 2026-06-10 12:54 UTC · code
+Fixed the volleyball 'I'm timing it right and it misses' bug Zorba hit live: mini-game cursor was frame-based (2x speed on 120Hz phones, hit window < touch latency). Now time-based + 100ms input-latency grace. Pushed to PR #74. QA finding M2 closed.
+
+### 2026-06-10 12:48 UTC · code
+DIRECTION SHIFT (Zorba): MAMAD DASH should become a STANDALONE game — siren runner is the viral core; Tel Aviv exploration demoted to secondary/'a place to play'. Iron Dome + MAMAD DASH = the two viral candidates IF made perfect and dead-simple to play. SEPARATE parked idea: multiplayer Tel Aviv lifestyle game — chat, create worlds, interact ('trying to make it' sim). Echoes QA panel finding: dash is the tense set-piece, hustle layer runs dry. Meanwhile shipped PR #74: dash difficulty now ramps with countdown (calm start, frantic finish) + stumble death-spiral fix + freeze guard.
+
+### 2026-06-10 12:28 UTC · code
+DNS BROKEN: dubaiai.pro resolves to 44.227.76.166 / 44.227.65.245 (registrar parking IPs, likely GoDaddy) instead of GitHub Pages (185.199.108-111.153). Entire site down incl. /mamadio/ — Pages deploys are green, files on main; fix is at the DNS provider: apex A records to the four 185.199.x.153 IPs. Nucleus 'Live at dubaiai.pro' claim is currently false. github.io fallback also dead-ends (301s to the broken custom domain via CNAME).
+
+### 2026-06-10 12:15 UTC · code
+MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimous SHIP WITH FIXES, zero JS errors, economy math verified exact. P0 fixes: mobile dash HUD hidden by alert banner; latent siren-null game-freeze; mini-games have no cancel. Big balance finds: Mendy 2.4x dominant, haggle deterministic, scooters dead content, quest income dries up with 80% of day left, runner stumble death-spiral. Top virality lever = end-screen share card. Full reports in /tmp/qa-func|qa-ux|qa-fun|qa-design.
+
+### 2026-06-10 11:47 UTC · code
+MAMADIO headless playtest passed: full flow (title→char→level→play→forced siren→MAMAD DASH runner with jump) renders and runs with zero console errors via Playwright/Chromium. Screenshots delivered to Zorba. Open loop 'browser playtest before merge' effectively closed pending Zorba's hands-on check at dubaiai.pro/mamadio/.
 ### 2026-06-11 03:22 UTC · code
 Direction shift: game world goes FULL ART. Zorba wants in-game levels to look like the marketing (his screenshot showed the procedural flat-vector vs the rich pixel art). Image pack #3 emailed: 10 per-city level backgrounds (9:16, SKY RULE: upper 60% near-empty navy so rockets stay readable, bottom 20% clear for gameplay buildings, honeycomb dome baked in) + optional Red Alert bg. Integration plan on arrival: art = backdrop layer per level, restyle foreground tappable buildings pixel-chunky, ~150-200KB/img, SW-cached, game stays <2.5MB offline-capable. Pack #2 (icon/portrait/badge/victory) also still pending.
 
@@ -187,6 +258,9 @@ ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 05:20 UTC
+- **Branch:** `claude/mamad-dash-location-0mmse2`
+- **Last commit:** 4faab3e chore: refresh nucleus live state [skip ci] — 2 minutes ago
 - **When:** 2026-06-11 03:36 UTC
 
 - **When:** 2026-06-11 03:07 UTC
@@ -206,6 +280,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
+4faab3e chore: refresh nucleus live state [skip ci] (2 minutes ago)
+649fe76 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+ed1e364 MIKLAT GAMES v1: complete deployable arcade package (3 minutes ago)
+08b8d5c chore: refresh nucleus live state [skip ci] (8 minutes ago)
+c1f650e chore: refresh nucleus live state [skip ci] (8 minutes ago)
 6bc5d1e chore: refresh nucleus live state [skip ci] (14 minutes ago)
 642e41e chore: refresh nucleus live state [skip ci] (14 minutes ago)
 b7a0e4d chore: refresh nucleus live state [skip ci] (17 minutes ago)
