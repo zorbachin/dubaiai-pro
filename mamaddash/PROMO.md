@@ -187,6 +187,7 @@ QC bar (per the 10M-club plan): watch each at 1x AND 0.25x — any extra/backwar
 limb, melting face, warping door edge, savta drift/duplication, or spontaneous
 text = thumbs-down → regenerate (max 3, then static fallback). Discard the
 clips' native audio in the edit; the game's siren is the score.
+<<<<<<< HEAD
 
 ### ✅ FINAL EDIT KIT (post-QC keepers)
 1. Alert (4s): hf_20260611_060752_da9514ab...mp4 (table above)
@@ -195,3 +196,5 @@ clips' native audio in the edit; the game's siren is the score.
 4. Door closes to sliver (4s): hf_20260611_060850_34e1ba01...mp4 (table above)
 + POST beats per cut sheet: 🤌 nu-shake still, SHOE thunk near-still, boom flash, title card.
 Audio rule confirmed by QC: discard ALL native clip audio (gibberish speech) — game siren + SFX only.
+=======
+>>>>>>> origin/main
