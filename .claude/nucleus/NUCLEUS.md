@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 02:53 UTC · code
+Art direction decided on ChatGPT image passes: RETRO pass -> share card (readable at thumbnail size, single clear story); FIRST pass panorama -> press hero (richness rewards full-size, tells the 10-cities story); icon/falafel-meme/story/daily-badge all approved as-is. BLOCKED on full-res originals from Zorba (uploads were ~300-600px chat-compressed; need ChatGPT downloads direct or via Drive). Then: typography overlay, icon regen 192/512, share-card + promo swap, WhatsApp-safe compression, one-pass re-ship.
+
 ### 2026-06-10 19:09 UTC · code
 OVERNIGHT SHIFT COMPLETE: promo pack merged (PR #81, content-assets/irondome-promo/) — full bilingual launch copy (WhatsApp x4, Telegram DM+post, Reddit x2, press HE+EN, X, meme pages, 20s clip script, crisis one-liners, seeding checklist) + visual cards (story/square/meme/share) + v15 screenshots. ChatGPT image prompts EMAILED to Zorba for the elite art pass (6 prompts, no-text rule, palette locked). MORNING PLAN: Zorba does domain + GoatCounter + ChatGPT images -> Claude swaps URL in one pass (it's on its own line everywhere), composites Hebrew typography on new art, re-ships -> seeding begins per checklist.
 
@@ -174,13 +177,6 @@ VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-publ
 
 ### 2026-06-02 11:05 UTC · chat
 ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back engaged/broke/no job/sublet -> married -> baby coming -> WAR days after wedding -> obsessing over AI in the bomb shelter -> first call, second call -> finally got over the unease of POSTING. MISSION (clearer now): build a business to take back his own time AND give time back to others. NOT to make people AI-obsessed; he likes people who want to grow + use tools well; loves solving problems like he does ON SET. Building LIVE, exposed: 'follow me, make that first call/post yourself.' Voice: plain, confessional, anti-hype, sell the WHY (time/freedom). Masthead recut (title 'The First Call'). Kept Three Two-Minute Time-Savers as closing segment. Substack IS SET UP — ready to paste & publish. Updated voice-guide story assets (house/war now filled).
-
-### 2026-06-02 11:02 UTC · chat
-NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three Two-Minute Time-Savers' (one WORK, one LIFE, one HEALTH; quick/fun; each a copy-paste prompt). Issue 001 written (content-assets/newsletter/ISSUE-001.md): feature 'Buy Back Your Time' + the 3 time-savers (kill the email thread / plan the night out / fridge->meal + 12-min calisthenics workout). Opt-in INVITE drafted (content-assets/newsletter/INVITE.md) — personal invites + warm leads + content-engine growth, NEVER import-and-blast. Masthead billing updated to feature the time-savers segment.
-
-
-
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
@@ -189,26 +185,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 02:53 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 4fa7e02 chore: refresh nucleus live state [skip ci] — 8 hours ago
+- **Last commit:** 6cda150 chore: refresh nucleus live state [skip ci] — 13 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
- 1 file changed, 14 insertions(+), 8 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+6cda150 chore: refresh nucleus live state [skip ci] (13 seconds ago)
 4fa7e02 chore: refresh nucleus live state [skip ci] (8 hours ago)
 5c97328 chore: refresh nucleus live state [skip ci] (8 hours ago)
 5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (8 hours ago)
 009da8e Iron Dome launch promo pack: copy + cards + screenshots (8 hours ago)
-510087a chore: refresh nucleus live state [skip ci] (8 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
