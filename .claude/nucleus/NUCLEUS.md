@@ -46,6 +46,11 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 08:40 UTC · code
+Cowork deploy master prompt v2 delivered (current state: all merged, miklat/ on main is the package; 7 steps: repo, push package, Pages, Porkbun DNS both domains, GoatCounter 'miklatgames', Iron Dome check in zorbasphere, full verification + nucleus handoff from cowork). Awaiting 'live' from Zorba for final verification pass.
+
+### 2026-06-11 08:14 UTC · code
+LAUNCH WALKTHROUGH delivered to Zorba (6 steps, ~12 min): create miklatgames repo → new claude.ai/code session w/ both repos + deploy one-liner (package = dubaiai-pro:miklat/) → Pages main/root + custom domain → Porkbun 4 A records + www CNAME → GoatCounter code 'miklatgames' → say 'keys turned' for end-to-end verification. After that every merge auto-deploys to miklatgames.fun in ~60s.
 ### 2026-06-11 09:19 UTC · code
 v24 MERGED (PR #100): the REAL per-city art from Zorba's Drive folder on all 10 levels (downloaded+classified 39 Drive files via MCP; all 10 cities matched, dome-centered, sky-rule; visually verified contact sheet), drawn towers REMOVED everywhere (damage = fire/smoke on the artwork, HUD city counter), strict 1-2-3 music cycle on every level (L10 wraps to song 1), menu redesigned (PLAY hero + mode subtitles + 3 difficulty mini-buttons + How-To demoted), REAL app icon from Drive replaces placeholder. Triple-check table ALL GREEN. Drive folder also contains Mamad Dash sprites/props batch (noted for their session).
 ### 2026-06-11 08:13 UTC · code
@@ -212,6 +217,12 @@ Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 10:25 UTC
+- **Branch:** `claude/mamad-dash-location-0mmse2`
+- **Last commit:** e975d26 chore: refresh nucleus live state [skip ci] — 2 hours ago
+
+**Working tree:**
+```
 - **When:** 2026-06-11 09:50 UTC
 
 - **When:** 2026-06-11 09:12 UTC
@@ -247,14 +258,17 @@ M .claude/nucleus/NUCLEUS.md
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
-.claude/nucleus/NUCLEUS.md | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+.claude/nucleus/NUCLEUS.md | 22 ++++++++--------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
 ```
 
 **Recent commits:**
 ```
+e975d26 chore: refresh nucleus live state [skip ci] (2 hours ago)
+7b0551f chore: refresh nucleus live state [skip ci] (2 hours ago)
+960f7c7 chore: refresh nucleus live state [skip ci] (2 hours ago)
+1429637 chore: refresh nucleus live state [skip ci] (2 hours ago)
+6a300aa chore: refresh nucleus live state [skip ci] (2 hours ago)
 5d626e7 chore: refresh nucleus live state [skip ci] (7 minutes ago)
 ecf55ba chore: refresh nucleus live state [skip ci] (8 minutes ago)
 afe7895 chore: refresh nucleus live state [skip ci] (30 minutes ago)
