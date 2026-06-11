@@ -212,7 +212,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 06:15 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 5400597 Merge origin/main (keep nucleus) — 28 seconds ago
+- **Last commit:** 1e7c1be chore: refresh nucleus live state [skip ci] — 18 seconds ago
 
 **Working tree:**
 ```
@@ -221,11 +221,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-5400597 Merge origin/main (keep nucleus) (29 seconds ago)
-5c652f6 chore: refresh nucleus live state [skip ci] (80 seconds ago)
-11db039 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+1e7c1be chore: refresh nucleus live state [skip ci] (18 seconds ago)
+5400597 Merge origin/main (keep nucleus) (47 seconds ago)
+5c652f6 chore: refresh nucleus live state [skip ci] (2 minutes ago)
+11db039 chore: refresh nucleus live state [skip ci] (3 minutes ago)
 e0f8626 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-e3fe306 chore: refresh nucleus live state [skip ci] (8 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
