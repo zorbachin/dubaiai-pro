@@ -171,28 +171,22 @@ ISSUE 001 = full real origin (Zorba's own words, polished, no em-dashes, cinemat
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 05:18 UTC
+- **When:** 2026-06-11 05:19 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** ed1e364 MIKLAT GAMES v1: complete deployable arcade package — 35 seconds ago
+- **Last commit:** 649fe76 chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-ed1e364 MIKLAT GAMES v1: complete deployable arcade package (35 seconds ago)
+649fe76 chore: refresh nucleus live state [skip ci] (19 seconds ago)
+ed1e364 MIKLAT GAMES v1: complete deployable arcade package (54 seconds ago)
 08b8d5c chore: refresh nucleus live state [skip ci] (6 minutes ago)
 c1f650e chore: refresh nucleus live state [skip ci] (6 minutes ago)
 3eddd7c Promo video VO script + 30s cut sheet (8 minutes ago)
-f454fd4 Add textless hero art (promo/video source asset) (12 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
