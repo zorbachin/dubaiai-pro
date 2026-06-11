@@ -189,26 +189,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 03:48 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 6e72135 chore: refresh nucleus live state [skip ci] — 30 seconds ago
+- **Last commit:** 2e29103 chore: refresh nucleus live state [skip ci] — 21 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-6e72135 chore: refresh nucleus live state [skip ci] (30 seconds ago)
-4c01ea2 Merge origin/main (keep v17) (58 seconds ago)
-ce9d399 v17: end screens + menu redesign — one frame, real stats, shop collapsed (87 seconds ago)
+2e29103 chore: refresh nucleus live state [skip ci] (21 seconds ago)
+6e72135 chore: refresh nucleus live state [skip ci] (51 seconds ago)
+4c01ea2 Merge origin/main (keep v17) (79 seconds ago)
+ce9d399 v17: end screens + menu redesign — one frame, real stats, shop collapsed (2 minutes ago)
 47d972c chore: refresh nucleus live state [skip ci] (12 minutes ago)
-6bc5d1e chore: refresh nucleus live state [skip ci] (26 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
