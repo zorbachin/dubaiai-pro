@@ -189,26 +189,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 06:07 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e099799 Soundtrack rotation: three tracks score the whole game — 57 seconds ago
+- **Last commit:** e3fe306 chore: refresh nucleus live state [skip ci] — 25 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 156 +++------------------------------------------
- 1 file changed, 10 insertions(+), 146 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-e099799 Soundtrack rotation: three tracks score the whole game (57 seconds ago)
-98952a5 Merge origin/main (keep v18) (2 minutes ago)
+e3fe306 chore: refresh nucleus live state [skip ci] (25 seconds ago)
+e099799 Soundtrack rotation: three tracks score the whole game (82 seconds ago)
+98952a5 Merge origin/main (keep v18) (3 minutes ago)
 3ff608f v18: real soundtrack arrives — menu music + per-level track system (3 minutes ago)
 4308681 MAMAD DASH soundtrack: three-track music system (#88) (6 minutes ago)
-b775392 chore: refresh nucleus live state [skip ci] (15 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
