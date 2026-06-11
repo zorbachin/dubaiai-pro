@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 03:40 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** dccef0a Full art pass: hand-painted hoods, door, power-ups, key art, icon — 44 seconds ago
+- **Last commit:** f50ccf1 chore: refresh nucleus live state [skip ci] — 19 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-dccef0a Full art pass: hand-painted hoods, door, power-ups, key art, icon (44 seconds ago)
+f50ccf1 chore: refresh nucleus live state [skip ci] (19 seconds ago)
+dccef0a Full art pass: hand-painted hoods, door, power-ups, key art, icon (63 seconds ago)
 f2d2d70 chore: refresh nucleus live state [skip ci] (36 minutes ago)
-b0ea754 chore: refresh nucleus live state [skip ci] (36 minutes ago)
+b0ea754 chore: refresh nucleus live state [skip ci] (37 minutes ago)
 2b611d6 Real character art: hand-drawn runner + savta replace emoji actors (37 minutes ago)
-d63246c chore: refresh nucleus live state [skip ci] (51 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
