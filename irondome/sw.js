@@ -1,12 +1,16 @@
 /* Iron Dome — offline-first service worker */
-const CACHE = 'irondome-v19';
+const CACHE = 'irondome-v21';
 const ASSETS = [
   './',
   './index.html',
   './manifest.webmanifest',
   './icon-192.png',
   './icon-512.png',
-  './menu-bg.jpg'
+  './menu-bg.jpg',
+  './bg/bg1.jpg',
+  './bg/falafel1.png',
+  './bg/falafel2.png',
+  './bg/falafel3.png'
 ];
 
 self.addEventListener('install', e => {
