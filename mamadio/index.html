@@ -1156,7 +1156,7 @@ requestAnimationFrame(loop);
       if(trackSrc!==src){
         stopTrack();
         trackAudio=new Audio(BASE+src);
-        trackAudio.loop=true; trackAudio.volume=0.5;
+        trackAudio.loop=true; trackAudio.volume=0.3;
         trackSrc=src;
       }
       var p=trackAudio.play();
@@ -1171,7 +1171,7 @@ requestAnimationFrame(loop);
   var menuMusic=null, menuMusicWanted=false;
   try{
     menuMusic=new Audio(BASE+'home_screen.mp3');
-    menuMusic.loop=true; menuMusic.volume=0.55; menuMusic.preload='auto';
+    menuMusic.loop=true; menuMusic.volume=0.35; menuMusic.preload='auto';
   }catch(e){}
 
   function onMenuScreen(){
