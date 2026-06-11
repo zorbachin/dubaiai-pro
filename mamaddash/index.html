@@ -183,6 +183,17 @@ function glow(col,size){             // pre-rendered radial glow sprite
 }
 const STRIPS=new Map(), SKYG=new Map();
 clearCaches=()=>{EMO.clear();GLOWS.clear();STRIPS.clear();SKYG.clear();};
+/* hand-drawn sprites — graceful fallback to emoji while loading / if absent */
+const ART={};
+for(const n of ['run1','run2','jump','duck','tumble','savta-judge','savta-nu','savta-cart']){
+  const i=new Image(); i.src='art/'+n+'.png'; ART[n]=i;
+}
+const artOk=n=>{const i=ART[n];return i&&i.complete&&i.naturalWidth>0;};
+function drawArt(n,x,y,h,flip){
+  const i=ART[n], w=h*i.naturalWidth/i.naturalHeight;
+  cx.save();cx.translate(x,y);if(flip)cx.scale(-1,1);
+  cx.drawImage(i,-w/2,-h/2,w,h);cx.restore();
+}
 
 /* ---------------- waves: every siren is a different hood ----------------
    ground = JUMP (gold ring) · air = DUCK (teal ring). No emoji in both
@@ -664,7 +675,8 @@ function draw(){
     cx.beginPath();cx.ellipse(o.x,groundY+8,o.air?14:20,5,0,0,7);cx.fill();
     cx.strokeStyle=o.air?'rgba(126,232,199,.8)':'rgba(255,209,102,.8)';
     cx.lineWidth=2.5;cx.beginPath();cx.arc(o.x,oy,30,0,7);cx.stroke();
-    drawEmoji(o.emoji,o.x,oy,o.air?40:46);
+    if(o.emoji==='👵'&&artOk('savta-cart')) drawArt('savta-cart',o.x,oy-8,58,true);
+    else drawEmoji(o.emoji,o.x,oy,o.air?40:46);
     if(o.air){ drawEmoji('💨',o.x+34,oy-6,16); }
     if(o.label){ cx.font='900 16px sans-serif';cx.textAlign='center';cx.textBaseline='middle';
       cx.lineWidth=5;cx.strokeStyle='rgba(15,20,40,.85)';cx.strokeText(o.label,o.x,oy-56);
@@ -685,27 +697,42 @@ function draw(){
   if(dc){
     // ragdoll launch + savta walks in, shakes her head
     const rg=G.ragdoll;
-    cx.save();cx.translate(rg.x,rg.y);cx.rotate(rg.rot);cx.scale(-1,1);
-    drawEmoji('🏃',0,0,46);cx.restore();
+    cx.save();cx.translate(rg.x,rg.y);cx.rotate(rg.rot);
+    if(artOk('tumble')) drawArt('tumble',0,0,62);
+    else { cx.scale(-1,1); drawEmoji('🏃',0,0,46); }
+    cx.restore();
     const sx=px+185-Math.min(1,G.deathT/.6)*82;
-    cx.save();cx.translate(sx,groundY-26);cx.rotate(Math.sin(G.t*7)*.12);
-    cx.scale(-1,1);drawEmoji('👵',0,0,52);cx.restore();
-    if(G.deathT>.7) drawEmoji('🤌',sx-38,groundY-58,22);
+    if(artOk('savta-nu')){
+      cx.save();cx.translate(sx,groundY-44);cx.rotate(Math.sin(G.t*7)*.1);
+      drawArt('savta-nu',0,0,88);cx.restore();
+    } else {
+      cx.save();cx.translate(sx,groundY-26);cx.rotate(Math.sin(G.t*7)*.12);
+      cx.scale(-1,1);drawEmoji('👵',0,0,52);cx.restore();
+      if(G.deathT>.7) drawEmoji('🤌',sx-38,groundY-58,22);
+    }
   }
   else {
     if(G.invuln>0&&Math.floor(G.t*14)%2===0) cx.globalAlpha=.35;  // ghost, never vanish
     cx.save();cx.translate(px,groundY-p.y-30);
-    cx.scale(-1,1);                 // 🏃 faces left natively — mirror to run right
-    if(G.stumble>0) cx.rotate(-.45);
-    if(p.land>0) cx.scale(1+p.land*1.6,1-p.land*1.9);   // landing squash
-    if(p.duckT>0&&p.y<=0){ cx.scale(1.18,.6); }
-    else if(p.y>0) cx.rotate(p.vy>0?.16:-.13);          // tilt up rising, down falling
-    else if(G.state==='run') cx.translate(0,Math.sin(G.t*17)*2.5);
-    drawEmoji('🏃',0,0,46);
-    // phone held out in front, filming the whole thing (mirrored space: front = -x)
-    cx.save();cx.translate(-27,-6);cx.rotate(.3);drawEmoji('📱',0,0,17);
-    cx.fillStyle=Math.floor(G.t*3)%2?'#ff3b3b':'#ff8a8a';
-    cx.beginPath();cx.arc(-1,-11,2.6,0,7);cx.fill();cx.restore();
+    if(G.stumble>0) cx.rotate(.4);
+    if(p.land>0) cx.scale(1+p.land*1.2,1-p.land*1.4);   // landing squash
+    const duckPose=p.duckT>0&&p.y<=0;
+    if(artOk('run1')&&artOk('jump')&&artOk('duck')){
+      if(p.y>0){ cx.rotate(p.vy>0?-.1:.08); drawArt('jump',0,2,60); }
+      else if(duckPose){ cx.translate(0,8); drawArt('duck',0,2,44); }
+      else { if(G.state==='run') cx.translate(0,Math.sin(G.t*17)*2);
+        drawArt(Math.floor(G.t*9)%2?'run1':'run2',0,2,64); }
+    } else {
+      cx.scale(-1,1);                 // 🏃 faces left natively — mirror to run right
+      if(duckPose){ cx.scale(1.18,.6); }
+      else if(p.y>0) cx.rotate(p.vy>0?.16:-.13);          // tilt up rising, down falling
+      else if(G.state==='run') cx.translate(0,Math.sin(G.t*17)*2.5);
+      drawEmoji('🏃',0,0,46);
+      // phone held out in front, filming the whole thing (mirrored space: front = -x)
+      cx.save();cx.translate(-27,-6);cx.rotate(.3);drawEmoji('📱',0,0,17);
+      cx.fillStyle=Math.floor(G.t*3)%2?'#ff3b3b':'#ff8a8a';
+      cx.beginPath();cx.arc(-1,-11,2.6,0,7);cx.fill();cx.restore();
+    }
     cx.restore();cx.globalAlpha=1;
   }
   // dust at heels
@@ -855,10 +882,13 @@ function r(x,y,w,h,rad){cx.beginPath();
   if(cx.roundRect) cx.roundRect(x,y,w,h,rad); else cx.rect(x,y,w,h);
   cx.fill();}
 function titleScene(){
-  cx.save();cx.translate(W*.24,groundY-30);cx.scale(-1,1);
-  drawEmoji('🏃',0,0,46);
-  cx.save();cx.translate(-26,-9);cx.rotate(.3);drawEmoji('📱',0,0,17);cx.restore();
-  cx.restore();
+  if(artOk('run1')) drawArt('run1',W*.24,groundY-32,64);
+  else {
+    cx.save();cx.translate(W*.24,groundY-30);cx.scale(-1,1);
+    drawEmoji('🏃',0,0,46);
+    cx.save();cx.translate(-26,-9);cx.rotate(.3);drawEmoji('📱',0,0,17);cx.restore();
+    cx.restore();
+  }
   drawEmoji('💨',W*.24-30,groundY-12,15);
   door(W*.72);
 }
