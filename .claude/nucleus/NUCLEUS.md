@@ -189,26 +189,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 09:20 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 0e7ddc5 Merge origin/main (ours: irondome) — 74 seconds ago
+- **Last commit:** 92b3c54 chore: refresh nucleus live state [skip ci] — 25 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 233 ++-------------------------------------------
- 1 file changed, 10 insertions(+), 223 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-0e7ddc5 Merge origin/main (ours: irondome) (74 seconds ago)
+92b3c54 chore: refresh nucleus live state [skip ci] (25 seconds ago)
+0e7ddc5 Merge origin/main (ours: irondome) (2 minutes ago)
 6672690 v24 (part 2): the real 10 cities from Drive + the real app icon (2 minutes ago)
 fad808b chore: refresh nucleus live state [skip ci] (8 minutes ago)
-f9bfbe6 v24 (part 1): strict music cycle, towers removed (damage on the art), menu redesign (8 minutes ago)
-175de96 Support plan v1: tzedakah box, chai tier, sponsor-a-shelter, wallet bridge (24 minutes ago)
+f9bfbe6 v24 (part 1): strict music cycle, towers removed (damage on the art), menu redesign (9 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
