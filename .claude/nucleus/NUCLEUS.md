@@ -181,22 +181,28 @@ Art direction decided on ChatGPT image passes: RETRO pass -> share card (readabl
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 07:34 UTC
+- **When:** 2026-06-11 07:52 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** db9a28e chore: refresh nucleus live state [skip ci] — 22 seconds ago
+- **Last commit:** 9354dae chore: refresh nucleus live state [skip ci] — 18 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-db9a28e chore: refresh nucleus live state [skip ci] (22 seconds ago)
-731b88c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (70 seconds ago)
-212a2b2 chore: nucleus snapshot [skip ci] (70 seconds ago)
-614c468 Playtest batch: pause + key, home, hit costs, scooter, difficulty (2 minutes ago)
-4328125 v19: the Miklat Wallet — shared shekel economy + paid CONTINUE (#94) (2 minutes ago)
+9354dae chore: refresh nucleus live state [skip ci] (18 minutes ago)
+db9a28e chore: refresh nucleus live state [skip ci] (18 minutes ago)
+731b88c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (19 minutes ago)
+212a2b2 chore: nucleus snapshot [skip ci] (19 minutes ago)
+614c468 Playtest batch: pause + key, home, hit costs, scooter, difficulty (20 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
