@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 17:51 UTC · code
+Shuk Shopper gameplay-art pipeline shipped: game auto-upgrades from emoji to painted art when assets/*.png exist (3 shuk backdrops, player run/slide, 3 vendors; magenta chroma-key for transparency). assets/prompts.json = full spec w/ character bible. BLOCKER for Zorba: needs free Gemini key (aistudio.google.com/apikey) + run 'bin/imagepack shukshopper/assets' to fill it
+
 ### 2026-06-11 17:39 UTC · code
 Shuk Shopper world grounded in REAL shuks (user steering): HaCarmel -> Levinsky -> Mahane Yehuda, 13 districts (produce/falafel-pizza/fish/juice/tchotchkes/spice/nuts/bureka/gazoz/bakery/cheese/halva/night-shuk) implemented in-game; baskets advance districts, lists are district-local. WORLD.md = design bible with roadmap (Shabbat siren finale, Savta boss, per-shuk leaderboards)
 
@@ -188,18 +191,15 @@ DECISION (Zorba): build the absurd death cam with savta shaking her head (growth
 
 ### 2026-06-10 15:46 UTC · code
 STANDING RULE (Zorba): every time a game/site update is pushed, ALWAYS include the playable test link in the reply — no asking. Current MAMAD DASH test link: https://raw.githack.com/zorbachin/dubaiai-pro/claude/mamad-dash-location-0mmse2/mamaddash/index.html (until PR #74 merges + Porkbun DNS fixed, then dubaiai.pro/mamaddash/).
-
-### 2026-06-10 15:20 UTC · code
-MAMAD DASH polish pass shipped (Zorba feedback: 'addictive but waves feel same, no power-ups, siren too constant'): 4 cycling hood themes w/ distinct skies+obstacle sets+wave banner (beach/florentin/old north/night), 3 power-ups (star/magnet/+3s), siren wail now last-3s-only with chirp at wave start. All verified headless, zero errors, pushed to PR #74.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 17:39 UTC
+- **When:** 2026-06-11 17:51 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** e0a4978 nucleus: capture image-gen tooling preference (free Gemini, batched) + Shuk Shopper press pack milestone — 6 minutes ago
+- **Last commit:** 4169756 nucleus: Shuk Shopper world milestone — real-shuk districts (HaCarmel/Levinsky/Mahane Yehuda) — 12 minutes ago
 
 **Working tree:**
 ```
@@ -208,11 +208,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-e0a4978 nucleus: capture image-gen tooling preference (free Gemini, batched) + Shuk Shopper press pack milestone (6 minutes ago)
-3d6f138 MG org: dedicated commercialization CEO to 10K users + full-time PM per game running its 10M advisor panel (19 minutes ago)
-fda68b3 nucleus: capture Shuk Shopper ship + monetization queue-jump note (72 minutes ago)
-af4f340 os: register Miklat Games venture (Claude as COO/CMO) + promote standalone-game decision to nucleus (82 minutes ago)
-934bdd4 nucleus: capture Miklat Games workspace handoff (4 hours ago)
+4169756 nucleus: Shuk Shopper world milestone — real-shuk districts (HaCarmel/Levinsky/Mahane Yehuda) (12 minutes ago)
+e0a4978 nucleus: capture image-gen tooling preference (free Gemini, batched) + Shuk Shopper press pack milestone (17 minutes ago)
+3d6f138 MG org: dedicated commercialization CEO to 10K users + full-time PM per game running its 10M advisor panel (31 minutes ago)
+fda68b3 nucleus: capture Shuk Shopper ship + monetization queue-jump note (83 minutes ago)
+af4f340 os: register Miklat Games venture (Claude as COO/CMO) + promote standalone-game decision to nucleus (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
