@@ -202,7 +202,7 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 07:55 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 — 33 seconds ago
+- **Last commit:** 5d49baa chore: refresh nucleus live state [skip ci] — 10 seconds ago
 
 **Working tree:**
 ```
@@ -211,11 +211,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (33 seconds ago)
-4cc998c chore: snapshot [skip ci] (34 seconds ago)
-7ed59b5 bin/sync-miklat: one-command game->arcade package sync (80 seconds ago)
+5d49baa chore: refresh nucleus live state [skip ci] (10 seconds ago)
+4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (43 seconds ago)
+4cc998c chore: snapshot [skip ci] (44 seconds ago)
+7ed59b5 bin/sync-miklat: one-command game->arcade package sync (2 minutes ago)
 766b86e v21: centered art worlds + real falafel sprites on collision (#97) (3 minutes ago)
-8d13acf chore: refresh nucleus live state [skip ci] (3 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
