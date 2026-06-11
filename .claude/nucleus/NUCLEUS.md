@@ -171,28 +171,22 @@ ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 05:12 UTC
+- **When:** 2026-06-11 05:13 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 3eddd7c Promo video VO script + 30s cut sheet — 2 minutes ago
+- **Last commit:** c1f650e chore: refresh nucleus live state [skip ci] — 20 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+c1f650e chore: refresh nucleus live state [skip ci] (20 seconds ago)
 3eddd7c Promo video VO script + 30s cut sheet (2 minutes ago)
 f454fd4 Add textless hero art (promo/video source asset) (6 minutes ago)
 df3607c chore: refresh nucleus live state [skip ci] (48 minutes ago)
-f671c04 chore: refresh nucleus live state [skip ci] (48 minutes ago)
-4d1af05 Pacing v2: continuous flow - speed carryover, door beats, marathons (49 minutes ago)
+f671c04 chore: refresh nucleus live state [skip ci] (49 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
