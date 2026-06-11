@@ -187,22 +187,28 @@ NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-10 19:09 UTC
+- **When:** 2026-06-11 02:53 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 5c97328 chore: refresh nucleus live state [skip ci] — 21 seconds ago
+- **Last commit:** 4fa7e02 chore: refresh nucleus live state [skip ci] — 8 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
-5c97328 chore: refresh nucleus live state [skip ci] (21 seconds ago)
-5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (78 seconds ago)
-009da8e Iron Dome launch promo pack: copy + cards + screenshots (2 minutes ago)
-510087a chore: refresh nucleus live state [skip ci] (13 minutes ago)
-fa3306c chore: refresh nucleus live state [skip ci] (14 minutes ago)
+4fa7e02 chore: refresh nucleus live state [skip ci] (8 hours ago)
+5c97328 chore: refresh nucleus live state [skip ci] (8 hours ago)
+5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (8 hours ago)
+009da8e Iron Dome launch promo pack: copy + cards + screenshots (8 hours ago)
+510087a chore: refresh nucleus live state [skip ci] (8 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
