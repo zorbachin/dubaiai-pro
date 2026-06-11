@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1120"><title>SHIP IT — Beating the Posting Blocker</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📤</text></svg>">
+<style>
+:root{--bg:#0d1120;--card:#161d33;--ink:#f2f4ff;--dim:#9aa3c7;--gold:#ffd166;--red:#ff5d73;--green:#7ee8c7;--cyan:#3ee6ff;--purple:#b99cff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,'Segoe UI',sans-serif;padding-bottom:90px}
+.wrap{max-width:680px;margin:0 auto;padding:18px 16px}
+header{position:sticky;top:0;z-index:9;background:rgba(13,17,32,.94);backdrop-filter:blur(8px);border-bottom:1px solid #232c4d}
+.hbar{max-width:680px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.hbar a{color:var(--dim);text-decoration:none;font-size:13px;white-space:nowrap}
+.xpwrap{flex:1}.xpbar{height:10px;background:#232c4d;border-radius:6px;overflow:hidden}
+.xpfill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));width:0%;transition:width .6s}
+.rank{font-size:12px;color:var(--gold);font-weight:700;margin-top:2px}
+h1{font-size:clamp(26px,7vw,40px);line-height:1.1;color:var(--gold);text-shadow:0 0 24px rgba(255,209,102,.35)}
+.sub{color:var(--dim);margin:8px 0 4px}
+.lvl{background:var(--card);border:1px solid #232c4d;border-radius:16px;margin:14px 0;overflow:hidden}
+.lvl-head{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
+.lvl-head .num{font-size:22px}.lvl-head .t{font-weight:800;flex:1}.lvl-head .mins{font-size:12px;color:var(--dim)}.lvl-head .state{font-size:18px}
+.lvl-body{display:none;padding:0 16px 16px;border-top:1px solid #232c4d}
+.lvl.open .lvl-body{display:block}.lvl.locked{opacity:.45}.lvl.locked .lvl-head{cursor:not-allowed}
+.card{background:#0f1528;border:1px solid #232c4d;border-radius:12px;padding:13px 14px;margin:12px 0}
+.card h3{font-size:14px;color:var(--cyan);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.card p{margin:6px 0;font-size:15px}.big{color:var(--gold);font-weight:800}
+.num-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.stat{background:#0f1528;border:1px solid #2a3458;border-radius:10px;padding:8px 12px;text-align:center;flex:1;min-width:120px}
+.stat b{display:block;font-size:18px;color:var(--gold)}.stat span{font-size:11.5px;color:var(--dim)}
+.quiz{border-left:3px solid var(--purple)}.quiz h3{color:var(--purple)}
+.opt{display:block;width:100%;text-align:left;background:#161d33;border:1px solid #2a3458;color:var(--ink);border-radius:10px;padding:10px 12px;margin:7px 0;font-size:14.5px;cursor:pointer}
+.opt:hover{border-color:var(--gold)}
+.opt.right{border-color:var(--green);background:rgba(126,232,199,.12)}
+.opt.wrong{border-color:var(--red);background:rgba(255,93,115,.12)}
+.explain{display:none;font-size:13.5px;color:var(--green);margin-top:8px}
+.mission{border-left:3px solid var(--gold)}.mission h3{color:var(--gold)}
+.mission label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;margin-top:8px}
+.mission input{width:20px;height:20px;margin-top:2px;accent-color:var(--gold)}
+.mxp{font-size:12px;color:var(--gold);font-weight:700}
+.donebtn{display:block;width:100%;background:linear-gradient(90deg,var(--gold),#ffb84d);color:#1a1405;font-weight:900;border:0;border-radius:12px;padding:13px;font-size:16px;margin-top:14px;cursor:pointer}
+.donebtn:disabled{opacity:.4;cursor:not-allowed}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th,td{border-bottom:1px solid #232c4d;padding:6px 6px;text-align:left;vertical-align:top}
+th{color:var(--dim);font-size:11.5px;text-transform:uppercase}td b{color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--gold);color:#1a1405;font-weight:800;padding:10px 18px;border-radius:99px;transition:transform .3s;z-index:99}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.fin{display:none;text-align:center;padding:30px 16px}.fin h2{color:var(--gold);font-size:30px}
+ul{padding-left:20px}li{margin:4px 0;font-size:14.5px}
+.src{font-size:11px;color:#5e6890;margin-top:6px}
+</style></head><body>
+<header><div class="hbar">
+  <a href="index.html">🎓 CAMPUS</a>
+  <div class="xpwrap"><div class="xpbar"><div class="xpfill" id="xpfill"></div></div><div class="rank" id="rank"></div></div>
+  <span id="xptxt" style="font-size:13px;color:var(--gold);font-weight:800">0 XP</span>
+</div></header>
+<div class="wrap">
+  <h1>📤 SHIP IT — Beating the Posting Blocker</h1>
+  <p class="sub">The scripts are written. The board is queued. ~35 min on the only blocker that's about courage, not systems.</p>
+  <div id="levels"></div>
+  <div class="fin" id="fin"><h2>📤 THE GUY WHO POSTS</h2><p>Identity shift complete. You don't 'try to post' anymore — you're someone who publishes. Streak's alive; protect it.</p></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+const LEVELS=[{"icon": "🪞", "title": "LEVEL 0 · NAME THE REAL BLOCKER", "mins": "5 min", "html": "<div class='card'><h3>The evidence (it's not ability)</h3><p>scripts-tomorrow.md: two videos fully scripted. content-board.md: queued for a '7:30am shoot.' The 5-day SSA flywheel: written end to end. T006/T007 (just press record): <span class='big'>open for 10+ days.</span> Your own OS already diagnosed it: <b>'insecurity, not ability.'</b> Every system-level fix exists; what's left is the human moment.</p></div><div class='card'><h3>Reframe: posting is a rep, not a verdict</h3><p>You ship games to the public without flinching — because a game feels like a THING, and a post feels like YOU. Wrong frame. A post is a rep. Wordle's grid, your challenge links, the Maccabeats video — none were verdicts on their makers. Volume beats judgment: nobody remembers anyone's weak post; everybody remembers who shows up.</p></div>", "quiz": {"q": "Why do you ship games fearlessly but freeze on posts?", "opts": ["Games are better", "A game feels like a THING; a post feels like YOU — and that frame is wrong", "Posting is harder", "Algorithms"], "a": 1, "ex": "Same public, same internet, same you. The fear is the self-exposure frame, not the act. Rep-framing ('this is practice unit #4') is what dissolves it — and it's trainable."}, "mission": {"id": "m0", "xp": 50, "txt": "Say it in the nucleus, in your words: 'The blocker is fear of being seen, not ability.' Named monsters shrink. (Claude saves it; it never has to be said again.)"}}, {"icon": "🤏", "title": "LEVEL 1 · SHRINK TO THE PASTE", "mins": "8 min", "html": "<div class='card'><h3>The smallest possible action</h3><p>Your system pre-decides everything decidable: caption written, platform chosen, time set. The ONLY human step left is <b>paste + publish — under 2 minutes.</b> If a posting task ever feels bigger than 2 minutes, it isn't shrunk enough yet: send it back to Claude for pre-staging.</p></div><div class='card'><h3>Claude waits with you</h3><p>It's in ssa-week-1.md already: the post moment happens DURING a session, not alone after one. Standup names the post → you paste → you say 'posted' → ✅ + the streak ticks. Accountability without an audience.</p></div>", "quiz": {"q": "A posting task feels heavy. The rule says…", "opts": ["Push through", "It isn't shrunk enough — everything but paste+publish goes back to pre-staging", "Skip today", "Delegate the posting itself"], "a": 1, "ex": "Heaviness = undecided decisions hiding in the task. Captions, platform, timing, thumbnail — all pre-stageable. Only the 2-minute human moment is yours, by design."}, "mission": {"id": "m1", "xp": 75, "txt": "Pick tomorrow's ONE post with Claude right now — caption finalized, platform locked, time set. Tomorrow you only paste."}}, {"icon": "🃏", "title": "LEVEL 2 · THE UNLOSABLE GAME", "mins": "8 min", "html": "<div class='card'><h3>Post the confession first</h3><p>Your scripted 'Human Confession' is the perfect opener BECAUSE it's about not-posting. Publishing it converts the blocker itself into content — the fear becomes the proof you beat it. Maximum honesty, minimum pretense, and your ICP (people scared of selling/showing up) sees themselves in it.</p></div><div class='card'><h3>The recovery rule (this is the genius part)</h3><p>Miss a day? The next post is <b>'why I didn't post yesterday.'</b> The game has no losing state: post = win, miss = material for a more honest post = win. Streak-breaking shame is the #1 quitter-maker, and this rule deletes it.</p></div>", "quiz": {"q": "You missed yesterday. What's today's post?", "opts": ["Nothing, restart Monday", "'Why I didn't post yesterday' — the miss IS the material", "Apologize and quit", "Post twice to make up"], "a": 1, "ex": "Unlosable game design: every state has a next move. Honesty-as-content also happens to be your strongest genre — the confession posts are the ones your audience shares."}, "mission": {"id": "m2", "xp": 100, "txt": "PUBLISHING MISSION (double XP): record the Human Confession (T006) — phone, one take, no edit polish. Done is the bar; published is the goal. Tell Claude when it's UP."}}, {"icon": "🔥", "title": "LEVEL 3 · THE STREAK + BOSS", "mins": "10 min", "html": "<div class='card'><h3>Make publishing visible and addictive</h3><p>Published = done lands on the board with a streak counter — your dopamine wiring, used FOR you (you built an XP academy in a day; you know exactly how well this works on you). Targets from the audit: <span class='big'>1 video this week · 5 posts by month-end · 20+ in month two.</span></p></div><div class='card'><h3>The identity finish line</h3><p>Around rep ~20 the frame flips from 'trying to post' to <b>being someone who posts</b> — and identity is self-maintaining where willpower isn't. Everything downstream (SSA flywheel, Miklat clips, the JTA pitch) is gated on this one habit. It's the highest-ROI skill in your whole portfolio.</p></div>", "quiz": null, "boss": [{"q": "The posting blocker is…", "opts": ["Ability", "Fear of being seen — and it's trainable with reps", "Time", "Tooling"], "a": 1}, {"q": "The only human step in a properly staged post:", "opts": ["Writing the caption", "Paste + publish (<2 min)", "Designing the thumbnail", "Choosing the platform"], "a": 1}, {"q": "A missed day becomes…", "opts": ["A broken streak and shame", "Tomorrow's post: 'why I didn't post yesterday'", "A reason to rebuild the system", "Silence"], "a": 1}, {"q": "What's downstream of this one habit?", "opts": ["Nothing", "The SSA flywheel, Miklat clips, press pitches — the whole growth engine", "Just SSA", "Just vibes"], "a": 1}], "mission": {"id": "m3", "xp": 100, "txt": "PUBLISHING MISSION (double XP): post it. The confession video goes UP on the chosen platform, today or at tomorrow's pre-set time. Then say the word to Claude: 'posted.' Streak: 1."}}];
+const RANKS=[[0, "🫥 Drafter"], [100, "🎬 Recorder"], [250, "📤 Publisher"], [400, "🔥 The Guy Who Posts"]];
+const STORE='academy-ship-it';
+const MAXXP=600;
+let S=JSON.parse(localStorage.getItem(STORE)||'{"xp":0,"quiz":{},"missions":{},"boss":{},"done":{}}');
+const save=()=>localStorage.setItem(STORE,JSON.stringify(S));
+const $=id=>document.getElementById(id);
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1900);}
+function gain(n){S.xp+=n;save();renderHud();toast('+'+n+' XP');}
+function renderHud(){
+  $('xpfill').style.width=Math.min(100,S.xp/MAXXP*100)+'%';
+  $('xptxt').textContent=S.xp+' XP';
+  let r=RANKS[0][1];for(const[t,n]of RANKS)if(S.xp>=t)r=n;
+  $('rank').textContent=r;
+}
+function levelDone(i){return !!S.done['l'+i];}
+function unlocked(i){return i===0||levelDone(i-1);}
+function bossLevel(){return LEVELS.findIndex(l=>l.boss);}
+function build(){
+  const root=$('levels');root.innerHTML='';
+  LEVELS.forEach((L,i)=>{
+    const el=document.createElement('div');
+    el.className='lvl'+(unlocked(i)?'':' locked');
+    let inner=`<div class="lvl-head" data-i="${i}"><span class="num">${L.icon}</span><span class="t">${L.title}</span><span class="mins">${L.mins}</span><span class="state">${levelDone(i)?'✅':unlocked(i)?'▶':'🔒'}</span></div><div class="lvl-body">${L.html}`;
+    if(L.quiz){
+      const done=S.quiz[i]!==undefined;
+      inner+=`<div class="card quiz"><h3>⚔️ Take the shot (+25 XP)</h3><p>${L.quiz.q}</p>`+
+        L.quiz.opts.map((o,j)=>`<button class="opt ${done?(j===L.quiz.a?'right':(S.quiz[i]===j?'wrong':'')):''}" data-l="${i}" data-j="${j}" ${done?'disabled':''}>${o}</button>`).join('')+
+        `<div class="explain" style="display:${done?'block':'none'}">${L.quiz.ex}</div></div>`;
+    }
+    if(L.boss){
+      inner+=`<div class="card quiz"><h3>👹 BOSS FIGHT — +20 XP each</h3>`;
+      L.boss.forEach((B,k)=>{
+        const done=S.boss[k]!==undefined;
+        inner+=`<p style="margin-top:12px"><b>${k+1}.</b> ${B.q}</p>`+
+          B.opts.map((o,j)=>`<button class="opt ${done?(j===B.a?'right':(S.boss[k]===j?'wrong':'')):''}" data-b="${k}" data-j="${j}" ${done?'disabled':''}>${o}</button>`).join('');
+      });
+      inner+=`</div>`;
+    }
+    if(L.mission){
+      const m=S.missions[L.mission.id];
+      inner+=`<div class="card mission"><h3>🎯 Mission <span class="mxp">+${L.mission.xp} XP</span></h3>
+      <label><input type="checkbox" data-m="${L.mission.id}" data-xp="${L.mission.xp}" data-l="${i}" ${m?'checked disabled':''}><span>${L.mission.txt}</span></label></div>`;
+    }
+    inner+=`<button class="donebtn" data-fin="${i}" ${levelDone(i)?'disabled':''}>${levelDone(i)?'LEVEL CLEAR ✅':'COMPLETE LEVEL ▶'}</button></div>`;
+    el.innerHTML=inner;root.appendChild(el);
+  });
+  $('fin').style.display=levelDone(LEVELS.length-1)?'block':'none';
+}
+document.addEventListener('click',e=>{
+  const h=e.target.closest('.lvl-head');
+  if(h){const i=+h.dataset.i;if(!unlocked(i)){toast('Clear the previous level first 🔒');return;}
+    h.parentElement.classList.toggle('open');return;}
+  const o=e.target.closest('.opt');
+  if(o&&!o.disabled){
+    if(o.dataset.l!==undefined){const i=+o.dataset.l,j=+o.dataset.j;S.quiz[i]=j;save();
+      if(j===LEVELS[i].quiz.a)gain(25);else toast('Not quite — read the green answer');
+      build();openLvl(i);return;}
+    if(o.dataset.b!==undefined){const k=+o.dataset.b,j=+o.dataset.j;S.boss[k]=j;save();
+      if(j===LEVELS[bossLevel()].boss[k].a)gain(20);else toast('Boss hit you back 💥');
+      build();openLvl(bossLevel());return;}
+  }
+  const m=e.target.closest('input[data-m]');
+  if(m&&m.checked){S.missions[m.dataset.m]=1;save();gain(+m.dataset.xp);build();openLvl(+m.dataset.l);return;}
+  const f=e.target.closest('[data-fin]');
+  if(f&&!f.disabled){const i=+f.dataset.fin;S.done['l'+i]=1;save();gain(30);
+    build();if(i<LEVELS.length-1)openLvl(i+1);}
+});
+function openLvl(i){const els=document.querySelectorAll('.lvl');if(els[i])els[i].classList.add('open');}
+build();renderHud();
+openLvl(Object.keys(S.done).length?Math.min(LEVELS.length-1,Object.keys(S.done).length):0);
+</script></body></html>
