@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 03:48 UTC · code
+v17 MERGED (PR #85): end screens redesigned per Zorba's screenshot — stat strip with HITS TAKEN (new cityHits counter) + intercepted + direct hits on every end screen, shop collapsed behind toggle, overlay screens can never overflow the frame (safe centering + scroll fallback), menu tightened. Awaiting Zorba's image packs #2 (icon/portrait/victory) and #3 (10 level worlds) for the beauty pass.
+
 ### 2026-06-11 03:22 UTC · code
 Direction shift: game world goes FULL ART. Zorba wants in-game levels to look like the marketing (his screenshot showed the procedural flat-vector vs the rich pixel art). Image pack #3 emailed: 10 per-city level backgrounds (9:16, SKY RULE: upper 60% near-empty navy so rockets stay readable, bottom 20% clear for gameplay buildings, honeycomb dome baked in) + optional Red Alert bg. Integration plan on arrival: art = backdrop layer per level, restyle foreground tappable buildings pixel-chunky, ~150-200KB/img, SW-cached, game stays <2.5MB offline-capable. Pack #2 (icon/portrait/badge/victory) also still pending.
 
@@ -178,31 +181,34 @@ ISSUE 001 full entertainment pass (craft only, invented nothing): tighter comedi
 
 ### 2026-06-02 12:16 UTC · chat
 ISSUE 001 = full real origin (Zorba's own words, polished, no em-dashes, cinematic). KEY BIO FACTS (durable): Engaged at the Duomo, Milan, sunset, last night of a 6-wk budget trip; filmed it using a 'new iPhone mic to test' as alibi (tripod+mics+ring box in a bag). Moved to Israel ~1yr prior; laid off 2 days after booking ticket; company folded 6 wks later; six-figure cushion gone. Met Meytal within 6 wks (hours before a flight); rocket jammed her door -> she moved into his room; Yom Haatzmaut -> first sublet (extended 2x). Money came from 'angels', one who seemed to track his bank account. SUBPLOTS: a FILM in active development w/ investor signed; a TV series being pitched to big names (both months away). Wedding = global, Alaskan+Ethiopian+Israeli+American culture collision; war began 9 days later; has a mamad/safe room; 1st month of marriage in own place then spare room (mom's bed). THE HOUSE: family friends' beautiful home near Netanya (near mother-in-law) they can't live in = chance at dream home = the MISSION (support family, get the home, use AI). Passover: said AI makes him feel free (lets him bring ideas to life fast, like standup). Chronology woven in: zorbot.io -> chatbot on his ChatGPT history+his book on how to think -> 'that's a product' = bloop -> algorithm shifted to AI tool builds -> ~$1k + 1000+ hrs -> reaching out to businesses -> buildyourbot.io + selfsellingai.pro. Tone: warm, determined, grateful, anti-hype. Tied subplots: film/TV ('AI did not make me wait'), the angel (pay it forward), the house (building toward it in public).
-
-### 2026-06-02 11:28 UTC · chat
-ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more human (use commas/periods/parentheses). Durable voice rule. (2) Corrected timeline: OBSESSION came BEFORE the business. During the war his YouTube feed flipped (no news, only AI builds) -> got obsessed -> started PAYING for subscriptions to test them himself, figuring 'if it lands one job it's worth it.' Baby found out MIDWAY through the war while deep in AI, not knowing what to do -> that 'changed the math' -> first call -> second -> hardest part = posting. (3) Story rewritten present-tense/cinematic (in-the-moment, not safe past tense). (4) DROPPED the Three Time-Savers from the premiere — he 'didn't get the tips'; premiere = pure origin story. Segment returns later reworked. Masthead billing now teases story beats (The Feed That Went Quiet / Midway Through the War / The Mission, Made Plain).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 03:47 UTC
+- **When:** 2026-06-11 03:48 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 4c01ea2 Merge origin/main (keep v17) — 28 seconds ago
+- **Last commit:** 6e72135 chore: refresh nucleus live state [skip ci] — 30 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 ```
 
 **Recent commits:**
 ```
-4c01ea2 Merge origin/main (keep v17) (28 seconds ago)
-ce9d399 v17: end screens + menu redesign — one frame, real stats, shop collapsed (57 seconds ago)
-47d972c chore: refresh nucleus live state [skip ci] (11 minutes ago)
-6bc5d1e chore: refresh nucleus live state [skip ci] (25 minutes ago)
-642e41e chore: refresh nucleus live state [skip ci] (25 minutes ago)
+6e72135 chore: refresh nucleus live state [skip ci] (30 seconds ago)
+4c01ea2 Merge origin/main (keep v17) (58 seconds ago)
+ce9d399 v17: end screens + menu redesign — one frame, real stats, shop collapsed (87 seconds ago)
+47d972c chore: refresh nucleus live state [skip ci] (12 minutes ago)
+6bc5d1e chore: refresh nucleus live state [skip ci] (26 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
