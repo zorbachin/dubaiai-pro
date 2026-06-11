@@ -133,3 +133,41 @@ shows *your* number on *their* screen. The game does the trash talk.
 5. Optional but recommended this week: buy `mamaddash.com` (trust +
    memorability in Israeli group chats), GoatCounter account → send me the
    code and I wire play-count analytics same day.
+
+---
+
+## 🎬 PROMO VIDEO — "Your excuse expired" (30s, sarcastic, high-energy)
+
+**Assets:** two AI motion clips generated from the real game art (links in chat /
+Higgsfield library), plus 2-3 phone screen-recordings of actual gameplay
+(record: one near-miss door arrival, one savta death cam, one marathon banner).
+
+**VO script (record yourself, or CapCut TTS "deep male, fast"):**
+
+> Every country gets a superhero. Ours got a guy filming himself
+> running from rockets.
+>
+> MAMAD DASH. Jump the savtas. Duck the doves. Reach the mamad
+> before the boom.
+>
+> Yes — that's a real grandmother. No — she will not move.
+> She's faster than you anyway.
+>
+> And when you fail — and you WILL fail — savta will be there.
+> Judging.
+>
+> MAMAD DASH. Free. No app store. One thumb.
+> Your excuse just expired. Link in bio.
+
+**Cut sheet (30s, cut on the beat, music: high-BPM klezmer-trap or anything absurd):**
+
+| Time | Visual | VO line |
+|---|---|---|
+| 0-4s | Clip 1 (night keyart motion): runner sprinting, siren pulsing | "Every country gets a superhero…" |
+| 4-9s | Clip 2 (beach leap over savta) | "MAMAD DASH. Jump the savtas…" |
+| 9-14s | Screen-rec: gameplay, jump + duck + coins | "Yes, that's a real grandmother…" |
+| 14-20s | Screen-rec: death cam — savta 🤌 + roast caption (HOLD on the caption) | "And when you fail…" |
+| 20-25s | Screen-rec: final-3s red alert sprint → door slam → confetti | (no VO — let the siren wail carry it) |
+| 25-30s | og card / title art + URL text overlay | "Free. No app. One thumb. Your excuse just expired." |
+
+Export 9:16 1080x1920 for TikTok/Reels/Shorts; the 16:9 clip doubles for X/YouTube.
