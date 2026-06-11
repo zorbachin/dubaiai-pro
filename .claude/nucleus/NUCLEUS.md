@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 06:07 UTC · code
+v18 MERGED (PR #89): FULL SOUNDTRACK live — home_screen.mp3 on menu (first-tap unlock per iOS), 3 gameplay tracks rotating 1-2-3 across campaign (L10+Red Alert = hottest track, Daily = track 2, bonus keeps synth fiesta). Per Zorba: reuse 3 tracks, no need for ten. All tracks runtime-cached (offline after first listen). Pending unchanged: DNS->flip, GoatCounter claims, 16 level images re-upload, shot-list approval.
+
 ### 2026-06-11 05:27 UTC · code
 MIKLAT GAMES PORTAL MERGED (PR #86) in auto mode: bilingual arcade front door live at github.io root (consultancy moved to /dubaiai/), shell-only SW bypassing game paths, challenge passthrough, GoatCounter 'miklatgames'. bin/miklat-flip = one-command domain cutover (CNAME + Iron Dome URL migration + cache bumps) — RUN ONLY AFTER Porkbun DNS set. Board deliverables sent to Zorba: MIKLAT-BLUEPRINT.md (incl. paste-able design prompt) + SHOT-LIST.md (video parked pending his beat approval). ZORBA-ONLY GATES: Porkbun records for miklatgames.fun (A 185.199.108/109/110/111.153 + CNAME www->zorbachin.github.io), claim goatcounter codes 'irondome'+'miklatgames', re-upload the 16 level-art images as files, approve shot list, create WhatsApp Channel.
 
@@ -178,167 +181,34 @@ Iron Dome v10 MERGED (PR #76): visual-viewport canvas (fixes iOS-zoom hiding the
 
 ### 2026-06-10 13:29 UTC · code
 Iron Dome core-feel pivot per Zorba: direct-hit tapping (tap ON rocket, tip = DIRECT HIT bonus), removed ALL auto-aim/fling/queue, hypnotic steady spawn rhythm, upgrades repurposed (Quick Fuse/City Armor). This IS the shippable mobile loop. 27/27 tests x3.
-
-### 2026-06-10 13:05 UTC · code
-CORRECTION (supersedes earlier mamadio note): do NOT change anything. By design per Zorba — STANDALONE Mamad Dash includes the Tel Aviv exploration; the 2-IN-1 build is just Iron Dome + Dash with NO exploration. This session (iron dome) must not interfere with the mamadio build.
-
-### 2026-06-10 13:03 UTC · code
-FOR MAMADIO SESSION (PR #71): Zorba feedback — 'mamad dash doesn't have the exploration in tel aviv, just the dash game'. He expected the Tel Aviv exploration part, not only the dash mechanic. Route to the mamadio workstream.
-
-### 2026-06-10 13:03 UTC · code
-PR #73 MERGED per Zorba's 'merge': QA batch + analytics + Red Alert endless mode live. CRITICAL DNS ISSUE: dubaiai.pro points at Porkbun parking IPs (44.227.65.245/.76.166) not GitHub Pages -> SSL error, whole domain dead. CNAME removed from repo so site serves at https://zorbachin.github.io/dubaiai-pro/ until DNS fixed. TO RESTORE: fix Porkbun DNS (A @ -> 185.199.108-111.153, CNAME www -> zorbachin.github.io) then re-add CNAME file (content: dubaiai.pro). Zorba steering: arcade style confirmed, 'one shippable optimized mobile Iron Dome version'.
-### 2026-06-10 12:23 UTC · code
-QA panel (4 agents) delivered + all fixes shipped to PR #73 branch: game was UNLOSABLE (blind tapper cleared L10) -> fail state restored w/ sim-tuned assists; Red Alert endless mode added (retention); 3 save-robustness P1s fixed (corrupt save bricked boot); skyline-clone math bug (37.7≈12π); shelter UX (pause mute, shop on loss, kind game-over copy). 26/26 + endless e2e tests.
-
-### 2026-06-10 12:05 UTC · code
-Analytics added to Iron Dome (PR #73 draft): GoatCounter cookieless tracking — visits, plays/session, wins, PWA installs. ACTION FOR ZORBA: claim site code 'irondome' at goatcounter.com (1 min) -> dashboard irondome.goatcounter.com. QA panel: 4 specialist agents (functionality/ease/fun/visual design) testing in background.
-
-### 2026-06-10 11:47 UTC · code
-PR #70 MERGED — Iron Dome is LIVE at https://dubaiai.pro/irondome/ (user approved merge after htmlpreview diagnosis). v6 includes self-improving calibration. Update the durable test-link preference: use the LIVE link from now on. Note: parallel session shipped MAMADIO companion game (PR #71, mamadio/) — merged main into our branch resolving nucleus conflicts as union.
-### 2026-06-10 11:43 UTC · code
-Diagnosed user's 'incomplete image + inverted taps' phone report: htmlpreview.github.io strips meta viewport -> iOS lays out at 980px, city below fold, broken touch geometry. NOT a game bug. Added self-improving calibration (in-play EMA on tap residuals, converges ~12 taps, tested) + rect-based scale-proof touch mapping. Better preview host: raw.githack.com (serves HTML intact). Real fix = merge PR #70 to go live on dubaiai.pro/irondome/. 26/26 tests.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 05:52 UTC
+- **When:** 2026-06-11 06:07 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** cb7432d chore: refresh nucleus live state [skip ci] — 25 minutes ago
-
-- **When:** 2026-06-11 05:55 UTC
-- **When:** 2026-06-11 05:48 UTC
-- **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 49df04d MIKLAT GAMES master design prompt (permanent copy) — 61 seconds ago
-- **When:** 2026-06-11 05:21 UTC
-- **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 8e330d0 chore: refresh nucleus live state [skip ci] — 3 minutes ago
-
-- **When:** 2026-06-11 05:20 UTC
-- **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 01c3dd9 chore: refresh nucleus live state [skip ci] — 33 seconds ago
+- **Last commit:** e099799 Soundtrack rotation: three tracks score the whole game — 57 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
 M .claude/nucleus/NUCLEUS.md
 ```
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
- 1 file changed, 14 insertions(+), 8 deletions(-)
-.claude/nucleus/NUCLEUS.md | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+.claude/nucleus/NUCLEUS.md | 156 +++------------------------------------------
+ 1 file changed, 10 insertions(+), 146 deletions(-)
 ```
 
 **Recent commits:**
 ```
-cb7432d chore: refresh nucleus live state [skip ci] (25 minutes ago)
-1e4afc5 Merge origin/main (keep portal) (27 minutes ago)
-46cf169 Miklat Games portal: miklatgames.fun front door for all the games (28 minutes ago)
-8bd786f MAMAD DASH: full game + art + pacing v2 + promo pack + MIKLAT arcade package (#74) (30 minutes ago)
-030e3da chore: refresh nucleus live state [skip ci] (32 minutes ago)
-
-01c3dd9 chore: refresh nucleus live state [skip ci] (33 seconds ago)
-8f2c61f chore: refresh nucleus live state [skip ci] (63 seconds ago)
-662e4ba chore: refresh nucleus live state [skip ci] (5 minutes ago)
-0265043 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-eed1714 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (6 minutes ago)
-49df04d MIKLAT GAMES master design prompt (permanent copy) (61 seconds ago)
-2d07e7b chore: refresh nucleus live state [skip ci] (24 minutes ago)
-6a52339 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-04c0795 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (26 minutes ago)
-5b73325 chore: nucleus snapshot before main merge [skip ci] (27 minutes ago)
-8e330d0 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-24156f1 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-120167c chore: refresh nucleus live state [skip ci] (2 hours ago)
-2e29103 chore: refresh nucleus live state [skip ci] (2 hours ago)
-6e72135 chore: refresh nucleus live state [skip ci] (2 hours ago)
-
-4faab3e chore: refresh nucleus live state [skip ci] (2 minutes ago)
-649fe76 chore: refresh nucleus live state [skip ci] (2 minutes ago)
-ed1e364 MIKLAT GAMES v1: complete deployable arcade package (3 minutes ago)
-08b8d5c chore: refresh nucleus live state [skip ci] (8 minutes ago)
-c1f650e chore: refresh nucleus live state [skip ci] (8 minutes ago)
-6bc5d1e chore: refresh nucleus live state [skip ci] (14 minutes ago)
-642e41e chore: refresh nucleus live state [skip ci] (14 minutes ago)
-b7a0e4d chore: refresh nucleus live state [skip ci] (17 minutes ago)
-346c95c chore: refresh nucleus live state [skip ci] (22 minutes ago)
-8896876 chore: refresh nucleus live state [skip ci] (22 minutes ago)
-
-e21363f chore: refresh nucleus live state [skip ci] (3 minutes ago)
-e6f0078 Merge origin/main (post-#82 squash) into branch (3 minutes ago)
-46b0aef Merge origin/main into claude/iron-dome-game-zi3dtt (keep bilingual assets) (4 minutes ago)
-514bde1 Bilingual burn-in across all promo assets (5 minutes ago)
-f2d8f25 chore: refresh nucleus live state [skip ci] (9 minutes ago)
-
-514bde1 Bilingual burn-in across all promo assets (2 seconds ago)
-f2d8f25 chore: refresh nucleus live state [skip ci] (3 minutes ago)
-9b4c85e Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (4 minutes ago)
-9209bd7 Elite art pass: retro pixel art across share card + all promo assets (5 minutes ago)
-447ce5a chore: refresh nucleus live state [skip ci] (8 minutes ago)
-
-6cda150 chore: refresh nucleus live state [skip ci] (13 seconds ago)
-4fa7e02 chore: refresh nucleus live state [skip ci] (8 hours ago)
-5c97328 chore: refresh nucleus live state [skip ci] (8 hours ago)
-5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (8 hours ago)
-009da8e Iron Dome launch promo pack: copy + cards + screenshots (8 hours ago)
-
-510087a chore: refresh nucleus live state [skip ci] (4 minutes ago)
-fa3306c chore: refresh nucleus live state [skip ci] (5 minutes ago)
-d5a1cd2 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (6 minutes ago)
-e0b3a2c chore: refresh nucleus live state [skip ci] (6 minutes ago)
-5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (7 minutes ago)
-
-5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (1 second ago)
-2c72477 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-aff1a2e chore: refresh nucleus live state [skip ci] (20 minutes ago)
-b2b5be8 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-3fc13b7 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-
-ed91283 v13: difficulty select, intra-level ramp, bonus rounds, active Iron Sling volley (1 second ago)
-1807ced chore: refresh nucleus live state [skip ci] (4 minutes ago)
-e965ff0 chore: refresh nucleus live state [skip ci] (4 minutes ago)
-3b19110 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (5 minutes ago)
-79f7776 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-
-54dd188 v12: Israeli voice pack — sabra sarcasm woven through every touchpoint (1 second ago)
-0011b2d chore: refresh nucleus live state [skip ci] (3 hours ago)
-50c8bdc chore: refresh nucleus live state [skip ci] (3 hours ago)
-a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (3 hours ago)
-59ebd05 chore: refresh nucleus live state [skip ci] (3 hours ago)
-
-ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (12 seconds ago)
-ac68fa5 chore: refresh nucleus live state [skip ci] (17 minutes ago)
-02ac41d chore: refresh nucleus live state [skip ci] (17 minutes ago)
-71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (20 minutes ago)
-7b72772 Mobile hardening: visual-viewport canvas, hard playfield clamp, music, version badge (21 minutes ago)
-
-89bfac1 chore: refresh nucleus live state [skip ci] (73 minutes ago)
-3c7c3f7 chore: refresh nucleus live state [skip ci] (74 minutes ago)
-a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (75 minutes ago)
-13d5682 chore: refresh nucleus live state [skip ci] (75 minutes ago)
-817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (76 minutes ago)
-
-817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (1 second ago)
-1b9fd79 chore: refresh nucleus live state [skip ci] (23 minutes ago)
-7440fdd chore: refresh nucleus live state [skip ci] (23 minutes ago)
-7d7eac0 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-1e4e045 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-
-d41df29 chore: refresh nucleus live state [skip ci] (7 minutes ago)
-b4bdca7 chore: refresh nucleus live state [skip ci] (32 minutes ago)
-5c4b64b chore: refresh nucleus live state [skip ci] (36 minutes ago)
-76817f9 chore: refresh nucleus live state [skip ci] (37 minutes ago)
-8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish (37 minutes ago)
-
-e7a755e Self-improving calibration + scale-proof touch mapping (1 second ago)
-a7b9cf5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-7cce0e9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
-93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (12 minutes ago)
-956e4f5 chore: refresh nucleus live state [skip ci] (66 minutes ago)
+e099799 Soundtrack rotation: three tracks score the whole game (57 seconds ago)
+98952a5 Merge origin/main (keep v18) (2 minutes ago)
+3ff608f v18: real soundtrack arrives — menu music + per-level track system (3 minutes ago)
+4308681 MAMAD DASH soundtrack: three-track music system (#88) (6 minutes ago)
+b775392 chore: refresh nucleus live state [skip ci] (15 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
