@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 17:20 UTC · code
+MG org restructured: mg-ceo is now a dedicated Commercialization CEO (one job: marketing/distribution to the 10K-user goal); each game gets a full-time PM agent (irondome/mamaddash/shukshopper) managing that game's 10M advisor panel. Recorded in .claude/os/ventures.md
+
 ### 2026-06-11 16:26 UTC · code
 SHUK SHOPPER shipped to miklatgames (branch claude/cool-rubin-gb8jv6): Subway Surfers research-mapped to the shuk — 3-lane swipe runner, Ima's shopping list = the basket loop, vendor chase = the stumble/caught system, shekels breadcrumb the safe lane. Emoji-sprite v1 (zero assets), EN/HE, offline SW, ?beat= challenge links, headless-verified. Design doc + Shuk Tour roadmap in repo. NOTE: new game jumped the monetization queue (plan says portals first) — Zorba's call.
 
@@ -188,31 +191,34 @@ VALIDATED: Zorba played MAMAD DASH on his real phone via the raw.githack branch 
 
 ### 2026-06-10 13:23 UTC · code
 MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream skyline) + arcade juice (pop-text, coin glow/spin, landing squash, speed lines, countdown punch, confetti, PERFECT RUN bonus). Zorba steering: addictive + bright first, complexity later — master dash mode before adding anything. Full suite re-verified, pushed to PR #74.
-
-### 2026-06-10 13:08 UTC · code
-BUILT: MAMAD DASH standalone shippable mobile game at mamaddash/index.html (single-file, 453 lines). Tap=jump/swipe-down=duck, instant start, endless escalating siren waves, coins+streak bonuses, share button, localStorage best, all P0 mobile QA fixes baked in (on-canvas countdown, telegraph rings, error-contained loop). Verified headless on phone viewport: 3 waves cleared, death/share/restart/persist all pass, zero errors. On PR #74 (title/body updated to cover all 3 changes). Goes live at dubaiai.pro/mamaddash/ after merge + Porkbun DNS fix.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 16:26 UTC
+- **When:** 2026-06-11 17:20 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** af4f340 os: register Miklat Games venture (Claude as COO/CMO) + promote standalone-game decision to nucleus — 8 minutes ago
+- **Last commit:** fda68b3 nucleus: capture Shuk Shopper ship + monetization queue-jump note — 53 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/os/ventures.md
+```
+
+**Uncommitted changes:**
+```
+.claude/os/ventures.md | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
 ```
 
 **Recent commits:**
 ```
-af4f340 os: register Miklat Games venture (Claude as COO/CMO) + promote standalone-game decision to nucleus (8 minutes ago)
-934bdd4 nucleus: capture Miklat Games workspace handoff (3 hours ago)
-195c4d4 Duck-only rate to 15%+ and red/green color language (#106) (3 hours ago)
-0a44e4a Inside-mamad text to top-left + repair conflict markers on main (#105) (3 hours ago)
-74aac9d Music in sequences of three + bulletproof inside-screen centering (#104) (3 hours ago)
+fda68b3 nucleus: capture Shuk Shopper ship + monetization queue-jump note (53 minutes ago)
+af4f340 os: register Miklat Games venture (Claude as COO/CMO) + promote standalone-game decision to nucleus (63 minutes ago)
+934bdd4 nucleus: capture Miklat Games workspace handoff (4 hours ago)
+195c4d4 Duck-only rate to 15%+ and red/green color language (#106) (4 hours ago)
+0a44e4a Inside-mamad text to top-left + repair conflict markers on main (#105) (4 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
