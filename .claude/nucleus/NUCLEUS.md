@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 13:42 UTC · code
+MIGRATION VERIFIED ✅: THE FLIP architecture confirmed — dubaiai-pro repo IS the live miklatgames.fun site (CNAME flipped, MIKLAT portal at root, consultancy in dubaiai/, irondome/ rebuilt with shared miklat.wallet, sw.js offline). Both parallel workstreams merged cleanly into main's mamaddash: zero markers, all features coexist (flock+red/green+sequences+pause/difficulty + service worker). Pages deployed SUCCESS for every recent merge incl. #106 (195c4d4 at 13:32 UTC) → ALL six fix rounds ARE LIVE at miklatgames.fun/mamaddash/. The 'second repo' gap no longer exists; bin/sync-miklat handles package deltas. Game file parses clean.
+
 ### 2026-06-11 13:34 UTC · code
 MIGRATION PLAN (execute automatically when a session includes the miklatgames repo): 1) Overwrite miklatgames repo root with dubaiai-pro:main miklat/ contents (carries all fix-rounds #102-#106) — push to its main → Pages deploys → live site current. 2) Make miklatgames the CANONICAL game workstream: write a game-specific CLAUDE.md into it (chief-of-staff role, single-file convention, color language red=avoid/green=grab, music sequences model, QA-bot verification rule, board cadence), move PROMO.md + DESIGN-PROMPT.md there. 3) From then on: edit games DIRECTLY in miklatgames, merge to its main = live in ~60s, NO sync step, no miklat/ staging. 4) Cleanup PR in dubaiai-pro removing mamaddash/, miklat/, promo/ folders (keep mamadio companion? ask Zorba) — dubaiai-pro returns to consultancy-only. 5) Verify live: miklatgames.fun plays latest build (pause buttons present = proof), challenge link forwards, og unfurls. Nucleus stays in dubaiai-pro: game sessions should select BOTH repos.
 
@@ -178,31 +181,34 @@ MAMAD DASH polish pass shipped (Zorba feedback: 'addictive but waves feel same, 
 
 ### 2026-06-10 15:01 UTC · code
 VALIDATED: Zorba played MAMAD DASH on his real phone via the raw.githack branch link (repo is public, link works) and loves the bright look — sent a screenshot of wave 2, red countdown 3, confetti, 55 shekels mid-run: 'This is a great image.' Bright Fortnite-esque direction is confirmed working on real hardware.
-
-### 2026-06-10 13:23 UTC · code
-MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream skyline) + arcade juice (pop-text, coin glow/spin, landing squash, speed lines, countdown punch, confetti, PERFECT RUN bonus). Zorba steering: addictive + bright first, complexity later — master dash mode before adding anything. Full suite re-verified, pushed to PR #74.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 13:35 UTC
+- **When:** 2026-06-11 13:43 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 3afdfcf chore: refresh nucleus live state [skip ci] — 31 seconds ago
+- **Last commit:** 329342e chore: refresh nucleus live state [skip ci] — 7 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-3afdfcf chore: refresh nucleus live state [skip ci] (31 seconds ago)
-cc0011d chore: refresh nucleus live state [skip ci] (2 minutes ago)
-ca3da4f chore: refresh nucleus live state [skip ci] (2 minutes ago)
-2007b66 Duck-only rate to 15%+ and red/green color language (3 minutes ago)
-1e1c6e7 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (8 minutes ago)
+329342e chore: refresh nucleus live state [skip ci] (7 minutes ago)
+3afdfcf chore: refresh nucleus live state [skip ci] (8 minutes ago)
+cc0011d chore: refresh nucleus live state [skip ci] (9 minutes ago)
+ca3da4f chore: refresh nucleus live state [skip ci] (10 minutes ago)
+2007b66 Duck-only rate to 15%+ and red/green color language (11 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
