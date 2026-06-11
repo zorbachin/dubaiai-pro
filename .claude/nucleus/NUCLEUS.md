@@ -201,6 +201,10 @@ NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (bui
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 03:07 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** e21363f chore: refresh nucleus live state [skip ci] — 3 minutes ago
+
 - **When:** 2026-06-11 03:02 UTC
 
 - **When:** 2026-06-11 02:53 UTC
@@ -220,6 +224,12 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
+e21363f chore: refresh nucleus live state [skip ci] (3 minutes ago)
+e6f0078 Merge origin/main (post-#82 squash) into branch (3 minutes ago)
+46b0aef Merge origin/main into claude/iron-dome-game-zi3dtt (keep bilingual assets) (4 minutes ago)
+514bde1 Bilingual burn-in across all promo assets (5 minutes ago)
+f2d8f25 chore: refresh nucleus live state [skip ci] (9 minutes ago)
+
 514bde1 Bilingual burn-in across all promo assets (2 seconds ago)
 f2d8f25 chore: refresh nucleus live state [skip ci] (3 minutes ago)
 9b4c85e Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (4 minutes ago)
