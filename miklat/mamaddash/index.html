@@ -58,8 +58,8 @@
   .keyrow{display:flex;align-items:center;gap:10px;margin-top:9px;font-size:14px;color:#cdd6e8;text-align:left;max-width:330px;}
   .keyrow .ic{flex:0 0 44px;text-align:center;font-size:20px;}
   .ring{display:inline-block;width:30px;height:30px;line-height:30px;border-radius:50%;font-size:16px;}
-  .ring.gold{border:2.5px solid rgba(255,209,102,.9);}
-  .ring.teal{border:2.5px solid rgba(126,232,199,.9);}
+  .ring.red{border:2.5px solid rgba(255,93,93,.9);}
+  .ring.green{border:2.5px solid rgba(110,230,140,.9);}
   .diffBtn{background:transparent;border:1px solid #46506b;border-radius:999px;color:#aab4c8;
     font-weight:700;font-size:13px;padding:7px 14px;margin:0 3px;cursor:pointer;}
   .diffBtn.sel{background:rgba(255,209,102,.15);border-color:var(--gold);color:var(--gold);}
@@ -75,9 +75,9 @@
 <div class="panel hidden" id="pausePanel">
   <div class="logo" style="font-size:clamp(30px,8vw,44px);">PAUSED</div>
   <div class="tag" style="margin-bottom:4px;">The siren waits for no one. But okay, breathe.</div>
-  <div class="keyrow"><span class="ic"><span class="ring gold">👵</span></span><span><b style="color:var(--gold)">Gold ring</b> = TAP to <b>jump over</b> (street stuff)</span></div>
-  <div class="keyrow"><span class="ic"><span class="ring teal">🕊️</span></span><span><b style="color:var(--teal)">Teal ring</b> = SWIPE ↓ to <b>duck under</b> (flying stuff — most are jumpable if you time it)</span></div>
-  <div class="keyrow"><span class="ic">🕊️🕊️🕊️</span><span>A <b>flock</b> (stacked, ⬇) = jumping will NOT clear it. <b style="color:var(--teal)">Duck only.</b></span></div>
+  <div class="keyrow"><span class="ic"><span class="ring red">👵</span></span><span><b style="color:#ff8a8a">RED ring</b> = avoid it. On the street: TAP to <b>jump</b>. In the air: SWIPE ↓ to <b>duck</b> (most flyers are jumpable if you time it)</span></div>
+  <div class="keyrow"><span class="ic">🕊️🕊️🕊️</span><span>A <b>stacked flock</b> (⬇) = jumping will NOT clear it. <b>Duck only.</b></span></div>
+  <div class="keyrow"><span class="ic"><span class="ring green">⭐</span></span><span><b style="color:#6ee68c">GREEN ring</b> = grab it — power-ups, scooters, the good stuff</span></div>
   <div class="keyrow"><span class="ic">💥</span><span>Any hit: <b style="color:#ff8a8a">−10₪</b> + you stumble back</span></div>
   <div class="keyrow"><span class="ic">🪙</span><span>Coins = <b style="color:var(--gold)">+5₪</b> (combos climb)</span></div>
   <div class="keyrow"><span class="ic">🛴</span><span>Scooter = <b style="color:var(--teal)">hyper-speed</b>, one screen, smash-proof</span></div>
@@ -661,8 +661,8 @@ function update(dt){
     let air=WRo()<c.airP+(u*.12), must=false;
     // the flock: a wall of flyers jumping can't clear — duck is the only way.
     // Guaranteed once mid-wave (+ once more on marathons), rare extras (hard).
-    if(G.obCount===4||(c.marathon&&G.obCount===11)){ air=true; must=true; }
-    else if(air&&WRo()<(G.diff==='hard'?.12:.05)) must=true;
+    if(G.obCount===4||G.obCount===9||(c.marathon&&[14,19,24].includes(G.obCount))){ air=true; must=true; }
+    else if(air&&WRo()<(G.diff==='hard'?.15:.08)) must=true;   // ≥15% of the street is duck-only
     const T=THEME(), set=air?T.air:T.ground;
     G.obs.push({x:W+90,air,must,emoji:set[wirandO(0,set.length-1)],
       label:G.tutorial&&G.obs.length<2?(air?'SWIPE ↓':'TAP!'):null});
@@ -855,17 +855,17 @@ function draw(){
   // power-ups: gentle bob; hand-drawn icons carry their own glow ring
   for(const w of G.pows){
     const by2=w.y+Math.sin(G.t*3+w.x*.01)*6;
-    cx.drawImage(glow('rgba(255,255,255,.6)',30),w.x-30,by2-30);
+    cx.drawImage(glow('rgba(110,230,140,.6)',30),w.x-30,by2-30);   // green = grab it
+    cx.strokeStyle=`rgba(110,230,140,${.6+.35*Math.sin(G.t*5)})`;cx.lineWidth=3;
+    cx.beginPath();cx.arc(w.x,by2,30,0,7);cx.stroke();
     if(artOk('pow-'+w.kind)) drawArt('pow-'+w.kind,w.x,by2,56);
-    else {
-      cx.strokeStyle=`rgba(255,255,255,${.5+.4*Math.sin(G.t*6)})`;cx.lineWidth=3;
-      cx.beginPath();cx.arc(w.x,by2,26,0,7);cx.stroke();
-      drawEmoji(w.emoji,w.x,by2,34);
-    }
+    else drawEmoji(w.emoji,w.x,by2,34);
   }
-  // 🛴 parked scooter pickup
+  // 🛴 parked scooter pickup (green = grab it)
   for(const s2 of G.scoots){
-    cx.drawImage(glow('rgba(126,232,199,.55)',26),s2.x-26,groundY-52);
+    cx.drawImage(glow('rgba(110,230,140,.55)',26),s2.x-26,groundY-52);
+    cx.strokeStyle=`rgba(110,230,140,${.6+.35*Math.sin(G.t*5)})`;cx.lineWidth=3;
+    cx.beginPath();cx.arc(s2.x,groundY-28,28,0,7);cx.stroke();
     drawEmoji('🛴',s2.x,groundY-28,42);
   }
   // obstacles: shadow + colored telegraph ring (gold=jump, teal=duck)
@@ -875,7 +875,7 @@ function draw(){
       // the flock: a vertical wall of flyers — duck is the only way under
       cx.fillStyle='rgba(0,0,0,.3)';
       cx.beginPath();cx.ellipse(o.x,groundY+8,16,5,0,0,7);cx.fill();
-      cx.strokeStyle=`rgba(126,232,199,${.65+.3*Math.sin(G.t*6)})`;cx.lineWidth=3;
+      cx.strokeStyle=`rgba(255,93,93,${.65+.3*Math.sin(G.t*6)})`;cx.lineWidth=3;  // red = avoid
       cx.beginPath();
       if(cx.roundRect) cx.roundRect(o.x-32,oy-122,64,166,32); else cx.rect(o.x-32,oy-122,64,166);
       cx.stroke();
@@ -885,7 +885,7 @@ function draw(){
     }
     cx.fillStyle='rgba(0,0,0,.3)';
     cx.beginPath();cx.ellipse(o.x,groundY+8,o.air?14:20,5,0,0,7);cx.fill();
-    cx.strokeStyle=o.air?'rgba(126,232,199,.8)':'rgba(255,209,102,.8)';
+    cx.strokeStyle='rgba(255,93,93,.8)';   // red ring = avoid; position tells you how
     cx.lineWidth=2.5;cx.beginPath();cx.arc(o.x,oy,30,0,7);cx.stroke();
     if(o.emoji==='👵'&&artOk('savta-cart')) drawArt('savta-cart',o.x,oy-8,58,true);
     else drawEmoji(o.emoji,o.x,oy,o.air?40:46);
