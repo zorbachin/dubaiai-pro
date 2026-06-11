@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 16:26 UTC · code
+SHUK SHOPPER shipped to miklatgames (branch claude/cool-rubin-gb8jv6): Subway Surfers research-mapped to the shuk — 3-lane swipe runner, Ima's shopping list = the basket loop, vendor chase = the stumble/caught system, shekels breadcrumb the safe lane. Emoji-sprite v1 (zero assets), EN/HE, offline SW, ?beat= challenge links, headless-verified. Design doc + Shuk Tour roadmap in repo. NOTE: new game jumped the monetization queue (plan says portals first) — Zorba's call.
+
 ### 2026-06-11 13:39 UTC · code
 Miklat Games has its own workspace now: zorbachin/miklatgames repo (miklatgames.fun, GitHub Pages). Arcade shelf live with Iron Dome + Mamad Dash, two coming-soon doors (Balagan, Fabatollah), offline SW everywhere, GoatCounter analytics. Dev branch this session: claude/cool-rubin-gb8jv6.
 
@@ -188,18 +191,15 @@ MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream 
 
 ### 2026-06-10 13:08 UTC · code
 BUILT: MAMAD DASH standalone shippable mobile game at mamaddash/index.html (single-file, 453 lines). Tap=jump/swipe-down=duck, instant start, endless escalating siren waves, coins+streak bonuses, share button, localStorage best, all P0 mobile QA fixes baked in (on-canvas countdown, telegraph rings, error-contained loop). Verified headless on phone viewport: 3 waves cleared, death/share/restart/persist all pass, zero errors. On PR #74 (title/body updated to cover all 3 changes). Goes live at dubaiai.pro/mamaddash/ after merge + Porkbun DNS fix.
-
-### 2026-06-10 12:54 UTC · code
-Fixed the volleyball 'I'm timing it right and it misses' bug Zorba hit live: mini-game cursor was frame-based (2x speed on 120Hz phones, hit window < touch latency). Now time-based + 100ms input-latency grace. Pushed to PR #74. QA finding M2 closed.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 13:39 UTC
+- **When:** 2026-06-11 16:26 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 195c4d4 Duck-only rate to 15%+ and red/green color language (#106) — 7 minutes ago
+- **Last commit:** af4f340 os: register Miklat Games venture (Claude as COO/CMO) + promote standalone-game decision to nucleus — 8 minutes ago
 
 **Working tree:**
 ```
@@ -208,11 +208,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-195c4d4 Duck-only rate to 15%+ and red/green color language (#106) (7 minutes ago)
-0a44e4a Inside-mamad text to top-left + repair conflict markers on main (#105) (11 minutes ago)
-74aac9d Music in sequences of three + bulletproof inside-screen centering (#104) (34 minutes ago)
-e0c0abf Music consistency + the flock (duck-only obstacles) (#103) (46 minutes ago)
-78bb4bb Mamad Dash offline: service worker (shell+art precache, runtime music cache) — makes the zero-signal promise true (2 hours ago)
+af4f340 os: register Miklat Games venture (Claude as COO/CMO) + promote standalone-game decision to nucleus (8 minutes ago)
+934bdd4 nucleus: capture Miklat Games workspace handoff (3 hours ago)
+195c4d4 Duck-only rate to 15%+ and red/green color language (#106) (3 hours ago)
+0a44e4a Inside-mamad text to top-left + repair conflict markers on main (#105) (3 hours ago)
+74aac9d Music in sequences of three + bulletproof inside-screen centering (#104) (3 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
