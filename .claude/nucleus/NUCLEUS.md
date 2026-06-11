@@ -200,22 +200,28 @@ Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 08:00 UTC
+- **When:** 2026-06-11 08:14 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 086f7f1 chore: refresh nucleus live state [skip ci] — 5 minutes ago
+- **Last commit:** 6a300aa chore: refresh nucleus live state [skip ci] — 13 minutes ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 ```
 
 **Recent commits:**
 ```
-086f7f1 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-5d49baa chore: refresh nucleus live state [skip ci] (5 minutes ago)
-4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (6 minutes ago)
-4cc998c chore: snapshot [skip ci] (6 minutes ago)
-7ed59b5 bin/sync-miklat: one-command game->arcade package sync (7 minutes ago)
+6a300aa chore: refresh nucleus live state [skip ci] (13 minutes ago)
+086f7f1 chore: refresh nucleus live state [skip ci] (19 minutes ago)
+5d49baa chore: refresh nucleus live state [skip ci] (19 minutes ago)
+4edfe76 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (19 minutes ago)
+4cc998c chore: snapshot [skip ci] (19 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
