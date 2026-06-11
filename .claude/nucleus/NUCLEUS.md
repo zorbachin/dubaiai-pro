@@ -46,6 +46,10 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 05:23 UTC · code
+🚢 PR #74 MERGED to main (squash 8bd786f) under Zorba's auto mode — game+art+pacing v2+promo+miklat package all canon. Nucleus merge conflict union-resolved (no handoffs lost). Repo creation still 403 (token scope, not permission mode) — miklatgames repo needs Zorba/Cowork. Iron Dome: NOT a standalone repo; only candidate is zorbasphere (private, updated 2026-06-10) — confirm or regenerate from nucleus context. Remaining launch gates: create miklatgames repo + push miklat/ package, Porkbun DNS (miklatgames.fun + optionally dubaiai.pro), GoatCounter code 'miklatgames'.
+
+### 2026-06-11 05:20 UTC · code
 ### 2026-06-11 05:20 UTC · code
 MIKLAT PORTAL BLUEPRINT delivered at /tmp/MIKLAT-BLUEPRINT.md: (1) complete one-shot Claude design prompt for the miklatgames.fun portal (root index.html, Iron Dome visual system, EN-led/HE RTL, instant-play cards, PWA w/ SW that bypasses /irondome//mamadio/ scopes, GoatCounter code 'miklatgames', challenge param passthrough); (2) HOSTING DECISION = option A: point miklatgames.fun at THIS repo (Porkbun A 185.199.108-111.153 + AAAA + CNAME www->zorbachin.github.io, CNAME file 'miklatgames.fun'), consultancy moves to /dubaiai/ — games' paths survive, github.io 301s itself; (3) Iron Dome URL swap list: index.html lines 11/12/18/261/1963 + PROMO-PACK 17 occurrences + sw bump v18; (4) v1 scope: 2 cards + ghost card + WhatsApp Channel notify hook; OUT: accounts/leaderboards/comments. ZORBA-ONLY steps: Porkbun records (5 min) + claim GoatCounter 'miklatgames' + create WhatsApp Channel.
 
@@ -268,6 +272,9 @@ ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 05:48 UTC
+- **Branch:** `claude/mamad-dash-location-0mmse2`
+- **Last commit:** 49df04d MIKLAT GAMES master design prompt (permanent copy) — 61 seconds ago
 - **When:** 2026-06-11 05:21 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
 - **Last commit:** 8e330d0 chore: refresh nucleus live state [skip ci] — 3 minutes ago
@@ -294,12 +301,19 @@ M .claude/nucleus/NUCLEUS.md
 
 **Uncommitted changes:**
 ```
+.claude/nucleus/NUCLEUS.md | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 .claude/nucleus/NUCLEUS.md | 16 ++++++++--------
  1 file changed, 8 insertions(+), 8 deletions(-)
 ```
 
 **Recent commits:**
 ```
+49df04d MIKLAT GAMES master design prompt (permanent copy) (61 seconds ago)
+2d07e7b chore: refresh nucleus live state [skip ci] (24 minutes ago)
+6a52339 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+04c0795 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (26 minutes ago)
+5b73325 chore: nucleus snapshot before main merge [skip ci] (27 minutes ago)
 8e330d0 chore: refresh nucleus live state [skip ci] (3 minutes ago)
 24156f1 chore: refresh nucleus live state [skip ci] (4 minutes ago)
 120167c chore: refresh nucleus live state [skip ci] (2 hours ago)
