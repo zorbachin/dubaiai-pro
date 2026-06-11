@@ -140,7 +140,47 @@ const Sound={
 $('mute').textContent=Sound.on?'🔊':'🔇';
 $('mute').addEventListener('click',e=>{ e.stopPropagation();
   Sound.on=!Sound.on; localStorage.setItem('md_mute',Sound.on?'0':'1');
-  $('mute').textContent=Sound.on?'🔊':'🔇'; if(!Sound.on) Sound.sirenStop(); });
+  $('mute').textContent=Sound.on?'🔊':'🔇';
+  if(!Sound.on){ Sound.sirenStop(); if(Music.el) Music.el.pause(); } });
+
+/* ---------------- music: per-hood soundtrack ----------------
+   Two tracks shared across four hoods; each track RESUMES where it
+   last paused, so a hood revisit lands in a different section of the
+   song — reuse without repetition. */
+const Music={
+  tracks:{}, el:null,
+  // Jericho Run = home screens · Temple Run Shalom = beach (+a later section
+  // reused for Florentin/Night per "cut them up") · Temple Dash = Old North
+  // AND every marathon "bonus round" (overrides the hood track)
+  HOOD_TRACK:{'GORDON BEACH':'level1','FLORENTIN':'level1b',
+              'THE OLD NORTH':'level3','NIGHT RUN':'level1b'},
+  init(){ if(this.tracks.title) return;        // built on first gesture (autoplay policy)
+    const mk=(file,seek)=>{ const a=new Audio('music/'+file); a.loop=true; a.volume=.45;
+      if(seek) a.addEventListener('loadedmetadata',
+        ()=>{ if(a.duration) a.currentTime=a.duration*seek; },{once:true});
+      return a; };
+    this.tracks.title=mk('title.mp3',0);
+    this.tracks.level1=mk('level1.mp3',0);
+    this.tracks.level1b=mk('level1.mp3',.45); // same song, different section
+    this.tracks.level3=mk('level3.mp3',0);
+  },
+  update(){
+    if(!this.tracks.title) return;
+    let want;
+    if(G.state==='title'||G.state==='dead') want='title';
+    else if(G.state==='deathcam') want=null;   // silence — let the savta land
+    else if(G.cfg&&G.cfg.marathon) want='level3';
+    else want=this.HOOD_TRACK[THEME().name];
+    for(const [n,a] of Object.entries(this.tracks)){
+      const on=Sound.on&&n===want;
+      a.volume=G.sirenOn?.16:.45;              // duck under the wail
+      if(on&&a.paused) a.play().catch(()=>{});
+      else if(!on&&!a.paused) a.pause();       // resumes here next visit
+    }
+    this.el=want?this.tracks[want]:null;
+  },
+};
+Music.init(); if(Sound.on) Music.tracks.title.play().catch(()=>{}); // best-effort title autoplay
 
 /* ---------------- canvas ---------------- */
 const cv=$('cv'),cx=cv.getContext('2d');
@@ -379,7 +419,7 @@ function duck(){ const p=G.player;
   else { p.duckT=.55; Sound.duck(); } }
 function primary(){          // any tap: start / jump / skip cam / restart
   userActed=true;
-  if(G.state==='title'){ Sound.init(); $('title').classList.add('hidden');
+  if(G.state==='title'){ Sound.init(); Music.init(); $('title').classList.add('hidden');
     resetRun(WANT_DAILY?dayNum():null); }
   else if(G.state==='run') jump();
   else if(G.state==='deathcam'&&G.deathT>.8) showDeathPanel();
@@ -498,6 +538,7 @@ $('shareBtn').addEventListener('click',async()=>{
 /* ---------------- update ---------------- */
 function update(dt){
   G.t+=dt;
+  Music.update();
   for(const q of G.pops) q.t+=dt;
   G.pops=G.pops.filter(q=>q.t<1);
   if(G.shieldFlash>0) G.shieldFlash-=dt*1.6;
