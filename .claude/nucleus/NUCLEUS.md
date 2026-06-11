@@ -183,9 +183,9 @@ Direction shift: game world goes FULL ART. Zorba wants in-game levels to look li
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 08:40 UTC
+- **When:** 2026-06-11 10:25 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 7b0551f chore: refresh nucleus live state [skip ci] — 31 seconds ago
+- **Last commit:** e975d26 chore: refresh nucleus live state [skip ci] — 2 hours ago
 
 **Working tree:**
 ```
@@ -200,11 +200,11 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
-7b0551f chore: refresh nucleus live state [skip ci] (31 seconds ago)
-960f7c7 chore: refresh nucleus live state [skip ci] (25 minutes ago)
-1429637 chore: refresh nucleus live state [skip ci] (26 minutes ago)
-6a300aa chore: refresh nucleus live state [skip ci] (40 minutes ago)
-086f7f1 chore: refresh nucleus live state [skip ci] (45 minutes ago)
+e975d26 chore: refresh nucleus live state [skip ci] (2 hours ago)
+7b0551f chore: refresh nucleus live state [skip ci] (2 hours ago)
+960f7c7 chore: refresh nucleus live state [skip ci] (2 hours ago)
+1429637 chore: refresh nucleus live state [skip ci] (2 hours ago)
+6a300aa chore: refresh nucleus live state [skip ci] (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
