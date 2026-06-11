@@ -1131,5 +1131,118 @@ function loop(){
 }
 requestAnimationFrame(loop);
 </script>
+
+<!-- ============ MUSIC (wiring only — tracks shared with Iron Dome, same origin) ============ -->
+<script>
+'use strict';
+/* MAMADIO music wiring. Pattern copied from irondome/index.html v18
+   (menuMusic + playTrack/stopTrack/LEVEL_TRACKS). The four MP3s live in
+   ../irondome/ and are referenced cross-folder — no duplicated assets.
+   Zero gameplay changes: this block only observes screens/G.state. */
+(function(){
+  var BASE='../irondome/';
+  var music={sound:true};
+  try{ music.sound = localStorage.getItem('mamadio_sound')!=='0'; }catch(e){}
+
+  /* three tracks rotate 1-2-3 across the hoods (Iron Dome reduce pattern);
+     the siren runner — the most intense moment — rides level3. */
+  var LEVEL_TRACKS = Object.keys(LEVELS)
+    .reduce(function(m,k,i){ m[k]='level'+((i%3)+1)+'.mp3'; return m; },{});
+  var RUNNER_TRACK='level3.mp3';
+
+  var trackAudio=null, trackSrc='';
+  function playTrack(src){
+    try{
+      if(trackSrc!==src){
+        stopTrack();
+        trackAudio=new Audio(BASE+src);
+        trackAudio.loop=true; trackAudio.volume=0.3;
+        trackSrc=src;
+      }
+      var p=trackAudio.play();
+      if(p&&p.catch) p.catch(function(){});
+    }catch(e){}
+  }
+  function stopTrack(){ try{ if(trackAudio) trackAudio.pause(); }catch(e){} }
+
+  /* menu soundtrack: loops on the title/hustler/hood screens. iOS forbids
+     autoplay — first tap unlocks it (menuMusicWanted flag). End screen stays
+     quiet on purpose. */
+  var menuMusic=null, menuMusicWanted=false;
+  try{
+    menuMusic=new Audio(BASE+'home_screen.mp3');
+    menuMusic.loop=true; menuMusic.volume=0.35; menuMusic.preload='auto';
+  }catch(e){}
+
+  function onMenuScreen(){
+    try{
+      var s=document.querySelector('.screen.show');
+      return !!s&&(s.id==='scrStart'||s.id==='scrChar'||s.id==='scrLevel');
+    }catch(e){ return false; }
+  }
+
+  function musicUpdate(){
+    var menuWant = music.sound && onMenuScreen() && !document.hidden;
+    try{
+      if(menuMusic){
+        if(menuWant){
+          var p=menuMusic.play();
+          if(p&&p.catch) p.catch(function(){ menuMusicWanted=true; });
+        } else menuMusic.pause();
+      }
+    }catch(e){}
+    var f=null;
+    try{
+      if(!document.hidden&&music.sound&&!onMenuScreen()&&typeof G!=='undefined'){
+        if(G.state==='runner') f=RUNNER_TRACK;
+        else if(G.state==='play'||G.state==='minigame') f=LEVEL_TRACKS[G.level]||'level1.mp3';
+      }
+    }catch(e){}
+    if(f) playTrack(f); else stopTrack();
+    /* keep SFX muted too: the game's Sound.init() auto-resumes the ctx */
+    if(!music.sound){ try{ if(Sound&&Sound.ctx) Sound.ctx.suspend(); }catch(e){} }
+  }
+
+  document.addEventListener('pointerdown',function(){
+    if(menuMusicWanted&&music.sound&&onMenuScreen()){
+      menuMusicWanted=false;
+      try{ var p=menuMusic.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){}
+    }
+  });
+  document.addEventListener('visibilitychange',musicUpdate);
+  setInterval(musicUpdate,250);
+
+  /* mute everything, not just music: wrap Sound.init non-destructively */
+  try{
+    var _init=Sound.init.bind(Sound);
+    Sound.init=function(){ _init(); if(!music.sound&&Sound.ctx){ try{ Sound.ctx.suspend(); }catch(e){} } };
+  }catch(e){}
+
+  /* 🔊 pill — the game ships no sound toggle, so add one in its own UI style */
+  function applyMute(){
+    try{ if(Sound&&Sound.ctx){ if(music.sound) Sound.ctx.resume(); else Sound.ctx.suspend(); } }catch(e){}
+    musicUpdate();
+  }
+  try{
+    var pill=document.createElement('button');
+    pill.id='musicPill';
+    pill.textContent=music.sound?'🔊':'🔇';
+    pill.setAttribute('aria-label','toggle sound');
+    pill.style.cssText='position:fixed;top:12px;right:12px;z-index:40;'+
+      'background:rgba(16,20,31,.75);border:1px solid #37415c;color:#e8ecf5;'+
+      'border-radius:999px;font-size:16px;padding:8px 12px;cursor:pointer;line-height:1;';
+    pill.addEventListener('click',function(ev){
+      ev.stopPropagation();
+      music.sound=!music.sound;
+      try{ localStorage.setItem('mamadio_sound',music.sound?'1':'0'); }catch(e){}
+      pill.textContent=music.sound?'🔊':'🔇';
+      if(!music.sound) menuMusicWanted=false;
+      applyMute();
+    });
+    document.body.appendChild(pill);
+  }catch(e){}
+  applyMute();
+})();
+</script>
 </body>
 </html>
