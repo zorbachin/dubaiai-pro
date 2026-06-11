@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 03:02 UTC · code
+DURABLE BRAND RULE from Zorba: all Iron Dome promo assets bilingual BURNED IN — English leads (he expects more English-speaking players), Hebrew always prominent. All cards rebuilt: share-card.jpg (og image), story, square, press-hero titled variant. Merged next.
+
 ### 2026-06-11 02:58 UTC · code
 Elite art pass MERGED (PR #82): retro pixel set composited into production — share-card.jpg 1200x630@170KB live as og:image (every WhatsApp link now shows the retro dome + Hebrew title card), story/square-falafel/press-hero rebuilt on the new art, originals archived in content-assets/irondome-promo/art/. DURABLE: retro pixel = the Iron Dome brand. Outstanding for launch: full-res app icon (Zorba re-downloads the minimal dome icon from ChatGPT), domain purchase, GoatCounter claim — then seeding per checklist.
 
@@ -176,39 +179,28 @@ ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more
 
 ### 2026-06-02 11:07 UTC · chat
 VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-public timeline for Dispatch Issue 002 'How One Site Became a Whole Build'): (1) zorbot.io = his FIRST site, built to try and get work (the digital first call). (2) -> led to a PRODUCT 'bloop' on buildyourbot.io. (3) Riley + selfsellingai evolved from it. (4) a CLOSING TOOL (foxy-close-tool/Instant Proposals) became its own product. Through-line: same instinct each time — find where time leaks, build the fix; mission got clearer = take back your time, give time back to others. NEEDS FROM ZORBA: one-line confirm per beat + the asset to embed (video link + site URL/screenshot) — sites are bot-blocked so Claude can't pull them. Skeleton: content-assets/newsletter/ISSUE-002-chronology.md. NOTE: we 'started this' 2026-06-01 (OS + AUDIT.md + decision log).
-
-### 2026-06-02 11:05 UTC · chat
-ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back engaged/broke/no job/sublet -> married -> baby coming -> WAR days after wedding -> obsessing over AI in the bomb shelter -> first call, second call -> finally got over the unease of POSTING. MISSION (clearer now): build a business to take back his own time AND give time back to others. NOT to make people AI-obsessed; he likes people who want to grow + use tools well; loves solving problems like he does ON SET. Building LIVE, exposed: 'follow me, make that first call/post yourself.' Voice: plain, confessional, anti-hype, sell the WHY (time/freedom). Masthead recut (title 'The First Call'). Kept Three Two-Minute Time-Savers as closing segment. Substack IS SET UP — ready to paste & publish. Updated voice-guide story assets (house/war now filled).
-
-
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 02:58 UTC
+- **When:** 2026-06-11 03:02 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 9b4c85e Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt — 52 seconds ago
+- **Last commit:** 514bde1 Bilingual burn-in across all promo assets — 2 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 91 +++++-----------------------------------------
- 1 file changed, 9 insertions(+), 82 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-9b4c85e Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (52 seconds ago)
-9209bd7 Elite art pass: retro pixel art across share card + all promo assets (2 minutes ago)
-447ce5a chore: refresh nucleus live state [skip ci] (5 minutes ago)
-6cda150 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-4fa7e02 chore: refresh nucleus live state [skip ci] (8 hours ago)
+514bde1 Bilingual burn-in across all promo assets (2 seconds ago)
+f2d8f25 chore: refresh nucleus live state [skip ci] (3 minutes ago)
+9b4c85e Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (4 minutes ago)
+9209bd7 Elite art pass: retro pixel art across share card + all promo assets (5 minutes ago)
+447ce5a chore: refresh nucleus live state [skip ci] (8 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
