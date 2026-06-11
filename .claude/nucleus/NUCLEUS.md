@@ -187,28 +187,22 @@ ISSUE 001 full entertainment pass (craft only, invented nothing): tighter comedi
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 05:17 UTC
+- **When:** 2026-06-11 05:18 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 120167c chore: refresh nucleus live state [skip ci] — 89 minutes ago
+- **Last commit:** 24156f1 chore: refresh nucleus live state [skip ci] — 22 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
+24156f1 chore: refresh nucleus live state [skip ci] (22 seconds ago)
 120167c chore: refresh nucleus live state [skip ci] (89 minutes ago)
-2e29103 chore: refresh nucleus live state [skip ci] (89 minutes ago)
+2e29103 chore: refresh nucleus live state [skip ci] (2 hours ago)
 6e72135 chore: refresh nucleus live state [skip ci] (2 hours ago)
 4c01ea2 Merge origin/main (keep v17) (2 hours ago)
-ce9d399 v17: end screens + menu redesign — one frame, real stats, shop collapsed (2 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
