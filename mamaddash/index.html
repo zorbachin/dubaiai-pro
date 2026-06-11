@@ -9,11 +9,13 @@
 <meta property="og:title" content="MAMAD DASH — outrun the siren">
 <meta property="og:description" content="The siren is live. Jump the savtas, duck the doves, stack shekels, reach the mamad. How many sirens can you survive?">
 <meta property="og:url" content="https://dubaiai.pro/mamaddash/">
-<meta property="og:image" content="https://dubaiai.pro/mamaddash/og.png">
+<meta property="og:image" content="https://dubaiai.pro/mamaddash/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://dubaiai.pro/mamaddash/og.png">
+<meta name="twitter:image" content="https://dubaiai.pro/mamaddash/og.jpg">
+<link rel="icon" type="image/png" href="art/icon.png">
+<link rel="apple-touch-icon" href="art/icon.png">
 <title>MAMAD DASH 🚨</title>
 <style>
   :root{ --navy:#0b0e1a; --gold:#ffd166; --teal:#7ee8c7; --red:#ff5d5d; }
@@ -29,6 +31,7 @@
   #flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .5s;}
   .panel{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:24px;z-index:10;background:radial-gradient(ellipse at 50% 35%,rgba(11,14,26,.55),rgba(11,14,26,.92));}
+  #title{background:linear-gradient(rgba(11,14,26,.45),rgba(11,14,26,.86)),url('art/keyart.webp') center/cover;}
   .logo{font-size:clamp(38px,11vw,72px);font-weight:900;letter-spacing:.02em;line-height:1;
     background:linear-gradient(180deg,#ffe29a,#e9a23b);-webkit-background-clip:text;background-clip:text;color:transparent;
     filter:drop-shadow(0 4px 18px rgba(233,162,59,.35));}
@@ -185,8 +188,12 @@ const STRIPS=new Map(), SKYG=new Map();
 clearCaches=()=>{EMO.clear();GLOWS.clear();STRIPS.clear();SKYG.clear();};
 /* hand-drawn sprites — graceful fallback to emoji while loading / if absent */
 const ART={};
-for(const n of ['run1','run2','jump','duck','tumble','savta-judge','savta-nu','savta-cart']){
+for(const n of ['run1','run2','jump','duck','tumble','savta-judge','savta-nu','savta-cart',
+  'door','pow-star','pow-magnet','pow-time']){
   const i=new Image(); i.src='art/'+n+'.png'; ART[n]=i;
+}
+for(const n of ['bg-beach','bg-florentin','bg-oldnorth','bg-night']){
+  const i=new Image(); i.src='art/'+n+'.webp'; ART[n]=i;
 }
 const artOk=n=>{const i=ART[n];return i&&i.complete&&i.naturalWidth>0;};
 function drawArt(n,x,y,h,flip){
@@ -199,16 +206,16 @@ function drawArt(n,x,y,h,flip){
    ground = JUMP (gold ring) · air = DUCK (teal ring). No emoji in both
    sets within a theme. */
 const THEMES=[
-  {name:'GORDON BEACH', sky:['#37b6ff','#8fd8ff','#ffd9a8'], far:'#cfe0f0', near:'#f4ecdd',
+  {name:'GORDON BEACH', bg:'bg-beach', sky:['#37b6ff','#8fd8ff','#ffd9a8'], far:'#cfe0f0', near:'#f4ecdd',
    street:'#7b6f93', win:'rgba(38,166,200,', night:false,
    ground:['👵','⛱️','🐕','🦀','🛟'], air:['🏐','🪁','🕊️','🥏']},
-  {name:'FLORENTIN', sky:['#ff9d5c','#ffc187','#ffe6ae'], far:'#e8c2a8', near:'#f9e3c4',
+  {name:'FLORENTIN', bg:'bg-florentin', sky:['#ff9d5c','#ffc187','#ffe6ae'], far:'#e8c2a8', near:'#f9e3c4',
    street:'#8a6f80', win:'rgba(210,80,140,', night:false,
    ground:['👵','🛒','🐈','📦','🛹'], air:['🕊️','🍾','🛸','🥏']},
-  {name:'THE OLD NORTH', sky:['#9d7bea','#e89ad6','#ffc2a0'], far:'#cdbde6', near:'#ece2f6',
+  {name:'THE OLD NORTH', bg:'bg-oldnorth', sky:['#9d7bea','#e89ad6','#ffc2a0'], far:'#cdbde6', near:'#ece2f6',
    street:'#6f6090', win:'rgba(255,170,60,', night:false,
    ground:['👵','🐩','🛴','🪴','🛒'], air:['🕊️','☂️','🥐','🪁']},
-  {name:'NIGHT RUN', sky:['#0d1330','#272350','#583a64'], far:'#1d2440', near:'#2c3458',
+  {name:'NIGHT RUN', bg:'bg-night', sky:['#0d1330','#272350','#583a64'], far:'#1d2440', near:'#2c3458',
    street:'#3d3850', win:'rgba(255,209,102,', night:true,
    ground:['👵','🐈‍⬛','🗑️','🛵','📦'], air:['🦇','🕊️','🍾','🛸']},
 ];
@@ -614,37 +621,43 @@ function draw(){
     cx.save();cx.translate(px,groundY-40);cx.scale(z,z);cx.translate(-px,-(groundY-40)+dip);
     cam=true;
   }
-  // sky: every hood has its own light (gradient cached per theme)
+  // scenery: hand-painted hood strip when its art is loaded, else procedural
   const T=THEME();
-  let sky=SKYG.get(T.name);
-  if(!sky){ sky=cx.createLinearGradient(0,0,0,groundY);
-    sky.addColorStop(0,T.sky[0]);sky.addColorStop(.6,T.sky[1]);sky.addColorStop(1,T.sky[2]);
-    SKYG.set(T.name,sky); }
-  cx.fillStyle=sky;cx.fillRect(0,0,W,groundY);
-  // alert vignette pulses as the boom nears
+  const bga=T.bg&&artOk(T.bg)?ART[T.bg]:null;
+  if(bga){
+    const th=groundY+2, tw2=th*bga.naturalWidth/bga.naturalHeight;
+    for(let x2=-((G.dist*.3)%tw2);x2<W;x2+=tw2) cx.drawImage(bga,x2,0,tw2+1,th);
+  } else {
+    let sky=SKYG.get(T.name);
+    if(!sky){ sky=cx.createLinearGradient(0,0,0,groundY);
+      sky.addColorStop(0,T.sky[0]);sky.addColorStop(.6,T.sky[1]);sky.addColorStop(1,T.sky[2]);
+      SKYG.set(T.name,sky); }
+    cx.fillStyle=sky;cx.fillRect(0,0,W,groundY);
+    // sun + clouds by day, moon + stars on the night run
+    if(T.night){
+      drawEmoji('🌙',W*.82,H*.11,38);
+      cx.fillStyle='#fff';
+      for(let i=0;i<30;i++){
+        cx.globalAlpha=.3+.5*Math.abs(Math.sin(G.t*.9+i*1.7));
+        cx.fillRect(((i*173.7)%1)*W,((i*97.3)%1)*groundY*.55,2,2);
+      }
+      cx.globalAlpha=1;
+    } else {
+      cx.drawImage(glow('rgba(255,235,150,.95)',90),W*.82-90,H*.11-90);
+      drawEmoji('☀️',W*.82,H*.11,40);
+      for(let i=0;i<5;i++){
+        const cxp=((i*263.7+G.t*(8+i*3))%(W+160))-80, cyp=(.06+(i*.09)%.3)*H;
+        drawEmoji('☁️',cxp,cyp,34+(i%3)*14);
+      }
+    }
+    skyline(G.dist*.12,Math.max(90,groundY*.3),.55,T.win,T.far);
+    skyline(G.dist*.28+400,Math.max(58,groundY*.2),T.night?1.6:.78,T.win,T.near);
+  }
+  // alert vignette pulses as the boom nears (over the scenery)
   if(G.state==='run'&&u>.62){
     cx.fillStyle=`rgba(255,60,60,${(.1+.16*Math.abs(Math.sin(G.t*6)))*(u-.55)})`;
     cx.fillRect(0,0,W,H);
   }
-  // sun + clouds by day, moon + stars on the night run
-  if(T.night){
-    drawEmoji('🌙',W*.82,H*.11,38);
-    cx.fillStyle='#fff';
-    for(let i=0;i<30;i++){
-      cx.globalAlpha=.3+.5*Math.abs(Math.sin(G.t*.9+i*1.7));
-      cx.fillRect(((i*173.7)%1)*W,((i*97.3)%1)*groundY*.55,2,2);
-    }
-    cx.globalAlpha=1;
-  } else {
-    cx.drawImage(glow('rgba(255,235,150,.95)',90),W*.82-90,H*.11-90);
-    drawEmoji('☀️',W*.82,H*.11,40);
-    for(let i=0;i<5;i++){
-      const cxp=((i*263.7+G.t*(8+i*3))%(W+160))-80, cyp=(.06+(i*.09)%.3)*H;
-      drawEmoji('☁️',cxp,cyp,34+(i%3)*14);
-    }
-  }
-  skyline(G.dist*.12,Math.max(90,groundY*.3),.55,T.win,T.far);
-  skyline(G.dist*.28+400,Math.max(58,groundY*.2),T.night?1.6:.78,T.win,T.near);
   // street
   cx.fillStyle=T.street;cx.fillRect(0,groundY,W,H-groundY);
   cx.fillStyle='rgba(0,0,0,.22)';cx.fillRect(0,groundY,W,6);
@@ -660,13 +673,16 @@ function draw(){
     cx.save();cx.translate(k.x,k.y);cx.scale(Math.abs(Math.sin(G.t*5+k.x*.02))*.7+.3,1);
     drawEmoji('🪙',0,0,26);cx.restore();
   }
-  // power-ups: pulsing white ring, gentle bob
+  // power-ups: gentle bob; hand-drawn icons carry their own glow ring
   for(const w of G.pows){
     const by2=w.y+Math.sin(G.t*3+w.x*.01)*6;
     cx.drawImage(glow('rgba(255,255,255,.6)',30),w.x-30,by2-30);
-    cx.strokeStyle=`rgba(255,255,255,${.5+.4*Math.sin(G.t*6)})`;cx.lineWidth=3;
-    cx.beginPath();cx.arc(w.x,by2,26,0,7);cx.stroke();
-    drawEmoji(w.emoji,w.x,by2,34);
+    if(artOk('pow-'+w.kind)) drawArt('pow-'+w.kind,w.x,by2,56);
+    else {
+      cx.strokeStyle=`rgba(255,255,255,${.5+.4*Math.sin(G.t*6)})`;cx.lineWidth=3;
+      cx.beginPath();cx.arc(w.x,by2,26,0,7);cx.stroke();
+      drawEmoji(w.emoji,w.x,by2,34);
+    }
   }
   // obstacles: shadow + colored telegraph ring (gold=jump, teal=duck)
   for(const o of G.obs){
@@ -815,13 +831,21 @@ function skyline(off,hMax,shade,winCol,fill){
   for(;x<W;x+=period) cx.drawImage(st,x,groundY-st.height);
 }
 function door(x){
-  cx.fillStyle='#0f8a72';cx.fillRect(x-8,groundY-118,86,118);
-  cx.fillStyle='#0b6b59';cx.fillRect(x,groundY-106,70,106);
-  drawEmoji('🛡️',x+35,groundY-66,40);
-  cx.fillStyle='#dffaf1';cx.font='bold 13px sans-serif';cx.textAlign='center';
-  cx.fillText('MAMAD',x+35,groundY-14);
-  cx.strokeStyle='rgba(126,232,199,.7)';cx.lineWidth=3;
-  cx.strokeRect(x-8,groundY-118,86,118);
+  if(artOk('door')){
+    drawArt('door',x+35,groundY-64,132);
+    cx.font='bold 13px sans-serif';cx.textAlign='center';cx.textBaseline='middle';
+    cx.lineWidth=4;cx.strokeStyle='rgba(15,20,40,.85)';
+    cx.strokeText('MAMAD',x+35,groundY-8);
+    cx.fillStyle='#dffaf1';cx.fillText('MAMAD',x+35,groundY-8);
+  } else {
+    cx.fillStyle='#0f8a72';cx.fillRect(x-8,groundY-118,86,118);
+    cx.fillStyle='#0b6b59';cx.fillRect(x,groundY-106,70,106);
+    drawEmoji('🛡️',x+35,groundY-66,40);
+    cx.fillStyle='#dffaf1';cx.font='bold 13px sans-serif';cx.textAlign='center';
+    cx.fillText('MAMAD',x+35,groundY-14);
+    cx.strokeStyle='rgba(126,232,199,.7)';cx.lineWidth=3;
+    cx.strokeRect(x-8,groundY-118,86,118);
+  }
 }
 function hud(left,u){
   // countdown — BIG, on canvas, always visible (the mobile fix)
