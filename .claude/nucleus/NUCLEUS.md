@@ -188,28 +188,22 @@ FOR MAMADIO SESSION (PR #71): Zorba feedback — 'mamad dash doesn't have the ex
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 06:02 UTC
+- **When:** 2026-06-11 06:09 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** d916205 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 — 60 seconds ago
+- **Last commit:** caf9111 Promo production: pre-composited 9:16 generation frames (5 shots) — 4 minutes ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 132 ++++-----------------------------------------
- 1 file changed, 10 insertions(+), 122 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-d916205 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (60 seconds ago)
-2e86bb4 chore: nucleus snapshot [skip ci] (60 seconds ago)
-d5f6af3 Soundtrack: three-track music system across hoods, menus, marathons (2 minutes ago)
-01c3dd9 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-8f2c61f chore: refresh nucleus live state [skip ci] (8 minutes ago)
+caf9111 Promo production: pre-composited 9:16 generation frames (5 shots) (4 minutes ago)
+01c19ab chore: refresh nucleus live state [skip ci] (7 minutes ago)
+d916205 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (8 minutes ago)
+2e86bb4 chore: nucleus snapshot [skip ci] (8 minutes ago)
+d5f6af3 Soundtrack: three-track music system across hoods, menus, marathons (8 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
