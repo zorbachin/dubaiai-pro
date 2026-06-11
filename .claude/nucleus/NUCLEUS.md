@@ -189,9 +189,9 @@ VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-publ
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 03:14 UTC
+- **When:** 2026-06-11 03:19 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 8896876 chore: refresh nucleus live state [skip ci] — 18 seconds ago
+- **Last commit:** 346c95c chore: refresh nucleus live state [skip ci] — 4 minutes ago
 
 **Working tree:**
 ```
@@ -200,11 +200,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-8896876 chore: refresh nucleus live state [skip ci] (18 seconds ago)
-6fa0ba8 Merge origin/main into branch (keep v16 assets) (76 seconds ago)
-605f956 v16: the key art enters the game — menu background + honeycomb brand dome (2 minutes ago)
-75a047a chore: refresh nucleus live state [skip ci] (7 minutes ago)
-e21363f chore: refresh nucleus live state [skip ci] (10 minutes ago)
+346c95c chore: refresh nucleus live state [skip ci] (4 minutes ago)
+8896876 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+6fa0ba8 Merge origin/main into branch (keep v16 assets) (6 minutes ago)
+605f956 v16: the key art enters the game — menu background + honeycomb brand dome (6 minutes ago)
+75a047a chore: refresh nucleus live state [skip ci] (12 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
