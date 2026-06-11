@@ -200,6 +200,9 @@ Iron Dome v10 MERGED (PR #76): visual-viewport canvas (fixes iOS-zoom hiding the
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 07:24 UTC
+- **Branch:** `claude/mamad-dash-location-0mmse2`
+- **Last commit:** 2ba33a1 chore: refresh nucleus live state [skip ci] — 53 minutes ago
 - **When:** 2026-06-11 07:30 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
 - **Last commit:** 14aec7b v19: the Miklat Wallet — shared shekels across games + CONTINUE mechanic — 1 second ago
@@ -237,6 +240,11 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+2ba33a1 chore: refresh nucleus live state [skip ci] (53 minutes ago)
+794c937 chore: refresh nucleus live state [skip ci] (53 minutes ago)
+907a315 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (53 minutes ago)
+10b5ed3 chore: nucleus snapshot [skip ci] (53 minutes ago)
+cb1e13f Art asset index: public URLs for all surfaces (Claude Design etc.) (54 minutes ago)
 14aec7b v19: the Miklat Wallet — shared shekels across games + CONTINUE mechanic (1 second ago)
 82901b6 chore: refresh nucleus live state [skip ci] (27 minutes ago)
 8142229 chore: refresh nucleus live state [skip ci] (27 minutes ago)
