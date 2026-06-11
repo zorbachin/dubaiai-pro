@@ -173,26 +173,20 @@ _Refreshed automatically after each turn — do not edit by hand._
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 03:04 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 2b611d6 Real character art: hand-drawn runner + savta replace emoji actors — 32 seconds ago
+- **Last commit:** b0ea754 chore: refresh nucleus live state [skip ci] — 20 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 32 +++++++++++++++++++-------------
- 1 file changed, 19 insertions(+), 13 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-2b611d6 Real character art: hand-drawn runner + savta replace emoji actors (32 seconds ago)
+b0ea754 chore: refresh nucleus live state [skip ci] (20 seconds ago)
+2b611d6 Real character art: hand-drawn runner + savta replace emoji actors (52 seconds ago)
 d63246c chore: refresh nucleus live state [skip ci] (15 minutes ago)
 613bbb5 chore: refresh nucleus live state [skip ci] (20 minutes ago)
-aa025fa chore: refresh nucleus live state [skip ci] (20 minutes ago)
-444564d chore: refresh nucleus live state [skip ci] (7 hours ago)
+aa025fa chore: refresh nucleus live state [skip ci] (21 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
