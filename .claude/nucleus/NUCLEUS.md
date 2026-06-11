@@ -183,28 +183,22 @@ Direction shift: game world goes FULL ART. Zorba wants in-game levels to look li
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 08:13 UTC
+- **When:** 2026-06-11 08:14 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 0a9e9fd chore: refresh nucleus live state [skip ci] — 30 seconds ago
+- **Last commit:** 6bafaff chore: refresh nucleus live state [skip ci] — 30 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 38 ++++++++------------------------------
- 1 file changed, 8 insertions(+), 30 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-0a9e9fd chore: refresh nucleus live state [skip ci] (30 seconds ago)
-25358b9 v23: real-falafel sprites (no red), foreground buildings recede behind the art (62 seconds ago)
+6bafaff chore: refresh nucleus live state [skip ci] (30 seconds ago)
+0a9e9fd chore: refresh nucleus live state [skip ci] (60 seconds ago)
+25358b9 v23: real-falafel sprites (no red), foreground buildings recede behind the art (2 minutes ago)
 6e79409 Merge origin/main (ours: irondome) (5 minutes ago)
 b142b31 v22: worlds preload at boot + full art precache — no procedural flash, ever (6 minutes ago)
-6ebd314 WALLET-SPEC: align to shipped reality — key miklat.wallet {sh} (11 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
