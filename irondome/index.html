@@ -59,13 +59,30 @@
   /* ---------- Overlay screens ---------- */
   .screen{
     position:fixed;inset:0;display:none;flex-direction:column;align-items:center;
-    justify-content:center;gap:14px;z-index:10;padding:24px;text-align:center;
+    justify-content:safe center;gap:12px;z-index:10;text-align:center;
+    padding:calc(env(safe-area-inset-top,0px) + 18px) 20px calc(env(safe-area-inset-bottom,0px) + 18px);
+    overflow-y:auto;-webkit-overflow-scrolling:touch;
     background:radial-gradient(ellipse at 50% 30%,rgba(22,36,74,.92),rgba(10,18,38,.97));
+  }
+  #scrEnd,#scrOver{gap:10px}
+  .statstrip{
+    display:flex;gap:18px;justify-content:center;flex-wrap:wrap;
+    background:rgba(16,27,56,.8);border:1px solid rgba(62,230,255,.25);
+    border-radius:14px;padding:10px 18px;font-size:14px;color:var(--ink);font-weight:600;
+  }
+  .statstrip b{color:var(--cyan)}
+  .statstrip .bad b{color:var(--red)}
+  .shopToggle{
+    background:var(--panel2);border:1px solid rgba(255,209,102,.45);color:var(--gold);
+    border-radius:12px;padding:10px 22px;min-height:44px;font-weight:700;font-size:14px;cursor:pointer;
   }
   #scrMenu{
     background:linear-gradient(rgba(10,18,38,.55),rgba(10,18,38,.88) 55%,rgba(10,18,38,.97)),
                url(menu-bg.jpg) center top/cover no-repeat #0a1226;
   }
+  #scrMenu .btn{padding:12px 26px;min-width:240px;font-size:17px}
+  #scrMenu .pill{font-size:12px;padding:8px 14px}
+  #menuBest{background:rgba(16,27,56,.7);border-radius:999px;padding:6px 16px;font-size:13px}
   .screen.show{display:flex}
   h1{
     font-family:"Courier New",monospace;font-weight:700;font-size:clamp(26px,7vw,44px);
@@ -214,8 +231,10 @@
   <div id="endQuip" style="font-size:15px;color:var(--gold);font-weight:600"></div>
   <div class="stat" id="endStats"></div>
   <div id="mkQuote" style="font-size:12px;color:var(--dim);font-style:italic;max-width:380px;line-height:1.5"></div>
-  <div id="coins"></div>
-  <div id="shop"></div>
+  <div class="statstrip" id="endStrip"></div>
+  <button class="shopToggle" id="btnShopT1"></button>
+  <div id="coins" style="display:none"></div>
+  <div id="shop" style="display:none"></div>
   <div class="btnrow">
     <button class="btn primary" id="btnNext"></button>
     <button class="btn small" id="btnShare1"></button>
@@ -230,8 +249,10 @@
   <div class="bigscore" id="overScore"></div>
   <div class="stat" id="overGap" style="color:var(--gold)"></div>
   <div class="sub" id="overStats"></div>
-  <div id="coinsOver" style="font-family:'Courier New',monospace;color:var(--gold);font-size:16px;font-weight:700"></div>
-  <div id="shopOver" class="shoplist"></div>
+  <div class="statstrip" id="overStrip"></div>
+  <button class="shopToggle" id="btnShopT2"></button>
+  <div id="coinsOver" style="display:none;font-family:'Courier New',monospace;color:var(--gold);font-size:16px;font-weight:700"></div>
+  <div id="shopOver" class="shoplist" style="display:none"></div>
   <div class="btnrow">
     <button class="btn primary" id="btnRetry2"></button>
     <button class="btn small" id="btnShare2"></button>
@@ -257,7 +278,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v16';
+const GAME_VERSION = 'v17';
 const INBOUND = new URLSearchParams(location.search);
 const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
@@ -310,7 +331,7 @@ const T = {
     diffN: { easy: 'Easy', normal: 'Normal', commando: 'Commando' },
     daily: 'DAILY ALERT', dailyDone: '📅 DAILY ALERT — DONE!',
     practiceNote: 'practice — today already counted', todayW: 'today',
-    streakW: 'streak', raLocked: '🚨 RED ALERT — clear Ashdod to unlock',
+    streakW: 'streak', raLocked: '🚨 RED ALERT — clear Ashdod to unlock', upgrades: 'Upgrades', hitsW: 'hits taken',
     slingHint: '🪨 Pileup? Tap the SLING →',
     upSling: 'Iron Sling', upSlingD: 'Volley button 🪨: +1 charge per level',
     waveOf: 'Rockets', comboX: 'COMBO x', tapHint: '👆 TAP THE ROCKETS!', direct: 'DIRECT HIT!',
@@ -390,7 +411,7 @@ const T = {
     diffN: { easy: 'קל', normal: 'רגיל', commando: 'קומנדו' },
     daily: 'אזעקת היום', dailyDone: '📅 אזעקת היום — הושלם!',
     practiceNote: 'אימון — התוצאה של היום כבר נספרה', todayW: 'היום',
-    streakW: 'רצף', raLocked: '🚨 צבע אדום — נפתח אחרי אשדוד',
+    streakW: 'רצף', raLocked: '🚨 צבע אדום — נפתח אחרי אשדוד', upgrades: 'שדרוגים', hitsW: 'פגיעות',
     slingHint: '🪨 עומס? לחצו על הקלע ←',
     upSling: 'קלע ברזל', upSlingD: 'כפתור מטח 🪨: מטען נוסף לכל שלב',
     waveOf: 'רקטות', comboX: 'קומבו ×', tapHint: '👆 לחצו על הרקטות!', direct: 'פגיעה ישירה!',
@@ -620,7 +641,7 @@ function newGame(levelIdx, endless, bonus, daily){
     L, levelIdx, endless: !!endless, bonus: !!bonus, daily: !!daily,
     rng: dailyRng, dailyT: 0, endlessT: 0, nextRamp: 20,
     rockets: [], inters: [], booms: [], parts: [], pows: [], floats: [], warns: [],
-    spawned: 0, resolved: 0, killed: 0,
+    spawned: 0, resolved: 0, killed: 0, cityHits: 0,
     spawnT: 0.15, powT: 5 + Math.random()*3,
     score: 0, combo: 0, comboT: 0,
     buildings: [], shake: 0,
@@ -1213,7 +1234,7 @@ function update(dt){
         if (b.alive && r.x > b.x - 6 && r.x < b.x + b.w + 6){ hit = b; break; }
       }
       if (hit){
-        hit.hp--;
+        hit.hp--; G.cityHits++;
         if (hit.hp <= 0) hit.alive = false;
         else addFloat(r.x, GROUND - hit.h - 14, '🛡', '#3ee6ff', 14);   // armor absorbed it
         G.shake = 14; sfx.hitCity(); buzz([30, 40, 60]);
@@ -1649,6 +1670,14 @@ function startLevel(){
 }
 
 let bonusDue = false, dailyEnded = false;
+function fillStrip(id){
+  const tot = Math.max(1, G.spawned);
+  $(id).innerHTML =
+    '<span>🚀 <b>' + G.killed + '/' + tot + '</b></span>' +
+    '<span class="bad">💥 <b>' + G.cityHits + '</b> ' + t('hitsW') + '</span>' +
+    '<span>🎯 <b>' + (G.directs || 0) + '</b></span>' +
+    (G.combo || G.score ? '<span>🪙 <b>' + save.coins + '</b></span>' : '');
+}
 function endLevel(won){
   G.over = true; G.won = won;
   const total0 = Math.max(1, G.spawned);
@@ -1683,8 +1712,11 @@ function endLevel(won){
       : t('practiceNote'));
     $('mkQuote').textContent = pick(t('mkQuotes'));
     $('endStats').innerHTML = t('scoreW') + ': <b>' + G.score + '</b>' +
-      (counted ? '' : ' · ' + t('scoreW') + ' ' + t('todayW') + ': <b>' + save.daily.score + '</b>');
+      (counted ? '' : ' · ' + t('todayW') + ': <b>' + save.daily.score + '</b>');
     renderShop();
+    fillStrip('endStrip');
+    $('shop').style.display = 'none'; $('coins').style.display = 'none';
+    $('btnShopT1').textContent = '🛒 ' + t('upgrades') + ' · 🪙 ' + save.coins;
     $('btnNext').textContent = t('menu');
     dailyEnded = true;
     show('scrEnd');
@@ -1707,6 +1739,9 @@ function endLevel(won){
       : (isBest ? t('newBest') : '');
     $('btnShare2').className = isBest ? 'btn primary' : 'btn small';   // peak moment = loud CTA
     renderShop($('shopOver'), $('coinsOver'));     // the stuck player needs the shop MOST
+    fillStrip('overStrip');
+    $('shopOver').style.display = 'none'; $('coinsOver').style.display = 'none';
+    $('btnShopT2').textContent = '🛒 ' + t('upgrades') + ' · 🪙 ' + save.coins;
     show('scrOver');
     return;
   }
@@ -1720,7 +1755,10 @@ function endLevel(won){
     $('endQuip').textContent = pick(t('lvlDone')).replace('{c}', t('levels')[curLevel]);
     $('mkQuote').textContent = pick(t('mkQuotes'));
     $('endStats').innerHTML = t('scoreW') + ': <b>' + G.score + '</b> (+' + bGain + ' 🪙)';
+    fillStrip('endStrip');
     renderShop();
+    $('shop').style.display = 'none'; $('coins').style.display = 'none';
+    $('btnShopT1').textContent = '🛒 ' + t('upgrades') + ' · 🪙 ' + save.coins;
     $('btnNext').textContent = t('next');
     show('scrEnd');
     return;
@@ -1738,11 +1776,11 @@ function endLevel(won){
   $('endTitle').textContent = t('cleared') + ' — ' + t('levels')[curLevel];
   $('endQuip').textContent = pick(t('lvlDone')).replace('{c}', t('levels')[curLevel]);
   $('mkQuote').textContent = pick(t('mkQuotes'));
-  $('endStats').innerHTML =
-    t('intercepted') + ': <b>' + G.killed + '/' + total + '</b> · ' +
-    t('saved') + ': <b>' + alive + '/' + G.buildings.length + '</b><br>' +
-    t('scoreW') + ': <b>' + G.score + '</b> (+' + coinGain + ' 🪙)';
+  $('endStats').innerHTML = t('scoreW') + ': <b>' + G.score + '</b> (+' + coinGain + ' 🪙)';
+  fillStrip('endStrip');
   renderShop();
+  $('shop').style.display = 'none'; $('coins').style.display = 'none';
+  $('btnShopT1').textContent = '🛒 ' + t('upgrades') + ' · 🪙 ' + save.coins;
   if (curLevel + 1 >= LEVELS.length){
     $('btnNext').textContent = '🏆';
     $('winScore').textContent = t('scoreW') + ': ' + G.score + ' · ' + t('bestW') + ': ' + save.best;
@@ -1903,6 +1941,16 @@ function slingVolley(){
   sfx.power(); buzz([20, 30, 20]);
 }
 $('btnSling').onclick = () => slingVolley();
+
+function toggleShop(shopId, coinsId, btn){
+  const open = $(shopId).style.display !== 'none';
+  $(shopId).style.display = open ? 'none' : '';
+  $(coinsId).style.display = open ? 'none' : '';
+  btn.textContent = open ? ('🛒 ' + t('upgrades') + ' · 🪙 ' + save.coins) : ('▲ ' + t('upgrades'));
+  sfx.click();
+}
+$('btnShopT1').onclick = e => toggleShop('shop', 'coins', e.target);
+$('btnShopT2').onclick = e => toggleShop('shopOver', 'coinsOver', e.target);
 
 /* one-tap bragging: native share sheet, WhatsApp deep-link fallback.
    Shared links carry ?ref + the score so recipients get a challenge banner
