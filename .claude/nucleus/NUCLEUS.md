@@ -187,9 +187,9 @@ ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 03:22 UTC
+- **When:** 2026-06-11 03:36 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 642e41e chore: refresh nucleus live state [skip ci] — 19 seconds ago
+- **Last commit:** 6bc5d1e chore: refresh nucleus live state [skip ci] — 14 minutes ago
 
 **Working tree:**
 ```
@@ -198,11 +198,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-642e41e chore: refresh nucleus live state [skip ci] (19 seconds ago)
-b7a0e4d chore: refresh nucleus live state [skip ci] (4 minutes ago)
-346c95c chore: refresh nucleus live state [skip ci] (8 minutes ago)
-8896876 chore: refresh nucleus live state [skip ci] (8 minutes ago)
-6fa0ba8 Merge origin/main into branch (keep v16 assets) (9 minutes ago)
+6bc5d1e chore: refresh nucleus live state [skip ci] (14 minutes ago)
+642e41e chore: refresh nucleus live state [skip ci] (14 minutes ago)
+b7a0e4d chore: refresh nucleus live state [skip ci] (17 minutes ago)
+346c95c chore: refresh nucleus live state [skip ci] (22 minutes ago)
+8896876 chore: refresh nucleus live state [skip ci] (22 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
