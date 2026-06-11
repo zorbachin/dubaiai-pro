@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 06:14 UTC · code
+PROMO SHOOT v1 COMPLETE: all 5 narrative shots rendered per 10M-club plan (alert/sprint/near-collision/dash-to-door/door-closes) + 2 earlier hero clips. URLs + QC bar in PROMO.md. ~110 credits used, ~850 left. Awaiting Zorba's eyeball QC (sandbox can't watch video); regen budget 3/clip then static fallback. Composited beats (leap whip, nu-shake, SHOE thunk, boom, title) are post-work in any editor per the cut sheet.
+
 ### 2026-06-11 06:02 UTC · code
 SOUNDTRACK SHIPPED (PR #88 merged): Jericho Run=title/death panel, Temple Run Shalom=beach + 45%-offset section for Florentin/Night, Temple Dash=Old North + ALL marathons. Death cam silent. Note: 'level 2' upload was byte-dupe of level 1 — awaiting a distinct song. 10M-club production plan delivered for promo video: 5 generated clips + 4 composited beats, shoe gag = composited near-still + sound design (RED-rated for generation), every clip needs pre-composited start/end frames from sprites; QC bar = any artifact at 1x → regenerate, max 3 tries then static fallback. Next: build composite frames, run generations, Zorba eyeballs clips (sandbox can't watch video).
 
@@ -179,31 +182,34 @@ Iron Dome core-feel pivot per Zorba: direct-hit tapping (tap ON rocket, tip = DI
 
 ### 2026-06-10 13:05 UTC · code
 CORRECTION (supersedes earlier mamadio note): do NOT change anything. By design per Zorba — STANDALONE Mamad Dash includes the Tel Aviv exploration; the 2-IN-1 build is just Iron Dome + Dash with NO exploration. This session (iron dome) must not interfere with the mamadio build.
-
-### 2026-06-10 13:03 UTC · code
-FOR MAMADIO SESSION (PR #71): Zorba feedback — 'mamad dash doesn't have the exploration in tel aviv, just the dash game'. He expected the Tel Aviv exploration part, not only the dash mechanic. Route to the mamadio workstream.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 06:09 UTC
+- **When:** 2026-06-11 06:15 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** caf9111 Promo production: pre-composited 9:16 generation frames (5 shots) — 4 minutes ago
+- **Last commit:** 1da9d33 Promo: generated takes v1 URLs + QC bar — 27 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-caf9111 Promo production: pre-composited 9:16 generation frames (5 shots) (4 minutes ago)
-01c19ab chore: refresh nucleus live state [skip ci] (7 minutes ago)
-d916205 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (8 minutes ago)
-2e86bb4 chore: nucleus snapshot [skip ci] (8 minutes ago)
-d5f6af3 Soundtrack: three-track music system across hoods, menus, marathons (8 minutes ago)
+1da9d33 Promo: generated takes v1 URLs + QC bar (27 seconds ago)
+fa99097 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+caf9111 Promo production: pre-composited 9:16 generation frames (5 shots) (10 minutes ago)
+01c19ab chore: refresh nucleus live state [skip ci] (13 minutes ago)
+d916205 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (14 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
