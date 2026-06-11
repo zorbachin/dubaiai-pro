@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 04:24 UTC · code
+PACING V2 SHIPPED (board option C, full assessment cycle complete): speed carryover w/ 14% dip, 0.6s door beats (was 2s freeze), 30s marathon every 4th siren, goals up. Measured: 68s continuous blocks vs 11.5s loops, run share 86->97%. Board scores: QA SHIP (16.7ms, zero errors), Art B+ (from C+), all punch lists fixed same-session (street tint, contrast, notch-safe HUD, icon 106KB). Temple Run critique resolved while keeping deadline-death identity.
+
 ### 2026-06-11 03:53 UTC · code
 DESIGN STEER (Zorba): waves feel too short/quick — wants Temple Run flow: long continuous runs that 'really keep going', deaths that take time and investment to arrive, not 10-second chunks. Reconvening full board for all-aspects assessment of the post-art build before tuning.
 
@@ -162,31 +165,34 @@ ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more
 
 ### 2026-06-02 11:07 UTC · chat
 VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-public timeline for Dispatch Issue 002 'How One Site Became a Whole Build'): (1) zorbot.io = his FIRST site, built to try and get work (the digital first call). (2) -> led to a PRODUCT 'bloop' on buildyourbot.io. (3) Riley + selfsellingai evolved from it. (4) a CLOSING TOOL (foxy-close-tool/Instant Proposals) became its own product. Through-line: same instinct each time — find where time leaks, build the fix; mission got clearer = take back your time, give time back to others. NEEDS FROM ZORBA: one-line confirm per beat + the asset to embed (video link + site URL/screenshot) — sites are bot-blocked so Claude can't pull them. Skeleton: content-assets/newsletter/ISSUE-002-chronology.md. NOTE: we 'started this' 2026-06-01 (OS + AUDIT.md + decision log).
-
-### 2026-06-02 11:05 UTC · chat
-ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back engaged/broke/no job/sublet -> married -> baby coming -> WAR days after wedding -> obsessing over AI in the bomb shelter -> first call, second call -> finally got over the unease of POSTING. MISSION (clearer now): build a business to take back his own time AND give time back to others. NOT to make people AI-obsessed; he likes people who want to grow + use tools well; loves solving problems like he does ON SET. Building LIVE, exposed: 'follow me, make that first call/post yourself.' Voice: plain, confessional, anti-hype, sell the WHY (time/freedom). Masthead recut (title 'The First Call'). Kept Three Two-Minute Time-Savers as closing segment. Substack IS SET UP — ready to paste & publish. Updated voice-guide story assets (house/war now filled).
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 04:17 UTC
+- **When:** 2026-06-11 04:24 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 180f6c3 Board polish pass: cohesion, contrast, notch safety, QA one-liners — 3 minutes ago
+- **Last commit:** 4d1af05 Pacing v2: continuous flow - speed carryover, door beats, marathons — 22 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 ```
 
 **Recent commits:**
 ```
-180f6c3 Board polish pass: cohesion, contrast, notch safety, QA one-liners (3 minutes ago)
-a40e3b7 chore: refresh nucleus live state [skip ci] (10 minutes ago)
-9800f50 Installable web-app polish: manifest + iOS home-screen title (11 minutes ago)
-8a71dc1 chore: refresh nucleus live state [skip ci] (14 minutes ago)
-0745dae chore: refresh nucleus live state [skip ci] (14 minutes ago)
+4d1af05 Pacing v2: continuous flow - speed carryover, door beats, marathons (22 seconds ago)
+7ef3a02 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+180f6c3 Board polish pass: cohesion, contrast, notch safety, QA one-liners (10 minutes ago)
+a40e3b7 chore: refresh nucleus live state [skip ci] (17 minutes ago)
+9800f50 Installable web-app polish: manifest + iOS home-screen title (18 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
