@@ -51,7 +51,6 @@ DURABLE BRAND RULE from Zorba: all Iron Dome promo assets bilingual BURNED IN �
 
 ### 2026-06-11 02:58 UTC · code
 Elite art pass MERGED (PR #82): retro pixel set composited into production — share-card.jpg 1200x630@170KB live as og:image (every WhatsApp link now shows the retro dome + Hebrew title card), story/square-falafel/press-hero rebuilt on the new art, originals archived in content-assets/irondome-promo/art/. DURABLE: retro pixel = the Iron Dome brand. Outstanding for launch: full-res app icon (Zorba re-downloads the minimal dome icon from ChatGPT), domain purchase, GoatCounter claim — then seeding per checklist.
-
 ### 2026-06-11 02:53 UTC · code
 Art direction decided on ChatGPT image passes: RETRO pass -> share card (readable at thumbnail size, single clear story); FIRST pass panorama -> press hero (richness rewards full-size, tells the 10-cities story); icon/falafel-meme/story/daily-badge all approved as-is. BLOCKED on full-res originals from Zorba (uploads were ~300-600px chat-compressed; need ChatGPT downloads direct or via Drive). Then: typography overlay, icon regen 192/512, share-card + promo swap, WhatsApp-safe compression, one-pass re-ship.
 
@@ -179,6 +178,23 @@ ISSUE 001 STORY corrected + VOICE RULE. (1) NO EM-DASHES in his content — more
 
 ### 2026-06-02 11:07 UTC · chat
 VENTURE CHRONOLOGY (new, from Zorba — NOT previously documented; build-in-public timeline for Dispatch Issue 002 'How One Site Became a Whole Build'): (1) zorbot.io = his FIRST site, built to try and get work (the digital first call). (2) -> led to a PRODUCT 'bloop' on buildyourbot.io. (3) Riley + selfsellingai evolved from it. (4) a CLOSING TOOL (foxy-close-tool/Instant Proposals) became its own product. Through-line: same instinct each time — find where time leaks, build the fix; mission got clearer = take back your time, give time back to others. NEEDS FROM ZORBA: one-line confirm per beat + the asset to embed (video link + site URL/screenshot) — sites are bot-blocked so Claude can't pull them. Skeleton: content-assets/newsletter/ISSUE-002-chronology.md. NOTE: we 'started this' 2026-06-01 (OS + AUDIT.md + decision log).
+
+
+
+### 2026-06-02 11:05 UTC · chat
+ISSUE 001 REWRITTEN = origin story 'The First Call' (his real story): came back engaged/broke/no job/sublet -> married -> baby coming -> WAR days after wedding -> obsessing over AI in the bomb shelter -> first call, second call -> finally got over the unease of POSTING. MISSION (clearer now): build a business to take back his own time AND give time back to others. NOT to make people AI-obsessed; he likes people who want to grow + use tools well; loves solving problems like he does ON SET. Building LIVE, exposed: 'follow me, make that first call/post yourself.' Voice: plain, confessional, anti-hype, sell the WHY (time/freedom). Masthead recut (title 'The First Call'). Kept Three Two-Minute Time-Savers as closing segment. Substack IS SET UP — ready to paste & publish. Updated voice-guide story assets (house/war now filled).
+
+
+
+### 2026-06-02 11:02 UTC · chat
+NEWSLETTER PLATFORM = SUBSTACK (chosen). The Dispatch recurring segment: 'Three Two-Minute Time-Savers' (one WORK, one LIFE, one HEALTH; quick/fun; each a copy-paste prompt). Issue 001 written (content-assets/newsletter/ISSUE-001.md): feature 'Buy Back Your Time' + the 3 time-savers (kill the email thread / plan the night out / fridge->meal + 12-min calisthenics workout). Opt-in INVITE drafted (content-assets/newsletter/INVITE.md) — personal invites + warm leads + content-engine growth, NEVER import-and-blast. Masthead billing updated to feature the time-savers segment.
+
+
+
+
+
+### 2026-06-02 10:59 UTC · chat
+NEWSLETTER = 'The Dispatch' — cinematic, vintage movie-announcement style (built: content-assets/newsletter/dispatch-no-001.png via bin/cinema_news.py). Aged paper, double frame, 'proudly presents', dramatic serif billing, marquee bar, 'printed for a select readership'. NO LIST YET + DO NOT spam his contacts (kills deliverability + relationships). PLAN: use a real ESP (Substack or Beehiiv free) for compliance/unsubscribe; SEED via personal opt-in invites (Claude drafts) to people he knows + warm leads (post-repliers, clients like vybewear, video commenters); grow as a byproduct of the content engine (every post -> 'join the Dispatch'). Cadence: monthly/biweekly 'issue' = an event, quality over frequency. Positioning: 'a select readership', worth-their-time storytelling.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
@@ -186,6 +202,14 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
 - **When:** 2026-06-11 03:02 UTC
+
+- **When:** 2026-06-11 02:53 UTC
+- **Branch:** `claude/iron-dome-game-zi3dtt`
+- **Last commit:** 6cda150 chore: refresh nucleus live state [skip ci] — 13 seconds ago
+
+- **When:** 2026-06-10 19:00 UTC
+
+- **When:** 2026-06-10 18:53 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
 - **Last commit:** 514bde1 Bilingual burn-in across all promo assets — 2 seconds ago
 
@@ -201,6 +225,66 @@ f2d8f25 chore: refresh nucleus live state [skip ci] (3 minutes ago)
 9b4c85e Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (4 minutes ago)
 9209bd7 Elite art pass: retro pixel art across share card + all promo assets (5 minutes ago)
 447ce5a chore: refresh nucleus live state [skip ci] (8 minutes ago)
+
+6cda150 chore: refresh nucleus live state [skip ci] (13 seconds ago)
+4fa7e02 chore: refresh nucleus live state [skip ci] (8 hours ago)
+5c97328 chore: refresh nucleus live state [skip ci] (8 hours ago)
+5e6703b Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (8 hours ago)
+009da8e Iron Dome launch promo pack: copy + cards + screenshots (8 hours ago)
+
+510087a chore: refresh nucleus live state [skip ci] (4 minutes ago)
+fa3306c chore: refresh nucleus live state [skip ci] (5 minutes ago)
+d5a1cd2 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (6 minutes ago)
+e0b3a2c chore: refresh nucleus live state [skip ci] (6 minutes ago)
+5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (7 minutes ago)
+
+5134eb5 v15: full panel batch — GO verdict fixes, Daily Alert, real difficulty, feel polish (1 second ago)
+2c72477 chore: refresh nucleus live state [skip ci] (14 minutes ago)
+aff1a2e chore: refresh nucleus live state [skip ci] (20 minutes ago)
+b2b5be8 chore: refresh nucleus live state [skip ci] (23 minutes ago)
+3fc13b7 chore: refresh nucleus live state [skip ci] (23 minutes ago)
+
+ed91283 v13: difficulty select, intra-level ramp, bonus rounds, active Iron Sling volley (1 second ago)
+1807ced chore: refresh nucleus live state [skip ci] (4 minutes ago)
+e965ff0 chore: refresh nucleus live state [skip ci] (4 minutes ago)
+3b19110 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (5 minutes ago)
+79f7776 chore: refresh nucleus live state [skip ci] (5 minutes ago)
+
+54dd188 v12: Israeli voice pack — sabra sarcasm woven through every touchpoint (1 second ago)
+0011b2d chore: refresh nucleus live state [skip ci] (3 hours ago)
+50c8bdc chore: refresh nucleus live state [skip ci] (3 hours ago)
+a1ba153 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (3 hours ago)
+59ebd05 chore: refresh nucleus live state [skip ci] (3 hours ago)
+
+ee632d0 v11: loseable difficulty, <4s first kill, juice, heat, factions, sharing, iPhone fixes (12 seconds ago)
+ac68fa5 chore: refresh nucleus live state [skip ci] (17 minutes ago)
+02ac41d chore: refresh nucleus live state [skip ci] (17 minutes ago)
+71757be Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (20 minutes ago)
+7b72772 Mobile hardening: visual-viewport canvas, hard playfield clamp, music, version badge (21 minutes ago)
+
+89bfac1 chore: refresh nucleus live state [skip ci] (73 minutes ago)
+3c7c3f7 chore: refresh nucleus live state [skip ci] (74 minutes ago)
+a38b345 Merge remote-tracking branch 'origin/main' into claude/iron-dome-game-zi3dtt (75 minutes ago)
+13d5682 chore: refresh nucleus live state [skip ci] (75 minutes ago)
+817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (76 minutes ago)
+
+817e434 Core feel pivot: direct-hit tapping, no auto-aim, hypnotic rhythm (1 second ago)
+1b9fd79 chore: refresh nucleus live state [skip ci] (23 minutes ago)
+7440fdd chore: refresh nucleus live state [skip ci] (23 minutes ago)
+7d7eac0 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+1e4e045 chore: refresh nucleus live state [skip ci] (25 minutes ago)
+
+d41df29 chore: refresh nucleus live state [skip ci] (7 minutes ago)
+b4bdca7 chore: refresh nucleus live state [skip ci] (32 minutes ago)
+5c4b64b chore: refresh nucleus live state [skip ci] (36 minutes ago)
+76817f9 chore: refresh nucleus live state [skip ci] (37 minutes ago)
+8a3a869 QA panel fixes: fail state, Red Alert endless mode, save hardening, UX + visual polish (37 minutes ago)
+
+e7a755e Self-improving calibration + scale-proof touch mapping (1 second ago)
+a7b9cf5 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+7cce0e9 chore: refresh nucleus live state [skip ci] (11 minutes ago)
+93fe228 Add touch calibration mode, enforce 15% margins, fix input drops (12 minutes ago)
+956e4f5 chore: refresh nucleus live state [skip ci] (66 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
