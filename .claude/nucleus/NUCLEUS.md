@@ -46,6 +46,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 07:54 UTC · code
+WORKSTREAM SYNC AUDIT: mamaddash canonical == miklat package (byte-verified modulo domain+analytics deltas); bin/sync-miklat script added so it can never drift. mamadio stable by design. OUT OF SYNC: Iron Dome (not ported — location unconfirmed, zorbasphere candidate, or regenerate); deploy keys still with Zorba (miklatgames repo, Porkbun DNS x2 domains, GoatCounter).
+
+### 2026-06-11 07:33 UTC · code
+PLAYTEST BATCH SHIPPED (PR #95 merged): pause button + PAUSED key screen (ring legend, costs, helpers), HOME button, hits cost -10 shekels, emoji ink-centered in telegraph rings, lime scooter helper (1.55x hyper-speed one screen, smash-proof), easy/medium/hard difficulty persisted (dailies pinned medium). All verified headless. The game now has its full v1 feature set.
+
 ### 2026-06-11 07:40 UTC · code
 v20 MERGED (PR #96): LEVELS NOW WEAR THE REAL ART — discovered 5 unprocessed full-res retro panoramas in session uploads; cut 10 per-city level worlds from them (bg1-bg10.jpg, dome baked in, clean playfield sky, pixel-crisp, lazy-loaded w/ procedural fallback). Also: caught+fixed conflict markers committed to game files during a squash-artifact merge (restored from clean commit, 23/23 tests). The '16 portrait images' ask is now MOOT for levels — only nice-to-haves remain (icon, victory art, daily badge as standalone files).
 ### 2026-06-11 07:32 UTC · code
@@ -194,6 +200,9 @@ Iron Dome v15 = consolidated brutal-panel batch: stability NO-GO->GO (music was 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
+- **When:** 2026-06-11 07:54 UTC
+- **Branch:** `claude/mamad-dash-location-0mmse2`
+- **Last commit:** 7ed59b5 bin/sync-miklat: one-command game->arcade package sync — 1 second ago
 - **When:** 2026-06-11 07:47 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
 - **Last commit:** 20c55e4 chore: refresh nucleus live state [skip ci] — 6 minutes ago
@@ -239,6 +248,11 @@ M .claude/nucleus/NUCLEUS.md
 
 **Recent commits:**
 ```
+7ed59b5 bin/sync-miklat: one-command game->arcade package sync (1 second ago)
+8d13acf chore: refresh nucleus live state [skip ci] (2 minutes ago)
+9354dae chore: refresh nucleus live state [skip ci] (20 minutes ago)
+db9a28e chore: refresh nucleus live state [skip ci] (20 minutes ago)
+731b88c Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (21 minutes ago)
 20c55e4 chore: refresh nucleus live state [skip ci] (6 minutes ago)
 65e6b87 chore: refresh nucleus live state [skip ci] (7 minutes ago)
 b4cce8d fix: restore clean v20 game files (conflict markers from squash-artifact merge) (7 minutes ago)
