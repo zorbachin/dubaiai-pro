@@ -187,28 +187,22 @@ MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimo
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 10:31 UTC
+- **When:** 2026-06-11 10:32 UTC
 - **Branch:** `claude/mamad-dash-location-0mmse2`
-- **Last commit:** 2e63f22 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 — 49 seconds ago
+- **Last commit:** 149f3b1 chore: refresh nucleus live state [skip ci] — 24 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 252 ++-------------------------------------------
- 1 file changed, 10 insertions(+), 242 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-2e63f22 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (49 seconds ago)
-83e4bef chore: nucleus snapshot [skip ci] (50 seconds ago)
+149f3b1 chore: refresh nucleus live state [skip ci] (24 seconds ago)
+2e63f22 Merge remote-tracking branch 'origin/main' into claude/mamad-dash-location-0mmse2 (73 seconds ago)
+83e4bef chore: nucleus snapshot [skip ci] (74 seconds ago)
 586ebad Fix inside-mamad bleed on iPhone: self-healing canvas dimensions (2 minutes ago)
 67ca718 🚀 THE FLIP: miklatgames.fun — domain live, all URLs migrated, v25 (#101) (39 minutes ago)
-c39e762 v24: real per-city art on all levels, music everywhere, towers gone, menu redesign (#100) (72 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
