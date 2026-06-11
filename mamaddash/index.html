@@ -240,10 +240,16 @@ const G={
   hits:0, stumble:0, invuln:0, shieldFlash:0,
   star:0, magnet:0, banner:null, sirenOn:false,
   jbuf:0, freeze:0, nextPulse:0, combo:0, lastCoin:-9, starHits:0,
-  daily:null, revived:false,
+  daily:null, revived:false, vCarry:0, nextPow2:-1,
   insideT:0, tutorial:!localStorage.getItem('md_best'),
   rockets:[], pops:[], confetti:[], fly:[],
 };
+// pacing v2: waves are longer, so old bests deflate — rescale once
+if(!localStorage.getItem('md_v2')){
+  if(G.best.sirens>0){ G.best.sirens=Math.max(1,Math.round(G.best.sirens*.65));
+    localStorage.setItem('md_best',JSON.stringify(G.best)); }
+  localStorage.setItem('md_v2','1');
+}
 const POP_COLS=['#ffd166','#7ee8c7','#ff8ad4','#8ad2ff'];
 function pop(x,y,txt,col,big){ G.pops.push({x,y,txt,col:col||'#ffd166',t:0,big:!!big}); }
 function burstConfetti(n){
@@ -261,19 +267,23 @@ let WRo=Math.random, WRc=Math.random;
 const wrandO=(a,b)=>a+WRo()*(b-a), wirandO=(a,b)=>Math.floor(wrandO(a,b+1));
 const wrandC=(a,b)=>a+WRc()*(b-a);
 function waveCfg(n){            // n = 1-based wave number
-  const v1=Math.min(700,470+(n-1)*26);         // …frantic finish keeps climbing
+  const mar=n>1&&n%4===0;                      // every 4th siren is a marathon
+  const v1=Math.min(720,470+(n-1)*26);         // …frantic finish keeps climbing
   return {
-    goal: Math.min(5200,2800+(n-1)*450),       // waves stop lengthening, keep speeding
-    v0:   Math.min(v1-90,240+(n-1)*14),        // calm start (never inverts past v1)
+    goal: Math.min(7500,3400+(n-1)*620)*(mar?2.5:1),
+    v0:   Math.min(v1-90,240+(n-1)*14),        // floor only — carryover overrides
     v1,
     obGap:[Math.max(195,330-(n-1)*9), Math.max(285,520-(n-1)*14)],
     airP: Math.min(.5,.2+(n-1)*.035),
     pairP:n>=8?Math.min(.3,.08+(n-8)*.03):0,   // post-8: double-obstacle combos
-    slack:Math.min(.84,.76+Math.max(0,n-8)*.012), // post-8: the clock stops forgiving
+    slack:Math.min(.84,.76+Math.max(0,n-8)*.012)+(mar?.02:0),
+    marathon:mar,
   };
 }
 function startWave(){
   G.wave++; const c=waveCfg(G.wave); G.cfg=c;
+  // speed carries over between sirens (14% relief dip, never a full reset)
+  if(G.wave>1) c.v0=clamp(G.vCarry*.86,c.v0,c.v1-60);
   G.prog=0; G.goal=c.goal; G.obs=[]; G.picks=[]; G.pows=[]; G.rockets=[];
   clearTimeout(G.deathTimer);
   G.nextOb=(G.tutorial&&!G.daily)?420:520; G.nextCoin=750;   // dailies: identical spacing for everyone
@@ -292,20 +302,23 @@ function startWave(){
   G.jbuf=0; G.combo=0; G.starHits=0; G.confetti.length=0; G.fly.length=0;
   G.nextPulse=G.t+1.2;
   G.player.y=0; G.player.vy=0; G.player.duckT=0;
-  G.banner={t:0,txt:`📍 ${THEME().name}`,sub:`SIREN #${G.wave}`};
+  G.banner={t:0,txt:`📍 ${THEME().name}`,
+    sub:c.marathon?`SIREN #${G.wave} — LONG ONE. RUN.`:`SIREN #${G.wave}`};
+  G.nextPow2=c.marathon?c.goal*.7:-1;          // marathons guarantee a late ⌛
   // budget: clean run uses ~76% of the clock early, ~84% late
-  const avg=(c.v0+c.v1)/2; G.total=(c.goal/avg)/c.slack; G.deadline=G.t+G.total;
+  const avg=(c.v0+c.v1)/2; G.total=Math.min(42,(c.goal/avg)/c.slack); G.deadline=G.t+G.total;
   G.state='run'; Sound.alert();             // chirp now — the wail waits for the last 3s
   buzz([90,60,90]);
 }
 function enterMamad(){
   Sound.sirenStop(); Sound.door();
-  G.state='inside'; G.insideT=1.7; G.shieldFlash=1;
+  G.vCarry=G.speed;                       // momentum survives the door
+  G.state='inside'; G.insideT=.6; G.shieldFlash=1;   // a beat, not a freeze
   G.perfect=G.hits===0;
-  if(G.perfect){ G.coins+=15; G.insideT=2; }
-  burstConfetti(G.perfect?70:36);
+  if(G.perfect){ G.coins+=15; G.insideT=.8; }
+  burstConfetti(G.perfect?32:20);
   G.rockets.push({x:rand(W*.15,W*.5),y:H*.55,t:0});   // iron dome intercept show
-  setTimeout(()=>{ Sound.boom(); flash(.55); shake(); buzz(160); },650);
+  setTimeout(()=>{ Sound.boom(); flash(.55); shake(); buzz(160); },400);
   if(G.tutorial){ G.tutorial=false; }
 }
 /* ---------------- death cam: savta judges you ---------------- */
@@ -458,7 +471,7 @@ function renderCard(s,coins,hood,line){
 const SITE=location.protocol.startsWith('http')?location.origin+location.pathname:'https://dubaiai.pro/mamaddash/';
 $('shareBtn').addEventListener('click',async()=>{
   const s=G.wave-1;
-  const link=G.daily?`${SITE}?daily=1`:`${SITE}?beat=${s}&c=${G.coins}`;
+  const link=G.daily?`${SITE}?daily=1`:`${SITE}?beat=${s}&c=${G.coins}&v=2`;
   let txt;
   if(G.daily) txt=`📅 MAMAD DASH Daily #${G.daily} — ${s} siren${s===1?'':'s'} · ${G.coins}₪. Same gauntlet for everyone, once a day: ${link}`;
   else if(CHAL&&s>CHAL.beat) txt=`🤌 You said ${CHAL.beat}. I survived ${s} sirens and stacked ${G.coins}₪. Your move: ${link}`;
@@ -551,6 +564,11 @@ function update(dt){
     G.pows.push({x:W+90,y:groundY-66-G.powLift*52,kind,
       emoji:{star:'⭐',magnet:'🧲',time:'⌛'}[kind]});
   }
+  // marathons guarantee a late hourglass — earn your extra seconds
+  if(G.nextPow2>0&&G.prog>=G.nextPow2){
+    G.nextPow2=-1;
+    G.pows.push({x:W+90,y:groundY-66,kind:'time',emoji:'⌛'});
+  }
   // coins: small arcs between obstacles
   if(G.goal-G.prog>500&&G.prog>=G.nextCoin){
     const lift=WRc()<.5?0:64;
@@ -591,7 +609,7 @@ function update(dt){
     const hit=o.air?(!ducking&&p.y<52):(p.y<44);
     if(hit){
       G.hits++; G.stumble=.5; G.invuln=.9;
-      G.prog=Math.max(0,G.prog-Math.min(260,140+G.wave*6));  // hits hurt more, later
+      G.prog=Math.max(0,G.prog-Math.min(260,140+G.wave*6)*(c.marathon?1.25:1));  // hits hurt more, later
       G.freeze=.07;                        // hit-stop: the impact has weight
       o.x=-999; Sound.hit(); shake(); buzz(110);
       pop(px,groundY-90,'OOF! 💢','#ff5d5d',true);
@@ -609,7 +627,7 @@ function update(dt){
   }
   for(const f of G.fly) f.t+=dt*3.2;
   G.fly=G.fly.filter(f=>f.t<1);
-  if(G.prog>=G.goal){ G.coins+=20+G.wave*5; enterMamad(); return; }
+  if(G.prog>=G.goal){ G.coins+=20+G.wave*5+(c.marathon?60:0); enterMamad(); return; }
   if(left<=0){ die(); return; }
 }
 
