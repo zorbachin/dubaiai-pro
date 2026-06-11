@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-11 06:13 UTC · code
+🎨 ART ASSET MANIFEST for any Claude surface (Design/Cowork): ALL Iron Dome art is in repo zorbachin/dubaiai-pro on main, publicly fetchable via https://raw.githubusercontent.com/zorbachin/dubaiai-pro/main/ + path. FULL-RES RETRO ORIGINALS (no text, master art): content-assets/irondome-promo/art/{retro-wide-clean.png (1672x941 hero), retro-press-hero.png (1717x916 maximal panorama), retro-square-panorama.png (1254sq), retro-falafel.png (1254sq), retro-wide-alt.png}. PRODUCTION CARDS (typography burned in): content-assets/irondome-promo/{share-card.jpg 1200x630, story-1080x1920.png, square-1080.png, meme-knesset-1080.png, press-hero-titled-1920x1080.png} + gameplay screenshots. IN-GAME: irondome/{share-card.jpg, menu-bg.jpg, icon-192/512.png}. NOTE: the 16 per-level world backgrounds DO NOT EXIST AS FILES anywhere — they were chat previews only; Zorba must upload them (re-download from ChatGPT) before any surface can use them.
+
 ### 2026-06-11 06:07 UTC · code
 v18 MERGED (PR #89): FULL SOUNDTRACK live — home_screen.mp3 on menu (first-tap unlock per iOS), 3 gameplay tracks rotating 1-2-3 across campaign (L10+Red Alert = hottest track, Daily = track 2, bonus keeps synth fiesta). Per Zorba: reuse 3 tracks, no need for ten. All tracks runtime-cached (offline after first listen). Pending unchanged: DNS->flip, GoatCounter claims, 16 level images re-upload, shot-list approval.
 
@@ -178,31 +181,34 @@ Iron Dome v11 built: QA round 2 applied (sim-validated loseable difficulty, <4s 
 
 ### 2026-06-10 14:56 UTC · code
 Iron Dome v10 MERGED (PR #76): visual-viewport canvas (fixes iOS-zoom hiding the city below fold), playfield 15-85% closed at spawn-time too, procedural hypnotic music loop, version badge on menu, SW network-first navigations (self-healing stale caches). QA round 2 running: 2 agents (10M-downloads addiction expert + iPhone-format engineer). KEY HYPOTHESIS for Zorba's reports: he's likely on a stale SW cache (old dubaiai.pro PWA can never self-update — domain dead); badge will prove which build he runs.
-
-### 2026-06-10 13:29 UTC · code
-Iron Dome core-feel pivot per Zorba: direct-hit tapping (tap ON rocket, tip = DIRECT HIT bonus), removed ALL auto-aim/fling/queue, hypnotic steady spawn rhythm, upgrades repurposed (Quick Fuse/City Armor). This IS the shippable mobile loop. 27/27 tests x3.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 06:12 UTC
+- **When:** 2026-06-11 06:13 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e0f8626 chore: refresh nucleus live state [skip ci] — 5 minutes ago
+- **Last commit:** 11db039 chore: refresh nucleus live state [skip ci] — 69 seconds ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 ```
 
 **Recent commits:**
 ```
-e0f8626 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-e3fe306 chore: refresh nucleus live state [skip ci] (5 minutes ago)
-e099799 Soundtrack rotation: three tracks score the whole game (6 minutes ago)
-98952a5 Merge origin/main (keep v18) (7 minutes ago)
-3ff608f v18: real soundtrack arrives — menu music + per-level track system (8 minutes ago)
+11db039 chore: refresh nucleus live state [skip ci] (69 seconds ago)
+e0f8626 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+e3fe306 chore: refresh nucleus live state [skip ci] (6 minutes ago)
+e099799 Soundtrack rotation: three tracks score the whole game (7 minutes ago)
+98952a5 Merge origin/main (keep v18) (8 minutes ago)
 ```
 <!-- AUTOSTATE:END -->
 
