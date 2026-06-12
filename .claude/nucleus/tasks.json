@@ -427,16 +427,21 @@
       "title": "Flip TIP_URL in 4 files when Zorba pastes Ko-fi URL (portal + 3 games), one commit",
       "owner": "claude",
       "created_by": "claude",
-      "status": "open",
+      "status": "done",
       "need": "",
-      "result": "",
+      "result": "ko-fi.com/miklatgames live on 5 surfaces",
       "created": "2026-06-11 19:44 UTC",
-      "updated": "2026-06-11 19:44 UTC",
+      "updated": "2026-06-12 04:54 UTC",
       "history": [
         {
           "at": "2026-06-11 19:44 UTC",
           "by": "claude",
           "event": "created → claude"
+        },
+        {
+          "at": "2026-06-12 04:54 UTC",
+          "by": "claude",
+          "event": "done by claude: ko-fi.com/miklatgames live on 5 surfaces"
         }
       ]
     },

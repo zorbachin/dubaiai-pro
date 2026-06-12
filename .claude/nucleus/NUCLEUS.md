@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-12 04:54 UTC · chat
+REVENUE SWITCH #1 FLIPPED: Zorba created ko-fi.com/miklatgames (Keys Session begun); tip jars now LIVE on portal + all 4 games with evt-tip tracking. Course started — Zorba in MIKLAT ACADEMY L0/L1
+
 ### 2026-06-12 03:24 UTC · code
 MIKLAT DIGGER v1 SHIPPED overnight (4th live game): 853-line single file per the B+C bible, on the shelf w/ card+cover+SW bump. Review gate caught 4 flaky tests (worldgen fencing) + 1 real bug (walking tunnels burst pipes — fixed: only digging shakes ground); suite now 80/80 x40 stable. SS playtest (4K bot runs) tuning landed: mercy inv 2.0s, chase 4s, gentler early density, 3-item first list — casual median now AT genre bar (44s); stale-list fallback bug fixed; 31/31. Test suites persisted into repo (<game>/test/ = new factory invariant). Zorba wakes to: 4 playable games, war room, one Gemini key from full art
 
@@ -188,31 +191,34 @@ PACING V2 SHIPPED (board option C, full assessment cycle complete): speed carryo
 
 ### 2026-06-11 03:53 UTC · code
 DESIGN STEER (Zorba): waves feel too short/quick — wants Temple Run flow: long continuous runs that 'really keep going', deaths that take time and investment to arrive, not 10-second chunks. Reconvening full board for all-aspects assessment of the post-art build before tuning.
-
-### 2026-06-11 03:39 UTC · code
-FULL ART PASS COMPLETE: all 4 hand-painted hood backgrounds in-game with parallax, hand-drawn mamad door, power-up icon trio (crowned hummus!), runner v2 with duck-slide, title screen key art, new og.jpg (146KB WhatsApp-safe) + app icon. Regression green, zero errors. MAMAD DASH looks like a commercial game. Branch/PR #74 has everything; launch still gated on Porkbun DNS + merge.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-12 03:24 UTC
+- **When:** 2026-06-12 04:54 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) — 24 minutes ago
+- **Last commit:** 38e7ca5 nucleus: miklat digger shipped, playtest tuning landed — 2 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/tasks.json
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/tasks.json | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 ```
 
 **Recent commits:**
 ```
-345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) (24 minutes ago)
-95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (35 minutes ago)
-3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished (7 hours ago)
-98e859b nucleus: social layer architected + validated (7 hours ago)
-e9f45ee Naval frameworks: captured + executed against the nucleus and 30-day audit (7 hours ago)
+38e7ca5 nucleus: miklat digger shipped, playtest tuning landed (2 hours ago)
+345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) (2 hours ago)
+95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (2 hours ago)
+3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished (8 hours ago)
+98e859b nucleus: social layer architected + validated (8 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
