@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-12 03:24 UTC · code
+MIKLAT DIGGER v1 SHIPPED overnight (4th live game): 853-line single file per the B+C bible, on the shelf w/ card+cover+SW bump. Review gate caught 4 flaky tests (worldgen fencing) + 1 real bug (walking tunnels burst pipes — fixed: only digging shakes ground); suite now 80/80 x40 stable. SS playtest (4K bot runs) tuning landed: mercy inv 2.0s, chase 4s, gentler early density, 3-item first list — casual median now AT genre bar (44s); stale-list fallback bug fixed; 31/31. Test suites persisted into repo (<game>/test/ = new factory invariant). Zorba wakes to: 4 playable games, war room, one Gemini key from full art
+
 ### 2026-06-12 03:00 UTC · chat
 Universal design layer shipped (Zorba ask): DESIGN-SYSTEM.md = arcade-wide tokens (brand chrome constant across games, sound vocabulary, juice/perf budget, share-card standard) + CANONICAL CAST named: Savta (mascot-in-chief), Noni the kid, Shuki the vendor, Inspector Tikva, Rafi the worker — one universe, recurring characters. assets/universal/prompts.json = cast sheets + UI kit in one imagepack run. In flight: SS design sprint agent + SS bot-playtest agent (200+ runs/policy, tuning deltas) + Miklat Digger v1 build agent
 
@@ -188,18 +191,15 @@ DESIGN STEER (Zorba): waves feel too short/quick — wants Temple Run flow: long
 
 ### 2026-06-11 03:39 UTC · code
 FULL ART PASS COMPLETE: all 4 hand-painted hood backgrounds in-game with parallax, hand-drawn mamad door, power-up icon trio (crowned hummus!), runner v2 with duck-slide, title screen key art, new og.jpg (146KB WhatsApp-safe) + app icon. Regression green, zero errors. MAMAD DASH looks like a commercial game. Branch/PR #74 has everything; launch still gated on Porkbun DNS + merge.
-
-### 2026-06-11 03:03 UTC · code
-ART LANDED: Zorba's ChatGPT character sheets (runner 5 poses w/ beard+phone+REC, savta 3 poses) sliced and integrated — real run cycle, jump/duck poses, tumble ragdoll, hand-drawn savta in death cam + as cart obstacle. Emoji fallback kept. Looks like a real game now. Also sent Art Direction Kit v2 email (Iron Dome standard, 11 prompts w/ hex palette + exact dims) — backgrounds/door/key art/icons still to come from Zorba's ChatGPT session.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-12 03:00 UTC
+- **When:** 2026-06-12 03:24 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) — 11 minutes ago
+- **Last commit:** 345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) — 24 minutes ago
 
 **Working tree:**
 ```
@@ -208,11 +208,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (11 minutes ago)
-3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished (6 hours ago)
-98e859b nucleus: social layer architected + validated (6 hours ago)
+345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) (24 minutes ago)
+95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (35 minutes ago)
+3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished (7 hours ago)
+98e859b nucleus: social layer architected + validated (7 hours ago)
 e9f45ee Naval frameworks: captured + executed against the nucleus and 30-day audit (7 hours ago)
-0034727 nucleus: night shift complete — panels, fixes, war room, campus, morning brief (7 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
