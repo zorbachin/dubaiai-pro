@@ -46,6 +46,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-12 05:44 UTC · code
+Iron Dome v27 shipped & merged (PR #109): one-time langV2 migration flips existing saves to English-first — fixes Zorba still seeing Hebrew after v26 (his saved lang='he' was winning over the new default). עב re-tap sticks forever. SW cache → irondome-v27. Smoke 24/24.
+
 ### 2026-06-11 20:35 UTC · code
 DURABLE RULE per Zorba: ENGLISH-FIRST defaults across game + portal (v26 shipped overnight) — default lang en, og cards English-led w/ Hebrew second, portal auto-detect removed. Saved user preferences win. He's asleep; merged autonomously per standing auto-mode.
 
@@ -178,53 +181,34 @@ VALIDATED: Zorba played MAMAD DASH on his real phone via the raw.githack branch 
 
 ### 2026-06-10 13:23 UTC · code
 MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream skyline) + arcade juice (pop-text, coin glow/spin, landing squash, speed lines, countdown punch, confetti, PERFECT RUN bonus). Zorba steering: addictive + bright first, complexity later — master dash mode before adding anything. Full suite re-verified, pushed to PR #74.
-
-### 2026-06-10 13:08 UTC · code
-BUILT: MAMAD DASH standalone shippable mobile game at mamaddash/index.html (single-file, 453 lines). Tap=jump/swipe-down=duck, instant start, endless escalating siren waves, coins+streak bonuses, share button, localStorage best, all P0 mobile QA fixes baked in (on-canvas countdown, telegraph rings, error-contained loop). Verified headless on phone viewport: 3 waves cleared, death/share/restart/persist all pass, zero errors. On PR #74 (title/body updated to cover all 3 changes). Goes live at dubaiai.pro/mamaddash/ after merge + Porkbun DNS fix.
-
-### 2026-06-10 12:54 UTC · code
-Fixed the volleyball 'I'm timing it right and it misses' bug Zorba hit live: mini-game cursor was frame-based (2x speed on 120Hz phones, hit window < touch latency). Now time-based + 100ms input-latency grace. Pushed to PR #74. QA finding M2 closed.
-
-### 2026-06-10 12:48 UTC · code
-DIRECTION SHIFT (Zorba): MAMAD DASH should become a STANDALONE game — siren runner is the viral core; Tel Aviv exploration demoted to secondary/'a place to play'. Iron Dome + MAMAD DASH = the two viral candidates IF made perfect and dead-simple to play. SEPARATE parked idea: multiplayer Tel Aviv lifestyle game — chat, create worlds, interact ('trying to make it' sim). Echoes QA panel finding: dash is the tense set-piece, hustle layer runs dry. Meanwhile shipped PR #74: dash difficulty now ramps with countdown (calm start, frantic finish) + stumble death-spiral fix + freeze guard.
-
-### 2026-06-10 12:28 UTC · code
-DNS BROKEN: dubaiai.pro resolves to 44.227.76.166 / 44.227.65.245 (registrar parking IPs, likely GoDaddy) instead of GitHub Pages (185.199.108-111.153). Entire site down incl. /mamadio/ — Pages deploys are green, files on main; fix is at the DNS provider: apex A records to the four 185.199.x.153 IPs. Nucleus 'Live at dubaiai.pro' claim is currently false. github.io fallback also dead-ends (301s to the broken custom domain via CNAME).
-
-### 2026-06-10 12:15 UTC · code
-MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimous SHIP WITH FIXES, zero JS errors, economy math verified exact. P0 fixes: mobile dash HUD hidden by alert banner; latent siren-null game-freeze; mini-games have no cancel. Big balance finds: Mendy 2.4x dominant, haggle deterministic, scooters dead content, quest income dries up with 80% of day left, runner stumble death-spiral. Top virality lever = end-screen share card. Full reports in /tmp/qa-func|qa-ux|qa-fun|qa-design.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-12 05:42 UTC
+- **When:** 2026-06-12 05:44 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** e29b570 chore: refresh nucleus live state [skip ci] — 9 hours ago
+- **Last commit:** c164f13 Merge origin/main (keep v27 game files, union nucleus) — 75 seconds ago
 
 **Working tree:**
 ```
 M .claude/nucleus/NUCLEUS.md
- M irondome/index.html
- M irondome/sw.js
 ```
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/NUCLEUS.md | 14 +++++++-------
- irondome/index.html        |  5 ++++-
- irondome/sw.js             |  2 +-
- 3 files changed, 12 insertions(+), 9 deletions(-)
+.claude/nucleus/NUCLEUS.md | 40 +++++++++-------------------------------
+ 1 file changed, 9 insertions(+), 31 deletions(-)
 ```
 
 **Recent commits:**
 ```
+c164f13 Merge origin/main (keep v27 game files, union nucleus) (75 seconds ago)
+b920f45 v27: one-time language migration — existing saves flip to English-first (2 minutes ago)
 e29b570 chore: refresh nucleus live state [skip ci] (9 hours ago)
 1e8117c chore: refresh nucleus live state [skip ci] (9 hours ago)
-4c0dc24 Merge origin/main (keep v26, round 2) (9 hours ago)
-a2e85ca Merge origin/main (keep v26) (9 hours ago)
-59d455b v26: English-first defaults — game and portal open in English (9 hours ago)
+66e7501 v26: English-first defaults for game + portal (#108) (9 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
