@@ -292,7 +292,7 @@
    ========================================================= */
 
 const $ = id => document.getElementById(id);
-const GAME_VERSION = 'v26';
+const GAME_VERSION = 'v27';
 const INBOUND = new URLSearchParams(location.search);
 const REF = INBOUND.get('ref') || '';
 console.log('Iron Dome ' + GAME_VERSION);
@@ -312,6 +312,9 @@ save.up = Object.assign({ blast: 0, speed: 0, launchers: 0, sling: 0 }, save.up)
 for (const k in save.up) save.up[k] = Math.max(0, Math.min(k === 'launchers' ? 2 : 3, +save.up[k] || 0));
 if (!save.cal || typeof save.cal !== 'object') save.cal = { x: 0, y: 0, done: false };
 if (save.lang !== 'he' && save.lang !== 'en') save.lang = 'en';
+// one-time migration: English-first applies to existing saves too
+// (pre-launch; anyone preferring עב re-taps once and it sticks forever)
+if (!save.langV2){ save.lang = 'en'; save.langV2 = 1; persist(); }
 if (!['easy', 'normal', 'commando'].includes(save.diff)) save.diff = 'normal';
 save.cal.x = +save.cal.x || 0; save.cal.y = +save.cal.y || 0;
 save.coins = +save.coins || 0; save.best = +save.best || 0; save.unlocked = +save.unlocked || 0;
