@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-12 02:48 UTC · chat
+MIKLAT DIGGER greenlit as B+C fusion (Zorba: 'I like b and c'): dig the mamad, keep hitting antiquities. Full v1 bible committed — coffee meter, brush mini-game, Inspector antagonist, 10 strata, mamad-upgrade meta = Miklat Wallet's first SINK, Pesach afikoman event. V1 = 2-3 day build, queued behind tomorrow's launch day. Open micro-gates: inspector tone OK?, coffee vs hummus meter
+
 ### 2026-06-11 20:46 UTC · chat
 Zorba steers: BALAGAN = beach sports (matkot co-op + volleyball VS + scooter ghost race) — v2 bible committed. NEW game named: MIKLAT DIGGER (no spec existed; stage-0 doc w/ 3 options awaits his pick: Dig-Dug-style / build-the-mamad / archaeology-strata dig — recommend C). SHUK SHOPPER finished tonight per panel: sound synth + seeded DAILY SHUK w/ streaks (30/30 suite + determinism verified). Tomorrow's finish list: SS art pack (needs key), MD daily button + streaks port, ID portal build, Miklat Digger build once steered
 
@@ -188,18 +191,15 @@ ART LANDED: Zorba's ChatGPT character sheets (runner 5 poses w/ beard+phone+REC,
 
 ### 2026-06-11 02:54 UTC · code
 STANDING QUALITY BAR (Zorba): art-prompt kits must match the Iron Dome standard — rules header (NO TEXT anywhere, AI mangles Hebrew; typography composited by Claude afterward), palette locked with exact hex codes + a 'stay strictly on palette' correction line, exact pixel dimensions/aspect ratio per asset, composition notes (where to leave calm space for overlays), style anchors, small-size readability notes. MAMAD DASH palette: sky #37b6ff, cream #f4ecdd, gold #ffd166, teal #7ee8c7, coral #ff5d5d, navy #0b0e1a.
-
-### 2026-06-10 19:45 UTC · code
-QA SIGN-OFF complete → SHIP. All 5 punch-list items fixed incl. the daily-determinism blocker (independent seeded RNG streams per spawn system — interleave-proof; verified across skill levels). Perf: vsync-locked 60fps, p95 16.7ms. Soak: 9 waves + 10 restart cycles clean. MAMAD DASH is promo-ready; morning checklist in mamaddash/PROMO.md.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 20:46 UTC
+- **When:** 2026-06-12 02:48 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 98e859b nucleus: social layer architected + validated — 8 minutes ago
+- **Last commit:** 3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished — 6 hours ago
 
 **Working tree:**
 ```
@@ -208,11 +208,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-98e859b nucleus: social layer architected + validated (8 minutes ago)
-e9f45ee Naval frameworks: captured + executed against the nucleus and 30-day audit (30 minutes ago)
-0034727 nucleus: night shift complete — panels, fixes, war room, campus, morning brief (54 minutes ago)
-b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing (62 minutes ago)
-1d9f072 ZORBA CAMPUS: 5 personalized courses from the 30-day audit + campus hub + audit summary (63 minutes ago)
+3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished (6 hours ago)
+98e859b nucleus: social layer architected + validated (6 hours ago)
+e9f45ee Naval frameworks: captured + executed against the nucleus and 30-day audit (7 hours ago)
+0034727 nucleus: night shift complete — panels, fixes, war room, campus, morning brief (7 hours ago)
+b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing (7 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
