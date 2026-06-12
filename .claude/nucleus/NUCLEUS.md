@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-12 03:00 UTC · chat
+Universal design layer shipped (Zorba ask): DESIGN-SYSTEM.md = arcade-wide tokens (brand chrome constant across games, sound vocabulary, juice/perf budget, share-card standard) + CANONICAL CAST named: Savta (mascot-in-chief), Noni the kid, Shuki the vendor, Inspector Tikva, Rafi the worker — one universe, recurring characters. assets/universal/prompts.json = cast sheets + UI kit in one imagepack run. In flight: SS design sprint agent + SS bot-playtest agent (200+ runs/policy, tuning deltas) + Miklat Digger v1 build agent
+
 ### 2026-06-12 02:48 UTC · chat
 MIKLAT DIGGER greenlit as B+C fusion (Zorba: 'I like b and c'): dig the mamad, keep hitting antiquities. Full v1 bible committed — coffee meter, brush mini-game, Inspector antagonist, 10 strata, mamad-upgrade meta = Miklat Wallet's first SINK, Pesach afikoman event. V1 = 2-3 day build, queued behind tomorrow's launch day. Open micro-gates: inspector tone OK?, coffee vs hummus meter
 
@@ -188,18 +191,15 @@ FULL ART PASS COMPLETE: all 4 hand-painted hood backgrounds in-game with paralla
 
 ### 2026-06-11 03:03 UTC · code
 ART LANDED: Zorba's ChatGPT character sheets (runner 5 poses w/ beard+phone+REC, savta 3 poses) sliced and integrated — real run cycle, jump/duck poses, tumble ragdoll, hand-drawn savta in death cam + as cart obstacle. Emoji fallback kept. Looks like a real game now. Also sent Art Direction Kit v2 email (Iron Dome standard, 11 prompts w/ hex palette + exact dims) — backgrounds/door/key art/icons still to come from Zorba's ChatGPT session.
-
-### 2026-06-11 02:54 UTC · code
-STANDING QUALITY BAR (Zorba): art-prompt kits must match the Iron Dome standard — rules header (NO TEXT anywhere, AI mangles Hebrew; typography composited by Claude afterward), palette locked with exact hex codes + a 'stay strictly on palette' correction line, exact pixel dimensions/aspect ratio per asset, composition notes (where to leave calm space for overlays), style anchors, small-size readability notes. MAMAD DASH palette: sky #37b6ff, cream #f4ecdd, gold #ffd166, teal #7ee8c7, coral #ff5d5d, navy #0b0e1a.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-12 02:48 UTC
+- **When:** 2026-06-12 03:00 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished — 6 hours ago
+- **Last commit:** 95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) — 11 minutes ago
 
 **Working tree:**
 ```
@@ -208,11 +208,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
+95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (11 minutes ago)
 3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished (6 hours ago)
 98e859b nucleus: social layer architected + validated (6 hours ago)
 e9f45ee Naval frameworks: captured + executed against the nucleus and 30-day audit (7 hours ago)
 0034727 nucleus: night shift complete — panels, fixes, war room, campus, morning brief (7 hours ago)
-b063fef agentbus: launch-day task queue (T020-T025) — keys session, art packs, portal submissions, tip flip, press, publishing (7 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
