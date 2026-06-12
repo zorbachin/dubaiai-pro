@@ -199,22 +199,32 @@ MAMADIO 4-agent QA panel complete (functionality/UX/fun-balance/design): unanimo
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-11 20:37 UTC
+- **When:** 2026-06-12 05:42 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** 1e8117c chore: refresh nucleus live state [skip ci] — 16 seconds ago
+- **Last commit:** e29b570 chore: refresh nucleus live state [skip ci] — 9 hours ago
 
 **Working tree:**
 ```
-✓ clean — nothing uncommitted
+M .claude/nucleus/NUCLEUS.md
+ M irondome/index.html
+ M irondome/sw.js
+```
+
+**Uncommitted changes:**
+```
+.claude/nucleus/NUCLEUS.md | 14 +++++++-------
+ irondome/index.html        |  5 ++++-
+ irondome/sw.js             |  2 +-
+ 3 files changed, 12 insertions(+), 9 deletions(-)
 ```
 
 **Recent commits:**
 ```
-1e8117c chore: refresh nucleus live state [skip ci] (16 seconds ago)
-4c0dc24 Merge origin/main (keep v26, round 2) (51 seconds ago)
-a2e85ca Merge origin/main (keep v26) (86 seconds ago)
-59d455b v26: English-first defaults — game and portal open in English (2 minutes ago)
-195c4d4 Duck-only rate to 15%+ and red/green color language (#106) (7 hours ago)
+e29b570 chore: refresh nucleus live state [skip ci] (9 hours ago)
+1e8117c chore: refresh nucleus live state [skip ci] (9 hours ago)
+4c0dc24 Merge origin/main (keep v26, round 2) (9 hours ago)
+a2e85ca Merge origin/main (keep v26) (9 hours ago)
+59d455b v26: English-first defaults — game and portal open in English (9 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
