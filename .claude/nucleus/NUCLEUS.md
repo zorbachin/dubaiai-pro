@@ -187,28 +187,22 @@ MAMAD DASH v2 look: bright Fortnite-esque palette (vivid day sky, Bauhaus cream 
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-12 05:44 UTC
+- **When:** 2026-06-12 05:45 UTC
 - **Branch:** `claude/iron-dome-game-zi3dtt`
-- **Last commit:** c164f13 Merge origin/main (keep v27 game files, union nucleus) — 75 seconds ago
+- **Last commit:** 4453bd6 chore: refresh nucleus live state [skip ci] — 31 seconds ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 40 +++++++++-------------------------------
- 1 file changed, 9 insertions(+), 31 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-c164f13 Merge origin/main (keep v27 game files, union nucleus) (75 seconds ago)
+4453bd6 chore: refresh nucleus live state [skip ci] (31 seconds ago)
+c164f13 Merge origin/main (keep v27 game files, union nucleus) (2 minutes ago)
 b920f45 v27: one-time language migration — existing saves flip to English-first (2 minutes ago)
 e29b570 chore: refresh nucleus live state [skip ci] (9 hours ago)
 1e8117c chore: refresh nucleus live state [skip ci] (9 hours ago)
-66e7501 v26: English-first defaults for game + portal (#108) (9 hours ago)
 ```
 <!-- AUTOSTATE:END -->
 
