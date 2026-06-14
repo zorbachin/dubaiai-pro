@@ -56,6 +56,12 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-06-14 19:49 UTC · code
+Working-style preference (durable, all workstreams): use the economical staged-build method — vision first (<=10 lines), chunk + gate each piece, headless logic check before polish, adversarial self-review (offline/mobile/data-promise/orphans/dupes) before reporting done. Rigor scales with change size: tiny=just do it, feature/structural=full loop. Adapted from miklatgames GAME-FACTORY; full contract in miklatgames/CLAUDE.md.
+
+### 2026-06-12 05:39 UTC · code
+Decision: Iron Dome default language is English (was Hebrew). New players boot EN/LTR; saved language choices preserved. Shipped on claude/cool-rubin-gb8jv6.
+
 ### 2026-06-12 04:54 UTC · chat
 REVENUE SWITCH #1 FLIPPED: Zorba created ko-fi.com/miklatgames (Keys Session begun); tip jars now LIVE on portal + all 4 games with evt-tip tracking. Course started — Zorba in MIKLAT ACADEMY L0/L1
 
@@ -185,40 +191,34 @@ MIKLAT GAMES v1 packaged in dubaiai-pro/miklat/ (session can't create repos — 
 
 ### 2026-06-11 05:12 UTC · code
 DECISION (Zorba): bought miklatgames.fun on Porkbun as the umbrella arcade for all games (solves growth panel's dubaiai.pro trust problem). Wants a Claude design prompt for a mobile-first arcade site built on 10M-club counsel. Brand insight: Miklat = shelter — 'the games you play in the shelter' is the moat. Promo clip 1 (9:16 night) rendered via Higgsfield kling3_0, clip 2 rendering; VO script + cut sheet committed in PROMO.md.
-
-### 2026-06-11 04:24 UTC · code
-PACING V2 SHIPPED (board option C, full assessment cycle complete): speed carryover w/ 14% dip, 0.6s door beats (was 2s freeze), 30s marathon every 4th siren, goals up. Measured: 68s continuous blocks vs 11.5s loops, run share 86->97%. Board scores: QA SHIP (16.7ms, zero errors), Art B+ (from C+), all punch lists fixed same-session (street tint, contrast, notch-safe HUD, icon 106KB). Temple Run critique resolved while keeping deadline-death identity.
-
-### 2026-06-11 03:53 UTC · code
-DESIGN STEER (Zorba): waves feel too short/quick — wants Temple Run flow: long continuous runs that 'really keep going', deaths that take time and investment to arrive, not 10-second chunks. Reconvening full board for all-aspects assessment of the post-art build before tuning.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-12 04:54 UTC
+- **When:** 2026-06-14 19:49 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 38e7ca5 nucleus: miklat digger shipped, playtest tuning landed — 2 hours ago
+- **Last commit:** 0d6b78e nucleus+bus: tip jars live, T023 done — 3 days ago
 
 **Working tree:**
 ```
-M .claude/nucleus/tasks.json
+M .claude/nucleus/NUCLEUS.md
 ```
 
 **Uncommitted changes:**
 ```
-.claude/nucleus/tasks.json | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+.claude/nucleus/NUCLEUS.md | 26 ++++++++++----------------
+ 1 file changed, 10 insertions(+), 16 deletions(-)
 ```
 
 **Recent commits:**
 ```
-38e7ca5 nucleus: miklat digger shipped, playtest tuning landed (2 hours ago)
-345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) (2 hours ago)
-95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (2 hours ago)
-3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished (8 hours ago)
-98e859b nucleus: social layer architected + validated (8 hours ago)
+0d6b78e nucleus+bus: tip jars live, T023 done (3 days ago)
+38e7ca5 nucleus: miklat digger shipped, playtest tuning landed (3 days ago)
+345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) (3 days ago)
+95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (3 days ago)
+3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished (3 days ago)
 ```
 <!-- AUTOSTATE:END -->
 
