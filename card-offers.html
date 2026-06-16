@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Offer Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a0f2c;
+      --navy-mid: #111836;
+      --navy-light: #1a2456;
+      --gold: #c9a84c;
+      --gold-light: #e2c06e;
+      --white: #ffffff;
+      --gray-100: #f4f5f8;
+      --gray-200: #e8eaf0;
+      --gray-400: #9399b0;
+      --gray-600: #5a6080;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 4px 24px rgba(10,15,44,0.12);
+      --shadow-lg: 0 8px 40px rgba(10,15,44,0.2);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-100);
+      color: var(--navy);
+      min-height: 100vh;
+      font-size: 14px;
+    }
+
+    /* ── Header ─────────────────────────────────── */
+    .header {
+      background: var(--navy);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-icon {
+      font-size: 22px;
+    }
+    .header h1 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .header h1 span {
+      color: var(--gold);
+    }
+    .header-back {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .header-back:hover { color: var(--gold); }
+
+    /* ── Stats Bar ───────────────────────────────── */
+    .stats-bar {
+      background: var(--navy-mid);
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-item {
+      padding: 12px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      white-space: nowrap;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--gray-400);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .stat-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .stat-value.gold { color: var(--gold); }
+    .stat-value.green { color: var(--green); }
+    .stat-value.amber { color: var(--amber); }
+
+    /* ── Main Layout ─────────────────────────────── */
+    .main {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1300px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* ── Section Headers ─────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-600);
+    }
+
+    /* ── Buttons ─────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+    .btn-ghost:hover { background: rgba(201,168,76,0.1); }
+    .btn-danger {
+      background: rgba(239,68,68,0.1);
+      color: var(--red);
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+    .btn-danger:hover { background: rgba(239,68,68,0.2); }
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 6px;
+    }
+    .btn-icon {
+      padding: 5px;
+      border-radius: 6px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--gray-400);
+      font-size: 14px;
+      line-height: 1;
+      transition: color 0.15s, background 0.15s;
+    }
+    .btn-icon:hover { color: var(--navy); background: var(--gray-200); }
+    .btn-icon.danger:hover { color: var(--red); background: rgba(239,68,68,0.08); }
+
+    /* ── Cards Panel ─────────────────────────────── */
+    .cards-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card-widget {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .card-chip {
+      width: 40px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .card-meta { flex: 1; min-width: 0; }
+    .card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card-subtext {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 1px;
+    }
+    .card-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+    .badge-green { background: rgba(34,197,94,0.1); color: #16a34a; }
+    .badge-amber { background: rgba(245,158,11,0.12); color: #b45309; }
+    .badge-gray { background: var(--gray-200); color: var(--gray-600); }
+    .badge-navy { background: rgba(10,15,44,0.08); color: var(--navy); }
+
+    .card-toggle-icon {
+      font-size: 12px;
+      color: var(--gray-400);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .card-toggle-icon.open { transform: rotate(180deg); }
+
+    .card-body {
+      border-top: 1px solid var(--gray-200);
+    }
+
+    /* ── Offers List ─────────────────────────────── */
+    .offers-list {
+      padding: 8px 0;
+    }
+
+    .offer-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--gray-100);
+      transition: background 0.15s;
+    }
+    .offer-row:last-child { border-bottom: none; }
+    .offer-row:hover { background: var(--gray-100); }
+    .offer-row.inactive { opacity: 0.5; }
+
+    .offer-toggle {
+      flex-shrink: 0;
+      width: 36px;
+      height: 20px;
+      background: var(--gray-200);
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+      padding: 0;
+    }
+    .offer-toggle::after {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 16px;
+      height: 16px;
+      background: var(--white);
+      border-radius: 50%;
+      transition: left 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .offer-toggle.active {
+      background: var(--green);
+    }
+    .offer-toggle.active::after { left: 18px; }
+
+    .offer-info { flex: 1; min-width: 0; }
+    .offer-merchant {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .offer-detail {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 1px;
+    }
+    .offer-expiry-warn { color: var(--amber); font-weight: 600; }
+    .offer-expiry-expired { color: var(--red); font-weight: 600; }
+
+    .offer-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      white-space: nowrap;
+    }
+    .offer-value.boost { color: var(--gold); }
+    .offer-actions {
+      display: flex;
+      gap: 2px;
+    }
+
+    .card-footer {
+      padding: 10px 16px;
+      border-top: 1px solid var(--gray-200);
+      background: var(--gray-100);
+      display: flex;
+      gap: 8px;
+    }
+
+    /* ── Empty State ─────────────────────────────── */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--gray-400);
+    }
+    .empty-state-icon { font-size: 36px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; margin-bottom: 16px; }
+
+    /* ── Optimizer Panel ─────────────────────────── */
+    .optimizer-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .panel-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .optimizer-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .optimizer-form .span2 { grid-column: span 2; }
+
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .form-input, .form-select {
+      padding: 9px 12px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--navy);
+      background: var(--white);
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    /* ── Results ─────────────────────────────────── */
+    .results-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .result-card {
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .result-card.best {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+    }
+
+    .result-rank {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .result-rank.rank-1 { background: var(--gold); color: var(--navy); }
+    .result-rank.rank-2 { background: var(--gray-200); color: var(--navy); }
+    .result-rank.rank-3 { background: rgba(201,168,76,0.2); color: var(--navy); }
+    .result-rank.rank-other { background: var(--gray-100); color: var(--gray-400); }
+
+    .result-chip {
+      width: 36px;
+      height: 24px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .result-info { flex: 1; min-width: 0; }
+    .result-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .result-breakdown {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 3px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .breakdown-item {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .breakdown-item.saving { color: var(--green); }
+    .breakdown-item.reward { color: var(--gold); }
+    .breakdown-item.warning { color: var(--amber); }
+
+    .result-price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .result-final-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .result-savings {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+    }
+    .result-no-benefit { color: var(--gray-400); font-size: 12px; }
+
+    .best-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    /* ── Expiring Offers Panel ────────────────────── */
+    .expiring-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .expiring-item {
+      border: 1.5px solid rgba(245,158,11,0.3);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      background: rgba(245,158,11,0.04);
+    }
+    .expiring-card-name { font-size: 11px; color: var(--gray-400); font-weight: 500; }
+    .expiring-merchant { font-size: 13px; font-weight: 600; color: var(--navy); margin: 2px 0; }
+    .expiring-days { font-size: 12px; color: var(--amber); font-weight: 600; }
+
+    /* ── Modal ───────────────────────────────────── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,15,44,0.5);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(2px);
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--gray-400);
+      padding: 4px;
+      line-height: 1;
+      transition: color 0.15s;
+    }
+    .modal-close:hover { color: var(--navy); }
+
+    .modal-body {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .modal-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .modal-form-grid .span2 { grid-column: span 2; }
+
+    .color-picker {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .color-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .color-swatch.selected {
+      border-color: var(--navy);
+      transform: scale(1.15);
+    }
+
+    .multiplier-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .multiplier-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .multiplier-label {
+      flex: 1;
+      font-size: 12px;
+      color: var(--gray-600);
+    }
+    .multiplier-input {
+      width: 56px;
+      padding: 5px 8px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      text-align: center;
+      color: var(--navy);
+    }
+    .multiplier-input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .help-text {
+      font-size: 12px;
+      color: var(--gray-400);
+      font-style: italic;
+    }
+
+    .section-divider {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gray-400);
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 6px;
+    }
+
+    /* ── Confirm Dialog ──────────────────────────── */
+    .confirm-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 360px;
+      padding: 28px;
+      text-align: center;
+    }
+    .confirm-icon { font-size: 32px; margin-bottom: 12px; }
+    .confirm-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .confirm-msg { font-size: 14px; color: var(--gray-600); margin-bottom: 20px; }
+    .confirm-actions { display: flex; gap: 10px; justify-content: center; }
+
+    /* ── Toast ───────────────────────────────────── */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .toast {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: slideIn 0.25s ease;
+      max-width: 300px;
+    }
+    .toast.success { border-left: 3px solid var(--green); }
+    .toast.error { border-left: 3px solid var(--red); }
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* ── Checkbox ─────────────────────────────────── */
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .checkbox-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s;
+      color: var(--gray-600);
+    }
+    .checkbox-pill input { display: none; }
+    .checkbox-pill.checked {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* ── Responsive ──────────────────────────────── */
+    @media (max-width: 900px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      .main { padding: 12px; gap: 12px; }
+      .optimizer-form { grid-template-columns: 1fr; }
+      .optimizer-form .span2 { grid-column: span 1; }
+      .modal-form-grid { grid-template-columns: 1fr; }
+      .modal-form-grid .span2 { grid-column: span 1; }
+      .stat-item { padding: 10px 16px; }
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 32px;
+      color: var(--gray-400);
+    }
+    .no-results-icon { font-size: 28px; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-brand">
+    <span class="header-icon">💳</span>
+    <h1>Card Offer <span>Tracker</span></h1>
+  </div>
+  <a href="index.html" class="header-back">← Back to DubaiAI Pro</a>
+</header>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<div class="main">
+  <!-- Cards Panel -->
+  <div class="cards-panel">
+    <div class="section-header">
+      <span class="section-title">My Cards</span>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost btn-sm" onclick="importData()" title="Import JSON backup">↑ Import</button>
+        <button class="btn btn-ghost btn-sm" onclick="exportData()" title="Export JSON backup">↓ Export</button>
+        <button class="btn btn-primary btn-sm" onclick="openCardModal()">+ Add Card</button>
+      </div>
+    </div>
+    <div id="cardsContainer"></div>
+  </div>
+
+  <!-- Right Panel -->
+  <div class="optimizer-panel">
+    <!-- Cart Optimizer -->
+    <div class="panel-card">
+      <div class="section-header">
+        <span class="section-title">Cart Optimizer</span>
+      </div>
+      <div class="optimizer-form">
+        <div class="form-group">
+          <label class="form-label">Merchant / Store</label>
+          <input class="form-input" id="optMerchant" type="text" placeholder="e.g. Noon, Carrefour…">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Amount ($)</label>
+          <input class="form-input" id="optAmount" type="number" min="0" step="0.01" placeholder="0.00">
+        </div>
+        <div class="form-group span2">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="optCategory">
+            <option value="">— Select category —</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="width:100%" onclick="runOptimizer()">
+        ✦ Find Best Card
+      </button>
+    </div>
+
+    <!-- Results -->
+    <div class="panel-card" id="resultsPanel" style="display:none">
+      <div class="section-header">
+        <span class="section-title">Results</span>
+        <span id="resultsMeta" style="font-size:12px;color:var(--gray-400)"></span>
+      </div>
+      <div id="resultsList" class="results-list"></div>
+    </div>
+
+    <!-- Expiring Soon -->
+    <div class="panel-card" id="expiringPanel" style="display:none">
+      <div class="section-header">
+        <span class="section-title">⚠ Expiring Soon</span>
+        <span style="font-size:12px;color:var(--amber)">Next 7 days</span>
+      </div>
+      <div id="expiringGrid" class="expiring-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Card Modal -->
+<div class="modal-backdrop" id="cardModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title" id="cardModalTitle">Add Card</span>
+      <button class="modal-close" onclick="closeCardModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="cardId">
+      <div class="modal-form-grid">
+        <div class="form-group span2">
+          <label class="form-label">Card Name</label>
+          <input class="form-input" id="cardName" placeholder="e.g. ADCB Titanium Visa">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Issuer / Bank</label>
+          <input class="form-input" id="cardIssuer" placeholder="e.g. ADCB">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last 4 Digits (optional)</label>
+          <input class="form-input" id="cardLastFour" placeholder="1234" maxlength="4">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Card Color</label>
+        <div class="color-picker" id="colorPicker"></div>
+      </div>
+
+      <div class="section-divider">Rewards</div>
+
+      <div class="modal-form-grid">
+        <div class="form-group">
+          <label class="form-label">Reward Type</label>
+          <select class="form-select" id="cardRewardType" onchange="togglePointValue()">
+            <option value="cashback">Cashback (%)</option>
+            <option value="points">Points</option>
+            <option value="miles">Miles</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Base Rate</label>
+          <input class="form-input" id="cardBaseRate" type="number" min="0" step="0.1" placeholder="1.5">
+        </div>
+        <div class="form-group span2" id="pointValueGroup" style="display:none">
+          <label class="form-label">$ value per point/mile</label>
+          <input class="form-input" id="cardPointValue" type="number" min="0" step="0.001" placeholder="0.025">
+          <span class="help-text">How much each point/mile is worth in $ when redeemed</span>
+        </div>
+      </div>
+
+      <div class="section-divider">Category Multipliers</div>
+      <span class="help-text">Enter the reward multiplier for each spend category (e.g. 3× dining)</span>
+      <div class="multiplier-grid" id="multiplierGrid"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeCardModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveCard()">Save Card</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Offer Modal -->
+<div class="modal-backdrop" id="offerModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title" id="offerModalTitle">Add Offer</span>
+      <button class="modal-close" onclick="closeOfferModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="offerCardId">
+      <input type="hidden" id="offerId">
+      <div class="modal-form-grid">
+        <div class="form-group span2">
+          <label class="form-label">Merchant / Store</label>
+          <input class="form-input" id="offerMerchant" placeholder="e.g. Noon  (leave blank = any store)">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Offer Type</label>
+          <select class="form-select" id="offerType">
+            <option value="percent_off">% Off (immediate)</option>
+            <option value="fixed_off">Fixed Amount Off</option>
+            <option value="cashback_boost">Cashback Boost (%)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Value</label>
+          <input class="form-input" id="offerValue" type="number" min="0" step="0.01" placeholder="10">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Min. Spend ($)</label>
+          <input class="form-input" id="offerMinSpend" type="number" min="0" step="1" placeholder="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Max Discount ($, optional)</label>
+          <input class="form-input" id="offerMaxDiscount" type="number" min="0" step="1" placeholder="No cap">
+        </div>
+        <div class="form-group span2">
+          <label class="form-label">Expiry Date (optional)</label>
+          <input class="form-input" id="offerExpiry" type="date">
+        </div>
+        <div class="form-group span2">
+          <label class="form-label">Notes (optional)</label>
+          <input class="form-input" id="offerNotes" placeholder="e.g. Use code SAVE10, online only">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Applies to Categories (leave blank = all)</label>
+        <div class="checkbox-group" id="offerCategoryPills"></div>
+      </div>
+      <div class="form-group" style="flex-direction:row;align-items:center;gap:10px">
+        <label class="offer-toggle" id="offerActivatedToggle" onclick="toggleOfferActivated()"></label>
+        <span style="font-size:13px;font-weight:600" id="offerActivatedLabel">Activated</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeOfferModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveOffer()">Save Offer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Dialog -->
+<div class="modal-backdrop" id="confirmModal">
+  <div class="confirm-box">
+    <div class="confirm-icon" id="confirmIcon">🗑</div>
+    <div class="confirm-title" id="confirmTitle">Are you sure?</div>
+    <div class="confirm-msg" id="confirmMsg"></div>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" onclick="closeConfirm()">Cancel</button>
+      <button class="btn btn-danger" id="confirmOkBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ──────────────────────────────────────────────
+   Constants
+────────────────────────────────────────────── */
+const CATEGORIES = [
+  { id: 'dining',        label: 'Dining' },
+  { id: 'grocery',       label: 'Grocery' },
+  { id: 'online',        label: 'Online Shopping' },
+  { id: 'travel',        label: 'Travel' },
+  { id: 'fuel',          label: 'Fuel & Transport' },
+  { id: 'entertainment', label: 'Entertainment' },
+  { id: 'electronics',   label: 'Electronics' },
+  { id: 'health',        label: 'Health & Pharmacy' },
+  { id: 'fashion',       label: 'Fashion' },
+  { id: 'utilities',     label: 'Utilities & Bills' },
+  { id: 'other',         label: 'Other' },
+];
+
+const CARD_COLORS = [
+  '#1a2456', '#0f3460', '#1a4a2e', '#4a1a2a',
+  '#2a1a4a', '#1a3a4a', '#3a2a10', '#2a2a2a',
+  '#8B1A1A', '#1a3a1a',
+];
+
+const OFFER_TYPE_LABELS = {
+  percent_off:     '% Off',
+  fixed_off:       '$ Off',
+  cashback_boost:  'Cashback Boost',
+};
+
+/* ──────────────────────────────────────────────
+   State & Persistence
+────────────────────────────────────────────── */
+let state = { cards: [] };
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem('cardOfferTracker');
+    if (saved) state = JSON.parse(saved);
+  } catch (e) { /* fresh start */ }
+}
+
+function saveState() {
+  localStorage.setItem('cardOfferTracker', JSON.stringify(state));
+}
+
+function uid() {
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+
+/* ──────────────────────────────────────────────
+   Date Utilities
+────────────────────────────────────────────── */
+function today() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function daysUntil(dateStr) {
+  if (!dateStr) return Infinity;
+  const ms = new Date(dateStr) - new Date(today());
+  return Math.ceil(ms / 86400000);
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-AE', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+/* ──────────────────────────────────────────────
+   Card CRUD
+────────────────────────────────────────────── */
+function addCard(card) {
+  card.id = uid();
+  card.offers = [];
+  state.cards.push(card);
+  saveState();
+}
+
+function updateCard(id, updates) {
+  const idx = state.cards.findIndex(c => c.id === id);
+  if (idx !== -1) {
+    state.cards[idx] = { ...state.cards[idx], ...updates };
+    saveState();
+  }
+}
+
+function deleteCard(id) {
+  state.cards = state.cards.filter(c => c.id !== id);
+  saveState();
+}
+
+/* ──────────────────────────────────────────────
+   Offer CRUD
+────────────────────────────────────────────── */
+function addOffer(cardId, offer) {
+  const card = state.cards.find(c => c.id === cardId);
+  if (!card) return;
+  offer.id = uid();
+  card.offers.push(offer);
+  saveState();
+}
+
+function updateOffer(cardId, offerId, updates) {
+  const card = state.cards.find(c => c.id === cardId);
+  if (!card) return;
+  const idx = card.offers.findIndex(o => o.id === offerId);
+  if (idx !== -1) {
+    card.offers[idx] = { ...card.offers[idx], ...updates };
+    saveState();
+  }
+}
+
+function deleteOffer(cardId, offerId) {
+  const card = state.cards.find(c => c.id === cardId);
+  if (!card) return;
+  card.offers = card.offers.filter(o => o.id !== offerId);
+  saveState();
+}
+
+function toggleOffer(cardId, offerId) {
+  const card = state.cards.find(c => c.id === cardId);
+  if (!card) return;
+  const offer = card.offers.find(o => o.id === offerId);
+  if (!offer) return;
+  offer.activated = !offer.activated;
+  saveState();
+  renderAll();
+  toast(offer.activated ? '✓ Offer activated' : 'Offer deactivated', 'success');
+}
+
+/* ──────────────────────────────────────────────
+   Cart Optimizer
+────────────────────────────────────────────── */
+function merchantMatches(offerMerchant, inputMerchant) {
+  if (!offerMerchant) return true; // applies everywhere
+  const a = offerMerchant.toLowerCase().trim();
+  const b = inputMerchant.toLowerCase().trim();
+  return a.includes(b) || b.includes(a);
+}
+
+function calculateCardValue(card, merchant, category, amount) {
+  const isExpired = (o) => o.expiryDate && daysUntil(o.expiryDate) < 0;
+
+  // Find best applicable activated offer
+  let bestOfferSaving = 0;
+  let bestOffer = null;
+  let offerType = null;
+
+  for (const offer of (card.offers || [])) {
+    if (!offer.activated || isExpired(offer)) continue;
+    const mMatch = merchantMatches(offer.merchant, merchant);
+    const cats = offer.categories || [];
+    const cMatch = cats.length === 0 || cats.includes(category) || cats.includes('all');
+    if (!mMatch || !cMatch) continue;
+    if (amount < (offer.minSpend || 0)) continue;
+
+    let saving = 0;
+    if (offer.type === 'percent_off') {
+      saving = amount * offer.value / 100;
+      if (offer.maxDiscount) saving = Math.min(saving, offer.maxDiscount);
+    } else if (offer.type === 'fixed_off') {
+      saving = offer.value;
+    } else if (offer.type === 'cashback_boost') {
+      // future cashback — still counted but marked differently
+      saving = amount * offer.value / 100;
+    }
+
+    if (saving > bestOfferSaving) {
+      bestOfferSaving = saving;
+      bestOffer = offer;
+      offerType = offer.type;
+    }
+  }
+
+  // Base rewards value
+  const multipliers = card.categoryMultipliers || {};
+  const multiplier = multipliers[category] !== undefined ? multipliers[category] : 1;
+  const effectiveRate = (card.baseRate || 0) * multiplier;
+  let rewardValue = 0;
+  if (card.rewardType === 'cashback') {
+    rewardValue = amount * effectiveRate / 100;
+  } else {
+    // points or miles
+    const pts = amount * effectiveRate;
+    rewardValue = pts * (card.pointValue || 0.025);
+  }
+
+  const totalBenefit = bestOfferSaving + rewardValue;
+  const effectivePrice = amount - totalBenefit;
+
+  return {
+    offerSaving: bestOfferSaving,
+    offer: bestOffer,
+    offerType,
+    rewardValue,
+    effectiveRate,
+    multiplier,
+    totalBenefit,
+    effectivePrice,
+  };
+}
+
+function runOptimizer() {
+  const merchant  = document.getElementById('optMerchant').value.trim();
+  const amountRaw = document.getElementById('optAmount').value.trim();
+  const category  = document.getElementById('optCategory').value;
+
+  if (!amountRaw || isNaN(parseFloat(amountRaw))) {
+    toast('Please enter a valid amount', 'error');
+    return;
+  }
+  if (!category) {
+    toast('Please select a category', 'error');
+    return;
+  }
+  if (state.cards.length === 0) {
+    toast('Add a card first!', 'error');
+    return;
+  }
+
+  const amount = parseFloat(amountRaw);
+
+  const results = state.cards.map(card => ({
+    card,
+    ...calculateCardValue(card, merchant, category, amount),
+  })).sort((a, b) => b.totalBenefit - a.totalBenefit);
+
+  renderResults(results, amount, merchant, category);
+}
+
+/* ──────────────────────────────────────────────
+   Rendering
+────────────────────────────────────────────── */
+function renderAll() {
+  renderStats();
+  renderCards();
+  renderExpiring();
+}
+
+function renderStats() {
+  const totalCards = state.cards.length;
+  const allOffers = state.cards.flatMap(c => c.offers || []);
+  const activeOffers = allOffers.filter(o => o.activated && (!o.expiryDate || daysUntil(o.expiryDate) >= 0));
+  const expiringSoon = allOffers.filter(o => {
+    const d = daysUntil(o.expiryDate);
+    return o.activated && d >= 0 && d <= 7;
+  });
+  const expired = allOffers.filter(o => daysUntil(o.expiryDate) < 0);
+
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-item">
+      <span class="stat-label">Cards</span>
+      <span class="stat-value gold">${totalCards}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Active Offers</span>
+      <span class="stat-value green">${activeOffers.length}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Expiring in 7d</span>
+      <span class="stat-value ${expiringSoon.length > 0 ? 'amber' : ''}">${expiringSoon.length}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Expired</span>
+      <span class="stat-value">${expired.length}</span>
+    </div>
+  `;
+}
+
+function renderCards() {
+  const container = document.getElementById('cardsContainer');
+  if (state.cards.length === 0) {
+    container.innerHTML = `
+      <div class="card-widget">
+        <div class="empty-state">
+          <div class="empty-state-icon">💳</div>
+          <p>No cards added yet.<br>Add your first card to get started.</p>
+          <button class="btn btn-primary" onclick="openCardModal()">+ Add Card</button>
+        </div>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = state.cards.map(card => renderCardWidget(card)).join('');
+}
+
+function renderCardWidget(card) {
+  const offers = card.offers || [];
+  const activeCount = offers.filter(o => o.activated && (!o.expiryDate || daysUntil(o.expiryDate) >= 0)).length;
+
+  const offersHtml = offers.length === 0
+    ? `<div style="padding:12px 16px;font-size:13px;color:var(--gray-400)">No offers added yet.</div>`
+    : offers.map(o => renderOfferRow(card.id, o)).join('');
+
+  const rewardLabel = card.rewardType === 'cashback'
+    ? `${card.baseRate || 0}% cashback`
+    : `${card.baseRate || 0}× ${card.rewardType}`;
+
+  const last4 = card.lastFour ? ` ···${card.lastFour}` : '';
+
+  return `
+    <div class="card-widget" id="card-${card.id}">
+      <div class="card-header" onclick="toggleCard('${card.id}')">
+        <div class="card-chip" style="background:${card.color || '#1a2456'}">💳</div>
+        <div class="card-meta">
+          <div class="card-name">${esc(card.name)}${esc(last4)}</div>
+          <div class="card-subtext">${esc(card.issuer || '')} · ${rewardLabel}</div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge-green">${activeCount} active</span>
+        </div>
+        <span class="card-toggle-icon" id="cardToggle-${card.id}">▼</span>
+      </div>
+      <div class="card-body" id="cardBody-${card.id}" style="display:none">
+        <div class="offers-list">${offersHtml}</div>
+        <div class="card-footer">
+          <button class="btn btn-ghost btn-sm" onclick="openOfferModal('${card.id}')">+ Add Offer</button>
+          <button class="btn btn-ghost btn-sm" onclick="openCardModal('${card.id}')">Edit Card</button>
+          <button class="btn btn-danger btn-sm" onclick="confirmDeleteCard('${card.id}')">Delete</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderOfferRow(cardId, offer) {
+  const days = daysUntil(offer.expiryDate);
+  const isExpired = days < 0;
+  let expiryHtml = '';
+  if (offer.expiryDate) {
+    if (isExpired) {
+      expiryHtml = `<span class="offer-expiry-expired">Expired ${formatDate(offer.expiryDate)}</span>`;
+    } else if (days <= 7) {
+      expiryHtml = `<span class="offer-expiry-warn">Expires in ${days}d</span>`;
+    } else {
+      expiryHtml = `Expires ${formatDate(offer.expiryDate)}`;
+    }
+  }
+
+  let valueHtml = '';
+  if (offer.type === 'percent_off') {
+    valueHtml = `<span class="offer-value">${offer.value}% OFF</span>`;
+  } else if (offer.type === 'fixed_off') {
+    valueHtml = `<span class="offer-value">$${offer.value} OFF</span>`;
+  } else {
+    valueHtml = `<span class="offer-value boost">+${offer.value}% CB</span>`;
+  }
+
+  const cats = (offer.categories || []).map(c => {
+    const cat = CATEGORIES.find(x => x.id === c);
+    return cat ? cat.label : c;
+  }).join(', ') || 'All categories';
+
+  const minSpendTxt = offer.minSpend > 0 ? ` · Min $${offer.minSpend}` : '';
+  const notesTxt = offer.notes ? ` · ${offer.notes}` : '';
+
+  return `
+    <div class="offer-row${!offer.activated || isExpired ? ' inactive' : ''}">
+      <button class="offer-toggle${offer.activated && !isExpired ? ' active' : ''}"
+        onclick="toggleOffer('${cardId}','${offer.id}')"
+        title="${offer.activated ? 'Deactivate' : 'Activate'} offer"></button>
+      <div class="offer-info">
+        <div class="offer-merchant">${offer.merchant ? esc(offer.merchant) : 'Any Store'}</div>
+        <div class="offer-detail">${cats}${minSpendTxt}${notesTxt ? '<br>' + esc(notesTxt) : ''}</div>
+        <div class="offer-detail">${expiryHtml}</div>
+      </div>
+      ${valueHtml}
+      <div class="offer-actions">
+        <button class="btn-icon" onclick="openOfferModal('${cardId}','${offer.id}')" title="Edit">✏</button>
+        <button class="btn-icon danger" onclick="confirmDeleteOffer('${cardId}','${offer.id}')" title="Delete">🗑</button>
+      </div>
+    </div>`;
+}
+
+function renderResults(results, amount, merchant, category) {
+  const panel = document.getElementById('resultsPanel');
+  const list = document.getElementById('resultsList');
+  const meta = document.getElementById('resultsMeta');
+
+  panel.style.display = '';
+  const catLabel = CATEGORIES.find(c => c.id === category)?.label || category;
+  meta.textContent = `${merchant || 'Any'} · ${catLabel} · $${amount.toFixed(2)}`;
+
+  if (results.length === 0) {
+    list.innerHTML = `<div class="no-results"><div class="no-results-icon">💳</div><p>No cards to compare.</p></div>`;
+    return;
+  }
+
+  list.innerHTML = results.map((r, i) => {
+    const rank = i + 1;
+    const rankClass = rank === 1 ? 'rank-1' : rank === 2 ? 'rank-2' : rank === 3 ? 'rank-3' : 'rank-other';
+    const isBest = rank === 1;
+
+    let breakdownParts = [];
+    if (r.offerSaving > 0 && r.offer) {
+      const label = r.offerType === 'cashback_boost' ? 'Cashback boost' : 'Offer';
+      breakdownParts.push(`<span class="breakdown-item saving">✓ ${label}: −$${r.offerSaving.toFixed(2)}</span>`);
+    }
+    if (r.rewardValue > 0) {
+      const rateLabel = r.card.rewardType === 'cashback' ? 'cashback' : r.card.rewardType;
+      breakdownParts.push(`<span class="breakdown-item reward">★ ${rateLabel} (${r.effectiveRate.toFixed(2)}%): $${r.rewardValue.toFixed(2)}</span>`);
+    }
+    if (r.offerSaving === 0 && r.rewardValue === 0) {
+      breakdownParts.push(`<span class="breakdown-item warning">No offers match · Base only</span>`);
+    }
+
+    const bestLabel = isBest ? `<div class="best-tag">★ Best Choice</div>` : '';
+
+    return `
+      <div class="result-card${isBest ? ' best' : ''}">
+        <div class="result-rank ${rankClass}">${rank}</div>
+        <div class="result-chip" style="background:${r.card.color || '#1a2456'}">💳</div>
+        <div class="result-info">
+          <div class="result-name">${esc(r.card.name)}</div>
+          ${bestLabel}
+          <div class="result-breakdown">${breakdownParts.join('')}</div>
+        </div>
+        <div class="result-price">
+          <div class="result-final-price">$${r.effectivePrice.toFixed(2)}</div>
+          ${r.totalBenefit > 0
+            ? `<div class="result-savings">Save $${r.totalBenefit.toFixed(2)}</div>`
+            : `<div class="result-no-benefit">No savings</div>`}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderExpiring() {
+  const soon = state.cards.flatMap(c =>
+    (c.offers || []).filter(o => {
+      const d = daysUntil(o.expiryDate);
+      return o.activated && d >= 0 && d <= 7;
+    }).map(o => ({ card: c, offer: o }))
+  );
+
+  const panel = document.getElementById('expiringPanel');
+  const grid = document.getElementById('expiringGrid');
+
+  if (soon.length === 0) {
+    panel.style.display = 'none';
+    return;
+  }
+
+  panel.style.display = '';
+  grid.innerHTML = soon.map(({ card, offer }) => {
+    const d = daysUntil(offer.expiryDate);
+    return `
+      <div class="expiring-item">
+        <div class="expiring-card-name">${esc(card.name)}</div>
+        <div class="expiring-merchant">${offer.merchant ? esc(offer.merchant) : 'Any Store'}</div>
+        <div class="expiring-days">Expires in ${d === 0 ? 'today' : `${d} day${d !== 1 ? 's' : ''}`}</div>
+      </div>`;
+  }).join('');
+}
+
+/* ──────────────────────────────────────────────
+   Card Modal
+────────────────────────────────────────────── */
+let selectedColor = CARD_COLORS[0];
+
+function buildColorPicker() {
+  document.getElementById('colorPicker').innerHTML = CARD_COLORS.map(c => `
+    <div class="color-swatch${c === selectedColor ? ' selected' : ''}"
+      style="background:${c}" onclick="selectColor('${c}')"></div>
+  `).join('');
+}
+
+function selectColor(color) {
+  selectedColor = color;
+  buildColorPicker();
+}
+
+function buildMultiplierGrid() {
+  document.getElementById('multiplierGrid').innerHTML = CATEGORIES.map(cat => `
+    <div class="multiplier-item">
+      <span class="multiplier-label">${cat.label}</span>
+      <input class="multiplier-input" id="mult-${cat.id}" type="number" min="0" step="0.5" value="1" placeholder="1">
+    </div>
+  `).join('');
+}
+
+function togglePointValue() {
+  const type = document.getElementById('cardRewardType').value;
+  document.getElementById('pointValueGroup').style.display = type !== 'cashback' ? '' : 'none';
+}
+
+function openCardModal(cardId) {
+  const modal = document.getElementById('cardModal');
+  document.getElementById('cardModalTitle').textContent = cardId ? 'Edit Card' : 'Add Card';
+  document.getElementById('cardId').value = cardId || '';
+
+  selectedColor = CARD_COLORS[0];
+  buildColorPicker();
+  buildMultiplierGrid();
+
+  if (cardId) {
+    const card = state.cards.find(c => c.id === cardId);
+    if (card) {
+      document.getElementById('cardName').value = card.name || '';
+      document.getElementById('cardIssuer').value = card.issuer || '';
+      document.getElementById('cardLastFour').value = card.lastFour || '';
+      document.getElementById('cardRewardType').value = card.rewardType || 'cashback';
+      document.getElementById('cardBaseRate').value = card.baseRate || '';
+      document.getElementById('cardPointValue').value = card.pointValue || '';
+      selectedColor = card.color || CARD_COLORS[0];
+      buildColorPicker();
+      togglePointValue();
+      const mults = card.categoryMultipliers || {};
+      CATEGORIES.forEach(cat => {
+        const el = document.getElementById(`mult-${cat.id}`);
+        if (el) el.value = mults[cat.id] !== undefined ? mults[cat.id] : 1;
+      });
+    }
+  } else {
+    document.getElementById('cardName').value = '';
+    document.getElementById('cardIssuer').value = '';
+    document.getElementById('cardLastFour').value = '';
+    document.getElementById('cardRewardType').value = 'cashback';
+    document.getElementById('cardBaseRate').value = '';
+    document.getElementById('cardPointValue').value = '';
+    togglePointValue();
+  }
+
+  modal.classList.add('open');
+}
+
+function closeCardModal() {
+  document.getElementById('cardModal').classList.remove('open');
+}
+
+function saveCard() {
+  const name = document.getElementById('cardName').value.trim();
+  if (!name) { toast('Card name is required', 'error'); return; }
+
+  const mults = {};
+  CATEGORIES.forEach(cat => {
+    const el = document.getElementById(`mult-${cat.id}`);
+    const v = parseFloat(el?.value);
+    mults[cat.id] = isNaN(v) ? 1 : v;
+  });
+
+  const data = {
+    name,
+    issuer: document.getElementById('cardIssuer').value.trim(),
+    lastFour: document.getElementById('cardLastFour').value.replace(/\D/g, '').slice(0, 4),
+    color: selectedColor,
+    rewardType: document.getElementById('cardRewardType').value,
+    baseRate: parseFloat(document.getElementById('cardBaseRate').value) || 0,
+    pointValue: parseFloat(document.getElementById('cardPointValue').value) || 0.025,
+    categoryMultipliers: mults,
+  };
+
+  const id = document.getElementById('cardId').value;
+  if (id) {
+    updateCard(id, data);
+    toast('Card updated', 'success');
+  } else {
+    addCard(data);
+    toast('Card added', 'success');
+  }
+
+  closeCardModal();
+  renderAll();
+}
+
+/* ──────────────────────────────────────────────
+   Offer Modal
+────────────────────────────────────────────── */
+let offerActivated = true;
+
+function buildOfferCategoryPills(selected) {
+  const container = document.getElementById('offerCategoryPills');
+  container.innerHTML = CATEGORIES.map(cat => {
+    const checked = selected.includes(cat.id);
+    return `
+      <label class="checkbox-pill${checked ? ' checked' : ''}" id="pill-${cat.id}">
+        <input type="checkbox" value="${cat.id}" ${checked ? 'checked' : ''}
+          onchange="togglePill('${cat.id}',this.checked)">
+        ${cat.label}
+      </label>`;
+  }).join('');
+}
+
+function togglePill(catId, checked) {
+  const el = document.getElementById(`pill-${catId}`);
+  if (el) el.classList.toggle('checked', checked);
+}
+
+function toggleOfferActivated() {
+  offerActivated = !offerActivated;
+  const toggle = document.getElementById('offerActivatedToggle');
+  const label = document.getElementById('offerActivatedLabel');
+  toggle.classList.toggle('active', offerActivated);
+  label.textContent = offerActivated ? 'Activated' : 'Not activated';
+}
+
+function openOfferModal(cardId, offerId) {
+  document.getElementById('offerCardId').value = cardId;
+  document.getElementById('offerId').value = offerId || '';
+  document.getElementById('offerModalTitle').textContent = offerId ? 'Edit Offer' : 'Add Offer';
+
+  offerActivated = true;
+
+  if (offerId) {
+    const card = state.cards.find(c => c.id === cardId);
+    const offer = card?.offers.find(o => o.id === offerId);
+    if (offer) {
+      document.getElementById('offerMerchant').value = offer.merchant || '';
+      document.getElementById('offerType').value = offer.type || 'percent_off';
+      document.getElementById('offerValue').value = offer.value || '';
+      document.getElementById('offerMinSpend').value = offer.minSpend || '';
+      document.getElementById('offerMaxDiscount').value = offer.maxDiscount || '';
+      document.getElementById('offerExpiry').value = offer.expiryDate || '';
+      document.getElementById('offerNotes').value = offer.notes || '';
+      offerActivated = !!offer.activated;
+      buildOfferCategoryPills(offer.categories || []);
+    }
+  } else {
+    document.getElementById('offerMerchant').value = '';
+    document.getElementById('offerType').value = 'percent_off';
+    document.getElementById('offerValue').value = '';
+    document.getElementById('offerMinSpend').value = '';
+    document.getElementById('offerMaxDiscount').value = '';
+    document.getElementById('offerExpiry').value = '';
+    document.getElementById('offerNotes').value = '';
+    buildOfferCategoryPills([]);
+  }
+
+  const toggle = document.getElementById('offerActivatedToggle');
+  const label = document.getElementById('offerActivatedLabel');
+  toggle.classList.toggle('active', offerActivated);
+  label.textContent = offerActivated ? 'Activated' : 'Not activated';
+
+  document.getElementById('offerModal').classList.add('open');
+}
+
+function closeOfferModal() {
+  document.getElementById('offerModal').classList.remove('open');
+}
+
+function saveOffer() {
+  const valueStr = document.getElementById('offerValue').value.trim();
+  if (!valueStr) { toast('Offer value is required', 'error'); return; }
+
+  const selectedCats = Array.from(
+    document.querySelectorAll('#offerCategoryPills input:checked')
+  ).map(el => el.value);
+
+  const data = {
+    merchant: document.getElementById('offerMerchant').value.trim(),
+    type: document.getElementById('offerType').value,
+    value: parseFloat(valueStr),
+    minSpend: parseFloat(document.getElementById('offerMinSpend').value) || 0,
+    maxDiscount: parseFloat(document.getElementById('offerMaxDiscount').value) || null,
+    expiryDate: document.getElementById('offerExpiry').value || null,
+    notes: document.getElementById('offerNotes').value.trim(),
+    categories: selectedCats,
+    activated: offerActivated,
+  };
+
+  const cardId = document.getElementById('offerCardId').value;
+  const offerId = document.getElementById('offerId').value;
+
+  if (offerId) {
+    updateOffer(cardId, offerId, data);
+    toast('Offer updated', 'success');
+  } else {
+    addOffer(cardId, data);
+    toast('Offer added', 'success');
+  }
+
+  closeOfferModal();
+  renderAll();
+}
+
+/* ──────────────────────────────────────────────
+   Confirm Dialog
+────────────────────────────────────────────── */
+let confirmCallback = null;
+
+function confirmDeleteCard(cardId) {
+  const card = state.cards.find(c => c.id === cardId);
+  if (!card) return;
+  document.getElementById('confirmIcon').textContent = '🗑';
+  document.getElementById('confirmTitle').textContent = 'Delete Card?';
+  document.getElementById('confirmMsg').textContent = `Delete "${card.name}" and all its offers? This cannot be undone.`;
+  confirmCallback = () => {
+    deleteCard(cardId);
+    renderAll();
+    toast('Card deleted', 'success');
+  };
+  document.getElementById('confirmOkBtn').textContent = 'Delete Card';
+  document.getElementById('confirmModal').classList.add('open');
+}
+
+function confirmDeleteOffer(cardId, offerId) {
+  const card = state.cards.find(c => c.id === cardId);
+  const offer = card?.offers.find(o => o.id === offerId);
+  if (!offer) return;
+  const merchant = offer.merchant || 'this offer';
+  document.getElementById('confirmIcon').textContent = '🗑';
+  document.getElementById('confirmTitle').textContent = 'Delete Offer?';
+  document.getElementById('confirmMsg').textContent = `Delete the offer for "${merchant}"?`;
+  confirmCallback = () => {
+    deleteOffer(cardId, offerId);
+    renderAll();
+    toast('Offer deleted', 'success');
+  };
+  document.getElementById('confirmOkBtn').textContent = 'Delete Offer';
+  document.getElementById('confirmModal').classList.add('open');
+}
+
+function closeConfirm() {
+  document.getElementById('confirmModal').classList.remove('open');
+  confirmCallback = null;
+}
+
+document.getElementById('confirmOkBtn').addEventListener('click', () => {
+  if (confirmCallback) confirmCallback();
+  closeConfirm();
+});
+
+/* ──────────────────────────────────────────────
+   Card expand/collapse
+────────────────────────────────────────────── */
+function toggleCard(cardId) {
+  const body = document.getElementById(`cardBody-${cardId}`);
+  const icon = document.getElementById(`cardToggle-${cardId}`);
+  if (!body || !icon) return;
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : '';
+  icon.classList.toggle('open', !open);
+}
+
+/* ──────────────────────────────────────────────
+   Toast
+────────────────────────────────────────────── */
+function toast(msg, type = 'success') {
+  const container = document.getElementById('toastContainer');
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  container.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+/* ──────────────────────────────────────────────
+   Security: escape HTML
+────────────────────────────────────────────── */
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/* ──────────────────────────────────────────────
+   Close modals on backdrop click
+────────────────────────────────────────────── */
+['cardModal', 'offerModal', 'confirmModal'].forEach(id => {
+  document.getElementById(id).addEventListener('click', e => {
+    if (e.target.id === id) {
+      if (id === 'confirmModal') closeConfirm();
+      else if (id === 'cardModal') closeCardModal();
+      else closeOfferModal();
+    }
+  });
+});
+
+/* ──────────────────────────────────────────────
+   Populate Category Dropdown in Optimizer
+────────────────────────────────────────────── */
+function populateCategoryDropdown() {
+  const sel = document.getElementById('optCategory');
+  sel.innerHTML = `<option value="">— Select category —</option>` +
+    CATEGORIES.map(c => `<option value="${c.id}">${c.label}</option>`).join('');
+}
+
+/* ──────────────────────────────────────────────
+   Keyboard shortcuts
+────────────────────────────────────────────── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeCardModal();
+    closeOfferModal();
+    closeConfirm();
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    const cardOpen = document.getElementById('cardModal').classList.contains('open');
+    const offerOpen = document.getElementById('offerModal').classList.contains('open');
+    if (cardOpen) saveCard();
+    else if (offerOpen) saveOffer();
+    else runOptimizer();
+  }
+});
+
+/* ──────────────────────────────────────────────
+   Export / Import JSON
+────────────────────────────────────────────── */
+function exportData() {
+  const json = JSON.stringify(state, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'card-offers-backup.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('Data exported', 'success');
+}
+
+function importData() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = evt => {
+      try {
+        const data = JSON.parse(evt.target.result);
+        if (!data.cards || !Array.isArray(data.cards)) throw new Error('Invalid format');
+        if (!confirm(`Import ${data.cards.length} card(s)? This replaces your current data.`)) return;
+        state = data;
+        saveState();
+        renderAll();
+        toast(`✓ Imported ${data.cards.length} cards`, 'success');
+      } catch {
+        toast('Invalid file', 'error');
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+/* ──────────────────────────────────────────────
+   Default cards (seeded once on first load)
+────────────────────────────────────────────── */
+const DEFAULT_CARDS = [
+  {
+    id: 'amex-delta-platinum',
+    name: 'Delta SkyMiles Platinum',
+    issuer: 'American Express',
+    lastFour: '',
+    color: '#1a2456',
+    rewardType: 'miles',
+    baseRate: 1,
+    pointValue: 0.012,
+    categoryMultipliers: {
+      dining: 2, grocery: 2, online: 1, travel: 1, flights: 3,
+      hotels: 3, fuel: 1, entertainment: 1, electronics: 1,
+      health: 1, fashion: 1, utilities: 1, other: 1,
+    },
+    offers: [],
+  },
+  {
+    id: 'venture-x',
+    name: 'Venture X',
+    issuer: 'Capital One',
+    lastFour: '',
+    color: '#0f3460',
+    rewardType: 'miles',
+    baseRate: 2,
+    pointValue: 0.01,
+    categoryMultipliers: {
+      dining: 1, grocery: 1, online: 1, travel: 5, flights: 5,
+      hotels: 10, fuel: 1, entertainment: 1, electronics: 1,
+      health: 1, fashion: 1, utilities: 1, other: 1,
+    },
+    offers: [],
+  },
+  {
+    id: 'citi-aadvantage',
+    name: 'AAdvantage Platinum Select',
+    issuer: 'Citi / American Airlines',
+    lastFour: '',
+    color: '#1a3a4a',
+    rewardType: 'miles',
+    baseRate: 1,
+    pointValue: 0.015,
+    categoryMultipliers: {
+      dining: 2, grocery: 1, online: 1, travel: 1, flights: 2,
+      hotels: 1, fuel: 2, entertainment: 1, electronics: 1,
+      health: 1, fashion: 1, utilities: 1, other: 1,
+    },
+    offers: [],
+  },
+  {
+    id: 'chase-sapphire-reserve',
+    name: 'Sapphire Reserve',
+    issuer: 'Chase',
+    lastFour: '',
+    color: '#2a2a2a',
+    rewardType: 'points',
+    baseRate: 1,
+    pointValue: 0.015,
+    categoryMultipliers: {
+      dining: 3, grocery: 1, online: 1, travel: 3, flights: 3,
+      hotels: 3, fuel: 1, entertainment: 1, electronics: 1,
+      health: 1, fashion: 1, utilities: 1, other: 1,
+    },
+    offers: [],
+  },
+];
+
+/* ──────────────────────────────────────────────
+   Init
+────────────────────────────────────────────── */
+loadState();
+// Seed default cards if storage is empty
+if (state.cards.length === 0) {
+  state.cards = DEFAULT_CARDS;
+  saveState();
+}
+populateCategoryDropdown();
+renderAll();
+</script>
+</body>
+</html>
