@@ -1,0 +1,22 @@
+# Generated media — keep prompts in git, keep media out
+assets/images/*/
+assets/clips/*/
+assets/audio/*/raw/
+assets/audio/*/processed/
+assets/audio/*/dialogue.wav
+assets/audio/*/final_mix.wav
+assets/output/
+
+# Music tracks (licensed separately)
+assets/audio/music/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor
+.DS_Store
+.idea/
+.vscode/
