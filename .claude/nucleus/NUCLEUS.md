@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-09-06 04:29 UTC · code
+Fabatollah scope decision: build it as a simple share-toy, not a game — user swipes through preset looks of the character, selects one, he STRUTS (animation from the 129 art/slices frames), then share the GIF with customizable text + a 'go to miklatgames.fun' CTA. Drop any heavier customizer/options. Purpose = viral top-of-funnel back to the arcade. Not built yet (only slices exist).
+
 ### 2026-06-14 19:49 UTC · code
 Working-style preference (durable, all workstreams): use the economical staged-build method — vision first (<=10 lines), chunk + gate each piece, headless logic check before polish, adversarial self-review (offline/mobile/data-promise/orphans/dupes) before reporting done. Rigor scales with change size: tiny=just do it, feature/structural=full loop. Adapted from miklatgames GAME-FACTORY; full contract in miklatgames/CLAUDE.md.
 
@@ -188,37 +191,28 @@ HANDOFF → Cowork: master deploy prompt delivered (merge PR #74, create+populat
 
 ### 2026-06-11 05:18 UTC · code
 MIKLAT GAMES v1 packaged in dubaiai-pro/miklat/ (session can't create repos — 403). Arcade shelf + full MAMAD DASH port (canonical → miklatgames.fun) + GoatCounter code 'miklatgames' pre-wired + deploy runbook. Verified over HTTP. BLOCKERS FOR ZORBA: (1) create github.com/zorbachin/miklatgames + add to a session OR run the runbook push commands; (2) Porkbun DNS for miklatgames.fun (4 A records); (3) GoatCounter signup with code 'miklatgames'; (4) tell me where Iron Dome's source lives for its port.
-
-### 2026-06-11 05:12 UTC · code
-DECISION (Zorba): bought miklatgames.fun on Porkbun as the umbrella arcade for all games (solves growth panel's dubaiai.pro trust problem). Wants a Claude design prompt for a mobile-first arcade site built on 10M-club counsel. Brand insight: Miklat = shelter — 'the games you play in the shelter' is the moat. Promo clip 1 (9:16 night) rendered via Higgsfield kling3_0, clip 2 rendering; VO script + cut sheet committed in PROMO.md.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-06-14 19:49 UTC
+- **When:** 2026-09-06 04:29 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 0d6b78e nucleus+bus: tip jars live, T023 done — 3 days ago
+- **Last commit:** 01286d2 nucleus: capture economical staged-build working method — 3 months ago
 
 **Working tree:**
 ```
-M .claude/nucleus/NUCLEUS.md
-```
-
-**Uncommitted changes:**
-```
-.claude/nucleus/NUCLEUS.md | 26 ++++++++++----------------
- 1 file changed, 10 insertions(+), 16 deletions(-)
+✓ clean — nothing uncommitted
 ```
 
 **Recent commits:**
 ```
-0d6b78e nucleus+bus: tip jars live, T023 done (3 days ago)
-38e7ca5 nucleus: miklat digger shipped, playtest tuning landed (3 days ago)
-345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) (3 days ago)
-95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (3 days ago)
-3e6fb41 nucleus: balagan v2 steer, miklat digger capture, shuk shopper finished (3 days ago)
+01286d2 nucleus: capture economical staged-build working method (3 months ago)
+0d6b78e nucleus+bus: tip jars live, T023 done (3 months ago)
+38e7ca5 nucleus: miklat digger shipped, playtest tuning landed (3 months ago)
+345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) (3 months ago)
+95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (3 months ago)
 ```
 <!-- AUTOSTATE:END -->
 
