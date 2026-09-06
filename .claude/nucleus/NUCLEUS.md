@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-09-06 04:36 UTC · code
+Onboarding two external developers onto Iron Dome specifically (not the whole arcade). Shared via a zip of the irondome/ folder (self-contained single-file game). Open loop: if devs will iterate and send changes back, set up real two-way collaboration — a dedicated Iron Dome repo (needs adding to session scope; currently limited to zorbachin/miklatgames + dubaiai-pro).
+
 ### 2026-09-06 04:29 UTC · code
 Fabatollah scope decision: build it as a simple share-toy, not a game — user swipes through preset looks of the character, selects one, he STRUTS (animation from the 129 art/slices frames), then share the GIF with customizable text + a 'go to miklatgames.fun' CTA. Drop any heavier customizer/options. Purpose = viral top-of-funnel back to the arcade. Not built yet (only slices exist).
 
@@ -188,18 +191,15 @@ MIKLATGAMES.FUN purchased on Porkbun (miklat = shelter — perfect umbrella bran
 v17 MERGED (PR #85): end screens redesigned per Zorba's screenshot — stat strip with HITS TAKEN (new cityHits counter) + intercepted + direct hits on every end screen, shop collapsed behind toggle, overlay screens can never overflow the frame (safe centering + scroll fallback), menu tightened. Awaiting Zorba's image packs #2 (icon/portrait/victory) and #3 (10 level worlds) for the beauty pass.
 
 HANDOFF → Cowork: master deploy prompt delivered (merge PR #74, create+populate miklatgames repo from miklat/ package, Pages+CNAME, Porkbun DNS guided, Iron Dome port from wherever it lives in GitHub, full release verification, GoatCounter reminder code 'miklatgames'). Code session = build shop; Cowork = release manager. If Iron Dome isn't in GitHub, regenerate from nucleus context.
-
-### 2026-06-11 05:18 UTC · code
-MIKLAT GAMES v1 packaged in dubaiai-pro/miklat/ (session can't create repos — 403). Arcade shelf + full MAMAD DASH port (canonical → miklatgames.fun) + GoatCounter code 'miklatgames' pre-wired + deploy runbook. Verified over HTTP. BLOCKERS FOR ZORBA: (1) create github.com/zorbachin/miklatgames + add to a session OR run the runbook push commands; (2) Porkbun DNS for miklatgames.fun (4 A records); (3) GoatCounter signup with code 'miklatgames'; (4) tell me where Iron Dome's source lives for its port.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-09-06 04:29 UTC
+- **When:** 2026-09-06 04:36 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** 01286d2 nucleus: capture economical staged-build working method — 3 months ago
+- **Last commit:** d6bc487 nucleus: capture Fabatollah share-toy scope + dev-sharing context — 2 minutes ago
 
 **Working tree:**
 ```
@@ -208,11 +208,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
+d6bc487 nucleus: capture Fabatollah share-toy scope + dev-sharing context (2 minutes ago)
 01286d2 nucleus: capture economical staged-build working method (3 months ago)
 0d6b78e nucleus+bus: tip jars live, T023 done (3 months ago)
 38e7ca5 nucleus: miklat digger shipped, playtest tuning landed (3 months ago)
 345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) (3 months ago)
-95dcbc7 nucleus: miklat digger v1 greenlit (B+C fusion) (3 months ago)
 ```
 <!-- AUTOSTATE:END -->
 
