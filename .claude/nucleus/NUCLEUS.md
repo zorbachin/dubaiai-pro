@@ -56,6 +56,9 @@ _Newest first. Written automatically by hooks and by `nucleus push` from any
 surface. This is the message-in-a-bottle between sessions._
 
 <!-- HANDOFFS:START -->
+### 2026-09-06 05:27 UTC · code
+Created Iron Dome developer handoff doc (shareable artifact page) for the two devs: https://claude.ai/code/artifact/1850bbda-f56f-4f27-9450-5bd7e72a7b0e — covers run-locally (serve over http, don't file://-open), the procedural-vs-image art model (answers 'not seeing all the artwork'), architecture, file map, and a prioritized task list from PANEL-VERDICT. Pairs with the irondome-share.zip already sent.
+
 ### 2026-09-06 04:36 UTC · code
 Onboarding two external developers onto Iron Dome specifically (not the whole arcade). Shared via a zip of the irondome/ folder (self-contained single-file game). Open loop: if devs will iterate and send changes back, set up real two-way collaboration — a dedicated Iron Dome repo (needs adding to session scope; currently limited to zorbachin/miklatgames + dubaiai-pro).
 
@@ -186,20 +189,15 @@ MIKLAT PORTAL BLUEPRINT delivered at /tmp/MIKLAT-BLUEPRINT.md: (1) complete one-
 
 ### 2026-06-11 05:16 UTC · code
 MIKLATGAMES.FUN purchased on Porkbun (miklat = shelter — perfect umbrella brand) to house ALL games. Directives: (1) no promo video yet — shot list first; (2) board convened to ready Iron Dome + new portal site for the 10k push; (3) CHECK-IN FOR MAMAD DASH TEAM: Zorba wants Mamad Dash ready for the miklatgames.fun portal launch — status of PR #71 / standalone build? Portal will link all games; reply via nucleus with current state + what's needed. (4) 16 retro level-art images shown in chat but NOT saved as files — need re-upload to integrate reskin.
-
-### 2026-06-11 03:48 UTC · code
-v17 MERGED (PR #85): end screens redesigned per Zorba's screenshot — stat strip with HITS TAKEN (new cityHits counter) + intercepted + direct hits on every end screen, shop collapsed behind toggle, overlay screens can never overflow the frame (safe centering + scroll fallback), menu tightened. Awaiting Zorba's image packs #2 (icon/portrait/victory) and #3 (10 level worlds) for the beauty pass.
-
-HANDOFF → Cowork: master deploy prompt delivered (merge PR #74, create+populate miklatgames repo from miklat/ package, Pages+CNAME, Porkbun DNS guided, Iron Dome port from wherever it lives in GitHub, full release verification, GoatCounter reminder code 'miklatgames'). Code session = build shop; Cowork = release manager. If Iron Dome isn't in GitHub, regenerate from nucleus context.
 <!-- HANDOFFS:END -->
 
 ## 🔄 Live State (auto)
 _Refreshed automatically after each turn — do not edit by hand._
 
 <!-- AUTOSTATE:START -->
-- **When:** 2026-09-06 04:36 UTC
+- **When:** 2026-09-06 05:27 UTC
 - **Branch:** `claude/cool-rubin-gb8jv6`
-- **Last commit:** d6bc487 nucleus: capture Fabatollah share-toy scope + dev-sharing context — 2 minutes ago
+- **Last commit:** 501ffc4 nucleus: capture Iron Dome dev handoff (zip) — 51 minutes ago
 
 **Working tree:**
 ```
@@ -208,11 +206,11 @@ _Refreshed automatically after each turn — do not edit by hand._
 
 **Recent commits:**
 ```
-d6bc487 nucleus: capture Fabatollah share-toy scope + dev-sharing context (2 minutes ago)
+501ffc4 nucleus: capture Iron Dome dev handoff (zip) (51 minutes ago)
+d6bc487 nucleus: capture Fabatollah share-toy scope + dev-sharing context (52 minutes ago)
 01286d2 nucleus: capture economical staged-build working method (3 months ago)
 0d6b78e nucleus+bus: tip jars live, T023 done (3 months ago)
 38e7ca5 nucleus: miklat digger shipped, playtest tuning landed (3 months ago)
-345eef9 nucleus: universal design system + 3 agents in flight (SS sprint, SS playtest, MDG build) (3 months ago)
 ```
 <!-- AUTOSTATE:END -->
 
